@@ -17,6 +17,18 @@ class CarTest {
         assertThat(car.getName()).isEqualTo(carName);
     }
 
+    @Test
+    void carMoveTest() {
+        String carName = "차이름";
+        Car car = new Car(carName);
+
+        car.move(4);
+        car.move(3);
+        car.move(2);
+
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
 
 
 }

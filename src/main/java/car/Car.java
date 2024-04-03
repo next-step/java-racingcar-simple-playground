@@ -8,15 +8,19 @@ public class Car {
         this.name = name;
     }
 
-    public void move(){
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        int number = randomNumberGenerator.generate();
-        if(number >=4){
-            position ++;
+    public void move(int power) {
+//        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+//        int number = randomNumberGenerator.generate();
+        if (power >= 4) {
+            position++;
         }
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
