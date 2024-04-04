@@ -1,9 +1,10 @@
 package car.model;
 
+import car.view.Constant;
+
 public class Car {
     private final String name;
     private int position = 0;
-    private  final static int FORWARD_NUMBER = 4;
 
 
     public Car(String name) {
@@ -13,7 +14,7 @@ public class Car {
     public void move() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         int number = randomNumberGenerator.generate();
-        if (number>= FORWARD_NUMBER) {
+        if (number>= Constant.FORWARD_MIN) {
             position++;
         }
     }

@@ -1,5 +1,7 @@
 package car.model;
 
+import car.view.Constant;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.regex.Pattern;
 
 public class CarName {
     private List<String> carNames;
-    private static final int NAME_LENGTH = 5;
 
     public void setCarName(String inputCarNames){
         validateNull(inputCarNames);
@@ -43,7 +44,7 @@ public class CarName {
 
     private void validateLength(List<String> carNames) {
         for (String carName : carNames) {
-            if(carName.length() > NAME_LENGTH){
+            if(carName.length() > Constant.CAR_NAME_LENGTH_MAX){
                 throw new IllegalArgumentException("5글자 이하로 입력하세요.");
             }
         }

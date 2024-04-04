@@ -4,6 +4,7 @@ import car.model.Car;
 import car.model.CarName;
 import car.model.GameNumber;
 import car.model.RacingCars;
+import car.view.Constant;
 import car.view.Input;
 import car.view.Output;
 
@@ -40,9 +41,9 @@ public class RacingGameController {
         List<String> results = new ArrayList<>();
         for (Car car : cars) {
             car.move();
-            String result = car.getName() + " : ";
+            String result = car.getName() + Constant.CAR_NAME_BORDER;
             for(int i=0; i<car.getPosition(); i++){
-                result += "-";
+                result += Constant.CAR_POSITION_UNIT;
             }
             results.add(result);
         }

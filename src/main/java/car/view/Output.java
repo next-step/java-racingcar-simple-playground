@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Output {
     public void gameResultMessage(){
-        System.out.println("\n실행 결과");
+        System.out.println("\n"+Constant.RACING_RESULT);
     }
     public void gameStatus(List<String> results){
         for (String result : results) {
@@ -16,6 +16,6 @@ public class Output {
         System.out.println();
     }
     public void gameWinner(String winner){
-        System.out.println(winner + "가 최종 우승했습니다.");
+        System.out.println(winner + Constant.RACING_WINNER);
     }
 }
