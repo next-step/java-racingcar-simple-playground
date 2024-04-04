@@ -1,4 +1,4 @@
-package car;
+package car.model;
 
 public class Car {
     private final String name;
@@ -8,10 +8,10 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int power) {
-//        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-//        int number = randomNumberGenerator.generate();
-        if (power >= 4) {
+    public void move() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        int number = randomNumberGenerator.generate();
+        if (number>= 4) {
             position++;
         }
     }
