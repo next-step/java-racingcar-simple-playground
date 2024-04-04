@@ -1,4 +1,4 @@
-package car;
+package car.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,5 @@ public class RacingCars {
         return carList;
     }
 
-    public Car getWinner(){
-        int max = 0;
-        Car winner = carList.get(0);
-        for (Car car : carList) {
-            if(car.getPosition() >max){
-                max = car.getPosition();
-                winner = car;
-            }
-        }
-        return winner;
-    }
 
 }
