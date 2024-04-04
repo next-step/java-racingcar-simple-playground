@@ -19,7 +19,7 @@ class RacingCarsTest {
         carNames.add("carC");
         RacingCars racingCars = new RacingCars(carNames);
 
-        List<Car> carList = racingCars.getCarList();
+        List<Car> carList = racingCars.getCars();
         Car carA = carList.get(0);
         Car carB = carList.get(1);
         Car carC = carList.get(2);

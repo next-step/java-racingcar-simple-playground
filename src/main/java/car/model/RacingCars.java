@@ -5,14 +5,14 @@ import java.util.List;
 
 public class RacingCars {
 
-    private final List<Car> carList = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public RacingCars(List<String> carNames){
-        carNames.forEach(carName -> carList.add(new Car(carName)));
+        carNames.forEach(carName -> cars.add(new Car(carName)));
     }
 
-    public List<Car> getCarList() {
-        return carList;
+    public List<Car> getCars() {
+        return cars;
     }
 
 

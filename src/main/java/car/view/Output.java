@@ -9,8 +9,8 @@ public class Output {
     public void gameResultMessage(){
         System.out.println("\n실행 결과");
     }
-    public void gameStatus(List<String> resultList){
-        for (String result : resultList) {
+    public void gameStatus(List<String> results){
+        for (String result : results) {
             System.out.println(result);
         }
         System.out.println();
