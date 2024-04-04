@@ -1,10 +1,11 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-
     @Test
     @DisplayName("4이상이면 전진하는지 확인한다.")
     void moveTest(){
@@ -44,5 +45,11 @@ class CarTest {
         }
     }
 
-
+    @DisplayName("자동차 이름이 6자 이상일 때, 자동차가 생성되지 않는지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"어코드하이브리드", "제네시스GV80", "현대팰리세이드", "기아스포티지"})
+    void createCarIfNameOverSix(String carName) {
+        // 자동차 생성 시 예외 발생하는 지 테스트
+        assertThrows(IllegalArgumentException.class, () -> new Car(carName));
+    }
 }
