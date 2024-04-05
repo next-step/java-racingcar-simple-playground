@@ -50,9 +50,7 @@
 | Util | Method |
 | --- | --- |
 | RandomNumberGenerator | generate |
-|  |  |
 
----
 
 ## **🧪 Test**
 
