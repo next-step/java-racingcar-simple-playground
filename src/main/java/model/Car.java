@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Random;
+import utils.RandomNumberGenerator;
 
 public class Car {
     private String name;
@@ -18,8 +18,8 @@ public class Car {
         return score;
     }
 
-    public void move(){
-        if(new Random().nextInt(10) > 3){
+    public void move() {
+        if (RandomNumberGenerator.generate() > 3) {
             score += 1;
         }
     }
