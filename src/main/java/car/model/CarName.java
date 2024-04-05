@@ -36,6 +36,7 @@ public class CarName {
 
     private void validateType(List<String> carNames) {
         for (String carName : carNames) {
+
             if(!Pattern.matches("^[a-zA-Z]*$", carName)){
                 throw new IllegalArgumentException("알파벳만 입력하세요.");
             }

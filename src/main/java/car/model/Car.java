@@ -11,9 +11,7 @@ public class Car {
         this.name = name;
     }
 
-    public void move() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        int number = randomNumberGenerator.generate();
+    public void move(int number) {
         if (number>= Constant.FORWARD_MIN) {
             position++;
         }

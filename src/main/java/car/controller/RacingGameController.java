@@ -1,9 +1,6 @@
 package car.controller;
 
-import car.model.Car;
-import car.model.CarName;
-import car.model.GameNumber;
-import car.model.RacingCars;
+import car.model.*;
 import car.view.Constant;
 import car.view.InputView;
 import car.view.OutputView;
@@ -18,6 +15,7 @@ public class RacingGameController {
     private RacingCars racingCars;
     private GameNumber gameNumber;
     private final OutputView output = new OutputView();
+    private final Winner winner = new Winner();
     public RacingGameController() {
         startGame();
         output.gameResultMessage();
@@ -25,7 +23,8 @@ public class RacingGameController {
             List<String> results = playGame(racingCars);
             output.gameStatus(results);
         }
-        String winner = endGame(racingCars);
+        endGame(racingCars);
+        String winner = racingCars.getWinner();
         output.gameWinner(winner);
     }
 
@@ -40,7 +39,7 @@ public class RacingGameController {
         List<Car> cars = racingCars.getCars();
         List<String> results = new ArrayList<>();
         for (Car car : cars) {
-            car.move();
+            car.move(RandomNumberGenerator.generate());
             String result = car.getName() + Constant.CAR_NAME_BORDER;
             for(int i=0; i<car.getPosition(); i++){
                 result += Constant.CAR_POSITION_UNIT;
@@ -49,19 +48,7 @@ public class RacingGameController {
         }
         return results;
     }
-    private String endGame(RacingCars racingCars){
-        List<Car> cars = racingCars.getCars();
-        int max = 0;
-        String winner = "";
-        for (Car car : cars) {
-            if(car.getPosition() >max){
-                max = car.getPosition();
-                winner = car.getName();
-            }
-            else if(max == car.getPosition()){
-                winner += ", " + car.getName();
-            }
-        }
-        return winner;
+    private void endGame(RacingCars racingCars){
+        winner.findWinner(racingCars);
     }
 }

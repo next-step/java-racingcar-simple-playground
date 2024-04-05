@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
 
-    public int generate(){
+    public static int generate(){
         Random random = new Random();
         return random.nextInt(Constant.RANDOM_NUMBER_MAX);
     }
