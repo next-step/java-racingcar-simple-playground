@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 @DisplayNameGeneration(ReplaceUnderscores.class)
@@ -41,6 +43,24 @@ class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "8, true",
+            "4, false"
+    })
+    void 임의의_위치가_자동차의_현재_위치와_같은지_판단할_수_있다(final int position, final boolean expected) {
+        // given
+        final Car car = new Car(new RandomNumberGenerateStrategy(),
+                                "kokodak",
+                                8);
+
+        // when
+        final boolean actual = car.isPositionSame(position);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 
     static class TestNumberGenerateStrategy implements NumberGenerateStrategy {
