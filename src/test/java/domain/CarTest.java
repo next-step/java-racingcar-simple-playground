@@ -68,11 +68,14 @@ class CarTest {
         private final List<Integer> numbers;
 
         public TestNumberGenerateStrategy(final List<Integer> numbers) {
-            this.numbers = numbers;
+            this.numbers = new ArrayList<>(numbers);
         }
 
         @Override
         public int generate() {
+            if (numbers.isEmpty()) {
+                throw new IllegalStateException("더 이상 숫자를 생성할 수 없습니다.");
+            }
             return numbers.remove(0);
         }
     }
