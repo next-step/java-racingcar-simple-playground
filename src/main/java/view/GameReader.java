@@ -27,4 +27,5 @@ public class GameReader {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
 }

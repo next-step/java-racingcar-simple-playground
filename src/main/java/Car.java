@@ -1,4 +1,5 @@
 public class Car {
+
     private final int MIN_LENGTH = 1;
     private final int MAX_LENGTH = 5;
 
@@ -39,4 +40,5 @@ public class Car {
     public String getName() {
         return name;
     }
+
 }
