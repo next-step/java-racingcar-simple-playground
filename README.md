@@ -40,10 +40,10 @@
 
 ## 🚗  Model
 
-| Model | Field | Method |
-| --- | --- | --- |
-| Car | private String name | move |
-|  |  |  |
+| Model | Field               | Method |
+|-------|---------------------|-------|
+| Car   | private String name | move  |
+|       | private int score   |       |
 
 ## **📚 Utils**
 
