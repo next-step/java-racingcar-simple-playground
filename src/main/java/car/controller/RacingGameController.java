@@ -5,19 +5,19 @@ import car.model.CarName;
 import car.model.GameNumber;
 import car.model.RacingCars;
 import car.view.Constant;
-import car.view.Input;
-import car.view.Output;
+import car.view.InputView;
+import car.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameController {
 
-    private final Input input = new Input();
+    private final InputView input = new InputView();
     private final CarName carName = new CarName();
     private RacingCars racingCars;
     private GameNumber gameNumber;
-    private final Output output = new Output();
+    private final OutputView output = new OutputView();
     public RacingGameController() {
         startGame();
         output.gameResultMessage();

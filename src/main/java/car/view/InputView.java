@@ -2,7 +2,7 @@ package car.view;
 
 import java.util.Scanner;
 
-public class Input {
+public class InputView {
     Scanner scanner = new Scanner(System.in);
 
     public String inputCarName(){

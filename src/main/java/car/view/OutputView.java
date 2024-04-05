@@ -1,11 +1,8 @@
 package car.view;
 
-import car.model.Car;
-import car.model.RacingCars;
-
 import java.util.List;
 
-public class Output {
+public class OutputView {
     public void gameResultMessage(){
         System.out.println("\n"+Constant.RACING_RESULT);
     }
