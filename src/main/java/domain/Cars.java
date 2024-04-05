@@ -14,7 +14,7 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
-    public List<Car> findCarsWithPosition(final int position) {
+    public List<Car> findCarsByPosition(final int position) {
         return cars.stream()
                    .filter(car -> car.isPositionSame(position))
                    .toList();

@@ -60,7 +60,7 @@ class CarsTest {
         final Cars racingCars = new Cars(cars);
 
         // when
-        List<Car> carsWithPosition = racingCars.findCarsWithPosition(4);
+        List<Car> carsWithPosition = racingCars.findCarsByPosition(4);
 
         // then
         assertThat(carsWithPosition)
