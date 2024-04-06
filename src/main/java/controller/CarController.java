@@ -16,4 +16,8 @@ public class CarController {
     public void moveCars(){
         cars.move(raceCount);
     }
+
+    public void printWinners(){
+        System.out.println(cars.getWinners());
+    }
 }
