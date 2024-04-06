@@ -39,13 +39,14 @@
 
 ## 🚗  Model
 
-| Model | Car | Cars         |
-| --- | --- |--------------|
-| Field | String name | List \<Car>  |
-|  | int score |              |
-| Method | move | save |
-|  |  |calcualteWinner    |
-|  |  | getWinner         |
+| Model | Car | Cars            |
+| --- | --- |-----------------|
+| Field | String name | List \<Car>     |
+|  | int score |                 |
+| Method |  | save            |
+|  |  | move            |
+|  |  | calculateWinner |
+|  |  | getWinner       |
 
 <br>
 
