@@ -11,12 +11,14 @@ public class RacingCarStep2 {
 
     // 참여하는 자동차의 대수 n을 입력받아 정하는 메서드
     public void setN(){
+        System.out.print("참여 자동차의 대수 n을 입력하세요:");
         n = scanner.nextInt();
         scanner.nextLine();
     }
 
     // 주어진 횟수 cnt를 입력받아 정하는 메서드
     public void setCnt(){
+        System.out.print("참여 회수 cnt를 입력하세요:");
         cnt = scanner.nextInt();
         scanner.nextLine();
     }
@@ -24,11 +26,13 @@ public class RacingCarStep2 {
     // 자동차의 carNames를 초기화 해주는 메서드
     public void setCarNames() {
         carNames = new String[n];
+
     }
 
     // 자동차의 carNames를 사용자로부터 입력받는 메서드
     public void getCarNames() {
-        for (int i = 0; i < cnt; i++) {
+        for (int i = 0; i < n; i++) {
+            System.out.print("참여 자동차의 이름을 입력하세요." + i + "번째 차량 : ");
             carNames[i] = scanner.nextLine();
         }
     }
@@ -53,7 +57,7 @@ public class RacingCarStep2 {
         }
     }
 
-    // 차들이 n회 동안 반복
+    // 차들이 cnt회 동안 반복
     public void racingGame(){
         for (int i = 0; i < cnt; i++) {
             randomAllCarsMoving();
@@ -62,26 +66,24 @@ public class RacingCarStep2 {
 
     // carsLocation의 최댓값을 찾는 함수
     public int findMaxLocation(){
-        int maxLo = Integer.MAX_VALUE;
+        int maxLo = Integer.MIN_VALUE;
         for (int carLocation : carLocations) {
             maxLo = Math.max(maxLo, carLocation);
         }
         return maxLo;
     }
     // 가장 멀리 간 차량의 index 반환하는 메서드
-    public void checkingIndex(int carLocation, int i) {
-        System.out.println("우승자는 다음 차량입니다.");
-        if (carLocation == findMaxLocation()) {
+    public void checkingIndex(int carLocation, int i, int maxLo) {
+        if (carLocation == maxLo) {
             System.out.println(carNames[i]);;
         }
     }
 
     // 우승자를 구하는 메서드
     public void winnerChecking(){
-        int maxLo = findMaxLocation();
+        System.out.println("우승자는 다음 차량입니다.");
         for (int i = 0; i < carLocations.length; i++) {
-            checkingIndex(carLocations[i],i);
-            //
+            checkingIndex(carLocations[i],i,findMaxLocation());
         }
     }
 }
