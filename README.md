@@ -30,10 +30,11 @@
 
 ## 🕹️ Controller
 
-| Model | Method |
-| --- | --- |
-| Car | move |
-| Cars | getWinner |
+| Model | Method    |
+|-------|-----------|
+| Cars  | save      |
+|   | move      |
+|   | getWinner |
 
 <br>
 

@@ -7,17 +7,20 @@ public class CarController {
     private Cars cars;
     private String[] carNames = {"붕붕이", "씽씽이", "주전차"};
 
-    private int raceCount = 3;
-    public void saveCars(){
-        for(String carName: carNames){
+    private final int raceCount = 3;
+    
+
+    public void saveCars() {
+        for (String carName : carNames) {
             cars.save(new Car(carName));
         }
     }
-    public void moveCars(){
+
+    public void moveCars() {
         cars.move(raceCount);
     }
 
-    public void printWinners(){
+    public void printWinners() {
         System.out.println(cars.getWinners());
     }
 }
