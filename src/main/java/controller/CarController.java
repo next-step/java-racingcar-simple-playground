@@ -1,20 +1,16 @@
 package controller;
 
 import model.Car;
+import model.Cars;
 
 public class CarController {
 
     private Car car;
+    private Cars carList;
+    private String[] carNames = {"붕붕이", "씽씽이", "주전차"};
     public void saveCar(){
-        String carName = "붕붕이";
-        car = new Car(carName);
+        for(String carName: carNames){
+            carList.save(new Car(carName));
+        }
     }
-
-    public void carMove(){
-        car.move();
-    }
-
-
-
-
 }
