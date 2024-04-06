@@ -30,24 +30,25 @@
 
 ## 🕹️ Controller
 
-| Model | Method    |
-|-------|-----------|
-| Cars  | save      |
-|   | move      |
-|   | getWinner |
+| Model | Method           |
+|-------|------------------|
+| Cars  | save             |
+|   | moveCarsForRaces |
+|   | getWinner        |
 
 <br>
 
 ## 🚗  Model
 
-| Model | Car         | Cars            |
-| --- |-------------|-----------------|
-| Field | String name | List \<Car>     |
-|  | int score   |                 |
-| Method | move        | save            |
-|  |             | move            |
-|  |             | calculateWinner |
-|  |             | getWinner       |
+| Model | Car         | Cars             |
+| --- |-------------|------------------|
+| Field | String name | List \<Car>      |
+|  | int score   |                  |
+| Method | move        | save             |
+|  |             | moveCarsForRaces |
+|  |             | move             |
+|  |             | calculateWinner  |
+|  |             | getWinner        |
 
 <br>
 

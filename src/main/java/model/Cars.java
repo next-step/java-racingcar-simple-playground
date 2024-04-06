@@ -12,11 +12,15 @@ public class Cars {
         cars.add(car);
     }
 
-    public void move(int raceCount){
+    public void moveCarsForRaces(int raceCount){
         for(int i = 0; i < raceCount; i++) {
-            for (Car car : getCars()) {
-                car.move();
-            }
+            move();
+        }
+    }
+
+    public void move(){
+        for (Car car : getCars()) {
+            car.move();
         }
     }
 

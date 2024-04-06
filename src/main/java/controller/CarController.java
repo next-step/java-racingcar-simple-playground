@@ -8,7 +8,7 @@ public class CarController {
     private String[] carNames = {"붕붕이", "씽씽이", "주전차"};
 
     private final int raceCount = 3;
-    
+
 
     public void saveCars() {
         for (String carName : carNames) {
@@ -17,7 +17,7 @@ public class CarController {
     }
 
     public void moveCars() {
-        cars.move(raceCount);
+        cars.moveCarsForRaces(raceCount);
     }
 
     public void printWinners() {
