@@ -38,28 +38,22 @@ class CarMoverTest {
     @Test
     @DisplayName("random 값이 4 이상 9 이하인 경우 1만큼 전진한다")
     void moveCarWhenRandomValueIsGreaterThanOrEqual4() {
-        // given
         int randomValue = 4 + random.nextInt(5);
         given(randomValueGenerator.generateRandomValue()).willReturn(randomValue);
 
-        // when
         carMover.move(car);
 
-        // then
         assertThat(car.getPosition()).isEqualTo(1L);
     }
 
     @Test
     @DisplayName("random 값이 3 이하인 경우 멈춘다")
     void stopCarWhenRandomValueIsLessThan4() {
-        // given
         int randomValue = random.nextInt(3);
         given(randomValueGenerator.generateRandomValue()).willReturn(randomValue);
 
-        // when
         carMover.move(car);
 
-        // then
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
