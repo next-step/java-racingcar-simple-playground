@@ -32,9 +32,9 @@ public class Cars {
         return cars.stream().map(car -> car.getScore()).collect(Collectors.toList());
     }
 
-    public List<Car> getWinners(){
+    public List<String> getWinners(){
         calculateWinner();
-        return winners;
+        return winners.stream().map(winner -> winner.getName()).collect(Collectors.toList());
     }
 
 }

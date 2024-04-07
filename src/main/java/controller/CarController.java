@@ -24,6 +24,7 @@ public class CarController {
             cars.move();
             showRaceScore();
         }
+        showRaceWinners();
     }
 
     public void showRaceStartMessage(){
@@ -34,7 +35,7 @@ public class CarController {
         OutputView.printRaceScore(cars.getCarNames(), cars.getCarScores());
     }
 
-    public void printWinners() {
-        System.out.println(cars.getWinners());
+    public void showRaceWinners() {
+        OutputView.printRaceWinner(cars.getWinners());
     }
 }
