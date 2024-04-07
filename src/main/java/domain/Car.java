@@ -1,5 +1,8 @@
+package domain;
+
+import exception.IllegalRandomVariableException;
+
 import java.util.List;
-import java.util.Random;
 
 public class Car {
     private String name;
@@ -14,7 +17,12 @@ public class Car {
         this.distance++;
     }
 
-    void moveOrStop(int value) {
+    public void moveOrStop(int value) {
+
+        if(value < 0 || value > 9){
+            throw new IllegalRandomVariableException("숫자가 예상 범위를 초과합니다.");
+        }
+
         if(value >= 4 && value <=9){
             move();
         }
@@ -26,19 +34,5 @@ public class Car {
 
     public String getName(){
         return name;
-    }
-
-    private void printCarInfo(){
-        System.out.printf(this.name + " : ");
-        for(int i=0;i<this.distance;i++)
-            System.out.print("-");
-        System.out.println();
-    }
-
-    public static void printCarsInfo(List<Car> cars) {
-        for(Car car : cars){
-            car.printCarInfo();
-        }
-        System.out.println();
     }
 }

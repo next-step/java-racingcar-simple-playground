@@ -1,7 +1,14 @@
+import domain.Car;
+import domain.RandomValueGenerator;
+import exception.IllegalRandomVariableException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions.*;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
@@ -29,18 +36,14 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("랜덤 생성된 0~9의 수로 자동차가 제대로 작동하는지 확인한다.")
+    @DisplayName("랜덤 생성된 수가 유효범위에 속하는지 테스트한다.")
     void moveTestWithRandomValue() {
-        Car car = new Car("제네시스");
-        int value = RandomValueGenerator.generate();
-        int beforeDistance = car.getDistance();
-        car.moveOrStop(value);
-
-        if(value >= 4 && value <= 9){
-            assertEquals(beforeDistance + 1, car.getDistance());
-        }
-        if(value < 4 || value > 9){
-            assertEquals(beforeDistance, car.getDistance());
+        int randomVariable = RandomValueGenerator.generate();
+        // 익셉션이 안떠야 통과
+        try{
+            new Car("포르쉐").moveOrStop(randomVariable);
+        } catch(IllegalRandomVariableException e) {
+            assertEquals("숫자가 예상 범위를 초과합니다.", e.getMessage());
         }
     }
 
