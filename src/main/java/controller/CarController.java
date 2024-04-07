@@ -2,6 +2,7 @@ package controller;
 
 import model.Cars;
 import model.Race;
+import view.OutputView;
 
 public class CarController {
 
@@ -14,11 +15,23 @@ public class CarController {
     }
 
     public void raceStart() {
+        showRaceStartMessage();
         moveCars();
     }
 
     public void moveCars() {
-        cars.moveCarsForRaces(race.getRaceCount());
+        for(int i = 0; i < race.getRaceCount(); i++){
+            cars.move();
+            showRaceScore();
+        }
+    }
+
+    public void showRaceStartMessage(){
+        OutputView.printRaceStartMessage();
+    }
+
+    public void showRaceScore(){
+        OutputView.printRaceScore(cars.getCarNames(), cars.getCarScores());
     }
 
     public void printWinners() {

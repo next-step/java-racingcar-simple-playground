@@ -14,12 +14,6 @@ public class Cars {
             cars.add(new Car(carName));
         }
     }
-    public void moveCarsForRaces(int raceCount){
-        for(int i = 0; i < raceCount; i++) {
-            move();
-        }
-    }
-
     public void move(){
         for (Car car : cars) {
             car.move();
@@ -31,8 +25,11 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<String> getCarNames() {
+        return cars.stream().map(car -> car.getName()).collect(Collectors.toList());
+    }
+    public List<Integer> getCarScores(){
+        return cars.stream().map(car -> car.getScore()).collect(Collectors.toList());
     }
 
     public List<Car> getWinners(){

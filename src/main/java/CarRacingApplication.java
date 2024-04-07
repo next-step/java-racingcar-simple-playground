@@ -7,6 +7,6 @@ public class CarRacingApplication {
         final int raceCount = InputView.getRaceCount();
 
         final CarController carController = new CarController(carNames, raceCount);
-
+        carController.raceStart();
     }
 }
