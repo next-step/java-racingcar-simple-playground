@@ -1,4 +1,4 @@
-import controller.CarController;
+import controller.RaceController;
 import view.InputView;
 
 public class CarRacingApplication {
@@ -6,7 +6,8 @@ public class CarRacingApplication {
         final String[] carNames = InputView.getCarNames();
         final int raceCount = InputView.getRaceCount();
 
-        final CarController carController = new CarController(carNames, raceCount);
-        carController.startRace();
+        final RaceController raceController = new RaceController(carNames, raceCount);
+        raceController.startRace();
+        raceController.showRaceWinners();
     }
 }
