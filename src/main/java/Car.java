@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Random;
 
 public class Car {
@@ -21,5 +22,23 @@ public class Car {
 
     public int getDistance() {
         return distance;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    private void printCarInfo(){
+        System.out.printf(this.name + " : ");
+        for(int i=0;i<this.distance;i++)
+            System.out.print("-");
+        System.out.println();
+    }
+
+    public static void printCarsInfo(List<Car> cars) {
+        for(Car car : cars){
+            car.printCarInfo();
+        }
+        System.out.println();
     }
 }
