@@ -14,21 +14,21 @@ public class CarController {
         this.cars = new Cars(carNames);
     }
 
-    public void raceStart() {
+    public void startRace() {
         showRaceStartMessage();
-        moveCars();
     }
 
-    public void moveCars() {
+    public void showRaceStartMessage(){
+        OutputView.printRaceStartMessage();
+        race();
+    }
+
+    public void race() {
         for(int i = 0; i < race.getRaceCount(); i++){
             cars.move();
             showRaceScore();
         }
         showRaceWinners();
-    }
-
-    public void showRaceStartMessage(){
-        OutputView.printRaceStartMessage();
     }
 
     public void showRaceScore(){
