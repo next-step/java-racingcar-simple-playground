@@ -72,22 +72,22 @@ neo, brown가 최종 우승했습니다.
 
 ## 🕹️ Controller
 
-| Action | Class | Method |
-| --- | --- | --- |
-| save | Cars | save |
-| move | Cars | moveCarsForRaces |
-|  |  | move |
+| Action            | Class      | Method           |
+|-------------------|------------|------------------|
+| saveRaceInfo      | Race       | constructor      |
+| move              | Cars       | moveCarsForRaces |
+|                   |            | move             |
 | print race result | OutputView | printRaceResult  |
-| print race winner | OutputView | printRaceWinner |
+| print race winner | OutputView | printRaceWinner  |
 
 ## 🚗  Model
 
-| Model | Car | Cars |
-| --- | --- | --- |
-| Field | String name | List<Car> cars |
-|  | int score | List<Car> winners |
-| Method | move | save |
-|  |  | moveCarsForRaces |
+| Model | Car | Cars | race              |
+| --- | --- | --- |-------------------|
+| Field | String name | List<Car> cars | String[] carNames |
+|  | int score | List<Car> winners | int raceCount|
+| Method | move | save | getCarNames|
+|  |  | moveCarsForRaces |getRaceCount|
 |  |  | move |
 |  |  | calcualteWinner |
 |  |  | getWinner |

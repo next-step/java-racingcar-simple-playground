@@ -8,10 +8,12 @@ public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
     private List<Car> winners = new ArrayList<>();
-    public void save(Car car) {
-        cars.add(car);
-    }
 
+    public Cars(final String[] carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+    }
     public void moveCarsForRaces(int raceCount){
         for(int i = 0; i < raceCount; i++) {
             move();
@@ -19,19 +21,18 @@ public class Cars {
     }
 
     public void move(){
-        for (Car car : getCars()) {
+        for (Car car : cars) {
             car.move();
         }
+    }
+    public void calculateWinner() {
+        final int maxScore = cars.stream().mapToInt(Car::getScore).max().orElse(0);
+        this.winners = cars.stream().filter(car -> car.getScore() == maxScore)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
         return cars;
-    }
-
-    public void calculateWinner() {
-        final int maxScore = cars.stream().mapToInt(Car::getScore).max().orElse(0);
-        winners = cars.stream().filter(car -> car.getScore() == maxScore)
-                .collect(Collectors.toList());
     }
 
     public List<Car> getWinners(){

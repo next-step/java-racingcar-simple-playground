@@ -31,15 +31,8 @@ public class JUnit5Test {
         void testCalculateWinnersMethodReturnAccurateWinners() {
             int raceCount = 3;
 
-            Cars cars = new Cars();
-            Car car1 = new Car("붕붕이");
-            Car car2 = new Car("따릉이");
-            Car car3 = new Car("쌩생이");
-
-            cars.save(car1);
-            cars.save(car2);
-            cars.save(car3);
-            cars.move(raceCount);
+            Cars cars = new Cars(new String[]{"붕붕이", "따릉이", "쌩쌩이"});
+            cars.moveCarsForRaces(raceCount);
 
             int maxScore = 0;
 

@@ -1,23 +1,24 @@
 package controller;
 
-import model.Car;
 import model.Cars;
+import model.Race;
 
 public class CarController {
-    private Cars cars;
-    private String[] carNames = {"붕붕이", "씽씽이", "주전차"};
 
-    private final int raceCount = 3;
+    private final Race race;
+    private final Cars cars;
 
+    public CarController(String[] carNames, int raceCount) {
+        this.race = new Race(carNames, raceCount);
+        this.cars = new Cars(carNames);
+    }
 
-    public void saveCars() {
-        for (String carName : carNames) {
-            cars.save(new Car(carName));
-        }
+    public void raceStart() {
+        moveCars();
     }
 
     public void moveCars() {
-        cars.moveCarsForRaces(raceCount);
+        cars.moveCarsForRaces(race.getRaceCount());
     }
 
     public void printWinners() {
