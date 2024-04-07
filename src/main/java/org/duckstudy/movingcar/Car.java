@@ -5,6 +5,10 @@ public class Car {
     private final String name;
     private long position;
 
+    public String getName() {
+        return name;
+    }
+
     public long getPosition() {
         return position;
     }
