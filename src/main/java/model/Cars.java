@@ -21,7 +21,7 @@ public class Cars {
         }
     }
 
-    public void calculateWinner() {
+    public void determineWinner() {
         this.winners = cars.stream().filter(car -> car.getScore() == getMaxScore())
                 .collect(Collectors.toList());
     }
@@ -39,7 +39,7 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        calculateWinner();
+        determineWinner();
         return winners.stream().map(winner -> winner.getName()).collect(Collectors.toList());
     }
 

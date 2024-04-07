@@ -8,11 +8,6 @@ public class Race {
         this.carNames = carNames;
         this.raceCount = raceCount;
     }
-
-    public String[] getCarNames() {
-        return carNames;
-    }
-
     public int getRaceCount() {
         return raceCount;
     }

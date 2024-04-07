@@ -69,28 +69,34 @@ neo, brown가 최종 우승했습니다.
 | --- | --- | --- |
 | input car names | InputView | getCarNames |
 | input race count | InputView | getRaceCount |
+| start race | RaceController | startRace |
+| print race winners | RaceController | showRaceWinners |
 
 ## 🕹️ Controller
 
-| Action            | Class      | Method           |
-|-------------------|------------|------------------|
-| saveRaceInfo      | Race       | constructor      |
-| move              | Cars       | moveCarsForRaces |
-|                   |            | move             |
-| print race result | OutputView | printRaceResult  |
-| print race winner | OutputView | printRaceWinner  |
+| Action | Class | Method |
+| --- | --- | --- |
+| race | Cars | move |
+|  | OutputView | printRaceScore |
+| get race winner | Cars | getWinners |
+|  | OutputView | printRaceWinner |
 
 ## 🚗  Model
 
-| Model | Car | Cars | race              |
-| --- | --- | --- |-------------------|
-| Field | String name | List<Car> cars | String[] carNames |
-|  | int score | List<Car> winners | int raceCount|
-| Method | move | save | getCarNames|
-|  |  | moveCarsForRaces |getRaceCount|
-|  |  | move |
-|  |  | calcualteWinner |
-|  |  | getWinner |
+| Model | Race | Cars | Car |
+| --- | --- | --- | --- |
+| Field | String[] carNames | List<Car> cars | String name |
+|  | int raceCount | List<Car> winners | int score |
+| Method |  | move | move |
+|  |  | determineWinner |  |
+
+## 🖨️ View
+
+| View | InputView | OutputView |
+| --- | --- | --- |
+| Method | getCarNames | printRaceStartMessage |
+|  | getRaceCount | printRaceScore |
+|  |  | printRaceWinner |
 
 ## **📚 Utils**
 
