@@ -10,14 +10,17 @@ public class RacingGame {
         this.cars = cars;
     }
 
-    public void race(final int attemptNumber) {
-        for (int i = 0; i < attemptNumber; i++) {
-            cars.move();
-        }
+    public void race() {
+        cars.move();
     }
 
-    public List<Car> findWinningCars() {
+    public Cars findWinningCars() {
         final int maxPosition = cars.findMaxPosition();
-        return cars.findCarsWithPosition(maxPosition);
+        final List<Car> winningCars = cars.findCarsWithPosition(maxPosition);
+        return new Cars(winningCars);
+    }
+
+    public Cars getCars() {
+        return cars;
     }
 }
