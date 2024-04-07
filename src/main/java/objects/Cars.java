@@ -10,6 +10,7 @@ public class Cars {
     private final List<Car> winningCars = new ArrayList<>();
 
     public void race() {
+
         for (Car myCar : cars) {
             myCar.move();
             String carPosition = myCar.getPositionToString();
