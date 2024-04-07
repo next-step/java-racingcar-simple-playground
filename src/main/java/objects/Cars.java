@@ -9,6 +9,7 @@ public class Cars {
     private final List<Car> cars = new ArrayList<>();
     private final List<Car> winningCars = new ArrayList<>();
 
+
     public void race() {
 
         for (Car myCar : cars) {
