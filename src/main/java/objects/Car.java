@@ -6,7 +6,6 @@ import java.util.Random;
 
 
 public class Car {
-
     private String name;
 
     private int moving;
