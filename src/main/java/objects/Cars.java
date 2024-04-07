@@ -13,6 +13,7 @@ public class Cars {
 
     public void race() {
 
+
         for (Car myCar : cars) {
             myCar.move();
             String carPosition = myCar.getPositionToString();
