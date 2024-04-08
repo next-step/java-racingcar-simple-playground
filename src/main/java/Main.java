@@ -18,7 +18,7 @@ public class Main {
         rc.winner();
 
         print(rc);
-
+        
         sc.close();
     }
 
