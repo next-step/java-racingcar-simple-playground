@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -35,6 +35,22 @@ class CarRaceTest {
         carRace.raceStart(gameCount, () -> 2);
         assertThat(cars).extracting("distance")
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(),0));
+    }
+
+    @ParameterizedTest
+    @MethodSource("getCarsForTest")
+    @DisplayName("최종 우승자 리스트를 정상적으로 반환하는지 확인한다.")
+    void selectWinnersTest(List<Car> cars) {
+        CarRace carRace = new CarRace(cars);
+
+        int gameCount = 5;
+        carRace.raceStart(gameCount, () -> 7);
+        List<String> winners = carRace.selectWinners();
+
+        assertThat(winners)
+                .containsExactlyInAnyOrderElementsOf(cars.stream()
+                        .map(Car::getName)
+                        .collect(Collectors.toList()));
     }
 
     private static Stream<Arguments> getCarsForTest() {
