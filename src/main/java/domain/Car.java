@@ -24,11 +24,11 @@ public class Car {
         }
     }
 
-    void move() {
+    private void move() {
         this.distance++;
     }
 
-    void moveOrStop(int value) {
+    public void moveOrStop(int value) {
         if (value >= 4 && value <= 9) {
             move();
         }
