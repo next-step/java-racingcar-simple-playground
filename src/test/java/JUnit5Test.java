@@ -24,7 +24,15 @@ public class JUnit5Test {
                 throw new RuntimeException("generate 메소드가 0에서 9사이의 정수를 반환하지 않습니다.");
             }
         }
+    }
 
-
+    @Nested
+    @DisplayName("getWinner 매서드 테스트")
+    class GetWinnerTest{
+        @Test
+        @DisplayName("getWinner 메서드가 제대로 작동하는지 확인")
+        void testGetCarsWinner(){
+            // score 값을 지정할 수 있는 테스트 방법 찾기
+        }
     }
 }

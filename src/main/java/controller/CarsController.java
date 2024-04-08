@@ -11,6 +11,7 @@ public class CarsController {
     private Cars cars;
 
     public void setCars(){
+        // 좀 더 깔끔하게 할 수 있는 방법은 뭐가 있을까
         List<Car> carList = new ArrayList<>();
         Car car1 = new Car("num1");
         Car car2 = new Car("num2");
