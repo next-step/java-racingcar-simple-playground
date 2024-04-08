@@ -1,3 +1,6 @@
+import exception.CarException;
+import exception.ErrorMessage;
+
 public class Car {
 
     private final int MIN_LENGTH = 1;
@@ -13,13 +16,9 @@ public class Car {
     }
 
     private void validateCar(String name) {
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(
-                    String.format("이름은 최대 %d 자입니다.", MAX_LENGTH));
-        }
-        if (name.length() < MIN_LENGTH) {
-            throw new IllegalArgumentException(
-                    String.format("이름은 최소 %d 자입니다.", MIN_LENGTH));
+        if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH ) {
+            throw new CarException(
+                    ErrorMessage.NAME_LENGTH_INCORRECT.formatMessage(MIN_LENGTH,MAX_LENGTH));
         }
     }
 
