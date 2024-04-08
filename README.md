@@ -75,10 +75,10 @@ neo, brown가 최종 우승했습니다.
 
 ## 구현 순서
 1. [x] domain.Car 클래스의 `validateCar`의 두 throw를 하나로 합쳐보기 (테스트 코드도 리팩토링)
-2. [ ] `Domain`, `Controller`, `View`로 분리하기
-3. 
-
-
+2. [x] `Domain`, `Controller`, `View`로 분리하기
+3. [x] main 메서드 의존관계 간소화
+4. [x] `CarRace` 단위 테스트 작성
+5. [ ] `CarTest` 초반부분 테스트코드 리팩토링(JUnit5, AssertJ 학습 테스트 참고)
 
 ## 제출 전 체크
 - [ ] 클래스 별 코드 위아래 공백 확인

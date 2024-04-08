@@ -20,7 +20,9 @@ class CarRaceTest {
         CarRace carRace = new CarRace(cars);
 
         int gameCount = 5;
-        carRace.raceStart(gameCount, () -> 7);
+        for (int i = 0; i < gameCount; i++) {
+            carRace.raceOneLap(() -> 7);
+        }
         assertThat(cars).extracting("distance")
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(), gameCount));
     }
@@ -32,7 +34,9 @@ class CarRaceTest {
         CarRace carRace = new CarRace(cars);
 
         int gameCount = 5;
-        carRace.raceStart(gameCount, () -> 2);
+        for (int i = 0; i < gameCount; i++) {
+            carRace.raceOneLap(() -> 2);
+        }
         assertThat(cars).extracting("distance")
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(),0));
     }
@@ -44,7 +48,9 @@ class CarRaceTest {
         CarRace carRace = new CarRace(cars);
 
         int gameCount = 5;
-        carRace.raceStart(gameCount, () -> 7);
+        for (int i = 0; i < gameCount; i++) {
+            carRace.raceOneLap(() -> 7);
+        }
         List<String> winners = carRace.selectWinners();
 
         assertThat(winners)

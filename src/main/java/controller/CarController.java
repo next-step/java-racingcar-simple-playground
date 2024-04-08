@@ -40,12 +40,14 @@ public class CarController {
     private void gameStart(List<Car> cars, int gameCount) {
         CarRace carRace = new CarRace(cars);
         GamePrinter.printResultStart();
-        carRace.raceStart(
-                gameCount,
-                () -> {
-                    Random random = new Random();
-                    return random.nextInt(10);
-                });
+        for (int i = 0; i < gameCount; i++) {
+            carRace.raceOneLap(() -> {
+                Random random = new Random();
+                return random.nextInt(10);
+            });
+            cars.forEach(car -> GamePrinter.printCarResult(car.getName(), car.getDistance()));
+            System.out.println();
+        }
         List<String> winners = carRace.selectWinners();
         GamePrinter.printRaceWinners(winners);
     }

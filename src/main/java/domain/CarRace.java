@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 import utils.ValueGenerator;
-import view.GamePrinter;
 
 public class CarRace {
 
@@ -12,15 +11,7 @@ public class CarRace {
         this.cars = cars;
     }
 
-    public void raceStart(int count, ValueGenerator generator){
-        for (int i = 0; i < count; i++) {
-            raceOneLap(generator);
-            cars.forEach(car -> GamePrinter.printCarResult(car.getName(),car.getDistance()));
-            System.out.println();
-        }
-    }
-
-    private void raceOneLap(ValueGenerator generator) {
+    public void raceOneLap(ValueGenerator generator) {
         for (Car car : cars) {
             car.moveOrStop(generator.generate());
         }
