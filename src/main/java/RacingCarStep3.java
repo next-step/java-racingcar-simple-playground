@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class RacingCarStep3 {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
-    String[] carNames; // 자동차의 이름
+    public String[] carNames; // 자동차의 이름
     int[] carLocations; // 각 자동차의 위치
     int cnt; // 주어진 횟수
     int n;   // 참여하는 자동차의 대수
     LinkedList<String> winnerList = new LinkedList<>();
 
-    // 자동차의 carNames를 사용자로부터 입력받는 메서드
+     //자동차의 carNames를 사용자로부터 입력받는 메서드
     public void getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분");
         carNames = scanner.nextLine().split(",");
@@ -97,16 +97,5 @@ public class RacingCarStep3 {
             printsplit(i);
         }
         System.out.println("가 최종 우승했습니다.");
-    }
-
-    public static void main(String[] args) {
-        RacingCarStep3 rcCar = new RacingCarStep3();
-        rcCar.getCarNames(); // 참가 자동차 이름 입력
-        rcCar.setN();        // 이름 입력 바탕으로 자동차 대수 n 초기화
-        rcCar.getCnt();      // 횟수 cnt 입력
-        rcCar.setCarLocations();
-        rcCar.racingGame();  // 게임 실행
-        rcCar.winnerChecking(); // 우승자 확인
-        rcCar.winnerPrinting(); // 우승자 출력
     }
 }
