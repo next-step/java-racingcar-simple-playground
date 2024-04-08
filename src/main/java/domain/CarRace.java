@@ -1,8 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import utils.RandomValueGenerator;
+import utils.ValueGenerator;
 import view.GamePrinter;
 
 public class CarRace {
@@ -13,9 +12,22 @@ public class CarRace {
         this.cars = cars;
     }
 
+    public void raceStart(int count, ValueGenerator generator){
+        for (int i = 0; i < count; i++) {
+            raceOneLap(generator);
+            cars.forEach(car -> GamePrinter.printCarResult(car.getName(),car.getDistance()));
+            System.out.println();
+        }
+    }
+
+    private void raceOneLap(ValueGenerator generator) {
+        for (Car car : cars) {
+            car.moveOrStop(generator.generate());
+        }
+    }
+
     public List<String> selectWinners(){
         int max = 0;
-        List<Integer> winnerCarIndex = new ArrayList<>();
         for (Car car : cars) {
             max = Math.max(car.getDistance(), max);
         }
@@ -24,20 +36,6 @@ public class CarRace {
                 .filter(car -> car.getDistance() == finalMax)
                 .map(Car::getName)
                 .toList();
-    }
-
-    public void raceStart(int count){
-        for (int i = 0; i < count; i++) {
-            raceOneLap();
-            cars.forEach(car -> GamePrinter.printCarResult(car.getName(),car.getDistance()));
-            System.out.println();
-        }
-    }
-
-    private void raceOneLap() {
-        for (Car car : cars) {
-            car.moveOrStop(RandomValueGenerator.generate());
-        }
     }
 
 }

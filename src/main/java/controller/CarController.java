@@ -4,6 +4,7 @@ import domain.Car;
 import domain.CarRace;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import utils.Parser;
 import validator.InputValidator;
 import view.GamePrinter;
@@ -39,7 +40,12 @@ public class CarController {
     private void gameStart(List<Car> cars, int gameCount) {
         CarRace carRace = new CarRace(cars);
         GamePrinter.printResultStart();
-        carRace.raceStart(gameCount);
+        carRace.raceStart(
+                gameCount,
+                () -> {
+                    Random random = new Random();
+                    return random.nextInt(10);
+                });
         List<String> winners = carRace.selectWinners();
         GamePrinter.printRaceWinners(winners);
     }
