@@ -59,24 +59,6 @@ public class RacingGameTest {
             }
         }
 
-        for (int i = 0; i < expectedPlayer.length; i++) {
-            if (expectedWinnerMovingCnt < expectedPlayer[i].getMovingCnt()) {
-                expectedWinnerMovingCnt = expectedPlayer[i].getMovingCnt();
-            }
-        }
-
-        for (int i = 0; i < expectedPlayer.length; i++) {
-            if (expectedWinnerMovingCnt == expectedPlayer[i].getMovingCnt()) {
-                expectedPlayer[i].setWin(true);
-            }
-        }
-
-        for (int i = 0; i < expectedPlayer.length; i++) {
-            if (expectedPlayer[i].getWin()) {
-                expectedWinners = expectedPlayer[i].getName() + " ";
-            }
-        }
-
         RacingGame racingGame = new RacingGame(Names, expectedTryCnt);
         racingGame.countingPlayerMoving();
 
@@ -117,23 +99,9 @@ public class RacingGameTest {
             }
         }
 
-        for (int i = 0; i < expectedPlayer.length; i++) {
-            if (expectedWinnerMovingCnt == expectedPlayer[i].getMovingCnt()) {
-                expectedPlayer[i].setWin(true);
-            }
-        }
-
-        for (int i = 0; i < expectedPlayer.length; i++) {
-            if (expectedPlayer[i].getWin()) {
-                expectedWinners = expectedPlayer[i].getName() + " ";
-            }
-        }
-
         RacingGame racingGame = new RacingGame(Names, expectedTryCnt);
         racingGame.countingPlayerMoving();
         racingGame.countingWinnerMoving();
-
-        Car[] players = racingGame.getPlayers();
 
         //then
         assertThat(racingGame.getWinnerMovingCnt()).isEqualTo(expectedWinnerMovingCnt);
