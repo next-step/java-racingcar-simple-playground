@@ -16,7 +16,7 @@ public class RacingGame {
 
     public Cars findWinningCars() {
         final int maxPosition = cars.findMaxPosition();
-        final List<Car> winningCars = cars.findCarsWithPosition(maxPosition);
+        final List<Car> winningCars = cars.findCarsByPosition(maxPosition);
         return new Cars(winningCars);
     }
 

@@ -3,7 +3,7 @@ package domain;
 public class Car {
 
     private final NumberGenerateStrategy strategy;
-    private final String name;
+    private final CarName name;
     private int position;
 
     public Car(final NumberGenerateStrategy strategy,
@@ -14,16 +14,9 @@ public class Car {
     public Car(final NumberGenerateStrategy strategy,
                final String name,
                final int position) {
-        validateName(name);
         this.strategy = strategy;
-        this.name = name;
+        this.name = CarName.from(name);
         this.position = position;
-    }
-
-    private void validateName(final String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
-        }
     }
 
     public void move() {
@@ -38,7 +31,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.value();
     }
 
     public int getPosition() {

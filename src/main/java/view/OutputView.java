@@ -20,18 +20,18 @@ public class OutputView {
     }
 
     private static String getPositionFormat(final int position) {
-        final StringBuffer stringBuffer = new StringBuffer();
+        final StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            stringBuffer.append("-");
+            stringBuilder.append("-");
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
     public static void printResultOfWinningCars(final Cars winningCars) {
         final List<Car> cars = winningCars.getCars();
         final List<String> carNames = cars.stream()
-                                          .map(Car::getName)
-                                          .toList();
+                .map(Car::getName)
+                .toList();
         final String winningCarNames = String.join(", ", carNames);
         System.out.printf("%s가 최종 우승했습니다.\n", winningCarNames);
     }

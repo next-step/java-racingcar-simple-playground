@@ -21,7 +21,7 @@ class CarTest {
         NumberGenerateStrategy strategy = new TestNumberGenerateStrategy(
                 new ArrayList<>(Arrays.asList(4))
         );
-        final Car car = new Car(strategy, "kokodak");
+        final Car car = new Car(strategy, "코코닥");
 
         // when
         car.move();
@@ -36,7 +36,7 @@ class CarTest {
         NumberGenerateStrategy strategy = new TestNumberGenerateStrategy(
                 new ArrayList<>(Arrays.asList(3))
         );
-        final Car car = new Car(strategy, "kokodak");
+        final Car car = new Car(strategy, "코코닥");
 
         // when
         car.move();
@@ -53,8 +53,8 @@ class CarTest {
     void 임의의_위치가_자동차의_현재_위치와_같은지_판단할_수_있다(final int position, final boolean expected) {
         // given
         final Car car = new Car(new RandomNumberGenerateStrategy(),
-                                "kokodak",
-                                8);
+                "코코닥",
+                8);
 
         // when
         final boolean actual = car.isPositionSame(position);
@@ -68,11 +68,14 @@ class CarTest {
         private final List<Integer> numbers;
 
         public TestNumberGenerateStrategy(final List<Integer> numbers) {
-            this.numbers = numbers;
+            this.numbers = new ArrayList<>(numbers);
         }
 
         @Override
         public int generate() {
+            if (numbers.isEmpty()) {
+                throw new IllegalStateException("더 이상 숫자를 생성할 수 없습니다.");
+            }
             return numbers.remove(0);
         }
     }
