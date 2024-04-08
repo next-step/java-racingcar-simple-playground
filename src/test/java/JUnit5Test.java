@@ -5,6 +5,11 @@ import utils.RandomNumberGenerator;
 
 import java.util.List;
 
+/*
+* 오류로 인해 build가 되지 않는 상태입니다.
+* 그래서 test 코드를 실행하고 있지 못하여 일단은 코드만 작성하였습니다.
+* */
+
 public class JUnit5Test {
 
     @Nested
