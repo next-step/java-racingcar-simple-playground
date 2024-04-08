@@ -21,7 +21,7 @@ class CarTest {
         NumberGenerateStrategy strategy = new TestNumberGenerateStrategy(
                 new ArrayList<>(Arrays.asList(4))
         );
-        final Car car = new Car(strategy, "kokodak");
+        final Car car = new Car(strategy, "코코닥");
 
         // when
         car.move();
@@ -36,7 +36,7 @@ class CarTest {
         NumberGenerateStrategy strategy = new TestNumberGenerateStrategy(
                 new ArrayList<>(Arrays.asList(3))
         );
-        final Car car = new Car(strategy, "kokodak");
+        final Car car = new Car(strategy, "코코닥");
 
         // when
         car.move();
@@ -53,7 +53,7 @@ class CarTest {
     void 임의의_위치가_자동차의_현재_위치와_같은지_판단할_수_있다(final int position, final boolean expected) {
         // given
         final Car car = new Car(new RandomNumberGenerateStrategy(),
-                                "kokodak",
+                                "코코닥",
                                 8);
 
         // when

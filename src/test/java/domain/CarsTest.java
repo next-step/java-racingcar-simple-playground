@@ -18,8 +18,8 @@ class CarsTest {
         final int movePower = 5;
         final int stopPower = 1;
         final List<Car> cars = List.of(
-                new Car(new TestNumberGenerateStrategy(List.of(movePower)), "kokodak"),
-                new Car(new TestNumberGenerateStrategy(List.of(stopPower)), "royce")
+                new Car(new TestNumberGenerateStrategy(List.of(movePower)), "코코닥"),
+                new Car(new TestNumberGenerateStrategy(List.of(stopPower)), "로이스")
         );
         final Cars racingCars = new Cars(cars);
 
@@ -36,9 +36,9 @@ class CarsTest {
     void 자동차들의_최대_위치를_찾을_수_있다() {
         // given
         final List<Car> cars = List.of(
-                new Car(new RandomNumberGenerateStrategy(), "kokodak", 12),
-                new Car(new RandomNumberGenerateStrategy(), "royce", 4),
-                new Car(new RandomNumberGenerateStrategy(), "luca", 12)
+                new Car(new RandomNumberGenerateStrategy(), "코코닥", 12),
+                new Car(new RandomNumberGenerateStrategy(), "로이스", 4),
+                new Car(new RandomNumberGenerateStrategy(), "루카", 12)
         );
         final Cars racingCars = new Cars(cars);
 
@@ -53,9 +53,9 @@ class CarsTest {
     void 특정_위치에_있는_자동차들을_찾을_수_있다() {
         // given
         final List<Car> cars = List.of(
-                new Car(new RandomNumberGenerateStrategy(), "kokodak", 4),
-                new Car(new RandomNumberGenerateStrategy(), "royce", 4),
-                new Car(new RandomNumberGenerateStrategy(), "luca", 3)
+                new Car(new RandomNumberGenerateStrategy(), "코코닥", 4),
+                new Car(new RandomNumberGenerateStrategy(), "로이스", 4),
+                new Car(new RandomNumberGenerateStrategy(), "루카", 3)
         );
         final Cars racingCars = new Cars(cars);
 
@@ -65,6 +65,6 @@ class CarsTest {
         // then
         assertThat(carsWithPosition)
                 .extracting("name")
-                .containsExactly("kokodak", "royce");
+                .containsExactly("코코닥", "로이스");
     }
 }
