@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Race {
     public Race() {
@@ -19,31 +20,62 @@ public class Race {
         return scanner.nextInt();
     }
 
-    public Car[] getCar(int carCount) {
+    public String setNames() {
+        Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextLine();
+    }
+
+    public void checkNameLength(String name) throws Exception {
+        if (name.length() <= 5) {
+            throw new Exception("글자수가 5글자 넘음");
+        }
+    }
+
+    public String[] sepNames(String names) {
+        return names.split(",");
+    }
+
+    public Car[] getCar(int carCount, String[] nameList) {
 
         Car[] carList = new Car[carCount];
 
         for (int i = 0; i < carCount; i++) {
             Car car = new Car();
             carList[i] = car;
+            carList[i].setName(nameList[i]);
         }
 
         return carList;
     }
 
-    public Car[] initCar(int carCount) {
+    public Car[] initCar(int carCount, String[] nameList) {
 
-        return getCar(carCount);
+        return getCar(carCount, nameList);
     }
 
-    //    public ArrayList<Car> startRace(Car[] carList, int carCount, int timeCout) {
+
+    //    public ArrayList<Car> startRace(Car[] carList, int carCount, int timeCount) {
     public Car[] startRace(Car[] carList, int carCount) {
         MoveCar moveCar = new MoveCar();
 
+        // 전체 횟수 반복추가
         for (int i = 0; i < carCount; i++) {
             moveCar.check(moveCar.getRandNum(), carList[i]);
+
+            System.out.printf("%s : %s\n", carList[i].getName(), printLine(carList[i].getCurrentLocation()));
         }
+        System.out.println();
         return carList;
+    }
+
+    public String printLine(int currentLocation) {
+        StringBuilder line = new StringBuilder("-");
+        for (int i = 0; i < currentLocation; i++) {
+            line.append("-");
+        }
+
+        return line.toString();
     }
 
     public int getMaxNumber(Car car, int max, int index, int i) {
@@ -88,4 +120,11 @@ public class Race {
         return -1;
     }
 
+    public void printWinner(ArrayList<Car> winners, int i) {
+        if (winners.size() == i + 1) {
+            System.out.print(winners.get(i).getName());
+            return;
+        }
+        System.out.print(winners.get(i).getName() + ", ");
+    }
 }

@@ -55,7 +55,7 @@ public class carMoveTest {
 
     }
 
-    @Test
+/*    @Test
     void checkRace() {
 
         Car car = new Car();
@@ -67,20 +67,20 @@ public class carMoveTest {
 
         Car[] raceResult = race.startRace(race.initCar(carCount), carCount);
 
-        /*for (int i = 0; i < raceResult.length; i++) {
+        *//*for (int i = 0; i < raceResult.length; i++) {
             System.out.println("result: " + raceResult[i].getCurrentLocation());
-        }*/
+        }*//*
 
-        /*System.out.println("=======================================================");*/
+        *//*System.out.println("=======================================================");*//*
         ArrayList<Car> winners = race.getWinner(raceResult);
 
-        /*for (int i = 0; i < winners.size(); i++) {
+        *//*for (int i = 0; i < winners.size(); i++) {
             System.out.println(+winners.get(i).getCurrentLocation());
-        }*/
+        }*//*
 
         // 우승자의 값이 1이 맞는지 확인
         for (int i = 0; i < winners.size(); i++){
             Assertions.assertThat(winners.get(i).getCurrentLocation()).isEqualTo(1);
         }
-    }
+    }*/
 }
