@@ -53,8 +53,8 @@ class CarTest {
     void 임의의_위치가_자동차의_현재_위치와_같은지_판단할_수_있다(final int position, final boolean expected) {
         // given
         final Car car = new Car(new RandomNumberGenerateStrategy(),
-                                "코코닥",
-                                8);
+                "코코닥",
+                8);
 
         // when
         final boolean actual = car.isPositionSame(position);

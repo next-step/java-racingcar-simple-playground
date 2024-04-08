@@ -16,15 +16,15 @@ public class Cars {
 
     public List<Car> findCarsByPosition(final int position) {
         return cars.stream()
-                   .filter(car -> car.isPositionSame(position))
-                   .toList();
+                .filter(car -> car.isPositionSame(position))
+                .toList();
     }
 
     public int findMaxPosition() {
         return cars.stream()
-                   .mapToInt(Car::getPosition)
-                   .max()
-                   .orElse(0);
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     public List<Car> getCars() {
