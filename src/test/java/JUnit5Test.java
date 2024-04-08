@@ -24,5 +24,7 @@ public class JUnit5Test {
                 throw new RuntimeException("generate 메소드가 0에서 9사이의 정수를 반환하지 않습니다.");
             }
         }
+
+
     }
 }

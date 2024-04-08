@@ -5,8 +5,7 @@ import model.Car;
 public class CarController {
 
     private Car car;
-    public void saveCar(){
-        String carName = "붕붕이";
+    public void saveCar(String carName){
         car = new Car(carName);
     }
 
