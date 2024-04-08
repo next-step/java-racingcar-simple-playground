@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Racing {
     ArrayList<Car> cars = new ArrayList<>();
@@ -16,6 +18,7 @@ public class Racing {
         }
         for (i = 0; i < t; i++) {
             eachRacing();
+            print();
         }
     }
 
@@ -33,11 +36,20 @@ public class Racing {
         for (Car car : cars) {
             M = Math.max(M, car.distance);
         }
-        for (Car car : cars) {
-            if (car.distance == M) {
-                winCars.add(car);
-            }
-        }
+        Stream<Car> stream = cars.stream();
+        int finalM = M;
+        winCars.addAll(stream.filter(car -> car.distance == finalM).toList());
         return winCars;
+    }
+
+    private void print() {
+        for (Car car : cars) {
+            System.out.print(car.name + " : ");
+            for (int i = 0; i < car.distance; i++) {
+                System.out.print("-");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }

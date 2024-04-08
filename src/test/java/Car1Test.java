@@ -24,7 +24,7 @@ public class Car1Test {
         ArrayList<String> l = new ArrayList<>();
         l.add("a");
         l.add("b");
-        ra.racing(2, 2, l);//두 대의 자동차 두 번 경기 시켜야지
+        ra.racing(2, 5, l);//두 대의 자동차 다섯 번 경기 시켜야지
         ArrayList<Car> cars_tmp = ra.cars;
         int expect_M = 0;
         for (Car car : cars_tmp) {
@@ -37,6 +37,7 @@ public class Car1Test {
         assertThat(expect_M).isEqualTo(M);
     }
 
+    //오버라이딩 -> 랜덤값을 2로 지정
     private static class NumberGenerator2 extends RandomNumberGenerator {
         @Override
         public int createRandomNumber() {
@@ -44,6 +45,7 @@ public class Car1Test {
         }
     }
 
+    //오버라이딩 -> 랜덤값을 7로 지정
     private static class NumberGenerator3 extends RandomNumberGenerator {
         @Override
         public int createRandomNumber() {
