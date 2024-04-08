@@ -1,5 +1,7 @@
 package model;
 
+import utils.RandomNumberGenerator;
+
 public class Car {
     private String name;
     private int score;
@@ -17,6 +19,8 @@ public class Car {
     }
 
     public void move() {
-        // random number > 3인 경우 score += 1
+        if (RandomNumberGenerator.generate() > 3) {
+            score += 1;
+        }
     }
 }
