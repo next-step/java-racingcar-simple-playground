@@ -8,25 +8,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RaceGame {
+    int gameCount;
 
     private static Cars carRepository;
 
     private static List<Car> winningCars = new ArrayList<>();
 
+    public Cars getCars(){
+        return carRepository;
+    }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public  RaceGame(String[] names , int gameCount){
 
-        int gameCount;
-
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
-        String[] names = input.split(",");
-        System.out.println("시도할 회수는 몇회인가요?");
-        gameCount = scanner.nextInt();
+        this.gameCount=gameCount;
 
         carRepository = new Cars();
-
 
         for (int i = 0; i < names.length; i++) {
             Car myCar = new Car(names[i]);
@@ -41,8 +37,9 @@ public class RaceGame {
         }
 
         carRepository.makeWinningCars();
-        carRepository.winner();
+
 
 
     }
+
 }

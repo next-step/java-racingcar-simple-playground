@@ -10,7 +10,6 @@ public class Car {
 
     private int moving;
 
-
     private int position;
 
     public Car(String name) {
