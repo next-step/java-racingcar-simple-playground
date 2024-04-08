@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Car {
 
     private String name;    //자동차는 이름을 가진다

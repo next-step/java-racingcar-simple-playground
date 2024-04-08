@@ -36,5 +36,4 @@ public class CarTest {
             car.carMove(i);
         assertEquals(car.getPosition(),0);
     }
-
 }
