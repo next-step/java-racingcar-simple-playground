@@ -12,21 +12,16 @@ public class Race {
 
     }
 
-    public int carCount() {
-        Scanner scanner = new Scanner(System.in);
-
-        return scanner.nextInt();
-    }
-
     public int timeCount() {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("시도할 회수는 몇회인가요?");
         return scanner.nextInt();
     }
 
     public String setNames() {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         return scanner.nextLine();
     }
 
@@ -37,9 +32,11 @@ public class Race {
     }
 
     public String[] sepNames(String names) {
+
         return names.split(",");
     }
 
+/*
     public Car[] getCar(int carCount, String[] nameList) {
 
         Car[] carList = new Car[carCount];
@@ -52,15 +49,24 @@ public class Race {
 
         return carList;
     }
+*/
 
     public Car[] initCar(int carCount, String[] nameList) {
+        Car[] carList = new Car[carCount];
 
-        return getCar(carCount, nameList);
+        for (int i = 0; i < carCount; i++) {
+            Car car = new Car();
+            carList[i] = car;
+            carList[i].setName(nameList[i]);
+        }
+
+        return carList;
     }
 
 
     //    public ArrayList<domain.Car> startRace(domain.Car[] carList, int carCount, int timeCount) {
     public Car[] startRace(Car[] carList, int carCount) {
+
         MoveCar moveCar = new MoveCar();
         Print print = new Print();
         // 전체 횟수 반복추가
