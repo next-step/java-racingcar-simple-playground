@@ -1,3 +1,7 @@
+package domain;
+
+import domain.Car;
+
 public class MoveCar {
 
     public MoveCar() {

@@ -1,3 +1,8 @@
+import domain.Car;
+import domain.MoveCar;
+import domain.Race;
+import view.Print;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -5,6 +10,7 @@ public class Main {
         Car car = new Car();
         MoveCar moveCar = new MoveCar();
         Race race = new Race();
+        Print print = new Print();
 
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] nameList = race.sepNames(race.setNames());
@@ -30,7 +36,6 @@ public class Main {
         ArrayList<Car> winners = race.getWinner(startRaceResult);
 
 
-        // printWinner 참고하여 업로드하기
         if (winners.size() == 1) {
             System.out.print(winners.get(0).getName());
             System.out.println("가 최종 우승했습니다.");
@@ -38,8 +43,8 @@ public class Main {
         }
 
         for (int i = 0; i < winners.size(); i++) {
-            race.printWinner(winners, i);
+            print.printWinners(winners, i);
         }
-        System.out.println("가 최종 우승했습니다.");
+//        System.out.println("가 최종 우승했습니다.");
     }
 }

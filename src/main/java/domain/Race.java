@@ -1,7 +1,11 @@
-import java.awt.*;
+package domain;
+
+import domain.Car;
+import domain.MoveCar;
+import view.Print;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Race {
     public Race() {
@@ -27,7 +31,7 @@ public class Race {
     }
 
     public void checkNameLength(String name) throws Exception {
-        if (name.length() <= 5) {
+        if (name.length() > 5) {
             throw new Exception("글자수가 5글자 넘음");
         }
     }
@@ -55,28 +59,21 @@ public class Race {
     }
 
 
-    //    public ArrayList<Car> startRace(Car[] carList, int carCount, int timeCount) {
+    //    public ArrayList<domain.Car> startRace(domain.Car[] carList, int carCount, int timeCount) {
     public Car[] startRace(Car[] carList, int carCount) {
         MoveCar moveCar = new MoveCar();
-
+        Print print = new Print();
         // 전체 횟수 반복추가
         for (int i = 0; i < carCount; i++) {
             moveCar.check(moveCar.getRandNum(), carList[i]);
 
-            System.out.printf("%s : %s\n", carList[i].getName(), printLine(carList[i].getCurrentLocation()));
+            print.printRacing(carList[i].getName(), carList[i].getCurrentLocation());
+
         }
         System.out.println();
         return carList;
     }
 
-    public String printLine(int currentLocation) {
-        StringBuilder line = new StringBuilder("-");
-        for (int i = 0; i < currentLocation; i++) {
-            line.append("-");
-        }
-
-        return line.toString();
-    }
 
     public int getMaxNumber(Car car, int max, int index, int i) {
 
@@ -118,13 +115,5 @@ public class Race {
         }
 
         return -1;
-    }
-
-    public void printWinner(ArrayList<Car> winners, int i) {
-        if (winners.size() == i + 1) {
-            System.out.print(winners.get(i).getName());
-            return;
-        }
-        System.out.print(winners.get(i).getName() + ", ");
     }
 }

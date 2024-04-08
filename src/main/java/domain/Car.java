@@ -1,3 +1,5 @@
+package domain;
+
 public class Car {
     private int current_location = 0;
     private String name;

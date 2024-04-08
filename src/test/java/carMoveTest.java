@@ -1,10 +1,10 @@
+import domain.Car;
+import domain.MoveCar;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -58,21 +58,21 @@ public class carMoveTest {
 /*    @Test
     void checkRace() {
 
-        Car car = new Car();
-        MoveCar moveCar = new MoveCar();
-        Race race = new Race();
+        domain.Car car = new domain.Car();
+        domain.MoveCar moveCar = new domain.MoveCar();
+        domain.Race race = new domain.Race();
 
         int carCount = 12;
         int timeCount = 10;
 
-        Car[] raceResult = race.startRace(race.initCar(carCount), carCount);
+        domain.Car[] raceResult = race.startRace(race.initCar(carCount), carCount);
 
         *//*for (int i = 0; i < raceResult.length; i++) {
             System.out.println("result: " + raceResult[i].getCurrentLocation());
         }*//*
 
         *//*System.out.println("=======================================================");*//*
-        ArrayList<Car> winners = race.getWinner(raceResult);
+        ArrayList<domain.Car> winners = race.getWinner(raceResult);
 
         *//*for (int i = 0; i < winners.size(); i++) {
             System.out.println(+winners.get(i).getCurrentLocation());
