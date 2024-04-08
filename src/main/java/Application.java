@@ -1,3 +1,5 @@
+import domain.Car;
+import domain.CarRace;
 import java.util.ArrayList;
 import java.util.List;
 import utils.Parser;
@@ -5,7 +7,7 @@ import validator.InputValidator;
 import view.GamePrinter;
 import view.GameReader;
 
-public class Main {
+public class Application {
 
     public static void main(String[] args) {
         String carNames = GameReader.getNames();

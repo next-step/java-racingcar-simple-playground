@@ -1,3 +1,5 @@
+package domain;
+
 import exception.CarException;
 import exception.ErrorMessage;
 

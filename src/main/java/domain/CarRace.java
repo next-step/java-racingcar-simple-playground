@@ -1,5 +1,8 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
+import utils.RandomValueGenerator;
 import view.GamePrinter;
 
 public class CarRace {
