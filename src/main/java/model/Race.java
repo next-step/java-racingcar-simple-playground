@@ -8,6 +8,7 @@ public class Race {
         this.carNames = carNames;
         this.raceCount = raceCount;
     }
+
     public int getRaceCount() {
         return raceCount;
     }
