@@ -1,4 +1,5 @@
 import domain.Car;
+import domain.Input;
 import domain.Race;
 import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
@@ -14,17 +15,19 @@ import java.util.stream.Stream;
 
 public class RaceTest {
 
-    Car[] raceList() {
+    ArrayList<Car> raceList() {
         Race race = new Race();
+        Input input = new Input();
 
         String nameString = "one,two,three";
 
-        String[] names = race.sepNames(nameString);
+        String[] names = input.separateNames(nameString);
 
-        Car[] carList = race.initCar(3, names);
-        carList[0].setCurrentLocation(5);
-        carList[1].setCurrentLocation(2);
-        carList[2].setCurrentLocation(3);
+        ArrayList<Car> carList = race.initCar(names);
+
+        carList.get(0).severalForward(5);
+        carList.get(1).severalForward(2);
+        carList.get(2).severalForward(3);
 
         return carList;
     }
@@ -33,10 +36,10 @@ public class RaceTest {
     @ValueSource(strings = {"일이삼", "일이삼사오육"})
     @DisplayName("문자열 길이 확인")
     void nameLengthTest(String value) {
-        Race race = new Race();
+        Input input = new Input();
 
         try {
-            race.checkNameLength(value);
+            input.checkNameLength(value);
         } catch (Exception e) {
             System.out.printf(e.getMessage());
             Assertions.fail("문자열의 길이가 5 이상 입니다.");
@@ -45,12 +48,12 @@ public class RaceTest {
 
     @Test
     @DisplayName("문자열 분리 확인")
-    void sepNamesTest() {
-        Race race = new Race();
+    void separateNamesTest() {
+        Input input = new Input();
 
         String nameString = "one,two,three";
 
-        String[] names = race.sepNames(nameString);
+        String[] names = input.separateNames(nameString);
 
         Assertions.assertThat(names[0]).isEqualTo("one");
         Assertions.assertThat(names[1]).isEqualTo("two");
@@ -61,16 +64,17 @@ public class RaceTest {
     @DisplayName("n개의 자동차 생성 확인")
     void initCarTest() {
         Race race = new Race();
+        Input input = new Input();
 
         String nameString = "one,two,three";
 
-        String[] names = race.sepNames(nameString);
+        String[] names = input.separateNames(nameString);
 
-        Car[] carList = race.initCar(3, names);
+        ArrayList<Car> carList = race.initCar(names);
 
         for (int i = 0; i < 3; i++) {
-            Assertions.assertThat(carList[i].getName()).isEqualTo(names[i]);
-            Assertions.assertThat(carList[i].getCurrentLocation()).isEqualTo(0);
+            Assertions.assertThat(carList.get(i).getName()).isEqualTo(names[i]);
+            Assertions.assertThat(carList.get(i).getCurrentLocation()).isEqualTo(0);
 
         }
     }
@@ -79,18 +83,19 @@ public class RaceTest {
     @DisplayName("race 동작 확인")
     void startRaceTest() {
         Race race = new Race();
+        Input input = new Input();
 
         String nameString = "one,two,three";
 
-        String[] names = race.sepNames(nameString);
+        String[] names = input.separateNames(nameString);
 
-        Car[] carList = race.initCar(3, names);
+        ArrayList<Car> carList = race.initCar(names);
 
-        Car[] raceResult = race.startRace(carList, 3);
+        ArrayList<Car> raceResult = race.startRace(carList);
 
         for (int i = 0; i < 3; i++) {
-            Assertions.assertThat(carList[i].getName()).isEqualTo(names[i]);
-            Assertions.assertThat(carList[i].getCurrentLocation()).isBetween(0, 1);
+            Assertions.assertThat(raceResult.get(i).getName()).isEqualTo(names[i]);
+            Assertions.assertThat(raceResult.get(i).getCurrentLocation()).isBetween(0, 1);
         }
     }
 
@@ -99,14 +104,14 @@ public class RaceTest {
     void getMaxNumberTest() {
         Race race = new Race();
 
-        Car[] carList = raceList();
+        ArrayList<Car> carList = raceList();
 
-        int max = carList[0].getCurrentLocation();
+        int max = carList.get(0).getCurrentLocation();
         int index = 0;
-        for (int i = 0; i < carList.length; i++) {
-            index = race.getMaxNumber(carList[i], max, index, i);
+        for (int i = 0; i < carList.size(); i++) {
+            index = race.getMaxNumber(carList.get(i), max, index, i);
         }
-        Assertions.assertThat(carList[index].getCurrentLocation()).isEqualTo(5);
+        Assertions.assertThat(carList.get(index).getCurrentLocation()).isEqualTo(5);
     }
 
     @Test
@@ -114,11 +119,11 @@ public class RaceTest {
     void getWinnerTest() {
         Race race = new Race();
 
-        Car[] carList = raceList();
-        ArrayList<Car> raceResult = race.getWinner(carList);
+        ArrayList<Car> carList = raceList();
+        ArrayList<String> raceResult = race.getWinner(carList);
 
         for (int i = 0; i < raceResult.size(); i++) {
-            Assertions.assertThat(carList[i].getCurrentLocation()).isEqualTo(5);
+            Assertions.assertThat(carList.get(i).getName()).isEqualTo("one");
         }
     }
 
@@ -127,17 +132,19 @@ public class RaceTest {
     void checkWinnersInArrayTest() {
         Race race = new Race();
 
-        Car[] carList = raceList();
-        carList[1].setCurrentLocation(5);
+        ArrayList<Car> carList = raceList();
 
-        ArrayList<Car> winners = new ArrayList<>();
 
-        for (int i = 0; i < carList.length; i++) {
+        carList.get(1).severalForward(5);
+
+        ArrayList<String> winners = new ArrayList<>();
+
+        for (int i = 0; i < carList.size(); i++) {
             race.checkWinnersInArray(carList, winners, 5, i);
         }
 
         Assertions.assertThat(winners.size()).isEqualTo(2);
-        Assertions.assertThat(winners.get(0).getCurrentLocation()).isEqualTo(5);
+        Assertions.assertThat(winners.get(0)).isEqualTo("one");
 
     }
 
@@ -146,8 +153,9 @@ public class RaceTest {
     void checkDuplication() {
         Race race = new Race();
 
-        Car[] carList = raceList();
-        carList[1].setCurrentLocation(5);
+        ArrayList<Car> carList = raceList();
+
+        carList.get(1).severalForward(5);
 
         int result = race.checkDuplication(carList, 5, 1);
 

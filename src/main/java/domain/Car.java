@@ -1,35 +1,31 @@
 package domain;
 
 public class Car {
-    private int current_location = 0;
-    private String name;
+    private int currentLocation = 0;
+    public String name;
 
-    public Car() {
-    }
-
-
-    // 생성자
-    public Car(int current_location, String name) {
-        this.current_location = current_location;
-        this.name = name;
-    }
-
-    // 작동 함수
     public int getCurrentLocation() {
 
-        return current_location;
+        return currentLocation;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setCurrentLocation(int current_location) {
-        this.current_location = current_location;
+    public void forward() {
+        currentLocation += 1;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void severalForward(int count) {
+        for (int i = 0; i < count; i++) {
+            this.forward();
+        }
     }
 
+    public void check(int num, Car car) {
+        if (num >= 4) {
+            car.forward();
+        }
+    }
 }
