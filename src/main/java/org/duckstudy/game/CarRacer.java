@@ -6,16 +6,23 @@ import org.duckstudy.movingcar.CarMover;
 import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
-    private static final RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-    private static final CarMover carMover = new CarMover(randomValueGenerator);
-    private final ArrayList<Car> carList = new ArrayList<>();
+    private final CarMover carMover;
     private final int participantNum;
+    private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
 
-    public CarRacer(int participantNum, int repetitionNum) {
-        this.participantNum = participantNum;
-        this.repetitionNum = repetitionNum;
+    public CarRacer() {
+        this(new CarMover(new RandomValueGenerator()), 0, 0);
+    }
 
+    public CarRacer(CarMover carMover, int participantNum, int repetitionNum) {
+        this.carMover = carMover;
+        this.participantNum = participantNum;
+        addCar(participantNum);
+        this.repetitionNum = repetitionNum;
+    }
+
+    private void addCar(int participantNum) {
         for (int i = 0; i < participantNum; i++) {
             carList.add(new Car(i + 1 + "번째 자동차"));
         }
@@ -25,7 +32,6 @@ public class CarRacer {
         for (int i = 0; i < repetitionNum; i++) {
             carMover.move(carList);
         }
-
         return calculateWinner(carList);
     }
 
@@ -33,8 +39,8 @@ public class CarRacer {
         ArrayList<Car> winnerList = new ArrayList<>();
         long maxPosition = 0;
 
-        for (int i = 0; i < carList.size(); i++) {
-            maxPosition = getMaxPosition(winnerList, maxPosition, carList.get(i));
+        for (Car car : carList) {
+            maxPosition = getMaxPosition(winnerList, maxPosition, car);
         }
         return winnerList;
     }

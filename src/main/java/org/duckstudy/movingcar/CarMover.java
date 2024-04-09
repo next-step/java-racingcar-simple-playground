@@ -1,6 +1,6 @@
 package org.duckstudy.movingcar;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CarMover {
     private final RandomValueGenerator randomValueGenerator;
@@ -16,7 +16,7 @@ public class CarMover {
         }
     }
 
-    public void move(ArrayList<Car> carList) {
+    public void move(List<Car> carList) {
         for (Car car : carList) {
             this.move(car);
         }
