@@ -24,10 +24,12 @@ class CarRacerTest {
     @InjectMocks
     private CarRacer carRacer;
 
+    private final String[] nameList = {"1번째 자동차", "2번째 자동차", "3번째 자동차"};
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        carRacer = new CarRacer(carMover, 5, 3);
+        carRacer = new CarRacer(carMover, 3, 3, nameList);
     }
 
     @Test
