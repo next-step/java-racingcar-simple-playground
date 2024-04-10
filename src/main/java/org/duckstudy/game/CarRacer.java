@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.CarMover;
@@ -69,6 +70,11 @@ public class CarRacer {
 
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.");
         String[] nameList = br.readLine().split(",");
+        boolean wrongNameFlag = Arrays.stream(nameList).anyMatch(name -> name.length() > 5);
+        if (wrongNameFlag) {
+            System.out.println("자동차 이름은 5자 이하만 가능합니다.");
+            return;
+        }
 
         System.out.println("시도할 회수는 몇회인가요?");
         int repetitionNum = Integer.parseInt(br.readLine());
