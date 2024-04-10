@@ -36,9 +36,7 @@ class CarRacerTest {
         doAnswer(invocation -> {
             List<Car> carList = invocation.getArgumentAt(0, List.class);
             for (Car c : carList) {
-                if (c.getName().equals("1번째 자동차") || c.getName().equals("2번째 자동차")) {
-                    c.move();
-                }
+                verifyCarName(c);
             }
             return null;
         }).when(carMover).move(anyListOf(Car.class));
@@ -48,6 +46,12 @@ class CarRacerTest {
         assertThat(winnerList.size()).isEqualTo(2);
         assertThat(winnerList.get(0).getName()).isEqualTo("1번째 자동차");
         assertThat(winnerList.get(1).getName()).isEqualTo("2번째 자동차");
+    }
+
+    private static void verifyCarName(Car c) {
+        if (c.getName().equals("1번째 자동차") || c.getName().equals("2번째 자동차")) {
+            c.move();
+        }
     }
 
 }
