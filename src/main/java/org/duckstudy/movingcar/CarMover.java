@@ -19,6 +19,8 @@ public class CarMover {
     public void move(List<Car> carList) {
         for (Car car : carList) {
             this.move(car);
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
+        System.out.println();
     }
 }

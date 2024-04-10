@@ -3,13 +3,13 @@ package org.duckstudy.movingcar;
 public class Car {
 
     private final String name;
-    private long position;
+    private int position;
 
     public String getName() {
         return name;
     }
 
-    public long getPosition() {
+    public int getPosition() {
         return position;
     }
 
@@ -18,7 +18,7 @@ public class Car {
         this.position = 0;
     }
 
-    public long move() {
+    public int move() {
         return ++position;
     }
 
