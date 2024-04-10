@@ -9,7 +9,7 @@ public class Car {
     private int distance;
 
     public Car(String name) {
-        this.name = name;
+        this.name = CarName.form(name);
         this.distance = 0;
     }
 
@@ -18,11 +18,6 @@ public class Car {
     }
 
     public void moveOrStop(int value) {
-
-        if(value < 0 || value > 9){
-            throw new IllegalRandomVariableException("숫자가 예상 범위를 초과합니다.");
-        }
-
         if(value >= 4 && value <=9){
             move();
         }

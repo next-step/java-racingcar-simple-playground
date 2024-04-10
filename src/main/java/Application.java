@@ -1,3 +1,4 @@
+import controller.CarRaceController;
 import domain.Car;
 import domain.CarRace;
 import view.InputView;
@@ -11,10 +12,10 @@ public class Application {
         final var carNames = InputView.getCarNames();
         final var tryCount = InputView.getTryCount();
 
-        final var carRace = new CarRace(carNames, tryCount);
+        final var carRace = new CarRace(carNames, tryCount, 3);
+        final var carRaceController = new CarRaceController();
         System.out.println("실행 결과");
-        carRace.raceStart();
 
-        OutputView.printWinners(carRace.getWinners());
+        carRaceController.race(carRace);
     }
 }
