@@ -5,7 +5,7 @@ import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CarTest {
+public class Step1CarTest {
     private Car car = new Car("test");
     Random random = new Random();
 
