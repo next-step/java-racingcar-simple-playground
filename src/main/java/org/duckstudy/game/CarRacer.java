@@ -12,10 +12,8 @@ import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
     private final CarMover carMover;
-    private final int participantNum;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
-    private final String[] nameList;
 
     public CarRacer() {
         this(new CarMover(new RandomValueGenerator()), 0, 0, new String[0]);
@@ -23,8 +21,6 @@ public class CarRacer {
 
     public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList) {
         this.carMover = carMover;
-        this.participantNum = participantNum;
-        this.nameList = nameList;
         addCar(participantNum, nameList);
         this.repetitionNum = repetitionNum;
     }
