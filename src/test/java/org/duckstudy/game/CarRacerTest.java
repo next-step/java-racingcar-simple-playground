@@ -29,7 +29,7 @@ class CarRacerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        carRacer = new CarRacer(carMover, 3, 3, nameList);
+        carRacer = new CarRacer(carMover, 3, 5, nameList);
     }
 
     @Test
@@ -37,23 +37,16 @@ class CarRacerTest {
     void calculateWinnerWhenGameEnds() {
         doAnswer(invocation -> {
             List<Car> carList = invocation.getArgumentAt(0, List.class);
-            for (Car c : carList) {
-                verifyCarName(c);
-            }
+            carList.stream().filter(c -> c.getName().equals(nameList[0]) || c.getName().equals(nameList[1]))
+                    .forEach(Car::move);
             return null;
         }).when(carMover).move(anyListOf(Car.class));
 
         ArrayList<Car> winnerList = carRacer.play();
 
         assertThat(winnerList.size()).isEqualTo(2);
-        assertThat(winnerList.get(0).getName()).isEqualTo("1번째 자동차");
-        assertThat(winnerList.get(1).getName()).isEqualTo("2번째 자동차");
-    }
-
-    private static void verifyCarName(Car c) {
-        if (c.getName().equals("1번째 자동차") || c.getName().equals("2번째 자동차")) {
-            c.move();
-        }
+        assertThat(winnerList.get(0).getName()).isEqualTo(nameList[0]);
+        assertThat(winnerList.get(1).getName()).isEqualTo(nameList[1]);
     }
 
 }
