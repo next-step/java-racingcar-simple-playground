@@ -5,25 +5,28 @@ import java.util.OptionalInt;
 
 public class class3 {
     public static void main(String[] args) {
+        //자동차 이름 입력
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("경주할 자동차 이름을 입력하세요");
         String input = scanner.nextLine();
+
+        // 입력받은 자동차를 쉼표로 구분
         String[] carNames = input.split(",");
         int carNum = carNames.length;
         int[] carRes = new int[carNum];
-        Arrays.fill(carRes,1);
+        Arrays.fill(carRes, 1);
 
+        //시도할 회수 입력
         System.out.println("시도할 회수는 몇회인가요?");
         int n = scanner.nextInt();
 
-
-        for(int i=0; i < n + 1; i++){
+        //회수만큼 반복
+        for (int i = 0; i < n + 1; i++) {
             if (i == 0) {
                 System.out.println("실행 결과");
             }
-            for(int j=0; j<carNum; j++){
-                if (i == 0){
+            for (int j = 0; j < carNum; j++) {
+                if (i == 0) {
                     System.out.println(carNames[j] + ":" + "-");
                 }
                 if (i != 0) {
