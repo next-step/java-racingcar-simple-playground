@@ -6,13 +6,18 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-  private final List<Car> cars = new ArrayList<>();
+  private List<Car> cars = new ArrayList<>();
+
+  public Cars(List<Car> cars) {
+    this.cars = cars;
+  }
 
   public Cars(final String[] carNames) {
     for (final String carName : carNames) {
       cars.add(new Car(carName));
     }
   }
+
 
   public void move() {
     for (final Car car : cars) {
