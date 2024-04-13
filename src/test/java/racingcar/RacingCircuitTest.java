@@ -10,17 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.MoveResults;
+import racingcar.domain.RacingCircuit;
 import racingcar.generator.RandomNumberFakeGenerator;
 
 @DisplayName("서킷 테스트")
-class CircuitTest {
+class RacingCircuitTest {
 
-    private Circuit circuit;
+    private RacingCircuit racingCircuit;
 
     @BeforeEach
     void setUp() {
         RandomNumberFakeGenerator generator = new RandomNumberFakeGenerator();
-        circuit = new Circuit(generator);
+        racingCircuit = new RacingCircuit(generator);
     }
 
     @Nested
@@ -38,7 +39,7 @@ class CircuitTest {
                 List<String> carNames = List.of("name1", "name2", "name3", "name4");
 
                 // expect
-                assertThatCode(() -> circuit.registerCars(carNames)).doesNotThrowAnyException();
+                assertThatCode(() -> racingCircuit.registerCars(carNames)).doesNotThrowAnyException();
             }
         }
     }
@@ -49,7 +50,7 @@ class CircuitTest {
 
         @BeforeEach
         void setUp() {
-            circuit.registerCars(List.of("name1", "name2", "name3", "name4"));
+            racingCircuit.registerCars(List.of("name1", "name2", "name3", "name4"));
         }
 
         @Nested
@@ -60,7 +61,7 @@ class CircuitTest {
             @DisplayName("레이스가 진행된 모든 결과를 반환합니다.")
             void eachRace_shouldReturnResults() {
                 // given & when
-                List<MoveResults> moveResults = circuit.startRace(5);
+                List<MoveResults> moveResults = racingCircuit.startRace(5);
                 List<Integer> eachResultCarSize = moveResults.stream()
                         .map(MoveResults::results)
                         .map(List::size)
@@ -82,8 +83,8 @@ class CircuitTest {
 
         @BeforeEach
         void setUp() {
-            circuit.registerCars(List.of("name1", "name2", "name3", "name4"));
-            circuit.startRace(5);
+            racingCircuit.registerCars(List.of("name1", "name2", "name3", "name4"));
+            racingCircuit.startRace(5);
         }
 
         @Nested
@@ -94,7 +95,7 @@ class CircuitTest {
             @DisplayName("레이스의 우승자들을 조회할 수 있습니다.")
             void canFind_winnersOfRace() {
                 // given & when
-                List<String> winners = circuit.findWinners();
+                List<String> winners = racingCircuit.findWinners();
 
                 // then
                 assertThat(winners).containsExactly("name1", "name2", "name3", "name4");

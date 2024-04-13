@@ -1,4 +1,4 @@
-import racingcar.Circuit;
+import racingcar.domain.RacingCircuit;
 import racingcar.RacingGame;
 import racingcar.generator.NumberGenerator;
 import racingcar.generator.RandomNumberGenerator;
@@ -16,7 +16,7 @@ public class CarRaceApplication {
         RacingGame racingGame = new RacingGame(
                 new InputView(reader),
                 new OutputView(),
-                new Circuit(generator)
+                new RacingCircuit(generator)
         );
 
         racingGame.run();

@@ -1,18 +1,16 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import racingcar.domain.Car;
-import racingcar.domain.MoveResults;
 import racingcar.generator.NumberGenerator;
 
-public class Circuit {
+public class RacingCircuit {
 
     private final List<Car> cars = new ArrayList<>();
     private final NumberGenerator generator;
 
-    public Circuit(final NumberGenerator generator) {
+    public RacingCircuit(final NumberGenerator generator) {
         this.generator = generator;
     }
 
