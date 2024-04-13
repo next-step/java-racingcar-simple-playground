@@ -1,7 +1,10 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -31,5 +34,15 @@ class CarTest {
 
         // then
         assertThat(samePosition).isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "asdfga"})
+    @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생합니다.")
+    void canNotCreateCar_withInvalidName(String invalidName) {
+        // expect
+        assertThatThrownBy(() -> new Car(invalidName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름은 1글자 이상 5글자 이하여야 합니다.");
     }
 }
