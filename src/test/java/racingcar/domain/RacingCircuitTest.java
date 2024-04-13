@@ -3,9 +3,9 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -69,7 +69,7 @@ class RacingCircuitTest {
                         .toList();
 
                 // then
-                Assertions.assertAll(
+                assertAll(
                         () -> assertThat(moveResults).hasSize(5),
                         () -> assertThat(eachResultCarSize).containsExactly(4, 4, 4, 4, 4)
                 );
