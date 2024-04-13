@@ -24,7 +24,7 @@ public class InputView {
     }
 
     public int inputRaceTryCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println("시도할 횟수는 몇회인가요?");
 
         return reader.readNumber();
     }
