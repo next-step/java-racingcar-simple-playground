@@ -72,7 +72,6 @@ class RacingCircuitTest {
                 Assertions.assertAll(
                         () -> assertThat(moveResults).hasSize(5),
                         () -> assertThat(eachResultCarSize).containsExactly(4, 4, 4, 4, 4)
-
                 );
             }
         }
