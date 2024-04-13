@@ -17,6 +17,7 @@ public class RacingCircuit {
 
     public void registerCars(final List<String> carNames) {
         cars.addAll(carNames.stream()
+                .filter(Objects::nonNull)
                 .map(Car::new)
                 .toList());
     }
