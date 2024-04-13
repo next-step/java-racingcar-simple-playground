@@ -1,5 +1,5 @@
-import racingcar.domain.RacingCircuit;
 import racingcar.RacingGame;
+import racingcar.domain.RacingCircuit;
 import racingcar.generator.NumberGenerator;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.ConsoleReader;
