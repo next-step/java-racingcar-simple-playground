@@ -1,3 +1,5 @@
+package racingcar.domain;
+
 public class Car {
 
     private static final int MOVABLE_OFFSET = 4;
@@ -22,11 +24,15 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public boolean isSamePosition(final int position) {
         return this.position == position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

@@ -1,4 +1,4 @@
-package ui;
+package racingcar.view;
 
 public interface Reader {
 

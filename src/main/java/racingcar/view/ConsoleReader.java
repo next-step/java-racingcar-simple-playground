@@ -1,7 +1,6 @@
-package ui;
+package racingcar.view;
 
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConsoleReader implements Reader {
@@ -10,11 +9,7 @@ public class ConsoleReader implements Reader {
 
     @Override
     public String readLine() {
-        try {
-            return scanner.nextLine();
-        } catch (NoSuchElementException e) {
-            throw new NoSuchElementException("[Input Error] 값을 입력해야 합니다.");
-        }
+        return scanner.nextLine();
     }
 
     @Override

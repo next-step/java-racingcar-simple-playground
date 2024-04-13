@@ -1,4 +1,4 @@
-package generator;
+package racingcar.generator;
 
 public class RandomNumberFakeGenerator implements NumberGenerator {
 

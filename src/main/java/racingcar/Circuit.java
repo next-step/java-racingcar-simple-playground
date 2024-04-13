@@ -1,6 +1,11 @@
-import generator.NumberGenerator;
+package racingcar;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+import racingcar.domain.Car;
+import racingcar.domain.MoveResults;
+import racingcar.generator.NumberGenerator;
 
 public class Circuit {
 
@@ -17,23 +22,26 @@ public class Circuit {
                 .toList());
     }
 
-    public void startRace(final int raceTryCount) {
-        for (int i = 0; i < raceTryCount; i++) {
-            moveCars();
-        }
+    public List<MoveResults> startRace(final int raceTryCount) {
+        return IntStream.range(0, raceTryCount)
+                .mapToObj(i -> moveCars())
+                .toList();
     }
 
-    private void moveCars() {
+    private MoveResults moveCars() {
         for (Car car : cars) {
             car.moveForward(generator.generateNumber());
         }
+
+        return MoveResults.create(cars);
     }
 
-    public List<Car> findWinners() {
+    public List<String> findWinners() {
         int winnerPosition = findWinnerPosition();
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(winnerPosition))
+                .map(Car::getName)
                 .toList();
     }
 
