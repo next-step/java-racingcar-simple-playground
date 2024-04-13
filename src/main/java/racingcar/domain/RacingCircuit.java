@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import racingcar.generator.NumberGenerator;
 
@@ -21,9 +22,17 @@ public class RacingCircuit {
     }
 
     public List<MoveResults> startRace(final int raceTryCount) {
+        validateRaceTryCount(raceTryCount);
+
         return IntStream.range(0, raceTryCount)
                 .mapToObj(i -> moveCars())
                 .toList();
+    }
+
+    private void validateRaceTryCount(final int raceTryCount) {
+        if (raceTryCount <= 0) {
+            throw new IllegalArgumentException("레이스는 1회 이상 진행되어야 합니다.");
+        }
     }
 
     private MoveResults moveCars() {

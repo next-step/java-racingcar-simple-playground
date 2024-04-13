@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.generator.RandomNumberFakeGenerator;
 
 @DisplayName("서킷 테스트")
@@ -71,6 +74,21 @@ class RacingCircuitTest {
                         () -> assertThat(eachResultCarSize).containsExactly(4, 4, 4, 4, 4)
 
                 );
+            }
+        }
+
+        @Nested
+        @DisplayName("만약 0회 이하의 값이 입력되면")
+        class ContextWithInvalidRaceTryCount {
+
+            @ParameterizedTest
+            @ValueSource(ints = {0, -1})
+            @DisplayName("레이스를 진행할 수 없기에 예외가 발생합니다.")
+            void canNotStartRace_withInvalidRaceTryCount(int invalidRaceTryCount) {
+                // expect
+                assertThatThrownBy(() -> racingCircuit.startRace(invalidRaceTryCount))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("레이스는 1회 이상 진행되어야 합니다.");
             }
         }
     }
