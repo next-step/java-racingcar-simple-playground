@@ -12,6 +12,7 @@ import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
 
+    public static final int INTIAL_POSITION = 0;
     private final CarMover carMover;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
@@ -41,7 +42,7 @@ public class CarRacer {
 
     public ArrayList<Car> calculateWinner(ArrayList<Car> carList) {
         ArrayList<Car> winnerList = new ArrayList<>();
-        long maxPosition = 0;
+        long maxPosition = INTIAL_POSITION;
 
         for (Car car : carList) {
             maxPosition = getMaxPosition(winnerList, maxPosition, car);

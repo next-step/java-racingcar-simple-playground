@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CarMover {
 
+    private static final int MIN_MOVEMENT_VALUE = 4;
     private final RandomValueGenerator randomValueGenerator;
 
     public CarMover(RandomValueGenerator randomValueGenerator) {
@@ -12,7 +13,7 @@ public class CarMover {
 
     public void move(Car car) {
         int randomValue = randomValueGenerator.generateRandomValue();
-        if (randomValue >= 4) {
+        if (randomValue >= MIN_MOVEMENT_VALUE) {
             car.move();
         }
     }
