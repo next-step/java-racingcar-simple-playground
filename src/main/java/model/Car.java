@@ -1,3 +1,5 @@
+package model;
+
 public class Car {
     String name;
     int position;
@@ -7,9 +9,9 @@ public class Car {
         this.position = 0;
     }
 
-    int move(int value) {
-        if(value >= 4) {
-            this.position += 1;
+    public int move(int value) {
+        if (value >= 4) {
+            this.position++;
         }
 
         return this.position;
