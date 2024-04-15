@@ -3,7 +3,7 @@ import java.io.StreamCorruptedException;
 public class Car {
     private String name;
     private int score;
-    private RandomNumberGenerator randomNumberGenerator;
+    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public Car(String name){
         this.name = name;
