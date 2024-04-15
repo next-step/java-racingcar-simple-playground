@@ -3,9 +3,15 @@ import java.io.StreamCorruptedException;
 public class Car {
     private String name;
     private int score;
+    private RandomNumberGenerator randomNumberGenerator;
 
     public Car(String name){
         this.name = name;
+    }
+
+    public Car(String name, RandomNumberGenerator randomNumber){
+        this.name = name;
+        this.randomNumberGenerator = randomNumber;
     }
 
     public String getName(){
@@ -17,7 +23,6 @@ public class Car {
     }
 
     public void move(){
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         int randomNumber = randomNumberGenerator.generate();
         if (randomNumber > 4)   score++;
     }
