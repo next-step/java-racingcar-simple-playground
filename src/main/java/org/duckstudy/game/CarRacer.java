@@ -21,10 +21,18 @@ public class CarRacer {
         this(new CarMover(new RandomValueGenerator()), 0, 0, new String[0]);
     }
 
-    public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList) {
+    public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
+            throws IllegalArgumentException {
+        if (validateNameList(nameList)) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        }
         this.carMover = carMover;
         addCar(participantNum, nameList);
         this.repetitionNum = repetitionNum;
+    }
+
+    private boolean validateNameList(String[] nameList) {
+        return Arrays.stream(nameList).anyMatch(name -> name.length() > 5);
     }
 
     private void addCar(int participantNum, String[] nameList) {
@@ -68,20 +76,21 @@ public class CarRacer {
 
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.");
         String[] nameList = br.readLine().split(",");
-        boolean wrongNameFlag = Arrays.stream(nameList).anyMatch(name -> name.length() > 5);
-        if (wrongNameFlag) {
-            System.out.println("자동차 이름은 5자 이하만 가능합니다.");
-            return;
-        }
 
         System.out.println("시도할 회수는 몇회인가요?");
         int repetitionNum = Integer.parseInt(br.readLine());
 
-        System.out.println("\n실행 결과");
-        CarRacer carRacer = new CarRacer(new CarMover(new RandomValueGenerator()), nameList.length, repetitionNum,
-                nameList);
-        ArrayList<Car> winnerList = carRacer.play();
+        CarRacer carRacer;
+        try {
+            carRacer = new CarRacer(new CarMover(new RandomValueGenerator()), nameList.length, repetitionNum,
+                    nameList);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
+        System.out.println("\n실행 결과");
+        ArrayList<Car> winnerList = carRacer.play();
         if (winnerList.isEmpty()) {
             System.out.println("우승자가 없습니다.");
         }
