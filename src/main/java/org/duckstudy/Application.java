@@ -31,10 +31,6 @@ public class Application {
 
         System.out.println("\n실행 결과");
         ArrayList<Car> winnerList = carRacer.play();
-        if (winnerList.isEmpty()) {
-            System.out.println("우승자가 없습니다.");
-            return;
-        }
         String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
