@@ -1,11 +1,7 @@
 package org.duckstudy.game;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.CarMover;
 import org.duckstudy.movingcar.RandomValueGenerator;
@@ -18,7 +14,7 @@ public class CarRacer {
     private final int repetitionNum;
 
     public CarRacer() {
-        this(new CarMover(new RandomValueGenerator()), 0, 0, new String[0]);
+        this(new CarMover(new RandomValueGenerator()), 0, 3, new String[0]);
     }
 
     public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
@@ -26,6 +22,10 @@ public class CarRacer {
         if (validateNameList(nameList)) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
+        if (validateRepetitionNum(repetitionNum)) {
+            throw new IllegalArgumentException("시도 횟수는 0보다 커야 합니다.");
+        }
+
         this.carMover = carMover;
         addCar(participantNum, nameList);
         this.repetitionNum = repetitionNum;
@@ -33,6 +33,10 @@ public class CarRacer {
 
     private boolean validateNameList(String[] nameList) {
         return Arrays.stream(nameList).anyMatch(name -> name.length() > 5);
+    }
+
+    private boolean validateRepetitionNum(int repetitionNum) {
+        return repetitionNum <= 0;
     }
 
     private void addCar(int participantNum, String[] nameList) {
@@ -69,33 +73,5 @@ public class CarRacer {
             winnerList.add(car);
         }
         return maxPosition;
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.");
-        String[] nameList = br.readLine().split(",");
-
-        System.out.println("시도할 회수는 몇회인가요?");
-        int repetitionNum = Integer.parseInt(br.readLine());
-
-        CarRacer carRacer;
-        try {
-            carRacer = new CarRacer(new CarMover(new RandomValueGenerator()), nameList.length, repetitionNum,
-                    nameList);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-
-        System.out.println("\n실행 결과");
-        ArrayList<Car> winnerList = carRacer.play();
-        if (winnerList.isEmpty()) {
-            System.out.println("우승자가 없습니다.");
-            return;
-        }
-        String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
-        System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 }
