@@ -12,7 +12,7 @@ import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
 
-    public static final int INTIAL_POSITION = 0;
+    private static final int INTIAL_POSITION = 0;
     private final CarMover carMover;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
@@ -48,7 +48,7 @@ public class CarRacer {
         return calculateWinner(carList);
     }
 
-    public ArrayList<Car> calculateWinner(ArrayList<Car> carList) {
+    private ArrayList<Car> calculateWinner(ArrayList<Car> carList) {
         ArrayList<Car> winnerList = new ArrayList<>();
         long maxPosition = INTIAL_POSITION;
 
@@ -93,6 +93,7 @@ public class CarRacer {
         ArrayList<Car> winnerList = carRacer.play();
         if (winnerList.isEmpty()) {
             System.out.println("우승자가 없습니다.");
+            return;
         }
         String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
         System.out.println(winnerNames + "가 최종 우승했습니다.");

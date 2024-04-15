@@ -11,7 +11,7 @@ public class CarMover {
         this.randomValueGenerator = randomValueGenerator;
     }
 
-    public void move(Car car) {
+    void move(Car car) {
         int randomValue = randomValueGenerator.generateRandomValue();
         if (randomValue >= MIN_MOVEMENT_VALUE) {
             car.move();
