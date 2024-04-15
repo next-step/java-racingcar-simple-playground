@@ -11,8 +11,8 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public int move() {
-        return ++position;
+    public void move() {
+        ++position;
     }
 
     public String getName() {
