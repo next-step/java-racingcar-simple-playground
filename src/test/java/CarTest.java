@@ -14,6 +14,7 @@ public class CarTest {
     }
 
     @Test
+
     @DisplayName("randomNumber가_3이하이면_움직이지_않는다")
     void randomNumber가_3이하이면_움직이지_않는다(){
         TestRandomNumber randomNumber = new TestRandomNumber(2);

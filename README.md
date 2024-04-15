@@ -11,3 +11,7 @@ Car
 - name: 자동차 이름
 - score: 자동차가 얼마나 전진하였는지
 - move(): random 값에 따라 score 값 변경
+
+Cars
+- Car list: 자동차 리스트
+- findWinner(): 우승자를 찾는 함수
