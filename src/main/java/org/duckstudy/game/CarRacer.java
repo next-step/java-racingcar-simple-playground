@@ -11,6 +11,7 @@ import org.duckstudy.movingcar.CarMover;
 import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
+
     private final CarMover carMover;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;

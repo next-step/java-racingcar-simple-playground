@@ -18,11 +18,10 @@ import org.mockito.MockitoAnnotations;
 @DisplayName("자동차 게임 테스트")
 class CarRacerTest {
 
-    @Mock
-    private CarMover carMover;
-
     @InjectMocks
     private CarRacer carRacer;
+    @Mock
+    private CarMover carMover;
 
     private final String[] nameList = {"1번째 자동차", "2번째 자동차", "3번째 자동차"};
 
@@ -48,5 +47,4 @@ class CarRacerTest {
         assertThat(winnerList.get(0).getName()).isEqualTo(nameList[0]);
         assertThat(winnerList.get(1).getName()).isEqualTo(nameList[1]);
     }
-
 }

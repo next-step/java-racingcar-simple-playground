@@ -3,6 +3,7 @@ package org.duckstudy.movingcar;
 import java.util.List;
 
 public class CarMover {
+
     private final RandomValueGenerator randomValueGenerator;
 
     public CarMover(RandomValueGenerator randomValueGenerator) {

@@ -15,14 +15,12 @@ import org.mockito.MockitoAnnotations;
 @DisplayName("움직이는 자동차 테스트")
 class CarMoverTest {
 
-    private final Car car = new Car("Test car");
-
+    @InjectMocks
+    private CarMover carMover;
     @Mock
     private RandomValueGenerator randomValueGenerator;
 
-    @InjectMocks
-    private CarMover carMover;
-
+    private final Car car = new Car("Test car");
     private final Random random = new Random();
 
     @BeforeEach
@@ -56,5 +54,4 @@ class CarMoverTest {
 
         assertThat(car.getPosition()).isEqualTo(0);
     }
-
 }
