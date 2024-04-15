@@ -17,6 +17,8 @@ public class Car {
     }
 
     public void move(){
-
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        int randomNumber = randomNumberGenerator.generate();
+        if (randomNumber > 4)   score++;
     }
 }
