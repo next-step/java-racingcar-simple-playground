@@ -20,17 +20,13 @@ class CarMoverTest {
     @Mock
     private RandomValueGenerator randomValueGenerator;
 
-    private final Car car = new Car("Test car");
     private final Random random = new Random();
+    private Car car;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-    }
-
-    @AfterEach
-    void tearDown() {
-        car.reset();
+        car = new Car("Test Car");
     }
 
     @Test

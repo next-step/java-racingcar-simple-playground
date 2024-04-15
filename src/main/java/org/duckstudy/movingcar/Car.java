@@ -14,10 +14,6 @@ public class Car {
         return ++position;
     }
 
-    public void reset() {
-        this.position = 0;
-    }
-
     public String getName() {
         return name;
     }
