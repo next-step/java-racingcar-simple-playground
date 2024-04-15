@@ -2,6 +2,7 @@ package org.duckstudy.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.doAnswer;
 
@@ -49,9 +50,11 @@ class CarRacerTest {
 
         ArrayList<Car> winnerList = carRacer.play();
 
-        assertThat(winnerList.size()).isEqualTo(2);
-        assertThat(winnerList.get(0).getName()).isEqualTo(nameList[0]);
-        assertThat(winnerList.get(1).getName()).isEqualTo(nameList[1]);
+        assertAll(
+                () -> assertThat(winnerList.size()).isEqualTo(2),
+                () -> assertThat(winnerList.get(0).getName()).isEqualTo(nameList[0]),
+                () -> assertThat(winnerList.get(1).getName()).isEqualTo(nameList[1])
+        );
     }
 
     @Test
