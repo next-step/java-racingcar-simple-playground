@@ -1,18 +1,18 @@
-package org.duckstudy.game;
+package org.duckstudy.racer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.CarMover;
 
-public class CarRacer {
+public class Racer {
 
     private static final int INTIAL_POSITION = 0;
     private final CarMover carMover;
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
 
-    public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
+    public Racer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
             throws IllegalArgumentException {
         if (validateNameList(nameList)) {
             throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");

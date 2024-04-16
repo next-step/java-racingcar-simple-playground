@@ -1,4 +1,4 @@
-package org.duckstudy.game;
+package org.duckstudy.racer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,7 +23,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("자동차 게임 테스트")
-class CarRacerTest {
+class RacerTest {
 
     private CarMover carMover;
     private String[] nameList;
@@ -42,7 +42,7 @@ class CarRacerTest {
         @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
         void gameFailWhenCarNameLengthIsEmptyOrGreaterThan5(String[] nameList) {
 
-            assertThatThrownBy(() -> new CarRacer(carMover, 1, 5, nameList))
+            assertThatThrownBy(() -> new Racer(carMover, 1, 5, nameList))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }
@@ -60,7 +60,7 @@ class CarRacerTest {
             nameList = new String[]{"abc", "def"};
             int repetitionNum = 0;
 
-            assertThatThrownBy(() -> new CarRacer(carMover, 2, repetitionNum, nameList))
+            assertThatThrownBy(() -> new Racer(carMover, 2, repetitionNum, nameList))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("반복 횟수는 0보다 커야 합니다.");
         }
@@ -75,7 +75,7 @@ class CarRacerTest {
         void calculateWinnerWhenRaceIsOver() {
             nameList = new String[]{"Car1", "Car2", "Car3"};
             List<String> selectedWinnerNames = Arrays.asList(nameList).subList(0, 2);
-            CarRacer carRacer = new CarRacer(carMover, 3, 5, nameList);
+            Racer racer = new Racer(carMover, 3, 5, nameList);
 
             doAnswer(invocation -> {
                 List<Car> carList = invocation.getArgument(0, List.class);
@@ -84,7 +84,7 @@ class CarRacerTest {
                 return null;
             }).when(carMover).move(anyList());
 
-            ArrayList<Car> winnerList = carRacer.play();
+            ArrayList<Car> winnerList = racer.play();
 
             assertAll(
                     () -> assertThat(winnerList.size()).isEqualTo(selectedWinnerNames.size()),
