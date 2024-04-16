@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 
 public class RacingCircuit {
 
+    private static final int LOWER_BOUND_RACE_TRY_COUNT = 1;
+
     private Cars cars;
     private final NumberGenerator generator;
 
@@ -29,8 +31,8 @@ public class RacingCircuit {
     }
 
     private void validateRaceTryCount(final int raceTryCount) {
-        if (raceTryCount <= 0) {
-            throw new IllegalArgumentException("레이스는 1회 이상 진행되어야 합니다.");
+        if (raceTryCount < LOWER_BOUND_RACE_TRY_COUNT) {
+            throw new IllegalArgumentException(String.format("레이스는 %d회 이상 진행되어야 합니다.", LOWER_BOUND_RACE_TRY_COUNT));
         }
     }
 
