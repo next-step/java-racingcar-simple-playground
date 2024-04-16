@@ -1,5 +1,7 @@
 package racingcar.generator;
 
+import racingcar.domain.NumberGenerator;
+
 public class RandomNumberFakeGenerator implements NumberGenerator {
 
     @Override

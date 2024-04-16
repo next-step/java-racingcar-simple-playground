@@ -1,7 +1,7 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.MoveResults;
+import racingcar.domain.Cars;
 import racingcar.domain.RacingCircuit;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -31,12 +31,12 @@ public class RacingGame {
 
     private void startRace() {
         int raceTryCount = inputView.inputRaceTryCount();
-        List<MoveResults> moveResults = racingCircuit.startRace(raceTryCount);
-        outputView.printMoveResults(moveResults);
+        List<Cars> carsSet = racingCircuit.startRace(raceTryCount);
+        outputView.printMoveResults(carsSet);
     }
 
     private void awardRace() {
-        List<String> winners = racingCircuit.findWinners();
+        Cars winners = racingCircuit.findWinners();
         outputView.printWinners(winners);
     }
 }

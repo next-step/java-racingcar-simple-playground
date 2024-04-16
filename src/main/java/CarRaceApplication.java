@@ -1,6 +1,6 @@
 import racingcar.RacingGame;
+import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingCircuit;
-import racingcar.generator.NumberGenerator;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.ConsoleReader;
 import racingcar.view.InputView;

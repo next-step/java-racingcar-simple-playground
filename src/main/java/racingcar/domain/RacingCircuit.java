@@ -1,14 +1,12 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
-import racingcar.generator.NumberGenerator;
 
 public class RacingCircuit {
 
-    private final List<Car> cars = new ArrayList<>();
+    private Cars cars;
     private final NumberGenerator generator;
 
     public RacingCircuit(final NumberGenerator generator) {
@@ -16,13 +14,13 @@ public class RacingCircuit {
     }
 
     public void registerCars(final List<String> carNames) {
-        cars.addAll(carNames.stream()
+        cars = new Cars(carNames.stream()
                 .filter(Objects::nonNull)
-                .map(Car::new)
+                .map(Car::createDefault)
                 .toList());
     }
 
-    public List<MoveResults> startRace(final int raceTryCount) {
+    public List<Cars> startRace(final int raceTryCount) {
         validateRaceTryCount(raceTryCount);
 
         return IntStream.range(0, raceTryCount)
@@ -36,27 +34,11 @@ public class RacingCircuit {
         }
     }
 
-    private MoveResults moveCars() {
-        for (Car car : cars) {
-            car.moveForward(generator.generateNumber());
-        }
-
-        return MoveResults.create(cars);
+    private Cars moveCars() {
+        return cars = cars.moveForward(generator);
     }
 
-    public List<String> findWinners() {
-        int winnerPosition = findWinnerPosition();
-
-        return cars.stream()
-                .filter(car -> car.isSamePosition(winnerPosition))
-                .map(Car::getName)
-                .toList();
-    }
-
-    private int findWinnerPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+    public Cars findWinners() {
+        return cars.findWinners();
     }
 }

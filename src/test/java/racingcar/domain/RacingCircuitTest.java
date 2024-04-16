@@ -62,15 +62,15 @@ class RacingCircuitTest {
             @DisplayName("레이스가 진행된 모든 결과를 반환합니다.")
             void eachRace_shouldReturnResults() {
                 // given & when
-                List<MoveResults> moveResults = racingCircuit.startRace(5);
-                List<Integer> eachResultCarSize = moveResults.stream()
-                        .map(MoveResults::results)
+                List<Cars> carsSet = racingCircuit.startRace(5);
+                List<Integer> eachResultCarSize = carsSet.stream()
+                        .map(Cars::cars)
                         .map(List::size)
                         .toList();
 
                 // then
                 assertAll(
-                        () -> assertThat(moveResults).hasSize(5),
+                        () -> assertThat(carsSet).hasSize(5),
                         () -> assertThat(eachResultCarSize).containsExactly(4, 4, 4, 4, 4)
                 );
             }
@@ -110,10 +110,14 @@ class RacingCircuitTest {
             @DisplayName("레이스의 우승자들을 조회할 수 있습니다.")
             void canFind_winnersOfRace() {
                 // given & when
-                List<String> winners = racingCircuit.findWinners();
+                Cars winners = racingCircuit.findWinners();
+                List<String> winnerNames = winners.cars()
+                        .stream()
+                        .map(Car::getName)
+                        .toList();
 
                 // then
-                assertThat(winners).containsExactly("name1", "name2", "name3", "name4");
+                assertThat(winnerNames).containsExactly("name1", "name2", "name3", "name4");
             }
         }
     }
