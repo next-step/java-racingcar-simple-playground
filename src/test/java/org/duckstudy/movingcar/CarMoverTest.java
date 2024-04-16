@@ -2,30 +2,25 @@ package org.duckstudy.movingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 
 import java.util.Random;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 @DisplayName("움직이는 자동차 테스트")
 class CarMoverTest {
 
-    @InjectMocks
-    private CarMover carMover;
-    @Mock
-    private RandomValueGenerator randomValueGenerator;
-
     private final Random random = new Random();
+    private RandomValueGenerator randomValueGenerator;
+    private CarMover carMover;
     private Car car;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        randomValueGenerator = mock(RandomValueGenerator.class);
+        carMover = new CarMover(randomValueGenerator);
         car = new Car("Test Car");
     }
 
