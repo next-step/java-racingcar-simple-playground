@@ -71,4 +71,13 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
     }
+
+    @Test
+    @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생한다.")
+    void canNotCreateCar_withNullName() {
+        // expect
+        assertThatThrownBy(() -> new Car(null, 0, () -> 4))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
+    }
 }
