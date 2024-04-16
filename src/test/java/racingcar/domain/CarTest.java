@@ -40,15 +40,26 @@ class CarTest {
     @DisplayName("자동차와 동일한 포지션을 입력하면 true를 반환한다.")
     void isSamePosition() {
         // given
-        Car car = new Car("이름", 0);
-        Car movedCar = car.moveForward(4)
-                .moveForward(4);
+        Car car = new Car("이름", 2);
 
         // when
-        boolean samePosition = movedCar.isSamePosition(2);
+        boolean samePosition = car.isSamePosition(2);
 
         // then
         assertThat(samePosition).isTrue();
+    }
+
+    @Test
+    @DisplayName("자동차와 동일한 포지션을 입력하면 false를 반환한다.")
+    void isNotSamePosition() {
+        // given
+        Car car = new Car("이름", 2);
+
+        // when
+        boolean samePosition = car.isSamePosition(3);
+
+        // then
+        assertThat(samePosition).isFalse();
     }
 
     @ParameterizedTest
