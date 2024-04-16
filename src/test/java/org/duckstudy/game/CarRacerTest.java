@@ -36,6 +36,7 @@ class CarRacerTest {
     @Nested
     @DisplayName("입력값 검증 테스트")
     class inputValidationTest {
+
         @ParameterizedTest
         @MethodSource("methodSourceCarNameLengthTestArguments")
         @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
@@ -68,6 +69,7 @@ class CarRacerTest {
     @Nested
     @DisplayName("게임 진행 테스트")
     class gamePlayTest {
+
         @Test
         @DisplayName("경주가 완료되면 우승자를 계산한다")
         void calculateWinnerWhenRaceIsOver() {

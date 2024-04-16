@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.CarMover;
-import org.duckstudy.movingcar.RandomValueGenerator;
 
 public class CarRacer {
 
