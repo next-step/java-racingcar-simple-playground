@@ -9,15 +9,17 @@ public class Car {
 
     private final String name;
     private final int position;
+    private final NumberGenerator numberGenerator;
 
-    public Car(final String name, final int position) {
+    public Car(final String name, final int position, final NumberGenerator numberGenerator) {
         validateName(name);
         this.name = name;
         this.position = position;
+        this.numberGenerator = numberGenerator;
     }
 
-    public static Car createDefault(final String name) {
-        return new Car(name, START_POSITION);
+    public static Car createDefault(final String name, final NumberGenerator numberGenerator) {
+        return new Car(name, START_POSITION, numberGenerator);
     }
 
     private void validateName(final String name) {
@@ -28,9 +30,9 @@ public class Car {
         }
     }
 
-    public Car moveForward(final int inputValue) {
-        if (inputValue >= MOVABLE_OFFSET) {
-            return new Car(getName(), getPosition() + FORWARD_AMOUNT);
+    public Car moveForward() {
+        if (numberGenerator.generateNumber() >= MOVABLE_OFFSET) {
+            return new Car(getName(), getPosition() + FORWARD_AMOUNT, numberGenerator);
         }
         return this;
     }

@@ -11,17 +11,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.infrastructure.RandomNumberFakeGenerator;
+import racingcar.infrastructure.FakeMovableNumberGenerator;
+import racingcar.infrastructure.FakeNotMovableNumberGenerator;
 
 @DisplayName("서킷 테스트")
 class RacingCircuitTest {
 
     private RacingCircuit racingCircuit;
+    private NumberGenerator fakeMovableNumberGenerator;
+    private NumberGenerator fakeNotMovableNumberGenerator;
 
     @BeforeEach
     void setUp() {
-        RandomNumberFakeGenerator generator = new RandomNumberFakeGenerator();
-        racingCircuit = new RacingCircuit(generator);
+        racingCircuit = new RacingCircuit();
+        fakeMovableNumberGenerator = new FakeMovableNumberGenerator();
+        fakeNotMovableNumberGenerator = new FakeNotMovableNumberGenerator();
     }
 
     @Nested
@@ -36,10 +40,10 @@ class RacingCircuitTest {
             @DisplayName("경주용 차량들을 생성하고 등록시킵니다.")
             void registerCarsForRacing() {
                 // given
-                List<String> carNames = List.of("name1", "name2", "name3", "name4");
+                Cars cars = Cars.createDefault(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
 
                 // expect
-                assertThatCode(() -> racingCircuit.registerCars(carNames)).doesNotThrowAnyException();
+                assertThatCode(() -> racingCircuit.registerCars(cars)).doesNotThrowAnyException();
             }
         }
     }
@@ -50,7 +54,8 @@ class RacingCircuitTest {
 
         @BeforeEach
         void setUp() {
-            racingCircuit.registerCars(List.of("name1", "name2", "name3", "name4"));
+            Cars cars = Cars.createDefault(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
+            racingCircuit.registerCars(cars);
         }
 
         @Nested
@@ -100,7 +105,14 @@ class RacingCircuitTest {
 
             @BeforeEach
             void setUp() {
-                racingCircuit.registerCars(List.of("name1", "name2", "name3", "name4"));
+                Cars cars = new Cars(List.of(
+                        Car.createDefault("name1", fakeMovableNumberGenerator),
+                        Car.createDefault("name2", fakeMovableNumberGenerator),
+                        Car.createDefault("name3", fakeNotMovableNumberGenerator),
+                        Car.createDefault("name4", fakeNotMovableNumberGenerator)
+                ));
+
+                racingCircuit.registerCars(cars);
                 racingCircuit.startRace(5);
             }
 
@@ -115,7 +127,7 @@ class RacingCircuitTest {
                         .toList();
 
                 // then
-                assertThat(winnerNames).containsExactly("name1", "name2", "name3", "name4");
+                assertThat(winnerNames).containsExactly("name1", "name2");
             }
         }
 
@@ -125,7 +137,7 @@ class RacingCircuitTest {
 
             @BeforeEach
             void setUp() {
-                racingCircuit.registerCars(Collections.emptyList());
+                racingCircuit.registerCars(new Cars(Collections.emptyList()));
                 racingCircuit.startRace(5);
             }
 

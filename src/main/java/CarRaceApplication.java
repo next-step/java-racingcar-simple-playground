@@ -16,7 +16,8 @@ public class CarRaceApplication {
         RacingGame racingGame = new RacingGame(
                 new InputView(reader),
                 new OutputView(),
-                new RacingCircuit(generator)
+                new RacingCircuit(),
+                generator
         );
 
         racingGame.run();

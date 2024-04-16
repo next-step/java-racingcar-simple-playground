@@ -14,10 +14,10 @@ class CarTest {
     @DisplayName("자동차는 4이상의 값이 입력되면 전진한다.")
     void moveForward() {
         // given
-        Car car = new Car("이름", 0);
+        Car car = new Car("이름", 0, () -> 4);
 
         // when
-        Car movedCar = car.moveForward(4);
+        Car movedCar = car.moveForward();
 
         // then
         assertThat(movedCar.getPosition()).isEqualTo(1);
@@ -27,10 +27,10 @@ class CarTest {
     @DisplayName("자동차는 4미만의 값이 입력되면 전진하지 않는다.")
     void doesNotMoveForward() {
         // given
-        Car car = new Car("이름", 0);
+        Car car = new Car("이름", 0, () -> 3);
 
         // when
-        Car movedCar = car.moveForward(3);
+        Car movedCar = car.moveForward();
 
         // then
         assertThat(movedCar.getPosition()).isEqualTo(0);
@@ -40,7 +40,7 @@ class CarTest {
     @DisplayName("자동차와 동일한 포지션을 입력하면 true를 반환한다.")
     void isSamePosition() {
         // given
-        Car car = new Car("이름", 2);
+        Car car = new Car("이름", 2, () -> 4);
 
         // when
         boolean samePosition = car.isSamePosition(2);
@@ -53,7 +53,7 @@ class CarTest {
     @DisplayName("자동차와 동일한 포지션을 입력하면 false를 반환한다.")
     void isNotSamePosition() {
         // given
-        Car car = new Car("이름", 2);
+        Car car = new Car("이름", 2, () -> 4);
 
         // when
         boolean samePosition = car.isSamePosition(3);
@@ -67,7 +67,7 @@ class CarTest {
     @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생한다.")
     void canNotCreateCar_withInvalidName(String invalidName) {
         // expect
-        assertThatThrownBy(() -> new Car(invalidName, 0))
+        assertThatThrownBy(() -> new Car(invalidName, 0, () -> 4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
     }

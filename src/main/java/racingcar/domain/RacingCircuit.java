@@ -8,16 +8,9 @@ public class RacingCircuit {
     private static final int LOWER_BOUND_RACE_TRY_COUNT = 1;
 
     private Cars cars;
-    private final NumberGenerator generator;
 
-    public RacingCircuit(final NumberGenerator generator) {
-        this.generator = generator;
-    }
-
-    public void registerCars(final List<String> carNames) {
-        cars = new Cars(carNames.stream()
-                .map(Car::createDefault)
-                .toList());
+    public void registerCars(final Cars cars) {
+        this.cars = cars;
     }
 
     public List<Cars> startRace(final int raceTryCount) {
@@ -35,7 +28,7 @@ public class RacingCircuit {
     }
 
     private Cars moveCars() {
-        return cars = cars.moveForward(generator);
+        return cars = cars.moveForward();
     }
 
     public Cars findWinners() {

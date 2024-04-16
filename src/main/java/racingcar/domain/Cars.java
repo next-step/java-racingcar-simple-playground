@@ -5,9 +5,15 @@ import java.util.List;
 
 public record Cars(List<Car> cars) {
 
-    public Cars moveForward(final NumberGenerator generator) {
+    public static Cars createDefault(final List<String> carNames, final NumberGenerator numberGenerator) {
+        return new Cars(carNames.stream()
+                .map(name -> Car.createDefault(name, numberGenerator))
+                .toList());
+    }
+
+    public Cars moveForward() {
         return new Cars(cars.stream()
-                .map(car -> car.moveForward(generator.generateNumber()))
+                .map(Car::moveForward)
                 .toList());
     }
 
