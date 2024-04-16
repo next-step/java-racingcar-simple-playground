@@ -13,10 +13,6 @@ public class CarRacer {
     private final ArrayList<Car> carList = new ArrayList<>();
     private final int repetitionNum;
 
-    public CarRacer() {
-        this(new CarMover(new RandomValueGenerator()), 0, 3, new String[0]);
-    }
-
     public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
             throws IllegalArgumentException {
         if (validateNameList(nameList)) {
