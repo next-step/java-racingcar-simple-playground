@@ -69,6 +69,6 @@ class CarTest {
         // expect
         assertThatThrownBy(() -> new Car(invalidName, 0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차의 이름은 1글자 이상 5글자 이하여야 합니다.");
+                .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
     }
 }

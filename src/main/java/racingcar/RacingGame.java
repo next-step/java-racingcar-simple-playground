@@ -32,11 +32,13 @@ public class RacingGame {
     private void startRace() {
         int raceTryCount = inputView.inputRaceTryCount();
         List<Cars> carsSet = racingCircuit.startRace(raceTryCount);
+
         outputView.printMoveResults(carsSet);
     }
 
     private void awardRace() {
         Cars winners = racingCircuit.findWinners();
+
         outputView.printWinners(winners);
     }
 }

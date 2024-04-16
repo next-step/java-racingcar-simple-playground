@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class RacingCircuit {
@@ -17,7 +16,6 @@ public class RacingCircuit {
 
     public void registerCars(final List<String> carNames) {
         cars = new Cars(carNames.stream()
-                .filter(Objects::nonNull)
                 .map(Car::createDefault)
                 .toList());
     }

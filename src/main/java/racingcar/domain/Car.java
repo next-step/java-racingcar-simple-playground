@@ -21,7 +21,7 @@ public class Car {
     }
 
     private void validateName(final String name) {
-        if (name.isEmpty() || name.length() > LIMIT_NAME_LENGTH) {
+        if (name == null || name.isEmpty() || name.length() > LIMIT_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     String.format("자동차의 이름은 반드시 존재해야 하고, 최대 %d글자 이하여야 합니다.", LIMIT_NAME_LENGTH)
             );
