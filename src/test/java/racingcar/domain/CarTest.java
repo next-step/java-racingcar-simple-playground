@@ -24,6 +24,19 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차는 4미만의 값이 입력되면 전진하지 않는다.")
+    void doesNotMoveForward() {
+        // given
+        Car car = new Car("이름", 0);
+
+        // when
+        Car movedCar = car.moveForward(3);
+
+        // then
+        assertThat(movedCar.getPosition()).isEqualTo(0);
+    }
+
+    @Test
     @DisplayName("자동차와 동일한 포지션을 입력하면 true를 반환한다.")
     void isSamePosition() {
         // given
