@@ -1,4 +1,4 @@
-package racingcar.generator;
+package racingcar.infrastructure;
 
 import racingcar.domain.NumberGenerator;
 

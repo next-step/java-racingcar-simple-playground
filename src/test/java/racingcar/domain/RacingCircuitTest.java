@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.generator.RandomNumberFakeGenerator;
+import racingcar.infrastructure.RandomNumberFakeGenerator;
 
 @DisplayName("서킷 테스트")
 class RacingCircuitTest {
