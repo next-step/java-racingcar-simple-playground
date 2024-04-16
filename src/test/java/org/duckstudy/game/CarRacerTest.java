@@ -57,31 +57,31 @@ class CarRacerTest {
         );
     }
 
-    @Test
-    @DisplayName("하나 이상의 자동차 이름이 5글자 초과일 때 에러를 발생한다.")
-    void gameFailWhenCarNameLengthIsOver5() {
-        nameList = new String[]{"abcdef", "ghk"};
+    @ParameterizedTest
+    @MethodSource("methodSourceCarNameLengthTestArguments")
+    @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
+    void gameFailWhenCarNameLengthIsEmptyOrGreaterThan5(String[] nameList) {
 
-        assertThatThrownBy(() -> new CarRacer(carMover, 2, 5, nameList))
+        assertThatThrownBy(() -> new CarRacer(carMover, 1, 5, nameList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름은 5자 이하만 가능합니다.");
+                .hasMessage("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
     }
 
-    @ParameterizedTest
-    @MethodSource("methodSourceRepetitionNumTestArguments")
-    @DisplayName("반복 횟수가 0 이하일때 에러를 발생한다.")
-    void gameFailWhenRepetitionNumIsEqualOrLessThan0(int repetitionNum) {
+    private static Stream<Arguments> methodSourceCarNameLengthTestArguments() {
+        return Stream.of(
+                Arguments.arguments((Object) new String[]{""}),
+                Arguments.arguments((Object) new String[]{"abcdef"})
+        );
+    }
+
+    @Test
+    @DisplayName("반복 횟수가 0 이하일때 에러를 발생한다")
+    void gameFailWhenRepetitionNumIsEqualOrLessThan0() {
         nameList = new String[]{"abc", "def"};
+        int repetitionNum = 0;
 
         assertThatThrownBy(() -> new CarRacer(carMover, 2, repetitionNum, nameList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("시도 횟수는 0보다 커야 합니다.");
-    }
-
-    private static Stream<Arguments> methodSourceRepetitionNumTestArguments() {
-        return Stream.of(
-                Arguments.arguments(0),
-                Arguments.arguments(-1)
-        );
+                .hasMessage("반복 횟수는 0보다 커야 합니다.");
     }
 }

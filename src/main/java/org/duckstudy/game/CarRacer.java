@@ -20,10 +20,10 @@ public class CarRacer {
     public CarRacer(CarMover carMover, int participantNum, int repetitionNum, String[] nameList)
             throws IllegalArgumentException {
         if (validateNameList(nameList)) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+            throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }
         if (validateRepetitionNum(repetitionNum)) {
-            throw new IllegalArgumentException("시도 횟수는 0보다 커야 합니다.");
+            throw new IllegalArgumentException("반복 횟수는 0보다 커야 합니다.");
         }
 
         this.carMover = carMover;
@@ -32,7 +32,7 @@ public class CarRacer {
     }
 
     private boolean validateNameList(String[] nameList) {
-        return Arrays.stream(nameList).anyMatch(name -> name.length() > 5);
+        return Arrays.stream(nameList).anyMatch(name -> name.isEmpty() || name.length() > 5);
     }
 
     private boolean validateRepetitionNum(int repetitionNum) {
