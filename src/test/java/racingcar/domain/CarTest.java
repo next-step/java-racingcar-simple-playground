@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     @Test
-    @DisplayName("자동차는 4이상의 값이 입력되면 전진한다.(position을 1 증가 시킨다.)")
+    @DisplayName("자동차는 4이상의 값이 입력되면 전진한다.")
     void moveForward() {
         // given
         Car car = new Car("이름", 0);
@@ -40,7 +40,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "asdfga"})
-    @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생합니다.")
+    @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생한다.")
     void canNotCreateCar_withInvalidName(String invalidName) {
         // expect
         assertThatThrownBy(() -> new Car(invalidName, 0))
