@@ -27,9 +27,9 @@ public class Car {
             position++;
         }
     }
-
     public int getRndNum() { //랜덤 변수생성(0~9)
         Random random = new Random();
         return random.nextInt(10);
     }
+
 }
