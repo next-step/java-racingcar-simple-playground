@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CarRace {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public CarRace(final List<Car> cars) {
         this.cars = cars;
@@ -18,10 +18,10 @@ public class CarRace {
 
     public List<String> selectWinners(){
         int max = 0;
-        for (Car car : cars) {
+        for (final Car car : cars) {
             max = Math.max(car.getDistance(), max);
         }
-        int finalMax = max;
+        final int finalMax = max;
         return cars.stream()
                 .filter(car -> car.getDistance() == finalMax)
                 .map(Car::getName)

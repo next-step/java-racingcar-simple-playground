@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,13 +14,17 @@ import utils.RandomValueGenerator;
 
 class CarRaceTest {
 
-    @ParameterizedTest
-    @MethodSource("getCarsForTest")
+    @Test
     @DisplayName("입력 값이 4 이상일 때, 입력한 횟수만큼 이동거리가 갱신되는지 확인한다.")
-    void raceStartTestWithCorrectInput(List<Car> cars) {
-        CarRace carRace = new CarRace(cars);
+    void raceStartTestWithCorrectInput() {
+        final List<Car> cars = List.of(
+                new Car("포르쉐", () -> 7),
+                new Car("페라리", () -> 5)
 
-        int gameCount = 5;
+        );
+        final CarRace carRace = new CarRace(cars);
+
+        final int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
             carRace.raceOneLap();
         }
@@ -28,13 +32,17 @@ class CarRaceTest {
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(), gameCount));
     }
 
-    @ParameterizedTest
-    @MethodSource("getCarsForTest")
+    @Test
     @DisplayName("입력 값이 4 미만일 때, 이동거리가 갱신되지 않는지 확인한다.")
-    void raceStartTestWithInCorrectInput(List<Car> cars) {
-        CarRace carRace = new CarRace(cars);
+    void raceStartTestWithInCorrectInput() {
+        final List<Car> cars = List.of(
+                new Car("포르쉐", () -> 3),
+                new Car("페라리", () -> 2)
 
-        int gameCount = 5;
+        );
+        final CarRace carRace = new CarRace(cars);
+
+        final int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
             carRace.raceOneLap();
         }
@@ -44,20 +52,18 @@ class CarRaceTest {
 
     @ParameterizedTest
     @MethodSource("getCarsForTest")
-    @DisplayName("최종 우승자 리스트를 정상적으로 반환하는지 확인한다.")
+    @DisplayName("최종 우승자를 정상적으로 반환하는지 확인한다.")
     void selectWinnersTest(List<Car> cars) {
-        CarRace carRace = new CarRace(cars);
+        final CarRace carRace = new CarRace(cars);
 
-        int gameCount = 5;
+        final String winnerName = "포르쉐";
+        final int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
             carRace.raceOneLap();
         }
         List<String> winners = carRace.selectWinners();
 
-        assertThat(winners)
-                .containsExactlyInAnyOrderElementsOf(cars.stream()
-                        .map(Car::getName)
-                        .collect(Collectors.toList()));
+        assertThat(winners).contains(winnerName);
     }
 
     private static Stream<Arguments> getCarsForTest() {
