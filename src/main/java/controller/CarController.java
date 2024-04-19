@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.CarFactory;
 import domain.CarRace;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,20 +14,16 @@ import view.GameReader;
 public class CarController {
 
     public void gameRun() {
-        List<Car> carNames = inputCarNames();
+        List<String> carNames = inputCarNames();
+        List<Car> cars = CarFactory.createCars(carNames);
         int gameCount = inputGameCount();
-        gameStart(carNames, gameCount);
+        gameStart(cars, gameCount);
     }
 
     // 자동차 이름 입력받기
-    private List<Car> inputCarNames() {
+    private List<String> inputCarNames() {
         String carNames = GameReader.getNames();
-        List<String> parsedNames = Parser.parseStringArray(carNames);
-        List<Car> cars = new ArrayList<>();
-        for (String name : parsedNames) {
-            cars.add(new Car(name));
-        }
-        return cars;
+        return Parser.parseStringArray(carNames);
     }
 
     // 진행 횟수 입력받기
