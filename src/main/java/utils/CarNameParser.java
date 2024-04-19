@@ -2,6 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import validator.InputValidator;
 
@@ -15,7 +16,7 @@ public class CarNameParser {
 
     private static List<String> parseStringArrayWithComma(String names) {
         if (names == null || names.isEmpty()) {
-            return new ArrayList<>(); // 빈 배열 반환
+            return Collections.emptyList(); // 빈 배열 반환
         }
         return Arrays.stream(names.split(","))
                 .map(String::trim)
