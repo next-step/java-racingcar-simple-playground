@@ -1,8 +1,9 @@
+package utils;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.RandomValueGenerator;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomValueGeneratorTest {
 
@@ -14,7 +15,7 @@ class RandomValueGeneratorTest {
     @DisplayName("0부터 9까지 랜덤 숫자를 생성하는지 확인한다.")
     void generateZeroToNineTest() {
         int value = RandomValueGenerator.generate();
-        assertFalse(value < 0 || value >= 10);
+        assertThat(value).isBetween(0, 9);
     }
 
 }
