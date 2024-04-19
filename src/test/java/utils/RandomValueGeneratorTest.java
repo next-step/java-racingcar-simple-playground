@@ -14,7 +14,8 @@ class RandomValueGeneratorTest {
     @Test
     @DisplayName("0부터 9까지 랜덤 숫자를 생성하는지 확인한다.")
     void generateZeroToNineTest() {
-        int value = RandomValueGenerator.generate();
+        ValueGenerator generator = new RandomValueGenerator();
+        int value = generator.generate();
         assertThat(value).isBetween(0, 9);
     }
 

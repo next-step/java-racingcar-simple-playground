@@ -5,49 +5,29 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import exception.CarException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import utils.RandomValueGenerator;
 
 class CarTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @DisplayName("4 이상이면 전진하는지 확인한다.")
-    void moveTest() {
-        Car car = new Car("포르쉐");
+    void moveTest(int value) {
+        Car car = new Car("포르쉐", () -> value);
         int beforeDistance = car.getDistance();
-        for (int i = 4; i < 10; i++) {
-            car.moveOrStop(i);
-            assertThat(car.getDistance()).isEqualTo(beforeDistance + 1);
-            beforeDistance = car.getDistance();
-        }
+        car.moveOrStop();
+        assertThat(car.getDistance()).isEqualTo(beforeDistance + 1);
     }
 
-    @Test
-    @DisplayName("10 이상이면 전진하지 않는지 확인한다.")
-    void moveTestIfOverTen() {
-        Car car = new Car("제네시스");
-        for (int i = 10; i < 16; i++) {
-            car.moveOrStop(i);
-            assertThat(car.getDistance()).isEqualTo(0);
-        }
-    }
-
-    @Test
-    @DisplayName("랜덤 생성된 [0, 9]의 수로 자동차가 제대로 작동하는지 확인한다.")
-    void moveTestWithRandomValue() {
-        Car car = new Car("제네시스");
-        int value = RandomValueGenerator.generate();
-        int beforeDistance = car.getDistance();
-        car.moveOrStop(value);
-
-        if (value >= 4 && value <= 9) {
-            assertThat(car.getDistance()).isEqualTo(beforeDistance + 1);
-        }
-        if (value < 4 || value > 9) {
-            assertThat(car.getDistance()).isEqualTo(beforeDistance);
-        }
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 10, 11, 12})
+    @DisplayName("4 미만이거나 10 이상이면 전진하지 않는지 확인한다.")
+    void moveTestIfOverTen(int value) {
+        Car car = new Car("제네시스", () -> value);
+        car.moveOrStop();
+        assertThat(car.getDistance()).isEqualTo(0);
     }
 
     @DisplayName("자동차 이름이 6자 이상일 때, 자동차가 생성되지 않는지 확인한다.")
@@ -55,7 +35,7 @@ class CarTest {
     @ValueSource(strings = {"어코드하이브리드", "제네시스GV80", "현대팰리세이드", "기아스포티지"})
     void createCarIfNameOverSix(String carName) {
         // 자동차 생성 시 예외 발생하는 지 테스트
-        assertThatThrownBy(() -> new Car(carName))
+        assertThatThrownBy(() -> new Car(carName, new RandomValueGenerator()))
                 .isInstanceOf(CarException.class)
                 .hasMessageStartingWith("이름은 최소 ")
                 .hasMessageEndingWith("자 입니다.");
