@@ -5,8 +5,8 @@ import exception.ErrorMessage;
 
 public class Car {
 
-    private final int MIN_LENGTH = 1;
-    private final int MAX_LENGTH = 5;
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
     private int distance;
