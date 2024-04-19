@@ -39,7 +39,7 @@ public class CarController {
         CarRace carRace = new CarRace(cars);
         GamePrinter.printResultStart();
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(generator);
+            carRace.raceOneLap();
             cars.forEach(car -> GamePrinter.printCarResult(car.getName(), car.getDistance()));
             System.out.println();
         }

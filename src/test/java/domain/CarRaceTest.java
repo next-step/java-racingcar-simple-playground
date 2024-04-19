@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import utils.RandomValueGenerator;
 
 class CarRaceTest {
 
@@ -21,7 +22,7 @@ class CarRaceTest {
 
         int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(() -> 7);
+            carRace.raceOneLap();
         }
         assertThat(cars).extracting("distance")
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(), gameCount));
@@ -35,7 +36,7 @@ class CarRaceTest {
 
         int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(() -> 2);
+            carRace.raceOneLap();
         }
         assertThat(cars).extracting("distance")
                 .containsExactlyElementsOf(Collections.nCopies(cars.size(),0));
@@ -49,7 +50,7 @@ class CarRaceTest {
 
         int gameCount = 5;
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(() -> 7);
+            carRace.raceOneLap();
         }
         List<String> winners = carRace.selectWinners();
 
@@ -63,17 +64,17 @@ class CarRaceTest {
         return Stream.of(
                 Arguments.arguments(
                         List.of(
-                                new Car("포르쉐"),
-                                new Car("페라리")
+                                new Car("포르쉐", () -> 7),
+                                new Car("페라리", new RandomValueGenerator())
                         )
                 ),
                 Arguments.arguments(
                         List.of(
-                                new Car("포르쉐"),
-                                new Car("페라리"),
-                                new Car("람보르기니"),
-                                new Car("애스턴마틴"),
-                                new Car("벤틀리")
+                                new Car("포르쉐", () -> 7),
+                                new Car("페라리", new RandomValueGenerator()),
+                                new Car("람보르기니", new RandomValueGenerator()),
+                                new Car("애스턴마틴", new RandomValueGenerator()),
+                                new Car("벤틀리", new RandomValueGenerator())
                         )
                 )
         );
