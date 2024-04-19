@@ -3,10 +3,9 @@ package controller;
 import domain.Car;
 import domain.CarFactory;
 import domain.CarRace;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import utils.Parser;
+import utils.CarNameParser;
 import validator.InputValidator;
 import view.GamePrinter;
 import view.GameReader;
@@ -23,7 +22,7 @@ public class CarController {
     // 자동차 이름 입력받기
     private List<String> inputCarNames() {
         String carNames = GameReader.getNames();
-        return Parser.parseStringArray(carNames);
+        return CarNameParser.parseStringArray(carNames);
     }
 
     // 진행 횟수 입력받기

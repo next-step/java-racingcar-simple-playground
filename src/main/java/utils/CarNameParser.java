@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import validator.InputValidator;
 
-public class Parser {
+public class CarNameParser {
 
     public static List<String> parseStringArray(String names) {
         List<String> parsedNames = parseStringArrayWithComma(names);
