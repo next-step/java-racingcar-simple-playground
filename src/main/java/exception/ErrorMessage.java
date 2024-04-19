@@ -8,15 +8,15 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    ErrorMessage(final String message) {
         this.message = message;
     }
 
-    public String formatMessage(int min, int max) {
+    public String formatMessage(final int min, final int max) {
         return String.format(this.message, min, max);
     }
 
-    public String formatMessage(int min) {
+    public String formatMessage(final int min) {
         return String.format(this.message,min);
     }
 

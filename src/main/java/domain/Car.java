@@ -2,6 +2,7 @@ package domain;
 
 import exception.CarException;
 import exception.ErrorMessage;
+import utils.ValueGenerator;
 
 public class Car {
 
@@ -10,17 +11,26 @@ public class Car {
 
     private final String name;
     private int distance;
+    private final ValueGenerator generator;
 
-    public Car(String name) {
+    public Car(final String name, final ValueGenerator generator) {
         validateCar(name);
         this.name = name;
         this.distance = 0;
+        this.generator = generator;
     }
 
-    private void validateCar(String name) {
+    private void validateCar(final String name) {
         if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH ) {
             throw new CarException(
                     ErrorMessage.NAME_LENGTH_INCORRECT.formatMessage(MIN_LENGTH,MAX_LENGTH));
+        }
+    }
+
+    public void moveOrStop() {
+        int value = generator.generate();
+        if (isMove(value)) {
+            move();
         }
     }
 
@@ -28,10 +38,8 @@ public class Car {
         this.distance++;
     }
 
-    public void moveOrStop(int value) {
-        if (value >= 4 && value <= 9) {
-            move();
-        }
+    private boolean isMove(final int value) {
+        return value >= 4 && value <= 9;
     }
 
     public int getDistance() {

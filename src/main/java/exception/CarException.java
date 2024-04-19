@@ -6,7 +6,7 @@ public class CarException extends IllegalArgumentException{
         super(errorMessage.getMessage());
     }
 
-    public CarException(String s) {
+    public CarException(final String s) {
         super(s);
     }
 

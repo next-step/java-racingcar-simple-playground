@@ -1,19 +1,18 @@
 package domain;
 
 import java.util.List;
-import utils.ValueGenerator;
 
 public class CarRace {
 
     private List<Car> cars;
 
-    public CarRace(List<Car> cars) {
+    public CarRace(final List<Car> cars) {
         this.cars = cars;
     }
 
-    public void raceOneLap(ValueGenerator generator) {
+    public void raceOneLap() {
         for (Car car : cars) {
-            car.moveOrStop(generator.generate());
+            car.moveOrStop();
         }
     }
 

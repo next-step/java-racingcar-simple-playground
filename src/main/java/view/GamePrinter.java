@@ -12,16 +12,16 @@ public class GamePrinter {
         System.out.println("\n" + RESULT_START);
     }
 
-    public static void printCarResult(String name, int distance) {
+    public static void printCarResult(final String name, final int distance) {
         System.out.println(name + " : " + DISTANCE_FORMAT.repeat(distance));
     }
 
-    public static void printRaceWinners(List<String> winnerNames) {
+    public static void printRaceWinners(final List<String> winnerNames) {
         StringJoiner joiner = new StringJoiner(", ");
         for (String name : winnerNames) {
             joiner.add(name);
         }
-        System.out.printf(joiner.toString() + "가 최종 우승했습니다.");
+        System.out.printf(joiner + "가 최종 우승했습니다.");
     }
 
 }

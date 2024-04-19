@@ -4,21 +4,19 @@ import domain.Car;
 import domain.CarFactory;
 import domain.CarRace;
 import java.util.List;
-import java.util.Random;
-import java.util.random.RandomGeneratorFactory;
 import utils.CarNameParser;
-import utils.RandomValueGenerator;
+import utils.ValueGenerator;
 import validator.InputValidator;
 import view.GamePrinter;
 import view.GameReader;
 
 public class CarController {
 
-    public void gameRun() {
+    public void gameRun(final ValueGenerator generator) {
         List<String> carNames = inputCarNames();
-        List<Car> cars = CarFactory.createCars(carNames);
+        List<Car> cars = CarFactory.createCars(carNames, generator);
         int gameCount = inputGameCount();
-        gameStart(cars, gameCount);
+        gameStart(cars, gameCount, generator);
     }
 
     // 자동차 이름 입력받기
@@ -35,11 +33,13 @@ public class CarController {
     }
 
     // 경주 시작
-    private void gameStart(List<Car> cars, int gameCount) {
+    private void gameStart(final List<Car> cars,
+                           final int gameCount,
+                           final ValueGenerator generator) {
         CarRace carRace = new CarRace(cars);
         GamePrinter.printResultStart();
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(RandomValueGenerator::generate);
+            carRace.raceOneLap(generator);
             cars.forEach(car -> GamePrinter.printCarResult(car.getName(), car.getDistance()));
             System.out.println();
         }
