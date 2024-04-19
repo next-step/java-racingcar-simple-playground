@@ -5,7 +5,9 @@ import domain.CarFactory;
 import domain.CarRace;
 import java.util.List;
 import java.util.Random;
+import java.util.random.RandomGeneratorFactory;
 import utils.CarNameParser;
+import utils.RandomValueGenerator;
 import validator.InputValidator;
 import view.GamePrinter;
 import view.GameReader;
@@ -37,10 +39,7 @@ public class CarController {
         CarRace carRace = new CarRace(cars);
         GamePrinter.printResultStart();
         for (int i = 0; i < gameCount; i++) {
-            carRace.raceOneLap(() -> {
-                Random random = new Random();
-                return random.nextInt(10);
-            });
+            carRace.raceOneLap(RandomValueGenerator::generate);
             cars.forEach(car -> GamePrinter.printCarResult(car.getName(), car.getDistance()));
             System.out.println();
         }
