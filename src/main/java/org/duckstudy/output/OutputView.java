@@ -30,8 +30,4 @@ public class OutputView {
     public void printWinnerNames(String winnerNames) {
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
-
-    public void printExceptionMessage(String message) {
-        System.out.println(message);
-    }
 }
