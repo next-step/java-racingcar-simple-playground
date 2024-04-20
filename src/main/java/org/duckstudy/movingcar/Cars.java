@@ -10,15 +10,15 @@ public class Cars {
     private static final int INITIAL_POSITION = 0;
     private final List<Car> cars;
 
-    public Cars(int participantNum, String[] carNames, Generator generator) {
-        List<Car> cars = createCars(participantNum, carNames, generator);
+    public Cars(String[] carNames, Generator generator) {
+        List<Car> cars = createCars(carNames, generator);
         this.cars = List.copyOf(cars);
     }
 
-    private List<Car> createCars(int participantNum, String[] carNames, Generator generator) {
+    private List<Car> createCars(String[] carNames, Generator generator) {
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < participantNum; i++) {
-            cars.add(new Car(carNames[i], generator));
+        for (String carName : carNames) {
+            cars.add(new Car(carName, generator));
         }
         return cars;
     }

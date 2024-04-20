@@ -44,7 +44,7 @@ public class GameApplication {
         int repetitionNum = inputView.inputRepetitionNum();
         validateInput(carNames, repetitionNum);
 
-        Cars cars = new Cars(carNames.length, carNames, generator);
+        Cars cars = new Cars(carNames, generator);
         playGame(repetitionNum, cars);
     }
 
