@@ -42,14 +42,10 @@ public class GameApplication {
     public void run() throws IOException {
         String[] carNames = inputView.inputCarNames();
         int repetitionNum = inputView.inputRepetitionNum();
-        validateInput(carNames, repetitionNum);
+        inputValidator.validateInput(carNames, repetitionNum);
 
         Cars cars = new Cars(carNames, generator);
         playGame(repetitionNum, cars);
-    }
-
-    private void validateInput(String[] carNames, int repetitionNum) {
-        inputValidator.validateInput(repetitionNum, carNames);
     }
 
     private void playGame(int repetitionNum, Cars cars) {

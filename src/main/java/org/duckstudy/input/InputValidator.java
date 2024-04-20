@@ -9,7 +9,7 @@ public class InputValidator {
     public InputValidator() {
     }
 
-    public void validateInput(int repetitionNum, String[] carNames) {
+    public void validateInput(String[] carNames, int repetitionNum) {
         if (validateNameList(carNames)) {
             throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }
