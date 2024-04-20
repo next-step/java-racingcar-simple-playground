@@ -1,25 +1,36 @@
 package org.duckstudy.movingcar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import org.duckstudy.generator.Generator;
 
 public class Cars {
 
-    public static final int INITIAL_POSITION = 0;
+    private static final int INITIAL_POSITION = 0;
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(int participantNum, String[] nameList, Generator generator) {
+        List<Car> cars = createCars(participantNum, nameList, generator);
+        this.cars = Collections.unmodifiableList(cars);
     }
 
-    public ArrayList<Car> play(int repetitionNum) {
+    private List<Car> createCars(int participantNum, String[] nameList, Generator generator) {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < participantNum; i++) {
+            cars.add(new Car(nameList[i], generator));
+        }
+        return cars;
+    }
+
+    public List<Car> play(int repetitionNum) {
         for (int i = 0; i < repetitionNum; i++) {
-            move();
+            moveAll();
         }
         return calculateWinner();
     }
 
-    private void move() {
+    private void moveAll() {
         for (Car car : cars) {
             car.move();
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
@@ -27,26 +38,14 @@ public class Cars {
         System.out.println();
     }
 
-    private ArrayList<Car> calculateWinner() {
-        ArrayList<Car> winnerList = new ArrayList<>();
-        long maxPosition = INITIAL_POSITION;
+    private List<Car> calculateWinner() {
+        int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(INITIAL_POSITION);
 
-        for (Car car : cars) {
-            maxPosition = getMaxPosition(winnerList, maxPosition, car);
-        }
-        return winnerList;
-    }
-
-    private long getMaxPosition(ArrayList<Car> winnerList, long maxPosition, Car car) {
-        if (maxPosition < car.getPosition()) {
-            maxPosition = car.getPosition();
-            winnerList.clear();
-            winnerList.add(car);
-            return maxPosition;
-        }
-        if (maxPosition == car.getPosition()) {
-            winnerList.add(car);
-        }
-        return maxPosition;
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 }
