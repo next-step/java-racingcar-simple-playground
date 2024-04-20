@@ -3,9 +3,11 @@ package org.duckstudy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.duckstudy.generator.Generator;
+import org.duckstudy.generator.RandomValueGenerator;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.Cars;
 import org.duckstudy.racer.Racer;
@@ -16,13 +18,9 @@ public class GameApplication {
         String[] nameList = inputCarNames(br);
         int repetitionNum = inputRepetitionNum(br);
 
-        Optional<Racer> carRacerOptional = makeCarRacer(nameList, repetitionNum);
-        if (carRacerOptional.isEmpty()) {
-            return;
-        }
-        Racer racer = carRacerOptional.get();
-        Cars cars = new Cars(racer.makeCarList(nameList.length, nameList));
-
+        Generator generator = new RandomValueGenerator();
+        Cars cars = new Cars(nameList.length, nameList, generator);
+        makeCarRacer(nameList, repetitionNum, cars);
         printGameResult(cars, repetitionNum);
     }
 
@@ -36,10 +34,9 @@ public class GameApplication {
         return Integer.parseInt(br.readLine());
     }
 
-    private static Optional<Racer> makeCarRacer(String[] nameList, int repetitionNum) {
+    private static Optional<Racer> makeCarRacer(String[] nameList, int repetitionNum, Cars cars) {
         try {
-            Racer racer = new Racer(nameList.length, repetitionNum,
-                    nameList);
+            Racer racer = new Racer(repetitionNum, nameList);
             return Optional.of(racer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -49,7 +46,7 @@ public class GameApplication {
 
     private static void printGameResult(Cars cars, int repetitionNum) {
         System.out.println("\n실행 결과");
-        ArrayList<Car> winnerList = cars.play(repetitionNum);
+        List<Car> winnerList = cars.play(repetitionNum);
         String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
