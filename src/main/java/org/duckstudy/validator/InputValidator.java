@@ -6,12 +6,9 @@ public class InputValidator {
 
     public static final int MAX_NAME_LENGTH = 5;
 
-    public InputValidator(int repetitionNum, String[] nameList)
-            throws IllegalArgumentException {
-        validateInput(repetitionNum, nameList);
-    }
+    public InputValidator() {}
 
-    private void validateInput(int repetitionNum, String[] nameList) {
+    public void validateInput(int repetitionNum, String[] nameList) throws IllegalArgumentException {
         if (validateNameList(nameList)) {
             throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }

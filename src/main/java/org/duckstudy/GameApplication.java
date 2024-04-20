@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.duckstudy.generator.Generator;
 import org.duckstudy.generator.RandomValueGenerator;
@@ -13,14 +12,18 @@ import org.duckstudy.movingcar.Cars;
 import org.duckstudy.validator.InputValidator;
 
 public class GameApplication {
+
+    private GameApplication() {
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] nameList = inputCarNames(br);
         int repetitionNum = inputRepetitionNum(br);
+        validateInput(nameList, repetitionNum);
 
         Generator generator = new RandomValueGenerator();
         Cars cars = new Cars(nameList.length, nameList, generator);
-        validateInput(nameList, repetitionNum, cars);
         printGameResult(cars, repetitionNum);
     }
 
@@ -34,13 +37,12 @@ public class GameApplication {
         return Integer.parseInt(br.readLine());
     }
 
-    private static Optional<InputValidator> validateInput(String[] nameList, int repetitionNum, Cars cars) {
+    private static void validateInput(String[] nameList, int repetitionNum) {
         try {
-            InputValidator inputValidator = new InputValidator(repetitionNum, nameList);
-            return Optional.of(inputValidator);
+            InputValidator inputValidator = new InputValidator();
+            inputValidator.validateInput(repetitionNum, nameList);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return Optional.empty();
         }
     }
 
