@@ -1,4 +1,4 @@
-package org.duckstudy.validator;
+package org.duckstudy.input;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import org.duckstudy.generator.Generator;
 import org.duckstudy.generator.RandomValueGenerator;
 import org.duckstudy.movingcar.Cars;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -18,13 +17,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("입력값 검증 테스트")
 class InputValidatorTest {
 
+    private final InputValidator inputValidator = new InputValidator();
     private final Generator generator = new RandomValueGenerator();
-    private Cars cars;
-
-    @BeforeEach
-    void setUp() {
-        this.cars = mock(Cars.class);
-    }
+    private Cars cars = mock(Cars.class);
 
     @Nested
     @DisplayName("입력값 검증 테스트")
@@ -35,7 +30,7 @@ class InputValidatorTest {
         @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
         void gameFailWhenCarNameLengthIsEmptyOrGreaterThan5(String[] nameList) {
 
-            assertThatThrownBy(() -> new InputValidator(1, nameList))
+            assertThatThrownBy(() -> inputValidator.validateInput(1, nameList))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }
@@ -53,7 +48,7 @@ class InputValidatorTest {
             String[] nameList = new String[]{"abc", "def"};
             int repetitionNum = 0;
 
-            assertThatThrownBy(() -> new InputValidator(repetitionNum, nameList))
+            assertThatThrownBy(() -> inputValidator.validateInput(repetitionNum, nameList))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("반복 횟수는 0보다 커야 합니다.");
         }

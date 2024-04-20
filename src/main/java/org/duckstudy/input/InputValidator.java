@@ -1,4 +1,4 @@
-package org.duckstudy.validator;
+package org.duckstudy.input;
 
 import java.util.Arrays;
 
@@ -6,7 +6,8 @@ public class InputValidator {
 
     public static final int MAX_NAME_LENGTH = 5;
 
-    public InputValidator() {}
+    public InputValidator() {
+    }
 
     public void validateInput(int repetitionNum, String[] nameList) throws IllegalArgumentException {
         if (validateNameList(nameList)) {

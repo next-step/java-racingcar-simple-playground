@@ -1,9 +1,9 @@
 package org.duckstudy.movingcar;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.duckstudy.generator.Generator;
+import org.duckstudy.output.OutputView;
 
 public class Cars {
 
@@ -12,7 +12,7 @@ public class Cars {
 
     public Cars(int participantNum, String[] nameList, Generator generator) {
         List<Car> cars = createCars(participantNum, nameList, generator);
-        this.cars = Collections.unmodifiableList(cars);
+        this.cars = List.copyOf(cars);
     }
 
     private List<Car> createCars(int participantNum, String[] nameList, Generator generator) {
@@ -23,9 +23,10 @@ public class Cars {
         return cars;
     }
 
-    public List<Car> play(int repetitionNum) {
+    public List<Car> play(int repetitionNum, OutputView outputView) {
         for (int i = 0; i < repetitionNum; i++) {
             moveAll();
+            outputView.printPosition(this);
         }
         return calculateWinner();
     }
@@ -33,9 +34,7 @@ public class Cars {
     private void moveAll() {
         for (Car car : cars) {
             car.move();
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
-        System.out.println();
     }
 
     private List<Car> calculateWinner() {
@@ -47,5 +46,9 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+    }
+
+    public List<Car> getCars() {
+        return List.copyOf(cars);
     }
 }
