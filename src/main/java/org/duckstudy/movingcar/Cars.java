@@ -10,15 +10,15 @@ public class Cars {
     private static final int INITIAL_POSITION = 0;
     private final List<Car> cars;
 
-    public Cars(int participantNum, String[] nameList, Generator generator) {
-        List<Car> cars = createCars(participantNum, nameList, generator);
+    public Cars(int participantNum, String[] carNames, Generator generator) {
+        List<Car> cars = createCars(participantNum, carNames, generator);
         this.cars = List.copyOf(cars);
     }
 
-    private List<Car> createCars(int participantNum, String[] nameList, Generator generator) {
+    private List<Car> createCars(int participantNum, String[] carNames, Generator generator) {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < participantNum; i++) {
-            cars.add(new Car(nameList[i], generator));
+            cars.add(new Car(carNames[i], generator));
         }
         return cars;
     }
@@ -28,7 +28,7 @@ public class Cars {
             moveAll();
             outputView.printPosition(this);
         }
-        return calculateWinner();
+        return calculateWinners();
     }
 
     private void moveAll() {
@@ -37,7 +37,7 @@ public class Cars {
         }
     }
 
-    private List<Car> calculateWinner() {
+    private List<Car> calculateWinners() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()

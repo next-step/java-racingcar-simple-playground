@@ -24,10 +24,10 @@ public class InputView {
         return Integer.parseInt(bufferedReader.readLine());
     }
 
-    public void validateInput(String[] nameList, int repetitionNum) {
+    public void validateInput(String[] carNames, int repetitionNum) {
         try {
             InputValidator inputValidator = new InputValidator();
-            inputValidator.validateInput(repetitionNum, nameList);
+            inputValidator.validateInput(repetitionNum, carNames);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
         }

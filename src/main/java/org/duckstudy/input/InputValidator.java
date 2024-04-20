@@ -9,8 +9,8 @@ public class InputValidator {
     public InputValidator() {
     }
 
-    public void validateInput(int repetitionNum, String[] nameList) throws IllegalArgumentException {
-        if (validateNameList(nameList)) {
+    public void validateInput(int repetitionNum, String[] carNames) {
+        if (validateNameList(carNames)) {
             throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
         }
         if (validateRepetitionNum(repetitionNum)) {
@@ -18,8 +18,9 @@ public class InputValidator {
         }
     }
 
-    private boolean validateNameList(String[] nameList) {
-        return Arrays.stream(nameList).anyMatch(name -> name.isEmpty() || name.length() > MAX_NAME_LENGTH);
+    private boolean validateNameList(String[] carNames) {
+        return Arrays.stream(carNames)
+                .anyMatch(name -> name.isEmpty() || name.length() > MAX_NAME_LENGTH);
     }
 
     private boolean validateRepetitionNum(int repetitionNum) {

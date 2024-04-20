@@ -32,19 +32,19 @@ public class GameApplication {
     }
 
     public void run() throws IOException {
-        String[] nameList = inputView.inputCarNames();
+        String[] carNames = inputView.inputCarNames();
         int repetitionNum = inputView.inputRepetitionNum();
-        inputView.validateInput(nameList, repetitionNum);
+        inputView.validateInput(carNames, repetitionNum);
 
         Generator generator = new RandomValueGenerator();
-        Cars cars = new Cars(nameList.length, nameList, generator);
+        Cars cars = new Cars(carNames.length, carNames, generator);
         playGame(cars, repetitionNum);
     }
 
     private void playGame(Cars cars, int repetitionNum) {
         outputView.printResultStartMessage();
-        List<Car> winnerList = cars.play(repetitionNum, outputView);
-        String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
+        List<Car> winners = cars.play(repetitionNum, outputView);
+        String winnerNames = winners.stream().map(Car::getName).collect(Collectors.joining(", "));
         outputView.printWinnerNames(winnerNames);
     }
 }
