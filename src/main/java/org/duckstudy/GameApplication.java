@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.duckstudy.generator.Generator;
 import org.duckstudy.generator.RandomValueGenerator;
+import org.duckstudy.input.InputValidator;
 import org.duckstudy.input.InputView;
 import org.duckstudy.movingcar.Car;
 import org.duckstudy.movingcar.Cars;
@@ -34,11 +35,20 @@ public class GameApplication {
     public void run() throws IOException {
         String[] carNames = inputView.inputCarNames();
         int repetitionNum = inputView.inputRepetitionNum();
-        inputView.validateInput(carNames, repetitionNum);
+        validateInput(carNames, repetitionNum);
 
         Generator generator = new RandomValueGenerator();
         Cars cars = new Cars(carNames.length, carNames, generator);
         playGame(cars, repetitionNum);
+    }
+
+    private void validateInput(String[] carNames, int repetitionNum) {
+        try {
+            InputValidator inputValidator = new InputValidator();
+            inputValidator.validateInput(repetitionNum, carNames);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+        }
     }
 
     private void playGame(Cars cars, int repetitionNum) {

@@ -23,13 +23,4 @@ public class InputView {
         outputView.printInputRepetitionNumMessage();
         return Integer.parseInt(bufferedReader.readLine());
     }
-
-    public void validateInput(String[] carNames, int repetitionNum) {
-        try {
-            InputValidator inputValidator = new InputValidator();
-            inputValidator.validateInput(repetitionNum, carNames);
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-        }
-    }
 }

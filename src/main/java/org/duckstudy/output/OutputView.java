@@ -14,7 +14,8 @@ public class OutputView {
     }
 
     public void printResultStartMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println();
+        System.out.println("실행 결과");
     }
 
     public void printPosition(Cars cars) {
