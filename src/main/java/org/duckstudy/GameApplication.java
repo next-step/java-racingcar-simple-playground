@@ -16,11 +16,14 @@ import org.duckstudy.output.OutputView;
 public class GameApplication {
 
     private final InputView inputView;
+    private final InputValidator inputValidator;
     private final OutputView outputView;
     private final Generator generator;
 
-    private GameApplication(InputView inputView, OutputView outputView, Generator generator) {
+    private GameApplication(InputView inputView, InputValidator inputValidator, OutputView outputView,
+                            Generator generator) {
         this.inputView = inputView;
+        this.inputValidator = inputValidator;
         this.outputView = outputView;
         this.generator = generator;
     }
@@ -29,9 +32,10 @@ public class GameApplication {
         OutputView outputView = new OutputView();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         InputView inputView = new InputView(bufferedReader, outputView);
+        InputValidator inputValidator = new InputValidator();
         Generator generator = new RandomValueGenerator();
 
-        GameApplication gameApplication = new GameApplication(inputView, outputView, generator);
+        GameApplication gameApplication = new GameApplication(inputView, inputValidator, outputView, generator);
         gameApplication.run();
     }
 
@@ -45,7 +49,6 @@ public class GameApplication {
     }
 
     private void validateInput(String[] carNames, int repetitionNum) {
-        InputValidator inputValidator = new InputValidator();
         inputValidator.validateInput(repetitionNum, carNames);
     }
 
@@ -53,6 +56,7 @@ public class GameApplication {
         outputView.printResultStartMessage();
 
         List<Car> winners = cars.play(repetitionNum, outputView);
+
         String winnerNames = winners.stream().map(Car::getName).collect(Collectors.joining(", "));
         outputView.printWinnerNames(winnerNames);
     }
