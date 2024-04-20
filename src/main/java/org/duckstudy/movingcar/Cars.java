@@ -8,6 +8,7 @@ import org.duckstudy.output.OutputView;
 public class Cars {
 
     private static final int INITIAL_POSITION = 0;
+
     private final List<Car> cars;
 
     public Cars(String[] carNames, Generator generator) {
