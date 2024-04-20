@@ -17,18 +17,21 @@ public class GameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Generator generator;
 
-    private GameApplication(InputView inputView, OutputView outputView) {
+    private GameApplication(InputView inputView, OutputView outputView, Generator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.generator = generator;
     }
 
     public static void main(String[] args) throws IOException {
         OutputView outputView = new OutputView();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         InputView inputView = new InputView(bufferedReader, outputView);
+        Generator generator = new RandomValueGenerator();
 
-        GameApplication gameApplication = new GameApplication(inputView, outputView);
+        GameApplication gameApplication = new GameApplication(inputView, outputView, generator);
         gameApplication.run();
     }
 
@@ -37,22 +40,18 @@ public class GameApplication {
         int repetitionNum = inputView.inputRepetitionNum();
         validateInput(carNames, repetitionNum);
 
-        Generator generator = new RandomValueGenerator();
         Cars cars = new Cars(carNames.length, carNames, generator);
-        playGame(cars, repetitionNum);
+        playGame(repetitionNum, cars);
     }
 
     private void validateInput(String[] carNames, int repetitionNum) {
-        try {
-            InputValidator inputValidator = new InputValidator();
-            inputValidator.validateInput(repetitionNum, carNames);
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-        }
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateInput(repetitionNum, carNames);
     }
 
-    private void playGame(Cars cars, int repetitionNum) {
+    private void playGame(int repetitionNum, Cars cars) {
         outputView.printResultStartMessage();
+
         List<Car> winners = cars.play(repetitionNum, outputView);
         String winnerNames = winners.stream().map(Car::getName).collect(Collectors.joining(", "));
         outputView.printWinnerNames(winnerNames);
