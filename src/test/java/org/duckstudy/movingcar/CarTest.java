@@ -10,18 +10,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("움직이는 자동차 테스트")
-class CarMoverTest {
+class CarTest {
 
     private final Random random = new Random();
     private RandomValueGenerator randomValueGenerator;
-    private CarMover carMover;
     private Car car;
 
     @BeforeEach
     void setUp() {
-        randomValueGenerator = mock(RandomValueGenerator.class);
-        carMover = new CarMover(randomValueGenerator);
-        car = new Car("Test Car");
+        this.randomValueGenerator = mock(RandomValueGenerator.class);
+        this.car = new Car(randomValueGenerator, "Test Car");
     }
 
     @Test
@@ -30,7 +28,7 @@ class CarMoverTest {
         int randomValue = 4 + random.nextInt(5);
         given(randomValueGenerator.generateRandomValue()).willReturn(randomValue);
 
-        carMover.move(car);
+        car.move();
 
         assertThat(car.getPosition()).isEqualTo(1L);
     }
@@ -41,7 +39,7 @@ class CarMoverTest {
         int randomValue = random.nextInt(3);
         given(randomValueGenerator.generateRandomValue()).willReturn(randomValue);
 
-        carMover.move(car);
+        car.move();
 
         assertThat(car.getPosition()).isEqualTo(0);
     }

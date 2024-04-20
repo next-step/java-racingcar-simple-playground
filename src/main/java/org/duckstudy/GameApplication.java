@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.duckstudy.movingcar.Car;
-import org.duckstudy.movingcar.CarMover;
-import org.duckstudy.movingcar.RandomValueGenerator;
+import org.duckstudy.movingcar.Cars;
 import org.duckstudy.racer.Racer;
 
 public class GameApplication {
@@ -22,8 +21,9 @@ public class GameApplication {
             return;
         }
         Racer racer = carRacerOptional.get();
+        Cars cars = new Cars(racer.makeCarList(nameList.length, nameList));
 
-        printGameResult(racer);
+        printGameResult(cars, repetitionNum);
     }
 
     private static String[] inputCarNames(BufferedReader br) throws IOException {
@@ -38,7 +38,7 @@ public class GameApplication {
 
     private static Optional<Racer> makeCarRacer(String[] nameList, int repetitionNum) {
         try {
-            Racer racer = new Racer(new CarMover(new RandomValueGenerator()), nameList.length, repetitionNum,
+            Racer racer = new Racer(nameList.length, repetitionNum,
                     nameList);
             return Optional.of(racer);
         } catch (IllegalArgumentException e) {
@@ -47,9 +47,9 @@ public class GameApplication {
         }
     }
 
-    private static void printGameResult(Racer racer) {
+    private static void printGameResult(Cars cars, int repetitionNum) {
         System.out.println("\n실행 결과");
-        ArrayList<Car> winnerList = racer.play();
+        ArrayList<Car> winnerList = cars.play(repetitionNum);
         String winnerNames = winnerList.stream().map(Car::getName).collect(Collectors.joining(", "));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
