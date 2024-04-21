@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -40,7 +41,7 @@ class RacingCircuitTest {
             @DisplayName("경주용 차량들을 생성하고 등록시킵니다.")
             void registerCarsForRacing() {
                 // given
-                Cars cars = Cars.createDefault(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
+                Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
 
                 // expect
                 assertThatCode(() -> racingCircuit.registerCars(cars)).doesNotThrowAnyException();
@@ -54,7 +55,7 @@ class RacingCircuitTest {
 
         @BeforeEach
         void setUp() {
-            Cars cars = Cars.createDefault(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
+            Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
             racingCircuit.registerCars(cars);
         }
 
@@ -66,16 +67,12 @@ class RacingCircuitTest {
             @DisplayName("레이스가 진행된 모든 결과를 반환합니다.")
             void eachRace_shouldReturnResults() {
                 // when
-                List<Cars> carsSet = racingCircuit.startRace(5);
-                List<Integer> eachResultCarSize = carsSet.stream()
-                        .map(Cars::cars)
-                        .map(List::size)
-                        .toList();
+                Map<Integer, Cars> roundRecords = racingCircuit.startRace(5);
 
                 // then
                 assertAll(
-                        () -> assertThat(carsSet).hasSize(5),
-                        () -> assertThat(eachResultCarSize).containsExactly(4, 4, 4, 4, 4)
+                        () -> assertThat(roundRecords.keySet()).hasSize(5),
+                        () -> assertThat(roundRecords.values()).hasSize(5)
                 );
             }
         }
@@ -106,10 +103,10 @@ class RacingCircuitTest {
             @BeforeEach
             void setUp() {
                 Cars cars = new Cars(List.of(
-                        Car.createDefault("name1", fakeMovableNumberGenerator),
-                        Car.createDefault("name2", fakeMovableNumberGenerator),
-                        Car.createDefault("name3", fakeNotMovableNumberGenerator),
-                        Car.createDefault("name4", fakeNotMovableNumberGenerator)
+                        new Car("name1", 0, fakeMovableNumberGenerator),
+                        new Car("name2", 0, fakeMovableNumberGenerator),
+                        new Car("name3", 0, fakeNotMovableNumberGenerator),
+                        new Car("name4", 0, fakeNotMovableNumberGenerator)
                 ));
 
                 racingCircuit.registerCars(cars);

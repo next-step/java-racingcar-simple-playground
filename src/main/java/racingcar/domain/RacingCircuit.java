@@ -1,24 +1,28 @@
 package racingcar.domain;
 
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RacingCircuit {
 
+    private static final int INIT_ROUND = 0;
     private static final int LOWER_BOUND_RACE_TRY_COUNT = 1;
 
-    private Cars cars;
+    private final Map<Integer, Cars> records = new HashMap<>();
+    private final AtomicInteger roundCounter = new AtomicInteger(1);
 
     public void registerCars(final Cars cars) {
-        this.cars = cars;
+        records.put(INIT_ROUND, cars);
     }
 
-    public List<Cars> startRace(final int raceTryCount) {
+    public Map<Integer, Cars> startRace(final int raceTryCount) {
         validateRaceTryCount(raceTryCount);
+        moveCars(raceTryCount);
+        records.remove(INIT_ROUND);
 
-        return IntStream.range(0, raceTryCount)
-                .mapToObj(i -> moveCars())
-                .toList();
+        return Collections.unmodifiableMap(records);
     }
 
     private void validateRaceTryCount(final int raceTryCount) {
@@ -27,11 +31,24 @@ public class RacingCircuit {
         }
     }
 
-    private Cars moveCars() {
-        return cars = cars.moveForward();
+    private void moveCars(final int raceTryCount) {
+        for (int count = 0; count < raceTryCount; count++) {
+            Cars lastRoundCars = findLastRoundCars();
+            Cars currentRoundCars = lastRoundCars.moveForward();
+            records.put(roundCounter.getAndIncrement(), currentRoundCars);
+        }
+    }
+
+    private Cars findLastRoundCars() {
+        int previousRound = roundCounter.get() - 1;
+
+        return records.get(previousRound);
     }
 
     public Cars findWinners() {
-        return cars.findWinners();
+        int lastRound = roundCounter.get() - 1;
+
+        return records.get(lastRound)
+                .findWinners();
     }
 }

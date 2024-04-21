@@ -1,14 +1,21 @@
 package racingcar.view;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 public class OutputView {
 
-    public void printMoveResults(final List<Cars> carsSet) {
+    public void printMoveResults(final Map<Integer, Cars> roundRecords) {
         System.out.println("실행 결과");
-        carsSet.forEach(this::printSingleMoveResult);
+
+        List<Integer> rounds = new ArrayList<>(roundRecords.keySet());
+        rounds.sort(Comparator.naturalOrder());
+
+        rounds.forEach(round -> printSingleMoveResult(roundRecords.get(round)));
         System.out.println();
     }
 
