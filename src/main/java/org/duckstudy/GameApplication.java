@@ -31,7 +31,7 @@ public class GameApplication {
         OutputView outputView = new OutputView();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         InputView inputView = new InputView(bufferedReader, outputView);
-        InputValidator inputValidator = new InputValidator();
+        InputValidator inputValidator = new InputValidator(outputView);
         Generator generator = new RandomValueGenerator();
 
         GameApplication gameApplication = new GameApplication(inputView, inputValidator, outputView, generator);
@@ -39,12 +39,31 @@ public class GameApplication {
     }
 
     public void run() throws IOException {
-        String[] carNames = inputView.inputCarNames();
-        int repetitionNum = inputView.inputRepetitionNum();
-        inputValidator.validateInput(carNames, repetitionNum);
+        String[] carNames = inputCarNames();
+        int repetitionNum = inputRepetitionNum();
 
         Cars cars = new Cars(carNames, generator);
         playGame(repetitionNum, cars);
+    }
+
+    private int inputRepetitionNum() throws IOException {
+        try {
+            int repetitionNum = inputView.inputRepetitionNum();
+            return inputValidator.validateRepetitionNum(repetitionNum);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+            return inputRepetitionNum();
+        }
+    }
+
+    private String[] inputCarNames() throws IOException {
+        try {
+            String[] carNames = inputView.inputCarNames();
+            return inputValidator.validateCarNames(carNames);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+            return inputCarNames();
+        }
     }
 
     private void playGame(int repetitionNum, Cars cars) {
