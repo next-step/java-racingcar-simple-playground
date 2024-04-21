@@ -6,7 +6,7 @@ import org.duckstudy.movingcar.Cars;
 public class OutputView {
 
     public void printInputCarNamesMessage() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.");
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
     public void printInputRepetitionNumMessage() {
@@ -14,8 +14,7 @@ public class OutputView {
     }
 
     public void printResultStartMessage() {
-        System.out.println();
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public void printPosition(Cars cars) {
@@ -29,5 +28,17 @@ public class OutputView {
 
     public void printWinnerNames(String winnerNames) {
         System.out.println(winnerNames + "가 최종 우승했습니다.");
+    }
+
+    public void printException(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
+    public String getCarNameExceptionMessage(int maxNameLength) {
+        return String.format("자동차 이름은 1글자 이상 %d자 이하만 가능합니다.\n", maxNameLength);
+    }
+
+    public String getRepetitionNumExceptionMessage() {
+        return "반복 횟수는 0보다 커야 합니다.\n";
     }
 }
