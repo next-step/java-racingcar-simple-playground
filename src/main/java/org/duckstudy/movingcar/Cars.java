@@ -11,9 +11,12 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String[] carNames, Generator generator) {
-        List<Car> cars = createCars(carNames, generator);
+    public Cars(List<Car> cars) {
         this.cars = List.copyOf(cars);
+    }
+
+    public Cars(String[] carNames, Generator generator) {
+        this.cars = createCars(carNames, generator);
     }
 
     private List<Car> createCars(String[] carNames, Generator generator) {
@@ -21,10 +24,10 @@ public class Cars {
         for (String carName : carNames) {
             cars.add(new Car(carName, generator));
         }
-        return cars;
+        return List.copyOf(cars);
     }
 
-    public List<Car> play(int repetitionNum, OutputView outputView) {
+    public Cars playAndGetWinners(int repetitionNum, OutputView outputView) {
         for (int i = 0; i < repetitionNum; i++) {
             moveAll();
             outputView.printPosition(this);
@@ -38,15 +41,16 @@ public class Cars {
         }
     }
 
-    private List<Car> calculateWinners() {
+    private Cars calculateWinners() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(INITIAL_POSITION);
 
-        return cars.stream()
+        ArrayList<Car> winners = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        return new Cars(winners);
     }
 
     public List<Car> getCars() {

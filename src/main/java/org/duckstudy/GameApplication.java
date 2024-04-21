@@ -3,7 +3,6 @@ package org.duckstudy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.stream.Collectors;
 import org.duckstudy.generator.Generator;
 import org.duckstudy.generator.RandomValueGenerator;
@@ -51,9 +50,11 @@ public class GameApplication {
     private void playGame(int repetitionNum, Cars cars) {
         outputView.printResultStartMessage();
 
-        List<Car> winners = cars.play(repetitionNum, outputView);
+        Cars winners = cars.playAndGetWinners(repetitionNum, outputView);
 
-        String winnerNames = winners.stream().map(Car::getName).collect(Collectors.joining(", "));
+        String winnerNames = winners.getCars()
+                .stream().map(Car::getName)
+                .collect(Collectors.joining(", "));
         outputView.printWinnerNames(winnerNames);
     }
 }
