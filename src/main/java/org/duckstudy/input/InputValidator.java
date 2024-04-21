@@ -11,7 +11,7 @@ public class InputValidator {
 
     public void validateInput(String[] carNames, int repetitionNum) {
         if (validateNameList(carNames)) {
-            throw new IllegalArgumentException("자동차 이름은 1글자 이상 5자 이하만 가능합니다.");
+            throw new IllegalArgumentException(String.format("자동차 이름은 1글자 이상 %d자 이하만 가능합니다.", MAX_NAME_LENGTH));
         }
         if (validateRepetitionNum(repetitionNum)) {
             throw new IllegalArgumentException("반복 횟수는 0보다 커야 합니다.");
