@@ -41,7 +41,8 @@ class RacingCircuitTest {
             @DisplayName("경주용 차량들을 생성하고 등록시킵니다.")
             void registerCarsForRacing() {
                 // given
-                Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
+                Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"),
+                        fakeMovableNumberGenerator);
 
                 // expect
                 assertThatCode(() -> racingCircuit.registerCars(cars)).doesNotThrowAnyException();
@@ -55,7 +56,8 @@ class RacingCircuitTest {
 
         @BeforeEach
         void setUp() {
-            Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"), fakeMovableNumberGenerator);
+            Cars cars = Cars.createCarsWithGenerator(List.of("name1", "name2", "name3", "name4"),
+                    fakeMovableNumberGenerator);
             racingCircuit.registerCars(cars);
         }
 
