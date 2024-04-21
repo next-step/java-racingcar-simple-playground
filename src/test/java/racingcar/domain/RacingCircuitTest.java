@@ -126,7 +126,9 @@ class RacingCircuitTest {
                         .toList();
 
                 // then
-                assertThat(winnerNames).containsExactly("name1", "name2");
+                assertThat(winners.cars())
+                        .extracting(Car::getName)
+                        .containsExactly("name1", "name2");
             }
         }
 
