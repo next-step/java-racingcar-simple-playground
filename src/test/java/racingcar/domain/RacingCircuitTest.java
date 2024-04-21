@@ -120,10 +120,6 @@ class RacingCircuitTest {
             void canFind_winnersOfRace() {
                 // when
                 Cars winners = racingCircuit.findWinners();
-                List<String> winnerNames = winners.cars()
-                        .stream()
-                        .map(Car::getName)
-                        .toList();
 
                 // then
                 assertThat(winners.cars())

@@ -25,11 +25,9 @@ class CarsTest {
         Cars movedCars = cars.moveForward();
 
         // then
-        assertAll(
-                () -> assertThat(movedCars.cars().get(0).getPosition()).isEqualTo(1),
-                () -> assertThat(movedCars.cars().get(1).getPosition()).isEqualTo(0),
-                () -> assertThat(movedCars.cars().get(2).getPosition()).isEqualTo(1)
-        );
+        assertThat(movedCars.cars())
+                .extracting(Car::getPosition)
+                .containsExactly(1, 0, 1);
     }
 
     @Test
@@ -47,10 +45,9 @@ class CarsTest {
         Cars winners = movedCars.findWinners();
 
         // then
-        assertAll(
-                () -> assertThat(winners.cars().get(0).getName()).isEqualTo("name1"),
-                () -> assertThat(winners.cars().get(1).getName()).isEqualTo("name3")
-        );
+        assertThat(winners.cars())
+                .extracting(Car::getName)
+                .containsExactly("name1", "name3");
     }
 
     @Test
@@ -63,10 +60,8 @@ class CarsTest {
         Cars movedCars = cars.moveForward();
 
         // then
-        assertAll(
-                () -> assertThat(movedCars.cars().get(0).getPosition()).isEqualTo(1),
-                () -> assertThat(movedCars.cars().get(1).getPosition()).isEqualTo(1),
-                () -> assertThat(movedCars.cars().get(2).getPosition()).isEqualTo(1)
-        );
+        assertThat(movedCars.cars())
+                .extracting(Car::getPosition)
+                .containsExactly(1, 1, 1);
     }
 }
