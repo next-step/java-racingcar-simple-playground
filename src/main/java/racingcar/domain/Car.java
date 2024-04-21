@@ -18,8 +18,8 @@ public class Car {
         this.numberGenerator = numberGenerator;
     }
 
-    public static Car createDefault(final String name, final NumberGenerator numberGenerator) {
-        return new Car(name, START_POSITION, numberGenerator);
+    public Car(final String name, final NumberGenerator numberGenerator) {
+        this(name, START_POSITION, numberGenerator);
     }
 
     private void validateName(final String name) {
@@ -32,7 +32,7 @@ public class Car {
 
     public Car moveForward() {
         if (numberGenerator.generateNumber() >= MOVABLE_OFFSET) {
-            return new Car(getName(), getPosition() + FORWARD_AMOUNT, numberGenerator);
+            return new Car(name, position + FORWARD_AMOUNT, numberGenerator);
         }
         return this;
     }

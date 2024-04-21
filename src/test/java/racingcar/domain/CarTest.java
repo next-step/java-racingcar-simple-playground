@@ -3,10 +3,12 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class CarTest {
 
@@ -63,7 +65,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "asdfga"})
+    @MethodSource("getInvalidNames")
     @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생한다.")
     void canNotCreateCar_withInvalidName(String invalidName) {
         // expect
@@ -72,12 +74,7 @@ class CarTest {
                 .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
     }
 
-    @Test
-    @DisplayName("자동차의 이름이 없거나, 5글자를 초과하면 예외가 발생한다.")
-    void canNotCreateCar_withNullName() {
-        // expect
-        assertThatThrownBy(() -> new Car(null, 0, () -> 4))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차의 이름은 반드시 존재해야 하고, 최대 5글자 이하여야 합니다.");
+    static Stream<String> getInvalidNames() {
+        return Stream.of("", "asdfgh", null);
     }
 }

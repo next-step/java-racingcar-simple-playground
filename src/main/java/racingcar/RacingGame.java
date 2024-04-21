@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.Map;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingCircuit;
@@ -33,15 +34,15 @@ public class RacingGame {
 
     private void registerCars() {
         List<String> carNames = inputView.inputCarNames();
-        Cars cars = Cars.createDefault(carNames, numberGenerator);
+        Cars cars = Cars.createCarsWithGenerator(carNames, numberGenerator);
         racingCircuit.registerCars(cars);
     }
 
     private void startRace() {
         int raceTryCount = inputView.inputRaceTryCount();
-        List<Cars> carsSet = racingCircuit.startRace(raceTryCount);
+        Map<Integer, Cars> roundRecords = racingCircuit.startRace(raceTryCount);
 
-        outputView.printMoveResults(carsSet);
+        outputView.printMoveResults(roundRecords);
     }
 
     private void awardRace() {

@@ -5,9 +5,9 @@ import java.util.List;
 
 public record Cars(List<Car> cars) {
 
-    public static Cars createDefault(final List<String> carNames, final NumberGenerator numberGenerator) {
+    public static Cars createCarsWithGenerator(final List<String> carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames.stream()
-                .map(name -> Car.createDefault(name, numberGenerator))
+                .map(name -> new Car(name, numberGenerator))
                 .toList());
     }
 
