@@ -46,16 +46,6 @@ public class GameApplication {
         playGame(repetitionNum, cars);
     }
 
-    private int inputRepetitionNum() throws IOException {
-        try {
-            int repetitionNum = inputView.inputRepetitionNum();
-            return inputValidator.validateRepetitionNum(repetitionNum);
-        } catch (IllegalArgumentException e) {
-            outputView.printException(e);
-            return inputRepetitionNum();
-        }
-    }
-
     private String[] inputCarNames() throws IOException {
         try {
             String[] carNames = inputView.inputCarNames();
@@ -63,6 +53,16 @@ public class GameApplication {
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return inputCarNames();
+        }
+    }
+
+    private int inputRepetitionNum() throws IOException {
+        try {
+            int repetitionNum = inputView.inputRepetitionNum();
+            return inputValidator.validateRepetitionNum(repetitionNum);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e);
+            return inputRepetitionNum();
         }
     }
 
