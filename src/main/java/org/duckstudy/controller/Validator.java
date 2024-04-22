@@ -1,15 +1,15 @@
-package org.duckstudy.input;
+package org.duckstudy.controller;
 
 import java.util.Arrays;
-import org.duckstudy.output.OutputView;
+import org.duckstudy.view.OutputView;
 
-public class InputValidator {
+public class Validator {
 
     private static final int MAX_NAME_LENGTH = 5;
 
     private final OutputView outputView;
 
-    public InputValidator(OutputView outputView) {
+    public Validator(OutputView outputView) {
         this.outputView = outputView;
     }
 

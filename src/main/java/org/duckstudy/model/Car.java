@@ -1,4 +1,4 @@
-package org.duckstudy.movingcar;
+package org.duckstudy.model;
 
 import org.duckstudy.generator.Generator;
 

@@ -1,4 +1,4 @@
-package org.duckstudy.movingcar;
+package org.duckstudy.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 import java.util.Arrays;
 import org.duckstudy.generator.Generator;
 import org.duckstudy.generator.RandomValueGenerator;
-import org.duckstudy.output.OutputView;
+import org.duckstudy.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

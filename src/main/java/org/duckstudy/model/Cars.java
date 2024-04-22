@@ -1,9 +1,10 @@
-package org.duckstudy.movingcar;
+package org.duckstudy.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.duckstudy.generator.Generator;
-import org.duckstudy.output.OutputView;
+import org.duckstudy.view.OutputView;
 
 public class Cars {
 
@@ -55,5 +56,11 @@ public class Cars {
 
     public List<Car> getCars() {
         return List.copyOf(cars);
+    }
+
+    public String getNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
     }
 }

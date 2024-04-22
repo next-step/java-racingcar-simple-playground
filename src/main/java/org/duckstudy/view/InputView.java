@@ -1,8 +1,7 @@
-package org.duckstudy.input;
+package org.duckstudy.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import org.duckstudy.output.OutputView;
 
 public class InputView {
 
