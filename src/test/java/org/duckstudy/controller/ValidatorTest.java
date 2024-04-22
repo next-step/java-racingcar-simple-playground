@@ -66,5 +66,4 @@ class ValidatorTest {
                     .hasMessage("반복 횟수는 0보다 커야 합니다.\n");
         }
     }
-
 }
