@@ -1,7 +1,7 @@
 package org.duckstudy.view;
 
 import java.util.stream.Collectors;
-import org.duckstudy.model.Cars;
+import org.duckstudy.model.car.Cars;
 
 public class OutputView {
 

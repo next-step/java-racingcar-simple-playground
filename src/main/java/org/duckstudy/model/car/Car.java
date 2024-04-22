@@ -1,6 +1,6 @@
-package org.duckstudy.model;
+package org.duckstudy.model.car;
 
-import org.duckstudy.generator.Generator;
+import org.duckstudy.model.generator.Generator;
 
 public class Car {
 

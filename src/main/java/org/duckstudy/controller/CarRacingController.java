@@ -1,20 +1,20 @@
 package org.duckstudy.controller;
 
 import java.io.IOException;
-import org.duckstudy.generator.Generator;
-import org.duckstudy.model.Cars;
+import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.car.Cars;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
-public class RacingGame {
+public class CarRacingController {
 
     private final InputView inputView;
     private final Validator validator;
     private final OutputView outputView;
     private final Generator generator;
 
-    public RacingGame(InputView inputView, Validator validator, OutputView outputView,
-                      Generator generator) {
+    public CarRacingController(InputView inputView, Validator validator, OutputView outputView,
+                               Generator generator) {
         this.inputView = inputView;
         this.validator = validator;
         this.outputView = outputView;

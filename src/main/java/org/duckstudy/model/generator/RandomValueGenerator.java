@@ -1,4 +1,4 @@
-package org.duckstudy.generator;
+package org.duckstudy.model.generator;
 
 public class RandomValueGenerator implements Generator {
 

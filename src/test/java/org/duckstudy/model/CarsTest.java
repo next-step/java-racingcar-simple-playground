@@ -8,8 +8,9 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 import java.util.Arrays;
-import org.duckstudy.generator.Generator;
-import org.duckstudy.generator.RandomValueGenerator;
+import org.duckstudy.model.car.Cars;
+import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

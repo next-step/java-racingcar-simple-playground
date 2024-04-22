@@ -1,9 +1,9 @@
-package org.duckstudy.model;
+package org.duckstudy.model.car;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.duckstudy.generator.Generator;
+import org.duckstudy.model.generator.Generator;
 import org.duckstudy.view.OutputView;
 
 public class Cars {
