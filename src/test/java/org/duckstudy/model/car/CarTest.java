@@ -1,10 +1,9 @@
-package org.duckstudy.model;
+package org.duckstudy.model.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-import org.duckstudy.model.car.Car;
 import org.duckstudy.model.generator.Generator;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.junit.jupiter.api.BeforeEach;

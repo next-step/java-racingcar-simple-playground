@@ -1,4 +1,4 @@
-package org.duckstudy.model;
+package org.duckstudy.model.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -8,7 +8,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 import java.util.Arrays;
-import org.duckstudy.model.car.Cars;
 import org.duckstudy.model.generator.Generator;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.OutputView;
