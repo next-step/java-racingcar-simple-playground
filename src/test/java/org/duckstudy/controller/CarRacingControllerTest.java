@@ -22,7 +22,6 @@ class CarRacingControllerTest {
     private final Validator validator = mock(Validator.class);
     private final Generator generator = mock(Generator.class);
     private final CarRacingController controller = new CarRacingController(inputView, validator, outputView, generator);
-    private final Cars cars = mock(Cars.class);
 
     @Test
     @DisplayName("자동차 경주가 성공적으로 진행된다")
@@ -35,7 +34,6 @@ class CarRacingControllerTest {
         when(validator.validateCarNames(carNames)).thenReturn(carNames);
         when(validator.validateRepetitionNum(repetitionNum)).thenReturn(repetitionNum);
         when(generator.generateValue()).thenReturn(4, 4, 1);
-        when(cars.playAndGetWinners(repetitionNum, outputView)).thenReturn(winners);
 
         controller.run();
 
