@@ -1,11 +1,16 @@
 package org.duckstudy.model.generator;
 
+import java.util.Random;
+
 public class RandomValueGenerator implements Generator {
 
-    private static final int MAX_RANDOM_VALUE = 9;
+    private static final int EXCLUSIVE_MAX_VALUE = 10;
+
+    public RandomValueGenerator() {
+    }
 
     @Override
     public int generateValue() {
-        return (int) (Math.random() * MAX_RANDOM_VALUE);
+        return new Random().nextInt(EXCLUSIVE_MAX_VALUE);
     }
 }
