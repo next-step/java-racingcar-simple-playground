@@ -1,8 +1,5 @@
 package org.duckstudy.view;
 
-import java.util.stream.Collectors;
-import org.duckstudy.model.car.Cars;
-
 public class OutputView {
 
     public void printInputCarNamesMessage() {
@@ -17,13 +14,8 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printPosition(Cars cars) {
-        String position = cars.getCars()
-                .stream()
-                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
-                .collect(Collectors.joining("\n"))
-                .concat("\n");
-        System.out.println(position);
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
     public void printWinnerNames(String winnerNames) {

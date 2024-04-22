@@ -31,7 +31,7 @@ public class Cars {
     public Cars playAndGetWinners(int repetitionNum, OutputView outputView) {
         for (int i = 0; i < repetitionNum; i++) {
             moveAll();
-            outputView.printPosition(this);
+            outputView.printMessage(getPositions());
         }
         return calculateWinners();
     }
@@ -62,5 +62,12 @@ public class Cars {
         return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
+    }
+
+    public String getPositions() {
+        return cars.stream()
+                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
+                .collect(Collectors.joining("\n"))
+                .concat("\n");
     }
 }
