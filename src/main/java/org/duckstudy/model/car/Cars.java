@@ -3,7 +3,7 @@ package org.duckstudy.model.car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.OutputView;
 
 public class Cars {
@@ -17,14 +17,14 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public Cars(String[] carNames, Generator generator, OutputView outputView) {
-        this.cars = createCars(carNames, generator, outputView);
+    public Cars(String[] carNames, RandomValueGenerator randomValueGenerator, OutputView outputView) {
+        this.cars = createCars(carNames, randomValueGenerator, outputView);
     }
 
-    private List<Car> createCars(String[] carNames, Generator generator, OutputView outputView) {
+    private List<Car> createCars(String[] carNames, RandomValueGenerator randomValueGenerator, OutputView outputView) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName, generator, outputView));
+            cars.add(new Car(carName, randomValueGenerator, outputView));
         }
         return List.copyOf(cars);
     }

@@ -2,7 +2,7 @@ package org.duckstudy.controller;
 
 import java.io.IOException;
 import org.duckstudy.model.car.Cars;
-import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
@@ -10,13 +10,13 @@ public class CarRacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final Generator generator;
+    private final RandomValueGenerator randomValueGenerator;
 
     public CarRacingController(InputView inputView, OutputView outputView,
-                               Generator generator) {
+                               RandomValueGenerator randomValueGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.generator = generator;
+        this.randomValueGenerator = randomValueGenerator;
     }
 
     public void run() throws IOException {
@@ -27,7 +27,7 @@ public class CarRacingController {
     private Cars createCars() throws IOException {
         String[] carNames = inputView.inputCarNames();
         try {
-            return new Cars(carNames, generator, outputView);
+            return new Cars(carNames, randomValueGenerator, outputView);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return createCars();

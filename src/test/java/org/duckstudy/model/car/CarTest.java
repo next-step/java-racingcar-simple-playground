@@ -7,8 +7,8 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 import java.util.stream.Stream;
-import org.duckstudy.model.generator.Generator;
 import org.duckstudy.model.generator.RandomValueGenerator;
+import org.duckstudy.model.generator.DefaultRandomValueGenerator;
 import org.duckstudy.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +22,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CarTest {
 
     private final OutputView outputView = new OutputView();
-    private Generator generator;
+    private RandomValueGenerator randomValueGenerator;
 
     @Nested
     @DisplayName("자동차 이름 검증 테스트")
@@ -35,7 +35,7 @@ class CarTest {
         void gameSuccessWhenCarNameIsLessThan5() {
             carNames = new String[]{"Car1", "Car2", "Car3"};
 
-            assertThatCode(() -> new Cars(carNames, generator, outputView))
+            assertThatCode(() -> new Cars(carNames, randomValueGenerator, outputView))
                     .doesNotThrowAnyException();
         }
 
@@ -44,7 +44,7 @@ class CarTest {
         @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
         void gameFailWhenCarNameLengthIsEmptyOrGreaterThan5(String[] carNames) {
 
-            assertThatThrownBy(() -> new Cars(carNames, generator, outputView))
+            assertThatThrownBy(() -> new Cars(carNames, randomValueGenerator, outputView))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 1글자 이상 5글자 이하만 가능합니다.\n");
         }
@@ -65,14 +65,14 @@ class CarTest {
 
         @BeforeEach
         void setUp() {
-            generator = mock(RandomValueGenerator.class);
-            this.car = new Car("Car1", generator, outputView);
+            randomValueGenerator = mock(DefaultRandomValueGenerator.class);
+            this.car = new Car("Car1", randomValueGenerator, outputView);
         }
 
         @Test
         @DisplayName("random 값이 4 이상 9 이하인 경우 1만큼 전진한다")
         void moveCarWhenRandomValueIsGreaterThanOrEqual4() {
-            given(generator.generateValue()).willReturn(4);
+            given(randomValueGenerator.generateRandomValue()).willReturn(4);
 
             car.move();
 
@@ -82,7 +82,7 @@ class CarTest {
         @Test
         @DisplayName("random 값이 3 이하인 경우 멈춘다")
         void stopCarWhenRandomValueIsLessThan4() {
-            given(generator.generateValue()).willReturn(3);
+            given(randomValueGenerator.generateRandomValue()).willReturn(3);
 
             car.move();
 

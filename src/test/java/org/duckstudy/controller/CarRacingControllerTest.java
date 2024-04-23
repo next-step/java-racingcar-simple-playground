@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +18,8 @@ class CarRacingControllerTest {
 
     private final OutputView outputView = mock(OutputView.class);
     private final InputView inputView = mock(InputView.class);
-    private final Generator generator = mock(Generator.class);
-    private final CarRacingController controller = new CarRacingController(inputView, outputView, generator);
+    private final RandomValueGenerator randomValueGenerator = mock(RandomValueGenerator.class);
+    private final CarRacingController controller = new CarRacingController(inputView, outputView, randomValueGenerator);
     private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
 
     @Nested

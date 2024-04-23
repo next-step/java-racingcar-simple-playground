@@ -11,7 +11,7 @@
 - `Car` : 랜덤 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈추는 자동차 클래스
 - `Cars` : n개의 Car 객체가 참여하는 자동차 경주 로직이 존재하는 일급 컬렉션
 
-#### generator
+#### randomValueGenerator
 
 - `Generator` : 값을 생성할 수 있는 인터페이스
 - `RandomValueGenerator` : 랜덤 값을 생성하는 클래스

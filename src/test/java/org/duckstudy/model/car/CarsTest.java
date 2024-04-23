@@ -12,8 +12,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
-import org.duckstudy.model.generator.Generator;
 import org.duckstudy.model.generator.RandomValueGenerator;
+import org.duckstudy.model.generator.DefaultRandomValueGenerator;
 import org.duckstudy.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 class CarsTest {
 
     private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
-    private final Generator generator = new RandomValueGenerator();
+    private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
     private OutputView outputView;
     private Cars cars;
 
@@ -34,7 +34,7 @@ class CarsTest {
         @DisplayName("반복 횟수가 0보다 클때 성공한다")
         void gameSuccessWhenRepetitionNumIsGreaterThan0() {
             outputView = new OutputView();
-            cars = new Cars(carNames, generator, outputView);
+            cars = new Cars(carNames, randomValueGenerator, outputView);
             int repetitionNum = 1;
 
             assertThatCode(() -> cars.playAndGetWinners(repetitionNum, outputView))
@@ -45,7 +45,7 @@ class CarsTest {
         @DisplayName("반복 횟수가 0 이하이면 에러가 발생하고, 정상 입력할 때까지 입력을 받는다")
         void gameFailWhenRepetitionNumIsEqualOrLessThan0() {
             outputView = mock(OutputView.class);
-            cars = new Cars(carNames, generator, outputView);
+            cars = new Cars(carNames, randomValueGenerator, outputView);
             int repetitionNum = 0;
 
             assertThatThrownBy(() -> cars.playAndGetWinners(repetitionNum, outputView))
@@ -65,7 +65,7 @@ class CarsTest {
         void calculateWinnerWhenRaceIsOver() {
             outputView = new OutputView();
             String[] selectedWinnerNames = Arrays.copyOfRange(carNames, 0, 2);
-            Cars selectedWinners = new Cars(selectedWinnerNames, generator, outputView);
+            Cars selectedWinners = new Cars(selectedWinnerNames, randomValueGenerator, outputView);
             doReturn(selectedWinners).when(cars).playAndGetWinners(anyInt(), any(OutputView.class));
 
             Cars winners = cars.playAndGetWinners(5, outputView);

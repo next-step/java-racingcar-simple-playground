@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import org.duckstudy.controller.CarRacingController;
-import org.duckstudy.model.generator.Generator;
+import org.duckstudy.model.generator.DefaultRandomValueGenerator;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
@@ -18,9 +18,9 @@ public class Application {
         OutputView outputView = new OutputView();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         InputView inputView = new InputView(bufferedReader, outputView);
-        Generator generator = new RandomValueGenerator();
+        RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
 
-        CarRacingController carRacingController = new CarRacingController(inputView, outputView, generator);
+        CarRacingController carRacingController = new CarRacingController(inputView, outputView, randomValueGenerator);
         carRacingController.run();
     }
 }
