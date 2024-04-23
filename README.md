@@ -24,7 +24,6 @@
 ### controller
 
 - `CarRacingController` : 게임 전체 흐름을 제어하는 클래스
-- `InputValidator` : 입력값을 검증하는 클래스
 
 <br/>
 
