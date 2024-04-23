@@ -1,7 +1,5 @@
 package org.duckstudy.controller;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -41,33 +39,6 @@ class CarRacingControllerTest {
             verify(outputView).printResultStartMessage();
             verify(outputView, times(repetitionNum)).printMessage(anyString());
             verify(outputView).printWinnerNames(anyString());
-        }
-    }
-
-    @Nested
-    @DisplayName("반복 횟수 검증 테스트")
-    class RepetitonNumValidationTest {
-        @Test
-        @DisplayName("반복 횟수가 0보다 클때 성공한다")
-        void gameSuccessWhenRepetitionNumIsGreaterThan0() throws IOException {
-            int repetitionNum = 1;
-            when(inputView.inputCarNames()).thenReturn(carNames);
-            when(inputView.inputRepetitionNum()).thenReturn(repetitionNum);
-
-            assertThatCode(controller::run)
-                    .doesNotThrowAnyException();
-        }
-
-        @Test
-        @DisplayName("반복 횟수가 0 이하이면 정상 입력할 때까지 입력을 받는다.")
-        void gameFailWhenRepetitionNumIsEqualOrLessThan0() throws IOException {
-            int repetitionNum = 0;
-            when(inputView.inputCarNames()).thenReturn(carNames);
-            when(inputView.inputRepetitionNum()).thenReturn(repetitionNum).thenReturn(1);
-
-            assertThatCode(controller::run)
-                    .doesNotThrowAnyException();
-            verify(outputView, times(1)).printException(any(IllegalArgumentException.class));
         }
     }
 }

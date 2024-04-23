@@ -9,6 +9,7 @@ import org.duckstudy.view.OutputView;
 public class Cars {
 
     private static final int INITIAL_POSITION = 0;
+    public static final int EXCLUSIVE_MIN_REPETITION_NUM = 0;
 
     private final List<Car> cars;
 
@@ -29,11 +30,20 @@ public class Cars {
     }
 
     public Cars playAndGetWinners(int repetitionNum, OutputView outputView) {
+        validateRepetitionNum(repetitionNum, outputView);
+
+        outputView.printResultStartMessage();
         for (int i = 0; i < repetitionNum; i++) {
             moveAll();
             outputView.printMessage(getPositions());
         }
         return calculateWinners();
+    }
+
+    private void validateRepetitionNum(int repetitionNum, OutputView outputView) {
+        if (repetitionNum <= EXCLUSIVE_MIN_REPETITION_NUM) {
+            throw new IllegalArgumentException(outputView.getRepetitionNumExceptionMessage());
+        }
     }
 
     private void moveAll() {
