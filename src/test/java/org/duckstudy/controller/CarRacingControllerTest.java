@@ -59,7 +59,7 @@ class CarRacingControllerTest {
         }
 
         @Test
-        @DisplayName("반복 횟수가 0 이하이면 정상 입력일때까지 입력을 받는다.")
+        @DisplayName("반복 횟수가 0 이하이면 정상 입력할 때까지 입력을 받는다.")
         void gameFailWhenRepetitionNumIsEqualOrLessThan0() throws IOException {
             int repetitionNum = 0;
             when(inputView.inputCarNames()).thenReturn(carNames);

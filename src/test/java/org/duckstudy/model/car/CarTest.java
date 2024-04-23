@@ -46,7 +46,7 @@ class CarTest {
 
             assertThatThrownBy(() -> new Cars(carNames, generator, outputView))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("자동차 이름은 1글자 이상 5자 이하만 가능합니다.\n");
+                    .hasMessage("자동차 이름은 1글자 이상 5글자 이하만 가능합니다.\n");
         }
 
         private static Stream<Arguments> methodSourceCarNameLengthTestArguments() {
