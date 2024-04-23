@@ -21,21 +21,22 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("자동차 경주 테스트")
 class CarsTest {
-
-    private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
-    private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
-    private OutputView outputView;
-    private Cars cars;
-
     @Nested
     @DisplayName("반복 횟수 검증 테스트")
     class RepetitonNumValidationTest {
+
+        private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
+        private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
+        private OutputView outputView;
+        private Cars cars;
+        private int repetitionNum;
+
         @Test
         @DisplayName("반복 횟수가 0보다 클때 성공한다")
         void gameSuccessWhenRepetitionNumIsGreaterThan0() {
             outputView = new OutputView();
             cars = new Cars(carNames, randomValueGenerator, outputView);
-            int repetitionNum = 1;
+            repetitionNum = 1;
 
             assertThatCode(() -> cars.playAndGetWinners(repetitionNum, outputView))
                     .doesNotThrowAnyException();
@@ -46,7 +47,7 @@ class CarsTest {
         void gameFailWhenRepetitionNumIsEqualOrLessThan0() {
             outputView = mock(OutputView.class);
             cars = new Cars(carNames, randomValueGenerator, outputView);
-            int repetitionNum = 0;
+            repetitionNum = 0;
 
             assertThatThrownBy(() -> cars.playAndGetWinners(repetitionNum, outputView))
                     .isExactlyInstanceOf(IllegalArgumentException.class);
@@ -58,12 +59,14 @@ class CarsTest {
     @DisplayName("결과 테스트")
     class CarRaceResultTest {
 
+        private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
+        private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
+        private final OutputView outputView = new OutputView();
         private final Cars cars = mock(Cars.class);
 
         @Test
         @DisplayName("경주가 완료되면 우승자를 계산한다")
         void calculateWinnerWhenRaceIsOver() {
-            outputView = new OutputView();
             String[] selectedWinnerNames = Arrays.copyOfRange(carNames, 0, 2);
             Cars selectedWinners = new Cars(selectedWinnerNames, randomValueGenerator, outputView);
             doReturn(selectedWinners).when(cars).playAndGetWinners(anyInt(), any(OutputView.class));
