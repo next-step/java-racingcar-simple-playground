@@ -10,7 +10,6 @@ import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
 public class Application {
-
     private Application() {
     }
 
