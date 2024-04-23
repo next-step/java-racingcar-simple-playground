@@ -1,10 +1,10 @@
 package org.duckstudy.model.car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.duckstudy.model.generator.RandomValueGenerator;
-import org.duckstudy.view.OutputView;
 
 public class Cars {
 
@@ -17,42 +17,26 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public Cars(String[] carNames, RandomValueGenerator randomValueGenerator, OutputView outputView) {
-        this.cars = createCars(carNames, randomValueGenerator, outputView);
+    public Cars(String[] carNames, RandomValueGenerator randomValueGenerator) {
+        this(Arrays.stream(carNames)
+                .map(carName -> new Car(carName, randomValueGenerator))
+                .collect(Collectors.toList()));
     }
 
-    private List<Car> createCars(String[] carNames, RandomValueGenerator randomValueGenerator, OutputView outputView) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName, randomValueGenerator, outputView));
-        }
-        return List.copyOf(cars);
-    }
-
-    public Cars playAndGetWinners(int repetitionNum, OutputView outputView) {
-        validateRepetitionNum(repetitionNum, outputView);
-
-        outputView.printResultStartMessage();
-        for (int i = 0; i < repetitionNum; i++) {
-            moveAll();
-            outputView.printMessage(getPositions());
-        }
-        return calculateWinners();
-    }
-
-    private void validateRepetitionNum(int repetitionNum, OutputView outputView) {
+    public int validateRepetitionNum(int repetitionNum) {
         if (repetitionNum <= EXCLUSIVE_MIN_REPETITION_NUM) {
-            throw new IllegalArgumentException(outputView.getRepetitionNumExceptionMessage());
+            throw new IllegalArgumentException("반복 횟수는 0보다 커야 합니다.\n");
         }
+        return repetitionNum;
     }
 
-    private void moveAll() {
+    public void moveAll() {
         for (Car car : cars) {
             car.move();
         }
     }
 
-    private Cars calculateWinners() {
+    public Cars calculateWinners() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()

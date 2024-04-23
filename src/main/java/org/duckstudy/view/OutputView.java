@@ -25,12 +25,4 @@ public class OutputView {
     public void printException(Exception e) {
         System.out.println(e.getMessage());
     }
-
-    public String getCarNameExceptionMessage(int maxNameLength) {
-        return String.format("자동차 이름은 1글자 이상 %d글자 이하만 가능합니다.\n", maxNameLength);
-    }
-
-    public String getRepetitionNumExceptionMessage() {
-        return "반복 횟수는 0보다 커야 합니다.\n";
-    }
 }

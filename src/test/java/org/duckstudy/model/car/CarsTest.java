@@ -4,17 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
-import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.model.generator.DefaultRandomValueGenerator;
-import org.duckstudy.view.OutputView;
+import org.duckstudy.model.generator.RandomValueGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,31 +22,27 @@ class CarsTest {
 
         private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
         private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
-        private OutputView outputView;
         private Cars cars;
         private int repetitionNum;
 
         @Test
         @DisplayName("반복 횟수가 0보다 클때 성공한다")
         void gameSuccessWhenRepetitionNumIsGreaterThan0() {
-            outputView = new OutputView();
-            cars = new Cars(carNames, randomValueGenerator, outputView);
+            cars = new Cars(carNames, randomValueGenerator);
             repetitionNum = 1;
 
-            assertThatCode(() -> cars.playAndGetWinners(repetitionNum, outputView))
+            assertThatCode(() -> cars.validateRepetitionNum(repetitionNum))
                     .doesNotThrowAnyException();
         }
 
         @Test
-        @DisplayName("반복 횟수가 0 이하이면 에러가 발생하고, 정상 입력할 때까지 입력을 받는다")
+        @DisplayName("반복 횟수가 0 이하이면 에러가 발생한다")
         void gameFailWhenRepetitionNumIsEqualOrLessThan0() {
-            outputView = mock(OutputView.class);
-            cars = new Cars(carNames, randomValueGenerator, outputView);
+            cars = new Cars(carNames, randomValueGenerator);
             repetitionNum = 0;
 
-            assertThatThrownBy(() -> cars.playAndGetWinners(repetitionNum, outputView))
+            assertThatThrownBy(() -> cars.validateRepetitionNum(repetitionNum))
                     .isExactlyInstanceOf(IllegalArgumentException.class);
-            verify(outputView, times(1)).getRepetitionNumExceptionMessage();
         }
     }
 
@@ -61,17 +52,16 @@ class CarsTest {
 
         private final String[] carNames = new String[]{"Car1", "Car2", "Car3"};
         private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
-        private final OutputView outputView = new OutputView();
         private final Cars cars = mock(Cars.class);
 
         @Test
         @DisplayName("경주가 완료되면 우승자를 계산한다")
         void calculateWinnerWhenRaceIsOver() {
             String[] selectedWinnerNames = Arrays.copyOfRange(carNames, 0, 2);
-            Cars selectedWinners = new Cars(selectedWinnerNames, randomValueGenerator, outputView);
-            doReturn(selectedWinners).when(cars).playAndGetWinners(anyInt(), any(OutputView.class));
+            Cars selectedWinners = new Cars(selectedWinnerNames, randomValueGenerator);
+            doReturn(selectedWinners).when(cars).calculateWinners();
 
-            Cars winners = cars.playAndGetWinners(5, outputView);
+            Cars winners = cars.calculateWinners();
 
             assertAll(
                     () -> assertThat(winners.getCars().size()).isEqualTo(selectedWinnerNames.length),

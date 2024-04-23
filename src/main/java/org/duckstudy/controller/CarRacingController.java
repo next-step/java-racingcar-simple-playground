@@ -21,31 +21,40 @@ public class CarRacingController {
 
     public void run() throws IOException {
         Cars cars = createCars();
-        playGame(cars);
+        int repetitionNum = inputValidRepetitionNum(cars);
+
+        playGame(cars, repetitionNum);
     }
 
     private Cars createCars() throws IOException {
         String[] carNames = inputView.inputCarNames();
         try {
-            return new Cars(carNames, randomValueGenerator, outputView);
+            return new Cars(carNames, randomValueGenerator);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return createCars();
         }
     }
 
-    private void playGame(Cars cars) throws IOException {
-        Cars winners = makeGameAndPlay(cars);
-        outputView.printWinnerNames(winners.getNames());
-    }
-
-    private Cars makeGameAndPlay(Cars cars) throws IOException {
+    private int inputValidRepetitionNum(Cars cars) throws IOException {
         int repetitionNum = inputView.inputRepetitionNum();
         try {
-            return cars.playAndGetWinners(repetitionNum, outputView);
+            return cars.validateRepetitionNum(repetitionNum);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
-            return makeGameAndPlay(cars);
+            return inputValidRepetitionNum(cars);
         }
+    }
+
+    private void playGame(Cars cars, int repetitionNum) {
+        outputView.printResultStartMessage();
+
+        for (int i = 0; i < repetitionNum; i++) {
+            cars.moveAll();
+            outputView.printMessage(cars.getPositions());
+        }
+
+        Cars winners = cars.calculateWinners();
+        outputView.printWinnerNames(winners.getNames());
     }
 }

@@ -1,7 +1,6 @@
 package org.duckstudy.model.car;
 
 import org.duckstudy.model.generator.RandomValueGenerator;
-import org.duckstudy.view.OutputView;
 
 public class Car {
 
@@ -13,17 +12,17 @@ public class Car {
     private final RandomValueGenerator randomValueGenerator;
     private int position;
 
-    public Car(String name, RandomValueGenerator randomValueGenerator, OutputView outputView) {
-        validateCarName(name, outputView);
+    public Car(String name, RandomValueGenerator randomValueGenerator) {
+        validateCarName(name);
 
         this.name = name;
         this.randomValueGenerator = randomValueGenerator;
         this.position = INITIAL_POSITION;
     }
 
-    private void validateCarName(String name, OutputView outputView) {
+    private void validateCarName(String name) {
         if (name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(outputView.getCarNameExceptionMessage(MAX_NAME_LENGTH));
+            throw new IllegalArgumentException(String.format("자동차 이름은 1글자 이상 %d글자 이하만 가능합니다.\n", MAX_NAME_LENGTH));
         }
     }
 
