@@ -9,14 +9,12 @@ import org.duckstudy.view.OutputView;
 public class CarRacingController {
 
     private final InputView inputView;
-    private final Validator validator;
     private final OutputView outputView;
     private final Generator generator;
 
-    public CarRacingController(InputView inputView, Validator validator, OutputView outputView,
+    public CarRacingController(InputView inputView, OutputView outputView,
                                Generator generator) {
         this.inputView = inputView;
-        this.validator = validator;
         this.outputView = outputView;
         this.generator = generator;
     }
@@ -40,11 +38,18 @@ public class CarRacingController {
     private int inputRepetitionNum() throws IOException {
         int repetitionNum = inputView.inputRepetitionNum();
         try {
-            return validator.validateRepetitionNum(repetitionNum);
+            return validateRepetitionNum(repetitionNum);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return inputRepetitionNum();
         }
+    }
+
+    private int validateRepetitionNum(int repetitionNum) {
+        if (repetitionNum <= 0) {
+            throw new IllegalArgumentException(outputView.getRepetitionNumExceptionMessage());
+        }
+        return repetitionNum;
     }
 
     private void playGame(int repetitionNum, Cars cars) {
