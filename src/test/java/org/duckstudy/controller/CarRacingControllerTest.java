@@ -28,14 +28,12 @@ class CarRacingControllerTest {
         int repetitionNum = 1;
         when(inputView.inputCarNames()).thenReturn(carNames);
         when(inputView.inputRepetitionNum()).thenReturn(repetitionNum);
-        when(validator.validateCarNames(carNames)).thenReturn(carNames);
         when(validator.validateRepetitionNum(repetitionNum)).thenReturn(repetitionNum);
 
         controller.run();
 
         verify(inputView).inputCarNames();
         verify(inputView).inputRepetitionNum();
-        verify(validator).validateCarNames(carNames);
         verify(validator).validateRepetitionNum(repetitionNum);
         verify(outputView).printResultStartMessage();
         verify(outputView, times(repetitionNum)).printMessage(anyString());

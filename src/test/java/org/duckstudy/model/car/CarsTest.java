@@ -26,7 +26,7 @@ class CarsTest {
     void calculateWinnerWhenRaceIsOver() {
         String[] carNames = new String[]{"Car1", "Car2", "Car3"};
         String[] selectedWinnerNames = Arrays.copyOfRange(carNames, 0, 2);
-        Cars selectedWinners = new Cars(selectedWinnerNames, generator);
+        Cars selectedWinners = new Cars(selectedWinnerNames, generator, outputView);
         doReturn(selectedWinners).when(cars).playAndGetWinners(anyInt(), any(OutputView.class));
 
         Cars winners = cars.playAndGetWinners(5, outputView);

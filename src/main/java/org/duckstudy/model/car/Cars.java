@@ -16,14 +16,14 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public Cars(String[] carNames, Generator generator) {
-        this.cars = createCars(carNames, generator);
+    public Cars(String[] carNames, Generator generator, OutputView outputView) {
+        this.cars = createCars(carNames, generator, outputView);
     }
 
-    private List<Car> createCars(String[] carNames, Generator generator) {
+    private List<Car> createCars(String[] carNames, Generator generator, OutputView outputView) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName, generator));
+            cars.add(new Car(carName, generator, outputView));
         }
         return List.copyOf(cars);
     }

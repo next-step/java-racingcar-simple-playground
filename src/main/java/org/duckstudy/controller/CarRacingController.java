@@ -1,8 +1,8 @@
 package org.duckstudy.controller;
 
 import java.io.IOException;
-import org.duckstudy.model.generator.Generator;
 import org.duckstudy.model.car.Cars;
+import org.duckstudy.model.generator.Generator;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
@@ -22,26 +22,24 @@ public class CarRacingController {
     }
 
     public void run() throws IOException {
-        String[] carNames = inputCarNames();
+        Cars cars = createCars();
         int repetitionNum = inputRepetitionNum();
-
-        Cars cars = new Cars(carNames, generator);
         playGame(repetitionNum, cars);
     }
 
-    private String[] inputCarNames() throws IOException {
+    private Cars createCars() throws IOException {
+        String[] carNames = inputView.inputCarNames();
         try {
-            String[] carNames = inputView.inputCarNames();
-            return validator.validateCarNames(carNames);
+            return new Cars(carNames, generator, outputView);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
-            return inputCarNames();
+            return createCars();
         }
     }
 
     private int inputRepetitionNum() throws IOException {
+        int repetitionNum = inputView.inputRepetitionNum();
         try {
-            int repetitionNum = inputView.inputRepetitionNum();
             return validator.validateRepetitionNum(repetitionNum);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
