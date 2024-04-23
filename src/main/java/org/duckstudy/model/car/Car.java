@@ -4,8 +4,8 @@ import org.duckstudy.model.generator.RandomValueGenerator;
 
 public class Car {
 
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int INITIAL_POSITION = 0;
+    private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_MOVEMENT_VALUE = 4;
 
     private final String name;
