@@ -42,7 +42,7 @@ class CarsTest {
         }
 
         @Test
-        @DisplayName("반복 횟수가 0 이하이면 정상 입력할 때까지 입력을 받는다.")
+        @DisplayName("반복 횟수가 0 이하이면 에러가 발생하고, 정상 입력할 때까지 입력을 받는다")
         void gameFailWhenRepetitionNumIsEqualOrLessThan0() {
             outputView = mock(OutputView.class);
             cars = new Cars(carNames, generator, outputView);
