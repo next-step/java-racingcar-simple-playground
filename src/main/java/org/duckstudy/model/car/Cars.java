@@ -23,7 +23,7 @@ public class Cars {
 
     public int validateRepetitionNum(int repetitionNum) {
         if (repetitionNum <= EXCLUSIVE_MIN_REPETITION_NUM) {
-            throw new IllegalArgumentException("반복 횟수는 0보다 커야 합니다.\n");
+            throw new IllegalArgumentException(String.format("반복 횟수는 %d보다 커야 합니다.\n", EXCLUSIVE_MIN_REPETITION_NUM));
         }
         return repetitionNum;
     }
