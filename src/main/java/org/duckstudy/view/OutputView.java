@@ -1,5 +1,9 @@
 package org.duckstudy.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class OutputView {
 
     public void printInputCarNamesMessage() {
@@ -14,12 +18,15 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printMessage(String message) {
-        System.out.println(message);
+    public void printIntermediateResult(List<String> carNames, List<Integer> positions) {
+        String message = IntStream.range(0, carNames.size())
+                .mapToObj(i -> carNames.get(i) + " : " + "-".repeat(positions.get(i)))
+                .collect(Collectors.joining("\n"));
+        System.out.println(message.concat("\n"));
     }
 
-    public void printWinnerNames(String winnerNames) {
-        System.out.println(winnerNames + "가 최종 우승했습니다.");
+    public void printWinnerNames(List<String> winnerNames) {
+        System.out.println(String.join(", ", winnerNames).concat("가 최종 우승했습니다."));
     }
 
     public void printException(Exception e) {

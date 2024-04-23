@@ -51,10 +51,10 @@ public class CarRacingController {
 
         for (int i = 0; i < repetitionNum; i++) {
             cars.moveAll();
-            outputView.printMessage(cars.getPositions());
+            outputView.printIntermediateResult(cars.getAllNames(), cars.getAllPositions());
         }
 
         Cars winners = cars.calculateWinners();
-        outputView.printWinnerNames(winners.getNames());
+        outputView.printWinnerNames(winners.getAllNames());
     }
 }

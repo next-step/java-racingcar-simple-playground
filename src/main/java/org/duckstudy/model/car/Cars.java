@@ -1,6 +1,5 @@
 package org.duckstudy.model.car;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +7,6 @@ import org.duckstudy.model.generator.RandomValueGenerator;
 
 public class Cars {
 
-    private static final int INITIAL_POSITION = 0;
     public static final int EXCLUSIVE_MIN_REPETITION_NUM = 0;
 
     private final List<Car> cars;
@@ -37,31 +35,29 @@ public class Cars {
     }
 
     public Cars calculateWinners() {
-        int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(INITIAL_POSITION);
-
-        ArrayList<Car> winners = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        int maxPosition = calculateMaxPosition();
+        List<Car> winners = cars.stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .toList();
         return new Cars(winners);
     }
 
-    public List<Car> getCars() {
-        return List.copyOf(cars);
+    private int calculateMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(IllegalStateException::new);
     }
 
-    public String getNames() {
+    public List<String> getAllNames() {
         return cars.stream()
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .toList();
     }
 
-    public String getPositions() {
+    public List<Integer> getAllPositions() {
         return cars.stream()
-                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
-                .collect(Collectors.joining("\n"))
-                .concat("\n");
+                .map(Car::getPosition)
+                .toList();
     }
 }
