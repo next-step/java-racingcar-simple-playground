@@ -54,15 +54,13 @@ class CarTest {
     @DisplayName("자동차 이동 테스트")
     class CarMoveTest {
 
-        private RandomValueGenerator randomValueGenerator;
         private Car car;
 
         @ParameterizedTest
         @ValueSource(ints = {4, 9})
         @DisplayName("random 값이 4 이상 9 이하인 경우 1만큼 전진한다")
         void moveCarWhenRandomValueIsGreaterThanOrEqual4(int randomValue) {
-            randomValueGenerator = () -> randomValue;
-            car = new Car("Car1", randomValueGenerator);
+            car = new Car("Car1", () -> randomValue);
 
             car.move();
 
@@ -72,8 +70,7 @@ class CarTest {
         @Test
         @DisplayName("random 값이 3 이하인 경우 멈춘다")
         void stopCarWhenRandomValueIsLessThan4() {
-            randomValueGenerator = () -> 3;
-            car = new Car("Car1", randomValueGenerator);
+            car = new Car("Car1", () -> 3);
 
             car.move();
 
