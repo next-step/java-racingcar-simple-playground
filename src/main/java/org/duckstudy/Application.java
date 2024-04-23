@@ -21,5 +21,7 @@ public class Application {
 
         CarRacingController carRacingController = new CarRacingController(inputView, outputView, randomValueGenerator);
         carRacingController.run();
+
+        bufferedReader.close();
     }
 }
