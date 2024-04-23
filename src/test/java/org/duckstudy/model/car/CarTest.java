@@ -13,8 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("움직이는 자동차 테스트")
+@DisplayName("자동차 테스트")
 class CarTest {
     @Nested
     @DisplayName("자동차 이름 검증 테스트")
@@ -56,10 +57,11 @@ class CarTest {
         private RandomValueGenerator randomValueGenerator;
         private Car car;
 
-        @Test
+        @ParameterizedTest
+        @ValueSource(ints = {4, 9})
         @DisplayName("random 값이 4 이상 9 이하인 경우 1만큼 전진한다")
-        void moveCarWhenRandomValueIsGreaterThanOrEqual4() {
-            randomValueGenerator = () -> 4;
+        void moveCarWhenRandomValueIsGreaterThanOrEqual4(int randomValue) {
+            randomValueGenerator = () -> randomValue;
             car = new Car("Car1", randomValueGenerator);
 
             car.move();
