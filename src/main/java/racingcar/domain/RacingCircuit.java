@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RacingCircuit {
@@ -13,16 +14,13 @@ public class RacingCircuit {
     private final Map<Integer, Cars> records = new HashMap<>();
     private final AtomicInteger roundCounter = new AtomicInteger(1);
 
-    public void registerCars(final Cars cars) {
-        records.put(INIT_ROUND, cars);
-    }
+    private final Cars registerCars;
+    private final int raceTryCount;
 
-    public Map<Integer, Cars> startRace(final int raceTryCount) {
+    public RacingCircuit(final Cars cars, final int raceTryCount) {
         validateRaceTryCount(raceTryCount);
-        moveCars(raceTryCount);
-        records.remove(INIT_ROUND);
-
-        return Collections.unmodifiableMap(records);
+        registerCars = cars;
+        this.raceTryCount = raceTryCount;
     }
 
     private void validateRaceTryCount(final int raceTryCount) {
@@ -31,24 +29,30 @@ public class RacingCircuit {
         }
     }
 
-    private void moveCars(final int raceTryCount) {
+    public Map<Integer, Cars> startRace() {
+        records.put(INIT_ROUND, registerCars);
+        moveCars();
+        records.remove(INIT_ROUND);
+
+        return Collections.unmodifiableMap(records);
+    }
+
+    private void moveCars() {
         for (int count = 0; count < raceTryCount; count++) {
-            Cars lastRoundCars = findLastRoundCars();
-            Cars currentRoundCars = lastRoundCars.moveForward();
+            Cars previousRoundCars = findPreviousRoundCars();
+            Cars currentRoundCars = previousRoundCars.moveForward();
             records.put(roundCounter.getAndIncrement(), currentRoundCars);
         }
     }
 
-    private Cars findLastRoundCars() {
+    private Cars findPreviousRoundCars() {
         int previousRound = roundCounter.get() - 1;
 
         return records.get(previousRound);
     }
 
     public Cars findWinners() {
-        int lastRound = roundCounter.get() - 1;
-
-        return records.get(lastRound)
+        return records.get(raceTryCount)
                 .findWinners();
     }
 }

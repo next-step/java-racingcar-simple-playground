@@ -12,42 +12,41 @@ public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RacingCircuit racingCircuit;
     private final NumberGenerator numberGenerator;
 
     public RacingGame(final InputView inputView,
                       final OutputView outputView,
-                      final RacingCircuit racingCircuit,
                       final NumberGenerator numberGenerator
     ) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.racingCircuit = racingCircuit;
         this.numberGenerator = numberGenerator;
     }
 
     public void run() {
-        registerCars();
-        startRace();
-        awardRace();
+        RacingCircuit circuit = createRacingCircuit();
+        startRace(circuit);
+        awardRace(circuit);
     }
 
-    private void registerCars() {
-        List<String> carNames = inputView.inputCarNames();
-        Cars cars = Cars.createCarsWithGenerator(carNames, numberGenerator);
-        racingCircuit.registerCars(cars);
-    }
-
-    private void startRace() {
+    private RacingCircuit createRacingCircuit() {
+        Cars cars = generateRacingCars();
         int raceTryCount = inputView.inputRaceTryCount();
-        Map<Integer, Cars> roundRecords = racingCircuit.startRace(raceTryCount);
+        return new RacingCircuit(cars, raceTryCount);
+    }
 
+    private Cars generateRacingCars() {
+        List<String> carNames = inputView.inputCarNames();
+        return Cars.createCarsWithGenerator(carNames, numberGenerator);
+    }
+
+    private void startRace(final RacingCircuit circuit) {
+        Map<Integer, Cars> roundRecords = circuit.startRace();
         outputView.printMoveResults(roundRecords);
     }
 
-    private void awardRace() {
-        Cars winners = racingCircuit.findWinners();
-
+    private void awardRace(final RacingCircuit circuit) {
+        Cars winners = circuit.findWinners();
         outputView.printWinners(winners);
     }
 }
