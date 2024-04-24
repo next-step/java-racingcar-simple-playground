@@ -25,6 +25,10 @@
 
 - `CarRacingController` : 게임 전체 흐름을 제어하는 클래스
 
+### config
+
+- `AppConfig` : 애플리케이션 설정을 담당하는 클래스
+
 <br/>
 
 ## 기능 요구사항
