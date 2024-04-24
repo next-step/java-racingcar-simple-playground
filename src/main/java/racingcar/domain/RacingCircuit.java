@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RacingCircuit {
@@ -17,9 +16,9 @@ public class RacingCircuit {
     private final Cars registerCars;
     private final int raceTryCount;
 
-    public RacingCircuit(final Cars cars, final int raceTryCount) {
+    public RacingCircuit(final Cars registerCars, final int raceTryCount) {
         validateRaceTryCount(raceTryCount);
-        registerCars = cars;
+        this.registerCars = registerCars;
         this.raceTryCount = raceTryCount;
     }
 

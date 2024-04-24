@@ -12,8 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.infrastructure.FakeMovableNumberGenerator;
-import racingcar.infrastructure.FakeNotMovableNumberGenerator;
 
 @DisplayName("서킷 테스트")
 class RacingCircuitTest {

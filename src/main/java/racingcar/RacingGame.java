@@ -32,11 +32,13 @@ public class RacingGame {
     private RacingCircuit createRacingCircuit() {
         Cars cars = generateRacingCars();
         int raceTryCount = inputView.inputRaceTryCount();
+
         return new RacingCircuit(cars, raceTryCount);
     }
 
     private Cars generateRacingCars() {
         List<String> carNames = inputView.inputCarNames();
+
         return Cars.createCarsWithGenerator(carNames, numberGenerator);
     }
 
