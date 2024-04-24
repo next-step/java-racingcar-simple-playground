@@ -1,4 +1,4 @@
-package org.duckstudy;
+package org.duckstudy.config;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

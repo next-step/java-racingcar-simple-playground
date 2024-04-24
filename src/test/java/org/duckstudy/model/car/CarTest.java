@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.stream.Stream;
-import org.duckstudy.AppConfig;
+import org.duckstudy.config.AppConfig;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

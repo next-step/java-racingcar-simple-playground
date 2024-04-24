@@ -1,6 +1,7 @@
 package org.duckstudy;
 
 import java.io.IOException;
+import org.duckstudy.config.AppConfig;
 import org.duckstudy.controller.CarRacingController;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.InputView;
