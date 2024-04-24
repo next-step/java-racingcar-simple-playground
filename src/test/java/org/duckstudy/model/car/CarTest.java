@@ -5,8 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.stream.Stream;
-import org.duckstudy.model.generator.DefaultRandomValueGenerator;
+import org.duckstudy.AppConfig;
 import org.duckstudy.model.generator.RandomValueGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,18 @@ class CarTest {
     @DisplayName("자동차 이름 검증 테스트")
     class CarNameValidationTest {
 
-        private final RandomValueGenerator randomValueGenerator = new DefaultRandomValueGenerator();
-        private String[] carNames;
+        private RandomValueGenerator randomValueGenerator;
+
+        @BeforeEach
+        void beforeEach() {
+            AppConfig appConfig = new AppConfig();
+            randomValueGenerator = appConfig.randomValueGenerator();
+        }
 
         @Test
         @DisplayName("자동차 이름이 5글자 이내일때 성공한다")
         void gameSuccessWhenCarNameIsLessThan5() {
-            carNames = new String[]{"Car1"};
+            String[] carNames = new String[]{"Car1"};
 
             assertThatCode(() -> new Cars(carNames, randomValueGenerator))
                     .doesNotThrowAnyException();
@@ -53,14 +59,11 @@ class CarTest {
     @Nested
     @DisplayName("자동차 이동 테스트")
     class CarMoveTest {
-
-        private Car car;
-
         @ParameterizedTest
         @ValueSource(ints = {4, 9})
         @DisplayName("random 값이 4 이상 9 이하인 경우 1만큼 전진한다")
         void moveCarWhenRandomValueIsGreaterThanOrEqual4(int randomValue) {
-            car = new Car("Car1", () -> randomValue);
+            Car car = new Car("Car1", () -> randomValue);
 
             car.move();
 
@@ -70,7 +73,7 @@ class CarTest {
         @Test
         @DisplayName("random 값이 3 이하인 경우 멈춘다")
         void stopCarWhenRandomValueIsLessThan4() {
-            car = new Car("Car1", () -> 3);
+            Car car = new Car("Car1", () -> 3);
 
             car.move();
 
