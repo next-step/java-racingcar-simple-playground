@@ -1,8 +1,7 @@
-package racingcar.infrastructure;
+package racingcar.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import racingcar.view.Reader;
 
 public class ConsoleReader implements Reader {
 

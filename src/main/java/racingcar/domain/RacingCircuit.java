@@ -1,24 +1,25 @@
 package racingcar.domain;
 
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RacingCircuit {
 
+    private static final int INIT_ROUND = 0;
     private static final int LOWER_BOUND_RACE_TRY_COUNT = 1;
 
-    private Cars cars;
+    private final Map<Integer, Cars> records = new HashMap<>();
+    private final AtomicInteger roundCounter = new AtomicInteger(1);
 
-    public void registerCars(final Cars cars) {
-        this.cars = cars;
-    }
+    private final Cars registerCars;
+    private final int raceTryCount;
 
-    public List<Cars> startRace(final int raceTryCount) {
+    public RacingCircuit(final Cars registerCars, final int raceTryCount) {
         validateRaceTryCount(raceTryCount);
-
-        return IntStream.range(0, raceTryCount)
-                .mapToObj(i -> moveCars())
-                .toList();
+        this.registerCars = registerCars;
+        this.raceTryCount = raceTryCount;
     }
 
     private void validateRaceTryCount(final int raceTryCount) {
@@ -27,11 +28,30 @@ public class RacingCircuit {
         }
     }
 
-    private Cars moveCars() {
-        return cars = cars.moveForward();
+    public Map<Integer, Cars> startRace() {
+        records.put(INIT_ROUND, registerCars);
+        moveCars();
+        records.remove(INIT_ROUND);
+
+        return Collections.unmodifiableMap(records);
+    }
+
+    private void moveCars() {
+        for (int count = 0; count < raceTryCount; count++) {
+            Cars previousRoundCars = findPreviousRoundCars();
+            Cars currentRoundCars = previousRoundCars.moveForward();
+            records.put(roundCounter.getAndIncrement(), currentRoundCars);
+        }
+    }
+
+    private Cars findPreviousRoundCars() {
+        int previousRound = roundCounter.get() - 1;
+
+        return records.get(previousRound);
     }
 
     public Cars findWinners() {
-        return cars.findWinners();
+        return records.get(raceTryCount)
+                .findWinners();
     }
 }

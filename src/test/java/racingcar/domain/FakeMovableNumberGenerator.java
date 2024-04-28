@@ -1,6 +1,4 @@
-package racingcar.infrastructure;
-
-import racingcar.domain.NumberGenerator;
+package racingcar.domain;
 
 public class FakeMovableNumberGenerator implements NumberGenerator {
 

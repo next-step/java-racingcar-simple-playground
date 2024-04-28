@@ -18,12 +18,12 @@ public class Car {
         this.numberGenerator = numberGenerator;
     }
 
-    public static Car createDefault(final String name, final NumberGenerator numberGenerator) {
-        return new Car(name, START_POSITION, numberGenerator);
+    public Car(final String name, final NumberGenerator numberGenerator) {
+        this(name, START_POSITION, numberGenerator);
     }
 
     private void validateName(final String name) {
-        if (name == null || name.isEmpty() || name.length() > LIMIT_NAME_LENGTH) {
+        if (name == null || name.isBlank() || name.length() > LIMIT_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     String.format("자동차의 이름은 반드시 존재해야 하고, 최대 %d글자 이하여야 합니다.", LIMIT_NAME_LENGTH)
             );
@@ -32,7 +32,7 @@ public class Car {
 
     public Car moveForward() {
         if (numberGenerator.generateNumber() >= MOVABLE_OFFSET) {
-            return new Car(getName(), getPosition() + FORWARD_AMOUNT, numberGenerator);
+            return new Car(name, position + FORWARD_AMOUNT, numberGenerator);
         }
         return this;
     }
