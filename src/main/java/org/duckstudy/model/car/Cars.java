@@ -7,8 +7,6 @@ import org.duckstudy.model.generator.RandomValueGenerator;
 
 public class Cars {
 
-    public static final int EXCLUSIVE_MIN_REPETITION_NUM = 0;
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -19,13 +17,6 @@ public class Cars {
         this(Arrays.stream(carNames)
                 .map(carName -> new Car(carName, randomValueGenerator))
                 .collect(Collectors.toList()));
-    }
-
-    public int validateRepetitionNum(int repetitionNum) {
-        if (repetitionNum <= EXCLUSIVE_MIN_REPETITION_NUM) {
-            throw new IllegalArgumentException(String.format("반복 횟수는 %d보다 커야 합니다.\n", EXCLUSIVE_MIN_REPETITION_NUM));
-        }
-        return repetitionNum;
     }
 
     public void moveAll() {

@@ -18,7 +18,7 @@ public class InputView {
         return bufferedReader.readLine().split(",");
     }
 
-    public int inputRepetitionNum() throws IOException {
+    public int inputRepetitionCount() throws IOException {
         outputView.printInputRepetitionNumMessage();
         return Integer.parseInt(bufferedReader.readLine());
     }

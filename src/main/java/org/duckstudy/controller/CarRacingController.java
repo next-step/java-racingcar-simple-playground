@@ -1,6 +1,7 @@
 package org.duckstudy.controller;
 
 import java.io.IOException;
+import org.duckstudy.model.RepetitionCount;
 import org.duckstudy.model.car.Cars;
 import org.duckstudy.model.generator.RandomValueGenerator;
 import org.duckstudy.view.InputView;
@@ -21,9 +22,9 @@ public class CarRacingController {
 
     public void run() throws IOException {
         Cars cars = createCars();
-        int repetitionNum = inputValidRepetitionNum(cars);
+        RepetitionCount repetitionCount = createRepetitionCount();
 
-        playGame(cars, repetitionNum);
+        playGame(cars, repetitionCount);
     }
 
     private Cars createCars() throws IOException {
@@ -36,20 +37,20 @@ public class CarRacingController {
         }
     }
 
-    private int inputValidRepetitionNum(Cars cars) throws IOException {
-        int repetitionNum = inputView.inputRepetitionNum();
+    private RepetitionCount createRepetitionCount() throws IOException {
+        int repetitionNum = inputView.inputRepetitionCount();
         try {
-            return cars.validateRepetitionNum(repetitionNum);
+            return new RepetitionCount(repetitionNum);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
-            return inputValidRepetitionNum(cars);
+            return createRepetitionCount();
         }
     }
 
-    private void playGame(Cars cars, int repetitionNum) {
+    private void playGame(Cars cars, RepetitionCount repetitionNum) {
         outputView.printResultStartMessage();
 
-        for (int i = 0; i < repetitionNum; i++) {
+        for (int i = 0; i < repetitionNum.repetitionCount(); i++) {
             cars.moveAll();
             outputView.printIntermediateResult(cars.getAllNames(), cars.getAllPositions());
         }
