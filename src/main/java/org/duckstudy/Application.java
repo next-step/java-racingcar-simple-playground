@@ -1,9 +1,11 @@
 package org.duckstudy;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import org.duckstudy.config.AppConfig;
+import java.io.InputStreamReader;
 import org.duckstudy.controller.CarRacingController;
 import org.duckstudy.model.generator.NumberGenerator;
+import org.duckstudy.model.generator.RandomNumberGenerator;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
@@ -13,10 +15,10 @@ public class Application {
     }
 
     public static void main(String[] args) throws IOException {
-        AppConfig appConfig = new AppConfig();
-        OutputView outputView = appConfig.outputView();
-        InputView inputView = appConfig.inputView();
-        NumberGenerator numberGenerator = appConfig.randomValueGenerator();
+        OutputView outputView = new OutputView();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        InputView inputView = new InputView(bufferedReader, outputView);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         CarRacingController carRacingController = new CarRacingController(inputView, outputView, numberGenerator);
         carRacingController.run();
