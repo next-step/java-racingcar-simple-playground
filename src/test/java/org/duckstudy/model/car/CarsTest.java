@@ -32,6 +32,6 @@ class CarsTest {
         }
         Cars winners = cars.calculateWinners();
 
-        assertThat(winners.getAllNames()).isSubsetOf(CAR_NAMES);
+        assertThat(winners.toList()).isSubsetOf(cars.toList());
     }
 }

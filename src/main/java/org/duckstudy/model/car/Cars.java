@@ -41,15 +41,7 @@ public class Cars {
                 .orElseThrow(IllegalStateException::new);
     }
 
-    public List<String> getAllNames() {
-        return cars.stream()
-                .map(Car::getName)
-                .toList();
-    }
-
-    public List<Integer> getAllPositions() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .toList();
+    public List<Car> toList() {
+        return cars;
     }
 }

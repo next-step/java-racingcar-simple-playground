@@ -2,7 +2,7 @@ package org.duckstudy.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import org.duckstudy.model.car.Car;
 
 public class OutputView {
     public void printInputCarNamesMessage() {
@@ -17,15 +17,18 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printIntermediateResult(List<String> carNames, List<Integer> positions) {
-        String message = IntStream.range(0, carNames.size())
-                .mapToObj(i -> carNames.get(i) + " : " + "-".repeat(positions.get(i)))
+    public void printIntermediateResult(List<Car> cars) {
+        String message = cars.stream()
+                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
                 .collect(Collectors.joining("\n"));
         System.out.println(message.concat("\n"));
     }
 
-    public void printWinnerNames(List<String> winnerNames) {
-        System.out.println(String.join(", ", winnerNames).concat("가 최종 우승했습니다."));
+    public void printWinnerNames(List<Car> winners) {
+        System.out.println(winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "))
+                .concat("가 최종 우승했습니다."));
     }
 
     public void printException(Exception e) {
