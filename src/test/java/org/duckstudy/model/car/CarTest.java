@@ -5,9 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.stream.Stream;
-import org.duckstudy.config.AppConfig;
 import org.duckstudy.model.generator.RandomValueGenerator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,13 +20,7 @@ class CarTest {
     @DisplayName("자동차 이름 검증 테스트")
     class CarNameValidationTest {
 
-        private RandomValueGenerator randomValueGenerator;
-
-        @BeforeEach
-        void beforeEach() {
-            AppConfig appConfig = new AppConfig();
-            randomValueGenerator = appConfig.randomValueGenerator();
-        }
+        private final RandomValueGenerator randomValueGenerator = () -> 4;
 
         @Test
         @DisplayName("자동차 이름이 5글자 이내일때 성공한다")
