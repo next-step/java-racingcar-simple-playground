@@ -1,55 +1,47 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Racing {
-    ArrayList<Car> cars = new ArrayList<>();
-    ArrayList<Car> winCars = new ArrayList<>();
 
-    /**
-     * n개의 자동차가 t번 moving
-     */
-    public void racing(int n, int t, ArrayList<String> names) {
-        int i;
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        for (i = 0; i < n; i++) {
-            Car car = new Car(names.get(i), 0, randomNumberGenerator);
-            cars.add(car);
-        }
-        for (i = 0; i < t; i++) {
-            eachRacing();
-            print();
+    private Car[] cars;
+    private int longest;
+
+    public Car[] getCars() {
+        return cars;
+    }
+
+    public Racing(Car[] cars) {
+        this.cars = cars;
+    }
+
+    public void carRacing(int Test) {
+        for (int i = 0; i < Test; i++) {
+            eachMoving();
+            Print.print(cars);
         }
     }
 
-    /**
-     * 각각의 차들 움직여주기
-     */
-    private void eachRacing() {
+    private void eachMoving() {
         for (Car car : cars) {
             car.moving();
         }
     }
 
-    public ArrayList<Car> winner() {
-        int M = 0;
+    private void findLongest() {
+        longest = 0;
         for (Car car : cars) {
-            M = Math.max(M, car.distance);
+            longest = Math.max(longest, car.getDistance());
         }
-        Stream<Car> stream = cars.stream();
-        int finalM = M;
-        winCars.addAll(stream.filter(car -> car.distance == finalM).toList());
-        return winCars;
     }
 
-    private void print() {
-        for (Car car : cars) {
-            System.out.print(car.name + " : ");
-            for (int i = 0; i < car.distance; i++) {
-                System.out.print("-");
-            }
-            System.out.println();
-        }
-        System.out.println();
+    public Car[] winCars() {
+        ArrayList<Car> resultCars = new ArrayList<>();
+        resultCars.addAll(Arrays.asList(cars));
+        findLongest();
+        List<Car> collect = resultCars.stream().filter(car -> car.getDistance() == longest).collect(Collectors.toList());
+        Car[] result = collect.toArray(new Car[collect.size()]);
+        return result;
     }
 }

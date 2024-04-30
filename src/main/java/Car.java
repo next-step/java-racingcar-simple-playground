@@ -1,23 +1,28 @@
 public class Car {
-    String name; //자동차 이름
-    int distance; //자동차가 현재 어디에 있는지
-    RandomNumberGenerator numberGenerator;
+    private int distance;
+    private String name;
+    private RandomNumberGenerator numberGenerator;
 
-    Car(String name, int distance, RandomNumberGenerator numberGenerator) {
-        this.name = name;
+    Car(int distance, String name, RandomNumberGenerator randomNumberGenerator) {
         this.distance = distance;
-        this.numberGenerator = numberGenerator;
+        this.name = name;
+        this.numberGenerator = randomNumberGenerator;
     }
 
-    /**
-     랜덤 생성해서 필드값 움직여줌
-     */
-    public int moving() {
+    public int moving(){
         int random = numberGenerator.createRandomNumber();
-        if (random >= 4) {
+        if (random>=4){
             distance++;
             return distance;
         }
         return distance;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public String getName() {
+        return name;
     }
 }
