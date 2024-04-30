@@ -1,8 +1,8 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import domain.Car;
 import domain.RacingGame;
-import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,11 +29,11 @@ public class RacingGameTest {
         Car[] players = racingGame.getPlayers();
 
         //then
-        assertThat(racingGame.getTryCnt()).isEqualTo(expectedTryCnt);
-        assertThat(racingGame.getWinnerMovingCnt()).isEqualTo(expectedWinnerMovingCnt);
-        assertThat(expected[0].getName()).isEqualTo(players[0].getName());
-        assertThat(expected[1].getName()).isEqualTo(players[1].getName());
-        assertThat(expected[2].getName()).isEqualTo(players[2].getName());
+        assertAll(() -> assertThat(racingGame.getTryCnt()).isEqualTo(expectedTryCnt),
+                () -> assertThat(racingGame.getWinnerMovingCnt()).isEqualTo(expectedWinnerMovingCnt),
+                () -> assertThat(expected[0].getCarName()).isEqualTo(players[0].getCarName()),
+                () -> assertThat(expected[1].getCarName()).isEqualTo(players[1].getCarName()),
+                () -> assertThat(expected[2].getCarName()).isEqualTo(players[2].getCarName()));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class RacingGameTest {
         //when
         for (int i = 0; i < expectedTryCnt; i++) {
             for (int j = 0; j < expectedPlayer.length; j++) {
-                expectedPlayer[j].addMovingCnt(expectedPlayer[j].Moving());
+                expectedPlayer[j].moving();
             }
         }
 
@@ -65,9 +65,9 @@ public class RacingGameTest {
         Car[] players = racingGame.getPlayers();
 
         //then
-        assertThat(players[0].getMovingCnt()).isEqualTo(expectedPlayer[0].getMovingCnt());
-        assertThat(players[1].getMovingCnt()).isEqualTo(expectedPlayer[1].getMovingCnt());
-        assertThat(players[2].getMovingCnt()).isEqualTo(expectedPlayer[2].getMovingCnt());
+        assertAll(() -> assertThat(players[0].getMovingCnt()).isEqualTo(expectedPlayer[0].getMovingCnt()),
+                () -> assertThat(players[1].getMovingCnt()).isEqualTo(expectedPlayer[1].getMovingCnt()),
+                () -> assertThat(players[2].getMovingCnt()).isEqualTo(expectedPlayer[2].getMovingCnt()));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class RacingGameTest {
         //when
         for (int i = 0; i < expectedTryCnt; i++) {
             for (int j = 0; j < expectedPlayer.length; j++) {
-                expectedPlayer[j].addMovingCnt(expectedPlayer[j].Moving());
+                expectedPlayer[j].moving();
             }
         }
 
@@ -115,7 +115,7 @@ public class RacingGameTest {
         int expectedTryCnt = 5;
         int expectedWinnerMovingCnt = 0;
 
-        String expectedWinners = "";
+        String expectedWinners = "nobody";
 
         Car[] expectedPlayer = new Car[3];
 
@@ -126,7 +126,7 @@ public class RacingGameTest {
         //when
         for (int i = 0; i < expectedTryCnt; i++) {
             for (int j = 0; j < expectedPlayer.length; j++) {
-                expectedPlayer[j].addMovingCnt(expectedPlayer[j].Moving());
+                expectedPlayer[j].moving();
             }
         }
 
@@ -144,7 +144,7 @@ public class RacingGameTest {
 
         for (int i = 0; i < expectedPlayer.length; i++) {
             if (expectedPlayer[i].getWin()) {
-                expectedWinners = expectedPlayer[i].getName() + " ";
+                expectedWinners = expectedPlayer[i].getCarName() + " ";
             }
         }
 
@@ -157,10 +157,12 @@ public class RacingGameTest {
         Car[] players = racingGame.getPlayers();
 
         //then
-        assertThat(players[0].getWin()).isEqualTo(expectedPlayer[0].getWin());
-        assertThat(players[1].getWin()).isEqualTo(expectedPlayer[1].getWin());
-        assertThat(players[2].getWin()).isEqualTo(expectedPlayer[2].getWin());
+        String finalExpectedWinners = expectedWinners;
 
-        assertThat(racingGame.getWinners()).isEqualTo(expectedWinners);
+        assertAll(
+                () -> assertThat(players[0].getWin()).isEqualTo(expectedPlayer[0].getWin()),
+                () -> assertThat(players[1].getWin()).isEqualTo(expectedPlayer[1].getWin()),
+                () -> assertThat(players[2].getWin()).isEqualTo(expectedPlayer[2].getWin()),
+                () -> assertThat(racingGame.getWinners()).isEqualTo(finalExpectedWinners));
     }
 }

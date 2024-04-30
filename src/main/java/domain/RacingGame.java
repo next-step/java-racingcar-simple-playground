@@ -1,10 +1,17 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import view.ResultView;
+
 public class RacingGame {
     private int tryCnt;
     private Car[] players;
-    private String winners;
+    private final List<String> winners = new ArrayList<>();
     private int winnerMovingCnt;
+
+    private final ResultView resultView = new ResultView();
 
     public RacingGame(String names, int tryCnt) {
         this.tryCnt = tryCnt;
@@ -13,9 +20,15 @@ public class RacingGame {
 
         players = new Car[playerName.length];
 
+        players = Arrays.stream(names.split(","))
+                .map(Car::new)
+                .toArray(Car[]::new);
+
         for (int i = 0; i < playerName.length; i++) {
             players[i] = new Car(playerName[i]);
         }
+
+
     }
 
     public void race() {
@@ -31,22 +44,12 @@ public class RacingGame {
 
         for (int i = 0; i < tryCnt; i++) {
             for (int j = 0; j < players.length; j++) {
-                players[j].addMovingCnt(players[j].Moving());
-                printMoving(players[j]);
+                players[j].moving();
+                resultView.printMoving(players[j]);
             }
 
             System.out.println();
         }
-    }
-
-    public void printMoving(Car player) {
-        System.out.print(player.getName() + " : ");
-
-        for (int i = 0; i < player.getMovingCnt(); i++){
-            System.out.print("-");
-        }
-
-        System.out.println();
     }
 
     public void countingWinnerMoving() {
@@ -66,14 +69,15 @@ public class RacingGame {
     }
 
     public void setWinners() {
+
         for (int i = 0; i < players.length; i++) {
             if (players[i].getWin()) {
-                winners = players[i].getName() + " ";
+                winners.add(players[i].getCarName());
             }
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         return winners;
     }
 

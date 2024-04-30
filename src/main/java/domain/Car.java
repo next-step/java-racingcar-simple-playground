@@ -3,41 +3,30 @@ package domain;
 import java.util.Random;
 
 public class Car {
-    private String name;
+    private String carName;
     private int movingCnt;
-    private int rnd;
     private boolean win;
 
     public Car(String name) {
-        this.name = name;
+        this.carName = name;
         this.movingCnt = 0;
     }
 
-    public int Moving() {
-        Random random = new Random(20);
+    public void moving() {
+        Random random = new Random();
 
-        rnd = random.nextInt(1, 10);
-
-        if (rnd >= 4) {
-            return 1;
+        if (random.nextInt(1, 10) >= 4) {
+            this.movingCnt += 1;
         }
-        return 0;
-    }
 
-    public int getRnd() {
-        return this.rnd;
-    }
-
-    public void addMovingCnt(int movingCnt) {
-        this.movingCnt += movingCnt;
     }
 
     public void setWin(boolean win) {
         this.win = win;
     }
 
-    public String getName() {
-        return this.name;
+    public String getCarName() {
+        return this.carName;
     }
 
     public boolean getWin() {
