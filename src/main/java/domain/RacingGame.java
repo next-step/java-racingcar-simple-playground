@@ -1,21 +1,25 @@
 package domain;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import view.ResultView;
+
 public class RacingGame {
     private int tryCnt;
-    private Car[] players;
-    private String winners;
+    private List<Car> players;
+    private List<String> winners;
     private int winnerMovingCnt;
+
+    private final ResultView resultView = new ResultView();
 
     public RacingGame(String names, int tryCnt) {
         this.tryCnt = tryCnt;
 
-        String[] playerName = names.split(",");
-
-        players = new Car[playerName.length];
-
-        for (int i = 0; i < playerName.length; i++) {
-            players[i] = new Car(playerName[i]);
-        }
+        players = Arrays.stream(names.split(","))
+                .map(Car::new)
+                .toList();
     }
 
     public void race() {
@@ -23,57 +27,36 @@ public class RacingGame {
         countingPlayerMoving();
         countingWinnerMoving();
         decideWinner();
-        setWinners();
     }
 
     public void countingPlayerMoving() {
-        winnerMovingCnt = 0;
-
         for (int i = 0; i < tryCnt; i++) {
-            for (int j = 0; j < players.length; j++) {
-                players[j].addMovingCnt(players[j].Moving());
-                printMoving(players[j]);
-            }
-
+            players.forEach(car-> {
+                car.moving();
+                resultView.printMoving(car);
+            });
             System.out.println();
         }
     }
 
-    public void printMoving(Car player) {
-        System.out.print(player.getName() + " : ");
-
-        for (int i = 0; i < player.getMovingCnt(); i++){
-            System.out.print("-");
-        }
-
-        System.out.println();
-    }
-
     public void countingWinnerMoving() {
-        for (int i = 0; i < players.length; i++) {
-            if (winnerMovingCnt < players[i].getMovingCnt()) {
-                winnerMovingCnt = players[i].getMovingCnt();
-            }
-        }
+        final Car winner = players.stream()
+                .max(Comparator.comparing(Car::getMovingCnt))
+                .stream()
+                .findAny()
+                .orElseThrow();
+
+        winnerMovingCnt = winner.getMovingCnt();
     }
 
     public void decideWinner() {
-        for (int i = 0; i < players.length; i++) {
-            if (winnerMovingCnt == players[i].getMovingCnt()) {
-                players[i].setWin(true);
-            }
-        }
+        winners = players.stream()
+                .filter(player -> player.getMovingCnt() == winnerMovingCnt)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
     }
 
-    public void setWinners() {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].getWin()) {
-                winners = players[i].getName() + " ";
-            }
-        }
-    }
-
-    public String getWinners() {
+    public List<String> getWinners() {
         return winners;
     }
 
@@ -85,7 +68,7 @@ public class RacingGame {
         return this.tryCnt;
     }
 
-    public Car[] getPlayers() {
+    public List<Car> getPlayers() {
         return this.players;
     }
 }

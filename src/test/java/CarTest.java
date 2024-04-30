@@ -11,62 +11,24 @@ public class CarTest {
     public void car_Class() {
         //given
         String carName = "붕붕";
-        int expectedMovingCnt = 0;
 
         //when
         Car car = new Car(carName);
 
         //then
-        assertThat(car.getName()).isEqualTo(carName);
-        assertThat(car.getMovingCnt()).isEqualTo(expectedMovingCnt);
+        assertThat(car.getCarName()).isEqualTo(carName);
     }
 
     @Test
-    @DisplayName("차량 움직임 판단")
+    @DisplayName("차량 움직임 판단에 따른 addMovingCnt 변수값 상승 확인")
     public void moving_Method() {
         //given
         Car car = new Car("붕붕");
 
-        int moving = car.Moving();
-        int rnd = car.getRnd();
-        int expected = 0;
-
-        // when
-        if(rnd >= 4)
-            expected = 1;
+        car.moving();
+        int expected = 1;
 
         //then
-        assertThat(moving).isEqualTo(expected);
-    }
-
-    @Test
-    @DisplayName("addMovingCnt 변수값 올라가는지 확인")
-    public void addMovingCnt_Method() {
-        //given
-        String carName = "붕붕";
-        Car car = new Car(carName);
-
-        //when
-        int movingCnt = car.getMovingCnt();
-        int moving = car.Moving();
-
-        car.addMovingCnt(moving);
-
-        //then
-        assertThat(car.getMovingCnt()).isEqualTo(movingCnt + moving);
-    }
-
-    @Test
-    @DisplayName("승자 지정 및 반환 확인")
-    public void win_Method() {
-        //given
-        Car car = new Car("붕붕");
-
-        //when
-        boolean expected = true;
-        car.setWin(expected);
-
-        //then
-        assertThat(car.getWin()).isEqualTo(expected);
+        assertThat(car.getMovingCnt()).isEqualTo(expected);
     }
 }
