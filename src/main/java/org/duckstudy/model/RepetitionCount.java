@@ -13,16 +13,4 @@ public record RepetitionCount(int repetitionCount) {
             throw new IllegalArgumentException(String.format("반복 횟수는 %d보다 커야 합니다.\n", EXCLUSIVE_MIN_REPETITION_COUNT));
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        RepetitionCount repetitionCount = (RepetitionCount) o;
-        return this.repetitionCount == repetitionCount.repetitionCount;
-    }
 }
