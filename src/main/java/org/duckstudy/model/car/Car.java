@@ -1,6 +1,6 @@
 package org.duckstudy.model.car;
 
-import org.duckstudy.model.generator.RandomValueGenerator;
+import org.duckstudy.model.generator.NumberGenerator;
 
 public class Car {
 
@@ -9,14 +9,14 @@ public class Car {
     private static final int MIN_MOVEMENT_VALUE = 4;
 
     private final String name;
-    private final RandomValueGenerator randomValueGenerator;
+    private final NumberGenerator numberGenerator;
     private int position;
 
-    public Car(String name, RandomValueGenerator randomValueGenerator) {
+    public Car(String name, NumberGenerator numberGenerator) {
         validateCarName(name);
 
         this.name = name;
-        this.randomValueGenerator = randomValueGenerator;
+        this.numberGenerator = numberGenerator;
         this.position = INITIAL_POSITION;
     }
 
@@ -27,7 +27,7 @@ public class Car {
     }
 
     public void move() {
-        int randomValue = randomValueGenerator.generateRandomValue();
+        int randomValue = numberGenerator.generateNumber();
         if (randomValue >= MIN_MOVEMENT_VALUE) {
             ++position;
         }

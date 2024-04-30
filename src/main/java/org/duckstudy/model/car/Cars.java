@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.duckstudy.model.generator.RandomValueGenerator;
+import org.duckstudy.model.generator.NumberGenerator;
 
 public class Cars {
 
@@ -14,9 +14,9 @@ public class Cars {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public Cars(String[] carNames, RandomValueGenerator randomValueGenerator) {
+    public Cars(String[] carNames, NumberGenerator numberGenerator) {
         this(Arrays.stream(carNames)
-                .map(carName -> new Car(carName, randomValueGenerator))
+                .map(carName -> new Car(carName, numberGenerator))
                 .collect(Collectors.toList()));
     }
 

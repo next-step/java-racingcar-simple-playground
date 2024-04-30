@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.stream.Stream;
-import org.duckstudy.model.generator.RandomValueGenerator;
+import org.duckstudy.model.generator.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ class CarTest {
     @DisplayName("자동차 이름 검증 테스트")
     class CarNameValidationTest {
 
-        private final RandomValueGenerator randomValueGenerator = () -> 4;
+        private final NumberGenerator numberGenerator = () -> 4;
 
         @Test
         @DisplayName("자동차 이름이 5글자 이내일때 성공한다")
         void gameSuccessWhenCarNameIsLessThan5() {
             String[] carNames = new String[]{"Car1"};
 
-            assertThatCode(() -> new Cars(carNames, randomValueGenerator))
+            assertThatCode(() -> new Cars(carNames, numberGenerator))
                     .doesNotThrowAnyException();
         }
 
@@ -36,7 +36,7 @@ class CarTest {
         @MethodSource("methodSourceCarNameLengthTestArguments")
         @DisplayName("자동차 이름이 없거나 5글자 초과일 때 에러를 발생한다")
         void gameFailWhenCarNameLengthIsEmptyOrGreaterThan5(String[] carNames) {
-            assertThatThrownBy(() -> new Cars(carNames, randomValueGenerator))
+            assertThatThrownBy(() -> new Cars(carNames, numberGenerator))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 1글자 이상 5글자 이하만 가능합니다.\n");
         }

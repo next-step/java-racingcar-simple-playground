@@ -6,14 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("랜덤 값 생성 테스트")
-class DefaultRandomValueGeneratorTest {
+class RandomNumberGeneratorTest {
 
     @Test
     @DisplayName("0 이상 9 이하의 랜덤 값을 생성한다")
     void generateRandomValue() {
-        DefaultRandomValueGenerator defaultRandomValueGenerator = new DefaultRandomValueGenerator();
+        RandomNumberGenerator defaultRandomNumberGenerator = new RandomNumberGenerator();
 
-        int value = defaultRandomValueGenerator.generateRandomValue();
+        int value = defaultRandomNumberGenerator.generateNumber();
 
         assertThat(value).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(9);
     }
