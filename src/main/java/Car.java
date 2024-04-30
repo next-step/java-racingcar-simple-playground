@@ -17,11 +17,14 @@ public class Car {
         return this.position;
     }
 
-    public int carMoveForward(){    //앞으로 전진하는 메소드
-        return this.position++;
+    public void carMoveForward(){    //앞으로 전진하는 메소드
+         this.position++;
     }
     public void carMove(int randomvalue){   //랜덤 값에 따라 전진/멈춤 결정 메소드
         if(randomvalue>=4)  //4이상이면 전진
             carMoveForward();
+    }
+    public void setPosition(int position){  //랜덤 수에 따른 위치 저장
+        this.position=position;
     }
 }

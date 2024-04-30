@@ -23,7 +23,7 @@ public class CarListTest {
 
     @Test
     @DisplayName("자동차들이 레이싱을 진행함")
-    void 자동차들이_레이싱을_진행함(List<Car> carList){
+    void 자동차들이_레이싱을_진행함(){
         List<Car> cars=new ArrayList<>();
         int n= random.nextInt(10);  //최대 10개로 잡고 테스트
         for(int i=0;i<n;i++) {
