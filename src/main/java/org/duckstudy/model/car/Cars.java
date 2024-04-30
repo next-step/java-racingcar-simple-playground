@@ -1,6 +1,7 @@
 package org.duckstudy.model.car;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.duckstudy.model.generator.RandomValueGenerator;
@@ -10,7 +11,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        this.cars = List.copyOf(cars);
+        this.cars = Collections.unmodifiableList(cars);
     }
 
     public Cars(String[] carNames, RandomValueGenerator randomValueGenerator) {
