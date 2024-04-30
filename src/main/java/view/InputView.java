@@ -14,13 +14,15 @@ public class InputView {
     }
 
     private static List<String> parseCarNames(String inputNames) {
-        String[] carNames = inputNames.split(","); // 쉼표를 통해 구분
+        String[] carNames = inputNames.split(",");
 
         List<String> cars = new ArrayList<>();
         for (String name : carNames) {
             String trimmedName = name.trim();
             if (isNameValid(trimmedName)) {
                 cars.add(trimmedName);
+            } else {
+                throw new IllegalArgumentException("자동차 이름은 5글자 이하여야 합니다.");
             }
         }
         return cars;
