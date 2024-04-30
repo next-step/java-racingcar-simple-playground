@@ -1,3 +1,7 @@
+package Domain;
+
+import Domain.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,18 +41,5 @@ public class CarList {
     public List<Car> getCarList(){
         return carList;
     }
-/*
-*void 자동차들이_레이싱을_진행함(List<Car> carList){
-        List<Car> cars=new ArrayList<>();
-        int n= random.nextInt(10);  //최대 10개로 잡고 테스트
-        for(int i=0;i<n;i++) {
-            cars.add(new Car("car" + i));
-        }
-        for(Car car:cars){
-            int a= random.nextInt(10);
-            car.carMove(a);
-            assertTrue(car.getPosition()>=0 || car.getPosition()<=9);
-        }
-    }*/
 
 }

@@ -1,3 +1,5 @@
+import Domain.Car;
+import Domain.RacingCar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,14 +11,6 @@ public class CarTest {
         Car car=new Car("마세라티");
         assertEquals(car.getPosition(),0);
         assertEquals(car.getName(),"마세라티");
-    }
-
-    @Test
-    @DisplayName("랜덤 수가 잘 만들어지는 지 테스트")
-    void 랜덤_수가_잘_만들어지는_지_테스트(){
-        Car car=new Car("람보르기니");
-        int random= GetRandom.getRandom();
-        assertTrue(random>=0 || random<=9);
     }
 
     @Test
