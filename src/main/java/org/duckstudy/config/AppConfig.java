@@ -8,6 +8,7 @@ import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
 public class AppConfig {
+
     public OutputView outputView() {
         return new OutputView();
     }

@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("자동차 테스트")
 class CarTest {
+
     @Nested
     @DisplayName("자동차 이름 검증 테스트")
     class CarNameValidationTest {

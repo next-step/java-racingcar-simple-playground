@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("랜덤 값 생성 테스트")
 class DefaultRandomValueGeneratorTest {
+
     @Test
     @DisplayName("0 이상 9 이하의 랜덤 값을 생성한다")
     void generateRandomValue() {
