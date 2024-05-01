@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static Model.Winner.isWinner;
+
 public class WinnerTest {
 
     @DisplayName("이동거리의 맥스값을 잘 뽑아야함.")
@@ -31,5 +33,14 @@ public class WinnerTest {
         racingGame.race();
         Assertions.assertThat(Winner.findWinner(racingGame.getCarList()))
                 .containsExactly("byung","ju");
+    }
+
+    @DisplayName("승리자가 맞으면 트루를 출력한다.")
+    @Test
+    void right_winner(){
+        int winnerPoint = 4;
+        Car car = new Car(new CarName("abc"));
+        car.position = 4;
+        Assertions.assertThat(isWinner(car,winnerPoint)).isEqualTo(true);
     }
 }

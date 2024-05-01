@@ -14,7 +14,7 @@ public class Game {
         final int tryCount = InputView.getTryCount();
 
         StringToCar stringToCar = new StringToCar(carNames);
-        final var racingGame = new RacingGame(stringToCar.getCarList(), tryCount,new RandomNumberCreator());
+        final RacingGame racingGame = new RacingGame(stringToCar.getCarList(), tryCount,new RandomNumberCreator());
         racingGame.race();
         ResultView.printWinners(racingGame.getWinners());
     }
