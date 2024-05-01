@@ -1,4 +1,4 @@
-package domain.Car;
+package domain.RacingCar;
 
 import static util.Constants.START_LOCATION;
 
@@ -20,8 +20,14 @@ public class RacingCar {
         return name;
     }
 
-    public void move() {
-        this.location++;
+    public void race(int randomNumber) {
+        if (isMove(randomNumber)) {
+            this.location++;
+        }
+    }
+
+    private boolean isMove(int randomNumber) {
+        return randomNumber >= 4;
     }
 
 }
