@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class Car1Test {
+public class CarTest {
     @Test
     void CarTest() {
         NumberGenerator2 numberGenerator2 = new NumberGenerator2();

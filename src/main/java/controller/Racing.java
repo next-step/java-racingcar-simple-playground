@@ -9,39 +9,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Racing {
-    ArrayList<Car> cars = new ArrayList<>();
-    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private ResultView resultView = new ResultView();
-    /**
-     * n개의 자동차가 t번 moving
-     */
-    public void racing(int n, int t, ArrayList<String> names) {
-        validateName(names);
+    private ArrayList<Car> cars = new ArrayList<>();
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final ResultView resultView = new ResultView();
+
+    public void racing(int carNumber, int movingNumber, ArrayList<String> names) {
         initCars(names);
         printAllCarDistances();
-        for (int i = 0; i < t; i++) {
+        for (int i = 0; i < movingNumber; i++) {
             eachRacing();
             printAllCarDistances();
         }
     }
 
-    private void validateName(ArrayList<String> names) {
-        boolean isInvalid = names.stream()
-                .anyMatch(name -> name.isEmpty() || name.length() > 5);
-
-        if (isInvalid) {
-            throw new IllegalArgumentException("자동차 이름은 비어 있을 수 없으며, 5자를 초과할 수 없습니다.");
-        }
-    }
-
-
     public void initCars(ArrayList<String> names) {
         cars.clear();
         for (String name : names) {
-            cars.add(new Car(name, 1, randomNumberGenerator)); // 초기 거리는 0으로 시작
+            cars.add(new Car(name, 1, randomNumberGenerator)); // 초기 거리는 1으로 시작
         }
     }
-    void printAllCarDistances() {
+    public void printAllCarDistances() {
         for (Car car : cars) {
             resultView.printCarDistance(car); // 각 차량의 현재 위치 출력
         }
@@ -62,7 +49,7 @@ public class Racing {
         return cars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private int findMaxDistance() {
