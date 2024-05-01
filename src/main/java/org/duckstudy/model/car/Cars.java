@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.duckstudy.model.generator.NumberGenerator;
+import org.duckstudy.model.strategy.MovableStrategy;
 
 public class Cars {
 
@@ -14,9 +14,9 @@ public class Cars {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public Cars(String[] carNames, NumberGenerator numberGenerator) {
+    public Cars(String[] carNames, MovableStrategy movableStrategy) {
         this(Arrays.stream(carNames)
-                .map(carName -> new Car(carName, numberGenerator))
+                .map(car -> new Car(car, movableStrategy))
                 .collect(Collectors.toList()));
     }
 

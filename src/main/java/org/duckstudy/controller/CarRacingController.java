@@ -3,7 +3,7 @@ package org.duckstudy.controller;
 import java.io.IOException;
 import org.duckstudy.model.RepetitionCount;
 import org.duckstudy.model.car.Cars;
-import org.duckstudy.model.generator.NumberGenerator;
+import org.duckstudy.model.strategy.MovableStrategy;
 import org.duckstudy.view.InputView;
 import org.duckstudy.view.OutputView;
 
@@ -11,13 +11,13 @@ public class CarRacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
+    private final MovableStrategy movableStrategy;
 
     public CarRacingController(InputView inputView, OutputView outputView,
-                               NumberGenerator numberGenerator) {
+                               MovableStrategy movableStrategy) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
+        this.movableStrategy = movableStrategy;
     }
 
     public void run() throws IOException {
@@ -30,7 +30,7 @@ public class CarRacingController {
     private Cars createCars() throws IOException {
         String[] carNames = inputView.inputCarNames();
         try {
-            return new Cars(carNames, numberGenerator);
+            return new Cars(carNames, movableStrategy);
         } catch (IllegalArgumentException e) {
             outputView.printException(e);
             return createCars();
@@ -51,7 +51,7 @@ public class CarRacingController {
         outputView.printResultStartMessage();
 
         for (int i = 0; i < repetitionNum.repetitionCount(); i++) {
-            cars.moveAll();
+            cars = cars.moveAll();
             outputView.printIntermediateResult(cars.toList());
         }
 

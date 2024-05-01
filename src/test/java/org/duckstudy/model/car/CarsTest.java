@@ -13,11 +13,11 @@ class CarsTest {
     @DisplayName("경주가 완료되면 우승자를 계산한다")
     void calculateWinnerWhenRaceIsOver() {
         Cars cars = new Cars(Arrays.asList(
-                new Car("Car1", ()-> 4),
-                new Car("Car2", ()-> 2),
-                new Car("Car3", ()-> 4)
+                new Car("Car1", () -> true),
+                new Car("Car2", () -> false),
+                new Car("Car3", () -> true)
         ));
-        cars.moveAll();
+        cars = cars.moveAll();
 
         Cars winners = cars.calculateWinners();
 
