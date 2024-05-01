@@ -1,6 +1,7 @@
 package org.duckstudy.model.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
@@ -13,16 +14,17 @@ class CarsTest {
     @DisplayName("경주가 완료되면 우승자를 계산한다")
     void calculateWinnerWhenRaceIsOver() {
         Cars cars = new Cars(Arrays.asList(
-                new Car("Car1", () -> true),
-                new Car("Car2", () -> false),
-                new Car("Car3", () -> true)
+                new Car("Car1", 1, () -> false),
+                new Car("Car2", 0, () -> false),
+                new Car("Car3", 1, () -> false)
         ));
-        cars = cars.moveAll();
 
         Cars winners = cars.calculateWinners();
 
-        assertThat(winners.toList().size()).isEqualTo(2);
-        assertThat(winners.toList()).extracting("name")
-                .containsExactly("Car1", "Car3");
+        assertAll(
+                () -> assertThat(winners.toList()).hasSize(2),
+                () -> assertThat(winners.toList()).extracting("name")
+                        .containsExactly("Car1", "Car3")
+        );
     }
 }
