@@ -6,7 +6,7 @@ import view.Print;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Race race = new Race();
         Input input = new Input();
         Print print = new Print();

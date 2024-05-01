@@ -17,9 +17,11 @@ public class Input {
         return scanner.nextLine();
     }
 
-    public void checkNameLength(String name) throws Exception {
+    public void checkNameLength(String name) {
         if (name.length() > 5) {
-            throw new Exception("글자수가 5글자 넘음");
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
+        } else if (name.isBlank()) {
+            throw new IllegalArgumentException("공백은 입력될 수 없습니다.");
         }
     }
 

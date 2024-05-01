@@ -33,17 +33,13 @@ public class RaceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"일이삼", "일이삼사오육"})
+    @ValueSource(strings = {"123456", " "})
     @DisplayName("문자열 길이 확인")
     void nameLengthTest(String value) {
         Input input = new Input();
 
-        try {
-            input.checkNameLength(value);
-        } catch (Exception e) {
-            System.out.printf(e.getMessage());
-            Assertions.fail("문자열의 길이가 5 이상 입니다.");
-        }
+        Assertions.assertThatThrownBy(() -> input.checkNameLength(value))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

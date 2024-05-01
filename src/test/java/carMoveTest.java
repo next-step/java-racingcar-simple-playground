@@ -13,13 +13,11 @@ public class carMoveTest {
     @DisplayName("random 값이 4 이상일 경우 전진")
     void carMoveForward(int value) {
         Car car = new Car();
-        Race race = new Race();
 
         car.check(value, car);
 
         // 전진했으면 통과
         Assertions.assertThat(car.getCurrentLocation())
-                .withFailMessage("입력값: %d, 예상 결과: %d, 실제 결과: %d", value, 1, car.getCurrentLocation())
                 .isEqualTo(1);
 
     }
@@ -35,7 +33,6 @@ public class carMoveTest {
 
         // 정지 통과
         Assertions.assertThat(car.getCurrentLocation())
-                .withFailMessage("입력값: %d, 예상 결과: %d, 실제 결과: %d", value, 0, car.getCurrentLocation())
                 .isEqualTo(0);
 
     }
@@ -49,11 +46,8 @@ public class carMoveTest {
             int randomNum = race.getRandNum();
 
             Assertions.assertThat(randomNum).isBetween(0, 9)
-                    .withFailMessage("%d로 범위 벗어남", randomNum)
                     .isBetween(0, 9);
         }
-
-        System.out.println("랜덤 범위 통과");
     }
 
 
@@ -67,14 +61,12 @@ public class carMoveTest {
 
         if (value == 3) {
             Assertions.assertThat(car.getCurrentLocation())
-                    .withFailMessage("입력값: %d, 예상 결과: %d, 실제 결과: %d", value, 0, car.getCurrentLocation())
                     .isEqualTo(0);
 
             return;
         }
 
         Assertions.assertThat(car.getCurrentLocation())
-                .withFailMessage("입력값: %d, 예상 결과: %d, 실제 결과: %d", value, 1, car.getCurrentLocation())
                 .isEqualTo(1);
 
     }
