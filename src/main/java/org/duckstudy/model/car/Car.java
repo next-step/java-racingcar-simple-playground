@@ -1,23 +1,30 @@
 package org.duckstudy.model.car;
 
-import org.duckstudy.model.generator.NumberGenerator;
+import org.duckstudy.model.strategy.MovableStrategy;
 
 public class Car {
 
     private static final int INITIAL_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_MOVEMENT_VALUE = 4;
 
     private final String name;
-    private final NumberGenerator numberGenerator;
-    private int position;
+    private final int position;
+    private final MovableStrategy movableStrategy;
 
-    public Car(String name, NumberGenerator numberGenerator) {
+    public Car(String name, MovableStrategy movableStrategy) {
         validateCarName(name);
 
         this.name = name;
-        this.numberGenerator = numberGenerator;
         this.position = INITIAL_POSITION;
+        this.movableStrategy = movableStrategy;
+    }
+
+    public Car(String name, int position, MovableStrategy movableStrategy) {
+        validateCarName(name);
+
+        this.name = name;
+        this.position = position;
+        this.movableStrategy = movableStrategy;
     }
 
     private void validateCarName(String name) {
@@ -26,11 +33,11 @@ public class Car {
         }
     }
 
-    public void move() {
-        int randomValue = numberGenerator.generateNumber();
-        if (randomValue >= MIN_MOVEMENT_VALUE) {
-            ++position;
+    public Car move() {
+        if (movableStrategy.isMovable()) {
+            return new Car(name, position + 1, movableStrategy);
         }
+        return this;
     }
 
     public boolean isWinner(int maxPosition) {

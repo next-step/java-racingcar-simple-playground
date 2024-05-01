@@ -20,10 +20,11 @@ public class Cars {
                 .collect(Collectors.toList()));
     }
 
-    public void moveAll() {
-        for (Car car : cars) {
-            car.move();
-        }
+    public Cars moveAll() {
+        List<Car> cars = this.cars.stream()
+                .map(Car::move)
+                .toList();
+        return new Cars(cars);
     }
 
     public Cars calculateWinners() {
