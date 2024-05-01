@@ -4,30 +4,31 @@
 
 - `Application` : 자동차 경주 게임 실행을 담당하는 진입점 클래스
 
-### model
+## model
+- `RepetitionCount` : 반복 횟수 VO 
 
-#### car
+### car
 
-- `Car` : 랜덤 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈추는 자동차 클래스
-- `Cars` : n개의 Car 객체가 참여하는 자동차 경주 로직이 존재하는 일급 컬렉션
+- `Car` : 자동차 객체
+- `Cars` : 여러 대의 Car 객체를 관리하는 일급 컬렉션
 
-#### generator
+### generator
 
-- `RandomValueGenerator` : 값을 생성할 수 있는 인터페이스
-- `DefaultRandomValueGenerator` : 랜덤 값을 생성하는 클래스
+- `NumberGenerator` : 값을 생성할 수 있는 인터페이스
+- `RandomNumberGenerator` : 랜덤 값을 생성하는 클래스
 
-### view
+### strategy
+- `MovableStrategy` : 자동차가 움직이는 전략을 담당하는 인터페이스
+- `RandomMovableStrategy` : 랜덤 값에 의해 자동차가 움직이는 전략을 담당하는 클래스
+
+## view
 
 - `InputView` : 입력을 담당하는 클래스
 - `OutputView` : 출력을 담당하는 클래스
 
-### controller
+## controller
 
 - `CarRacingController` : 게임 전체 흐름을 제어하는 클래스
-
-### config
-
-- `AppConfig` : 애플리케이션 설정을 담당하는 클래스
 
 <br/>
 
