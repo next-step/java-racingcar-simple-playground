@@ -1,24 +1,24 @@
 package objects;
 
 
+import view.Output;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private final List<Car> cars = new ArrayList<>();
 
+    private final List<Car> cars = new ArrayList<>();
     private final List<Car> winningCars = new ArrayList<>();
 
     public void race() {
 
         for (Car myCar : cars) {
-            myCar.move();
-            String carPosition = myCar.getPositionToString();
-            System.out.println(myCar.getName() + " : " + carPosition);
-
+            myCar.move(0, 10);
+            Output.carNowPosition(myCar);
         }
-        System.out.println();
+
     }
 
     public List<Car> getCars() {
@@ -38,11 +38,7 @@ public class Cars {
         }
 
         for (Car myCar : cars) {
-            myCar.isSamePosition(winningCars, maxPosition);
+            myCar.samePosition(winningCars, maxPosition);
         }
-
     }
-
-
-
 }

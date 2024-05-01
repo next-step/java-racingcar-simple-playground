@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+
 group = 'cholog'
 version = '1.0-SNAPSHOT'
 

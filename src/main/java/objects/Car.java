@@ -6,10 +6,9 @@ import java.util.Random;
 
 
 public class Car {
+
     private String name;
-
     private int moving;
-
     private int position;
 
     public Car(String name) {
@@ -18,51 +17,43 @@ public class Car {
         this.moving = -1;
     }
 
-    public String getName() {
-        return name;
+    public void initOnlyTestCar(String name, int moving, int position) {
+        this.name = name;
+        this.moving = moving;
+        this.position = position;
     }
 
-    public int getMoving() {
-        return moving;
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {
         return position;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setMoving(int moving) {
-        this.moving = moving;
-    }
+    public void move(int start, int end) {
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public void move() {
         Random random = new Random();
-        moving = random.nextInt(10);
+        moving = random.nextInt(end) + start;
 
-        if (moving >= 4) {
-            position++;
+        if (moving >= 4) position++;
 
-            return;
-        }
     }
 
 
     public String getPositionToString() {
-        String carPosition = "";
+
+        StringBuilder carPosition = new StringBuilder();
+
         for (int i = 0; i < position; i++) {
-            carPosition += "-";
+            carPosition.append("-");
         }
-        return carPosition;
+
+        return carPosition.toString();
     }
 
-    public void isSamePosition(List<Car> winningCars, int position) {
+    public void samePosition(List<Car> winningCars, int position) {
         if (this.position == position) winningCars.add(this);
     }
 }
