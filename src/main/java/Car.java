@@ -1,11 +1,21 @@
 public class Car {
 
-    private String name;
-    private int position;
+    private static final int MOVE_AVAILABLE_VALUE = 4;
 
-    public Car(String name) {
+    private final String name;
+    private int position;
+    private final MoveStrategy moveStrategy;
+
+    public Car(final String name, final MoveStrategy moveStrategy) {
         this.name = name;
         this.position = 0;
+        this.moveStrategy = moveStrategy;
+    }
+
+    public void move() {
+        if (moveStrategy.getNumber() >= MOVE_AVAILABLE_VALUE) {
+            position++;
+        }
     }
 
     public String getName() {
