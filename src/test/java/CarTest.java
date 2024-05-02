@@ -30,20 +30,4 @@ class CarTest {
         // then
         assertThat(car.getPosition()).isEqualTo(0);
     }
-
-    static class AlwaysMoveStrategy implements MoveStrategy {
-
-        @Override
-        public int getNumber() {
-            return 4;
-        }
-    }
-
-    static class AlwaysNotMoveStrategy implements MoveStrategy {
-
-        @Override
-        public int getNumber() {
-            return 3;
-        }
-    }
 }
