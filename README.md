@@ -11,3 +11,53 @@
 - 처음에는 move 메서드 안에서 random 값을 생성하여 범위 및 값을 확인하여 움직일 수 있게 했다.
 - 이렇게 하면 테스트 코드 작성 시 지정한 값을 주기가 어려워 짐 (Mock으로 줄 수 있을거 같긴한데, 학습 범위는 아니니 패스..)
 - 그렇기에 값을 외부에서 받을 수 있도록 하고, 자동차는 움직임 범위만을 확인해서 움직이는게 좋다고 생각하여 지금 같이 작성!
+
+# 1.5단계 - 기능 리팩토링
+
+- 1단계에서는 Car 클래스의 move 메서드에 value를 넣어주고, 범위에 대한 유효성을 Car 에서 확인했음
+
+```java
+public void move(int value) {
+        if (isMovable(value)) {
+            position++;
+        }
+    }
+
+private boolean isMovable(int value) {
+    checkRange(value);
+    return value >= MOVABLE_BOUND;
+}
+
+private void checkRange(int value) {
+    if (value > 9 || value < 0) {
+        throw new RuntimeException("Invalid range");
+    }
+}
+```
+
+- 생각해보니 자동차는 position이 4를 넘었느냐의 여부만 확인하면 될거 같은데, 0~9까지의 범위 체크는 자동차에서 해줄게 아니라는 생각이 듦
+- 따라서 position에 대한 책임을 갖는 객체를 만들기로 결정했고, PositionDecider를 생성함
+- 요구사항에선 랜덤값을 넣어줘야하지만, 테스트에서는 고정값을 주는 것이 좋다 판단하여 PositionDecier를 인터페이스로 만들고 아래의 구현체 생성
+  - StaticPositionDecider: 수동으로 값을 넣어줄 수 있음
+  - RandomPositionDecider: 기존 요구사항인 0~9의 랜덤한 값 제공
+
+```java
+public interface PositionDecider {
+
+    private void checkRange(int value) {
+        if (value > 9 || value < 0) {
+            throw new RuntimeException("Invalid range");
+        }
+    }
+
+    default int getPosition() {
+        final int value = generate();
+        checkRange(value);
+        return value;
+    }
+
+    int generate();
+}
+```
+
+- getPosition의 메서드를 템플릿 메서드로 만들고, generate는 각 구현체에서 구현하여 값을 제공해주면 된다.
