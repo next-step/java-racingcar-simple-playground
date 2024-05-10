@@ -11,10 +11,17 @@ public class RacingCar {
 
     public int move(){
         int random = generateRamdomNum();
-        if(random >= 4){
+        if(isGo(random)){
             return ++position;
         }
         return position;
+    }
+
+    public boolean isGo(int num){
+        if(num >= 4){
+            return true;
+        }
+        return false;
     }
 
     public int generateRamdomNum(){
