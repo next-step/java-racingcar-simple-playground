@@ -41,7 +41,7 @@ public class Racing {
         final Integer maxValue = findMaxScore();
 
         return cars.stream()
-            .filter(car -> car.getPosition() == maxValue)
+            .filter(car -> car.hasWinnerPosition(maxValue))
             .toList();
     }
 

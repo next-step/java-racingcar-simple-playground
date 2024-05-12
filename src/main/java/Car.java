@@ -28,6 +28,10 @@ public class Car {
         return position;
     }
 
+    public boolean hasWinnerPosition(int position) {
+        return this.position == position;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
