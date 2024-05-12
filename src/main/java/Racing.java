@@ -26,12 +26,12 @@ public class Racing {
 
     public void start() {
         while (times > 0) {
-            moveCar();
+            moveCars();
             times--;
         }
     }
 
-    private void moveCar() {
+    private void moveCars() {
         for (Car car : cars) {
             car.move();
         }
