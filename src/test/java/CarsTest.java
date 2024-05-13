@@ -33,7 +33,8 @@ class CarsTest {
         // given
         // when
         cars.move();
-        final List<Car> result = cars.getWinners();
+        final int maxPosition = cars.getMaxPosition();
+        final List<Car> result = cars.getMaxMoveCars(maxPosition);
 
         // then
 

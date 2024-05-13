@@ -13,15 +13,17 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
-    public List<Car> getWinners() {
-        int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition).
-                max()
-                .orElseThrow();
-
+    public List<Car> getMaxMoveCars(int maxPosition) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .toList();
+    }
+
+    public int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow();
     }
 
     public List<Car> getCars() {
