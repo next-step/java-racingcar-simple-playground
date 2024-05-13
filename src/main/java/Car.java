@@ -12,6 +12,12 @@ public class Car {
         this.moveStrategy = moveStrategy;
     }
 
+    public Car(String name, int position, MoveStrategy moveStrategy) {
+        this.name = name;
+        this.position = position;
+        this.moveStrategy = moveStrategy;
+    }
+
     public void move() {
         if (moveStrategy.getNumber() >= MOVE_AVAILABLE_VALUE) {
             position++;
