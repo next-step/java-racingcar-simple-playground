@@ -20,7 +20,7 @@ public class Cars {
                 .orElseThrow();
 
         return cars.stream()
-                .filter(car -> car.isWinner(maxPosition))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .toList();
     }
 

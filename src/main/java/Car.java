@@ -18,8 +18,8 @@ public class Car {
         }
     }
 
-    public boolean isWinner(int winnerPosition) {
-        return position == winnerPosition;
+    public boolean isSamePosition(int otherPosition) {
+        return position == otherPosition;
     }
 
     public String getName() {
