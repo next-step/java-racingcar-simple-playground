@@ -4,18 +4,18 @@ public class Car {
 
     private static final int MOVE_AVAILABLE_VALUE = 4;
 
-    private final String name;
+    private final Name name;
     private int position;
     private final MoveStrategy moveStrategy;
 
     public Car(final String name, final MoveStrategy moveStrategy) {
-        this.name = name;
+        this.name = new Name(name);
         this.position = 0;
         this.moveStrategy = moveStrategy;
     }
 
-    public Car(String name, int position, MoveStrategy moveStrategy) {
-        this.name = name;
+    public Car(final String name, final int position, final MoveStrategy moveStrategy) {
+        this.name = new Name(name);
         this.position = position;
         this.moveStrategy = moveStrategy;
     }
@@ -31,7 +31,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
     public int getPosition() {

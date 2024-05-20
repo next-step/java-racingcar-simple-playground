@@ -13,7 +13,7 @@ class CarsTest {
     @Test
     void move_all_car() {
         // given
-        final Cars cars = new Cars(List.of(new Car("움직이는 자동차", new AlwaysMoveStrategy()), new Car("안움직이는 자동차", new AlwaysNotMoveStrategy())));
+        final Cars cars = new Cars(List.of(new Car("자동차1", new AlwaysMoveStrategy()), new Car("자동차2", new AlwaysNotMoveStrategy())));
 
         // when
         cars.move();

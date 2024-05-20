@@ -18,7 +18,7 @@ class RacingGameTest {
     void moveCars_n_times() {
         // given
         final int count = 5;
-        final Cars cars = new Cars(List.of(new Car("움직이는 자동차", new AlwaysMoveStrategy()), new Car("움직이지 않는 자동차", new AlwaysNotMoveStrategy())));
+        final Cars cars = new Cars(List.of(new Car("자동차1", new AlwaysMoveStrategy()), new Car("자동차2", new AlwaysNotMoveStrategy())));
         final RacingGame racingGame = new RacingGame(cars, count);
 
         // when
@@ -48,10 +48,10 @@ class RacingGameTest {
     }
 
     private static Stream<Arguments> carsAndWinners() {
-        final Car moveCar1 = new Car("움직이는 자동차1", new AlwaysMoveStrategy());
-        final Car moveCar2 = new Car("움직이는 자동차2", new AlwaysMoveStrategy());
-        final Car moveCar3 = new Car("움직이는 자동차3", new AlwaysMoveStrategy());
-        final Car notMoveCar = new Car("안 움직이는 자동차1", new AlwaysNotMoveStrategy());
+        final Car moveCar1 = new Car("자동차1", new AlwaysMoveStrategy());
+        final Car moveCar2 = new Car("자동차2", new AlwaysMoveStrategy());
+        final Car moveCar3 = new Car("자동차3", new AlwaysMoveStrategy());
+        final Car notMoveCar = new Car("자동차4", new AlwaysNotMoveStrategy());
 
         return Stream.of(
                 Arguments.of(new Cars(List.of(moveCar1, moveCar2, notMoveCar)), List.of(moveCar1, moveCar2)),
