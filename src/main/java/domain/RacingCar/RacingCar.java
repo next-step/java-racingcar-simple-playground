@@ -1,5 +1,6 @@
 package domain.RacingCar;
 
+import static util.Constants.LOWER_BOUND_OF_MOVE;
 import static util.Constants.START_LOCATION;
 
 public class RacingCar {
@@ -27,7 +28,7 @@ public class RacingCar {
     }
 
     private boolean isMove(int randomNumber) {
-        return randomNumber >= 4;
+        return randomNumber >= LOWER_BOUND_OF_MOVE;
     }
 
 }
