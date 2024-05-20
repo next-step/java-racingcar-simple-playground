@@ -1,3 +1,5 @@
+package model;
+
 public class Car {
 
     private static final int MOVE_AVAILABLE_VALUE = 4;

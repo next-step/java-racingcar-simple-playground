@@ -1,3 +1,7 @@
+package model;
+
+import model.MoveStrategy;
+
 public class AlwaysMoveStrategy implements MoveStrategy {
 
     @Override
