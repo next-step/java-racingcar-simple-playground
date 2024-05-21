@@ -13,29 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
 
-    @DisplayName("n의 자동차를 n번 움직인다.")
-    @Test
-    void moveCars_n_times() {
-        // given
-        final int count = 5;
-        final Cars cars = new Cars(List.of(new Car("자동차1", new AlwaysMoveStrategy()), new Car("자동차2", new AlwaysNotMoveStrategy())));
-        final RacingGame racingGame = new RacingGame(cars, count);
-
-        // when
-        racingGame.moveCars();
-
-        // then
-        assertThat(racingGame.getCars().get(0).getPosition()).isEqualTo(5);
-        assertThat(racingGame.getCars().get(1).getPosition()).isEqualTo(0);
-    }
-
     @DisplayName("경주 후 우승자는 1명 혹은 그 이상을 수 있다.")
     @MethodSource("carsAndWinners")
     @ParameterizedTest
     void get_winners(Cars cars, List<Car> expect) {
         // given
         final int count = 5;
-        final RacingGame racingGame = new RacingGame(cars, count);
+        final RacingGame racingGame = new RacingGame(cars, new RacingCount(count));
 
         // when
         racingGame.moveCars();
