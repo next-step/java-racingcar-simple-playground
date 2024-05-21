@@ -14,11 +14,7 @@ public class RacingGame {
     }
 
     public static RacingGame of (final String[] carNames, final int count) {
-        final List<Car> cars = Arrays.stream(carNames)
-                .map(name -> new Car(name, new RandomMoveStrategy()))
-                .toList();
-
-        return new RacingGame(new Cars(cars), new RacingCount(count));
+        return new RacingGame(Cars.from(carNames), new RacingCount(count));
     }
 
     public void moveCars() {

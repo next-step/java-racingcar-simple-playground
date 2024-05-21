@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Cars {
 
@@ -9,6 +8,22 @@ public class Cars {
 
     public Cars(final List<Car> cars) {
         this.cars = cars;
+    }
+
+    public static Cars from(final String[] carNames) {
+        validateDuplicatedName(carNames);
+        final List<Car> cars = Arrays.stream(carNames)
+                .map(name -> new Car(name, new RandomMoveStrategy()))
+                .toList();
+
+        return new Cars(cars);
+    }
+
+    private static void validateDuplicatedName(final String[] carNames) {
+        final Set<String> notDuplicatedNames = new HashSet<>(Arrays.asList(carNames));
+        if (notDuplicatedNames.size() != carNames.length) {
+            throw new IllegalArgumentException("중복된 이름을 가진 차들이 존재합니다.");
+        }
     }
 
     public void move() {

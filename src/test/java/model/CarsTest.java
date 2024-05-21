@@ -6,8 +6,21 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
+
+    @DisplayName("중복된 이름을 있으면 예외를 발생시킨다.")
+    @Test
+    void validate_duplicated_name() {
+        // given
+        final String[] carNames = {"자동차", "오토바이", "자동차"};
+        // when
+        // then
+        assertThatThrownBy(() -> Cars.from(carNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름을 가진 차들이 존재합니다.");
+    }
 
     @DisplayName("n대의 자동차를 움직인다.")
     @Test
