@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
@@ -13,7 +12,7 @@ public class RacingGame {
         this.count = count;
     }
 
-    public static RacingGame of (final String[] carNames, final int count) {
+    public static RacingGame of(final String[] carNames, final int count) {
         return new RacingGame(Cars.from(carNames), new RacingCount(count));
     }
 

@@ -11,7 +11,7 @@ public class OutputView {
 
     public static void printRacing(final List<Car> cars) {
         for (Car car : cars) {
-            System.out.printf("\n%s : %s", car.getName(),getProgressVar(car.getPosition()));
+            System.out.printf("\n%s : %s", car.getName(), getProgressVar(car.getPosition()));
         }
         System.out.println();
     }
@@ -26,7 +26,7 @@ public class OutputView {
 
     private static String getWinnerNames(final List<Car> cars) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < cars.size() -1; i++) {
+        for (int i = 0; i < cars.size() - 1; i++) {
             Car car = cars.get(i);
             stringBuilder.append(car.getName()).append(WINNER_DELIMITER);
         }
