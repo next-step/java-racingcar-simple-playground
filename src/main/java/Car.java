@@ -20,6 +20,10 @@ public class Car {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     private boolean isMovable(int value) {
         return value >= MOVABLE_BOUND;
     }
@@ -38,5 +42,9 @@ public class Car {
             "position=" + position +
             ", name='" + name + '\'' +
             '}';
+    }
+
+    public void showStatus() {
+        System.out.println(name + ":" + "-".repeat(position));
     }
 }
