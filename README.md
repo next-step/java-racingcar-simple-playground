@@ -77,12 +77,12 @@ public interface PositionDecider {
 - 나머지는 요구사항에 맞도록 최대한 구현해봄
 
 ```java
-public class Racing {
+public class RacingGame {
 
     private int times = 0;
     private List<Car> cars = new ArrayList<>();
 
-    public Racing(int times, Car... car) {
+    public RacingGame(int times, Car... car) {
         canOpen(car);
         this.times = times;
         this.cars = List.of(car);
@@ -94,7 +94,7 @@ public class Racing {
     }
 
     if (car.length == 0) {
-      throw new IllegalArgumentException("Racing cars must have at least one car");
+      throw new IllegalArgumentException("RacingGame cars must have at least one car");
     }
   }
 }

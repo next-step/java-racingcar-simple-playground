@@ -1,3 +1,5 @@
+package domain;
+
 import decider.PositionDecider;
 
 public class Car {
@@ -38,7 +40,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "domain.Car{" +
             "position=" + position +
             ", name='" + name + '\'' +
             '}';
