@@ -1,22 +1,24 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCarGame {
-    private HashSet<RacingCar> cars;
+    private List<RacingCar> cars;
     private HashSet<RacingCar> winners;
     private int winnersPosition;
+    private int times;
 
-    public RacingCarGame(){
-        cars = new HashSet<>();
-        winners = new HashSet<>();
-        winnersPosition = 0;
-    }
-
-    public void addCar(String name){
-        cars.add(new RacingCar(name));
+    public RacingCarGame(String[] names, int times){
+        this.cars = new ArrayList<>();
+        this.winners = new HashSet<>();
+        this.winnersPosition = 0;
+        this.times = times;
+        for(String name : names){
+            cars.add(new RacingCar(name));
+        }
     }
 
     public void playTurn(){
@@ -49,5 +51,13 @@ public class RacingCarGame {
 
     public int getWinnersPosition(){
         return winnersPosition;
+    }
+
+    public List<RacingCar> getRacingCars() {
+        return cars;
+    }
+
+    public int getTimes() {
+        return times;
     }
 }
