@@ -18,6 +18,9 @@ public class RacingCarGame {
         this.winnersPosition = 0;
         this.times = times;
         for(String name : names){
+            if(name.length() <= 0){
+                throw new IllegalArgumentException("자동차 이름은 1글자 이상으로 입력해주세요.");
+            }
             cars.add(new RacingCar(name, new RandomGenerator()));
         }
     }

@@ -5,10 +5,7 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingCarService {
-    public void play() {
-        String[] names = InputView.getCarNames();
-        int times = InputView.getTimes();
-
+    public void play(String[] names, int times) {
         RacingCarGame game= new RacingCarGame(names, times);
         race(game);
         OutputView.printFinalResult(game.getWinners());
