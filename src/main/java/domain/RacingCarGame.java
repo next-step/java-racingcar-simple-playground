@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import util.RandomGenerator;
 
 public class RacingCarGame {
     private List<RacingCar> cars;
@@ -17,7 +18,7 @@ public class RacingCarGame {
         this.winnersPosition = 0;
         this.times = times;
         for(String name : names){
-            cars.add(new RacingCar(name));
+            cars.add(new RacingCar(name, new RandomGenerator()));
         }
     }
 

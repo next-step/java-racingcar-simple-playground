@@ -11,22 +11,19 @@ public class RacingCarGameTest {
     @DisplayName("RacingCarGame Constructor Test")
     @Test
     public void constructorTest() {
-        RacingCarGame game1 = new RacingCarGame();
+        RacingCarGame game1 = new RacingCarGame(new String[] {"Ferrari", "BMW", "HYUNDAI"},15);
         assertThat(game1.getWinnersPosition()).isEqualTo(0);
     }
 
     @DisplayName("RacingCarGame getting Winners Test")
     @Test
     public void getWinnersTest() {
-        RacingCarGame game1 = new RacingCarGame();
+        RacingCarGame game1 = new RacingCarGame(new String[] {"Ferrari", "BMW", "HYUNDAI"},15);
 
         assertThatThrownBy(() -> {
             game1.playTurn();
         }).isInstanceOf(RuntimeException.class);
 
-        game1.addCar("Ferrari");
-        game1.addCar("BMW");
-        game1.addCar("Audi");
         for(int i = 0; i<3 ; i++){
             game1.playTurn();
         }
