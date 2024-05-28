@@ -1,31 +1,24 @@
 package domain;
 
+import util.NumberGenerator;
+
 public class RacingCar {
     private String name;
     private int position;
+    private NumberGenerator numberGenerator;
 
-    public RacingCar(String name){
+    public RacingCar(String name, NumberGenerator numberGenerator){
         this.name = name;
         this.position = 0;
+        this.numberGenerator = numberGenerator;
     }
 
     public int move(){
-        int random = generateRamdomNum();
-        if(isGo(random)){
-            return ++position;
+        int random = numberGenerator.generateNum();
+        if(random >= 4){
+            position++;
         }
         return position;
-    }
-
-    public boolean isGo(int num){
-        if(num >= 4){
-            return true;
-        }
-        return false;
-    }
-
-    public int generateRamdomNum(){
-        return (int) Math.random() * 10;
     }
 
     public String getName() {

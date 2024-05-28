@@ -25,15 +25,15 @@ public class RacingCarGame {
 
     public void playTurn(){
         if(cars.isEmpty()) {
-            throw new RuntimeException("게임에 참여하는 자동차는 1대 이상이어야 합니다.");
+            throw new RuntimeException();
         }
         for(RacingCar car : cars){
             car.move();
-            validateIsWinner(car);
+            validate(car);
         }
     }
 
-    private void validateIsWinner(RacingCar car){
+    private void validate(RacingCar car){
         if(winnersPosition > car.getPosition()){
             return;
         }
