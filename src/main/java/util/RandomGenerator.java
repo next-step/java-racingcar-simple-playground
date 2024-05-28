@@ -2,6 +2,8 @@ package util;
 
 public class RandomGenerator implements NumberGenerator{
     public int generateNum(){
-        return (int) (Math.random() * 10);
+        int random = (int) (Math.random() * 10);
+        rangeCheck(random);
+        return random;
     }
 }

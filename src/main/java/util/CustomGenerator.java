@@ -8,6 +8,7 @@ public class CustomGenerator implements NumberGenerator {
     }
 
     public int generateNum(){
+        rangeCheck(input);
         return input;
     }
 }
