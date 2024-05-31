@@ -2,10 +2,12 @@ package domain.RacingGame;
 
 import domain.RacingCar.RacingCar;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import util.Errors;
 
 public class RacingGame {
 
@@ -14,14 +16,15 @@ public class RacingGame {
 
     public RacingGame(NumberGenerator numberGenerator, List<String> participantNames) {
         this.numberGenerator = numberGenerator;
-        this.participants = new ArrayList<>();
-        addParticipants(participantNames);
+        this.participants = initParticipants(participantNames);
     }
 
-    private void addParticipants(List<String> participantNames) {
+    private List<RacingCar> initParticipants(List<String> participantNames) {
+        List<RacingCar> participants = new ArrayList<>();
         for (String name : participantNames) {
-            this.participants.add(new RacingCar(name));
+            participants.add(new RacingCar(name));
         }
+        return participants;
     }
 
     public void race() {
@@ -47,7 +50,11 @@ public class RacingGame {
 
     public Map<String, Integer> getLocationByName() {
         return participants.stream()
-            .collect(Collectors.toMap(RacingCar::getName, RacingCar::getLocation));
+            .collect(Collectors.toMap(
+                RacingCar::getName,
+                RacingCar::getLocation,
+                (existing, replacement) -> existing,
+                LinkedHashMap::new
+            ));
     }
-
 }

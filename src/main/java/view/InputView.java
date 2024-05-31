@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import util.Constants;
 import util.Errors;
-import util.Validator;
 
 public class InputView {
+
+    private static final String NAMES_SEPARATOR = ",";
 
     private String getUserStringInput() {
         Scanner scanner = new Scanner(System.in);
@@ -22,16 +22,12 @@ public class InputView {
 
     public List<String> getParticipantNames() {
         String userInput = getUserStringInput();
-        List<String> names = Arrays.asList(userInput.split(Constants.NAMES_SEPARATOR));
-        Validator.validateParticipantNames(names);
-        return names;
+        return Arrays.asList(userInput.split(NAMES_SEPARATOR));
     }
 
     public int getTryCount() {
        try {
-           int tryCount = getUserIntegerInput();
-           Validator.validateRangeOfTryCount(tryCount);
-           return tryCount;
+           return getUserIntegerInput();
        }  catch (InputMismatchException e) {
            throw new IllegalArgumentException(Errors.INPUT_IS_NOT_INTEGER);
        }

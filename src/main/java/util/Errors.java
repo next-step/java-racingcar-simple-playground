@@ -7,7 +7,7 @@ public class Errors {
     private static final String FORMAT_OF_CAR_NAME_LENGTH_ERROR = "자동차 이름(%s)은 %d자 이하여야 합니다.";
 
 
-    public static String getLengthOfCarNameError(String carName) {
-        return String.format(FORMAT_OF_CAR_NAME_LENGTH_ERROR, carName, Constants.MAX_LENGTH_OF_RACING_CAR_NAME);
+    public static String getLengthOfCarNameError(String carName, int maxLengthOfRacingCarName) {
+        return String.format(FORMAT_OF_CAR_NAME_LENGTH_ERROR, carName, maxLengthOfRacingCarName);
     }
 }

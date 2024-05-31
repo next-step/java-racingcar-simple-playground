@@ -114,7 +114,6 @@ class RacingGameTest {
             }
             // then
             Map<String, Integer> locationByName = racingGame.getLocationByName();
-            System.out.println(locationByName);
             assertThat(locationByName)
                 .containsExactlyInAnyOrderEntriesOf(expectedLocationByName);
         }

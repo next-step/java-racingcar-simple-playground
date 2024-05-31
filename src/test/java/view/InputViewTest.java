@@ -49,26 +49,6 @@ class InputViewTest {
                 .containsExactlyInAnyOrderElementsOf(expectedNames);
         }
 
-        private static Stream<Arguments> methodSourceOfValidateParticipantNames() {
-            return Stream.of(
-                Arguments.arguments("teo,neooooo", "neooooo"),
-                Arguments.arguments("ttteoo,neo", "ttteoo"),
-                Arguments.arguments("minjuuuu", "minjuuuu")
-            );
-        }
-
-        @ParameterizedTest(name = "사용자가 {0}을 입력한다면 {1}의 길이가 5자리가 넘어 예외가 발생한다.")
-        @MethodSource("methodSourceOfValidateParticipantNames")
-        @DisplayName("입력된 이름이 다섯 글자가 넘어가면 예외가 발생한다.")
-        void 이름_입력_검증(String userInput, String exceptionName) {
-            // given
-            setSetIn(userInput);
-            // when
-            // then
-            assertThatThrownBy(() -> inputView.getParticipantNames())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Errors.getLengthOfCarNameError(exceptionName));
-        }
     }
 
     @Nested
@@ -97,18 +77,6 @@ class InputViewTest {
             assertThatThrownBy(() -> inputView.getTryCount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Errors.INPUT_IS_NOT_INTEGER);
-        }
-
-        @ParameterizedTest(name = "사용자가 {0}을 입력하면 음수이기 때문에 예외가 반환된다.")
-        @ValueSource(strings = {"-1", "-3"})
-        @DisplayName("사용자가 음수를 입력하면 예외 반환")
-        void invalidTest2(String userInput) {
-            // given
-            setSetIn(userInput);
-            // when then
-            assertThatThrownBy(() -> inputView.getTryCount())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Errors.INPUT_IS_NOT_NATURAL_NUMBER_ERROR);
         }
 
     }
