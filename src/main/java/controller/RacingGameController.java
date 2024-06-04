@@ -2,6 +2,7 @@ package controller;
 
 import domain.RacingGame.NumberGenerator;
 import domain.RacingGame.RacingGame;
+import domain.RacingGame.TryCount;
 import service.RacingGameService;
 
 public class RacingGameController {
@@ -16,7 +17,7 @@ public class RacingGameController {
 
     public void gameStart() {
         final RacingGame racingGame = racingGameService.generateRacingGame(numberGenerator);
-        final int tryCount = racingGameService.getTryCount();
+        final TryCount tryCount = racingGameService.getTryCount();
         racingGameService.race(racingGame, tryCount);
         racingGameService.printWinner(racingGame);
     }

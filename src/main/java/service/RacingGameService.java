@@ -2,15 +2,14 @@ package service;
 
 import domain.RacingGame.NumberGenerator;
 import domain.RacingGame.RacingGame;
+import domain.RacingGame.TryCount;
 import java.util.List;
 import java.util.Map;
-import util.Errors;
+import javax.swing.table.TableRowSorter;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameService {
-
-    private static final int MIN_VALUE_OF_TRY_COUNT = 0;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -36,28 +35,21 @@ public class RacingGameService {
         return inputView.getParticipantNames();
     }
 
-    public int getTryCount() {
+    public TryCount getTryCount() {
         while (true) {
             try {
                 outputView.printTryCountInputGuide();
                 int tryCount = inputView.getTryCount();
-                validateRangeOfTryCount(tryCount);
-                return tryCount;
+                return new TryCount(tryCount);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
         }
     }
 
-    private void validateRangeOfTryCount(int input) {
-        if (input < MIN_VALUE_OF_TRY_COUNT) {
-            throw new IllegalArgumentException(Errors.INPUT_IS_NOT_NATURAL_NUMBER_ERROR);
-        }
-    }
-
-    public void race(RacingGame racingGame, int tryCount) {
+    public void race(RacingGame racingGame, TryCount tryCount) {
         outputView.printResultStartGuide();
-        for (int count = 1; count <= tryCount; count++) {
+        for (int count = 1; count <= tryCount.getTryCount(); count++) {
             racingGame.race();
             printGameStatus(racingGame);
         }
