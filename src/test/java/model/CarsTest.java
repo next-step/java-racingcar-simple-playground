@@ -67,7 +67,6 @@ class CarsTest {
         final List<Car> result = cars.getMaxMoveCars(maxPosition);
 
         // then
-        assertThat(result).usingRecursiveComparison()
-                .isEqualTo(List.of(car1, car3));
+        assertThat(result).usingRecursiveComparison().isEqualTo(List.of(car1, car3));
     }
 }
