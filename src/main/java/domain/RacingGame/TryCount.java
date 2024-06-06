@@ -6,7 +6,7 @@ public class TryCount {
 
     private static final int MIN_VALUE_OF_TRY_COUNT = 0;
 
-    private int tryCount;
+    private final int tryCount;
 
     public TryCount(int tryCount) {
         validateRangeOfTryCount(tryCount);
