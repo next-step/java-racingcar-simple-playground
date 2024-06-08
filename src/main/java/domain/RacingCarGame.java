@@ -19,13 +19,20 @@ public class RacingCarGame {
         this.winnersPosition = 0;
         this.times = times;
         for(String name : names){
+            validateName(name);
             cars.add(new RacingCar(name, numberGenerator));
+        }
+    }
+
+    private void validateName(String name){
+        if(name.length() > 5){
+            throw new IllegalArgumentException("자동차 이름은 5자 이하로 입력하세요.");
         }
     }
 
     public void playTurn(){
         if(cars.isEmpty()) {
-            throw new RuntimeException();
+            throw new RuntimeException("게임에 참여하는 자동차는 1대 이상이어야 합니다.");
         }
         for(RacingCar car : cars){
             car.move();

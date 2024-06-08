@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import util.CustomGenerator;
 import util.RandomGenerator;
 
@@ -15,8 +17,10 @@ public class NumberGeneratorTest {
         assertThat(generator.generateNum()).isEqualTo(5);
     }
 
-    @DisplayName("Generator range check Test")
-    @Test
+
+    @DisplayName("Generator range check Test : exception by out of range 0~9")
+    @ParameterizedTest
+    @ValueSource(ints = {20, 21, 11, -7, -1})
     public void generatorRangeCheckTest() {
         CustomGenerator generator = new CustomGenerator(20);
         assertThatThrownBy(() -> {

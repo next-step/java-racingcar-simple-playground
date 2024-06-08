@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -17,8 +18,12 @@ public class InputView {
     }
 
     public static int getTimes() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            return scanner.nextInt();
+        }catch (InputMismatchException e){
+            throw new InputMismatchException("숫자를 입력해주세요");
+        }
     }
 
     private static void validateName(String name){
