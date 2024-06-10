@@ -1,22 +1,33 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import util.NumberGenerator;
 
 public class RacingCarGame {
-    private HashSet<RacingCar> cars;
+    private List<RacingCar> cars;
     private HashSet<RacingCar> winners;
     private int winnersPosition;
+    private int times;
+    private NumberGenerator numberGenerator;
 
-    public RacingCarGame(){
-        cars = new HashSet<>();
-        winners = new HashSet<>();
-        winnersPosition = 0;
+    public RacingCarGame(String[] names, int times, NumberGenerator numberGenerator){
+        this.cars = new ArrayList<>();
+        this.winners = new HashSet<>();
+        this.winnersPosition = 0;
+        this.times = times;
+        for(String name : names){
+            validateName(name);
+            cars.add(new RacingCar(name, numberGenerator));
+        }
     }
 
-    public void addCar(String name){
-        cars.add(new RacingCar(name));
+    private void validateName(String name){
+        if(name.length() > 5){
+            throw new IllegalArgumentException("자동차 이름은 5자 이하로 입력하세요.");
+        }
     }
 
     public void playTurn(){
@@ -25,11 +36,11 @@ public class RacingCarGame {
         }
         for(RacingCar car : cars){
             car.move();
-            validateIsWinner(car);
+            validate(car);
         }
     }
 
-    private void validateIsWinner(RacingCar car){
+    private void validate(RacingCar car){
         if(winnersPosition > car.getPosition()){
             return;
         }
@@ -39,6 +50,7 @@ public class RacingCarGame {
         }
         if(winnersPosition < car.getPosition()){
             winners.clear();
+            winnersPosition++;
             winners.add(car);
         }
     }
@@ -49,5 +61,13 @@ public class RacingCarGame {
 
     public int getWinnersPosition(){
         return winnersPosition;
+    }
+
+    public List<RacingCar> getRacingCars() {
+        return cars;
+    }
+
+    public int getTimes() {
+        return times;
     }
 }

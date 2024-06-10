@@ -1,6 +1,9 @@
 import domain.RacingCar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import util.CustomGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,30 +12,24 @@ public class RacingCarTest {
     @DisplayName("RacingCar Constructor Test")
     @Test
     public void constructorTest() {
-        RacingCar car1 = new RacingCar("Ferrari");
+        RacingCar car1 = new RacingCar("Ferrari", new CustomGenerator(3));
         assertThat(car1.getName()).isEqualTo("Ferrari");
     }
 
+    @ParameterizedTest
     @DisplayName("RacingCar moving Test")
-    @Test
-    public void moveTest() {
-        RacingCar car1 = new RacingCar("Ferrari");
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    public void moveTest(int value) {
+        RacingCar car1 = new RacingCar("Ferrari", new CustomGenerator(value));
         assertThat(car1.move()).isEqualTo(car1.getPosition());
     }
 
-    @DisplayName("RacingCar isGo method test")
-    @Test
-    public void isGoTest(){
-        RacingCar car1 = new RacingCar("Ferrari");
-        assertThat(car1.isGo(5)).isEqualTo(true);
-        assertThat(car1.isGo(2)).isEqualTo(false);
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    @DisplayName("RacingCar not moving Test")
+    public void stayTest(int value) {
+        RacingCar car1 = new RacingCar("Ferrari", new CustomGenerator(value));
+        assertThat(car1.move()).isEqualTo(car1.getPosition());
     }
 
-    @DisplayName("RacingCar Random Number Generatißon Test")
-    @Test
-    public void randomNumberGenerationTest() {
-        RacingCar car1 = new RacingCar("Ferrari");
-        int num = car1.generateRamdomNum();
-        assertThat(num).isBetween(0,9);
-    }
 }
