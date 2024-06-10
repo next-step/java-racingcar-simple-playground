@@ -77,12 +77,12 @@ public interface PositionDecider {
 - 나머지는 요구사항에 맞도록 최대한 구현해봄
 
 ```java
-public class Racing {
+public class RacingGame {
 
     private int times = 0;
     private List<Car> cars = new ArrayList<>();
 
-    public Racing(int times, Car... car) {
+    public RacingGame(int times, Car... car) {
         canOpen(car);
         this.times = times;
         this.cars = List.of(car);
@@ -94,8 +94,19 @@ public class Racing {
     }
 
     if (car.length == 0) {
-      throw new IllegalArgumentException("Racing cars must have at least one car");
+      throw new IllegalArgumentException("RacingGame cars must have at least one car");
     }
   }
 }
 ```
+
+# 3단계 구현
+
+## 요구사항
+
+- [X] 주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다.
+- [X] 각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
+- [X] 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
+- [X] 사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.
+- [X] 전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
+- [X] 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.

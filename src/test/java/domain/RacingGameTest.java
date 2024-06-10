@@ -1,3 +1,5 @@
+package domain;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -6,12 +8,12 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RacingTest {
+class RacingGameTest {
 
     @Test
     @DisplayName("횟수가 0 미만이면 실행 안 됨")
     void ifTimesUnderZero() {
-        assertThatThrownBy(() -> new Racing(-5, new Car("1번 차", new StaticPositionDecider(5))))
+        assertThatThrownBy(() -> new RacingGame(-5, new Car("1번 차", new StaticPositionDecider(5))))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("times must be greater than 0");
     }
@@ -19,7 +21,7 @@ class RacingTest {
     @Test
     @DisplayName("참가자가 없으면 실행 안 됨")
     void ifCarNumberZero() {
-        assertThatThrownBy(() -> new Racing(5))
+        assertThatThrownBy(() -> new RacingGame(5))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("Racing cars must have at least one car");
     }
@@ -28,13 +30,13 @@ class RacingTest {
     @DisplayName("1개의 참여자, 1번차 우승")
     void winnerOneCar() {
 
-        final Racing racing = new Racing(
+        final RacingGame racingGame = new RacingGame(
             10,
             new Car("1번 차", new StaticPositionDecider(5))
         );
 
-        racing.start();
-        final List<Car> winners = racing.getWinners();
+        racingGame.race();
+        final List<Car> winners = racingGame.getWinners();
         assertThat(winners).hasSize(1);
         assertThat(winners)
             .extracting("name")
@@ -45,7 +47,7 @@ class RacingTest {
     @DisplayName("우승자 여러 개인 경우, 4번차, 5번차 우승")
     void winnerSeveralCars() {
 
-        final Racing racing = new Racing(
+        final RacingGame racingGame = new RacingGame(
             5,
             new Car("1번 차", new StaticPositionDecider(1)),
             new Car("2번 차", new StaticPositionDecider(2)),
@@ -54,8 +56,8 @@ class RacingTest {
             new Car("5번 차", new StaticPositionDecider(5))
         );
 
-        racing.start();
-        final List<Car> winners = racing.getWinners();
+        racingGame.race();
+        final List<Car> winners = racingGame.getWinners();
         assertThat(winners).hasSize(2);
         assertThat(winners)
             .extracting("name")
