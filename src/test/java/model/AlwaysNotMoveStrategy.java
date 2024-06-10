@@ -1,3 +1,5 @@
+package model;
+
 public class AlwaysNotMoveStrategy implements MoveStrategy {
 
     @Override
