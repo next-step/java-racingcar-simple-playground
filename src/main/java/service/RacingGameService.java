@@ -1,44 +1,68 @@
 package service;
 
-import domain.RacingCar.RacingCar;
+import domain.RacingGame.NumberGenerator;
 import domain.RacingGame.RacingGame;
-import java.util.ArrayList;
+import domain.RacingGame.TryCount;
 import java.util.List;
+import java.util.Map;
+import javax.swing.table.TableRowSorter;
+import view.InputView;
+import view.OutputView;
 
 public class RacingGameService {
 
-    public RacingGame initGame(List<RacingCar> participants) {
-        RacingGame racingGame = new RacingGame();
-        for (RacingCar participant : participants) {
-            racingGame.addParticipant(participant);
-        }
-        return racingGame;
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public RacingGameService() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
-
-    public void startGame(RacingGame racingGame, int maxCount) {
-        int numberOfParticipants = racingGame.getNumberOfParticipants();
-        List<Integer> randomNumbers;
-        for (int tryCount = 1; tryCount <= maxCount; tryCount++) {
-            randomNumbers = getRandomNumbers(numberOfParticipants);
-            racingGame.race(randomNumbers);
+    public RacingGame generateRacingGame(NumberGenerator numberGenerator) {
+        while (true) {
+            try {
+                List<String> participantNames = getParticipantNames();
+                return new RacingGame(numberGenerator, participantNames);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
         }
+    }
+
+    private List<String> getParticipantNames() {
+        outputView.printNamesInputGuide();
+        return inputView.getParticipantNames();
+    }
+
+    public TryCount getTryCount() {
+        while (true) {
+            try {
+                outputView.printTryCountInputGuide();
+                int tryCount = inputView.getTryCount();
+                return new TryCount(tryCount);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+    }
+
+    public void race(RacingGame racingGame, TryCount tryCount) {
+        outputView.printResultStartGuide();
+        for (int count = 1; count <= tryCount.getTryCount(); count++) {
+            racingGame.race();
+            printGameStatus(racingGame);
+        }
+    }
+
+    private void printGameStatus(RacingGame racingGame) {
+        Map<String, Integer> locationByName = racingGame.getLocationByName();
+        outputView.printGameStatus(locationByName);
     }
     
-    public List<RacingCar> getWinner(RacingGame racingGame) {
-        return racingGame.getWinner();
-    }
-
-    private List<Integer> getRandomNumbers(int size) {
-        List<Integer> randomNumbers = new ArrayList<>();
-        for (int index = 0; index < size; index++) {
-            randomNumbers.add(getRandomNumber());
-        }
-        return randomNumbers;
-    }
-
-    private int getRandomNumber() {
-        return (int) (Math.random() * 10);
+    public void printWinner(RacingGame racingGame) {
+        List<String> winners = racingGame.getWinner();
+        outputView.printGameWinners(winners);
     }
 
 }
