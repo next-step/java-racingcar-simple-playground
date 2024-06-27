@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.RandomNumberGenerator;
 
 public class Car {
 
@@ -9,6 +11,7 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
+        this.position = 0;
     }
 
     public void move(RandomNumberGenerator generator) {

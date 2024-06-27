@@ -1,23 +1,15 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.List;
 
-public class CarGroup {
+import racingcar.RandomNumberGenerator;
 
-    private final List<Car> cars;
-
-    public CarGroup(List<Car> cars) {
-        this.cars = cars;
-    }
+public record CarGroup(List<Car> cars) {
 
     public void move(RandomNumberGenerator generator) {
         for (Car car : cars) {
             car.move(generator);
         }
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public List<Car> getWinners() {

@@ -1,6 +1,11 @@
 package racingcar;
 
+import java.util.Arrays;
 import java.util.List;
+
+import racingcar.domain.Car;
+import racingcar.domain.CarGroup;
+import racingcar.view.OutputView;
 
 /**
  * n대의 자동차가 참여할 수 있다.
@@ -10,17 +15,61 @@ import java.util.List;
  */
 public class RacingGame {
 
-    private final CarGroup cars;
+    private final CarGroup carGroup;
+    private final OutputView outputView;
     private final RandomNumberGenerator numberGenerator = new CarRandomNumberGenerator();
 
-    public RacingGame(List<Car> cars) {
-        this.cars = new CarGroup(cars);
+    public static RacingGame create(String input) {
+        String[] carNames = input.split(",");
+        List<Car> cars = Arrays.stream(carNames).map(Car::new).toList();
+        return new RacingGame(cars);
+    }
+
+    private RacingGame(List<Car> carGroup) {
+        this.carGroup = new CarGroup(carGroup);
+        this.outputView = new OutputView();
     }
 
     public void play(int round) {
+        outputView.printInit();
         for (int i = 0; i < round; i++) {
-            cars.move(numberGenerator);
+            carGroup.move(numberGenerator);
+            outputView.printMovement(carGroup.cars());
         }
-        cars.getWinners();
+        outputView.printWinner(carGroup.getWinners());
     }
 }
+
+/*
+
+neo,brie,brown
+시도할 회수는 몇회인가요?
+5
+
+실행 결과
+neo : -
+brie : -
+brown : -
+
+neo : --
+brie : -
+brown : --
+
+neo : ---
+brie : --
+brown : ---
+
+neo : ----
+brie : ---
+brown : ----
+
+neo : -----
+brie : ----
+brown : -----
+
+neo : -----
+brie : ----
+brown : -----
+
+neo, brown가 최종 우승했습니다.
+ */
