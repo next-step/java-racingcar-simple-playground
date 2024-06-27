@@ -1,20 +1,18 @@
 package racingcar;
 
-import java.util.Random;
-
 public class Car {
 
+    private static final int ACCELERATION = 4;
+
     private final String name;
-    private final Random random;
     private Integer position;
 
     public Car(String name) {
         this.name = name;
-        this.random = new Random();
     }
 
-    public void move() {
-        if (random.nextInt(10) % 10 >= 4) {
+    public void move(RandomNumberGenerator generator) {
+        if (generator.generate() >= ACCELERATION) {
             position++;
         }
     }
