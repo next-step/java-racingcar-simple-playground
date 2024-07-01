@@ -1,3 +1,5 @@
+package racingcar;
+
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
@@ -5,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import fixture.Random4GeneratorImpl;
+import racingcar.fixture.Random4GeneratorImpl;
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 
@@ -33,20 +35,20 @@ class RacingGameTest {
             List.of(new Car("1번차"), new Car("2번차"), new Car("3번차")),
             new Random4GeneratorImpl()
         );
-        racingGame.move();
+        racingGame.start(3);
 
         List<Car> winners = racingGame.getWinners();
 
         assertSoftly(softly -> {
             softly.assertThat(winners).hasSize(3);
             softly.assertThat(winners.get(0).getName()).isEqualTo("1번차");
-            softly.assertThat(winners.get(0).getPosition()).isEqualTo(1);
+            softly.assertThat(winners.get(0).getPosition()).isEqualTo(3);
 
             softly.assertThat(winners.get(1).getName()).isEqualTo("2번차");
-            softly.assertThat(winners.get(1).getPosition()).isEqualTo(1);
+            softly.assertThat(winners.get(1).getPosition()).isEqualTo(3);
 
             softly.assertThat(winners.get(2).getName()).isEqualTo("3번차");
-            softly.assertThat(winners.get(2).getPosition()).isEqualTo(1);
+            softly.assertThat(winners.get(2).getPosition()).isEqualTo(3);
         });
     }
 }

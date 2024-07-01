@@ -1,4 +1,4 @@
-package fixture;
+package racingcar.fixture;
 
 import racingcar.util.RandomGenerator;
 
