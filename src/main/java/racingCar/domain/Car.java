@@ -1,4 +1,9 @@
+package racingCar.domain;
+
+import racingCar.NumberGenerator;
+
 public class Car {
+
     public final String name;
     public int position = 0;
 
@@ -6,8 +11,8 @@ public class Car {
         this.name = name;
     }
 
-    public void move(int number) {
-        if (number >= 4) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= 4) {
             position += 1;
         }
     }
