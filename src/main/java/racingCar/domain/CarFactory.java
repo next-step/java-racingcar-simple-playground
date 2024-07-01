@@ -4,21 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import racingCar.NumberGenerator;
+
 public class CarFactory {
 
     private final String carInput;
+    private final NumberGenerator numberGenerator;
     private final List<Car> cars = new ArrayList<>();
     private final List<Car> winner = new ArrayList<>();
 
-    public CarFactory(String carInput) {
+    public CarFactory(String carInput, NumberGenerator numberGenerator) {
         this.carInput = carInput;
+        this.numberGenerator = numberGenerator;
     }
 
     public List<Car> makeCars() {
         List<String> carList = Arrays.stream(carInput.split(",")).toList();
 
         for (String carName : carList) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName, numberGenerator));
         }
 
         return cars;

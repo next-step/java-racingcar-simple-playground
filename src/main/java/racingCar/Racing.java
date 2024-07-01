@@ -10,12 +10,11 @@ import racingCar.view.OutputView;
 public class Racing {
     public final List<Car> cars;
     public final CarFactory carFactory;
-    public final NumberGenerator numberGenerator;
 
-    public Racing(String inputCars, NumberGenerator numberGenerator) {
-        this.carFactory = new CarFactory(inputCars);
+    public Racing(String inputCars) {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        this.carFactory = new CarFactory(inputCars, numberGenerator);
         this.cars = carFactory.makeCars();
-        this.numberGenerator = numberGenerator;
     }
 
     public void startRacing() {
@@ -33,7 +32,7 @@ public class Racing {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.move(numberGenerator);
+            car.move();
         }
     }
 }
