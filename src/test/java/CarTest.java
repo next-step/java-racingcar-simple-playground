@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import fixture.Random0GeneratorImpl;
 import fixture.Random4GeneratorImpl;
-import racingcar.Car;
+import racingcar.domain.Car;
 
 class CarTest {
 

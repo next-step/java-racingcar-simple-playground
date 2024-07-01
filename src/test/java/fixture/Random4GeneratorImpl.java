@@ -1,6 +1,6 @@
 package fixture;
 
-import racingcar.RandomGenerator;
+import racingcar.util.RandomGenerator;
 
 public class Random4GeneratorImpl implements RandomGenerator {
     @Override

@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain;
+
+import racingcar.util.RandomGenerator;
 
 public class Car {
     private final String name;

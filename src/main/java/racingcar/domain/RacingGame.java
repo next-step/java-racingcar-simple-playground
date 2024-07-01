@@ -1,6 +1,9 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.List;
+
+import racingcar.util.RandomGenerator;
+import racingcar.view.OutputView;
 
 public class RacingGame {
     private final List<Car> cars;
@@ -29,8 +32,10 @@ public class RacingGame {
     }
 
     public void start(int round) {
+        OutputView.printInit();
         for (int i = 0; i < round; i++) {
             move();
+            OutputView.printMovement(cars);
         }
     }
 

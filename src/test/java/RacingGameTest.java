@@ -6,8 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import fixture.Random4GeneratorImpl;
-import racingcar.Car;
-import racingcar.RacingGame;
+import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
 
 class RacingGameTest {
 
@@ -41,6 +41,12 @@ class RacingGameTest {
             softly.assertThat(winners).hasSize(3);
             softly.assertThat(winners.get(0).getName()).isEqualTo("1번차");
             softly.assertThat(winners.get(0).getPosition()).isEqualTo(1);
+
+            softly.assertThat(winners.get(1).getName()).isEqualTo("2번차");
+            softly.assertThat(winners.get(1).getPosition()).isEqualTo(1);
+
+            softly.assertThat(winners.get(2).getName()).isEqualTo("3번차");
+            softly.assertThat(winners.get(2).getPosition()).isEqualTo(1);
         });
     }
 }
