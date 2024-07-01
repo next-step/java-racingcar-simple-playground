@@ -4,6 +4,8 @@ import java.util.List;
 
 import racingCar.domain.Car;
 import racingCar.domain.CarFactory;
+import racingCar.numberGenerator.NumberGenerator;
+import racingCar.numberGenerator.RandomNumberGenerator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 

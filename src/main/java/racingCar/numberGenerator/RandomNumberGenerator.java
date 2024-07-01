@@ -1,6 +1,8 @@
-package racingCar;
+package racingCar.numberGenerator;
 
 import java.util.Random;
+
+import racingCar.numberGenerator.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
 

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingCar.NumberGenerator;
+import racingCar.numberGenerator.NumberGenerator;
 import racingCar.mock.GeneratorNumber1;
 import racingCar.mock.GeneratorNumber4;
 
@@ -19,7 +19,7 @@ class CarTest {
     void moveTest() {
         Car car = new Car("테스트", number4Generator);
         car.move();
-        assertEquals(1, car.position);
+        assertEquals(1, car.getPosition());
     }
 
     @Test
@@ -27,6 +27,6 @@ class CarTest {
     void stopTest() {
         Car car = new Car("테스트", number1Generator);
         car.move();
-        assertEquals(0, car.position);
+        assertEquals(0, car.getPosition());
     }
 }

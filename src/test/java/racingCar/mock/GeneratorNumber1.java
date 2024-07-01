@@ -1,6 +1,6 @@
 package racingCar.mock;
 
-import racingCar.NumberGenerator;
+import racingCar.numberGenerator.NumberGenerator;
 
 public class GeneratorNumber1 implements NumberGenerator {
 
