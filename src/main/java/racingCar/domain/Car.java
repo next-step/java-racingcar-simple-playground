@@ -4,8 +4,8 @@ import racingCar.NumberGenerator;
 
 public class Car {
 
-    public final String name;
-    public int position = 0;
+    private final String name;
+    private int position = 0;
     private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
@@ -17,5 +17,13 @@ public class Car {
         if (numberGenerator.generate() >= 4) {
             position += 1;
         }
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getPosition(){
+        return position;
     }
 }

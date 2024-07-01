@@ -32,7 +32,7 @@ public class CarFactory {
         int maxPos = findMaxPosition();
 
         for (Car car : cars) {
-            if (car.position == maxPos) {
+            if (car.getPosition() == maxPos) {
                 winner.add(car);
             }
         }
@@ -44,8 +44,8 @@ public class CarFactory {
         int max = 0;
 
         for (Car car : cars) {
-            if (car.position > max) {
-                max = car.position;
+            if (car.getPosition() > max) {
+                max = car.getPosition();
             }
         }
 

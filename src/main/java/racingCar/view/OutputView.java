@@ -6,11 +6,14 @@ import racingCar.domain.Car;
 
 public class OutputView {
 
+    private OutputView(){
+    }
+
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.print(car.name + " : ");
+            System.out.print(car.getName() + " : ");
 
-            for (int i = 0; i < car.position; i++) {
+            for (int i = 0; i < car.getPosition(); i++) {
                 System.out.print("-");
 
             }
@@ -24,9 +27,9 @@ public class OutputView {
 
         for (int i = 0; i < winner.size(); i++) {
             if (i == winner.size() - 1) {
-                winners.append(winner.get(i).name);
+                winners.append(winner.get(i).getName());
             } else {
-                winners.append(winner.get(i).name + ", ");
+                winners.append(winner.get(i).getName() + ", ");
             }
         }
 
