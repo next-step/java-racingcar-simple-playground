@@ -1,7 +1,5 @@
 package model;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Car {
 
     final int MOVABLE_NUMBER = 4;
@@ -13,8 +11,7 @@ public class Car {
         this.position = 0;
     }
 
-    public void move() {
-        int randomNumber = ThreadLocalRandom.current().nextInt(9);
+    public void move(int randomNumber) {
         if (randomNumber >= MOVABLE_NUMBER) {
             ++position;
         }
