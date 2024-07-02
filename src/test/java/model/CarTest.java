@@ -24,14 +24,14 @@ class CarTest {
     @Test
     void 랜덤한_숫자가_4이상이면_전진한다() {
         Car car = new Car("횬다이");
-        car.move(ThreadLocalRandom.current().nextInt(4, 9));
+        car.move(ThreadLocalRandom.current().nextInt(4, 10));
         assertThat(car.getPosition()).isOne();
     }
 
     @Test
     void 랜덤한_숫자가_3이하이면_정지한다() {
         Car car = new Car("횬다이");
-        car.move(ThreadLocalRandom.current().nextInt(0, 3));
+        car.move(ThreadLocalRandom.current().nextInt(0, 4));
         assertThat(car.getPosition()).isZero();
     }
 }

@@ -26,7 +26,7 @@ public class Game {
     public void start(int round) {
         for (int i = 0; i < round; ++i) {
             for (Car car: participantCars) {
-                car.move(ThreadLocalRandom.current().nextInt(9));
+                car.move(ThreadLocalRandom.current().nextInt(10));
             }
             OutputView.printPosition(participantCars);
         }
