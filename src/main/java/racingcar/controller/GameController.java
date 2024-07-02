@@ -11,7 +11,7 @@ import racingcar.view.OutputView;
 
 public class GameController {
 
-    public List<Car> parseCarNames(String carNames) {
+    private List<Car> parseCarNames(String carNames) {
         return Arrays.stream(carNames.split(","))
             .map(Car::new)
             .toList();

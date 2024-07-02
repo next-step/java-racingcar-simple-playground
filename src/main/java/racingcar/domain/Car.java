@@ -13,9 +13,9 @@ public class Car {
     }
 
     public void move(RandomGenerator random) {
-        if (random.generate() < 4) return;
-
-        ++position;
+        if (random.generate() >= 4) {
+            ++position;
+        }
     }
 
     public String getName() {
@@ -31,7 +31,7 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return position == car.position;
+        return name.equals(car.name) && position == car.position;
     }
 
     @Override
