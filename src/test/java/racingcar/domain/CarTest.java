@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,16 @@ class CarTest {
     void 자동차는_이름을_가진다() {
         Car car = new Car("포르쉐");
         assertThat(car.getName()).isEqualTo("포르쉐");
+    }
+
+    @Test
+    void 자동차는_이름이_null이면_예외() {
+        Assertions.assertThrows(RuntimeException.class, () -> new Car(null));
+    }
+
+    @Test
+    void 자동차는_이름이_5자_이상이면_예외() {
+        Assertions.assertThrows(RuntimeException.class, () -> new Car("123456"));
     }
 
     @Test
