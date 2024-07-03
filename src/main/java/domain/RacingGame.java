@@ -38,9 +38,9 @@ public class RacingGame {
     }
 
     public int findMaxPosition() {
-        var a = carList.stream()
+        List<Integer> positions = carList.stream()
             .map(Car::getPosition)
             .toList();
-        return Collections.max(a);
+        return Collections.max(positions);
     }
 }
