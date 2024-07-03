@@ -1,9 +1,13 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.fixture.Random0GeneratorImpl;
 import racingcar.fixture.Random4GeneratorImpl;
@@ -16,6 +20,20 @@ class CarTest {
     void carName() {
         Car car = new Car("아무차");
         assertThat(car.getName()).isEqualTo("아무차");
+    }
+
+    @ParameterizedTest
+    @DisplayName("자동차 이름이 null이면 예외")
+    @NullSource
+    @ValueSource(strings = {" "})
+    void carNameNull(String name) {
+        assertThrows(RuntimeException.class, () -> new Car(name));
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자 초과면 예외")
+    void carNameLengthMoreThan5() {
+        assertThrows(RuntimeException.class, () -> new Car("123456"));
     }
 
     @Test

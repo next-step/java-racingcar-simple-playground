@@ -9,6 +9,9 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
+        if (name == null || name.trim().isEmpty() || name.trim().length() > 5) {
+            throw new RuntimeException("자동차 이름은 5자 이하만 가능하다");
+        }
         this.name = name;
     }
 
