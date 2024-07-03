@@ -15,12 +15,16 @@ public class RacingTest {
     @Test
     @DisplayName("우승자를 반환한다.")
     public void getWinner() {
-        race = new RacingGame();
-        race.inputCarList("neo");
+        Car neo = new Car("neo");
+        Car brown = new Car("brown");
+        neo.move(3);
+        brown.move(5);
+
+        race = new RacingGame(List.of(neo, brown));
         List<Car> winners = race.getWinners();
 
         assertThat(winners).hasSize(1);
-        assertThat(winners.get(0).getName()).isEqualTo("neo");
+        assertThat(winners.get(0).getName()).isEqualTo("brown");
     }
 
 }

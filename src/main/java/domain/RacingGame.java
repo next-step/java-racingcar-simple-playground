@@ -9,18 +9,15 @@ import view.ResultView;
 
 public class RacingGame {
 
-    private final List<Car> carList = new ArrayList<>();
+    private final List<Car> carList;
 
-    public void inputCarList(String input) {
-        String[] cars = input.split(",");
-        for (String carName : cars) {
-            carList.add(new Car(carName));
-        }
+    public RacingGame(List<Car> carList) {
+        this.carList = carList;
     }
 
     public void startRace(int tryCount) {
+        System.out.println("실행 결과");
         for (int i = 0; i < tryCount; i++) {
-            System.out.println("실행 결과");
             moveCar();
             ResultView.printResult(carList);
         }
