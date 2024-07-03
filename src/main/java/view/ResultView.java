@@ -10,7 +10,7 @@ public class ResultView {
     public static void printResult(List<Car> carList){
         for (Car car : carList){
             String position = "-".repeat(car.getPosition());
-            System.out.println(car.getName() + " : " + position);
+            System.out.println(String.format("%s : %s", car.getName(), position));
         }
         System.out.println();
     }

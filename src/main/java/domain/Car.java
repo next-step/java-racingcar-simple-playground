@@ -3,6 +3,7 @@ package domain;
 public class Car {
 
     private final String name;
+    private final int MOVABLE_NUM = 4;
     private int position = 0;
 
     public Car(String name) {
@@ -10,7 +11,7 @@ public class Car {
     }
 
     public void move(int num) {
-        if (num >= 4) {
+        if (num >= MOVABLE_NUM) {
             position++;
         }
     }
