@@ -3,9 +3,9 @@ public class Car {
     private String carName;
     private int currentDistance;
 
-    public Car(String carName) {
+    public Car(String carName, int currentDistance) {
         this.carName = carName;
-        this.currentDistance = 0;
+        this.currentDistance = currentDistance;
     }
 
     public void ride() {
@@ -21,5 +21,9 @@ public class Car {
 
     private boolean isGoOrStop(final int randomValue) {
         return GoOrStopValidator.validateGoOrStop(randomValue);
+    }
+
+    public int getCurrentDistance() {
+        return currentDistance;
     }
 }

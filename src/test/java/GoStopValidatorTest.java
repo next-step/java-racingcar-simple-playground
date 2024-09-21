@@ -9,7 +9,7 @@ public class GoStopValidatorTest {
     @DisplayName("랜덤 값이 4이상이면 true(전진), 3이하이면 false(멈춤)를 반환한다.")
     public void checkGoOrStop() {
         //given
-        final int randomValue = RandomValueCreator.createRandomValue();
+        final int randomValue = (int) (Math.random() * 10);
 
         //when, then
         System.out.println("randomValue = " + randomValue);
