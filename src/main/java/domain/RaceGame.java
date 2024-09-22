@@ -57,4 +57,17 @@ public class RaceGame {
 
         return winners;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RaceGame raceGame = (RaceGame) o;
+        return count == raceGame.count && maxLength == raceGame.maxLength && Objects.equals(participants, raceGame.participants) && Objects.equals(rule, raceGame.rule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants, count, maxLength, rule);
+    }
 }
