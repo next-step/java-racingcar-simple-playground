@@ -10,7 +10,7 @@ public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
 
-    static public List<CarName> getCarsName() throws Exception {
+    static public List<CarName> getCarsName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 
         // 이것이 여기 있어야 할까
