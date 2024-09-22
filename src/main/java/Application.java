@@ -1,6 +1,6 @@
 public class Application {
     public static void main(String[] args) {
-        final RaceGame raceGame = new RaceGame();
+        final Game raceGame = new RaceGame();
 
         raceGame.preparing();
 

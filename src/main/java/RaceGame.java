@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class RaceGame {
+public class RaceGame implements Game {
 
     private final List<Car> participants;
     private int count;
@@ -32,6 +32,8 @@ public class RaceGame {
         this.count = sc.nextInt();
     }
     public void start() {
+
+        // Random class를 확장 함수르 만들어 버리고 싶음
         Random rd = new Random();
 
         for (int i = 0; i < count; i++) {
