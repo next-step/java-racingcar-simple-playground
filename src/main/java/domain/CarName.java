@@ -6,7 +6,7 @@ public class CarName {
         this.value = value;
     }
 
-    public static CarName stringToName(String name) throws Exception {
+    public static CarName stringToName(String name) {
         if(name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름의 길이는 5 이하여야 합니다.");
         }
