@@ -9,7 +9,9 @@ public class RaceGame {
     private int maxLength;
     private final Rule rule;
 
-    public RaceGame(String[] carNames, int tryCount, Rule rules) {
+
+    // exception이 생선자에서 사용되도 되나
+    public RaceGame(List<CarName> carNames, int tryCount, Rule rules) throws Exception {
         // 생성자 안에서 class 내부 함수 쓰는것이 맞을까?
         this.participants = this.preparing(carNames);
         this.count = tryCount;
@@ -17,9 +19,9 @@ public class RaceGame {
         this.rule = rules;
     }
 
-    private List<Car> preparing(String[] carNames) {
+    private List<Car> preparing(List<CarName> carNames) throws Exception {
         List<Car> participants = new ArrayList<Car>();
-        for (String carName : carNames) {
+        for (CarName carName : carNames) {
             participants.add(new Car(carName));
         }
 

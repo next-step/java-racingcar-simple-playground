@@ -3,11 +3,11 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    public final String name;
+    public final CarName name;
 
     public int location;
 
-    public Car(String name) {
+    public Car(CarName name) {
         this.name = name;
         this.location = 0;
     }
