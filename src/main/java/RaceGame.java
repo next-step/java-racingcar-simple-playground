@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class RaceGame {
 
-    private List<Car> participants;
+    private final List<Car> participants;
     private int count;
 
     private int maxLength;
@@ -54,15 +54,29 @@ public class RaceGame {
     }
 
     public void end() {
-        String winners = "";
+        List<Car> winners = findWinners();
 
-        int flag = 0;
-        for (Car participant : participants) {
-            if (maxLength == participant.location) {
-                winners = winners + ", " + participant.name;
+        String carNames = "";
+        for (int i = 0; i < winners.size(); i++) {
+            carNames += winners.get(i).name;
+
+            if (i != winners.size() - 1) {
+                carNames += ", ";
             }
         }
 
-        System.out.println(winners + "가 최종 우승했습니다");
+        System.out.println(carNames + "가 최종 우승했습니다");
+    }
+
+    private List<Car> findWinners() {
+        List<Car> winners = new ArrayList<Car>();
+
+        for(Car participant: participants) {
+            if (maxLength == participant.location) {
+                winners.add(participant);
+            }
+        }
+
+        return winners;
     }
 }
