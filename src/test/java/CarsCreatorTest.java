@@ -20,6 +20,7 @@ public class CarsCreatorTest {
         List<Car> result = CarsCreator.createCars(carNames);
 
         //then
+        // Assertions.assertThat(result).usingRecursiveAssertions().isEqualTo(expected); -> Fail
         // Q : usingRecursiveAssertion() vs usingRecursiveComparison()의 차이??
         Assertions.assertThat(result.get(0).getCarName()).isEqualTo("car1");
         Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(expected);

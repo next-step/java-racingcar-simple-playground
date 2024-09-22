@@ -109,15 +109,19 @@ neo, brown가 최종 우승했습니다.
 ✅ 1) 입력 안내문을 출력한다.<br/>
 ✅ 2) 자동차 이름을 입력받는다.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; ✅ i) 쉼표로 구분된 자동차 이름을 구분한다.  
-&nbsp;&nbsp;&nbsp;&nbsp; ✅ ii) 구분한 자동차 이름을 가지는 자동차를 생성하고 저장한다.
-&nbsp;&nbsp;&nbsp;&nbsp; ✅ iii) 이동할 거리를 나타낼 문자열 변수를 선언한다.
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ ii) 구분한 자동차 이름을 가지는 자동차를 생성하고 저장한다.  
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ iii) 이동할 거리를 나타낼 문자열 변수를 선언한다.  
 ✅ 3) 이동할 횟수를 입력받는다.<br/>
-❌ 4) 실행 결과를 시도마다 출력한다.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; ❌ i) 전진 혹은 정지 결과에 따라 문자열 변수를 갱신한다.  
-&nbsp;&nbsp;&nbsp;&nbsp; ❌ ii) 이름과 이동거리를 나타내는 문자열을 출력한다.
+✅ 4) 실행 결과를 시도마다 출력한다.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ i) 전진 혹은 정지 결과에 따라 문자열 변수를 갱신한다.  
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ ii) 이름과 이동거리를 나타내는 문자열을 출력한다.  
 ✅ 5) 최종 우승자를 출력한다.<br/>
 
 
 ## ❓️고민 사항 ❓
 * stream()을 이용하면서 String 리스트를 Car 리스트로 변환하는 과정에서 생성자 매개변수로 정수 값이 하나 더 포함 되어 있는데 이를 처리
 => 찾아본 결과 Intstream을 사용하여 해결할 수도 있음
+
+
+* CarsCreatorTest 중 usingRecursiveAssertion()으로는 통과하지 않았지만 usingRecursiveComparison()을 사용했을 때 통과함  
+=> 객체 내용을 비교하는 것 까지는 맞는 것 같은데 CarCreatorTest에서는 result의 값이 객체 참조값의 리스트로 반환됨. 객체 내용은 같지만 참조값은 다르기에 실패했던 것으로 추측. 대신 Comparison은 리스트 안의 객체 내용까지 비교해주어서 통과한 것으로 추측됨. 공식문서 참조가 필요할 것 같음.
