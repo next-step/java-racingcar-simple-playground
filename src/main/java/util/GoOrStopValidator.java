@@ -1,3 +1,5 @@
+package util;
+
 public class GoOrStopValidator {
 
     public static boolean validateGoOrStop(final int randomValue) {

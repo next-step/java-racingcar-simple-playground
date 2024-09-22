@@ -1,16 +1,24 @@
+package domain;
+
+import util.GoOrStopValidator;
+import util.RandomValueCreator;
+
 public class Car {
 
     private String carName;
     private int currentDistance;
+    private String currentDistanceMark;
 
     public Car(String carName, int currentDistance) {
         this.carName = carName;
         this.currentDistance = currentDistance;
+        this.currentDistanceMark = "-";
     }
 
     public void ride() {
         if (isGoOrStop(createRandomValue())) {
             this.currentDistance += 1;
+            this.currentDistanceMark += "-";
         }
     }
 
@@ -24,6 +32,14 @@ public class Car {
     }
 
     public int getCurrentDistance() {
-        return currentDistance;
+        return this.currentDistance;
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public String getCurrentDistanceMark() {
+        return currentDistanceMark;
     }
 }
