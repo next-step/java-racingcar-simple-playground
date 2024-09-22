@@ -2,7 +2,7 @@ package domain;
 
 public class CarName {
     String value;
-    public CarName(String value) {
+    private CarName(String value) {
         this.value = value;
     }
 
