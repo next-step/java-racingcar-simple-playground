@@ -4,44 +4,34 @@ import java.util.*;
 
 public class RaceGame {
 
-    private final List<Car> participants;
+    private final Cars participants;
     private final int count;
     private int maxLength;
     private final Rule rule;
 
 
-    // exception이 생선자에서 사용되도 되나
-    public RaceGame(List<CarName> carNames, int tryCount, Rule rules) {
-        // 생성자 안에서 class 내부 함수 쓰는것이 맞을까?
-        this.participants = this.preparing(carNames);
+    public RaceGame(Cars cars, int tryCount, Rule rules) {
+        this.participants = cars;
         this.count = tryCount;
         this.maxLength = 0;
         this.rule = rules;
     }
 
-    private List<Car> preparing(List<CarName> carNames) {
-        List<Car> participants = new ArrayList<Car>();
-        for (CarName carName : carNames) {
-            participants.add(new Car(carName));
-        }
-
-        return participants;
-    }
     public void start() {
         for (int i = 0; i < count; i++) {
-            for (Car participant: participants) {
+            for (Car participant: participants.getCars()) {
                 if (rule.canGo()) {
                     participant.move();
 
-                    if (participant.location > maxLength) {
-                        maxLength = participant.location;
+                    if (participant.getLocation() > maxLength) {
+                        maxLength = participant.getLocation();
                     }
                 }
             }
 
-            for (Car participant: participants) {
-                String position = "-".repeat(participant.location);
-                System.out.println(participant.name + " : " + position);
+            for (Car participant: participants.getCars()) {
+                String position = "-".repeat(participant.getLocation());
+                System.out.println(participant.getName() + " : " + position);
             }
             System.out.println();
         }
@@ -51,8 +41,8 @@ public class RaceGame {
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<Car>();
 
-        for(Car participant: participants) {
-            if (maxLength == participant.location) {
+        for(Car participant: participants.getCars()) {
+            if (maxLength == participant.getLocation()) {
                 winners.add(participant);
             }
         }

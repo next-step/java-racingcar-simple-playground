@@ -3,9 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    public final CarName name;
+    private final CarName name;
 
-    public int location;
+    private int location;
 
     public Car(CarName name) {
         this.name = name;
@@ -14,6 +14,14 @@ public class Car {
 
     public void move() {
         this.location++;
+    }
+
+    public CarName getName() {
+        return name;
+    }
+
+    public int getLocation() {
+        return location;
     }
 
     @Override
