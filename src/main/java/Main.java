@@ -9,5 +9,6 @@ public class Main {
         Cars.splitCarName(inputNames);
         Cars.generateCar();
         new Game();
+        View.printWinner(WinnerSelector.getWinners(Cars.cars));
     }
 }

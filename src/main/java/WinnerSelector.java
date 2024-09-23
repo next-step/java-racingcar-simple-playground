@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinnerSelector {
-    private List<String> winners = new ArrayList<>();
+    private static List<String> winners = new ArrayList<>();
 
-    public List<String> getWinners(List<Car> cars){
+    public static List<String> getWinners(List<Car> cars){
         int winnerPosition = findWinnerPosition(cars);
 
         for(Car car : cars){
@@ -14,14 +14,14 @@ public class WinnerSelector {
         return winners;
     }
 
-    private int findWinnerPosition(List<Car> cars){
+    private static int findWinnerPosition(List<Car> cars){
         return cars.stream()
                 .map(Car::getPosition)
                 .reduce(Integer::max)
                 .orElse(0);
     }
 
-    private void addWinner(Car car, int winnerPosition){
+    private static void addWinner(Car car, int winnerPosition){
         if(car.getPosition()==winnerPosition){
             winners.add(car.getName());
         }

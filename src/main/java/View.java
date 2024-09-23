@@ -20,4 +20,10 @@ public class View {
             System.out.println(car.getName()+" : "+position.repeat(car.getPosition()));
         }
     }
+
+    public static void printWinner(List<String> winners) {
+        String result = String.join(", ",winners);
+        System.out.println(result+"가 최종 우승했습니다.");
+    }
+
 }
