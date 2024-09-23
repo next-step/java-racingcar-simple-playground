@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -13,4 +14,12 @@ public class View {
         return input.nextInt();
     }
 
+    public static void printRacingGame(List<Car> cars){
+        String position = "-";
+        for(Car car : cars){
+            System.out.println(car.getName()+" : ");
+            System.out.println(position.repeat(car.getPosition()));
+            System.out.println("\n");
+        }
+    }
 }
