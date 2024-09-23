@@ -22,4 +22,10 @@ public class Cars {
         return cars;
     }
 
+    public static void moveCars(){
+        for(Car car : cars){
+            car.moveCar();
+        }
+    }
+
 }
