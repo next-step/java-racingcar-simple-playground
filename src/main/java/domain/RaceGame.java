@@ -18,6 +18,7 @@ public class RaceGame {
     }
 
     public void start() {
+        System.out.println("\n실행결과");
         for (int i = 0; i < count; i++) {
             for (Car participant: participants.getCars()) {
                 if (rule.canGo()) {
@@ -31,7 +32,7 @@ public class RaceGame {
 
             for (Car participant: participants.getCars()) {
                 String position = "-".repeat(participant.getLocation());
-                System.out.println(participant.getName() + " : " + position);
+                System.out.println(participant.getName().getValue() + " : " + position);
             }
             System.out.println();
         }
@@ -50,16 +51,16 @@ public class RaceGame {
         return winners;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RaceGame raceGame = (RaceGame) o;
-        return count == raceGame.count && maxLength == raceGame.maxLength && Objects.equals(participants, raceGame.participants) && Objects.equals(rule, raceGame.rule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(participants, count, maxLength, rule);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        RaceGame raceGame = (RaceGame) o;
+//        return count == raceGame.count && maxLength == raceGame.maxLength && Objects.equals(participants, raceGame.participants) && Objects.equals(rule, raceGame.rule);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(participants, count, maxLength, rule);
+//    }
 }
