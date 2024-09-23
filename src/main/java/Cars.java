@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private static List<Car> cars;
+    static List<Car> cars;
 
     private static String[] splitCarName(){
         String input = View.inputCarName();
