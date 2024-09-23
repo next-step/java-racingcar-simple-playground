@@ -7,6 +7,12 @@ public class Car {
         position = 0;
     }
 
+    public void moveCar(){
+        if(CarControl.isMovable()){
+            position++;
+        }
+    }
+
     public int getPosition(){
         return position;
     }
