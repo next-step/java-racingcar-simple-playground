@@ -17,9 +17,7 @@ public class View {
     public static void printRacingGame(List<Car> cars){
         String position = "-";
         for(Car car : cars){
-            System.out.println(car.getName()+" : ");
-            System.out.println(position.repeat(car.getPosition()));
-            System.out.println("\n");
+            System.out.println(car.getName()+" : "+position.repeat(car.getPosition()));
         }
     }
 }
