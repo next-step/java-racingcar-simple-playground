@@ -4,6 +4,7 @@ public class Game {
         for(int i = 0; i<tryCount; i++){
             Cars.moveCars();
             View.printRacingGame(Cars.cars);
+            System.out.println("\n");
         }
     }
 }

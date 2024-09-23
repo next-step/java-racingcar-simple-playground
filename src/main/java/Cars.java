@@ -14,12 +14,11 @@ public class Cars {
         return carNames.length;
     }
 
-    private static List<Car> generateCar(){
+    static void generateCar(){
         final List<Car> cars = new ArrayList<>(carSize(splitCarName()));
         for(String carName : splitCarName()){
             cars.add(new Car(carName));
         }
-        return cars;
     }
 
     public static void moveCars(){
