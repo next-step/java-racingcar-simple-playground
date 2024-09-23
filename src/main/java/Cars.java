@@ -3,11 +3,10 @@ import java.util.List;
 
 public class Cars {
     static List<Car> cars;
+    static String[] carNames;
 
-    private static String[] splitCarName(){
-        String input = View.inputCarName();
-        String[] carNames = input.split(",");
-        return carNames;
+    public static void splitCarName(String input){
+        carNames = input.split(",");
     }
 
     private static int carSize(String[] carNames){
@@ -15,9 +14,10 @@ public class Cars {
     }
 
     static void generateCar(){
-        final List<Car> cars = new ArrayList<>(carSize(splitCarName()));
-        for(String carName : splitCarName()){
+        cars = new ArrayList<>(carSize(carNames));
+        for(String carName : carNames){
             cars.add(new Car(carName));
+
         }
     }
 
