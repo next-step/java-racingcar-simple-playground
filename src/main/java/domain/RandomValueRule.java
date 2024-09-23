@@ -3,7 +3,7 @@ package domain;
 import java.util.Random;
 
 public class RandomValueRule implements Rule {
-    Random rd;
+    private final Random rd;
 
     public RandomValueRule() {
         rd = new Random();
