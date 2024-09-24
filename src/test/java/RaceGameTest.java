@@ -24,7 +24,7 @@ public class RaceGameTest {
         assertThat(raceGame.getWinners()).isEqualTo(cars.getCars());
     }
     @Test
-    public void 랜덤_숫자가_3이하이면_자동차_전진() {
+    public void 랜덤_숫자가_3이하이면_자동차_정지() {
         Cars cars = new Cars(List.of(new Car(CarName.stringToName("지바겐")), new Car(CarName.stringToName("포르쉐")), new Car(CarName.stringToName("쉐보레"))));
 
 
