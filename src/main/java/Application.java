@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
         InputView.inputRacingCarNames();
-        final List<String> carNames = SplitCarNames.splitCarNames(InputFromUser.inputCarNames());
+        final List<String> carNames = InputFromUser.inputCarNames();
 
         InputView.inputTryingCount();
         final int executionsCount = InputFromUser.inputExecutionsCount();

@@ -125,3 +125,16 @@ neo, brown가 최종 우승했습니다.
 
 * CarsCreatorTest 중 usingRecursiveAssertion()으로는 통과하지 않았지만 usingRecursiveComparison()을 사용했을 때 통과함  
 => 객체 내용을 비교하는 것 까지는 맞는 것 같은데 CarCreatorTest에서는 result의 값이 객체 참조값의 리스트로 반환됨. 객체 내용은 같지만 참조값은 다르기에 실패했던 것으로 추측. 대신 Comparison은 리스트 안의 객체 내용까지 비교해주어서 통과한 것으로 추측됨. 공식문서 참조가 필요할 것 같음.
+
+# 🚀 4단계 - 리팩토링 🚀
+
+## ✏️새로운 프로그래밍 요구사항 ✏️
+* 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외한다.
+  * 랜덤한 요소가 존재하는 코드는 어떻게 테스트할 수 있는지 경험한다.
+
+## ☁️구현 사항 ☁️
+✅ 1) 변하지 않는 상수 값 표시.<br/>
+❌ 2) 예외 처리<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ i) 자동차 이름이 5자 초과일 경우 예외 처리.  
+&nbsp;&nbsp;&nbsp;&nbsp; ✅ ii) 이동거리가 숫자가 아닐 경우 예외 처리.  
+
