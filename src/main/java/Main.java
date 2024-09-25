@@ -5,10 +5,15 @@ public class Main {
     }
 
     private static void startRacing(){
-        inputNames = View.inputCarName();
-        Cars.splitCarName(inputNames);
-        Cars.generateCar();
-        new Game();
+        try {
+            inputNames = View.inputCarName();
+            Cars.splitCarName(inputNames);
+            Cars.generateCar();
+            Game racingame = new Game();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
         View.printWinner(WinnerSelector.getWinners(Cars.cars));
     }
 }
