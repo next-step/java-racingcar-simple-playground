@@ -1,16 +1,14 @@
-package domain;
+package controller;
 
 import domain.Cars;
 import view.View;
 
 public class Game {
-    public Game(){
-        int tryCount = View.inputTryCount();
+    public Game(int tryCount){
         checkNum(tryCount);
         for(int i = 0; i<tryCount; i++){
             Cars.moveCars();
             View.printRacingGame(Cars.cars);
-            System.out.println(" ");
         }
     }
 

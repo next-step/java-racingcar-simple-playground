@@ -1,20 +1,17 @@
 import domain.Cars;
-import domain.Game;
+import controller.Game;
 import domain.WinnerSelector;
 import view.View;
 
 public class Main {
-    public static String inputNames;
     public static void main(String[] args) {
-        startRacing();
-    }
+        final String inputNames = View.inputCarName();;
+        final int tryCount = View.inputTryCount();
 
-    private static void startRacing(){
         try {
-            inputNames = View.inputCarName();
             Cars.splitCarName(inputNames);
             Cars.generateCar();
-            Game racingame = new Game();
+            Game racingame = new Game(tryCount);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return;
