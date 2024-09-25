@@ -1,3 +1,8 @@
+import domain.Cars;
+import domain.Game;
+import domain.WinnerSelector;
+import view.View;
+
 public class Main {
     public static String inputNames;
     public static void main(String[] args) {

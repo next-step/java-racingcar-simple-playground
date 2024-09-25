@@ -1,3 +1,8 @@
+package domain;
+
+import domain.Cars;
+import view.View;
+
 public class Game {
     public Game(){
         int tryCount = View.inputTryCount();

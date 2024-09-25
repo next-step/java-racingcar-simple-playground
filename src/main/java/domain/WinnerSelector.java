@@ -1,3 +1,7 @@
+package domain;
+
+import domain.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +18,7 @@ public class WinnerSelector {
         return winners;
     }
 
-    private static int findWinnerPosition(List<Car> cars){
+    public static int findWinnerPosition(List<Car> cars){
         return cars.stream()
                 .map(Car::getPosition)
                 .reduce(Integer::max)

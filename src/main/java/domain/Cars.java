@@ -1,9 +1,13 @@
+package domain;
+
+import domain.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    static List<Car> cars;
-    static String[] carNames;
+    public static List<Car> cars;
+    public static String[] carNames;
 
     public static void splitCarName(String input){
         checkNull(input);
@@ -14,7 +18,7 @@ public class Cars {
         return carNames.length;
     }
 
-    static void generateCar(){
+    public static void generateCar(){
         cars = new ArrayList<>(carSize(carNames));
         for(String carName : carNames){
             checkNull(carName);

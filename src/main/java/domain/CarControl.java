@@ -1,3 +1,5 @@
+package domain;
+
 public class CarControl {
     private static final int MOVE_STANDARD = 4;
 
