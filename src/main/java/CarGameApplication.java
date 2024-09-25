@@ -4,7 +4,7 @@ import view.ResultView;
 
 import java.util.List;
 
-public class Application {
+public class CarGameApplication {
     public static void main(String[] args)  {
 
         try {
