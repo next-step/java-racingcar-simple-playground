@@ -1,6 +1,7 @@
 import domain.Rule;
 
-public class MockRule {
+public class MockRule{
+
     public static class MoreThan4NumberGenerator implements Rule {
         @Override
         public boolean canGo() {
@@ -15,5 +16,4 @@ public class MockRule {
             return false;
         }
     }
-
 }
