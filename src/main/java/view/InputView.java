@@ -2,7 +2,6 @@ package view;
 
 import domain.CarName;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +18,7 @@ public class InputView {
 
 //        return Arrays.stream(names).map(name-> CarName.stringToName(name)).toList();
 //        return Arrays.stream(names).map(CarName::stringToName).toList();
-        return Arrays.stream(names).map(CarName::stringToName).collect(Collectors.toList());
+        return Arrays.stream(names).map(CarName::from).collect(Collectors.toList());
 
 //        List<CarName> carNames = new ArrayList<>();
 //
