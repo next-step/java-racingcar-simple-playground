@@ -1,4 +1,7 @@
-import domain.*;
+import domain.CarName;
+import domain.Cars;
+import domain.RaceGame;
+import domain.RandomValueRule;
 import view.InputView;
 import view.ResultView;
 
