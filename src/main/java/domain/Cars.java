@@ -9,6 +9,7 @@ public class Cars {
     public static List<Car> cars;
     public static String[] carNames;
 
+    //자동차 문자열 분리 메서드
     public static void splitCarName(String input){
         checkNull(input);
         carNames = input.split(",");
@@ -18,6 +19,7 @@ public class Cars {
         return carNames.length;
     }
 
+    //경주 자동차 생성 메서드
     public static void generateCar(){
         cars = new ArrayList<>(carSize(carNames));
         for(String carName : carNames){
@@ -27,6 +29,7 @@ public class Cars {
         }
     }
 
+    //경주 자동차 이동 메서드
     public static void moveCars(){
         for(Car car : cars){
             car.moveCar();
