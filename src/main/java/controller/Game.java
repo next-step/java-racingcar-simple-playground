@@ -4,6 +4,8 @@ import domain.Cars;
 import view.View;
 
 public class Game {
+
+    //생성자를 통해 게임 시작
     public Game(int tryCount){
         checkNum(tryCount);
         for(int i = 0; i<tryCount; i++){
