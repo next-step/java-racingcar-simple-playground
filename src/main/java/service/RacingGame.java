@@ -1,6 +1,7 @@
 package service;
 
 import domain.Car;
+import domain.Riding;
 import util.CarsCreator;
 import view.RacingProceedingView;
 
@@ -16,7 +17,7 @@ public class RacingGame {
         this.executionsCount = executionsCount;
         this.cars = createCars(carNames);
         this.winnerCarsSelector = new WinnerCarsSelector();
-        this.proceedingRacing = new ProceedingRacing();
+        this.proceedingRacing = new ProceedingRacing(new Riding());
     }
 
     public List<Car> start() {

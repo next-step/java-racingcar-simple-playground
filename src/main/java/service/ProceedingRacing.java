@@ -1,11 +1,19 @@
 package service;
 
 import domain.Car;
+import domain.Riding;
+import util.RandomValueCreator;
 import view.RacingProceedingView;
 
 import java.util.List;
 
 public class ProceedingRacing {
+
+    Riding riding;
+
+    public ProceedingRacing(Riding riding) {
+        this.riding = riding;
+    }
 
     public void startRacing(final List<Car> cars, final int executionsCount) {
         RacingProceedingView.printProceedingRacingResult(cars);
@@ -17,7 +25,7 @@ public class ProceedingRacing {
 
     private void racingCars(final List<Car> cars) {
         for (Car currentCar : cars) {
-            currentCar.ride();
+            riding.ride(currentCar, RandomValueCreator.createRandomValue());
         }
     }
 }
