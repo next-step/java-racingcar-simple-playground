@@ -12,7 +12,7 @@ public class RacingProceedingView {
 
     public static void printProceedingRacingResult(List<Car> cars) {
         for (Car currentCar : cars) {
-            System.out.println(currentCar.getCarName() + " : " + currentCar.getCurrentDistanceMark());
+            System.out.println(currentCar.getCarName() + " : " + "-".repeat(currentCar.getCurrentDistance()));
         }
         System.out.println(" ");
     }

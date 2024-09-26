@@ -7,18 +7,15 @@ public class Car {
 
     private String carName;
     private int currentDistance;
-    private String currentDistanceMark;
 
     public Car(String carName, int currentDistance) {
         this.carName = carName;
         this.currentDistance = currentDistance;
-        this.currentDistanceMark = "-";
     }
 
     public void ride() {
         if (isGoOrStop(createRandomValue())) {
             this.currentDistance += 1;
-            this.currentDistanceMark += "-";
         }
     }
 
@@ -39,7 +36,4 @@ public class Car {
         return carName;
     }
 
-    public String getCurrentDistanceMark() {
-        return currentDistanceMark;
-    }
 }
