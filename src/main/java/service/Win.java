@@ -7,11 +7,11 @@ import java.util.List;
 public class Win {
 
     //우승자 계산
-    public List<Car> findWinners(List<Car> cars){
+    public List<Car> findWinners(List<Car> cars) {
         int maxPosiiton = cars.stream()
-                                .mapToInt(Car::getPosition)
-                                .max()
-                                .orElse(0);
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosiiton)
                 .toList(); //우승자 리스트 반환
