@@ -1,5 +1,7 @@
 package util;
 
+import domain.Car;
+
 import java.util.List;
 
 public class InputFromUserValidator {
@@ -7,6 +9,7 @@ public class InputFromUserValidator {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
 
     public static void checkCarNames(List<String> carNames) {
+        checkIsCarExists(carNames);
         for (String currentCarName : carNames) {
             checkCarNameLengthOverLimit(currentCarName);
             checkCarNameLengthUnderZero(currentCarName);
@@ -28,6 +31,12 @@ public class InputFromUserValidator {
     public static void checkExecutionsCount(String executionsCount) {
         if (!executionsCount.matches("[+-]?\\d*\\.?\\d+")) {
             throw new NumberFormatException("숫자가 아닙니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static void checkIsCarExists(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차가 존재하지 않습니다. 다시 입력해 주세요");
         }
     }
 }

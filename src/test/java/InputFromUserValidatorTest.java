@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.InputFromUserValidator;
+import util.SplitCarNames;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,19 @@ public class InputFromUserValidatorTest {
         //when, then
         Assertions.assertThrows(NumberFormatException.class, () -> {
             InputFromUserValidator.checkExecutionsCount(executionCount);
+        });
+    }
+
+    @Test
+    @DisplayName("아무것도 입력하지 않은 경우 예외를 발생시킨다.")
+    public void inputNothing() {
+        //given
+        String userInput = ",,,";
+        List<String> carNames = SplitCarNames.splitCarNames(userInput);
+
+        //when, then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            InputFromUserValidator.checkCarNames(carNames);
         });
     }
 }
