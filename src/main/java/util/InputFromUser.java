@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class InputFromUser {
 
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputCarNames() {
         List<String> carNames = null;
