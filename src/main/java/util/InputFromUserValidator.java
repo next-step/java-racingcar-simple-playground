@@ -3,10 +3,13 @@ package util;
 import domain.Car;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class InputFromUserValidator {
 
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    private static final Pattern NUMBER_FORMAT = Pattern.compile("[+-]?\\d*\\.?\\d+");
+
 
     public static void checkCarNames(List<String> carNames) {
         checkIsCarExists(carNames);
@@ -29,7 +32,7 @@ public class InputFromUserValidator {
     }
 
     public static void checkExecutionsCount(String executionsCount) {
-        if (!executionsCount.matches("[+-]?\\d*\\.?\\d+")) {
+        if (!NUMBER_FORMAT.matcher(executionsCount).matches()) {
             throw new NumberFormatException("숫자가 아닙니다. 다시 입력해 주세요.");
         }
     }
