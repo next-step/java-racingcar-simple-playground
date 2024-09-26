@@ -1,5 +1,6 @@
 import domain.Car;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.CarsCreator;
@@ -22,8 +23,11 @@ public class CarsCreatorTest {
         //then
         // Assertions.assertThat(result).usingRecursiveAssertions().isEqualTo(expected); -> Fail
         // Q : usingRecursiveAssertion() vs usingRecursiveComparison()의 차이??
-        Assertions.assertThat(result.get(0).getCarName()).isEqualTo("car1");
-        Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(expected);
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(result.get(0).getCarName()).isEqualTo("car1");
+        softAssertions.assertThat(result).usingRecursiveComparison().isEqualTo(expected);
+
+        softAssertions.assertAll();
     }
 
 }
