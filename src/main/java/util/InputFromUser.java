@@ -8,24 +8,42 @@ public class InputFromUser {
     static Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputCarNames() {
-        try {
-            List<String> carNames = SplitCarNames.splitCarNames(scanner.nextLine());
-            InputFromUserValidator.checkCarNames(carNames);
-            return carNames;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputCarNames();
+        List<String> carNames = null;
+        boolean retry = true;
+        while (retry) {
+            carNames = SplitCarNames.splitCarNames(scanner.nextLine());
+            retry = splitAndCheckCarNames(carNames);
         }
+        return carNames;
     }
 
     public static int inputExecutionsCount() {
+        String executionsCount = null;
+        boolean retry = true;
+        while (retry) {
+            executionsCount = scanner.nextLine();
+            retry = checkIsValidExecutionsCount(executionsCount);
+        }
+        return Integer.parseInt(executionsCount);
+    }
+
+    private static boolean splitAndCheckCarNames(List<String> carNames) {
         try {
-            String executionsCount = scanner.nextLine();
+            InputFromUserValidator.checkCarNames(carNames);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
+
+    private static boolean checkIsValidExecutionsCount(String executionsCount) {
+        try {
             InputFromUserValidator.checkExecutionsCount(executionsCount);
-            return Integer.parseInt(executionsCount);
+            return false;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
-            return inputExecutionsCount();
+            return true;
         }
     }
 }
