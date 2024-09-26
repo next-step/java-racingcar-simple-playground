@@ -7,19 +7,19 @@ import view.RacingProceedingView;
 import java.util.List;
 
 public class RacingGame {
-
-    private final List<String> carNames;
     private final int executionsCount;
-    private final WinnerCarsSelector winnerCarsSelector = new WinnerCarsSelector();
-    private final ProceedingRacing proceedingRacing = new ProceedingRacing();
+    private final WinnerCarsSelector winnerCarsSelector;
+    private final ProceedingRacing proceedingRacing;
+    private final List<Car> cars;
 
     public RacingGame(final List<String> carNames, final int executionsCount) {
-        this.carNames = carNames;
         this.executionsCount = executionsCount;
+        this.cars = createCars(carNames);
+        this.winnerCarsSelector = new WinnerCarsSelector();
+        this.proceedingRacing = new ProceedingRacing();
     }
 
     public List<Car> start() {
-        List<Car> cars = createCars(carNames);
         RacingProceedingView.printTryingResult();
         startRacing(cars, executionsCount);
         return winnerCarsSelector.selectWinnerCars(cars);
