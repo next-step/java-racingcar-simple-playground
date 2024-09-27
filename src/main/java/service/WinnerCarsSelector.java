@@ -8,9 +8,9 @@ import java.util.List;
 public class WinnerCarsSelector {
 
     private int maxDistance = 0;
-    private List<Car> winnerCars = new ArrayList<Car>();
+    private List<String> winnerCars = new ArrayList<String>();
 
-    public List<Car> selectWinnerCars(List<Car> cars) {
+    public List<String> selectWinnerCars(List<Car> cars) {
         for (Car currentCar : cars) {
             judgeWinnerCar(currentCar);
         }
@@ -19,7 +19,7 @@ public class WinnerCarsSelector {
 
     private void judgeWinnerCar(Car currentCar) {
         if (isEqualToMaxDistance(currentCar)) {
-            winnerCars.add(currentCar);
+            winnerCars.add(currentCar.getCarName());
         }
         if (isBiggerThanMaxDistance(currentCar)) {
             updateWinnerStatus(currentCar);
@@ -36,7 +36,7 @@ public class WinnerCarsSelector {
 
     private void updateWinnerStatus(Car currentCar) {
         maxDistance = currentCar.getCurrentDistance();
-        winnerCars = new ArrayList<Car>(List.of(currentCar));
+        winnerCars = new ArrayList<String>(List.of(currentCar.getCarName()));
     }
 
 }

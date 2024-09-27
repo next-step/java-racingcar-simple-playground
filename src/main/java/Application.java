@@ -17,7 +17,7 @@ public class Application {
         final int executionsCount = InputFromUser.inputExecutionsCount();
 
         RacingGame racingGame = new RacingGame(carNames, executionsCount);
-        List<Car> winnerCars = racingGame.start();
+        List<String> winnerCars = racingGame.start();
 
         OutputView.printWinnerCarNames(winnerCars);
     }

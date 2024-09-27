@@ -20,7 +20,7 @@ public class RacingGame {
         this.proceedingRacing = new ProceedingRacing(new Riding());
     }
 
-    public List<Car> start() {
+    public List<String> start() {
         RacingProceedingView.printTryingResult();
         startRacing(cars, executionsCount);
         return winnerCarsSelector.selectWinnerCars(cars);
