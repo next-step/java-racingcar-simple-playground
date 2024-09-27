@@ -28,13 +28,13 @@ public class Main {
         List<Car> carList = creatObjectCars.createCarList(creatObjectCars.splitCarNames(carNamesStr));
 
         //시도할 횟수 입력받기
-        int n = inputView.askAttemptCount(scanner);
+        int raceCount = inputView.askAttemptCount(scanner);
 
         //"실행결과" 출력
         inputView.startPrintOutput();
 
         //게임실행
-        move.moveTurnAroundNTimes(n, carList, inputView);
+        move.moveTurnAroundNTimes(raceCount, carList, inputView);
 
         //게임결과 출력
         outPutView.PrintWhoIsWinner(carList);
