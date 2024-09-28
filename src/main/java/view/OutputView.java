@@ -4,8 +4,8 @@ import domain.Car;
 
 import java.util.List;
 
-public class ResultView {
-    public ResultView() {
+public class OutputView {
+    public OutputView() {
     }
 
     public void printWinners(List<Car> winners) {
@@ -19,5 +19,9 @@ public class ResultView {
         }
 
         System.out.println(carNames + "가 최종 우승했습니다");
+    }
+
+    public void printResult() {
+        System.out.println("\n실행결과");
     }
 }

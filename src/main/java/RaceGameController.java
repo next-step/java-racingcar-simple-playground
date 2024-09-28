@@ -3,18 +3,18 @@ import domain.Cars;
 import domain.RaceGame;
 import domain.RandomValueRule;
 import view.InputView;
-import view.ResultView;
+import view.OutputView;
 
 import java.util.List;
 
 public class RaceGameController {
 
     private final InputView inputView;
-    private final ResultView resultView;
+    private final OutputView outputView;
 
     public RaceGameController() {
         inputView = new InputView();
-        resultView = new ResultView();
+        outputView = new OutputView();
     }
 
     public void run() {
@@ -25,10 +25,11 @@ public class RaceGameController {
             Cars cars = Cars.from(carNames);
             final RaceGame raceGame = new RaceGame(cars, tryCount, new RandomValueRule());
 
+            outputView.printResult();
             raceGame.start();
 
 
-            resultView.printWinners(raceGame.getWinners());
+            outputView.printWinners(raceGame.getWinners());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
