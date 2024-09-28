@@ -20,7 +20,7 @@ public class Move {
     }
 
     //움직이는 코드
-    public void move(Car car) {
+    public void move1Space(Car car) {
         if (isMovable(getRandomValue())) {
             car.positionFoward(car.getPosition() + 1);
         }
@@ -29,7 +29,7 @@ public class Move {
     //n대의 자동차를 한 바퀴 게임 실행
     public void moveTurnAround(List<Car> carList) {
         for (Car car : carList) {
-            move(car);
+            move1Space(car);
         }
     }
 
