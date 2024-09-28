@@ -17,9 +17,9 @@ public class WinnerCarsTest {
         Car car1 = new Car("CarA");//객체 생성
         Car car2 = new Car("CarB");
         Car car3 = new Car("CarC");
-        car1.setPosition(1);//위치 설정
-        car2.setPosition(3);
-        car3.setPosition(3);
+        car1.positionFoward(1);//위치 설정
+        car2.positionFoward(3);
+        car3.positionFoward(3);
         List<Car> carList = new ArrayList<>();//리스트 생성
         carList.add(car1);//리스트에 객체 추가
         carList.add(car2);

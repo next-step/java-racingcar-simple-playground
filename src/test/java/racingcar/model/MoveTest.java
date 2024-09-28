@@ -1,22 +1,31 @@
 package racingcar.model;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoveTest {
-    @Test
-    @DisplayName("움직임 가능 여부 확인")
-    void TestIsntMovable(){
+    @ParameterizedTest
+    @ValueSource(ints={1,2,3})
+    @DisplayName("안 움직임")
+    void TestIsntMovable(final int moveValue){
         //Given
         Move move = new Move();
 
         //When & Then
-        assertFalse(move.isMovable(1));//안 움직임
-        assertFalse(move.isMovable(2));
-        assertFalse(move.isMovable(3));
-        assertTrue(move.isMovable(4));//움직임
-        assertTrue(move.isMovable(5));
-        assertTrue(move.isMovable(6));
+        assertFalse(move.isMovable(moveValue));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints={4,5,6})
+    @DisplayName("움직임")
+    void TestIsMovable(final int moveValue){
+        //Given
+        Move move = new Move();
+
+        //When & Then
+        assertTrue(move.isMovable(moveValue));
     }
 }
