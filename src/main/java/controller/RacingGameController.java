@@ -1,3 +1,5 @@
+package controller;
+
 import domain.car.Car;
 import domain.car.Cars;
 import domain.racegame.RacingGame;
@@ -87,7 +89,7 @@ public class RacingGameController {
         return raceCount;
     }
 
-    private void validateCarsName(String carsNameInput) {
+    public void validateCarsName(String carsNameInput) {
         String[] carNames = carsNameInput.split(",");
 
         for (String carName : carNames) {
@@ -97,7 +99,7 @@ public class RacingGameController {
         }
     }
 
-    private void validateRaceCount(int raceCount) {
+    public void validateRaceCount(int raceCount) {
 
         if (raceCount <= 0) {
             throw new IllegalArgumentException("레이스 횟수는 1 이상이어야 합니다.");
