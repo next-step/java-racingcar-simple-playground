@@ -17,7 +17,7 @@ public class Car {
         return position;
     }
 
-    public void setPosition(int positon) {
+    public void positionFoward(int positon) {
         this.position = positon;
     }
 }

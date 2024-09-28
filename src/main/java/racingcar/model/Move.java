@@ -22,7 +22,7 @@ public class Move {
     //움직이는 코드
     public void move(Car car) {
         if (isMovable(getRandomValue())) {
-            car.setPosition(car.getPosition() + 1);
+            car.positionFoward(car.getPosition() + 1);
         }
     }
 
