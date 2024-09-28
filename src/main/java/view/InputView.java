@@ -22,16 +22,6 @@ public class InputView {
 //        return Arrays.stream(names).map(name-> CarName.stringToName(name)).toList();
 //        return Arrays.stream(names).map(CarName::stringToName).toList();
         return Arrays.stream(names).map(CarName::from).collect(Collectors.toList());
-
-//        List<CarName> carNames = new ArrayList<>();
-//
-////        carNames.stream().map(CarName.stringToName());
-//        for (String name : names) {
-//            carNames.add(CarName.stringToName(name));
-//        }
-
-//        return carNames;
-
     }
 
     public int getTryCount() {
