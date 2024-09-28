@@ -1,7 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RaceGame {
 
@@ -19,8 +19,6 @@ public class RaceGame {
     }
 
     public void start() {
-        System.out.println("\n실행결과");
-
         for (int i = 0; i < count; i++) {
             moveOneCycle();
             showOneCycleResult();
@@ -49,15 +47,10 @@ public class RaceGame {
 
 
     public List<Car> getWinners() {
-        List<Car> winners = new ArrayList<Car>();
-
-        for (Car participant : participants.getCars()) {
-            if (maxLength == participant.getLocation()) {
-                winners.add(participant);
-            }
-        }
-
-        return winners;
+        return participants.getCars()
+                .stream()
+                .filter(p -> p.getLocation() == maxLength)
+                .collect(Collectors.toList());
     }
 
 }
