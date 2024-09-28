@@ -18,7 +18,7 @@ public class MainTest {
 
         // When: askCarNames 메서드를 호출
         InputView inputView = new InputView();
-        String carNamesStr = inputView.askCarNames(scanner);
+        String carNamesStr = inputView.askCarNames();
 
         // Then: 입력받은 값이 예상대로 저장되었는지 확인
         assertEquals("CarA,CarB,CarC", carNamesStr);
