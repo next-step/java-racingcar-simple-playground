@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RaceGame {
 
@@ -19,30 +20,38 @@ public class RaceGame {
 
     public void start() {
         System.out.println("\n실행결과");
-        for (int i = 0; i < count; i++) {
-            for (Car participant: participants.getCars()) {
-                if (rule.canGo()) {
-                    participant.move();
 
-                    if (participant.getLocation() > maxLength) {
-                        maxLength = participant.getLocation();
-                    }
+        for (int i = 0; i < count; i++) {
+            moveOneCycle();
+            showOneCycleResult();
+        }
+    }
+
+    private void moveOneCycle() {
+        for (Car participant : participants.getCars()) {
+            if (rule.canGo()) {
+                participant.move();
+
+                if (participant.getLocation() > maxLength) {
+                    maxLength = participant.getLocation();
                 }
             }
-
-            for (Car participant: participants.getCars()) {
-                String position = "-".repeat(participant.getLocation());
-                System.out.println(participant.getName().getValue() + " : " + position);
-            }
-            System.out.println();
         }
+    }
+
+    private void showOneCycleResult() {
+        for (Car participant : participants.getCars()) {
+            String position = "-".repeat(participant.getLocation());
+            System.out.println(participant.getName().getValue() + " : " + position);
+        }
+        System.out.println();
     }
 
 
     public List<Car> getWinners() {
         List<Car> winners = new ArrayList<Car>();
 
-        for(Car participant: participants.getCars()) {
+        for (Car participant : participants.getCars()) {
             if (maxLength == participant.getLocation()) {
                 winners.add(participant);
             }
