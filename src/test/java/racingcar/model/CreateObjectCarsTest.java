@@ -1,16 +1,16 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class CreateObjectCarsTest {
     @Test
-    @DisplayName("차 이름 문자열을 배열로 잘 저장하는 지 확인")
-    void TestSplitCarNames() {
+    void 차_이름_문자열을_배열로_잘_저장하는_지_확인() {
         //Given
         CreateObjectCars createObjectCars = new CreateObjectCars();
         String carNamesStr = "CarA,CarB,CarC";
@@ -26,8 +26,7 @@ public class CreateObjectCarsTest {
     }
 
     @Test
-    @DisplayName("자동차 객체 생성 및 리스트에 저장이 되었는 지 확인")
-    void TestCreateCarList() {
+    void 자동차_객체_생성_및_리스트에_저장이_되었는_지_확인() {
         //Given
         CreateObjectCars createObjectCars = new CreateObjectCars();
         String[] carNamesArr = {"CarA", "CarB", "CarC"};
@@ -43,8 +42,7 @@ public class CreateObjectCarsTest {
     }
 
     @Test
-    @DisplayName("글자수가 5자 이하일 때 글자수 제한 오류 발생 여부")
-    void NonNameLenghtError() {
+    void 글자수가_5자_이하일_때_글자수_제한_오류_발생_안_함() {
         //Given
         String carName = "carA";
         CreateObjectCars createObjectCars = new CreateObjectCars();
@@ -54,8 +52,7 @@ public class CreateObjectCarsTest {
     }
 
     @Test
-    @DisplayName("글자수가 n자 초과일 때 글자수 제한 오류 발생 여부")
-    void nameLenghtError() {
+    void 글자수가_n자_초과일_때_글자수_제한_오류_발생함() {
         //Given
         String carName = "carABC";
         CreateObjectCars createObjectCars = new CreateObjectCars();

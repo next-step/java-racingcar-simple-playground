@@ -2,17 +2,19 @@ package racingcar.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-
+@SuppressWarnings("NonAsciiCharacters")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class WinnerCarsTest {
     @Test
-    @DisplayName("우승카 리스트 만들기")
-    void WinnerCarsTest() {
+    void 우승카_리스트_만들기() {
         //given
         Car car1 = new Car("CarA");//객체 생성
         Car car2 = new Car("CarB");
