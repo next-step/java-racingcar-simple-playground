@@ -4,9 +4,11 @@ import java.util.*;
 
 public class RandomNumberGenerateStrategy implements NumberGenerateStrategy {
 
+    private final Random random = new Random();
+    public static final int RANDOM_VALUE_MAX = 10;
+
     @Override
     public int generate() {
-        final Random random = new Random();
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_VALUE_MAX);
     }
 }
