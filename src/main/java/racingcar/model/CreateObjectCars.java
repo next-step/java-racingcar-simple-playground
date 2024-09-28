@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateObjectCars {
-    String splitSign=",";
+    private final String splitSign=",";
+    private final int lengthLimit=5;
     //<메소드>
     //문자열 잘라서 배열에 넣기
     public String[] splitCarNames(String carNamesStr) {
@@ -25,9 +26,11 @@ public class CreateObjectCars {
 
      //자동차 이름 글자수 제한
     public void carNameLengthLimit(String carName) {
-        int lengthLimit=5;
         if (carName.length() > lengthLimit) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다. 프로그램을 종료합니다.");
+        }
+        if(carName.isEmpty()){
+            throw new IllegalArgumentException("자동차 이름에 아무값도 들어가지 않았습니다. 프로그램을 종료합니다.");
         }
     }
 }
