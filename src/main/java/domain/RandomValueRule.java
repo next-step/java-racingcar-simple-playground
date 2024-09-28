@@ -1,15 +1,16 @@
 package domain;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomValueRule implements Rule {
-    private final Random rd;
+    private final ThreadLocalRandom rd;
+    private static final int RANDOM_BOUND = 10;
 
     public RandomValueRule() {
-        rd = new Random();
+        rd = ThreadLocalRandom.current();
     }
 
     public boolean canGo() {
-        return rd.nextInt(10) >= 4;
+        return rd.nextInt(RANDOM_BOUND) >= 4;
     }
 }
