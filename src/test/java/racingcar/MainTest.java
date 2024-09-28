@@ -1,6 +1,8 @@
 package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import racingcar.view.InputView;
 
@@ -10,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
     @Test
-    @DisplayName("차 이름 string이 제대로 저장되었는 지 확인")
+    //@DisplayName("차 이름 string이 제대로 저장되었는 지 확인")
     void saveCarStr() {
         // Given: 모의 입력 값을 설정
         String input = "CarA,CarB,CarC";
