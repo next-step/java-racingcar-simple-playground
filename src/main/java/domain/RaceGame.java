@@ -5,13 +5,13 @@ import java.util.stream.Collectors;
 
 public class RaceGame {
 
-    private final Cars participants;
+    private final List<Car> participants;
     private final int count;
     private int maxLength;
     private final Rule rule;
 
 
-    public RaceGame(Cars cars, int tryCount, Rule rules) {
+    public RaceGame(List<Car> cars, int tryCount, Rule rules) {
         this.participants = cars;
         this.count = tryCount;
         this.maxLength = 0;
@@ -26,7 +26,7 @@ public class RaceGame {
     }
 
     private void moveOneCycle() {
-        for (Car participant : participants.getCars()) {
+        for (Car participant : participants) {
             if (rule.canGo()) {
                 participant.move();
 
@@ -38,7 +38,7 @@ public class RaceGame {
     }
 
     private void showOneCycleResult() {
-        for (Car participant : participants.getCars()) {
+        for (Car participant : participants) {
             String position = "-".repeat(participant.getLocation());
             System.out.println(participant.getName().getValue() + " : " + position);
         }
@@ -47,7 +47,7 @@ public class RaceGame {
 
 
     public List<Car> getWinners() {
-        return participants.getCars()
+        return participants
                 .stream()
                 .filter(p -> p.getLocation() == maxLength)
                 .collect(Collectors.toList());

@@ -1,11 +1,12 @@
+import domain.Car;
 import domain.CarName;
-import domain.Cars;
 import domain.RaceGame;
 import domain.RandomValueRule;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RaceGameController {
 
@@ -22,7 +23,7 @@ public class RaceGameController {
             List<CarName> carNames = inputView.getCarsName();
             int tryCount = inputView.getTryCount();
 
-            Cars cars = Cars.from(carNames);
+            List<Car> cars = carNames.stream().map(Car::new).collect(Collectors.toList());
             final RaceGame raceGame = new RaceGame(cars, tryCount, new RandomValueRule());
 
             outputView.printResult();
