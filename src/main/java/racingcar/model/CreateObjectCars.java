@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateObjectCars {
+    String splitSign=",";
     //<메소드>
     //문자열 잘라서 배열에 넣기
     public String[] splitCarNames(String carNamesStr) {
-        String[] carNamesArr = carNamesStr.split(",");
+        String[] carNamesArr = carNamesStr.split(splitSign);
         return carNamesArr;
     }
 
