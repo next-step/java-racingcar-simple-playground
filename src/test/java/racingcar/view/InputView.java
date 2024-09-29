@@ -1,19 +1,17 @@
-package racingcar;
+package racingcar.view;
 
 import org.junit.jupiter.api.Test;
-import racingcar.view.InputView;
 
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MainTest {
+public class InputView {
     @Test
-    //@DisplayName("차 이름 string이 제대로 저장되었는 지 확인")
-    void saveCarStr() {
-        // Given: 모의 입력 값을 설정
+    void 차_이름_string이_제대로_저장되었는_지_확인() {
+        // Given
         String input = "CarA,CarB,CarC";
-        Scanner scanner = new Scanner(input);
+        Scanner scanner= new Scanner;
 
         // When: askCarNames 메서드를 호출
         InputView inputView = new InputView();
