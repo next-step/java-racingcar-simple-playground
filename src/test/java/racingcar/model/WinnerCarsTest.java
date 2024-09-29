@@ -1,7 +1,6 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -28,10 +27,14 @@ public class WinnerCarsTest {
         carList.add(car3);
         WinnerCars winnerCars = new WinnerCars(carList);//객체 생성
 
-        //When & Then
+        //When
         List<Car> winningCars = winnerCars.getWinningCars();
-        Assertions.assertThat(winningCars).hasSize(2);
-        Assertions.assertThat(winningCars).contains(car2, car3);
-        Assertions.assertThat(winningCars).doesNotContain(car1);
+
+        //Then
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(winningCars).hasSize(2);
+        softly.assertThat(winningCars).contains(car2, car3);
+        softly.assertThat(winningCars).doesNotContain(car1);
+        softly.assertAll();
     }
 }

@@ -1,13 +1,11 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SuppressWarnings("NonAsciiCharacters")
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+
 public class CreateObjectCarsTest {
     @Test
     void 차_이름_문자열을_배열로_잘_저장하는_지_확인() {
@@ -17,12 +15,14 @@ public class CreateObjectCarsTest {
 
         //When
         String[] carNamesArr = createObjectCars.splitCarNames(carNamesStr);
+        SoftAssertions softly = new SoftAssertions();
 
         //Then
-        assertEquals(3, carNamesArr.length);
-        assertEquals("CarA", carNamesArr[0]);
-        assertEquals("CarB", carNamesArr[1]);
-        assertEquals("CarC", carNamesArr[2]);
+        softly.assertThat(carNamesArr.length).isEqualTo(3);
+        softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
+        softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
+        softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
+
     }
 
     @Test
@@ -33,12 +33,13 @@ public class CreateObjectCarsTest {
 
         //When
         List<Car> carList = createObjectCars.createCarList(carNamesArr);
+        SoftAssertions softly = new SoftAssertions();
 
         //Then
-        assertEquals(3, carNamesArr.length);
-        assertEquals("CarA", carNamesArr[0]);
-        assertEquals("CarB", carNamesArr[1]);
-        assertEquals("CarC", carNamesArr[2]);
+        softly.assertThat(carNamesArr.length).isEqualTo(3);
+        softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
+        softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
+        softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
     }
 
     @Test
