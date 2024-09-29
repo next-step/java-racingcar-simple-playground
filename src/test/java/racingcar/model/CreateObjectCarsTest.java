@@ -1,12 +1,11 @@
 package racingcar.model;
 
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class CreateObjectCarsTest {
@@ -62,8 +61,8 @@ public class CreateObjectCarsTest {
         CreateObjectCars createObjectCars = new CreateObjectCars();
 
         //When & Then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> createObjectCars.carNameLengthLimit(carName));
-        //Then
-        assertEquals("자동차 이름은 5자 이하만 가능합니다. 프로그램을 종료합니다.", exception.getMessage());
+        Assertions.assertThatThrownBy(() -> createObjectCars.carNameLengthLimit(carName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 5자 이하만 가능합니다. 프로그램을 종료합니다.");
     }
 }

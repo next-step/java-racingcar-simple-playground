@@ -9,14 +9,11 @@ import racingcar.view.OutputView;
 import java.util.List;
 
 public class Main {
-    //<필드>
     private static InputView inputView = new InputView();
     private static OutputView outputView = new OutputView();
     private static Move move = new Move();
 
-    //<메인 메소드>
     public static void main(String[] args) {
-
 
         //자동차이름 문자열 입력받기
         String carNamesStr = inputView.askCarNames();
