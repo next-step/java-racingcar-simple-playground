@@ -11,10 +11,9 @@ public class OutputView {
     public void PrintWhoIsWinner(List<Car> carList) {
         WinnerCars winnerCars = new WinnerCars(carList);
 
-        List<Car> maxCarList = winnerCars.getWinningCars();
-        List<String> carNames = maxCarList.stream().map(Car::getName).toList();// Car 객체에서 이름을 추출
-        String maxCarStr = String.join(", ", carNames);
+        List<Car> winningCarList = winnerCars.getWinningCars();
+        String winningCars= winnerCars.WinnersCarsFromListToStr(winningCarList);
         
-        System.out.println(maxCarStr + "가 최종 우승했습니다.");
+        System.out.println(winningCars + "가 최종 우승했습니다.");
     }
 }

@@ -16,13 +16,19 @@ public class WinnerCars {
                 .max()
                 .orElse(0);
         //맥스값 가지고 있는 차 찾기
-        List<Car> maxCarList = new ArrayList<>();
+        List<Car> winningCarList = new ArrayList<>();
         for (Car car : carList) {
             if (car.getPosition() == max) {
-                maxCarList.add(car);
+                winningCarList.add(car);
             }
         }
-        this.winningCars = maxCarList;
+        this.winningCars = winningCarList;
+    }
+
+    public String WinnersCarsFromListToStr(List<Car> winningCarList){
+        List<String> carNames = winningCarList.stream().map(Car::getName).toList();// Car 객체에서 이름을 추출
+        String winningCarStr = String.join(", ", carNames);
+        return winningCarStr;
     }
 
     //<생성자>
