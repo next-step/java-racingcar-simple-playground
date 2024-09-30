@@ -18,7 +18,7 @@ public class OutputView {
         }
     }
 
-    public static String getPositionFormat(final int position) {
+    private static String getPositionFormat(final int position) {
         final StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < position; i++) {
             stringBuilder.append("-");
@@ -34,35 +34,4 @@ public class OutputView {
         final String winningCarNames = String.join(", ", carNames); // 우승한 이름을 출력 ","로 함께
         System.out.printf("%s가 최종 우승했습니다.\n", winningCarNames);
     }
-
 }
-
-
-
-
-
-//neo : -
-//brie : -
-//brown : -
-//
-//neo : --
-//brie : -
-//brown : --
-//
-//neo : ---
-//brie : --
-//brown : ---
-//
-//neo : ----
-//brie : ---
-//brown : ----
-//
-//neo : -----
-//brie : ----
-//brown : -----
-//
-//neo : -----
-//brie : ----
-//brown : -----
-//
-//neo, brown 가 최종 우승했습니다.
