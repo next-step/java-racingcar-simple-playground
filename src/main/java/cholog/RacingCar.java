@@ -2,25 +2,22 @@ public class RacingCar {
   private String name;
 
   public RacingCar(String name) {
-    this.name = name;
+    setName(name);
   }
 
-  public void moveByRandom(){
-    int random = (int) (Math.random() * 10);
+  public String moveByRandom(int random){
     if (random >= 4){
-      go();
+      return go();
     }
-    if (random < 4){
-      stop();
-    }
+    return stop();
   }
 
-  public void go(){
-    System.out.println(name + " goes forward");
+  private String go(){
+    return name + " goes forward";
   }
 
-  public void stop(){
-    System.out.println(name + " stops");
+  private String stop(){
+    return name + " stops";
   }
 
   public String getName() {
@@ -28,6 +25,9 @@ public class RacingCar {
   }
 
   public void setName(String name) {
+    if (name == null || name.trim().isEmpty()) {
+      throw new IllegalArgumentException("Racing car name cannot be empty");
+    }
     this.name = name;
   }
 }
