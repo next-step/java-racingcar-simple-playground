@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.*;
+
+import java.util.Random;
 
 public class RandomNumberGenerateStrategy implements NumberGenerateStrategy {
 
