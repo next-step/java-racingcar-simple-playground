@@ -7,17 +7,9 @@ public class RacingCar {
 
   public String moveByRandom(int random){
     if (random >= 4){
-      return go();
+      return "go";
     }
-    return stop();
-  }
-
-  private String go(){
-    return name + " goes forward";
-  }
-
-  private String stop(){
-    return name + " stops";
+    return "stop";
   }
 
   public String getName() {

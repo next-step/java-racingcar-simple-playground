@@ -1,7 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -26,7 +25,7 @@ public class TestRacingCar {
 
       //when
       String actual = racingCar.moveByRandom(random);
-      String expected = racingCar.getName() + " goes forward";
+      String expected = "go";
 
       //then
       assertThat(actual).isEqualTo(expected);
@@ -39,7 +38,7 @@ public class TestRacingCar {
 
       //when
       String actual = racingCar.moveByRandom(random);
-      String expected = racingCar.getName() + " stops";
+      String expected = "stop";
 
       //then
       assertThat(actual).isEqualTo(expected);
@@ -49,7 +48,7 @@ public class TestRacingCar {
     public void testValidName(){
       //given
 
-      //when
+      //when racingCar.getName() + " stops"
 
       //then
       assertThatThrownBy(() -> {
