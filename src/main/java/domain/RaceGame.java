@@ -32,12 +32,13 @@ public class RaceGame {
     }
 
     private void moveParticipantCar(Car participant) {
-        if (rule.canGo()) {
-            participant.move();
+        if (!rule.canGo()) {
+            return;
+        }
 
-            if (participant.getLocation() > maxLength) {
-                maxLength = participant.getLocation();
-            }
+        participant.move();
+        if (participant.getLocation() > maxLength) {
+            maxLength = participant.getLocation();
         }
     }
 
