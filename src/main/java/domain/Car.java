@@ -1,13 +1,11 @@
 package domain;
 
-// 차량의 이름, 차량의 위치를 가져야 함.
 public class Car {
-    // 자동차의 이름(name)과 위치(position)를 나타내는 변수
+
     private final NumberGenerateStrategy strategy;
     private final CarName name;
     private int position;
 
-    // 생성자(constructor)
     public Car(final NumberGenerateStrategy strategy, final String name) {
         this(strategy, name, 0);
     }
@@ -27,8 +25,8 @@ public class Car {
         }
     }
 
-    public boolean isPositionSame(final int position) {
-        return this.position == position;
+    public boolean isPositionSame(final Car other) {
+        return this.position == other.position;
     }
 
     public String getName() {
@@ -38,7 +36,4 @@ public class Car {
     public int getPosition() {
         return position;
     }
-
-
 }
-
