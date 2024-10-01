@@ -36,4 +36,8 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public void test() {
+        return;
+    }
 }
