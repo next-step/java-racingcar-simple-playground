@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class RacingContest {
-  private static final Random random = new Random(); //테스트를 위해 랜덤 숫자를 구하는 기능은 외부에 있어야 할까?
+  private static final Random random = new Random();
   private final RacingCar[] RACING_CARS;
   private final int rounds;
 

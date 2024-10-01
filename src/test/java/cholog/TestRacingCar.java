@@ -47,7 +47,7 @@ public class TestRacingCar {
   public void testValidName(){
     //given
 
-    //when racingCar.getName() + " stops"
+    //when
 
     //then
     assertThatThrownBy(() -> {
