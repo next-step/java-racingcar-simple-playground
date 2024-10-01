@@ -5,11 +5,11 @@ public class RacingCar {
     setName(name);
   }
 
-  public String moveByRandom(int random){
+  public int moveByRandom(int random){
     if (random >= 4){
-      return "go";
+      return 1; //go
     }
-    return "stop";
+    return 0;   //stop
   }
 
   public String getName() {

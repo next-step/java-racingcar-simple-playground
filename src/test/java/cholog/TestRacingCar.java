@@ -8,52 +8,50 @@ import org.junit.jupiter.api.Test;
 
 public class TestRacingCar {
 
-  @Nested
-  public class moveByRandom{
-    private RacingCar racingCar;
+  private RacingCar racingCar;
 
-    @BeforeEach
-    void setUp() {
-      racingCar = new RacingCar("myRacingCar");
-    }
+  @BeforeEach
+  void setUp() {
+    racingCar = new RacingCar("myRacingCar");
+  }
 
-    @Test
-    @DisplayName("레이싱카 전진 확인")
-    public void testGo(){
-      //given
-      int random = 9;
+  @Test
+  @DisplayName("레이싱카 전진 확인")
+  public void testGo(){
+    //given
+    int random = 9;
 
-      //when
-      String actual = racingCar.moveByRandom(random);
-      String expected = "go";
+    //when
+    int actual = racingCar.moveByRandom(random);
+    int expected = 1;
 
-      //then
-      assertThat(actual).isEqualTo(expected);
-    }
-    @Test
-    @DisplayName("레이싱카 정지 확인")
-    public void testStop(){
-      //given
-      int random = 0;
+    //then
+    assertThat(actual).isEqualTo(expected);
+  }
+  @Test
+  @DisplayName("레이싱카 정지 확인")
+  public void testStop(){
+    //given
+    int random = 0;
 
-      //when
-      String actual = racingCar.moveByRandom(random);
-      String expected = "stop";
+    //when
+    int actual = racingCar.moveByRandom(random);
+    int expected = 0;
 
-      //then
-      assertThat(actual).isEqualTo(expected);
-    }
-    @Test
-    @DisplayName("레이싱카의 이름이 유효하지 않을 시 에러 발생")
-    public void testValidName(){
-      //given
+    //then
+    assertThat(actual).isEqualTo(expected);
+  }
 
-      //when racingCar.getName() + " stops"
+  @Test
+  @DisplayName("레이싱카의 이름이 유효하지 않을 시 에러 발생")
+  public void testValidName(){
+    //given
 
-      //then
-      assertThatThrownBy(() -> {
-        racingCar.setName(null);
-      }).isInstanceOf(IllegalArgumentException.class);
-    }
+    //when racingCar.getName() + " stops"
+
+    //then
+    assertThatThrownBy(() -> {
+      racingCar.setName(null);
+    }).isInstanceOf(IllegalArgumentException.class);
   }
 }
