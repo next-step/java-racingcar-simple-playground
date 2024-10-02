@@ -14,6 +14,11 @@ dependencies {
     testImplementation platform('org.assertj:assertj-bom:3.25.1')
     testImplementation('org.junit.jupiter:junit-jupiter')
     testImplementation('org.assertj:assertj-core')
+
+    // Mockito 의존성
+    testImplementation 'org.mockito:mockito-core:5.0.0'
+    // AssertJ 의존성
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 test {
