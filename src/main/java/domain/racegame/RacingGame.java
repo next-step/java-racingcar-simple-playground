@@ -2,21 +2,26 @@ package domain.racegame;
 
 import domain.car.Cars;
 
+import java.util.List;
+
 public class RacingGame {
 
     private final Cars cars;
     private final int raceCount;
     private int currentRound = 0;
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private final MoveStrategy moveStrategy = new RandomMoveStrategy();
 
     public RacingGame(Cars cars, int raceCount) {
         this.cars = cars;
+
+        if (raceCount < 1) {
+            throw new IllegalArgumentException("레이스 횟수는 1회 이상이어야 합니다.");
+        }
+
         this.raceCount = raceCount;
     }
 
-    public void playOneRoundRace() {
-        cars.raceOneRound(moveStrategy, randomNumberGenerator);
+    public void playOneRoundRace(MoveStrategy moveStrategy) {
+        cars.raceOneRound(moveStrategy);
         currentRound++;
     }
 
@@ -24,8 +29,8 @@ public class RacingGame {
         return currentRound < raceCount;
     }
 
-    public String getWinners() {
-        return String.join(",", cars.findWinners());
+    public List<String> getWinners() {
+        return cars.findWinners();
     }
 
 }
