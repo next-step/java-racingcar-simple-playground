@@ -1,117 +1,46 @@
 package controller;
 
-import domain.car.Car;
+import domain.car.CarMapper;
 import domain.car.Cars;
+import domain.racegame.MoveStrategy;
 import domain.racegame.RacingGame;
 import view.InputView;
 import view.ResultView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class RacingGameController {
 
-    private final InputView inputView;
-    private final ResultView resultView;
+    private final MoveStrategy moveStrategy;
 
-    public RacingGameController(InputView inputView, ResultView resultView) {
-        this.inputView = inputView;
-        this.resultView = resultView;
+    public RacingGameController(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
     }
 
-    public void racingStart() {
+    public void racingApplication() {
 
-        String carsNameInput = inputCarsNameFromUser();
-        int raceCount = inputRaceCountFromUser();
+        String carsNameInput = InputView.inputCarsNameFromUser();
+        Cars cars = CarMapper.transformCarsNameListToCars(carsNameInput);
 
-        List<Car> carsList = createCars(carsNameInput);
-        Cars cars = new Cars(carsList);
+        int raceCount = InputView.inputRaceCountFromUser();
 
         RacingGame racingGame = new RacingGame(cars, raceCount);
 
-        resultView.printExecutionResultsMessage();
+        ResultView.printExecutionResultsMessage();
+
+        startRacing(racingGame, cars);
+
+        List<String> winners = racingGame.getWinners();
+        ResultView.printWinners(winners);
+    }
+
+    private void startRacing(RacingGame racingGame, Cars cars) {
 
         while (racingGame.isRaceOngoing()) {
-            racingGame.playOneRoundRace();
-            resultView.printRaceResult(cars);
+            racingGame.playOneRoundRace(moveStrategy);
+            ResultView.printRaceResult(cars);
         }
 
-        String winners = racingGame.getWinners();
-        resultView.printWinners(winners);
-    }
-
-    private String inputCarsNameFromUser() {
-        while (true) {
-            try {
-                inputView.printCarsNameInputSentence();
-
-                String carsNameInput = inputCarsName();
-                validateCarsName(carsNameInput);
-
-                return carsNameInput;
-
-            } catch (IllegalArgumentException e) {
-                inputView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private int inputRaceCountFromUser() {
-        while (true) {
-            try {
-                inputView.printRaceCountInputSentence();
-
-                int raceCount = inputRaceCnt();
-                validateRaceCount(raceCount);
-
-                return raceCount;
-
-            } catch (IllegalArgumentException e) {
-                inputView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private String inputCarsName() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
-    private int inputRaceCnt() {
-        Scanner scanner = new Scanner(System.in);
-
-        if (!scanner.hasNextInt()) {
-            throw new IllegalArgumentException("레이스 횟수는 정수여야 합니다.");
-        }
-
-        int raceCount = scanner.nextInt();
-        return raceCount;
-    }
-
-    public void validateCarsName(String carsNameInput) {
-        String[] carNames = carsNameInput.split(",");
-
-        for (String carName : carNames) {
-            if (carName.length() > 5 || carName.isBlank()) {
-                throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
-            }
-        }
-    }
-
-    public void validateRaceCount(int raceCount) {
-
-        if (raceCount <= 0) {
-            throw new IllegalArgumentException("레이스 횟수는 1 이상이어야 합니다.");
-        }
-
-    }
-
-    private List<Car> createCars(String carsNameInput) {
-
-        return Arrays.stream(carsNameInput.split(","))
-                .map(Car::new)
-                .toList();
     }
 
 }
