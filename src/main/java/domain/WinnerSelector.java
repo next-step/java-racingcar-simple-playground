@@ -12,9 +12,17 @@ public class WinnerSelector {
     public List<String> getWinners(List<Car> cars){
         int winnerPosition = findWinnerPosition(cars);
 
+        /*
         for(Car car : cars){
             addWinner(car,winnerPosition);
         }
+        */
+
+
+        winners = cars.stream()
+                .filter(car -> car.getPosition() == winnerPosition)
+                .map(Car::getName)
+                .toList();
 
         return winners;
     }

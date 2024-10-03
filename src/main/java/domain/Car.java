@@ -6,8 +6,7 @@ public class Car {
 
     //실제 사용되는 생성자
     public Car(String name) {
-        this.name = name;
-        position = 0;
+        this(name,0);
     }
 
     //단위 테스트를 위한 생성자

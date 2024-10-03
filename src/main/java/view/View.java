@@ -15,7 +15,17 @@ public class View {
 
     public static int inputTryCount(){
         System.out.println("시도할 회수는 몇회인가요?");
-        return input.nextInt();
+
+        int tryCount = input.nextInt();
+        checkNum(tryCount);
+
+        return tryCount;
+    }
+
+    private static void checkNum(int tryCount){
+        if(tryCount<1){
+            throw new IllegalArgumentException("시도 횟수는 자연수만 가능합니다.");
+        }
     }
 
     public static void printRacingGame(List<Car> cars){
