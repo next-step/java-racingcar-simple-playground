@@ -1,8 +1,6 @@
 package domain.car;
 
 import domain.racegame.MoveStrategy;
-import domain.racegame.RandomNumberGenerator;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,12 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class CarsTest {
 
+    private MoveStrategy moveStrategy;
     private Car car1;
     private Car car2;
     private Car car3;
@@ -20,46 +22,80 @@ class CarsTest {
     private final int fixedRandomNumber = 5;
 
     @BeforeEach
-    void setUp() {
-        car1 = new Car("goldmong");
+    public void setUp() {
+
+        car1 = new Car("mong");
         car2 = new Car("ruka");
-        car3 = new Car("kokodak");
+        car3 = new Car("dak");
 
         cars = new Cars(Arrays.asList(car1, car2, car3));
     }
 
     @Test
-    @DisplayName("랜덤 숫자에 관계 없이 모든 자동차들은 움직인다.")
-    void raceOneRoundTest_WhenMoveStrategyReturnTrue() {
-        MoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
+    @DisplayName("자동차 수가 1대 이하일 경우 예외가 발생한다.")
+    public void shouldThrowException_WhenInputInvalidCarCount() {
 
-        cars.raceOneRound(alwaysMoveStrategy, new RandomNumberGenerator());
-
-        Assertions.assertEquals(1, car1.getCarPosition());
-        Assertions.assertEquals(1, car2.getCarPosition());
-        Assertions.assertEquals(1, car3.getCarPosition());
+        assertThatThrownBy(() -> new Cars(Arrays.asList(new Car("abc"))))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 수는 최소 2대여야 합니다.");
     }
 
     @Test
-    @DisplayName("랜덤 숫자에 관계 없이 모든 자동차들은 움직이지 않는다.")
-    void raceOneRoundTest_WhenMoveStrategyReturnFalse() {
+    @DisplayName("모든 자동차가 조건에 관계없이 한 번씩 이동한다.")
+    public void testOneRoundRace_WhenMoveStrategyReturnTrue() {
+
+        MoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
+
+        cars.raceOneRound(alwaysMoveStrategy);
+
+        assertThat(car1.getCarPosition()).isEqualTo(1);
+        assertThat(car2.getCarPosition()).isEqualTo(1);
+        assertThat(car3.getCarPosition()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("모든 자동차가 조건에 관계없이 이동하지 않는다.")
+    public void testOneRoundRace_WhenMoveStrategyReturnFalse() {
         MoveStrategy neverMoveStrategy = new NeverMoveStrategy();
 
-        cars.raceOneRound(neverMoveStrategy, new RandomNumberGenerator());
+        cars.raceOneRound(neverMoveStrategy);
 
-        Assertions.assertEquals(0, car1.getCarPosition());
-        Assertions.assertEquals(0, car2.getCarPosition());
-        Assertions.assertEquals(0, car3.getCarPosition());
+        assertThat(car1.getCarPosition()).isEqualTo(0);
+        assertThat(car2.getCarPosition()).isEqualTo(0);
+        assertThat(car3.getCarPosition()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("최대 위치를 가진 자동차의 위치를 반환한다.")
+    public void testGetMaxPosition_WhenCarsHaveDifferentPositions() {
+        car1.move(new AlwaysMoveStrategy(), 5);
+        car2.move(new AlwaysMoveStrategy(), 5);
+        car2.move(new AlwaysMoveStrategy(), 5);
+
+        int maxPosition = cars.getMaxPosition();
+
+        assertThat(maxPosition).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("자동차의 위치가 모두 같을 때, 동일한 최대 위치를 반환한다.")
+    public void testGetMaxPosition_WhenAllCarsHaveSamePosition() {
+        car1.move(new AlwaysMoveStrategy(), 5);
+        car2.move(new AlwaysMoveStrategy(), 5);
+        car3.move(new AlwaysMoveStrategy(), 5);
+
+        int maxPosition = cars.getMaxPosition();
+
+        assertThat(maxPosition).isEqualTo(1);
     }
 
     @Test
     @DisplayName("제일 많이 이동한 자동차, 즉 우승자를 찾는다.")
-    void findWinnersTest_WhenOneCarHasMaxPosition() {
+    public void testFindWinners_WhenOneCarHasMaxPosition() {
         MoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
 
-        //모든 자동차들은 fixedRandomNumber와 관계 없이 항상 움직임
         car1.move(alwaysMoveStrategy, fixedRandomNumber);
-
         car2.move(alwaysMoveStrategy, fixedRandomNumber);
         car2.move(alwaysMoveStrategy, fixedRandomNumber);
 
@@ -67,13 +103,14 @@ class CarsTest {
 
         List<String> winners = cars.findWinners();
 
-        Assertions.assertEquals(1, winners.size());
-        Assertions.assertTrue(winners.contains("ruka"));
+        assertThat(winners.size()).isEqualTo(1);
+        assertThat(winners.contains("ruka")).isTrue();
+
     }
 
     @Test
     @DisplayName("자동차의 위치가 모두 같을 때, 모두 우승자로 선정된다.")
-    void findWinnersTest_WhenCarsHaveSameMaxPosition() {
+    public void testFindWinners_WhenCarsHaveSameMaxPosition() {
 
         MoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
 
@@ -83,9 +120,12 @@ class CarsTest {
 
         List<String> winners = cars.findWinners();
 
-        Assertions.assertEquals(3, winners.size());
-        Assertions.assertTrue(winners.contains("goldmong"));
-        Assertions.assertTrue(winners.contains("ruka"));
-        Assertions.assertTrue(winners.contains("kokodak"));
+        assertThat(winners.size()).isEqualTo(3);
+        assertThat(winners.contains("mong")).isTrue();
+        assertThat(winners.contains("ruka")).isTrue();
+        assertThat(winners.contains("dak")).isTrue();
+
     }
+
 }
+
