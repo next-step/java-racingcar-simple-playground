@@ -1,13 +1,12 @@
 import controller.RacingGameController;
-import view.InputView;
-import view.ResultView;
+import domain.racegame.RandomMoveStrategy;
 
 public class Main {
     public static void main(String[] args) {
 
-        RacingGameController racingGameController = new RacingGameController(new InputView(), new ResultView());
+        RacingGameController racingGameController = new RacingGameController(new RandomMoveStrategy());
 
-        racingGameController.racingStart();
+        racingGameController.racingApplication();
 
     }
 }
