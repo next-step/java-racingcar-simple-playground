@@ -11,6 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WinnerTest {
+    Car generateCarWithPosition(String name, int position) {
+        Car car = new Car(name);
+
+        for (int i = 0; i < position; i++){
+            car.moveCar();
+        }
+
+        return car;
+    }
 
     @DisplayName("우승자 찾기 테스트")
     @Test
@@ -18,10 +27,10 @@ public class WinnerTest {
         WinnerSelector winnerSelector = new WinnerSelector();
 
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car("car1",1));
-        cars.add(new Car("car2",2));
-        cars.add(new Car("car3",2));
-        cars.add(new Car("car4",1));
+        cars.add(generateCarWithPosition("car1", 1));
+        cars.add(generateCarWithPosition("car2", 2));
+        cars.add(generateCarWithPosition("car3", 2));
+        cars.add(generateCarWithPosition("car4", 1));
 
         List<String> winners = winnerSelector.getWinners(cars);
 
@@ -43,10 +52,10 @@ public class WinnerTest {
         WinnerSelector winnerSelector = new WinnerSelector();
 
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car("car1",1));
-        cars.add(new Car("car2",2));
-        cars.add(new Car("car3",2));
-        cars.add(new Car("car4",1));
+        cars.add(generateCarWithPosition("car1", 1));
+        cars.add(generateCarWithPosition("car2", 2));
+        cars.add(generateCarWithPosition("car3", 2));
+        cars.add(generateCarWithPosition("car4", 1));
 
         /*
 
