@@ -6,16 +6,14 @@ public class Car {
     private final CarName name;
     private int position;
 
-    public Car(final NumberGenerateStrategy strategy, final String name) {
-        this(strategy, name, 0);
+    public Car(final NumberGenerateStrategy strategy, final CarName name, final int position) {
+        this.strategy = strategy;
+        this.name = name;
+        this.position = position;
     }
 
-    public Car(final NumberGenerateStrategy strategy,
-               final String name,
-               final int position) {
-        this.strategy = strategy;
-        this.name = CarName.from(name);
-        this.position = position;
+    public static Car fromStart(final NumberGenerateStrategy strategy, final String name) {
+        return new Car(strategy, CarName.from(name), 0);
     }
 
     public void move() {
@@ -25,8 +23,8 @@ public class Car {
         }
     }
 
-    public boolean isPositionSame(final Car other) {
-        return this.position == other.position;
+    public boolean isPositionSame(final int position) {
+        return this.position == position;
     }
 
     public String getName() {
@@ -35,9 +33,5 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    public void test() {
-        return;
     }
 }
