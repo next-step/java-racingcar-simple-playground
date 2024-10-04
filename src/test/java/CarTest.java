@@ -8,6 +8,16 @@ import org.junit.jupiter.api.Test;
 public class CarTest {
 
   @Test
+  @DisplayName("이름 속성 확인")
+  void testName() {
+    Car car = new Car(0, "자동차1");
+
+    String name = car.getName();
+
+    assertThat(name).isEqualTo("자동차1");
+  }
+
+  @Test
   @DisplayName("숫자가 4이상일 때 자동차가 움직이는 지 테스트")
   void testMove() {
     Car car = new Car(0, "자동차1");
