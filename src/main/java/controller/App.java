@@ -9,14 +9,11 @@ import view.Result;
 public class App {
     public static void main(String[] args) {
 
-        // scanner
-        Scanner scanner = new Scanner(System.in);
-
         // 자동차 입력
-        String[] carNames = Input.carInput(scanner);
+        String[] carNames = Input.carInput();
         
         // 게임 횟수 입력
-        int n = Input.gameNumber(scanner);
+        int n = Input.gameNumber();
 
         // 자동차 객체 생성
         List<Car> cars = CarGame.createCar(carNames);
@@ -37,6 +34,6 @@ public class App {
         Result.printWinner(winners);
 
         // scanner 해제
-        scanner.close();
+        Input.closeScanner();
     }
 }
