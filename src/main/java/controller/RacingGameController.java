@@ -9,7 +9,13 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
-    public void run(final NumberGenerateStrategy strategy) {
+    private final NumberGenerateStrategy strategy;
+
+    public RacingGameController(NumberGenerateStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void run() {
         final List<String> carNames = InputView.readCarNames();
         final Cars cars = CarsMapper.mapByCarNames(strategy, carNames);
         final RacingGame racingGame = new RacingGame(cars);
