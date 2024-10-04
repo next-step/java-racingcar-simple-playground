@@ -15,7 +15,7 @@ public class CarTest {
 
     car.move(randomNumber);
 
-    assertThat(car.coordinateX).isEqualTo(1);
+    assertThat(car.getCoordinateX()).isEqualTo(1);
   }
 
   @Test
@@ -26,7 +26,7 @@ public class CarTest {
 
     car.move(randomNumber);
 
-    assertThat(car.coordinateX).isEqualTo(0);
+    assertThat(car.getCoordinateX()).isEqualTo(0);
   }
 
   @Test

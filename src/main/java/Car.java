@@ -1,7 +1,7 @@
 public class Car {
 
-  int coordinateX;
-  String name;
+  private int coordinateX;
+  private final String name;
 
   public Car(int coordinateX, String name) {
     this.coordinateX = coordinateX;
@@ -19,5 +19,13 @@ public class Car {
     if (randomNumber >= 4) {
       this.coordinateX += 1;
     }
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getCoordinateX() {
+    return coordinateX;
   }
 }
