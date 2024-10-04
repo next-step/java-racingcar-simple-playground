@@ -7,6 +7,11 @@ public class WinnerCars {
     //<필드>
     private List<Car> winningCars;
 
+    //<생성자>
+    public List<Car> getWinningCars() {
+        return winningCars;
+    }
+
     //<메소드>
     //우승차 리스트 만들기
     public WinnerCars(List<Car> carList) {
@@ -25,14 +30,9 @@ public class WinnerCars {
         this.winningCars = winningCarList;
     }
 
-    public String WinnersCarsFromListToStr(List<Car> winningCarList){
-        List<String> carNames = winningCarList.stream().map(Car::getName).toList();// Car 객체에서 이름을 추출
+    public String WinnersCarsFromListToStr(List<Car> carList){
+        List<String> carNames = winningCars.stream().map(Car::getName).toList();// Car 객체에서 이름을 추출
         String winningCarStr = String.join(", ", carNames);
         return winningCarStr;
-    }
-
-    //<생성자>
-    public List<Car> getWinningCars() {
-        return winningCars;
     }
 }

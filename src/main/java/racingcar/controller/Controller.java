@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.CreateObjectCars;
 import racingcar.model.Move;
+import racingcar.model.WinnerCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -49,7 +50,9 @@ public class Controller {
         move.moveTurnAroundNTimes(raceCount, carList, inputView);
 
         //게임결과 출력
-        outputView.PrintWhoIsWinner(carList);
+        WinnerCars winnerCars = new WinnerCars(carList);
+        String winningCarStr= winnerCars.WinnersCarsFromListToStr(carList);
+        outputView.PrintWhoIsWinner(winningCarStr);
     }
 
     public static void main(String[] args) {
