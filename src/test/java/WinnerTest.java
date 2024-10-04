@@ -1,4 +1,5 @@
 import domain.Car;
+import domain.CarName;
 import domain.WinnerSelector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WinnerTest {
     Car generateCarWithPosition(String name, int position) {
-        Car car = new Car(name);
+        Car car = new Car(new CarName(name));
 
-        for (int i = 0; i < position; i++){
+        while(car.getPosition()!=position) {
             car.moveCar();
         }
 

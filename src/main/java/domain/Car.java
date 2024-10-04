@@ -1,11 +1,11 @@
 package domain;
 
 public class Car {
-    private String name;
+    private CarName name;
     private int position;
 
     //실제 사용되는 생성자
-    public Car(String name) {
+    public Car(CarName name) {
         this.name = name;
         position = 0;
     }
@@ -22,6 +22,6 @@ public class Car {
     }
 
     public String getName(){
-        return name;
+        return name.getCarName();
     }
 }

@@ -1,19 +1,10 @@
 package domain;
 
-import domain.Car;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
     private List<Car> cars;
-    private String[] carNames;
-
-    //자동차 문자열 분리 메서드
-    public void splitCarName(String input) {
-        checkNull(input);
-        carNames = input.split(",");
-    }
 
     private int carSize(String[] carNames) {
         return carNames.length;
@@ -24,12 +15,10 @@ public class Cars {
     }
 
     //경주 자동차 생성 메서드
-    public void generateCar() {
+    public void generateCarWithNames(String[] carNames) {
         cars = new ArrayList<>(carSize(carNames));
         for (String carName : carNames) {
-            checkNull(carName);
-            checkLength(carName);
-            cars.add(new Car(carName));
+            cars.add(new Car(new CarName(carName)));
         }
     }
 

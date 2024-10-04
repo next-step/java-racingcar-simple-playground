@@ -14,11 +14,11 @@ public class Game {
             Cars cars = new Cars();
 
             //입력 받은 자동차 이름 분리 및 자동차 생성
-            cars.splitCarName(inputNames);
-            cars.generateCar();
+            String[] carNames = View.splitCarName(inputNames);
+            cars.generateCarWithNames(carNames);
 
             //게임 시작 및 게임 과정 출력
-            Game(cars, tryCount);
+            playGame(cars, tryCount);
 
             //우승자 출력
             WinnerSelector winnerSelector = new WinnerSelector();
@@ -30,8 +30,8 @@ public class Game {
 
 
     }
-    //생성자를 통해 게임 시작
-    public void Game(Cars cars, int tryCount){
+
+    public void playGame(Cars cars, int tryCount){
         for(int i = 0; i<tryCount; i++){
             cars.moveCars();
             View.printRacingGame(cars.getCars());

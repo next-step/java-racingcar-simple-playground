@@ -13,6 +13,12 @@ public class View {
         return input.nextLine();
     }
 
+    //자동차 문자열 분리 메서드
+    public static String[] splitCarName(String input) {
+        checkNull(input);
+        return input.split(",");
+    }
+
     public static int inputTryCount(){
         System.out.println("시도할 회수는 몇회인가요?");
 
@@ -39,6 +45,12 @@ public class View {
     public static void printWinner(List<String> winners) {
         String result = String.join(", ",winners);
         System.out.println(result+"가 최종 우승했습니다.");
+    }
+
+    private static void checkNull(String carName) {
+        if (carName == null || carName.isBlank()) {
+            throw new IllegalArgumentException("이름은 공백으로 입력될 수 없습니다.");
+        }
     }
 
 }

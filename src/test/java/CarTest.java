@@ -3,12 +3,12 @@ import domain.Cars;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.View;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
     private Cars cars;
@@ -23,7 +23,7 @@ public class CarTest {
     void testSplitCarName() {
         String input = "car1,car2,car3";
 
-        cars.splitCarName(input);
+        View.splitCarName(input);
 
         /*
         assertEquals(3, cars.getCars().size());
@@ -47,7 +47,7 @@ public class CarTest {
 
          */
 
-        assertThatThrownBy(() -> cars.splitCarName(input))
+        assertThatThrownBy(() -> View.splitCarName(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 공백으로 입력될 수 없습니다.");
     }
@@ -56,9 +56,8 @@ public class CarTest {
     @Test
     void testGenerateCar() {
         String input = "car1,car2,car3";
-        cars.splitCarName(input);
 
-        cars.generateCar();
+        cars.generateCarWithNames(View.splitCarName(input));
 
         List<Car> testCars = cars.getCars();
 
@@ -81,7 +80,7 @@ public class CarTest {
     @Test
     void testGenerateCarException() {
         String input = "car11111";
-        cars.splitCarName(input);
+        String[] carNames = View.splitCarName(input);
 
         /*
 
@@ -93,7 +92,7 @@ public class CarTest {
 
          */
 
-        assertThatThrownBy(() -> cars.generateCar())
+        assertThatThrownBy(() -> cars.generateCarWithNames(carNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최대 5자까지만 가능합니다.");
     }
