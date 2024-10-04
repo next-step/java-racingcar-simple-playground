@@ -17,13 +17,14 @@ public class CreateObjectCarsTest {
 
         //When
         String[] carNamesArr = createObjectCars.splitCarNames(carNamesStr);
-        SoftAssertions softly = new SoftAssertions();
 
         //Then
-        softly.assertThat(carNamesArr.length).isEqualTo(3);
-        softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
-        softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
-        softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(carNamesArr.length).isEqualTo(3);
+            softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
+            softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
+            softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
+        });
 
     }
 
@@ -35,13 +36,14 @@ public class CreateObjectCarsTest {
 
         //When
         List<Car> carList = createObjectCars.createCarList(carNamesArr);
-        SoftAssertions softly = new SoftAssertions();
 
         //Then
-        softly.assertThat(carNamesArr.length).isEqualTo(3);
-        softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
-        softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
-        softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(carNamesArr.length).isEqualTo(3);
+            softly.assertThat(carNamesArr[0]).isEqualTo("CarA");
+            softly.assertThat(carNamesArr[1]).isEqualTo("CarB");
+            softly.assertThat(carNamesArr[2]).isEqualTo("CarC");
+        });
     }
 
     @Test
