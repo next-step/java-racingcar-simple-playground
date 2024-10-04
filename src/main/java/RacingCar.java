@@ -11,17 +11,31 @@ public class RacingCar {
     this.name = name;
   }
 
-  public int move() {
+  private int randPower() {
     Random rand = new Random();
+    return rand.nextInt(10);
+  }
 
-    boolean result = rand.nextInt(10) >= 4;
+  public int move() {
+    return move(randPower());
+  }
 
-    if (result)
+  public int move(int power) {
+    boolean isMovable = checkPower(power);
+
+    if (isMovable)
       ++score;
 
-    results.add(result);
+    results.add(isMovable);
 
     return score;
+  }
+
+  private boolean checkPower(int power) {
+    if (power < 0 || power > 9)
+      throw new IllegalArgumentException("0~9 사이의 Power 값을 필요로 합니다.");
+
+    return power >= 4;
   }
 
   public String getName() {
