@@ -1,10 +1,5 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-import racingcar.model.WinnerCars;
-
-import java.util.List;
-
 public class OutputView {
     //<메소드>
     //우승자 출력
