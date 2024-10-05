@@ -3,9 +3,11 @@ import java.util.Random;
 public class Car {
     private final String name;
     private int location;
+    private final Random random;
 
-    public Car(String name) {
+    public Car(String name, Random random) {
         this.name = name;
+        this.random = random;
         this.location = 0;
     }
 
@@ -13,9 +15,7 @@ public class Car {
         if(isMovable()) location++;
     }
 
-    private static boolean isMovable() {
-        Random random = new Random();
-
+    private boolean isMovable() {
         return random.nextInt(9) + 1 >= 4;
     }
 
