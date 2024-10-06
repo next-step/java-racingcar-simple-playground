@@ -6,10 +6,10 @@ public class CarRace {
   private int winnerIndex;
   private final ArrayList<Integer> coWinners = new ArrayList<>();
 
-  public CarRace(int car_num, int round_num) {
-    rounds = round_num;
-    cars = new RacingCar[car_num];
-    for (int i = 0; i < car_num; i++) {
+  public CarRace(int carNum, int roundNum) {
+    rounds = roundNum;
+    cars = new RacingCar[carNum];
+    for (int i = 0; i < carNum; i++) {
       cars[i] = new RacingCar("자동차" + (i+1));
     }
   }
@@ -40,16 +40,16 @@ public class CarRace {
       winnerIndex = number + 1;
   }
 
-  private void findAllWinners(int number, int winning_distance) {
-    if(cars[number].distance == winning_distance)
+  private void findAllWinners(int number, int winningDistance) {
+    if(cars[number].distance == winningDistance)
       coWinners.add(number);
   }
 
   public void displayAllWinners() {
-    int winning_distance = findWinningDistance();
+    int winningDistance = findWinningDistance();
 
     for(int i = 0; i < cars.length; i++)
-      findAllWinners(i, winning_distance);
+      findAllWinners(i, winningDistance);
 
     System.out.println("Winner:");
     for(int coWinnerIndex : coWinners)
