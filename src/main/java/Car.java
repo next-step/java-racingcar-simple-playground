@@ -1,13 +1,17 @@
-import java.util.Random;
-
 public class Car {
     private final String name;
     private int location;
     private final NumberGenerator numberGenerator;
 
-    public Car(String name, NumberGenerator numberGenerator ) {
+    public Car(String name, NumberGenerator numberGenerator) {
         this.name = name;
         this.numberGenerator = numberGenerator;
+        this.location = 0;
+    }
+
+    public Car(String name) {
+        this.name = name;
+        this.numberGenerator = new RandomNumberGenerator();
         this.location = 0;
     }
 
