@@ -15,6 +15,12 @@ public class Car {
         this.location = 0;
     }
 
+    public Car(String name, int location) {
+        this.name = name;
+        this.numberGenerator = new RandomNumberGenerator();
+        this.location = location;
+    }
+
     public void move() {
         if(numberGenerator.getNumber() >= 4)
             location++;

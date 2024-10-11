@@ -4,10 +4,14 @@ import java.util.List;
 public class Race {
     private final List<Car> cars;
     private final int count;
-    private List<String> winner;
+    private List<Car> winners;
 
-    public List<String> getWinner() {
-        return winner;
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<Car> getWinner() {
+        return winners;
     }
 
     private Race(List<Car> cars, int count) {
@@ -21,19 +25,19 @@ public class Race {
         for(int i = 0; i < count; i++) {
             cars.forEach(Car::move);
         }
-        winner = findWinner(cars);
+        winners = findWinners(cars);
     }
 
     public static Race createRace(List<Car> cars, int count) {
         return new Race(cars, count);
     }
 
-    private static List<String> findWinner(List<Car> cars) {
+    private static List<Car> findWinners(List<Car> cars) {
         int maxLocation = findMaxLocation(cars);
-        List<String> winner = new ArrayList<>();
+        List<Car> winner = new ArrayList<>();
 
         for(Car car : cars) {
-            if (car.getLocation() == maxLocation) winner.add(car.getName());
+            if (car.getLocation() == maxLocation) winner.add(car);
         }
 
         return winner;
