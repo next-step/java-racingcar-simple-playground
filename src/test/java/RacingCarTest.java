@@ -1,97 +1,57 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayInputStream;
-import java.util.InputMismatchException;
+import converter.RacingCarConverter;
+import dao.RacingCarDao;
+import dto.RacingCarCreateDto;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import service.RacingCarService;
+import service.RacingCarServiceImpl;
+import util.NumberGenerateUtil;
 
 public class RacingCarTest {
 
   @Nested
   @DisplayName("자동차 이동 테스트")
-  class RacingCarMove {
-    @Test
-    @DisplayName("자동차 랜덤 이동 테스트")
-    void randomMove() {
-      RacingCar racingCar = new RacingCar("Test");
-      int expected = racingCar.getScore();
-      int actual = racingCar.move();
-
-      assertThat(actual).isIn(expected, expected + 1);
-    }
-
-    @Test
+  class RacingCarMoveTest {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
     @DisplayName("자동차 이동 조건 테스트")
-    void moveCondition() {
-      RacingCar racingCar = new RacingCar("Test");
-      int expected = 0;
-      int actual = racingCar.move(3);
+    void testCondition(int value) {
+      NumberGenerateUtil numberGenerateUtil = mock(NumberGenerateUtil.class);
+      when(numberGenerateUtil.generateRandomNumber()).thenReturn(value);
+      RacingCarDao racingCarDao = new RacingCarDao();
+      RacingCarService racingCarService = new RacingCarServiceImpl(racingCarDao, numberGenerateUtil);
+      List<RacingCarCreateDto> racingCarCreateDtoList = Stream.of("tester1", "tester2").map(v -> RacingCarConverter.toRacingCarCreateDto("")).toList();
+      racingCarService.createRacingCar(racingCarCreateDtoList);
 
-      assertThat(actual).isEqualTo(expected);
+      racingCarService.move();
 
-      expected = 1;
-      actual = racingCar.move(5);
+      int expected = value >= 4 ? 1 : 0;
+      int actual = racingCarService.getResults().get(0).getDistance();
 
       assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 10})
     @DisplayName("자동차 이동 조건 예외처리 테스트")
-    void moveConditionException() {
-      RacingCar racingCar = new RacingCar("Test");
+    void moveConditionException(int value) {
+      NumberGenerateUtil numberGenerateUtil = mock(NumberGenerateUtil.class);
+      when(numberGenerateUtil.generateRandomNumber()).thenReturn(value);
+      RacingCarDao racingCarDao = new RacingCarDao();
+      RacingCarService racingCarService = new RacingCarServiceImpl(racingCarDao, numberGenerateUtil);
+      List<RacingCarCreateDto> racingCarCreateDtoList = Stream.of("tester1", "tester2").map(v -> RacingCarConverter.toRacingCarCreateDto("")).toList();
+      racingCarService.createRacingCar(racingCarCreateDtoList);
 
-      assertThatThrownBy(() -> racingCar.move(-1)).isInstanceOf(IllegalArgumentException.class).hasMessage("0~9 사이의 Power 값을 필요로 합니다.");
-
-      assertThatThrownBy(() -> racingCar.move(10)).isInstanceOf(IllegalArgumentException.class).hasMessage("0~9 사이의 Power 값을 필요로 합니다.");
-    }
-  }
-  
-
-  @Test
-  @DisplayName("자동차 결과 텍스트 테스트")
-  void racingCarResultString() {
-    RacingCar racingCar = new RacingCar("Test");
-
-    for (int i = 0; i < 5; ++i)
-      racingCar.move();
-
-
-    String actual = racingCar.getResultString(5);
-    String expected = new String(new char[racingCar.getScore()]).replace("\0", "-");
-
-    assertThat(actual).isEqualTo(expected);
-  }
-
-  @Nested
-  @DisplayName("자동차 게임 설정 테스트")
-  class SetRacingCarGameTest {
-    @Test
-    @DisplayName("자동차 이름 입력이 하나일 경우 테스트")
-    void setGameWithLessThanTwoNameInput() {
-      RacingCarGame racingCarGame = new RacingCarGame();
-      System.setIn(new ByteArrayInputStream("test1\n1".getBytes()));
-
-      assertThatThrownBy(racingCarGame::setGame).isInstanceOf(InputMismatchException.class).hasMessage("최소한 두 명 이상의 플레이어가 필요합니다.");
-    }
-
-    @Test
-    @DisplayName("시도할 횟수 입력이 음수일 경우 테스트")
-    void setGameWithNegativePhaseInput() {
-      RacingCarGame racingCarGame = new RacingCarGame();
-      System.setIn(new ByteArrayInputStream("test1,test2\n-1\n".getBytes()));
-
-      assertThatThrownBy(racingCarGame::setGame).isInstanceOf(NumberFormatException.class).hasMessage("음수는 유효한 숫자가 아닙니다.");
-    }
-
-    @Test
-    @DisplayName("시도할 횟수 입력이 숫자가 아닌 경우 테스트")
-    void setGameWithInvalidPhaseInput() {
-      RacingCarGame racingCarGame = new RacingCarGame();
-      System.setIn(new ByteArrayInputStream("test1,test2\nabc\n".getBytes()));
-
-      assertThatThrownBy(racingCarGame::setGame).isInstanceOf(InputMismatchException.class).hasMessage("유효한 숫자가 아닙니다.");
+      assertThatThrownBy(racingCarService::move).isInstanceOf(NumberFormatException.class).hasMessage("0~9 사이의 Power 값을 필요로 합니다.");
     }
   }
 }
