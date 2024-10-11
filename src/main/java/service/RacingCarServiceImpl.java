@@ -6,12 +6,13 @@ import domain.RacingCar;
 import dto.RacingCarCreateDto;
 import dto.RacingCarResultDto;
 import java.util.List;
-import java.util.Random;
 import lombok.RequiredArgsConstructor;
+import util.NumberGenerateUtil;
 
 @RequiredArgsConstructor
 public class RacingCarServiceImpl implements RacingCarService {
   final RacingCarDao racingCarDao;
+  final NumberGenerateUtil numberGenerateUtil;
 
   @Override
   public void createRacingCar(final List<RacingCarCreateDto> racingCarCreateDtoList) {
@@ -21,11 +22,12 @@ public class RacingCarServiceImpl implements RacingCarService {
   @Override
   public void move() {
     for (RacingCar racingCar : racingCarDao.select()){
-      Random rand = new Random();
+      int power = numberGenerateUtil.generateRandomNumber();
 
-      boolean result = rand.nextInt(10) >= 4;
-
-      racingCar.getResults().add(result);
+      if (0 <= power && power <= 9)
+        racingCar.getResults().add(power >= 4);
+      else
+        throw new NumberFormatException("0~9 사이의 Power 값을 필요로 합니다.");
     }
   }
 
