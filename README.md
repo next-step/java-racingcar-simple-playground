@@ -18,3 +18,19 @@
     - [ ] 사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.
     - [ ] 전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
     - [ ] 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
+
+
+
+## 막히는 부분?
+    - Input시 예외처리..
+        InputView에서 하는가? Serive에서 하는가.
+        에러 핸들링은 어디서 하는가..
+
+    - Dto를 제작해야 할까?
+        현재 코드에선 car.move가 public임
+        하지만 outView에서는 이 메소드에 접근하지 않으므로 CarList를 넘기는 것보다 RoundResultDto를 넘기는 것이 맞다 판단..
+    
+    - 게임의 N번 실행은 Controller의 역할? RacingGame의 역할?
+        뭔가 RacingGame에서 N번 라운드를 실행해야 할 것 같다.
+        그러면 OutputView가 RacingGame의 라운드 결과를 출력하는 과정이 매끄럽지 않아진다.
+            * OutputView가 RacingGame 안에서 동작해야 함 -> contoller의 역할이 애매해진다.
