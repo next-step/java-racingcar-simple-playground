@@ -1,3 +1,5 @@
+package domain;
+
 import java.security.SecureRandom;
 
 public class RandomNumberGenerator implements NumberGenerator{
