@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class RacingGame {
 
   private final List<Car> cars;
+
+  public List<Car> getCars() {
+    return this.cars;
+  }
 
   public RacingGame() {
     this.cars = new ArrayList<>();
@@ -31,7 +34,7 @@ public class RacingGame {
   /**
    * @return winners 현재 우승자 이름 배열
    */
-  public List<String> getWinners() {
+  public List<String> getWinnerNames() {
     int maxLocation = 0;
     List<String> winners = new ArrayList<>();
 

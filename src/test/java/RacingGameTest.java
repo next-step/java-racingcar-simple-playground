@@ -34,7 +34,7 @@ public class RacingGameTest {
 
     game1.proceedGame();
 
-    List<String> winnerNames = game1.getWinners();
+    List<String> winnerNames = game1.getWinnerNames();
 
     assertThat(winnerNames).containsExactlyInAnyOrderElementsOf(List.of("자동차2"));
   }
@@ -55,7 +55,7 @@ public class RacingGameTest {
 
     game1.proceedGame();
 
-    List<String> winnerNames = game1.getWinners();
+    List<String> winnerNames = game1.getWinnerNames();
 
     assertThat(winnerNames).containsExactlyInAnyOrderElementsOf(List.of("자동차3", "자동차2"));
   }
