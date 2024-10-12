@@ -10,6 +10,10 @@ public class RacingGame {
     this.cars = new ArrayList<>();
   }
 
+  public int getCurrentCarCount() {
+    return this.cars.size();
+  }
+
   /**
    * @param car 게임 참여 차량
    */
@@ -32,30 +36,16 @@ public class RacingGame {
     List<String> winners = new ArrayList<>();
 
     for (Car car : this.cars) {
-      getCarWinner(car, maxLocation, winners);
+      int carLocation = car.getCoordinateX();
+      if (maxLocation < carLocation) {
+        maxLocation = carLocation;
+        winners.clear();
+        winners.add(car.getName());
+      }else if (maxLocation == carLocation) {
+        winners.add(car.getName());
+      }
     }
 
     return winners;
-  }
-
-  /**
-   * @param car 비교할 자동차
-   * @param maxLocation 현재 최고 거리
-   * @param winners 우승자 이름 배열
-   */
-  private static void getCarWinner(final Car car, final int maxLocation,
-      final List<String> winners) {
-    if (maxLocation < car.getCoordinateX()) {
-      winners.clear();
-      winners.add(car.getName());
-    }
-
-    if (maxLocation == car.getCoordinateX()) {
-      winners.add(car.getName());
-    }
-  }
-
-  public int getCurrentCarCount() {
-    return this.cars.size();
   }
 }
