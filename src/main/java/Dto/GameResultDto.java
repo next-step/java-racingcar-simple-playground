@@ -18,7 +18,9 @@ public class GameResultDto {
   }
 
   public static class Builder {
+
     private List<String> nameList;
+
     public Builder name(List<String> nameList) {
       this.nameList = nameList;
       return this;
@@ -33,3 +35,4 @@ public class GameResultDto {
   public List<String> getNameList() {
     return this.nameList;
   }
+}

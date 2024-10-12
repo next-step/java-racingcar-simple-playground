@@ -29,8 +29,7 @@ public class CarTest {
   public class moveTest {
 
     @Test
-    @DisplayName("전진테스트")
-    public void 4_이상의_수는_차량을_전진시킨다() {
+    public void 수가_4_이상일_때_전진한다() {
 
       final FixedNumGenerator fixedNumGenerator = new FixedNumGenerator(3);
 
@@ -45,8 +44,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("멈춤테스트")
-    public void stopTest() {
+    public void 수가_4_미만일_때_멈춘다() {
 
       final FixedNumGenerator fixedNumGenerator = new FixedNumGenerator(3);
       final Car car = new Car("steve", fixedNumGenerator);
@@ -60,8 +58,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("예외테스트")
-    public void exceptionTest() {
+    public void 수가_잘못된_범위라면_예외를_던진다() {
 
       final FixedNumGenerator fixedNumGenerator = new FixedNumGenerator(10);
       final Car car = new Car("steve", fixedNumGenerator);
