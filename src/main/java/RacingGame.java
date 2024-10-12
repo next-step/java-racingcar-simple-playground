@@ -1,16 +1,46 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
 
   private final List<Car> cars;
+  private final int round;
+
+  /**
+   * Constructor `self`
+   */
+  public RacingGame() {
+    this.cars = new ArrayList<>();
+    this.round = 0;
+  }
+
+  /**
+   * Constructor `self`
+   *
+   * @param namesText 입력받은 차량 이름 텍스트
+   * @param round     입력받은 게임 라운드 수
+   */
+  public RacingGame(String namesText, int round) {
+    this.round = round;
+    this.cars = new ArrayList<>();
+
+    List<String> names = Arrays.stream(namesText.split(","))
+        .map(String::strip)
+        .toList();
+
+    for (String name : names) {
+      this.addCar(new Car(new RandomNumberGenerator(), 0, name));
+    }
+  }
 
   public List<Car> getCars() {
     return this.cars;
   }
 
-  public RacingGame() {
-    this.cars = new ArrayList<>();
+
+  public int getRound() {
+    return this.round;
   }
 
   public int getCurrentCarCount() {
@@ -44,7 +74,7 @@ public class RacingGame {
         maxLocation = carLocation;
         winners.clear();
         winners.add(car.getName());
-      }else if (maxLocation == carLocation) {
+      } else if (maxLocation == carLocation) {
         winners.add(car.getName());
       }
     }

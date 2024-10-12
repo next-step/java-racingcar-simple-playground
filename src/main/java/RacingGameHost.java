@@ -1,8 +1,17 @@
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class RacingGameHost {
+
+  public static String getCarNames(final Scanner sc) {
+    System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+    return sc.nextLine();
+  }
+
+  public static int getCount(final Scanner sc) {
+    System.out.println("시도할 회수는 몇회인가요?");
+    return sc.nextInt();
+  }
 
   public static void projectWinners(final RacingGame game) {
     List<String> winnerNames = game.getWinnerNames();
@@ -16,4 +25,15 @@ public class RacingGameHost {
     });
   }
 
+  
+  public static void playGame(final RacingGame game) {
+    List<Car> cars = game.getCars();
+
+    for (int i = 0; i < game.getRound(); i++) {
+      game.proceedGame();
+      RacingGameHost.projectCars(cars);
+      System.out.println();
+    }
+
+  }
 }
