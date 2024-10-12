@@ -2,20 +2,17 @@ public class Car {
 
   private int coordinateX;
   private final String name;
+  private final NumberGenerator numberGenerator;
 
-  public Car(int coordinateX, String name) {
+  public Car(NumberGenerator numberGenerator, int coordinateX, String name) {
+    this.numberGenerator = numberGenerator;
     this.coordinateX = coordinateX;
     this.name = name;
   }
 
-  /**
-   *
-   * @param randomNumber 랜덤 숫자
-   */
-  public void move(int randomNumber) {
-    if (randomNumber < 0 || randomNumber > 9) {
-      throw new IllegalArgumentException("랜덤 숫자가 0과 9 범위 사이가 아닙니다.");
-    }
+  public void move() {
+    int randomNumber = this.numberGenerator.getNumber();
+
     if (randomNumber >= 4) {
       this.coordinateX += 1;
     }

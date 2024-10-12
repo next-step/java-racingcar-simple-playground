@@ -15,10 +15,8 @@ public class RacingGame {
   }
 
   public void proceedGame() {
-    Random random = new Random();
     this.cars.forEach((car) -> {
-      int randomNumber = random.nextInt(9);
-      car.move(randomNumber);
+      car.move();
     });
   }
 
@@ -27,16 +25,22 @@ public class RacingGame {
     List<String> winners = new ArrayList<>();
 
     for (Car car : this.cars) {
-      if (maxLocation < car.getCoordinateX()) {
-        winners.clear();
-        winners.add(car.getName());
-      }
-
-      if (maxLocation == car.getCoordinateX()) {
-        winners.add(car.getName());
-      }
+      getCarWinner(car, maxLocation, winners);
     }
+
     return winners;
+  }
+
+  private static void getCarWinner(final Car car, final int maxLocation,
+      final List<String> winners) {
+    if (maxLocation < car.getCoordinateX()) {
+      winners.clear();
+      winners.add(car.getName());
+    }
+
+    if (maxLocation == car.getCoordinateX()) {
+      winners.add(car.getName());
+    }
   }
 
   public int getCurrentCarCount() {
