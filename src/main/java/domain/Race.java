@@ -2,6 +2,12 @@ package domain;
 
 import java.util.List;
 
+import static java.lang.String.format;
+import static view.OutPutMessage.RESULT_DETAIL_MESSAGE;
+import static view.OutPutMessage.WINNER_MESSAGE;
+import static view.OutputView.printMessage;
+import static view.OutputView.printRound;
+
 public class Race {
     private final List<Car> cars;
     private final int count;
@@ -22,15 +28,33 @@ public class Race {
         this.count = count;
     }
 
+    public static Race createRace(List<Car> cars, int count) {
+        return new Race(cars, count);
+    }
+
     public void start() {
         for(int i = 0; i < count; i++) {
             cars.forEach(Car::move);
+            List<String> round = createRound(cars);
+            printRound(round);
         }
         winners = findWinners(cars);
     }
 
-    public static Race createRace(List<Car> cars, int count) {
-        return new Race(cars, count);
+    private static List<String> createRound(List<Car> cars) {
+        return cars.stream()
+                .map(car -> {
+                    String name = car.getName();
+                    int location = car.getLocation();
+                    String locationStr = createLocationStr(location);
+
+                    return format(RESULT_DETAIL_MESSAGE.getMessage(), name, locationStr);
+                }).toList();
+    }
+
+    private static String createLocationStr(int location) {
+        String locationStr = "-";
+        return locationStr.repeat(location);
     }
 
     private static List<Car> findWinners(List<Car> cars) {
