@@ -31,6 +31,6 @@ public class CarParser {
     }
 
     private static boolean isValidLength(String name) {
-        return name.length() > 0 && name.length() <= 5;
+        return !name.isEmpty() && name.length() <= 5;
     }
 }
