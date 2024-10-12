@@ -1,21 +1,17 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarRace {
-  public RacingCar[] cars;
+  public List<RacingCar> cars = new ArrayList<>();
   private final int rounds;
   private int winnerIndex;
-  private final ArrayList<Integer> coWinners = new ArrayList<>();
+  private final List<Integer> coWinners = new ArrayList<>();
 
-  public CarRace(int carNum, int roundNum) {
-    rounds = roundNum;
-    cars = new RacingCar[carNum];
+  public CarRace(int carNum, final int rounds) {
+    this.rounds = rounds;
     for (int i = 0; i < carNum; i++) {
-      cars[i] = new RacingCar("자동차" + (i+1));
+      cars.add(new RacingCar("자동차" + (i+1)));
     }
-  }
-
-  public void setCarName(int number, String name) {
-    cars[number].name = name;
   }
 
   public void runRace() {
@@ -30,29 +26,29 @@ public class CarRace {
 
   private int findWinningDistance() {
     winnerIndex = 0;
-    for(int i = 0; i < cars.length; i++)
+    for(int i = 0; i < cars.size(); i++)
       updateWinner(i);
-    return cars[winnerIndex].distance;
+    return cars.get(winnerIndex).getDistance();
   }
 
   private void updateWinner(int number) {
-    if (number < cars.length - 1 && cars[number].distance < cars[number + 1].distance)
+    if (number < cars.size() - 1 && cars.get(number).getDistance() < cars.get(number+1).getDistance())
       winnerIndex = number + 1;
   }
 
-  private void findAllWinners(int number, int winningDistance) {
-    if(cars[number].distance == winningDistance)
+  private void updateAllWinners(int number, int winningDistance) {
+    if(cars.get(number).getDistance() == winningDistance)
       coWinners.add(number);
   }
 
   public void displayAllWinners() {
     int winningDistance = findWinningDistance();
 
-    for(int i = 0; i < cars.length; i++)
-      findAllWinners(i, winningDistance);
+    for(int i = 0; i < cars.size(); i++)
+      updateAllWinners(i, winningDistance);
 
     System.out.println("Winner:");
     for(int coWinnerIndex : coWinners)
-      System.out.println(cars[coWinnerIndex].name);
+      System.out.println(cars.get(coWinnerIndex).getName());
   }
 }
