@@ -39,6 +39,9 @@ public class Race {
             printRound(round);
         }
         winners = findWinners(cars);
+
+        String winnerString = createWinnerString(winners);
+        printMessage(format(WINNER_MESSAGE.getMessage(), winnerString));
     }
 
     private static List<String> createRound(List<Car> cars) {
@@ -50,6 +53,10 @@ public class Race {
 
                     return format(RESULT_DETAIL_MESSAGE.getMessage(), name, locationStr);
                 }).toList();
+    }
+
+    private static String createWinnerString(List<Car> cars) {
+        return String.join(", ", cars.stream().map(Car::getName).toList());
     }
 
     private static String createLocationStr(int location) {
