@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import service.NumGenerator;
 import service.RandomNumGenerator;

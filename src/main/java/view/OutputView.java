@@ -1,6 +1,8 @@
 package view;
 
-import Model.Car;
+import Dto.GameResultDto;
+import Dto.RoundResultDto;
+import model.Car;
 import java.util.List;
 
 public class OutputView {
@@ -15,13 +17,15 @@ public class OutputView {
   public void printRoundResultInfo() {
     print(ROUND_RESULT_INFO_MESSAGE);
   }
-  public void printRoundResult(List<Car> CarList) {
-    for (Car car : CarList) {
-      String Result = car.getName() + " : " + posBar( car.getPos() );
+  public void printRoundResult(List<RoundResultDto> results) {
+    for (RoundResultDto result : results) {
+      String Result = result.getName() + " : " + posBar( result.getPos() );
       print(Result);
     }
     print("");
   }
+
+
 
   private String posBar(int pos) {
     String str = "";
@@ -31,7 +35,9 @@ public class OutputView {
     return str;
   }
 
-  public void printWinner(List<String> winnerList) {
+  public void printWinner(GameResultDto result) {
+
+    List<String> winnerList =  result.getNameList();
     String str = "";
 
     str += winnerList.get(0);

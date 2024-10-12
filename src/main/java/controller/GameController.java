@@ -1,6 +1,6 @@
 package controller;
 
-import Model.RacingGame;
+import model.RacingGame;
 import validator.Validator;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +27,7 @@ public class GameController {
     outputView.printRoundResultInfo();
     for (int i=1; i<=round; i++) {
       racingGame.run();
-      outputView.printRoundResult( racingGame.getCarList() );
+      outputView.printRoundResult( racingGame.getRoundResult() );
     }
 
     outputView.printWinner( racingGame.getWinnerList() );

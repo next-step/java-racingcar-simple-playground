@@ -1,5 +1,7 @@
-package Model;
+package model;
 
+import Dto.GameResultDto;
+import Dto.RoundResultDto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class RacingGame {
     }
   }
 
-  public List<String> getWinnerList() {
+  public GameResultDto getWinnerList() {
     List<String> winnerList = new ArrayList<>();
 
     getMaxPos();
@@ -50,12 +52,29 @@ public class RacingGame {
         .map(Car::getName)
         .toList();
 
-    return winnerList;
-
+    return new GameResultDto().builder()
+        .name(winnerList)
+        .build();
   }
 
   public List<Car> getCarList() {
     return carList;
+  }
+
+  public List<RoundResultDto> getRoundResult() {
+
+    List<RoundResultDto> roundResultDtoList = new ArrayList<>();
+
+    for(Car car : carList){
+      RoundResultDto roundResultDto = new RoundResultDto().builder()
+          .name(car.getName())
+          .pos(car.getPos())
+          .build();
+
+      roundResultDtoList.add(roundResultDto);
+    }
+
+    return roundResultDtoList;
   }
 
 }
