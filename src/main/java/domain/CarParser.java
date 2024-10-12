@@ -9,7 +9,7 @@ public class CarParser {
 
         List<Car> cars = Arrays.stream(input.split(","))
                 .map(name -> {
-                    if (!isValidLength(name)) throw new IllegalArgumentException("자동차 이름은 1글자 이상 5글자 이하여야 합니다.");
+                    if (!isValidLength(name)) throw new IllegalArgumentException("올바르지 않은 자동차 이름입니다.");
                     return new Car(name);
                 })
                 .toList();

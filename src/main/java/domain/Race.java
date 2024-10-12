@@ -80,7 +80,7 @@ public class Race {
     }
 
     private static void validateRaceCreation(List<Car> cars, int count) {
-        if (!isValidCarsSize(cars)) throw new IllegalArgumentException("두 대이상의 차를 입력해주세요.");
+        if (!isValidCarsSize(cars)) throw new IllegalArgumentException("두 대 이상의 차를 입력해주세요.");
         if (!isValidCount(count)) throw new IllegalArgumentException("1번 이상의 시도횟수를 입력해주세요.");
     }
 
