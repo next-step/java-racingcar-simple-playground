@@ -1,3 +1,5 @@
+import domain.Car;
+import domain.Race;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

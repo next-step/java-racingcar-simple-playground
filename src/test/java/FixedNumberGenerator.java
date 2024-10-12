@@ -1,3 +1,5 @@
+import domain.NumberGenerator;
+
 import java.util.LinkedList;
 import java.util.List;
 
