@@ -1,11 +1,34 @@
+import Exceptions.InvalidCarNameLengthException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class RacingGameHost {
 
-  public static String getCarNames(final Scanner sc) {
-    System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-    return sc.nextLine();
+  public static List<String> getCarNames(final Scanner sc) {
+    List<String> result = null;
+    while (result == null) {
+      System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+      String namesText = sc.nextLine();
+
+      try {
+        result = Arrays.stream(namesText.split(","))
+            .map(String::strip)
+            .peek(RacingGameHost::checkNameLength)
+            .toList();
+      } catch (InvalidCarNameLengthException exception) {
+        System.out.println("이름은 5자 이하만 입력 가능합니다.");
+      }
+
+    }
+
+    return result;
+  }
+
+  private static void checkNameLength(final String name) {
+    if (name.length() > 5) {
+      throw new InvalidCarNameLengthException();
+    }
   }
 
   public static int getCount(final Scanner sc) {
@@ -25,7 +48,7 @@ public class RacingGameHost {
     });
   }
 
-  
+
   public static void playGame(final RacingGame game) {
     List<Car> cars = game.getCars();
 

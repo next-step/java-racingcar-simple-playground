@@ -18,16 +18,12 @@ public class RacingGame {
   /**
    * Constructor `self`
    *
-   * @param namesText 입력받은 차량 이름 텍스트
+   * @param names 입력받은 차량 이름들
    * @param round     입력받은 게임 라운드 수
    */
-  public RacingGame(String namesText, int round) {
+  public RacingGame(List<String> names, int round) {
     this.round = round;
     this.cars = new ArrayList<>();
-
-    List<String> names = Arrays.stream(namesText.split(","))
-        .map(String::strip)
-        .toList();
 
     for (String name : names) {
       this.addCar(new Car(new RandomNumberGenerator(), 0, name));
