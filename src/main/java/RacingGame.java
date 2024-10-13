@@ -26,7 +26,7 @@ public class RacingGame {
     this.cars = new ArrayList<>();
 
     for (String name : names) {
-      this.addCar(new Car(new RandomNumberGenerator(), 0, name));
+      this.addCar(Car.makeCar(name));
     }
   }
 
