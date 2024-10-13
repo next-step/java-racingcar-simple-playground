@@ -39,10 +39,6 @@ public class RacingGame {
     return this.round;
   }
 
-  public int getCurrentCarCount() {
-    return this.cars.size();
-  }
-
   /**
    * @param car 게임 참여 차량
    */

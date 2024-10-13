@@ -19,7 +19,7 @@ public class RacingGameTest {
     game1.addCar(car1);
     game1.addCar(car2);
 
-    assertThat(game1.getCurrentCarCount()).isEqualTo(2);
+    assertThat(game1.getCars().size()).isEqualTo(2);
   }
 
   @Test
