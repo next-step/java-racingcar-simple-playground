@@ -1,25 +1,23 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.RacingCar;
+import domain.RacingContest;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TestRacingContest {
-  private static int round;
+
   private static RacingContest contest;
-  private static final String[] names = new String[]{"neo", "brie", "brown"};
 
   @BeforeAll
   public static void setUp() {
-    RacingCar[] participants = new RacingCar[]{
-        new RacingCar(names[0]),
-        new RacingCar(names[1]),
-        new RacingCar(names[2])
-    };
-    round = 10;
-    contest = new RacingContest(participants, round);
+    int rounds = 5;
+    List<String> playerNames = Arrays.asList("neo", "brie", "brown");
+    contest = new RacingContest(playerNames, rounds);
   }
 
   @Test
@@ -27,11 +25,11 @@ public class TestRacingContest {
   public void testStart() {
     //given
     int round = contest.getRounds();
+    var distances = contest.getDistances();
 
     //when
-    int[] distances = contest.start();
-    int maxDist = Arrays.stream(distances).max().getAsInt();
-    int minDist = Arrays.stream(distances).min().getAsInt();
+    int maxDist = distances.values().stream().max(Integer::compareTo).get();
+    int minDist = distances.values().stream().min(Integer::compareTo).get();
 
     //then
     assertThat(maxDist).isBetween(0, round + 1);
@@ -41,14 +39,15 @@ public class TestRacingContest {
   @DisplayName("경기 결과를 바탕으로 우승자를 가려낼 수 있는지 확인")
   public void testRanking() {
     //given
-    int[] distances = new int[]{0, round, round};
-    String[] winners = new String[]{names[1], names[2]};
+    contest.goRound();
+    var distances = contest.getDistances();
+    var winners = contest.getWinners();
 
     //when
-    ArrayList<String> actual = contest.ranking(distances);
-    ArrayList<String> expected = new ArrayList<>(Arrays.asList(winners));
+    var actual = distances.get(winners.get(0));
+    var expected = distances.values().stream().max(Integer::compareTo).get();
 
     //then
-    assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
+    assertThat(actual).isEqualTo(expected);
   }
 }

@@ -1,3 +1,8 @@
+package domain;
+
+import lombok.Getter;
+
+@Getter
 public class RacingCar {
   private String name;
 
@@ -12,11 +17,7 @@ public class RacingCar {
     return 0;   //stop
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
+  private void setName(String name) {
     if (name == null || name.trim().isEmpty()) {
       throw new IllegalArgumentException("Racing car name cannot be empty");
     }

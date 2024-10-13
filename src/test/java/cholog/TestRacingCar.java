@@ -1,9 +1,9 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.RacingCar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 public class TestRacingCar {
@@ -46,12 +46,13 @@ public class TestRacingCar {
   @DisplayName("레이싱카의 이름이 유효하지 않을 시 에러 발생")
   public void testValidName(){
     //given
+    String name = null;
 
     //when
 
     //then
     assertThatThrownBy(() -> {
-      racingCar.setName(null);
+      new RacingCar(name);
     }).isInstanceOf(IllegalArgumentException.class);
   }
 }
