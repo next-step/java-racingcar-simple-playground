@@ -1,5 +1,4 @@
 public class RacingCar {
-
   private final String name;
   private int distance;
 

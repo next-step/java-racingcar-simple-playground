@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CarRace {
@@ -7,11 +8,11 @@ public class CarRace {
   private int winnerIndex;
   private final List<Integer> coWinners = new ArrayList<>();
 
-  public CarRace(int carNum, final int rounds) {
+  public CarRace(final int rounds, String carNames) {
     this.rounds = rounds;
-    for (int i = 0; i < carNum; i++) {
-      cars.add(new RacingCar("자동차" + (i+1)));
-    }
+    Arrays.stream(carNames.split(","))
+        .map(RacingCar::new)
+        .forEach(cars::add);
   }
 
   public void runRace() {

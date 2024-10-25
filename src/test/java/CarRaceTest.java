@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 
 public class CarRaceTest {
 
-  int car_num = 15;
-  int round_num = 10;
-  CarRace carRace = new CarRace(car_num, round_num);
+  int carNum = 15;
+  int roundNum = 10;
+  String carNames = "neo,brie,brown";
+  CarRace carRace = new CarRace(roundNum, carNames);
 
   @Test
   @DisplayName("자동차_경주_시작하고_우승자_찾기")
