@@ -5,7 +5,7 @@ import java.util.List;
 public class CarRace {
   private final List<RacingCar> cars = new ArrayList<>();
   private final int rounds;
-  private final List<Integer> coWinners = new ArrayList<>();
+  private final List<String> coWinners = new ArrayList<>();
 
   public CarRace(final int rounds, String carNames) {
     this.rounds = rounds;
@@ -31,19 +31,17 @@ public class CarRace {
         .orElse(0);
   }
 
-  private void updateAllWinners(int number, int winningDistance) {
-    if(cars.get(number).getDistance() == winningDistance)
-      coWinners.add(number);
+  private void updateAllWinners(int winningDistance) {
+    cars.stream()
+        .filter(c -> c.getDistance() == winningDistance)
+        .forEach(c -> coWinners.add(c.getName()));
   }
 
   public void displayAllWinners() {
     int winningDistance = findWinningDistance();
-
-    for(int i = 0; i < cars.size(); i++)
-      updateAllWinners(i, winningDistance);
+    updateAllWinners(winningDistance);
 
     System.out.println("Winner:");
-    for(int coWinnerIndex : coWinners)
-      System.out.println(cars.get(coWinnerIndex).getName());
+    coWinners.forEach(System.out::println);
   }
 }
