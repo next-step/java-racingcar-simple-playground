@@ -33,9 +33,12 @@ public class CarRace {
   }
 
   public void runRace() {
+    System.out.println("실행 결과");
     for (int i = 0; i < rounds; i++) {
       moveAllCars();
     }
+    int winningDistance = findWinningDistance();
+    updateAllWinners(winningDistance);
   }
 
   private void moveAllCars() {
@@ -43,7 +46,9 @@ public class CarRace {
     for(RacingCar car : cars) {
       int randNum = random.nextInt(1, 11);
       car.move(randNum);
+      System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
     }
+    System.out.println(" ");
   }
 
   private int findWinningDistance() {
@@ -58,13 +63,5 @@ public class CarRace {
         .filter(c -> c.getDistance() == winningDistance)
         .forEach(c -> coWinners.add(c.getName()));
     return coWinners;
-  }
-
-  public void displayAllWinners() {
-    int winningDistance = findWinningDistance();
-    updateAllWinners(winningDistance);
-
-    System.out.println("Winner:");
-    coWinners.forEach(System.out::println);
   }
 }

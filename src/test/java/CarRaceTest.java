@@ -13,7 +13,6 @@ public class CarRaceTest {
     final int roundNum = 10;
     final CarRace carRace = new CarRace(roundNum, carNames);
     carRace.runRace();
-    carRace.displayAllWinners();
 
     String expected = carRace.getWinnersName().toString();
     String actual = carRace.getCoWinners().toString();
