@@ -3,9 +3,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CarRace {
-  public List<RacingCar> cars = new ArrayList<>();
+  private final List<RacingCar> cars = new ArrayList<>();
   private final int rounds;
-  private int winnerIndex;
   private final List<Integer> coWinners = new ArrayList<>();
 
   public CarRace(final int rounds, String carNames) {
@@ -26,15 +25,10 @@ public class CarRace {
   }
 
   private int findWinningDistance() {
-    winnerIndex = 0;
-    for(int i = 0; i < cars.size(); i++)
-      updateWinner(i);
-    return cars.get(winnerIndex).getDistance();
-  }
-
-  private void updateWinner(int number) {
-    if (number < cars.size() - 1 && cars.get(number).getDistance() < cars.get(number+1).getDistance())
-      winnerIndex = number + 1;
+    return cars.stream()
+        .mapToInt(RacingCar::getDistance)
+        .max()
+        .orElse(0);
   }
 
   private void updateAllWinners(int number, int winningDistance) {

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 public class CarRaceTest {
 
-  int carNum = 15;
   int roundNum = 10;
   String carNames = "neo,brie,brown";
   CarRace carRace = new CarRace(roundNum, carNames);
