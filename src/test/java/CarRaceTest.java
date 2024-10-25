@@ -1,5 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.CarRace;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class CarRaceTest {
     carRace.runRace();
 
     String expected = carRace.getWinnersName().toString();
-    String actual = carRace.getCoWinners().toString();
+    String actual = carRace.getWinners().toString();
 
     assertThat(actual)
         .isEqualTo(expected);
