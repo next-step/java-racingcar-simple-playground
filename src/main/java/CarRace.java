@@ -15,19 +15,35 @@ public class CarRace {
         .forEach(cars::add);
   }
 
-  int getRandNum() {
-    Random random = new Random();
-    return random.nextInt(1, 11);
+  public int getDistance(int index) {
+    return cars.get(index).getDistance();
   }
 
-  public void runRace(int randNum) {
-    for(int i = 0; i < rounds; i++)
-      moveAllCars(randNum);
+  public List<String> getWinnersName() {
+    return updateAllWinners(findWinningDistance());
   }
 
-  private void moveAllCars(int randNum) {
+  public List<String> getCoWinners() {
+    return coWinners;
+  }
+
+  public void carMove(int number) {
     for(RacingCar car : cars)
+      car.move(number);
+  }
+
+  public void runRace() {
+    for (int i = 0; i < rounds; i++) {
+      moveAllCars();
+    }
+  }
+
+  private void moveAllCars() {
+    Random random = new Random();
+    for(RacingCar car : cars) {
+      int randNum = random.nextInt(1, 11);
       car.move(randNum);
+    }
   }
 
   private int findWinningDistance() {
@@ -37,18 +53,10 @@ public class CarRace {
         .orElse(0);
   }
 
-  public List<String> getWinnersName() {
-    return updateAllWinners(findWinningDistance());
-  }
-
   private List<String> updateAllWinners(int winningDistance) {
     cars.stream()
         .filter(c -> c.getDistance() == winningDistance)
         .forEach(c -> coWinners.add(c.getName()));
-    return coWinners;
-  }
-
-  public List<String> getCoWinners() {
     return coWinners;
   }
 
