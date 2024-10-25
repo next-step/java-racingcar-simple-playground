@@ -15,8 +15,8 @@ public class RacingCar {
     return distance;
   }
 
-  public void move() {
-    if(( (int) (Math.random() * 10) >= 4))
+  public void move(int randNum) {
+    if(randNum >= 4)
       distance += 1;
   }
 }

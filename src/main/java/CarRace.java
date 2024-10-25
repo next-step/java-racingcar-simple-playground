@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class CarRace {
-  private final List<RacingCar> cars = new ArrayList<>();
   private final int rounds;
+  private final List<RacingCar> cars = new ArrayList<>();
   private final List<String> coWinners = new ArrayList<>();
 
   public CarRace(final int rounds, String carNames) {
@@ -14,14 +15,19 @@ public class CarRace {
         .forEach(cars::add);
   }
 
-  public void runRace() {
-    for(int i = 0; i < rounds; i++)
-      moveAllCars();
+  int getRandNum() {
+    Random random = new Random();
+    return random.nextInt(1, 11);
   }
 
-  private void moveAllCars() {
+  public void runRace(int randNum) {
+    for(int i = 0; i < rounds; i++)
+      moveAllCars(randNum);
+  }
+
+  private void moveAllCars(int randNum) {
     for(RacingCar car : cars)
-      car.move();
+      car.move(randNum);
   }
 
   private int findWinningDistance() {
@@ -31,10 +37,19 @@ public class CarRace {
         .orElse(0);
   }
 
-  private void updateAllWinners(int winningDistance) {
+  public List<String> getWinnersName() {
+    return updateAllWinners(findWinningDistance());
+  }
+
+  private List<String> updateAllWinners(int winningDistance) {
     cars.stream()
         .filter(c -> c.getDistance() == winningDistance)
         .forEach(c -> coWinners.add(c.getName()));
+    return coWinners;
+  }
+
+  public List<String> getCoWinners() {
+    return coWinners;
   }
 
   public void displayAllWinners() {
