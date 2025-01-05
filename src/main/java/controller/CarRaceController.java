@@ -17,7 +17,7 @@ public class CarRaceController {
         int roundCount = InputView.inputRoundCount();
         List<Car> cars = new ArrayList<>();
 
-        for (String carName: carNames) {
+        for (String carName : carNames) {
             cars.add(new Car(carName, carRandomNumberGenerator));
         }
 

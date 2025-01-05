@@ -9,8 +9,9 @@ public class OutputView {
     public static void printResultTitle() {
         System.out.println("\n실행 결과");
     }
+
     public static void printRaceStatus(List<Car> cars) {
-        for (Car car: cars) {
+        for (Car car : cars) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
         }
 
