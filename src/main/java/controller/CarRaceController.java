@@ -23,6 +23,8 @@ public class CarRaceController {
 
         CarRaceGame carRaceGame = new CarRaceGame(cars);
 
+        OutputView.printResultTitle();
+
         for (int i = 1; i <= roundCount; i++) {
             List<Car> currentCars = carRaceGame.playSingleRoundAndGetCars();
             OutputView.printRaceStatus((ArrayList<Car>) currentCars);
