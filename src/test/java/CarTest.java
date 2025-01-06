@@ -28,8 +28,9 @@ public class CarTest {
         @DisplayName("자동차 경주 테스트")
         void Test_Car_Race(){
             Race race = new Race();
+            String[] names ={"a","b","c","d","e"};
             
-            race.makeCar(5);
+            race.makeCar(names);
             
             assertThat(race.cars.size()).as("자동차 개수 확인").isEqualTo(5);
             race.moveCar(5);

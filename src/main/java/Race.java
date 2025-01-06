@@ -4,9 +4,9 @@ import java.util.List;
 public class Race {
     public List<Car> cars = new ArrayList<>();
 
-    public void makeCar(int n) {
-        for(int i = 0; i < n ; i++){
-            cars.add(new Car("Car"+(i + 1)));
+    public void makeCar(String[] carNames) {
+        for(int i = 0; i < carNames.length ; i++){
+            cars.add(new Car(carNames[i]));
         }
     }
 
@@ -15,6 +15,18 @@ public class Race {
             for (Car car : cars) {
                 car.move();
             }
+            printRace();
+            System.out.println();
+        }
+    }
+
+    public void printRace() {
+        for (Car car : cars) {
+            System.out.print(car.getName() + " : ");
+            for (int j = 0; j < car.distance; j++) {
+                System.out.print("-");
+            }
+            System.out.println();
         }
     }
 
