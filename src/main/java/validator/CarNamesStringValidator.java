@@ -12,7 +12,7 @@ public class CarNamesStringValidator {
             throw new IllegalArgumentException("자동차의 이름을 하나 이상 입력해 주세요.");
         }
 
-        for (String carName: carNames) {
+        for (String carName : carNames) {
             if (carName.isBlank()) {
                 throw new IllegalArgumentException("자동차의 이름은 비어 있어서는 안 됩니다.");
             }

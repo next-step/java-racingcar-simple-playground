@@ -13,10 +13,8 @@ public class CarRaceGameTest {
     @Test
     @DisplayName("주어진 자동차를 이용해 경주를 진행할 경우 올바르게 이동 거리가 반영된 자동차 인스턴스 목록을 반환해야 한다.")
     void should_GetCarList_AfterRounds() {
-        Car aliceCar = new Car("Alice", new TestRandomNumberGenerator((Arrays.asList(0, 2))));
-        Car bobCar = new Car("Bob", new TestRandomNumberGenerator((Arrays.asList(8, 3))));
-        Car carlCar = new Car("Carl", new TestRandomNumberGenerator((Arrays.asList(4, 5))));
-        List<Car> cars = new ArrayList<>(Arrays.asList(aliceCar, bobCar, carlCar));
+        List<Car> cars = createTestCars(
+                Arrays.asList(Arrays.asList(0, 2), Arrays.asList(8, 3), Arrays.asList(4, 5)), Arrays.asList("Alice", "Bob", "Carl"));
 
         CarRaceGame carRaceGame = new CarRaceGame(cars);
 
@@ -34,10 +32,8 @@ public class CarRaceGameTest {
     @Test
     @DisplayName("주어진 자동차를 이용해 경주를 진행한 이후 우승자 목록을 받아올 때, 우승자가 하나일 경우 그 우승한 자동차 이름을 반환해야 한다.")
     void should_ReturnSingleWinningCarName_WhenCalledWinningListAfterRounds() {
-        Car aliceCar = new Car("Alice", new TestRandomNumberGenerator((Arrays.asList(0, 2, 9))));
-        Car bobCar = new Car("Bob", new TestRandomNumberGenerator((Arrays.asList(8, 7, 4))));
-        Car carlCar = new Car("Carl", new TestRandomNumberGenerator((Arrays.asList(4, 3, 4))));
-        List<Car> cars = new ArrayList<>(Arrays.asList(aliceCar, bobCar, carlCar));
+        List<Car> cars = createTestCars(
+                Arrays.asList(Arrays.asList(0, 2, 9), Arrays.asList(8, 7, 4), Arrays.asList(4, 3, 4)), Arrays.asList("Alice", "Bob", "Carl"));
 
         CarRaceGame carRaceGame = new CarRaceGame(cars);
 
@@ -53,10 +49,8 @@ public class CarRaceGameTest {
     @Test
     @DisplayName("주어진 자동차를 이용해 경주를 진행한 이후 우승자 목록을 받아올 때, 우승자가 하나일 경우 그 우승한 자동차 이름을 반환해야 한다.")
     void should_ReturnWinningCarNames_WhenCalledWinningListAfterRounds() {
-        Car aliceCar = new Car("Alice", new TestRandomNumberGenerator((Arrays.asList(1, 5, 8))));
-        Car bobCar = new Car("Bob", new TestRandomNumberGenerator((Arrays.asList(0, 9, 3))));
-        Car carlCar = new Car("Carl", new TestRandomNumberGenerator((Arrays.asList(2, 6, 7))));
-        List<Car> cars = new ArrayList<>(Arrays.asList(aliceCar, bobCar, carlCar));
+        List<Car> cars = createTestCars(
+                Arrays.asList(Arrays.asList(1, 5, 8), Arrays.asList(0, 9, 3), Arrays.asList(2, 6, 7)), Arrays.asList("Alice", "Bob", "Carl"));
 
         CarRaceGame carRaceGame = new CarRaceGame(cars);
 
@@ -67,5 +61,15 @@ public class CarRaceGameTest {
         List<String> winningCarNames = carRaceGame.getWinners();
 
         assertThat(winningCarNames).isEqualTo(Arrays.asList("Alice", "Carl"));
+    }
+
+    private List<Car> createTestCars(List<List<Integer>> randomValues, List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+
+        for (int i = 0; i < carNames.size(); i++) {
+            cars.add(new Car(carNames.get(i), new TestRandomNumberGenerator(randomValues.get(i))));
+        }
+
+        return cars;
     }
 }
