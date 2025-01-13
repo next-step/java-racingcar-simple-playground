@@ -8,9 +8,7 @@ public class OutputView {
     public void printRaceStatus(List<Car> cars) {
         for (Car car : cars) {
             System.out.print(car.getName() + " : ");
-            for (int j = 0; j < car.getDistance(); j++) {
-                System.out.print("-");
-            }
+            System.out.print("-".repeat(car.getDistance()));
             System.out.println();
         }
     }
