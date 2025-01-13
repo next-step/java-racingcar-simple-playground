@@ -18,8 +18,7 @@ public class Car {
         return distance;
     }
 
-    public void move() {
-        Random random = new Random();
+    public void move(Random random) {
         int randomValue = random.nextInt(10);
         if (randomValue >= 4) {
             distance++;

@@ -4,9 +4,19 @@ import domain.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Race {
     private final List<Car> cars = new ArrayList<>();
+    private final Random random;
+
+    public Race() {
+        this.random = new Random();
+    }
+
+    public Race(Random random) {
+        this.random = random;
+    }
 
     public void addCars(String[] carNames) {
         for (String name : carNames) {
@@ -25,7 +35,7 @@ public class Race {
     public void moveCars(int rounds) {
         for (int i = 0; i < rounds; i++) {
             for (Car car : cars) {
-                car.move();
+                car.move(random);
             }
         }
     }

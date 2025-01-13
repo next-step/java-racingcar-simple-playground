@@ -13,20 +13,28 @@ public class CarTest {
         @Test
         @DisplayName("자동차 객체 생성 테스트")
         void Test_Car_Object(){
+            MockRandom random = new MockRandom(1,9,2,8);
+
             Car one = new Car("one");
 
             assertThat(one.getName()).as("자동차 이름 확인").isEqualTo("one");
             assertThat(one.getDistance()).as("자동차 초기 거리 확인").isEqualTo(0);
 
-            one.move();
-            System.out.println("랜덤이동 후 거리 " + one.getDistance());
+            one.move(random);
+            assertThat(one.getDistance()).as("첫번째 이동 확인").isEqualTo(0);
+
+            one.move(random);
+            assertThat(one.getDistance()).as("두번째 이동 확인").isEqualTo(1);
+
+            one.move(random);
+            assertThat(one.getDistance()).as("세번째 이동 확인").isEqualTo(1);
         }
     }
     
     @Nested
     @DisplayName("@Test 자동차 경주 테스트")
     class TestCarRaceClass {
-        @Test
+
         @DisplayName("자동차 경주 테스트")
         void Test_Car_Race(){
             Race race = new Race();
