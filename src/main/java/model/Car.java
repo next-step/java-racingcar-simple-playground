@@ -5,6 +5,7 @@ public class Car {
     private int distance = 0;
     private final RandomNumberGenerator randomNumberGenerator;
     public static final int MAX_CAR_NAME_LENGTH = 5;
+    public static final int REQUIRED_MOVING_RANDOM_NUMBER = 4;
 
     public Car(String name, RandomNumberGenerator randomNumberGenerator) {
         this.name = name;
@@ -20,7 +21,7 @@ public class Car {
     }
 
     public void moveByProbability() {
-        if (randomNumberGenerator.generate() >= 4) {
+        if (randomNumberGenerator.generate() >= REQUIRED_MOVING_RANDOM_NUMBER) {
             this.distance += 1;
         }
     }
