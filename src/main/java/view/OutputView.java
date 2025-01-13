@@ -2,7 +2,6 @@ package view;
 
 import model.Car;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -20,5 +19,9 @@ public class OutputView {
 
     public static void printWinners(List<String> winners) {
         System.out.println(String.join(",", winners) + "가 최종 우승하였습니다.");
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
     }
 }

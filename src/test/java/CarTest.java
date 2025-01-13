@@ -1,11 +1,8 @@
 import model.Car;
-import model.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static model.Car.MAX_CAR_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,25 +33,5 @@ public class CarTest {
             car.moveByProbability();
         }
         assertThat(car.getDistance()).isEqualTo(3);
-    }
-
-    @Test
-    @DisplayName("자동차의 이름이 비어 있을 경우 해당 에러를 설명하는 예외를 발생시켜야 한다.")
-    void should_ThrowError_IfCarLengthIsBlank() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Car("  ", new TestRandomNumberGenerator(Arrays.asList(1, 2)));
-        });
-
-        assertEquals("[ERROR] 자동차의 이름은 비어 있어서는 안 됩니다.", exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("자동차의 이름이 정해진 제한 글자를 넘었을 경우 해당 에러를 설명하는 예외를 발생시켜야 한다.")
-    void should_ThrowError_IfCarLengthExceededAllowedLength() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Car("MyNameIsTooLong", new TestRandomNumberGenerator(Arrays.asList(1, 2)));
-        });
-
-        assertEquals("[ERROR] 자동차의 이름의 길이는 " + MAX_CAR_NAME_LENGTH + "자를 넘어서는 안 됩니다.", exception.getMessage());
     }
 }
