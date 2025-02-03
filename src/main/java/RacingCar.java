@@ -6,4 +6,8 @@ public class RacingCar {
         if(carName.length() > 5) throw new RuntimeException("자동차 이름은 5자 이하로 설정해주세요.");
         this.carName = carName;
     }
+
+    public String getCarName(){
+        return carName;
+    }
 }
