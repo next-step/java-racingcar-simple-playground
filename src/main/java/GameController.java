@@ -32,4 +32,8 @@ public class GameController {
                 car -> car.getPos() == maxPos
         ).collect(Collectors.toList());
     }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
 }
