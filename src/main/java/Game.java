@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import  java.util.Random;
 public class Game {
+
     static Scanner in = new Scanner(System.in);
 
     public static String inputCarName(){
