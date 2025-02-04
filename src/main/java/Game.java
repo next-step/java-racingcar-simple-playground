@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Game {
     private List<RacingCar> racingCars = new ArrayList<>();
-    private int runCount = checkRunCountException();
+    private int runCount = 0;
     static Scanner in = new Scanner(System.in);
 
     public static String inputCarName(){
@@ -11,7 +11,7 @@ public class Game {
         return carName;
     }
 
-    private static int checkRunCountException(){
+    private int checkRunCountException(){
         int runCount;
         try{
             runCount = in.nextInt();
@@ -23,8 +23,12 @@ public class Game {
         return runCount;
     }
 
-    public static void runCountMinusCheck(int runCount){
+    public void runCountMinusCheck(int runCount){
         if(runCount <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
+    }
+
+    public void setRunCount(){
+        runCount = checkRunCountException();
     }
 
     private String[] splitInput(String carNameInput){
@@ -54,7 +58,7 @@ public class Game {
         return randomNumber;
     }
 
-    public static void randomNumberMinusCheck(int randomNumber){
+    public void randomNumberMinusCheck(int randomNumber){
         if(randomNumber <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
     }
 
@@ -64,7 +68,7 @@ public class Game {
         }
     }
 
-    private static void carCanGo(int randomNumber, RacingCar car){
+    private void carCanGo(int randomNumber, RacingCar car){
         if(randomNumber >= 4) car.increaseForwardCount(randomNumber);
     }
 
@@ -78,6 +82,7 @@ public class Game {
         while(runCount-- > 0){
             gameStatePrint();
         }
+        printWinner(pickWinner());
     }
 
     public void gameStatePrint(){
@@ -87,13 +92,32 @@ public class Game {
     }
 
     public List<String> pickWinner(){
+        List<String> winnerCars = new ArrayList<>();
+        for(var car : racingCars){
+            pickWinnerCalc(car, winnerCars);
+        }
+        return winnerCars;
+    }
 
+    public void pickWinnerCalc(RacingCar car, List<String> winnerCar){
+        int max = 0;
+        if(car.getForwardCount() > max){
+            winnerCar.clear();
+            winnerCar.add(car.getCarName());
+            max = car.getForwardCount();
+        }
+        else if(car.getForwardCount() == max){
+            winnerCar.add(car.getCarName());
+        }
+    }
+
+    public void printWinner(List<String> winnerCars){
+        System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
 
     public static void runTest(){
         Game game = new Game();
-        String name = inputCarName();
-        System.out.println(new RacingCar(name).getCarName());
+        inputCarName();
     }
 
     public static void main(String[] args){
