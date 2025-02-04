@@ -36,7 +36,9 @@ public class Game {
         return carNames;
     }
 
-
+    private void setCar(Set<String> carNames){
+        for(var name : carNames) racingCars.add(new RacingCar(name));
+    }
 
     public int randomPick(){
         return new Random().nextInt();
