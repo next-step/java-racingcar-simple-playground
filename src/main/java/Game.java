@@ -43,7 +43,7 @@ public class Game {
     public int randomPick(){
         int randomNumber;
         try{
-            randomNumber = in.nextInt();
+            randomNumber = in.nextInt(9);
             randomNumberMinusCheck(randomNumber);
         }
         catch (NumberFormatException e) {
@@ -56,9 +56,14 @@ public class Game {
         if(randomNumber <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
     }
 
+    public void gameRun(){
+        for(var car : racingCars){
+            carCanGo(randomPick(), car);
+        }
+    }
 
-    public void gameStatePrint(){
-
+    private static void carCanGo(int randomNumber, RacingCar car){
+        if(randomNumber >= 4) car.increaseForwardCount(randomNumber);
     }
 
     public void firstGameStart(){
@@ -69,7 +74,9 @@ public class Game {
 
     public void gameResultPrint(){
         System.out.println("실행 결과");
+
     }
+
 
     public static void runTest(){
         Game game = new Game();
