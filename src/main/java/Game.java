@@ -2,14 +2,16 @@ import java.util.*;
 
 public class Game {
     private List<RacingCar> racingCars = new ArrayList<>();
-
+    private final int runCount = checkRunCountException();
     static Scanner in = new Scanner(System.in);
 
     public static String inputCarName(){
-        return in.nextLine();
+        String carName = in.nextLine();
+        if(carName == null || carName.isEmpty()) throw new RuntimeException("자동차 이름을 제대로 입력해주세요.");
+        return carName;
     }
 
-    public static int inputRunCount(){
+    private static int checkRunCountException(){
         int runCount;
         try{
             runCount = in.nextInt();
@@ -74,6 +76,10 @@ public class Game {
 
     public void gameResultPrint(){
         System.out.println("실행 결과");
+
+    }
+
+    public void gameStatePrint(){
 
     }
 
