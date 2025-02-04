@@ -10,8 +10,8 @@ public class Race {
         String[] carNames = nameOfCars.split(",");
 
         cars = new ArrayList<>();
-        for(int i=0; i<carNames.length; i++){
-            cars.add(new Car(carNames[i]));
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
         }
     }
 
