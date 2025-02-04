@@ -9,6 +9,7 @@ public class Car {
         this.location = 0;
     }
 
+    //private 속성들에 대한 getter 및 setter
     public String getName() {
         return name;
     }
@@ -18,16 +19,15 @@ public class Car {
     public int getLocation() {
         return location;
     }
-    public void setLocation(int location) {
-        this.location = location;
-    }
 
+    //랜덤 speed 값을 생성하여 자동차를 이동
     public void move(){
         int speed = new Random().nextInt(10);
         this.location = calculateNextLocation(speed);
 
     }
 
+    //speed값을 기준으로 다음 위치 계산
     private int calculateNextLocation(int speed){
         if(speed >= 4){
             return this.location+1;
