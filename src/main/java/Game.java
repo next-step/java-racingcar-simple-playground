@@ -41,8 +41,21 @@ public class Game {
     }
 
     public int randomPick(){
-        return new Random().nextInt();
+        int randomNumber;
+        try{
+            randomNumber = in.nextInt();
+            randomNumberMinusCheck(randomNumber);
+        }
+        catch (NumberFormatException e) {
+            throw new RuntimeException("정수만 가능합니다.");
+        }
+        return randomNumber;
     }
+
+    public static void randomNumberMinusCheck(int randomNumber){
+        if(randomNumber <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
+    }
+
 
     public void gameStatePrint(){
 
