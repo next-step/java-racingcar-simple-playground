@@ -14,4 +14,8 @@ public class RacingCar {
     public void increaseForwardCount(int randomNumber){
         if(randomNumber >= 4) ++forwardCount;
     }
+
+    public int getForwardCount(){
+        return forwardCount;
+    }
 }

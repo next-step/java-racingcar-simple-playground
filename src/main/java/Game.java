@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Game {
     private List<RacingCar> racingCars = new ArrayList<>();
-    private final int runCount = checkRunCountException();
+    private int runCount = checkRunCountException();
     static Scanner in = new Scanner(System.in);
 
     public static String inputCarName(){
@@ -75,14 +75,20 @@ public class Game {
     }
 
     public void gameResultPrint(){
-        System.out.println("실행 결과");
-
+        while(runCount-- > 0){
+            gameStatePrint();
+        }
     }
 
     public void gameStatePrint(){
-
+        gameRun();
+        for(var car : racingCars) System.out.println(car.getCarName() + " : " + "-".repeat(car.getForwardCount()));
+        System.out.println();
     }
 
+    public List<String> pickWinner(){
+
+    }
 
     public static void runTest(){
         Game game = new Game();
