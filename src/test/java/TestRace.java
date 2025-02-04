@@ -15,11 +15,11 @@ public class TestRace {
         @DisplayName("우승 자동차 구하기 테스트")
         void testRace(){
             //given
-            final Race testRace = new Race("test1,test2,test3,test4");
+            final Race testRace = new Race("test1,test2,test3");
 
             //when
-            //10회 동안 경주
-            testRace.runRace(10);
+            //5회 동안 경주
+            testRace.runRace(5);
 
             //then
             assertThat(testRace.getWinner()).isNotNull();

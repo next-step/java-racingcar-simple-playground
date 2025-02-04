@@ -35,6 +35,16 @@ public class Race {
     private void moveAllCars(){
         for(Car car: cars){
             car.move();
+            System.out.print(car.getName() + " : ");
+            printCarProgress(car);
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    private void printCarProgress(Car car){
+        for(int i = 0; i < car.getLocation(); i++){
+            System.out.print("-");
         }
     }
 
@@ -50,7 +60,7 @@ public class Race {
 
     //승자 구하기
     private void checkWinners(int maxLocation){
-        winners = new ArrayList<Car>();
+        winners = new ArrayList<>();
 
         for(Car car: cars){
             addWinners(car, maxLocation);
@@ -59,7 +69,7 @@ public class Race {
 
     //승자 추가하기
     private void addWinners(Car car, int maxLocation){
-        if(car.getLocation() > maxLocation){
+        if(car.getLocation() == maxLocation){
             winners.add(car);
         }
     }
