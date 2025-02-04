@@ -18,11 +18,13 @@ public class TestCar {
             final Car testCar = new Car("test");
 
             //when
+            //10번 동안 움직이기
             for(int i=0; i<10; i++){
                 testCar.move();
             }
 
             //then
+            //10번 동안 움직이면 0~10의 위치를 가질 수 있음
             assertThat(0 <= testCar.getLocation() && testCar.getLocation() <= 10).isTrue();
         }
     }
