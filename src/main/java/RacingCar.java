@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class RacingCar {
+public class RacingCar {
     private final String name;
     private final Random random;
     private int position;
