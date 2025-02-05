@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Game {
-
     private List<RacingCar> racingCars = new ArrayList<>();
     private int runCount = 0;
     static Scanner in = new Scanner(System.in);
@@ -12,7 +11,7 @@ public class Game {
         return carName;
     }
 
-    private int checkRunCountException(){
+    private int inputRunCount(){
         int runCount;
         try{
             runCount = in.nextInt();
@@ -29,7 +28,7 @@ public class Game {
     }
 
     public void setRunCount(){
-        runCount = checkRunCountException();
+        runCount = inputRunCount();
     }
 
     private String[] splitInput(String carNameInput){
@@ -43,7 +42,8 @@ public class Game {
         return carNames;
     }
 
-    private void setCar(Set<String> carNames){
+    private void setCar(String[] carNameInput){
+        var carNames = setCarName(carNameInput);
         for(var name : carNames) racingCars.add(new RacingCar(name));
     }
 
@@ -73,12 +73,6 @@ public class Game {
         if(randomNumber >= 4) car.increaseForwardCount(randomNumber);
     }
 
-    public void firstGameStart(){
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-
-        System.out.println("시도할 회수는 몇회인가요?");
-    }
-
     public void gameResultPrint(){
         while(runCount-- > 0){
             gameStatePrint();
@@ -94,14 +88,14 @@ public class Game {
 
     public List<String> pickWinner(){
         List<String> winnerCars = new ArrayList<>();
+        int max = 0;
         for(var car : racingCars){
-            pickWinnerCalc(car, winnerCars);
+            max = pickWinnerCalc(car, winnerCars, max);
         }
         return winnerCars;
     }
 
-    public void pickWinnerCalc(RacingCar car, List<String> winnerCar){
-        int max = 0;
+    public int pickWinnerCalc(RacingCar car, List<String> winnerCar, int max){
         if(car.getForwardCount() > max){
             winnerCar.clear();
             winnerCar.add(car.getCarName());
@@ -110,15 +104,23 @@ public class Game {
         else if(car.getForwardCount() == max){
             winnerCar.add(car.getCarName());
         }
+        return max;
     }
 
     public void printWinner(List<String> winnerCars){
         System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
 
+    public void gameSetting(){
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        setCar(splitInput(inputCarName()));
+        System.out.println("시도할 횟수는 몇회인가요?");
+        setRunCount();
+    }
+
     public static void runTest(){
         Game game = new Game();
-        inputCarName();
+        //inputCarName();
     }
 
     public static void main(String[] args){
