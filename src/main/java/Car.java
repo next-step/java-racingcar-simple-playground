@@ -10,6 +10,18 @@ public class Car {
         this.position = position;
     }
 
+    public int getPosition(){
+        return this.position;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setPosition(int pos) {
+       this.position = pos;
+    }
+
     // 차 이동
     public void moveCar() {
         Random random = new Random();
