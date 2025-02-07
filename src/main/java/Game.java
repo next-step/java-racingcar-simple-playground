@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Game {
+
     private List<RacingCar> racingCars = new ArrayList<>();
     private int runCount = 0;
     static Scanner in = new Scanner(System.in);
