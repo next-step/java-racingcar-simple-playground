@@ -28,7 +28,7 @@ public class Game {
         if(runCount <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
     }
 
-    public void setRunCount(){
+    private void setRunCount(){
         runCount = inputRunCount();
     }
 
@@ -89,18 +89,18 @@ public class Game {
         return winnerCars;
     }
 
-    public void printWinner(List<String> winnerCars){
+    private void printWinner(List<String> winnerCars){
         System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
 
-    public void gameSetting(){
+    private void gameSetting(){
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         setCar(splitInput(inputCarName()));
         System.out.println("시도할 횟수는 몇회인가요?");
         setRunCount();
     }
 
-    public void gameResultPrint(){
+    private void gameResultPrint(){
         System.out.println();
         System.out.println("실행 결과");
         for(int i = 0; i<runCount; ++i){
