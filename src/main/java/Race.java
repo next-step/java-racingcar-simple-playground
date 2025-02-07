@@ -21,6 +21,10 @@ public class Race {
         }
     }
 
+    public List<RacingCar> getCars() {
+        return cars;
+    }
+
     // 자동차들 중 최대 위치를 반환
     private int getMaxPosition() {
         int max = 0;
