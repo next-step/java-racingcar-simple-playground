@@ -1,6 +1,11 @@
+package model;
+
+import common.FakeRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,6 +32,6 @@ public class CarTest {
     }
 
     private Car createCar(int fixedValue){
-        return new Car("test", new FakeRandom(fixedValue));
+        return new Car("test", new FakeRandom(List.of(fixedValue)));
     }
 }
