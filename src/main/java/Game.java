@@ -24,7 +24,7 @@ public class Game {
         return runCount;
     }
 
-    public void runCountMinusCheck(int runCount){
+    private void runCountMinusCheck(int runCount){
         if(runCount <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
     }
 
