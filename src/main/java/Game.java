@@ -48,22 +48,10 @@ public class Game {
     }
 
     public int randomPick(){
-        int randomNumber;
-        try{
-            randomNumber = in.nextInt(9);
-            randomNumberMinusCheck(randomNumber);
-        }
-        catch (NumberFormatException e) {
-            throw new RuntimeException("정수만 가능합니다.");
-        }
-        return randomNumber;
+        return new Random().nextInt(9);
     }
 
-    public void randomNumberMinusCheck(int randomNumber){
-        if(randomNumber <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
-    }
-
-    public void gameRun(){
+    private void gameRun(){
         for(var car : racingCars){
             carCanGo(randomPick(), car);
         }
@@ -73,29 +61,13 @@ public class Game {
         if(randomNumber >= 4) car.increaseForwardCount(randomNumber);
     }
 
-    public void gameResultPrint(){
-        while(runCount-- > 0){
-            gameStatePrint();
-        }
-        printWinner(pickWinner());
-    }
-
-    public void gameStatePrint(){
+    private void gameStatePrint(){
         gameRun();
         for(var car : racingCars) System.out.println(car.getCarName() + " : " + "-".repeat(car.getForwardCount()));
         System.out.println();
     }
 
-    public List<String> pickWinner(){
-        List<String> winnerCars = new ArrayList<>();
-        int max = 0;
-        for(var car : racingCars){
-            max = pickWinnerCalc(car, winnerCars, max);
-        }
-        return winnerCars;
-    }
-
-    public int pickWinnerCalc(RacingCar car, List<String> winnerCar, int max){
+    private int pickWinnerCalc(RacingCar car, List<String> winnerCar, int max){
         if(car.getForwardCount() > max){
             winnerCar.clear();
             winnerCar.add(car.getCarName());
@@ -105,6 +77,15 @@ public class Game {
             winnerCar.add(car.getCarName());
         }
         return max;
+    }
+
+    private List<String> pickWinner(){
+        List<String> winnerCars = new ArrayList<>();
+        int max = 0;
+        for(var car : racingCars){
+            max = pickWinnerCalc(car, winnerCars, max);
+        }
+        return winnerCars;
     }
 
     public void printWinner(List<String> winnerCars){
@@ -118,9 +99,19 @@ public class Game {
         setRunCount();
     }
 
+    public void gameResultPrint(){
+        System.out.println();
+        System.out.println("실행 결과");
+        for(int i = 0; i<runCount; ++i){
+            gameStatePrint();
+        }
+        printWinner(pickWinner());
+    }
+
     public static void runTest(){
         Game game = new Game();
-        //inputCarName();
+        game.gameSetting();
+        game.gameResultPrint();
     }
 
     public static void main(String[] args){
