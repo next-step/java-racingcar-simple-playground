@@ -59,7 +59,7 @@ public class Game {
     }
 
     private void carCanGo(int randomNumber, RacingCar car){
-        if(randomNumber >= 4) car.increaseForwardCount(randomNumber);
+        if(randomNumber >= 4) car.move(randomNumber);
     }
 
     private void gameStatePrint(){
