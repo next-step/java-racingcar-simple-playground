@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class GameView {
     static Scanner in = new Scanner(System.in);
 
-    public static String inputCarName(){
+    public String inputCarName(){
         String carName = in.nextLine();
         if(carName == null || carName.isEmpty()) throw new RuntimeException("자동차 이름을 제대로 입력해주세요.");
         return carName;
@@ -38,7 +38,7 @@ public class GameView {
         System.out.println();
     }
 
-    private void printWinner(List<String> winnerCars){
+    public void printWinner(List<String> winnerCars){
         System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
 }
