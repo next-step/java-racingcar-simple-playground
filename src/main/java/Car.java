@@ -8,11 +8,11 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
-        validateName(name);
+        validateNameNotNullOrEmpty(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
+    private void validateNameNotNullOrEmpty(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 필수입니다.");
         }
@@ -31,6 +31,10 @@ public class Car {
 
     private boolean isMovable(int randomValue) {
         return randomValue >= MOVE_CONDITION;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {
