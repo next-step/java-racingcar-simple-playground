@@ -1,22 +1,37 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Car
 {
-    String carName = new String();
+    private final Random random = new Random();
+    private String carName = "";
+    private int moveCount = 0;
+    private int curPos = 0;
 
-    public void SetCarName(String name)
+    public void setCarName(String name)
     {
         carName = name;
     }
 
+    public String getCarName()
+    {
+        return carName;
+    }
+
+    public int getCarPos()
+    {
+        return curPos;
+    }
+
     public int MoveCar()
     {
-        Random random = new Random();
-        random.setSeed(System.currentTimeMillis());
+        moveCount += 1;
         int randomSpeed = random.nextInt(10);
-        if (randomSpeed < 4)
-            return 0;
 
-        return randomSpeed;
+        if (randomSpeed < 4)
+            return curPos;
+
+        curPos += randomSpeed;
+        return curPos;
     }
 }
