@@ -40,12 +40,15 @@ public class RacingGame {
         List<String> winners = new ArrayList<>();
         for (RacingCar car : racingCars) {
             if (car.getForwardCount() == maxPosition) {
-                winners.add(car.getCarName());
+                checkWinners(car, maxPosition, winners);
             }
         }
         return winners;
     }
 
-
-
+    private void checkWinners(RacingCar car, int maxPosition, List<String> winners){
+        if (car.getForwardCount() == maxPosition) {
+            winners.add(car.getCarName());
+        }
+    }
 }

@@ -5,6 +5,7 @@ public class GameView {
     static Scanner in = new Scanner(System.in);
 
     public String inputCarName(){
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carName = in.nextLine();
         if(carName == null || carName.isEmpty()) throw new RuntimeException("자동차 이름을 제대로 입력해주세요.");
         return carName;
