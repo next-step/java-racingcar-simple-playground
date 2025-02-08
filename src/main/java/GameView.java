@@ -41,5 +41,4 @@ public class GameView {
     private void printWinner(List<String> winnerCars){
         System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
-
 }
