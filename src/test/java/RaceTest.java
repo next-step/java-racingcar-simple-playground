@@ -78,4 +78,21 @@ class RaceTest {
                 .extracting(RacingCar::getName)
                 .containsExactly("CarA", "CarB");
     }
+
+    @DisplayName("모든 자동차가 정지한 경우, 전부 우승자로 나오는가?")
+    @Test
+    void allCarsStopped_AllAreWinners() {
+        // CarA, CarB 둘 다 정지하도록 설정
+        carA = new RacingCar("CarA", stopRandom);
+        carB = new RacingCar("CarB", stopRandom);
+        race = new Race(List.of(carA, carB));
+
+        race.race(5);
+        List<RacingCar> winners = race.findWinners();
+
+        assertThat(winners)
+                .hasSize(2)
+                .extracting(RacingCar::getName)
+                .containsExactly("CarA", "CarB");
+    }
 }
