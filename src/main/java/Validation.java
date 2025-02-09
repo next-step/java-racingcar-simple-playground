@@ -8,11 +8,12 @@ public class Validation {
     public void validTimes(String strTimes) throws RuntimeException {
         validParseTimes(strTimes);
         validTimesRange(Integer.parseInt(strTimes));
+
     }
 
     public void validNameIsNullOrBlank(String name) {
         if (name == null || name.isBlank())
-            throw new RuntimeException("이름이 비어있습니다.");
+            throw new RuntimeException("이름에 공백이 포함되었습니다.");
     }
 
     public void validNameSize(String name) {
@@ -23,7 +24,7 @@ public class Validation {
     public void validParseTimes(String strTimes) {
         try {
             Integer.parseInt(strTimes);
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException e) {
             throw new RuntimeException("정수가 아닌 값이 입력되었습니다.");
         }
     }
