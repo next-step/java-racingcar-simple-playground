@@ -7,6 +7,25 @@ public class GameStart {
     private static FindWinCar race;
 
     public static void main(String[] args) {
+        carNameInput();
+        timesInput();
+
+        // 경기 진행
+        race = new FindWinCar(cars.length, cars);
+        for (int i = 0; i < times; ++i){
+            game();
+        }
+
+        // 최종 출력
+        print(race.getLocate());
+        String winNames = Arrays.stream(race.findWin())
+                                .map(Car::getName)
+                                .reduce((a, b) -> a + ", " + b)
+                                .orElse("");
+        System.out.println(winNames + "가 최종 우승했습니다.");
+    }
+
+    private static void carNameInput(){
         Scanner in = new Scanner(System.in);
 
         // 자동차 이름
@@ -24,6 +43,12 @@ public class GameStart {
                     .map(Car::new)
                     .toArray(Car[]::new);
 
+        in.close();
+    }
+
+    private static void timesInput(){
+        Scanner in = new Scanner(System.in);
+
         // 이동 횟수
         System.out.println("시도할 회수는 몇회인가요?");
         times = in.nextInt();
@@ -31,23 +56,13 @@ public class GameStart {
             throw new IllegalArgumentException();
         }
 
-        // 경기 진행
-        race = new FindWinCar(cars.length, cars);
-        for (int i = 0; i < times; ++i){
-            print(race.getLocate());
-            race.move();
-            System.out.println();
-        }
-
-        // 최종 출력
-        print(race.getLocate());
-        String winNames = Arrays.stream(race.findWin())
-                                .map(Car::getName)
-                                .reduce((a, b) -> a + ", " + b)
-                                .orElse("");
-        System.out.println(winNames + "가 최종 우승했습니다.");
-
         in.close();
+    }
+
+    private static void game(){
+        print(race.getLocate());
+        race.move();
+        System.out.println();
     }
 
     private static void print(int[] locate){
