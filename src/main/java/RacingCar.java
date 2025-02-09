@@ -1,3 +1,4 @@
+import java.io.InvalidClassException;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,12 +10,15 @@ public class RacingCar {
     public RacingCar(String name){
         this.name = name;
     }
+
     public int getSpace(){
         return space;
     }
+
     public String getName(){
         return name;
     }
+
     //랜덤 값을 받아오는 함수
     public int GetRandom(){
         Random random = new Random();
@@ -45,6 +49,16 @@ public class RacingCar {
         }
         return winners;
     }
+    //자동차 이름 검증 메서드
+    public static void validdateCarNames(String[] names){
+        for (String name : names){
+            name = name.trim();
+            if (name.length() > 5){
+                throw new IllegalArgumentException("자동차 이름 '" + name +"' 은 5글자를 초과할 수 없다.");
+            }
+        }
+    }
+
 
     @Override
     public String toString() {

@@ -13,6 +13,13 @@ public class RacingCarMain {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNamesInput = scanner.nextLine();
         String[] names = carNamesInput.split(",");
+        try{
+            RacingCar.validdateCarNames(names);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.out.println("시스템을 종료합니다");
+            System.exit(1);
+        }
 
         RacingCar[] cars = new RacingCar[names.length];
         for (int i = 0; i < names.length; i++) {
@@ -31,6 +38,7 @@ public class RacingCarMain {
             for (RacingCar car : cars){
                 System.out.println(car);
             }
+            System.out.println();
         }
         List<RacingCar> winners = RacingCar.findWinners(Arrays.asList(cars));
 
