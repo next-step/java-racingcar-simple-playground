@@ -49,19 +49,14 @@ public class Game {
         System.out.println("실행 결과");
 
         for (int i = 0; i < gameTime;i++){
-            game.runCompetition();
+            game.runRandomCompetition();
+
             gamePrint();
             System.out.println();
         }
     }
 
     private void gamePrint(){
-        for (Car car : game.cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-        }
-    }
-
-    private void gamePrint2(){
         for (Car car : game.cars) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
@@ -75,7 +70,6 @@ public class Game {
             joiner.add(car.getName());
         }
 
-        System.out.print(joiner.toString() + "가 최종 우승했습니다.");
-
+        System.out.print(joiner + "가 최종 우승했습니다.");
     }
 }
