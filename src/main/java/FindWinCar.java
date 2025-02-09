@@ -20,7 +20,7 @@ public class FindWinCar {
             throw new IllegalArgumentException();
         }
 
-        for (int t=0; t<times; ++t){
+        for (int t = 0; t < times; ++t){
             move();
         }
     }
