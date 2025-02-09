@@ -22,7 +22,9 @@ public class RacingGame {
 
             times--;
         }
+    }
 
+    public void printWinners() {
         List<Car> winners = getWinners();
         outputController.printWinners(winners);
     }
