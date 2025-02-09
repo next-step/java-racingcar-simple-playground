@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -6,8 +8,8 @@ public class Race {
     final private List<Car> cars;
     private List<Car> winners;
 
-    //Race 생성자 : ","를 이용해 구분하여 레이스에 참가하는 차량의 이름을 입력
-    public Race(String nameOfCars){
+    //domain.Race 생성자 : ","를 이용해 구분하여 레이스에 참가하는 차량의 이름을 입력
+    public Race(String nameOfCars) throws IllegalArgumentException {
         String[] carNames = nameOfCars.split(",");
 
         cars = new ArrayList<>();

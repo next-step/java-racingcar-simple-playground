@@ -1,3 +1,4 @@
+import domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -44,8 +45,14 @@ public class TestCar {
             final Car testCar = new Car("test");
 
             //when
-            assertThatThrownBy(()-> testCar.move(-1)).hasMessage("속도는 0에서 9 사이의 값이어야 합니다.");
-            assertThatThrownBy(()-> testCar.move(10)).hasMessage("속도는 0에서 9 사이의 값이어야 합니다.");
+            assertThatThrownBy(()-> testCar.move(-1)).hasMessage("speed is must be between 0 and 9");
+            assertThatThrownBy(()-> testCar.move(10)).hasMessage("speed is must be between 0 and 9");
+        }
+
+        @Test
+        @DisplayName("차량 생성 예외 테스트")
+        void testCarCreationException(){
+            assertThatThrownBy(()-> new Car("123456")).hasMessage("name is must be less than 5 characters");
         }
     }
 }

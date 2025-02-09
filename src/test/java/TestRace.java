@@ -1,3 +1,4 @@
+import domain.Race;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -23,6 +24,17 @@ public class TestRace {
 
             //then
             assertThat(testRace.getWinner().get(0)).isNotNull();
+        }
+    }
+
+    @Nested
+    @DisplayName("자동차 경주 예외 테스트")
+    class TestRaceExceptions{
+
+        @Test
+        @DisplayName("경주 생성 예외 테스트")
+        void testRaceCreationException(){
+            assertThatThrownBy(() -> new Race("1234,12345,123456")).hasMessage("name is must be less than 5 characters");
         }
     }
 }

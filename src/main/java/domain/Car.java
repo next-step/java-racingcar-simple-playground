@@ -1,8 +1,10 @@
+package domain;
+
 public class Car {
     private String name;
     private int location;
 
-    public Car(String name) {
+    public Car(String name) throws IllegalArgumentException {
         this.setName(name);
         this.location = 0;
     }
@@ -11,7 +13,10 @@ public class Car {
     public String getName() {
         return name;
     }
-    public void setName(String name) {
+    public void setName(String name) throws IllegalArgumentException {
+        if(name.length()>5){
+            throw new IllegalArgumentException("name is must be less than 5 characters");
+        }
         this.name = name;
     }
     public int getLocation() {
@@ -21,7 +26,7 @@ public class Car {
     //랜덤으로 speed 값을 생성하는 대신, speed를 파라미터로 입력받아 자동차를 이동
     public void move(int speed) throws IllegalArgumentException {
         if(speed > 9 || speed < 0){
-            throw new IllegalArgumentException("속도는 0에서 9 사이의 값이어야 합니다.");
+            throw new IllegalArgumentException("speed is must be between 0 and 9");
         }
         this.location = calculateNextLocation(speed);
 
