@@ -1,21 +1,17 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("자동차 경주 관련 테스트 클래스")
-public class GameControllerTest {
-    private GameController gc;
+public class RacingGameTest {
+    private RacingGame gc;
     private Car car1, car2, car3;
 
     @BeforeEach
     public void beforeEach() {
-        gc = new GameController();
+        gc = new RacingGame();
 
         car1 = new Car("Kim");
         car2 = new Car("Lee");

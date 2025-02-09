@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class GameController {
+public class RacingGame {
     private final List<Car> carList = new ArrayList<>();
     private Random random = new Random();
 
