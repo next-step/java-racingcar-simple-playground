@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Competition {
@@ -9,9 +10,17 @@ public class Competition {
         cars.add(new Car(name, 0));
     }
 
-    public void runCompetition(){
+    public void runRandomCompetition(){
+        Random random = new Random();
+
         for (Car car : cars){
-            car.moveCar();
+            car.moveCar(random.nextInt(10));
+        }
+    }
+
+    public void runCompetition(int value){
+        for (Car car : cars){
+            car.moveCar(value);
         }
     }
 

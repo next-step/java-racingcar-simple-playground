@@ -1,8 +1,6 @@
-import java.util.Random;
-
 public class Car {
-    String name;
-    int position;
+    private String name;
+    private int position;
 
     // 생성자 초기화 (Setter)
     public Car(String name, int position){
@@ -23,13 +21,8 @@ public class Car {
     }
 
     // 차 이동
-    public void moveCar() {
-        Random random = new Random();
-
-        int num;
-        num = random.nextInt(10);
-
-        if (num >= 4){
+    public void moveCar(int value) {
+        if (value >= 4){
             this.position += 1;
         }
     }
