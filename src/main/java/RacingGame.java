@@ -20,7 +20,7 @@ public class RacingGame {
 
     public void playRound() {
         for (RacingCar car : racingCars) {
-            car.move(random.nextInt(9)); // 0~8 랜덤 값
+            car.move(random.nextInt(10));
         }
     }
 
@@ -39,9 +39,7 @@ public class RacingGame {
                 .orElse(0);
         List<String> winners = new ArrayList<>();
         for (RacingCar car : racingCars) {
-            if (car.getForwardCount() == maxPosition) {
-                checkWinners(car, maxPosition, winners);
-            }
+            checkWinners(car, maxPosition, winners);
         }
         return winners;
     }
