@@ -3,8 +3,8 @@ import java.util.stream.IntStream;
 import java.util.Arrays;
 
 public class FindWinCar {
-    Car[] cars;
-    int[] locate;
+    private Car[] cars;
+    private int[] locate;
 
     public FindWinCar(int n, Car[] car){
         if (n <= 0){
