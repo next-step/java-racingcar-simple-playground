@@ -9,9 +9,16 @@ public class RacingCar {
 
     // Random 객체를 생성자에서 받아옴
     public RacingCar(String name, Random random) {
+        verifyCarName(name);
         this.name = name;
         this.random = random;
         this.position = 0;
+    }
+
+    private void verifyCarName(String name) {
+        if (name.isEmpty() || name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 1~5자만 가능합니다.");
+        }
     }
 
     public String getName() {
