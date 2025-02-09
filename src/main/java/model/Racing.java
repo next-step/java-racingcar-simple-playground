@@ -1,54 +1,51 @@
 package model;
 
-import java.util.List;
-import java.util.Random;
+import model.dto.RacingPlayResponse;
+
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Racing {
 
-    private final Random random;
+    private final Random rand;
 
-    private final int gameCount;
-    private final int carCount;
-    private final List<Car> cars;
-
-    public Racing(Random random, int gameCount, int carCount) {
-        this.random = random;
-        this.gameCount = gameCount;
-        this.carCount = carCount;
-        this.cars = initCars(carCount);
+    public Racing(Random rand) {
+        this.rand = rand;
     }
 
-    public List<Car> play() {
-        runGame();
+    public RacingPlayResponse play(String inputCarNames, int raceCount) {
+        List<String> carNames = Arrays.stream(inputCarNames.split(",")).toList();
+        Cars cars = new Cars(rand, carNames);
+        List<Map<String, Integer>> moveData = runRacing(raceCount, cars);
 
-        return getWinners(getMaxDistance());
+        return new RacingPlayResponse(moveData, getWinners(cars));
     }
 
-    private List<Car> initCars(int count) {
-        return IntStream.rangeClosed(1, count)
-                .mapToObj(i -> new Car("test" + i, random))
-                .toList();
+    private List<Map<String, Integer>> runRacing(int raceCount, Cars cars) {
+        List<Map<String, Integer>> moveData = new ArrayList<>();
+        moveData.add(getSnapshot(cars));
+        IntStream.range(0, raceCount)
+                .forEach(i -> moveData.add(moveAndGetSnapshot(cars)));
+
+        return moveData;
     }
 
-    private void runGame() {
-        Stream.iterate(0, i -> i + 1)
-                .limit(gameCount)
-                .forEach(i ->
-                        cars.forEach(Car::move)
-                );
+    private Map<String, Integer> moveAndGetSnapshot(Cars cars) {
+        cars.allMove();
+
+        return getSnapshot(cars);
     }
 
-    private int getMaxDistance() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+    private Map<String, Integer> getSnapshot(Cars cars) {
+        return cars.getCars().stream()
+                .collect(Collectors.toMap(Car::getName, Car::getPosition));
     }
 
-    private List<Car> getWinners(int maxDistance) {
-        return cars.stream()
+    private List<Car> getWinners(Cars cars) {
+        int maxDistance = cars.findMaxDistance();
+
+        return cars.getCars().stream()
                 .filter(car -> car.getPosition() == maxDistance)
                 .toList();
     }
