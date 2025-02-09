@@ -36,17 +36,17 @@ public class Race {
     private void moveAllCars(){
         for(Car car: cars){
             car.move(new Random().nextInt(10));
-            System.out.print(car.getName() + " : ");
             printCarProgress(car);
-            System.out.println();
         }
         System.out.println();
     }
 
     private void printCarProgress(Car car){
+        System.out.print(car.getName() + " : ");
         for(int i = 0; i < car.getLocation(); i++){
             System.out.print("-");
         }
+        System.out.println();
     }
 
     //최대 거리 구하기
