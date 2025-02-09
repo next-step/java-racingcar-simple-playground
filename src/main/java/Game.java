@@ -1,14 +1,17 @@
+import domain.Car;
+import domain.Competition;
+import view.InputView;
+import view.ResultView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.StringJoiner;
 
 public class Game {
     Competition game = new Competition();
 
     public void game(){
-        String[] carNames = getCarNames();
-        int gameTime = getGameTime();
+        String[] carNames = InputView.getCarNames();
+        int gameTime = InputView.getGameTime();
 
         if(isVaildNames(carNames)){
             return;
@@ -16,22 +19,14 @@ public class Game {
 
         joinGame(carNames);
 
-        startGame(gameTime);
+        System.out.println("\n실행 결과");
+        for (int i=0;i < gameTime;i++){
+            game.runRandomCompetition();
+            ResultView.printRound(game.getCars());
+        }
 
-        gameWinnerPrint();
-    }
-
-    private String[] getCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        Scanner scanner = new Scanner(System.in);
-        String value = scanner.nextLine();
-        return value.split(",");
-    }
-
-    private int getGameTime() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        ArrayList<Car> winners = game.getWinners();
+        ResultView.printWinners(winners);
     }
 
     private boolean isVaildNames(String[] cars){
@@ -42,34 +37,5 @@ public class Game {
         for (String car : cars){
             game.joinCompetition(car);
         }
-    }
-
-    private void startGame(int gameTime){
-        System.out.println();
-        System.out.println("실행 결과");
-
-        for (int i = 0; i < gameTime;i++){
-            game.runRandomCompetition();
-
-            gamePrint();
-            System.out.println();
-        }
-    }
-
-    private void gamePrint(){
-        for (Car car : game.cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-        }
-    }
-
-    private void gameWinnerPrint(){
-        ArrayList<Car> winners = game.getWinners();
-        StringJoiner joiner = new StringJoiner(", ");
-
-        for (Car car : winners) {
-            joiner.add(car.getName());
-        }
-
-        System.out.print(joiner + "가 최종 우승했습니다.");
     }
 }

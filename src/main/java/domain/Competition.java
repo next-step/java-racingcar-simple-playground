@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -37,11 +39,11 @@ public class Competition {
     public ArrayList<Car> getWinners(){
         int maxPosition = getPositionMax();
         return cars.stream()
-                .filter(car -> isWinner(car, maxPosition))
+                .filter(car ->  car.getPosition() == maxPosition)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private boolean isWinner(Car car, int maxPosition){
-        return car.getPosition() == maxPosition;
+    public ArrayList<Car> getCars(){
+        return cars;
     }
 }
