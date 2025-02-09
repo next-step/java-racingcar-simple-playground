@@ -4,25 +4,27 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+    private final OutputController outputController = new OutputController();
     private final List<Car> carList = new ArrayList<>();
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public void join(Car player) {
         carList.add(player);
     }
 
-    public void start(int times) {
+    public void race(int times) {
         while (times != 0) {
             carList.forEach(
                     car -> car.move(random.nextInt(10))
             );
 
+            outputController.printProgressResult(carList);
+
             times--;
         }
 
         List<Car> winners = getWinners();
-
-        System.out.println(winners);
+        outputController.printWinners(winners);
     }
 
     public List<Car> getWinners() {
