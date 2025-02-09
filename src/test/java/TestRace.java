@@ -22,7 +22,7 @@ public class TestRace {
             testRace.runRace(5);
 
             //then
-            assertThat(testRace.getWinner()).isNotNull();
+            assertThat(testRace.getWinner().get(0)).isNotNull();
         }
     }
 }
