@@ -17,9 +17,14 @@ public class InputController {
 
         nameList = nameParser.parseName(strNames);
 
-        nameList.forEach(
-                (name) -> validation.validName(name)
-        );
+        try {
+            nameList.forEach(
+                    (name) -> validation.validName(name)
+            );
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
         return nameList;
     }
@@ -28,7 +33,12 @@ public class InputController {
         System.out.println("시도할 회수는 몇회인가요?");
         strTimes = sc.nextLine();
 
-        validation.validTimes(strTimes);
+        try {
+            validation.validTimes(strTimes);
+        } catch(RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
         times = Integer.parseInt(strTimes);
 
