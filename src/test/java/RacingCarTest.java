@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import domain.RacingCar;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -8,6 +9,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("움직이는 자동차 테스트")
 class RacingCarTest {
     private static final String TEST_CAR_NAME = "TestCar";
+
+    // 고정된 난수 값을 반환하는 MockRandom 클래스 (Random 상속)
+    private static class MockRandom extends Random {
+        private final int mockedValue;
+
+        public MockRandom(int mockedValue) {
+            this.mockedValue = mockedValue;
+        }
+
+        @Override
+        public int nextInt(int bound) {
+            return mockedValue;
+        }
+    }
 
     private RacingCar carWithMockRandom(int mockedValue) {
         return new RacingCar(TEST_CAR_NAME, new MockRandom(mockedValue));
@@ -40,20 +55,6 @@ class RacingCarTest {
             assertThat(isMoved)
                     .as("랜덤 값이 %d일 때 자동차가 정지해야 합니다.", mockedValue)
                     .isFalse();
-        }
-    }
-
-    // 고정된 난수 값을 반환하는 MockRandom 클래스 (Random 상속)
-    private static class MockRandom extends Random {
-        private final int mockedValue;
-
-        public MockRandom(int mockedValue) {
-            this.mockedValue = mockedValue;
-        }
-
-        @Override
-        public int nextInt(int bound) {
-            return mockedValue;
         }
     }
 }
