@@ -1,38 +1,46 @@
+import domain.Car;
+import domain.Competition;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.ArrayList;
+
 
 public class JUnit5Test {
-    @Test
-    void testSingleWinner(){
-        Competition competition = new Competition();
-        competition.joinCompetition("audi");
-        competition.joinCompetition("sonata");
-        competition.joinCompetition("morning");
 
-        competition.cars.get(0).setPosition(1);
-        competition.cars.get(1).setPosition(2);
-        competition.cars.get(2).setPosition(3);
+    @Nested
+    class moveTest{
 
-        ArrayList<Car> winners = competition.getWinners();
-        assertEquals(1, winners.size());
-        assertEquals("morning", winners.get(0).getName());
+        @Test
+        void move3(){
+            Car car = new Car("TeCar", 0);
+            car.moveCar(3);
+            assertEquals(0, car.getPosition());
+        }
+
+        @Test
+        void move4(){
+            Car car = new Car("TeCar", 0);
+            car.moveCar(4);
+            assertEquals(1, car.getPosition());
+        }
     }
 
-    @Test
-    void testMultiWinner(){
-        Competition competition = new Competition();
-        competition.joinCompetition("audi");
-        competition.joinCompetition("sonata");
-        competition.joinCompetition("morning");
+    @Nested
+    class competitionTest{
 
-        competition.cars.get(0).setPosition(1);
-        competition.cars.get(1).setPosition(3);
-        competition.cars.get(2).setPosition(3);
+        @Test
+        void runFixedValue() {
+            Competition game = new Competition();
 
-        ArrayList<Car> winners = competition.getWinners();
-        assertEquals(2, winners.size());
-        assertEquals("sonata", winners.get(0).getName());
-        assertEquals("morning", winners.get(1).getName());
+            game.joinCompetition("Kang");
+            game.joinCompetition("dong");
+            game.joinCompetition("ahn");
+
+            game.runCompetition(4);
+
+            for (Car car: game.getCars()){
+                assertEquals(1, car.getPosition());
+            }
+        }
     }
 }
