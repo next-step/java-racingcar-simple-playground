@@ -8,6 +8,8 @@ import view.ResultView;
 import java.util.List;
 
 public class RacingCarApplication {
+
+    // 레이싱 게임 실행
     public void run() {
         try {
             List<RacingCar> cars = InputView.getCarNames();
