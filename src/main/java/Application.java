@@ -8,7 +8,9 @@ public class Application {
     private static int round;
     public static void main(String[] args) {
         while(true){
-            if (getValiedNames()) break; //5글자를 넘는 이름을 입력받는 경우 재시도
+            if (getValiedNames()){
+                break; //5글자를 넘는 이름을 입력받는 경우 재시도
+            }
         }
         round = InputView.getTryCount();
         runRace();
