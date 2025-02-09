@@ -26,7 +26,7 @@ public class InputController {
             nameList.forEach(
                     (name) -> validation.validName(name)
             );
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
@@ -40,7 +40,7 @@ public class InputController {
 
         try {
             validation.validTimes(strTimes);
-        } catch(RuntimeException e) {
+        } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
