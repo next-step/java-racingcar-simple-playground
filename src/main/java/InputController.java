@@ -25,7 +25,7 @@ public class InputController {
     }
 
     public int inputTimes() {
-        System.out.println("시도할 회수는 몇회인가요?\n");
+        System.out.println("시도할 회수는 몇회인가요?");
         strTimes = sc.nextLine();
 
         validation.validTimes(strTimes);
