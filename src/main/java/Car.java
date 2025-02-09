@@ -1,9 +1,8 @@
-import java.util.Random;
+import util.NumberProvider;
 
 public class Car {
 
     private final static int MOVE_CONDITION = 4;
-    private final Random random = new Random();
     private final String name;
     private int position = 0;
 
@@ -18,15 +17,11 @@ public class Car {
         }
     }
 
-    public void move() {
-        int randomValue = getRandomInt();
-        if (isMovable(randomValue)) {
+    public void move(NumberProvider numberProvider) {
+        int randomNumber = numberProvider.provide();
+        if (isMovable(randomNumber)) {
             position++;
         }
-    }
-
-    int getRandomInt() {
-        return random.nextInt(10);
     }
 
     private boolean isMovable(int randomValue) {
