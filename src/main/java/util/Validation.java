@@ -1,3 +1,5 @@
+package util;
+
 public class Validation {
 
     public void validName(String name) throws RuntimeException {

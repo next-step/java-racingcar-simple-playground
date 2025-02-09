@@ -1,3 +1,8 @@
+package view;
+
+import util.NameParser;
+import util.Validation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

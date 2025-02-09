@@ -1,3 +1,6 @@
+import model.Car;
+import view.InputController;
+
 import java.util.List;
 
 public class Application {
