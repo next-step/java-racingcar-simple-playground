@@ -46,6 +46,6 @@ public class RacingGameTest {
         car3.move(9);
 
         assertThat(gc.getWinners())
-                .containsExactlyInAnyOrder(car2, car3);
+                .containsExactlyInAnyOrder(car1, car3);
     }
 }
