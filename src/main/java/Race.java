@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Race {
     final private List<Car> cars;
@@ -34,7 +35,7 @@ public class Race {
     //모든 차량 이동
     private void moveAllCars(){
         for(Car car: cars){
-            car.move();
+            car.move(new Random().nextInt(10));
             System.out.print(car.getName() + " : ");
             printCarProgress(car);
             System.out.println();

@@ -1,11 +1,9 @@
-import java.util.Random;
-
 public class Car {
     private String name;
     private int location;
 
     public Car(String name) {
-        this.name = name;
+        this.setName(name);
         this.location = 0;
     }
 
@@ -20,9 +18,9 @@ public class Car {
         return location;
     }
 
-    //랜덤 speed 값을 생성하여 자동차를 이동
-    public void move(){
-        int speed = new Random().nextInt(10);
+    //랜덤으로 speed 값을 생성하는 대신, speed를 파라미터로 입력받아 자동차를 이동
+    public void move(int speed){
+        //int speed = new Random().nextInt(10);
         this.location = calculateNextLocation(speed);
 
     }
