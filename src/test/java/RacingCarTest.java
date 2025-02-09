@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("움직이는 자동차 테스트")
 class RacingCarTest {
-    private static final String TEST_CAR_NAME = "TestCar";
+    private static final String TEST_CAR_NAME = "car";
 
     // 고정된 난수 값을 반환하는 MockRandom 클래스 (Random 상속)
     private static class MockRandom extends Random {
@@ -26,6 +27,14 @@ class RacingCarTest {
 
     private RacingCar carWithMockRandom(int mockedValue) {
         return new RacingCar(TEST_CAR_NAME, new MockRandom(mockedValue));
+    }
+
+    @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생하는가?")
+    @Test
+    void checkCarNameIsNotOver5Letters() {
+        assertThatThrownBy(() -> new RacingCar("Boxster", new MockRandom(4)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 1~5자만 가능합니다.");
     }
 
     @DisplayName("랜덤값이 4 이상일 경우, 항상 전진하는가?")
