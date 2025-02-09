@@ -19,8 +19,10 @@ public class Car {
     }
 
     //랜덤으로 speed 값을 생성하는 대신, speed를 파라미터로 입력받아 자동차를 이동
-    public void move(int speed){
-        //int speed = new Random().nextInt(10);
+    public void move(int speed) throws IllegalArgumentException {
+        if(speed > 9 || speed < 0){
+            throw new IllegalArgumentException("속도는 0에서 9 사이의 값이어야 합니다.");
+        }
         this.location = calculateNextLocation(speed);
 
     }
