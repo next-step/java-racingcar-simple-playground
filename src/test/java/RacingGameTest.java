@@ -42,7 +42,10 @@ public class RacingGameTest {
     @Test
     @DisplayName("공동 우승자가 정상적으로 구해지는가")
     public void testGetSameWinners() {
+        car1.move(9);
+        car3.move(9);
+
         assertThat(gc.getWinners())
-                .containsExactlyInAnyOrder(car1, car2, car3);
+                .containsExactlyInAnyOrder(car2, car3);
     }
 }
