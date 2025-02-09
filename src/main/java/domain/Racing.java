@@ -16,11 +16,16 @@ public class Racing
                 .filter(name -> name.length() <= 5)
                 .toArray(String[]::new);
 
+        return checkCarCount(carName);
+    }
+
+    private static String[] checkCarCount(String[] carName)
+    {
         // 에러 처리
         if (carName.length == 0)
             throw new IllegalArgumentException("There is no car.");
-
-        return carName;
+        else
+            return carName;
     }
 
     private static void addCar(String curCarName)

@@ -1,10 +1,10 @@
 import java.util.Random;
 
+
 public class Car
 {
     private final Random random = new Random();
     private String carName = "";
-
     private int curPos = 0;
 
     public void setCarName(String name)
@@ -22,6 +22,7 @@ public class Car
         return curPos;
     }
 
+    // 뷰로 빼야함
     private void printCurPos()
     {
         System.out.println(carName + " : " + "-".repeat(curPos));
