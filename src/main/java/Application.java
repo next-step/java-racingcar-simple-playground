@@ -1,19 +1,15 @@
-import java.util.List;
-import java.util.Scanner;
-
-import domain.Car;
 import domain.Game;
 import view.InputView;
-import view.OutputView;
+import view.ResultView;
 
 public class Application {
 
     public static void main(final String... args) {
         final String carNames = InputView.inputCarNames();
-        final int round = InputView.inputRound();
+        final int tryCount = InputView.inputTryCount();
 
-        final Game game = new Game(carNames, round);
+        final Game game = new Game(carNames, tryCount);
         game.play();
-        OutputView.outputWinner(game.getWinners());
+        ResultView.outputResult(game);
     }
 }

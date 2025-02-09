@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import util.NumberProvider;
-import view.OutputView;
 
 public class CarGroup {
 
