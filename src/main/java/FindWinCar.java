@@ -3,7 +3,7 @@ import java.util.stream.IntStream;
 import java.util.Arrays;
 
 public class FindWinCar {
-    Car[] car;
+    Car[] cars;
     int[] locate;
 
     public FindWinCar(int n, Car[] car){
@@ -11,13 +11,23 @@ public class FindWinCar {
             throw new IllegalArgumentException();
         }
 
-        this.car = Objects.requireNonNull(car);
+        this.cars = Objects.requireNonNull(car);
         this.locate = new int[n];
     }
 
+    public void allMove(int times){
+        if (times < 0){
+            throw new IllegalArgumentException();
+        }
+
+        for (int t=0; t<times; ++t){
+            move();
+        }
+    }
+
     public void move(){
-        for (int r = 0; r < car.length; ++r){
-            locate[r] += car[r].move();
+        for (int r = 0; r < cars.length; ++r){
+            locate[r] += cars[r].move();
         }
     }
 
@@ -26,10 +36,18 @@ public class FindWinCar {
                         .max()
                         .getAsInt();
 
-        return IntStream.range(0, car.length)
+        return IntStream.range(0, cars.length)
                         .filter(i -> locate[i] == max)
-                        .mapToObj(i -> car[i])
+                        .mapToObj(i -> cars[i])
                         .toArray(Car[]::new);
+    }
+
+    public int[] getLocate(){
+        return locate;
+    }
+
+    public Car[] getCars(){
+        return cars;
     }
 
 }
