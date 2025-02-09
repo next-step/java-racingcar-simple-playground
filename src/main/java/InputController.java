@@ -9,19 +9,19 @@ public class InputController {
     String strNames;
     String strTimes;
     int times;
-    List<String> names = new ArrayList<>();
+    List<String> nameList = new ArrayList<>();
 
     public List<String> inputNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         strNames = sc.nextLine();
 
-        names = nameParser.parseName(strNames);
+        nameList = nameParser.parseName(strNames);
 
-        names.forEach(
+        nameList.forEach(
                 (name) -> validation.validName(name)
         );
 
-        return names;
+        return nameList;
     }
 
     public int inputTimes() {
