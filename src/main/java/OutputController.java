@@ -13,7 +13,7 @@ public class OutputController {
     public void printWinners(List<Car> winnerList) {
         String winnerNames = winnerList.stream()
                                        .map(Car::getName)
-                                       .collect(Collectors.joining(","));
+                                       .collect(Collectors.joining(", "));
 
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
