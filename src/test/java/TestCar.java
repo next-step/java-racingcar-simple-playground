@@ -32,4 +32,20 @@ public class TestCar {
             assertThat(0).isEqualTo(testCar.getLocation());
         }
     }
+
+    @Nested
+    @DisplayName("움직이는 자동차 예외테스트")
+    class TestCarExceptions{
+
+        @Test
+        @DisplayName("이동 예외 테스트")
+        void testMoveException(){
+            //given
+            final Car testCar = new Car("test");
+
+            //when
+            assertThatThrownBy(()-> testCar.move(-1)).hasMessage("속도는 0에서 9 사이의 값이어야 합니다.");
+            assertThatThrownBy(()-> testCar.move(10)).hasMessage("속도는 0에서 9 사이의 값이어야 합니다.");
+        }
+    }
 }
