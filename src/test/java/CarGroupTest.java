@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import domain.Car;
+import domain.CarGroup;
 import fixture.FixedNumberProvider;
 
 public class CarGroupTest {
