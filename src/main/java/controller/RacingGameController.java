@@ -37,7 +37,7 @@ public class RacingGameController {
     }
 
     private void validateInputName(String inputName) {
-        if (isIllegalInputName(inputName)) { // 2. 검증하기
+        if (isIllegalInputName(inputName)) {
             throw new IllegalArgumentException("name is illegal");
         }
     }

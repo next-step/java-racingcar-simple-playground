@@ -42,7 +42,7 @@ public class RacingGameService {
 
     private void moveCars(List<Car> cars) {
         for (Car car : cars) {
-            car.MoveForwardOrStay();
+            car.moveForwardOrStay();
         }
     }
 
