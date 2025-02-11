@@ -22,7 +22,7 @@ public class Car {
         return cars;
     }
 
-    public void MoveForwardOrStay() {
+    public void moveForwardOrStay() {
         int randomNumber = getRandomNumber();
         if (isMovable(randomNumber)) {
             moveDistance++;
