@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Random;
 
 
@@ -7,9 +9,9 @@ public class Car
     private String carName = "";
     private int curPos = 0;
 
-    public void setCarName(String name)
+    public Car(String inputCarName)
     {
-        carName = name;
+        carName = inputCarName;
     }
 
     public String getCarName()
@@ -22,20 +24,20 @@ public class Car
         return curPos;
     }
 
-    // 뷰로 빼야함
-    private void printCurPos()
-    {
-        System.out.println(carName + " : " + "-".repeat(curPos));
-    }
+//    // 뷰로 빼야함
+//    private void printCurPos()
+//    {
+//        System.out.println(carName + " : " + "-".repeat(curPos));
+//    }
 
-    public int MoveCar()
+    public int moveCar()
     {
         int randomSpeed = random.nextInt(10);
 
         if (randomSpeed >= 4)
             curPos += 1;
 
-        printCurPos();
+//        printCurPos();
         return curPos;
     }
 }
