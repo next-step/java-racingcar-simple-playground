@@ -10,7 +10,7 @@ public class RacingGameController {
     // 게임 실행 및 결과 출력
     public void startRacingGame() {
 
-        List<Car> carNames = InputView.getCarNames();
+        List<Car> carNames = InputView.getCars();
         int raceRounds = InputView.getRaceRounds();
 
         RacingGame racingGame = new RacingGame(carNames);
