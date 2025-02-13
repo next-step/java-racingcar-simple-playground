@@ -7,10 +7,12 @@ import service.RacingGameService;
 import java.util.List;
 
 public class RacingGameController {
+    private static final String DEFAULT_NAME_DELIMITER = ",";
+
     RacingGameService racingGameService = new RacingGameService();
 
     public void racingGame() {
-        String inputNames = "";
+        String inputNames = ""; // scope problem
         int inputGameCount = 0;
 
         try(InputView inputView = new InputView()) {
@@ -22,34 +24,25 @@ public class RacingGameController {
         }
 
         int gameCount = validateInputCount(inputGameCount);
-        String[] carNames = splitCarNames(inputNames);
+        String[] splitCarNames = splitCarNames(inputNames);
 
-        for (String carName : carNames) {
-            validateInputName(carName);
-        }
-        List<Car> cars = Car.getInstancesByNames(carNames);
+        List<Car> cars = Car.getInstancesByNames(splitCarNames);
 
         printEmptyLine();
 
         racingGameService.playRacingGame(cars, gameCount);
 
-        int LongestDistance = racingGameService.getLongestMoveDistance(cars);
-        racingGameService.printWinners(LongestDistance, cars);
+        int longestDistance = racingGameService.getLongestMoveDistance(cars);
+        racingGameService.printWinners(longestDistance, cars);
     }
 
     private String[] splitCarNames(String names) {
-        return names.split(",");
-    }
-
-    private void validateInputName(String inputName) {
-        if (isIllegalInputName(inputName)) {
-            throw new IllegalArgumentException("name is illegal");
-        }
+        return names.split(DEFAULT_NAME_DELIMITER);
     }
 
     private int validateInputCount(int inputCount) {
         if (isIllegalInputCount(inputCount)) {
-            throw new IllegalArgumentException("number is illegal");
+            throw new IllegalArgumentException("inputCount can't be less than 0");
         }
 
         return inputCount;
@@ -59,15 +52,7 @@ public class RacingGameController {
         return count <= 0;
     }
 
-    private boolean isIllegalInputName(String inputName) {
-        return inputName == null || inputName.isEmpty() || inputName.equals(" ") || isLongerThan5(inputName);
-    }
-
     private void printEmptyLine() {
         System.out.println();
-    }
-
-    private boolean isLongerThan5(String str) {
-        return str.length() > 5;
     }
 }

@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Car {
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int moveDistance = 1;
 
     private Car(String name) {
+
         this.name = name;
     }
 
@@ -16,6 +18,7 @@ public class Car {
         List<Car> cars = new ArrayList<>();
 
         for (String name : carNames) {
+            validateInputName(name);
             cars.add(new Car(name));
         }
 
@@ -29,9 +32,24 @@ public class Car {
         }
     }
 
+    private static void validateInputName(String inputName) {
+        if (isIllegalInputName(inputName)) {
+            throw new IllegalArgumentException("length of inputName must be less than 5 word and can't be empty.");
+        }
+    }
+
     public String getName() {
         return this.name;
     }
+
+    private static boolean isIllegalInputName(String inputName) {
+        return inputName == null || inputName.trim().isEmpty() || isLongerThan5(inputName);
+    }
+
+    private static boolean isLongerThan5(String inputName) {
+        return inputName.length() > MAX_NAME_LENGTH;
+    }
+
 
     @Override
     public String toString() {
