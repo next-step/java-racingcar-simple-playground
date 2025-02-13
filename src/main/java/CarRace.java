@@ -7,7 +7,7 @@ public class CarRace {
     int raceAttemptCount;
     List<String> winnerCarNames;
 
-    public void setValue() {
+    public void receiveCarNamesInput() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -20,6 +20,11 @@ public class CarRace {
         if(carNames.stream().anyMatch(cn -> cn.length()>5)) {
             throw new IllegalArgumentException("자동차 이름은 5글자 이하로 작성해주세요.");
         }
+
+    }
+
+    public void recieveCarRaceAttemptCountInput() {
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("시도할 회수는 몇회인가요?");
         raceAttemptCount = scanner.nextInt();
@@ -38,6 +43,7 @@ public class CarRace {
     }
 
     public void doRace(int count) {
+        System.out.println("실행 결과");
         for (int i = 0; i < count; i++) {
             moveCars();
             printRaceResult();
@@ -64,7 +70,6 @@ public class CarRace {
     }
 
     public void printWinnerCarNames() {
-        System.out.println("실행 결과");
         System.out.print(String.join(", ", winnerCarNames));
         System.out.println("가 최종 우승했습니다.");
     }
