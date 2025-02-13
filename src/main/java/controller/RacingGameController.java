@@ -1,20 +1,29 @@
 package controller;
 
 import domain.Car;
+import global.InputView;
 import service.RacingGameService;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class RacingGameController {
     RacingGameService racingGameService = new RacingGameService();
-    Scanner scanner = new Scanner(System.in);
 
     public void racingGame() {
-        String inputNames = inputNames();
-        int gameCount = inputGameCount();
+        String inputNames = "";
+        int inputGameCount = 0;
 
+        try(InputView inputView = new InputView()) {
+            inputNames = inputView.readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+            inputGameCount = inputView.readInt("시도할 회수는 몇회인가요?");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int gameCount = validateInputCount(inputGameCount);
         String[] carNames = splitCarNames(inputNames);
+
         for (String carName : carNames) {
             validateInputName(carName);
         }
@@ -32,36 +41,26 @@ public class RacingGameController {
         return names.split(",");
     }
 
-    private boolean isIllegalInputName(String inputName) {
-        return inputName == null || inputName.isEmpty() || inputName.equals(" ") || isLongerThan5(inputName);
-    }
-
     private void validateInputName(String inputName) {
         if (isIllegalInputName(inputName)) {
             throw new IllegalArgumentException("name is illegal");
         }
     }
 
-    private String inputNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String inputNames = scanner.nextLine();
-
-        return inputNames;
-    }
-
-    private int inputGameCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        int count = scanner.nextInt();
-
-        if (isIllegalInputGameCount(count)) {
+    private int validateInputCount(int inputCount) {
+        if (isIllegalInputCount(inputCount)) {
             throw new IllegalArgumentException("number is illegal");
         }
 
-        return count;
+        return inputCount;
     }
 
-    private boolean isIllegalInputGameCount(int count) {
+    private boolean isIllegalInputCount(int count) {
         return count <= 0;
+    }
+
+    private boolean isIllegalInputName(String inputName) {
+        return inputName == null || inputName.isEmpty() || inputName.equals(" ") || isLongerThan5(inputName);
     }
 
     private void printEmptyLine() {
