@@ -3,7 +3,6 @@ import domain.Car;
 import view.RacingGameInputView;
 import view.RacingGameResultView;
 
-import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
