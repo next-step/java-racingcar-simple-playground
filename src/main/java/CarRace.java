@@ -1,46 +1,72 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CarRace {
     private final List<Car> cars = new ArrayList<>();
-    int maxPosition = 0;
+    List<String> carNames;
+    int raceAttemptCount;
+    List<String> winnerCarNames;
 
-    // 자동차 말의 개수 설정 및 자동차 객체 생성 및 번호 할당
-    public void setCarCount(int num) {
-        for(int i = 0; i <= num; i++) {
-            cars.add(new Car(i));
+    public void setValue() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String value = scanner.nextLine();
+        if(value.isEmpty()) {
+            throw new IllegalArgumentException("경주할 자동차의 이름을 반드시 입력해주세요.");
+        }
+        carNames = Arrays.asList(value.split(","));
+
+        if(carNames.stream().anyMatch(cn -> cn.length()>5)) {
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하로 작성해주세요.");
+        }
+
+        System.out.println("시도할 회수는 몇회인가요?");
+        raceAttemptCount = scanner.nextInt();
+    }
+
+    public void makeCarObject(int sizeOfList) {
+        for(int i = 0; i < sizeOfList; i++) {
+            cars.add(new Car(i, carNames.get(i)));
         }
     }
 
-    // 모든 차가 한번씩 움직임
     public void moveCars() {
         for (Car car : cars) {
             car.tryMove();
         }
     }
 
-    // count 만큼 모든 차가 한번씩 움직임
     public void doRace(int count) {
         for (int i = 0; i < count; i++) {
             moveCars();
+            printRaceResult();
         }
     }
 
-    // 우승자 차의 전진 횟수 확인
-    public void setMaxPosition() {
+    public void printRaceResult() {
         for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
+            System.out.println(car.getCarName() + " : " + "-".repeat(car.getPosition()));
         }
-
+        System.out.println();
     }
 
-    // 우승자 선별
-    public int getWinnerCarNumber() {
-        return cars.stream()        // 스트림으로 변환
-                .max(Comparator.comparingInt(Car::getPosition)) //Car::getPosition 값이 가장 큰 객체를 스트림에서 찾기, Optional<Car> 반환
-                .get()              // Optional<Car> 에서 Car 객체를 가져옴
-                .getCarNumber();    // 가져온 Car 객체에서 CarNumber 추출
+    public void setWinnerCarNames() {
+        int maxPosition = cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .orElseThrow(NoSuchElementException::new)
+                .getPosition();
 
+        winnerCarNames = cars.stream()
+                .filter(c -> c.getPosition() == maxPosition)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
     }
+
+    public void printWinnerCarNames() {
+        System.out.println("실행 결과");
+        System.out.print(String.join(", ", winnerCarNames));
+        System.out.println("가 최종 우승했습니다.");
+    }
+
 }
