@@ -1,19 +1,23 @@
 public class Car {
     int position = 0;
     public int carNumber;
+    public String carName;
 
-    public Car(int carNumber) {
-        this.carNumber = carNumber;
+    public Car() {
+        this.position = 0;
     }
 
-    // 0~9 랜덤값 구하기
+    public Car(int carNumber, String carName) {
+        this.carNumber = carNumber;
+        this.carName = carName;
+    }
+
     public int getRandom() {
         double randomValue = Math.random();
         return (int) (randomValue * 9);
     }
 
-    // 3이하 정지, 4이상 전진
-    public boolean canMoveForward() {
+    public boolean getStatus() {
         int randomValue = getRandom();
         boolean result = true;
 
@@ -24,9 +28,8 @@ public class Car {
         return result;
     }
 
-    // 전진 시도
     public void tryMove() {
-        if(canMoveForward()) {
+        if(getStatus()) {
             this.position++;
         }
     }
@@ -35,8 +38,9 @@ public class Car {
         return position;
     }
 
-    public int getCarNumber() {
-        return carNumber;
+
+    public String getCarName() {
+        return carName;
     }
 
 }
