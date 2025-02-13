@@ -2,73 +2,46 @@ package controller;
 
 import domain.Car;
 import service.RacingGameService;
+import view.RacingGamePlayView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class RacingGameController {
-    RacingGameService racingGameService = new RacingGameService();
-    Scanner scanner = new Scanner(System.in);
 
-    public void racingGame() {
-        String inputNames = inputNames();
-        int gameCount = inputGameCount();
+    private final RacingGameService racingGameService = new RacingGameService();
+    private final RacingGamePlayView racingGamePlayView = new RacingGamePlayView();
 
-        String[] carNames = splitCarNames(inputNames);
-        for (String carName : carNames) {
-            validateInputName(carName);
-        }
-        List<Car> cars = Car.getInstancesByNames(carNames);
+    public List<Car> race(String inputCarNames, int gameCount) {
+        String[] carNames = racingGameService.splitInputCarNames(inputCarNames);
+        List<Car> cars = getCarsFromNames(carNames);
 
-        printEmptyLine();
+        racingGamePlayView.informWillPrintRaceResult();
+        racingGamePlayView.printCarStatuses(cars);
 
-        racingGameService.playRacingGame(cars, gameCount);
-
-        int LongestDistance = racingGameService.getLongestMoveDistance(cars);
-        racingGameService.printWinners(LongestDistance, cars);
-    }
-
-    private String[] splitCarNames(String names) {
-        return names.split(",");
-    }
-
-    private boolean isIllegalInputName(String inputName) {
-        return inputName == null || inputName.isEmpty() || inputName.equals(" ") || isLongerThan5(inputName);
-    }
-
-    private void validateInputName(String inputName) {
-        if (isIllegalInputName(inputName)) {
-            throw new IllegalArgumentException("name is illegal");
-        }
-    }
-
-    private String inputNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String inputNames = scanner.nextLine();
-
-        return inputNames;
-    }
-
-    private int inputGameCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        int count = scanner.nextInt();
-
-        if (isIllegalInputGameCount(count)) {
-            throw new IllegalArgumentException("number is illegal");
+        for (int i = 0; i < gameCount; i++) {
+            racingGameService.proceedRace(cars);
+            racingGamePlayView.printCarStatuses(cars);
         }
 
-        return count;
+        return Collections.unmodifiableList(cars);
     }
 
-    private boolean isIllegalInputGameCount(int count) {
-        return count <= 0;
+    public List<Car> getWinners(List<Car> cars) {
+        int longestMoveDistance = racingGameService.getLongestMoveDistance(cars);
+        List<Car> winners = racingGameService.getWinners(cars, longestMoveDistance);
+
+        return Collections.unmodifiableList(winners);
     }
 
-    private void printEmptyLine() {
-        System.out.println();
-    }
+    private List<Car> getCarsFromNames(String[] names) {
+        List<Car> cars = new ArrayList<>();
 
-    private boolean isLongerThan5(String str) {
-        return str.length() > 5;
+        for (String name : names) {
+            cars.add(Car.from(name));
+        }
+
+        return Collections.unmodifiableList(cars);
     }
 }
