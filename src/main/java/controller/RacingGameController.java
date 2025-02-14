@@ -1,7 +1,10 @@
 package controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import model.Car;
+import model.Cars;
 import model.RacingGame;
 import view.InputView;
 import view.ResultView;
@@ -10,18 +13,20 @@ public class RacingGameController {
     // 게임 실행 및 결과 출력
     public void startRacingGame() {
 
-        List<Car> carNames = InputView.getCars();
+        List<String> carNames = InputView.getCars();
+        Cars cars = new Cars(carNames);
+
         int raceRounds = InputView.getRaceRounds();
 
-        RacingGame racingGame = new RacingGame(carNames);
-        ResultView.printRaceResult();
+        RacingGame racingGame = new RacingGame(cars);
+        ResultView.printResultHeader();
 
         for (int i = 0; i < raceRounds; i++) {
             racingGame.race();
-            ResultView.printRaceStatus(racingGame.getCars());
+            ResultView.printRaceStatus(cars.getCars());
         }
 
-        List<Car> winners = racingGame.getWinners();
-        ResultView.printWinners(winners);
+        ResultView.printWinners(cars.getWinners());
+        InputView.closeScanner();
     }
 }
