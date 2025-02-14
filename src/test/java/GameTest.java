@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import domain.Game;
+import util.RandomNumberProvider;
 
 class GameTest {
 
@@ -11,7 +12,7 @@ class GameTest {
     @DisplayName("negative - 라운드가 0 이하일 경우 예외 발생")
     void tryCountIsPositive() {
         String carNames = "차1,차2,차3";
-        assertThrows(IllegalArgumentException.class, () -> new Game(carNames, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Game(carNames, -1));
+        assertThrows(IllegalArgumentException.class, () -> new Game(carNames, 0, new RandomNumberProvider()));
+        assertThrows(IllegalArgumentException.class, () -> new Game(carNames, -1, new RandomNumberProvider()));
     }
 }

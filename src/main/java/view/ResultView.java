@@ -3,15 +3,13 @@ package view;
 import java.util.List;
 
 import domain.Car;
-import domain.CarGroup;
 import domain.Game;
 
 public class ResultView {
 
     public static void outputResult(Game game) {
         outputCarPosition(game.getCarGroup().getCars());
-        List<String> winnerNames = getWinnerNames(game.getWinners());
-        System.out.printf("%s가 최종 우승했습니다.", String.join(", ", winnerNames));
+        outputWinner(game.getWinners());
     }
 
     private static void outputCarPosition(List<Car> cars) {
@@ -23,7 +21,12 @@ public class ResultView {
         System.out.println();
     }
 
-    private static List<String> getWinnerNames(List<Car> winners) {
+    private static void outputWinner(List<Car> winnerCars) {
+        List<String> winnerNames = getWinnerCarNames(winnerCars);
+        System.out.printf("%s가 최종 우승했습니다.", String.join(", ", winnerNames));
+    }
+
+    private static List<String> getWinnerCarNames(List<Car> winners) {
         return winners.stream()
             .map(Car::getName)
             .toList();

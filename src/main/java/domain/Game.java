@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import exception.TryCountOutOfRangeException;
-import util.RandomNumberProvider;
+import util.NumberProvider;
 
 public class Game {
 
     private final CarGroup carGroup;
     private final int tryCount;
 
-    public Game(String carNames, int tryCount) {
+    public Game(String carNames, int tryCount, NumberProvider numberProvider) {
         validateTryCountIsPositive(tryCount);
-        this.carGroup = new CarGroup(createCars(carNames), new RandomNumberProvider());
+        this.carGroup = new CarGroup(createCars(carNames), numberProvider);
         this.tryCount = tryCount;
     }
 
