@@ -15,7 +15,7 @@ public class InputView {
 
         List<String> carList = Arrays.stream(input.split(","))
                 .map(String::trim) // 공백 제거
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
 
         return carList;
     }

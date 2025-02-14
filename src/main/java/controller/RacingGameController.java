@@ -1,9 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import model.Car;
 import model.Cars;
 import model.RacingGame;
 import view.InputView;
