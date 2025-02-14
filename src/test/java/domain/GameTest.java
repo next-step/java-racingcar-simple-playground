@@ -1,9 +1,10 @@
+package domain;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.Game;
 import util.RandomNumberProvider;
 
 class GameTest {
