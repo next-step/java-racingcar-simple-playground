@@ -1,16 +1,20 @@
+package domain;
+
+import view.InputView;
+import view.ResultView;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CarRace {
+public class RacingGame {
     private final List<Car> cars = new ArrayList<>();
     private List<String> carNames;
     private int raceAttemptCount;
     private List<String> winnerCarNames;
-    private final CarRaceResultPrinter printer = new CarRaceResultPrinter();
+    private final ResultView printer = new ResultView();
 
     public void initializeRace() {
-        carNames = CarRaceInputHandler.getCarNames();
-        raceAttemptCount = CarRaceInputHandler.getRaceAttemptCount();
+        carNames = InputView.getCarNames();
+        raceAttemptCount = InputView.getTryCount();
         makeCarObjects();
     }
 

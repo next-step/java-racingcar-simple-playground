@@ -1,15 +1,18 @@
+import domain.Car;
+import domain.RacingGame;
 import org.junit.jupiter.api.*;
+import view.InputView;
 import java.util.*;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
-    private static CarRace carRace;
+    private static RacingGame racingGame;
     private static List<Car> cars;
 
     @BeforeAll
     static void setUp() {
-        carRace = new CarRace();
+        racingGame = new RacingGame();
 
         cars = new ArrayList<>(Arrays.asList(
                 new Car("neo", 3),
@@ -17,8 +20,8 @@ class CarTest {
                 new Car("brown", 5)
         ));
 
-        carRace.getCars().clear();
-        carRace.getCars().addAll(cars);
+        racingGame.getCars().clear();
+        racingGame.getCars().addAll(cars);
     }
 
     @Nested
@@ -46,27 +49,27 @@ class CarTest {
     }
 
     @Nested
-    @DisplayName("CarRace 클래스 테스트")
-    class CarRaceClassTest {
+    @DisplayName("RacingGame 클래스 테스트")
+    class RacingGameClassTest {
 
         @Test
         @DisplayName("자동차 경주가 정상적으로 진행된다.")
         void shouldStartRace_Successfully() {
-            carRace.startRace();
-            assertThat(carRace.getWinnerCarNames()).isNotEmpty();
+            racingGame.startRace();
+            assertThat(racingGame.getWinnerCarNames()).isNotEmpty();
         }
 
         @Test
         @DisplayName("자동차들 중 MaxPosition 값을 찾는다.")
         void shouldReturnMaxPosition_OfCars() {
-            int maxPosition = carRace.getMaxPosition(cars);
+            int maxPosition = racingGame.getMaxPosition(cars);
             assertThat(maxPosition).isGreaterThanOrEqualTo(0);
         }
 
         @Test
         @DisplayName("최대 position을 가진 자동차를 우승자로 선정한다.")
         void shouldDetermineWinner_WithMaxPosition() {
-            int maxPosition = carRace.getMaxPosition(cars);
+            int maxPosition = racingGame.getMaxPosition(cars);
             assertThat(cars).allMatch(car -> car.getPosition() <= maxPosition);
         }
 
@@ -74,20 +77,20 @@ class CarTest {
         @DisplayName("자동차가 하나도 없을 경우 예외가 발생한다.")
         void shouldThrowException_WhenCarIsNotExist() {
             List<Car> emptyCars = List.of();
-            assertThatThrownBy(() -> carRace.getMaxPosition(emptyCars))
+            assertThatThrownBy(() -> racingGame.getMaxPosition(emptyCars))
                     .isInstanceOf(NoSuchElementException.class);
         }
     }
 
     @Nested
-    @DisplayName("CarRaceInputHandler 클래스 테스트")
-    class CarRaceInputHandlerTest {
+    @DisplayName("InputView 클래스 테스트")
+    class InputViewTest {
 
         @Test
         @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생한다.")
         void shouldThrowException_WhenCarNameExceeds5Characters() {
             List<String> invalidCarNames = List.of("abcdef", "longname");
-            assertThatThrownBy(() -> CarRaceInputHandler.validateCarNames(invalidCarNames))
+            assertThatThrownBy(() -> InputView.validateCarNames(invalidCarNames))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 5글자 이하로 작성해주세요.");
         }
@@ -99,7 +102,7 @@ class CarTest {
             System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
             List<String> expection = List.of("neo", "brie", "brown");
-            List<String> actual = CarRaceInputHandler.getCarNames();
+            List<String> actual = InputView.getCarNames();
 
             assertThat(actual).containsExactlyInAnyOrderElementsOf(expection);
         }
@@ -109,7 +112,7 @@ class CarTest {
         void shouldThrowException_WhenCarNamesAreEmpty() {
             System.setIn(new java.io.ByteArrayInputStream("\n".getBytes()));
 
-            assertThatThrownBy(CarRaceInputHandler::getCarNames)
+            assertThatThrownBy(InputView::getCarNames)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("경주할 자동차 이름을 반드시 입력해주세요.");
         }
@@ -121,41 +124,41 @@ class CarTest {
             System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
             List<String> expection = List.of("neo", "brie", "brown");
-            List<String> actual = CarRaceInputHandler.getCarNames();
+            List<String> actual = InputView.getCarNames();
 
             assertThat(actual).containsExactlyInAnyOrderElementsOf(expection);
         }
 
         @Test
         @DisplayName("시도할 횟수가 숫자가 아니면 예외가 발생한다.")
-        void shouldThrowException_WhenAttemptCountIsNotANumber() {
+        void shouldThrowException_WhenTryCountIsNotNumber() {
             String input = "string";
             System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
-            assertThatThrownBy(CarRaceInputHandler::getRaceAttemptCount)
+            assertThatThrownBy(InputView::getTryCount)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("올바른 숫자를 입력해주세요.");
         }
 
         @Test
         @DisplayName("시도할 횟수가 1 미만이면 예외가 발생한다.")
-        void shouldThrowException_WhenAttemptCountIsLessThan1() {
+        void shouldThrowException_WhenTryCountIsLessThan1() {
             String input = "-3";
             System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
-            assertThatThrownBy(CarRaceInputHandler::getRaceAttemptCount)
+            assertThatThrownBy(InputView::getTryCount)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("시도할 회수는 1 이상의 정수여야 합니다.");
         }
 
         @Test
         @DisplayName("올바른 시도 횟수가 입력되면 반환한다.")
-        void shouldReturnAttemptCount_WhenValidNumberIsProvided() {
+        void shouldReturnTryCount_WhenValidNumberIsProvided() {
             String input = "3";
             System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
             int expection = 3;
-            int actual = CarRaceInputHandler.getRaceAttemptCount();
+            int actual = InputView.getTryCount();
 
             assertThat(actual).isEqualTo(expection);
         }

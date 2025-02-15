@@ -1,6 +1,9 @@
+package view;
+
+import domain.Car;
 import java.util.List;
 
-public class CarRaceResultPrinter {
+public class ResultView {
     public void printRaceResult(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car.getCarName() + " : " + "-".repeat(car.getPosition()));

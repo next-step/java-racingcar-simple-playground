@@ -1,9 +1,11 @@
+package view;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class CarRaceInputHandler {
+public class InputView {
     private static final int MAX_CAR_NAME_LENGTH = 5;
 
     public static List<String> getCarNames() {
@@ -27,7 +29,7 @@ public class CarRaceInputHandler {
         return List.copyOf(carNames);
     }
 
-    public static int getRaceAttemptCount() {
+    public static int getTryCount() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("시도할 회수는 몇회인가요?");
 
@@ -43,7 +45,7 @@ public class CarRaceInputHandler {
         return attemptCount;
     }
 
-    static void validateCarNames(List<String> carNames) {
+    public static void validateCarNames(List<String> carNames) {
         if (carNames.isEmpty()) {
             throw new IllegalArgumentException("경주할 자동차 이름을 올바르게 입력해주세요.");
         }
