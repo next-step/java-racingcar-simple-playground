@@ -1,7 +1,6 @@
-import java.util.List;
 import java.util.Scanner;
 
-public class GameView {
+public class InputView {
     static Scanner in = new Scanner(System.in);
 
     public String inputCarName(){
@@ -26,20 +25,5 @@ public class GameView {
 
     private void runCountMinusCheck(int runCount){
         if(runCount <= 0) throw new RuntimeException("실행횟수가 0이하 입니다.");
-    }
-
-    public void printGameStart() {
-        System.out.println("\n실행 결과");
-    }
-
-    public void printRound(List<RacingCar> racingCars) {
-        for (RacingCar car : racingCars) {
-            System.out.println(car.getCarName() + " : " + "-".repeat(car.getForwardCount()));
-        }
-        System.out.println();
-    }
-
-    public void printWinner(List<String> winnerCars){
-        System.out.println("최종 우승자 : " + String.join(", ", winnerCars));
     }
 }

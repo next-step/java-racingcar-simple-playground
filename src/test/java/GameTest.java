@@ -36,18 +36,18 @@ class GameTest {
     @Test
     void 랜덤_전진_테스트() {
         Random mockRandom = mock(Random.class);
-        when(mockRandom.nextInt(10)).thenReturn(4, 2, 7, 8, 3); // 순서대로 반환
+        when(mockRandom.nextInt(10)).thenReturn(4, 2, 7, 8, 3);
 
         RacingGame game = new RacingGame(mockRandom);
         game.initializeGame(new String[]{"pobi", "crong"}, 5);
 
         game.playRound(); // 1라운드 실행
-        assertEquals(1, game.getRacingCars().get(0).getForwardCount()); // pobi(4)
-        assertEquals(0, game.getRacingCars().get(1).getForwardCount()); // crong(2)
+        assertEquals(1, game.getRacingCars().get(0).getForwardCount());
+        assertEquals(0, game.getRacingCars().get(1).getForwardCount());
 
         game.playRound();
-        assertEquals(2, game.getRacingCars().get(0).getForwardCount()); // pobi(7)
-        assertEquals(1, game.getRacingCars().get(1).getForwardCount()); // crong(8)
+        assertEquals(2, game.getRacingCars().get(0).getForwardCount());
+        assertEquals(1, game.getRacingCars().get(1).getForwardCount());
     }
 
 }

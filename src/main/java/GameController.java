@@ -1,24 +1,26 @@
 public class GameController {
     private final RacingGame game;
-    private final GameView view;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public GameController(RacingGame game, GameView view){
+    public GameController(RacingGame game, InputView inputView, OutputView outputView){
         this.game = game;
-        this.view = view;
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void startGame() {
-        String[] carNames = view.inputCarName().split(",");
-        int runCount = view.inputRunCount();
+        String[] carNames = inputView.inputCarName().split(",");
+        int runCount = inputView.inputRunCount();
 
         game.initializeGame(carNames, runCount);
-        view.printGameStart();
+        outputView.printGameStart();
 
         for (int i = 0; i < game.getRunCount(); ++i) {
             game.playRound();
-            view.printRound(game.getRacingCars());
+            outputView.printRound(game.getRacingCars());
         }
 
-        view.printWinner(game.findWinners());
+        outputView.printWinner(game.findWinners());
     }
 }
