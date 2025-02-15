@@ -1,3 +1,5 @@
+package view;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,7 +8,7 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<String> inputCarNames(){
+    public List<String> inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputValue = scanner.nextLine();
         String[] carNamesArray = inputValue.split(",");
@@ -26,7 +28,7 @@ public class InputView {
 
     public int promptForValidNumber() {
         while (!scanner.hasNextInt()) {
-            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            System.out.println("잘못된 입력입니다. 숫자를 다시 입력해주세요.");
             scanner.next();
         }
         return scanner.nextInt();

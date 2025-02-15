@@ -1,3 +1,7 @@
+package view;
+
+import domain.RacingGameService;
+
 public class ResultView {
 
     private final RacingGameService racingGame;
