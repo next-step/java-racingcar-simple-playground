@@ -1,28 +1,23 @@
 package view;
 
+import scanner.ScannerPool;
+
 import java.util.Scanner;
 
-public class RacingGameInputView {
+public class RacingGameInputView implements RacingGameView {
 
-    private final Scanner scanner;
-
-    public RacingGameInputView(Scanner scanner) {
-        this.scanner = scanner;
-    }
+    private final Scanner scanner = ScannerPool.getSystemInScanner();
 
     public String getCarNames() {
-        System.out.println("ê²½ì£¼í•  ìë™ì°¨ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”(ì´ë¦„ì€ ì‰¼í‘œ(,)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ êµ¬ë¶„).");
+        System.out.println("°æÁÖÇÒ ÀÚµ¿Â÷ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä(ÀÌ¸§Àº ½°Ç¥(,)¸¦ ±âÁØÀ¸·Î ±¸ºĞ).");
 
         return scanner.nextLine();
     }
 
     public int getGameCount() {
-        System.out.println("ì‹œë„í•  íšŒìˆ˜ëŠ” ëª‡íšŒì¸ê°€ìš”?");
+        System.out.println("½ÃµµÇÒ È¸¼ö´Â ¸îÈ¸ÀÎ°¡¿ä?");
 
         return scanner.nextInt();
     }
 
-    public void printEmptyLine() {
-        System.out.println();
-    }
 }

@@ -1,28 +1,27 @@
 package view;
 
-import domain.Car;
+import dto.RaceResultInfoDto;
 
-import java.util.List;
-
-public class RacingGameResultView {
+public class RacingGameResultView implements RacingGameView {
 
     private static final String WINNER_FORMAT_SEPARATOR = ", ";
 
-    public void printWinners(List<Car> winners) {
-        String output = formatWinnerNames(winners) + "가 최종 우승했습니다.";
+    public void printWinners(RaceResultInfoDto resultInfoDto) {
+        String output = formatWinnerNames(resultInfoDto) + "가 최종 우승했습니다.";
 
         System.out.println(output);
     }
 
-    private String formatWinnerNames(List<Car> winners) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private String formatWinnerNames(RaceResultInfoDto resultInfoDto) {
+        StringBuilder winnerNameFormatter = new StringBuilder();
 
-        for (Car winner : winners) {
-            stringBuilder.append(winner.getName())
+        for (String winnerName : resultInfoDto.getWinnerNames()) {
+            winnerNameFormatter.append(winnerName)
                     .append(WINNER_FORMAT_SEPARATOR);
         }
-        stringBuilder.delete(stringBuilder.length() - WINNER_FORMAT_SEPARATOR.length(), stringBuilder.length());
+        winnerNameFormatter.delete(winnerNameFormatter.length() - WINNER_FORMAT_SEPARATOR.length(), winnerNameFormatter.length());
 
-        return stringBuilder.toString();
+        return winnerNameFormatter.toString();
     }
+
 }

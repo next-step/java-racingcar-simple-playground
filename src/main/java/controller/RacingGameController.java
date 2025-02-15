@@ -1,47 +1,67 @@
 package controller;
 
 import domain.Car;
+import dto.RaceResultInfoDto;
 import service.RacingGameService;
 import view.RacingGamePlayView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGameController {
 
+    private static final int CEILING_OF_RANDOM_GO_FORWARD_DECIDER = 10;
+
+    private final Random random = new Random();
     private final RacingGameService racingGameService = new RacingGameService();
     private final RacingGamePlayView racingGamePlayView = new RacingGamePlayView();
 
-    public List<Car> race(String inputCarNames, int gameCount) {
+    private final List<Car> cars;
+    private final int gameCount;
+
+    public RacingGameController(String inputCarNames, int gameCount) {
         String[] carNames = racingGameService.splitInputCarNames(inputCarNames);
-        List<Car> cars = getCarsFromNames(carNames);
+        this.cars = racingGameService.createCarsFromNames(carNames);
 
-        racingGamePlayView.informWillPrintRaceResult();
-        racingGamePlayView.printCarStatuses(cars);
-
-        for (int i = 0; i < gameCount; i++) {
-            racingGameService.proceedRace(cars);
-            racingGamePlayView.printCarStatuses(cars);
-        }
-
-        return Collections.unmodifiableList(cars);
+        racingGameService.validateGameCount(gameCount);
+        this.gameCount = gameCount;
     }
 
-    public List<Car> getWinners(List<Car> cars) {
+    public void race() {
+        racingGamePlayView.printRaceResultHeader();
+        printEachCarInformation();
+
+        for (int i = 0; i < gameCount; i++) {
+            proceedRace();
+            printEachCarInformation();
+        }
+    }
+
+    public RaceResultInfoDto getRaceResult() {
         int longestMoveDistance = racingGameService.getLongestMoveDistance(cars);
         List<Car> winners = racingGameService.getWinners(cars, longestMoveDistance);
 
-        return Collections.unmodifiableList(winners);
+        return RaceResultInfoDto.from(winners);
     }
 
-    private List<Car> getCarsFromNames(String[] names) {
-        List<Car> cars = new ArrayList<>();
+    private void proceedRace() {
+        for (Car car : cars) {
+            racingGameService.proceedCar(car, getRandomGoForwardDecider());
+        }
+    }
 
-        for (String name : names) {
-            cars.add(Car.from(name));
+    private void printEachCarInformation() {
+        for (Car car : cars) {
+            String carName = car.getName();
+            int moveDistance = car.getMoveDistance();
+
+            racingGamePlayView.printCarInformation(carName, moveDistance);
         }
 
-        return Collections.unmodifiableList(cars);
+        racingGamePlayView.printEmptyLine();
+    }
+
+    private int getRandomGoForwardDecider() {
+        return random.nextInt(CEILING_OF_RANDOM_GO_FORWARD_DECIDER);
     }
 }

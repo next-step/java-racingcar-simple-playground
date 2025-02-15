@@ -1,33 +1,20 @@
 package domain;
 
-import java.util.Random;
-
 public class Car {
 
     private static final int MAX_LENGTH_OF_NAME = 5;
-    private static final int CEILING_OF_RANDOM_NUMBER = 10;
-    private static final int LOWER_LIMIT_OF_MOVABLE = 4;
-
-    private static final Random random = new Random();
 
     private final String name;
     private int moveDistance = 1;
 
     private Car(String name) {
+        validateName(name);
+
         this.name = name;
     }
 
     public static Car from(String name) {
-        validateName(name);
-
         return new Car(name);
-    }
-
-    public void mightGoForward() {
-        int randomNumber = getRandomNumber();
-        if (isMovable(randomNumber)) {
-            moveDistance++;
-        }
     }
 
     public String getName() {
@@ -35,15 +22,11 @@ public class Car {
     }
 
     public int getMoveDistance() {
-        return moveDistance;
+        return this.moveDistance;
     }
 
-    private int getRandomNumber() {
-        return random.nextInt(CEILING_OF_RANDOM_NUMBER);
-    }
-
-    private boolean isMovable(int randomNumber) {
-        return randomNumber >= LOWER_LIMIT_OF_MOVABLE;
+    public void goForward() {
+        this.moveDistance++;
     }
 
     private static void validateName(String name) {

@@ -2,19 +2,39 @@ package service;
 
 import domain.Car;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGameService {
 
+    private static final int MINIMUM_GAME_COUNT = 1;
     private static final String INPUT_SEPARATOR = ",";
+    private static final int LOWER_LIMIT_OF_FORWARD_CAPABLE = 4;
 
     public String[] splitInputCarNames(String inputCarNames) {
         return inputCarNames.split(INPUT_SEPARATOR);
     }
 
-    public void proceedRace(List<Car> cars) {
-        for (Car car : cars) {
-            car.mightGoForward();
+    public List<Car> createCarsFromNames(String[] carNames) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String name : carNames) {
+            cars.add(Car.from(name));
+        }
+
+        return Collections.unmodifiableList(cars);
+    }
+
+    public void validateGameCount(int gameCount) {
+        if (isIllegalGameCount(gameCount)) {
+            throw new IllegalArgumentException(String.format("시도 횟수는 %d보다 작을 수 없습니다.", MINIMUM_GAME_COUNT));
+        }
+    }
+
+    public void proceedCar(Car car, int goForwardDecider) {
+        if (isForwardCapable(goForwardDecider)) {
+            car.goForward();
         }
     }
 
@@ -29,5 +49,13 @@ public class RacingGameService {
         return cars.stream()
                 .filter(car -> car.getMoveDistance() == LongestMoveDistance)
                 .toList();
+    }
+
+    private boolean isIllegalGameCount(int gameCount) {
+        return gameCount < MINIMUM_GAME_COUNT;
+    }
+
+    private boolean isForwardCapable(int randomNumber) {
+        return randomNumber >= LOWER_LIMIT_OF_FORWARD_CAPABLE;
     }
 }

@@ -1,16 +1,12 @@
 import controller.RacingGameController;
-import domain.Car;
+import dto.RaceResultInfoDto;
+import scanner.ScannerPool;
 import view.RacingGameInputView;
 import view.RacingGameResultView;
 
-import java.util.List;
-import java.util.Scanner;
-
 public class RacingGameApplication {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final RacingGameInputView racingGameInputView = new RacingGameInputView(scanner);
-    private static final RacingGameController racingGameController = new RacingGameController();
+    private static final RacingGameInputView racingGameInputView = new RacingGameInputView();
     private static final RacingGameResultView racingGameResultView = new RacingGameResultView();
 
     public static void main(String[] args) {
@@ -18,10 +14,16 @@ public class RacingGameApplication {
         int gameCount = racingGameInputView.getGameCount();
         racingGameInputView.printEmptyLine();
 
-        List<Car> cars = racingGameController.race(carNames, gameCount);
-        List<Car> winners = racingGameController.getWinners(cars);
-        racingGameResultView.printWinners(winners);
+        RacingGameController racingGameController = new RacingGameController(carNames, gameCount);
+        racingGameController.race();
+        RaceResultInfoDto raceResult = racingGameController.getRaceResult();
 
-        scanner.close();
+        racingGameResultView.printWinners(raceResult);
+
+        closeResources();
+    }
+
+    private static void closeResources() {
+        ScannerPool.closeAll();
     }
 }

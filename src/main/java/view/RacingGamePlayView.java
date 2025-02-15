@@ -1,29 +1,21 @@
 package view;
 
-import domain.Car;
-
-import java.util.List;
-
-public class RacingGamePlayView {
+public class RacingGamePlayView implements RacingGameView {
 
     private static final String MOVE_INDICATOR = "-";
 
-    public void informWillPrintRaceResult() {
+    public void printRaceResultHeader() {
         System.out.println("실행 결과");
     }
 
-    public void printCarStatuses(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(formatCarStatus(car));
-        }
-        printEmptyLine();
+    public void printCarInformation(String carName, int moveDistance) {
+        String formattedCarInformation = formatCarInformation(carName, moveDistance);
+
+        System.out.println(formattedCarInformation);
     }
 
-    private String formatCarStatus(Car car) {
-        return car.getName() + " : " + MOVE_INDICATOR.repeat(car.getMoveDistance());
+    private String formatCarInformation(String carName, int moveDistance) {
+        return carName + " : " + MOVE_INDICATOR.repeat(moveDistance);
     }
 
-    private void printEmptyLine() {
-        System.out.println();
-    }
 }
