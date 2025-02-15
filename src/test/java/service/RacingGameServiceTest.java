@@ -12,7 +12,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static utils.RacingGameTestUtil.*;
+import static utils.RacingGameTestUtil.getCarsWithLongestMoveDistance;
+import static utils.RacingGameTestUtil.hasEqualElements;
 
 class RacingGameServiceTest {
 
