@@ -20,6 +20,10 @@ public class CarRace {
         }
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public void startRace() {
         for (int i = 0; i < raceAttemptCount; i++) {
             moveCars();
@@ -35,18 +39,23 @@ public class CarRace {
         }
     }
 
-    private int getMaxPosition() {
+    public int getMaxPosition(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    private void determineWinners() {
+    public void determineWinners() {
+        int maxPosition = getMaxPosition(cars);
         winnerCarNames = cars.stream()
-                .filter(car -> car.getPosition() == getMaxPosition())
+                .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getCarName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> getWinnerCarNames() {
+        return winnerCarNames;
     }
 
 }

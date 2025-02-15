@@ -15,12 +15,35 @@ public class CarRaceInputHandler {
             throw new IllegalArgumentException("경주할 자동차 이름을 반드시 입력해주세요.");
         }
 
+
         List<String> carNames = Arrays.stream(value.split(","))
                 .map(String::trim)
                 .filter(name -> !name.isEmpty())
                 .distinct()
                 .collect(Collectors.toList());
 
+        validateCarNames(carNames);
+
+        return List.copyOf(carNames);
+    }
+
+    public static int getRaceAttemptCount() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("시도할 회수는 몇회인가요?");
+
+        if (!scanner.hasNextInt()) {
+            throw new IllegalArgumentException("올바른 숫자를 입력해주세요.");
+        }
+
+        int attemptCount = scanner.nextInt();
+        if (attemptCount <= 0) {
+            throw new IllegalArgumentException("시도할 회수는 1 이상의 정수여야 합니다.");
+        }
+
+        return attemptCount;
+    }
+
+    static void validateCarNames(List<String> carNames) {
         if (carNames.isEmpty()) {
             throw new IllegalArgumentException("경주할 자동차 이름을 올바르게 입력해주세요.");
         }
@@ -28,14 +51,6 @@ public class CarRaceInputHandler {
         if (carNames.stream().anyMatch(name -> name.length() > MAX_CAR_NAME_LENGTH)) {
             throw new IllegalArgumentException("자동차 이름은 5글자 이하로 작성해주세요.");
         }
-
-        return carNames;
-    }
-
-    public static int getRaceAttemptCount() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
     }
 
 }
