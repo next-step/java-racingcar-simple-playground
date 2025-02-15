@@ -1,22 +1,22 @@
 package model;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RacingGame {
 
     private final List<Car> cars;
-    private static final int RANDOM_BOUND = 10; // 난수 범위 0-9
-    private final Random random = new Random();
+    private final RandomNumberGenerator randomNumberGenerator;
 
-    public RacingGame(List<Car> carNames) {
-        this.cars = carNames;
+    public RacingGame(List<Car> cars, RandomNumberGenerator randomNumberGenerator) {
+        this.cars = List.copyOf(cars);
+        this.randomNumberGenerator = randomNumberGenerator;
     }
-    // 레이스 진행
-    public void race() {
+
+    // 한 라운드 동안의 레이스 진행
+    public void raceSingleRound() {
         for (Car car : cars) {
-            int randomNum = random.nextInt(RANDOM_BOUND);
+            int randomNum = randomNumberGenerator.generate();
             car.move(randomNum);
         }
     }
@@ -24,7 +24,8 @@ public class RacingGame {
     public List<Car> getCars() {
         return cars;
     }
-    // 우승자 찾기
+
+    // 우승자 반환
     public List<Car> getWinners() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)

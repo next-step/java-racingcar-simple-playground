@@ -1,23 +1,14 @@
 package view;
 
-import model.Car;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<Car> getCarNames() {
+    public static String getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
-
-        return Arrays.stream(input.split(","))
-                .map(String::trim) // 공백 제거
-                .map(Car::new)
-                .collect(Collectors.toList());
+        return scanner.nextLine();
     }
 
     public static int getRaceRounds() {
