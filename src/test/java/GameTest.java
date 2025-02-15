@@ -12,7 +12,7 @@ class GameTest {
         neo.move(4);
         assertEquals(1, neo.getForwardCount());
 
-        neo.move(3); //3이하 멈춤
+        neo.move(3);
         assertEquals(1, neo.getForwardCount());
     }
 
