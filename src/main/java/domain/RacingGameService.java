@@ -1,4 +1,4 @@
-import domain.Car;
+package domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,7 +10,9 @@ public class RacingGameService {
     private int rounds;
 
     public void carList(List<String> carNames) {
-        cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+        cars = carNames.stream()
+                       .map(Car::new)
+                       .collect(Collectors.toList());
     }
 
     public void gameStart(int rounds) {
@@ -39,8 +41,13 @@ public class RacingGameService {
     }
 
     public List<Car> getWinner() {
-        int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElse(0);
-        winnerCars = cars.stream().filter(car -> car.getPosition() == maxPosition).collect(Collectors.toList());
+        int maxPosition = cars.stream()
+                              .mapToInt(Car::getPosition)
+                              .max()
+                              .orElse(0);
+        winnerCars = cars.stream()
+                         .filter(car -> car.getPosition() == maxPosition)
+                         .toList();;
         return winnerCars;
     }
 
