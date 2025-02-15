@@ -68,4 +68,36 @@ class CarTest {
 
     }
 
+    @Nested
+    class getName {
+
+        @ParameterizedTest
+        @DisplayName("Car 인스턴스의 name 필드를 반환한다")
+        @ValueSource(strings = {"car1", "hello", "mycar"})
+        void getNameFieldOfCarInstance(String carName) {
+            Car car = Car.from(carName);
+
+            String actualResult = car.getName();
+
+            assertThat(actualResult).isEqualTo(carName);
+        }
+
+    }
+
+    @Nested
+    class getMoveDistance {
+
+        @Test
+        @DisplayName("Car 인스턴스의 moveDistance 필드(초기값 1)를 반환한다")
+        void getMoveDistanceFieldOfCarInstance() {
+            Car car = Car.from(BASIC_CAR_NAME);
+
+            int expectedResult = 1;
+            int actualResult = car.getMoveDistance();
+
+            assertThat(actualResult).isEqualTo(expectedResult);
+        }
+
+    }
+
 }
