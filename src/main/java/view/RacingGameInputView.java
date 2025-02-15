@@ -9,13 +9,13 @@ public class RacingGameInputView implements RacingGameView {
     private final Scanner scanner = ScannerPool.getSystemInScanner();
 
     public String getCarNames() {
-        System.out.println("°æÁÖÇÒ ÀÚµ¿Â÷ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä(ÀÌ¸§Àº ½°Ç¥(,)¸¦ ±âÁØÀ¸·Î ±¸ºĞ).");
+        System.out.println("ê²½ì£¼í•  ìë™ì°¨ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”(ì´ë¦„ì€ ì‰¼í‘œ(,)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ êµ¬ë¶„).");
 
         return scanner.nextLine();
     }
 
     public int getGameCount() {
-        System.out.println("½ÃµµÇÒ È¸¼ö´Â ¸îÈ¸ÀÎ°¡¿ä?");
+        System.out.println("ì‹œë„í•  íšŒìˆ˜ëŠ” ëª‡íšŒì¸ê°€ìš”?");
 
         return scanner.nextInt();
     }
