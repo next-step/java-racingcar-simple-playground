@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import exception.TryCountOutOfRangeException;
+import factory.CarFactory;
 import util.NumberProvider;
 
 public class Game {
@@ -14,14 +15,8 @@ public class Game {
 
     public Game(String carNames, int tryCount, NumberProvider numberProvider) {
         validateTryCountIsPositive(tryCount);
-        this.carGroup = new CarGroup(createCars(carNames), numberProvider);
+        this.carGroup = new CarGroup(CarFactory.createCars(carNames), numberProvider);
         this.tryCount = tryCount;
-    }
-
-    private List<Car> createCars(String carNames) {
-        return Arrays.stream(carNames.split(","))
-            .map(Car::new)
-            .collect(Collectors.toList());
     }
 
     private void validateTryCountIsPositive(int tryCount) {
