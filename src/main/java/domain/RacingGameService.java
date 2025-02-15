@@ -1,31 +1,41 @@
+import domain.Car;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-class RacingGame {
+public class RacingGameService {
 
     private List<Car> cars = new ArrayList<>();
     private List<Car> winnerCars = new ArrayList<>();
+    private int rounds;
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void carList(List<String> carNames) {
+        cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
     public void gameStart(int rounds) {
-        Random random = new Random();
+        this.rounds = rounds;
         while (rounds-- > 0) {
-            moveCars(random);
-            System.out.println();
+            moveCars();
+            printRoundResults();
         }
     }
 
-    public void moveCars(Random random) {
+    public void moveCars() {
         for (Car car : cars) {
-            System.out.print(car.getName() + " : ");
-            int randomValue = random.nextInt(10);
-            car.move(randomValue);
-            System.out.print("-".repeat(car.getPosition()));
-            System.out.println();
+            car.move();
         }
+    }
+
+    private void printRoundResults() {
+        for (Car car : cars) {
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+        }
+        System.out.println();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     public List<Car> getWinner() {

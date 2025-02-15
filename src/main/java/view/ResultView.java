@@ -1,17 +1,16 @@
 public class ResultView {
 
-    private final RacingGame racingGame;
+    private final RacingGameService racingGame;
 
-    public ResultView(RacingGame racingGame) {
+    public ResultView(RacingGameService racingGame) {
         this.racingGame = racingGame;
     }
 
-    public void printView(int rounds) {
-        System.out.println("실행 결과");
-        racingGame.gameStart(rounds);
+    public void printRaceResults() {
         racingGame.getWinner();
 
         System.out.print(racingGame.findWinnerName());
         System.out.println("가 최종 우승했습니다.");
     }
+
 }
