@@ -1,16 +1,28 @@
+package domain;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-class RacingGame {
+public class RacingGame {
 
-    private List<Car> cars;
+    private final List<Car> cars;
+    private final int rounds;
 
-    public RacingGame(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
+    public RacingGame(String[] carsName, int rounds) {
+        this.cars = createCars(carsName);
+        this.rounds = rounds;
     }
 
-    public void gameStart(int rounds) {
-        while (rounds-- > 0) {
+    private List<Car> createCars(String[] carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name.trim()));
+        }
+        return cars;
+    }
+
+    public void gameStart() {
+        for (int i = 0; i < rounds; i++) {
             moveCars();
             System.out.println();
         }
