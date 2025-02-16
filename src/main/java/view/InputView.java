@@ -13,6 +13,7 @@ public class InputView {
 
     public static int getRaceRounds() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        String input = scanner.nextLine();
+        return Integer.parseInt(input.trim());
     }
 }
