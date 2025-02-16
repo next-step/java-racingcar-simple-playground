@@ -1,7 +1,6 @@
 package domain;
 
 import view.ResultView;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,5 +57,6 @@ public class RacingGameService {
 
     public Cars getCars() {
         return cars;
+
     }
 }
