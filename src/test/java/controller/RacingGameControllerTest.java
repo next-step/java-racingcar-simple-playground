@@ -13,7 +13,7 @@ class RacingGameControllerTest {
 
     private Cars cars;
 
-    private static final int RACE_ROUNDS = 5; // 레이스 진행 횟수
+    private static final int RACE_ROUNDS = 5; 
 
     @Test
     @DisplayName("레이싱 게임에서 우승자가 정상적으로 선정되는 지 검증한다")
