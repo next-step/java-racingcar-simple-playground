@@ -5,13 +5,23 @@ import view.InputView;
 import view.ResultView;
 
 import java.util.List;
+import java.util.Random;
 
 public class RacingGameController {
 
     private final static int NAME_LENGTH = 5;
-    private final RacingGameService racingGame = new RacingGameService();
+    private final RacingGameService racingGame;
     private final InputView inputView = new InputView();
-    private final ResultView resultView = new ResultView(racingGame);
+    private final ResultView resultView;
+
+    public RacingGameController() {
+        this(new Random());
+    }
+
+    public RacingGameController(Random random) {
+        this.racingGame = new RacingGameService(random);
+        this.resultView = new ResultView(racingGame);
+    }
 
     public void gamePlay() {
         List<String> carNames = inputView.inputCarNames();
@@ -22,7 +32,7 @@ public class RacingGameController {
         rounds = ensurePositiveRounds(rounds);
 
         System.out.println("실행결과");
-        racingGame.gameStart(rounds);
+        racingGame.gameStart(rounds, resultView);
         resultView.printRaceResults();
     }
 
