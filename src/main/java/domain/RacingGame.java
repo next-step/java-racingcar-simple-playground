@@ -6,11 +6,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+    private static final int RANDOM_BOUND = 10;
+    private static final int FORWARD_STANDARD = 4;
+
     private final List<Car> cars = new ArrayList<>();
     private List<String> carNames;
     private int raceAttemptCount;
     private List<String> winnerCarNames;
+
     private final ResultView printer = new ResultView();
+    private final Random random = new Random();
 
     public void initializeRace() {
         carNames = InputView.getCarNames();
@@ -37,10 +42,14 @@ public class RacingGame {
         printer.printWinnerCarNames(winnerCarNames);
     }
 
+    private boolean shouldMove() {
+        return random.nextInt(RANDOM_BOUND) >= FORWARD_STANDARD;
+    }
+
     private void moveCars() {
-        for (Car car : cars) {
-            car.tryMove();
-        }
+        cars.stream()
+                .filter(car -> shouldMove())
+                .forEach(Car::move);
     }
 
     public int getMaxPosition(List<Car> cars) {

@@ -8,4 +8,5 @@ public class RacingGameController {
         racingGame.initializeRace();
         racingGame.startRace();
     }
+
 }

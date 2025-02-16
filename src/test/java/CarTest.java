@@ -6,6 +6,8 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
+    private static final int MAX_BOUND = 10;
+    private static final int FORWARD_STANDARD = 4;
 
     private static RacingGame racingGame;
     private static List<Car> cars;
@@ -30,13 +32,13 @@ class CarTest {
 
         @Test
         @DisplayName("자동차는 4 이상의 랜덤값이 나오면 전진한다.")
-        void shouldMoveForward_WhenRandomValueIsMoreThan4() {
-            Car car = new Car("neo");
+        void shouldMoveForward_WhenRandomValueIsMoreThanOrEqualTo4() {
+            Car car = new Car("neo", 0);
 
-            for (int i = 0; i < 10; i++) {
-                int position = car.getPosition();
-                car.tryMove();
-                assertThat(car.getPosition()).isGreaterThanOrEqualTo(position);
+            for (int i = FORWARD_STANDARD; i < MAX_BOUND; i++) {
+                int initialPosition = car.getPosition();
+                car.move();
+                assertThat(car.getPosition()).isEqualTo(initialPosition + 1);
             }
         }
 
@@ -113,7 +115,7 @@ class CarTest {
             System.setIn(new java.io.ByteArrayInputStream("\n".getBytes()));
 
             assertThatThrownBy(InputView::getCarNames)
-                    .isInstanceOf(IllegalArgumentException.class)
+                    .isInstanceOf(NoSuchElementException.class)
                     .hasMessage("경주할 자동차 이름을 반드시 입력해주세요.");
         }
 
