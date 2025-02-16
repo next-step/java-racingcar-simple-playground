@@ -3,10 +3,11 @@ package service;
 import domain.Car;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameService {
-    public void playRacingGame(List<Car> cars, int count) {
+    public List<Car> playRacingGame(String[] inputNames, int count) {
+        List<Car> cars = Car.getInstancesByNames(inputNames); //InputView, racingGameService, ResultView어디에도 속하지 않는 게임 시작 전 전처리 과정.
+
         System.out.println("실행 결과");
         printCarsMoving(cars);
 
@@ -14,29 +15,25 @@ public class RacingGameService {
             moveCars(cars);
             printCarsMoving(cars);
         }
+
+        return cars;
     }
 
     public int getLongestMoveDistance(List<Car> cars) {
-//        List<Integer> distances = cars.stream()
-//                .map(Car::getMoveDistance)
-////                .toList();
-//
-//        return distances.stream()
-//                .max(Integer::compareTo)
-//                .orElseThrow(() -> new IllegalArgumentException("carList is empty"));
         return cars.stream()
                 .map(Car::getMoveDistance)
                 .max(Integer::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("Error because List<Car> is empty"));
     }
 
-    public void printWinners(int longestMoveDistance, List<Car> cars) {
-        String winners = cars.stream()
+    public String[] getWinners(List<Car> cars) {
+        int longestMoveDistance = getLongestMoveDistance(cars);
+        String[] winners = cars.stream()
                 .filter(car -> car.getMoveDistance() == longestMoveDistance)
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .toArray(String[]::new);
 
-        System.out.println(winners + "가 최종 우승했습니다.");
+        return winners;
     }
 
     private void moveCars(List<Car> cars) {
