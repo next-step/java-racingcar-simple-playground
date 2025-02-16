@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
-    private List<RacingCar> racingCars = new ArrayList<>();
+    private final List<RacingCar> racingCars = new ArrayList<>();
     private final Random random;
     private int runCount;
 
@@ -39,14 +39,14 @@ public class RacingGame {
                 .orElse(0);
         List<String> winners = new ArrayList<>();
         for (RacingCar car : racingCars) {
-            checkWinners(car, maxPosition, winners);
+            if (checkWinner(car, maxPosition)) {
+                winners.add(car.getCarName());
+            }
         }
         return winners;
     }
 
-    private void checkWinners(RacingCar car, int maxPosition, List<String> winners){
-        if (car.getForwardCount() == maxPosition) {
-            winners.add(car.getCarName());
-        }
+    private boolean checkWinner(RacingCar car, int maxPosition){
+        return car.getForwardCount() == maxPosition;
     }
 }

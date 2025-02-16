@@ -49,5 +49,4 @@ class GameTest {
         assertEquals(2, game.getRacingCars().get(0).getForwardCount());
         assertEquals(1, game.getRacingCars().get(1).getForwardCount());
     }
-
 }
