@@ -10,6 +10,12 @@ class CarsTest {
 
     private Cars cars;
 
+    private static final int MOVE_ONE_TIME = 1;
+    private static final int MOVE_TWO_TIMES = 2;
+    private static final int MOVE_THREE_TIMES = 3;
+    private static final int MOVE_FOUR_TIMES = 4;
+    private static final int MOVE_FIVE_TIMES = 5;
+
     @BeforeEach
     void setUp() {
         cars = new Cars(List.of("car1", "car2", "car3"));
@@ -28,9 +34,9 @@ class CarsTest {
     @Test
     @DisplayName("가장 높은 위치의 자동차들이 올바르게 우승자로 반환되는지 검증한다")
     void testReturnWinnersWithHighPosition() {
-        cars.getCars().get(0).move(5);
-        cars.getCars().get(1).move(3);
-        cars.getCars().get(2).move(5);
+        cars.getCars().get(0).move(MOVE_FIVE_TIMES);
+        cars.getCars().get(1).move(MOVE_THREE_TIMES);
+        cars.getCars().get(2).move(MOVE_FIVE_TIMES);
 
         List<String> winnerNames = cars.getWinners().stream()
                 .map(Car::getCarName)
@@ -42,9 +48,9 @@ class CarsTest {
     @Test
     @DisplayName("가장 높은 위치의 자동차를 정확히 찾아내는지 검증한다.")
     void testFindMaxPositionCorrectly() {
-        cars.getCars().get(0).move(2);
-        cars.getCars().get(1).move(4);
-        cars.getCars().get(2).move(1);
+        cars.getCars().get(0).move(MOVE_TWO_TIMES);
+        cars.getCars().get(1).move(MOVE_FOUR_TIMES);
+        cars.getCars().get(2).move(MOVE_ONE_TIME);
 
         int maxPosition = cars.getMaxPosition();
 

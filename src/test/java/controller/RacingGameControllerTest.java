@@ -10,7 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class RacingGameControllerTest {
+
     private Cars cars;
+
+    private static final int RACE_ROUNDS = 5; // 레이스 진행 횟수
 
     @Test
     @DisplayName("레이싱 게임에서 우승자가 정상적으로 선정되는 지 검증한다")
@@ -20,7 +23,7 @@ class RacingGameControllerTest {
         RacingGame racingGame = new RacingGame(cars);
         RacingGameController racingGameController = new RacingGameController();
 
-        racingGameController.runRace(5, racingGame, cars);
+        racingGameController.runRace(RACE_ROUNDS, racingGame, cars);
 
         assertThat(cars.getWinners()).isNotEmpty();
     }

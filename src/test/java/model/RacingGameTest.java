@@ -13,6 +13,11 @@ class RacingGameTest {
     private Cars cars;
     private RacingGame racingGame;
 
+    private static final int NO_MOVE_RANDOM_VALUE = 3;
+    private static final int FIRST_CAR_MOVE_RANDOM_VALUE = 5;
+    private static final int SECOND_CAR_NO_MOVE_RANDOM_VALUE = 2;
+    private static final int THIRD_CAR_MOVE_RANDOM_VALUE = 4;
+
     @BeforeEach
     void setUp() {
         cars = new Cars(List.of("car1", "car2", "car3"));
@@ -24,7 +29,7 @@ class RacingGameTest {
     void testRaceDoesNotMoveCars() {
 
         try (MockedStatic<RandomValueGenerator> mocked = Mockito.mockStatic(RandomValueGenerator.class)) {
-            mocked.when(RandomValueGenerator::getRandomNumber).thenReturn(3);
+            mocked.when(RandomValueGenerator::getRandomNumber).thenReturn(NO_MOVE_RANDOM_VALUE);
 
             racingGame.race();
 
@@ -40,9 +45,9 @@ class RacingGameTest {
 
         try (MockedStatic<RandomValueGenerator> mocked = Mockito.mockStatic(RandomValueGenerator.class)) {
             mocked.when(RandomValueGenerator::getRandomNumber)
-                    .thenReturn(5)
-                    .thenReturn(2)
-                    .thenReturn(4);
+                    .thenReturn(FIRST_CAR_MOVE_RANDOM_VALUE)
+                    .thenReturn(SECOND_CAR_NO_MOVE_RANDOM_VALUE)
+                    .thenReturn(THIRD_CAR_MOVE_RANDOM_VALUE);
 
             racingGame.race();
 

@@ -13,6 +13,9 @@ class CarTest {
 
     private String input;
 
+    private static final int POSITION_THRESHOLD_FOR_MOVE = 4;
+    private static final int POSITION_THRESHOLD_FOR_NO_MOVE = 3;
+
     @BeforeEach
     void setUp() {
         input = "neo,brie,brown";
@@ -65,7 +68,7 @@ class CarTest {
         void testCarPositionIncrease() {
             Car car = new Car("Car1");
 
-            car.move(4);
+            car.move(POSITION_THRESHOLD_FOR_MOVE);
             assertThat(car.getPosition()).isEqualTo(1);
         }
 
@@ -74,7 +77,7 @@ class CarTest {
         void testCarPositionNotIncrease() {
             Car car = new Car("Car1");
 
-            car.move(3);
+            car.move(POSITION_THRESHOLD_FOR_NO_MOVE);
             assertThat(car.getPosition()).isEqualTo(0);
         }
     }
