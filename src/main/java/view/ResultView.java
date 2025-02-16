@@ -1,5 +1,7 @@
 package view;
 
+import domain.Car;
+import domain.Cars;
 import domain.RacingGameService;
 
 public class ResultView {
@@ -8,6 +10,13 @@ public class ResultView {
 
     public ResultView(RacingGameService racingGame) {
         this.racingGame = racingGame;
+    }
+
+    public void printRoundResults(Cars cars) {
+        for (Car car : cars.getCars()) {
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+        }
+        System.out.println();
     }
 
     public void printRaceResults() {
