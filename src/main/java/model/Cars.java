@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -10,23 +9,22 @@ public class Cars {
     public Cars(List<String> carNames) {
         this.cars = carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
+                .toList();
     }
 
     public List<Car> getCars() {
         return List.copyOf(cars);
     }
 
-    // 우승자 찾기
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
+                .toList();
     }
 
-    private int getMaxPosition() {
+    public int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
