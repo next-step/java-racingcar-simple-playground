@@ -33,7 +33,7 @@ public class InputView {
         }
     }
 
-    public static void validateCarNames(List<String> carNames) {
+    private static void validateCarNames(List<String> carNames) {
         if (carNames.isEmpty()) {
             throw new IllegalArgumentException("경주할 자동차 이름을 올바르게 입력해주세요.");
         }

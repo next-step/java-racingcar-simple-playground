@@ -91,8 +91,9 @@ class CarTest {
         @Test
         @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생한다.")
         void shouldThrowException_WhenCarNameExceeds5Characters() {
-            List<String> invalidCarNames = List.of("abcdef", "longname");
-            assertThatThrownBy(() -> InputView.validateCarNames(invalidCarNames))
+            System.setIn(new java.io.ByteArrayInputStream("abcdef,longname".getBytes()));
+
+            assertThatThrownBy(InputView::getCarNames)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 5글자 이하로 작성해주세요.");
         }
@@ -100,8 +101,7 @@ class CarTest {
         @Test
         @DisplayName("자동차 이름이 중복될 경우 중복이 제거된 리스트를 반환한다.")
         void shouldRemoveDuplicates_WhenCarNamesAreDuplicated() {
-            String input = "neo,brie,neo,brown";
-            System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+            System.setIn(new java.io.ByteArrayInputStream("neo,brie,neo,brown".getBytes()));
 
             List<String> expection = List.of("neo", "brie", "brown");
             List<String> actual = InputView.getCarNames();
@@ -122,8 +122,7 @@ class CarTest {
         @Test
         @DisplayName("올바른 자동차 이름이 입력되면 리스트를 반환한다.")
         void shouldReturnList_WhenValidCarNamesAreProvided() {
-            String input = "neo, brie, brown";
-            System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+            System.setIn(new java.io.ByteArrayInputStream("neo, brie, brown".getBytes()));
 
             List<String> expection = List.of("neo", "brie", "brown");
             List<String> actual = InputView.getCarNames();
@@ -134,8 +133,7 @@ class CarTest {
         @Test
         @DisplayName("시도할 횟수가 숫자가 아니면 예외가 발생한다.")
         void shouldThrowException_WhenTryCountIsNotNumber() {
-            String input = "string";
-            System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+            System.setIn(new java.io.ByteArrayInputStream("string".getBytes()));
 
             assertThatThrownBy(InputView::getTryCount)
                     .isInstanceOf(IllegalArgumentException.class)
@@ -145,8 +143,7 @@ class CarTest {
         @Test
         @DisplayName("시도할 횟수가 1 미만이면 예외가 발생한다.")
         void shouldThrowException_WhenTryCountIsLessThan1() {
-            String input = "-3";
-            System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+            System.setIn(new java.io.ByteArrayInputStream("-3".getBytes()));
 
             assertThatThrownBy(InputView::getTryCount)
                     .isInstanceOf(IllegalArgumentException.class)
@@ -156,8 +153,7 @@ class CarTest {
         @Test
         @DisplayName("올바른 시도 횟수가 입력되면 반환한다.")
         void shouldReturnTryCount_WhenValidNumberIsProvided() {
-            String input = "3";
-            System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+            System.setIn(new java.io.ByteArrayInputStream("3".getBytes()));
 
             int expection = 3;
             int actual = InputView.getTryCount();
