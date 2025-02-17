@@ -10,11 +10,8 @@ class CarsTest {
 
     private Cars cars;
 
-    private static final int MOVE_ONE_TIME = 1;
-    private static final int MOVE_TWO_TIMES = 2;
-    private static final int MOVE_THREE_TIMES = 3;
-    private static final int MOVE_FOUR_TIMES = 4;
-    private static final int MOVE_FIVE_TIMES = 5;
+    private static final int MOVABLE_NUMBER = 5; // 이동 가능
+    private static final int UNMOVABLE_NUMBER = 3; // 이동 불가
 
     @BeforeEach
     void setUp() {
@@ -34,9 +31,9 @@ class CarsTest {
     @Test
     @DisplayName("가장 높은 위치의 자동차들이 올바르게 우승자로 반환되는지 검증한다")
     void testReturnWinnersWithHighPosition() {
-        cars.getCars().get(0).move(MOVE_FIVE_TIMES);
-        cars.getCars().get(1).move(MOVE_THREE_TIMES);
-        cars.getCars().get(2).move(MOVE_FIVE_TIMES);
+        cars.getCars().get(0).move(MOVABLE_NUMBER);
+        cars.getCars().get(1).move(UNMOVABLE_NUMBER);
+        cars.getCars().get(2).move(MOVABLE_NUMBER);
 
         List<String> winnerNames = cars.getWinners().stream()
                 .map(Car::getCarName)
@@ -48,21 +45,21 @@ class CarsTest {
     @Test
     @DisplayName("가장 높은 위치의 자동차를 정확히 찾아내는지 검증한다.")
     void testFindMaxPositionCorrectly() {
-        cars.getCars().get(0).move(MOVE_TWO_TIMES);
-        cars.getCars().get(1).move(MOVE_FOUR_TIMES);
-        cars.getCars().get(2).move(MOVE_ONE_TIME);
+        cars.getCars().get(0).move(UNMOVABLE_NUMBER);
+        cars.getCars().get(1).move(MOVABLE_NUMBER);
+        cars.getCars().get(2).move(UNMOVABLE_NUMBER);
 
-        int maxPosition = cars.getMaxPosition();
+        List<Car> winnerCar = cars.getWinners();
 
-        assertThat(maxPosition).isEqualTo(1);
+        assertThat(winnerCar.get(0)).isEqualTo(cars.getCars().get(1));
     }
 
     @Test
-    @DisplayName("자동차가 없을 경우 getMaxPosition 호출 시 예외가 발생하는지 검증한다")
+    @DisplayName("자동차가 없을 경우 getWinners 호출 시 예외가 발생하는지 검증한다")
     void testThrowExceptionWhenCarsAreEmpty() {
         Cars emptyCars = new Cars(List.of());
 
-        assertThatThrownBy(emptyCars::getMaxPosition)
+        assertThatThrownBy(emptyCars::getWinners)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("경주에 참가한 자동차가 없습니다.");
     }

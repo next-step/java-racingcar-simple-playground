@@ -5,16 +5,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 import view.InputView;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 
 class CarTest {
 
-    private String input;
-
     private static final int POSITION_THRESHOLD_FOR_MOVE = 4;
     private static final int POSITION_THRESHOLD_FOR_NO_MOVE = 3;
+    private String input;
 
     @BeforeEach
     void setUp() {
@@ -48,14 +49,34 @@ class CarTest {
         }
 
         @Test
-        @DisplayName("자동차 리스트가 null일 경우 예외가 발생하는 지 검증한다")
+        @DisplayName("자동차 리스트가 null이면 예외가 발생하는 지 검증한다")
         void testGetCarName() {
-            String input = null;
+            String nullInput = null;
 
-            assertThatThrownBy(() -> {
-                InputView.parseCarNames(input);
-            }).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("자동차 리스트가 null일 수 없습니다.");
+            assertThatThrownBy(() -> InputView.parseCarNames(nullInput))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("자동차 리스트가 null이거나 비어있을 수 없습니다.");
+        }
+
+        @Test
+        @DisplayName("자동차 리스트가 비어있으면 예외가 발생하는 지 검증한다.")
+        void testGetCarListIsEmpty() {
+            String emptyInput = "";
+
+            assertThatThrownBy(() -> InputView.parseCarNames(emptyInput))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("자동차 리스트가 null이거나 비어있을 수 없습니다.");
+        }
+
+
+        @Test
+        @DisplayName("자동차 이름이 비어있으면 예외가 발생하는 지 검증한다.")
+        void testGetCarNameIsEmpty() {
+            String input = " pobi,,woni";
+
+            assertThatThrownBy(() -> InputView.parseCarNames(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("자동차 이름은 비어있을 수 없습니다.");
         }
     }
 

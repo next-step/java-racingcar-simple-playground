@@ -24,7 +24,7 @@ public class Cars {
                 .toList();
     }
 
-    public int getMaxPosition() {
+    private int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
