@@ -2,11 +2,10 @@ package model;
 
 public class Car {
 
-    public static final int MAX_CAR_NAME_LENGTH = 5;
-    private static final int MOVE_THRESHOLD = 4; // 전진 기준 설정
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int MOVE_THRESHOLD = 4;
     private final String carName;
     private int position = 0;
-    private static final int MAX_BOUND = 9;
 
     public Car(String name) {
         if (name.length() > MAX_CAR_NAME_LENGTH) {

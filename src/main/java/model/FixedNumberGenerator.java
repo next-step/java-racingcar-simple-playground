@@ -6,6 +6,7 @@ public class FixedNumberGenerator implements RandomUtil{
     public FixedNumberGenerator(int fixedNumber) {
         this.fixedNumber = fixedNumber;
     }
+
     @Override
     public int generateRandomNumber() {
         return fixedNumber;

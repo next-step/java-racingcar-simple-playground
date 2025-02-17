@@ -10,8 +10,8 @@ class CarsTest {
 
     private Cars cars;
 
-    private static final int MOVABLE_NUMBER = 5; // 이동 가능
-    private static final int UNMOVABLE_NUMBER = 3; // 이동 불가
+    private static final int MOVABLE_NUMBER = 5;
+    private static final int UNMOVABLE_NUMBER = 3;
 
     @BeforeEach
     void setUp() {
