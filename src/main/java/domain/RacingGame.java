@@ -7,10 +7,26 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final int rounds;
+    private Random random;
 
     public RacingGame(String[] carsName, int rounds) {
         this.cars = createCars(carsName);
         this.rounds = rounds;
+    }
+
+    public RacingGame(List<Car> cars, int rounds) {
+        this.cars = cars;
+        this.rounds = rounds;
+    }
+
+    public RacingGame(String[] carsName, int rounds, Random random) {
+        this.cars = createCars(carsName);
+        this.rounds = rounds;
+        this.random = random;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     private List<Car> createCars(String[] carNames) {
@@ -29,7 +45,6 @@ public class RacingGame {
     }
 
     private void moveCars() {
-        Random random = new Random();
         for (Car car : cars) {
             System.out.print(car.getName() + " : ");
             int randomValue = random.nextInt(10);

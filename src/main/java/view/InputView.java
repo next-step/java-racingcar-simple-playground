@@ -30,7 +30,7 @@ public class InputView {
         }
     }
 
-    private static void validateInput(String carName) throws Exception {
+    public static void validateInput(String carName) throws Exception {
         if (carName.length() > MAX_NAME_LENGTH) {
             throw new Exception("자동차 이름은 " + MAX_NAME_LENGTH + "자 이하여야합니다.");
         }
