@@ -42,4 +42,9 @@ public class RacingGame {
                 .map(Car::getCars)
                 .toList();
     }
+
+    //자동차 목록 반환
+    public List<Car> getCars() {
+        return cars;
+    }
 }
