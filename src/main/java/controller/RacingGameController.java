@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-
 import model.Cars;
 import model.RacingGame;
 import model.RandomUtil;
