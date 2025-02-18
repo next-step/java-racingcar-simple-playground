@@ -1,50 +1,47 @@
-import domain.Car;
-import domain.RacingGame;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import java.util.List;
+import domain.*;
+import org.junit.jupiter.api.*;
+import java.util.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 
 class RacingGameTest {
 
     private RacingGame racingGame;
     private static final List<String> CAR_NAMES = List.of("neo", "brie", "brown");
-    private static final int RACE_TRY_OUY_COUNT = 5;
+    private static final int NUMBER_OF_RACING = 5;
 
     @BeforeEach
     void setUp() {
-        racingGame = new RacingGame(CAR_NAMES, RACE_TRY_OUY_COUNT);
+        racingGame = new RacingGame(CAR_NAMES, NUMBER_OF_RACING);
     }
 
     @Test
     @DisplayName("경기 횟수를 반환한다.")
     void shouldReturnRacingGameTryOutCount() {
-        assertThat(racingGame.getRaceAttemptCount()).isEqualTo(RACE_TRY_OUY_COUNT);
+        assertThat(racingGame.getRaceAttemptCount()).isEqualTo(NUMBER_OF_RACING);
     }
 
     @Test
-    @DisplayName("자동차는 이동 조건을 만족하면 전진한다.")
-    void shouldMoveCars_WhenConditionIsTrue() {
-        RacingGame racingGame = new RacingGame(CAR_NAMES, 9);
+    @DisplayName("랜덤값이 4라면 자동차는 전진해야 한다.")
+    void shouldMoveCar_WhenRandomValueEqualTo4() {
+        RacingGame racingGame = new RacingGame(CAR_NAMES, NUMBER_OF_RACING, () -> 4);
         racingGame.doRace();
-        List<Car> cars = racingGame.getCars();
 
-        assertThat(cars)
+        assertThat(racingGame.getCars())
                 .extracting(Car::getPosition)
                 .allMatch(position -> position > 0);
     }
 
     @Test
-    @DisplayName("자동차는 이동 조건을 만족하지 않으면 멈춘다.")
-    void shouldNotMoveCars_WhenConditionIsFalse() {
-        RacingGame racingGame = new RacingGame(CAR_NAMES, 0);
+    @DisplayName("랜덤값이 3이면 자동차는 멈춰야 한다")
+    void shouldNotMoveCar_WhenRandomValueEqualTo3() {
+        RacingGame racingGame = new RacingGame(CAR_NAMES, NUMBER_OF_RACING, () -> 3);
         racingGame.doRace();
-        List<Car> cars = racingGame.getCars();
 
-        assertThat(cars)
+        assertThat(racingGame.getCars())
                 .extracting(Car::getPosition)
-                .containsOnly(0);
+                .allMatch(position -> position == 0);
     }
 
 }
