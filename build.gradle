@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation platform('org.assertj:assertj-bom:3.25.1')
@@ -19,3 +23,5 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
