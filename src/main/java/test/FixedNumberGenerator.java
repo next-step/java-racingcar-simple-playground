@@ -1,6 +1,8 @@
-package model;
+package test;
 
-public class FixedNumberGenerator implements RandomUtil{
+import model.RandomUtil;
+
+public class FixedNumberGenerator implements RandomUtil {
     private final int fixedNumber;
 
     public FixedNumberGenerator(int fixedNumber) {
