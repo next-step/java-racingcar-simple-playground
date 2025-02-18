@@ -2,12 +2,11 @@ package model;
 
 public class Car {
 
-    public static final int MAX_CAR_NAME_LENGTH = 5;
-    private static final int MOVE_THRESHOLD = 4; // 전진 기준 설정
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int MOVE_THRESHOLD = 4;
     private final String carName;
     private int position = 0;
 
-    // 자동차 이름 글자수 제한
     public Car(String name) {
         if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
@@ -15,7 +14,6 @@ public class Car {
         this.carName = name;
     }
 
-    // 위치 이동
     public void move(int randomNumber) {
         if (randomNumber >= MOVE_THRESHOLD) {
             position++;
