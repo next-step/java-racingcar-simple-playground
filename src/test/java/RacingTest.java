@@ -41,8 +41,8 @@ public class RacingTest
         @DisplayName("이동 횟수 테스트")
         void moveCountTest()
         {
-            assertThatThrownBy(() -> new Racing("a,b,c", -1)).hasMessage("자연수를 입력해 주세요.");
-            assertThatThrownBy(() -> new Racing("a,b,c", 0)).hasMessage("자연수를 입력해 주세요.");
+            assertThatThrownBy(() -> new Racing(new String[]{"a", "b", "c"}, -1)).hasMessage("자연수를 입력해 주세요.");
+            assertThatThrownBy(() -> new Racing(new String[]{"a", "b", "c"}, 0)).hasMessage("자연수를 입력해 주세요.");
         }
     }
 
@@ -53,8 +53,8 @@ public class RacingTest
         @DisplayName("차의 이름 테스트")
         void nameCheckTest()
         {
-            assertThatThrownBy(() -> new Racing("abcdef", 1)).hasMessage("경주를 진행할 차가 없습니다.");
-            assertThatThrownBy(() -> new Racing("adasds,asdasdas,sdwqwq", 1)).hasMessage("경주를 진행할 차가 없습니다.");
+            assertThatThrownBy(() -> new Racing(new String[]{"abcdef"}, 1)).hasMessage("경주를 진행할 차가 없습니다.");
+            assertThatThrownBy(() -> new Racing(new String[]{"adasds,asdasdas,sdwqwq"}, 1)).hasMessage("경주를 진행할 차가 없습니다.");
         }
     }
 }

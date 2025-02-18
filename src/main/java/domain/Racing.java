@@ -1,91 +1,73 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Racing
-{
+public class Racing {
     private final int tryCount;
     private final List<Car> cars = new ArrayList<>();
+    private List<List<Integer>> moveData = new ArrayList<>();
 
     // 생성자 함수
-    public Racing(String tempCarNames, int count)
-    {
-        for (String name: checkCarCount(splitCarName(tempCarNames)))
+    public Racing(String[] carNames, int count) {
+        for (String name: carNames)
             addCar(name);
 
-        tryCount = checkTryCount(count);
-    }
-
-    // 자동차의 이름을 ","로 분리 및 에러 체크
-    private String[] splitCarName(String carName)
-    {
-        return checkFiltering(carName.split(","));
-    }
-
-    // 이름이 5글자 이하의 차만 필터링
-    private String[] checkFiltering(String[] tempCarName)
-    {
-        return Arrays.stream(tempCarName)
-                .filter(name -> name.length() <= 5)
-                .toArray(String[]::new);
-    }
-
-    // 에러 처리 : car 개수 체크
-    private String[] checkCarCount(String[] carName)
-    {
-        if (carName.length == 0)
-            throw new IllegalArgumentException("경주를 진행할 차가 없습니다.");
-
-        return carName;
+        tryCount = calculateTryCount(count);
     }
 
     // 에러 처리 : tryCount 체크
-    private int checkTryCount(int tryCount)
-    {
+    private int calculateTryCount(int tryCount) {
         if (tryCount <= 0)
             throw new IllegalArgumentException("자연수를 입력해 주세요.");
 
         return tryCount;
     }
 
-    // Car 객체 생성
-    private void addCar(String curCarName)
-    {
+    private void addCar(String curCarName) {
         Car curCar = new Car(curCarName);
         cars.add(curCar);
     }
 
-    // 모든 자동차에 대해 경주 진행
-    public void startRace(int raceCount)
-    {
-        for (int i=0; i<raceCount; i++)
+    public void startRace(int raceCount) {
+        for (int i = 0; i < raceCount; i++) {
             cars.forEach(Car::moveCar);
+            List<Integer> roundPositions = cars.stream()
+                    .map(Car::getCarPos)
+                    .collect(Collectors.toList());
+            moveData.add(roundPositions);
+        }
     }
 
-    // 가장 멀리 간 자동차의 위치 탐색
-    private int findMaxPos()
-    {
+
+    private int findMaxPos() {
         return cars.stream()
                 .mapToInt(Car::getCarPos)
                 .max()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalStateException("차가 없습니다."));
     }
 
-    // 우승자 탐색
-    public List<String> getWinners()
-    {
+    public List<String> getWinners() {
         return cars.stream()
                 .filter(car -> car.getCarPos() == findMaxPos())
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
 
-    // 경주 진행
-    public void race()
+    public List<String> getCarsName()
     {
+        return cars.stream()
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
+    }
+
+    public List<List<Integer>> getMoveData()
+    {
+        return moveData;
+    }
+
+    public void race() {
         startRace(tryCount);
     }
 }
