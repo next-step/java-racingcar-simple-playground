@@ -1,16 +1,18 @@
 package domain;
 
+import global.CreateRandom;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static global.CreateRandom.getRandomNumber;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int moveDistance = 1;
-
     private Car(String name) {
-
         this.name = name;
     }
 
@@ -58,10 +60,6 @@ public class Car {
 
     public int getMoveDistance() {
         return moveDistance;
-    }
-
-    private int getRandomNumber() {
-        return new Random().nextInt(10);
     }
 
     private boolean isMovable(int randomNumber) {
