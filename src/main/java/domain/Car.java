@@ -31,6 +31,7 @@ public class Car {
 
     public void moveForwardOrStay() {
         int randomNumber = randomUtil.generateRandomNumber();
+      
         if (isMovable(randomNumber)) {
             moveDistance++;
         }
