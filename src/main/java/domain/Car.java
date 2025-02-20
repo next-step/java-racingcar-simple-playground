@@ -1,32 +1,37 @@
 package domain;
 
+import global.RandomNumberGenerator;
+import global.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int moveDistance = 1;
+    private final RandomUtil randomUtil;
 
-    private Car(String name) {
-
+    public Car(String name, RandomUtil randomUtil) {
         this.name = name;
+        this.randomUtil = randomUtil;
     }
 
     public static List<Car> getInstancesByNames(String[] carNames) {
         List<Car> cars = new ArrayList<>();
+        RandomUtil randomUtil = new RandomNumberGenerator();
 
         for (String name : carNames) {
             validateInputName(name);
-            cars.add(new Car(name));
+            cars.add(new Car(name, randomUtil));
         }
 
         return cars;
     }
 
     public void moveForwardOrStay() {
-        int randomNumber = getRandomNumber();
+        int randomNumber = randomUtil.generateRandomNumber();
+      
         if (isMovable(randomNumber)) {
             moveDistance++;
         }
@@ -34,7 +39,7 @@ public class Car {
 
     private static void validateInputName(String inputName) {
         if (isIllegalInputName(inputName)) {
-            throw new IllegalArgumentException("length of inputName must be less than 5 word and can't be empty.");
+            throw new IllegalArgumentException("자동차의 이름은 5자 이내여야 합니다.");
         }
     }
 
@@ -58,10 +63,6 @@ public class Car {
 
     public int getMoveDistance() {
         return moveDistance;
-    }
-
-    private int getRandomNumber() {
-        return new Random().nextInt(10);
     }
 
     private boolean isMovable(int randomNumber) {
