@@ -1,57 +1,79 @@
 package domain;
 
+import view.ResultView;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingGameService {
 
-    private List<Car> cars = new ArrayList<>();
-    private List<Car> winnerCars = new ArrayList<>();
-    private int rounds;
+    private Cars cars;
+    private final NumberGenerator randomGenerator;
 
-    public void carList(List<String> carNames) {
-        cars = carNames.stream()
-                       .map(Car::new)
-                       .collect(Collectors.toList());
+    public RacingGameService(NumberGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
     }
 
-    public void gameStart(int rounds) {
-        this.rounds = rounds;
+    public void carList(List<String> carNames) {
+        throwIfCarsListIsEmpty(carNames);
+
+        List<Car> carList = carNames.stream()
+                .map(name -> {
+                    throwIfCarNameEmpty(name);
+                    return new Car(name);
+                })
+                .collect(Collectors.toList());
+        this.cars = new Cars(carList);
+    }
+
+    private static void throwIfCarNameEmpty(String car) {
+        if (car.trim().isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+    }
+
+    private static void throwIfCarsListIsEmpty(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차 리스트가 비어있을 수 없습니다.");
+        }
+    }
+
+    public void gameStart(int rounds, ResultView resultView) {
         while (rounds-- > 0) {
             moveCars();
-            printRoundResults();
+            resultView.printRoundResults(cars);
         }
     }
 
     public void moveCars() {
-        for (Car car : cars) {
-            car.move();
+        for (Car car : cars.getCars()) {
+            car.move(randomGenerator.generate());
         }
     }
 
-    private void printRoundResults() {
-        for (Car car : cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-        }
-        System.out.println();
+    public int getMaxPosition() {
+        return cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
 
     public List<Car> getWinner() {
-        int maxPosition = cars.stream()
-                              .mapToInt(Car::getPosition)
-                              .max()
-                              .orElse(0);
-        winnerCars = cars.stream()
-                         .filter(car -> car.getPosition() == maxPosition)
-                         .toList();;
-        return winnerCars;
+        int maxPosition = getMaxPosition();
+
+        return cars.getCars().stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .collect(Collectors.toList());
     }
 
     public String findWinnerName() {
-        return winnerCars.stream().map(car -> car.getName()).collect(Collectors.joining(", "));
+        return getWinner().stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+    }
+
+    public Cars getCars() {
+        return cars;
+
     }
 }
