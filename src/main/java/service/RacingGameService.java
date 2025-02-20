@@ -35,7 +35,7 @@ public class RacingGameService {
         return winners;
     }
 
-    private void moveCars(List<Car> cars) {
+    public void moveCars(List<Car> cars) {
         for (Car car : cars) {
             car.moveForwardOrStay();
         }
