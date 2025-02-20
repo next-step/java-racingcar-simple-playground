@@ -1,5 +1,6 @@
 package domain;
 
+import global.RandomNumberGenerator;
 import global.RandomUtil;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int moveDistance = 1;
-    private static RandomUtil randomUtil;
+    private final RandomUtil randomUtil;
 
     public Car(String name, RandomUtil randomUtil) {
         this.name = name;
@@ -18,6 +19,7 @@ public class Car {
 
     public static List<Car> getInstancesByNames(String[] carNames) {
         List<Car> cars = new ArrayList<>();
+        RandomUtil randomUtil = new RandomNumberGenerator();
 
         for (String name : carNames) {
             validateInputName(name);
