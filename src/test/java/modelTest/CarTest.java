@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
     @Test
@@ -43,7 +43,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("moveDistance가 높은 Cars 검증 테스트")
+    @DisplayName("moveDistance가 높은 Cars 우승 테스트")
     void getLongestMoveDistanceTest() {
         RacingGameService racingGameService = new RacingGameService();
         List<Car> cars = new ArrayList<>();

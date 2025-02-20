@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-
 public class InputViewTest {
     @Test
     @DisplayName("자동차 이름이 ,를 기준으로 스플릿 테스트")
