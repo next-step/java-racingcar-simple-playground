@@ -24,8 +24,4 @@ public class RacingGameController {
             ResultView.printWinners(racingGameService.getWinners(cars));
         }
     }
-
-    private void printEmptyLine() {
-        System.out.println();
-    }
 }
