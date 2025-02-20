@@ -1,8 +1,8 @@
 package controller;
 
 import domain.Car;
-import global.InputView;
-import global.ResultView;
+import view.InputView;
+import view.ResultView;
 import service.RacingGameService;
 
 import java.util.List;

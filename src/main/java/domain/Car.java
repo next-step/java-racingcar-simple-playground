@@ -1,6 +1,5 @@
 package domain;
 
-import global.RandomNumberGenerator;
 import global.RandomUtil;
 
 import java.util.ArrayList;

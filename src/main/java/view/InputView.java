@@ -1,4 +1,4 @@
-package global;
+package view;
 
 import java.util.Scanner;
 
@@ -10,14 +10,14 @@ public class InputView implements AutoCloseable {
         this.scanner = new Scanner(System.in);
     }
 
-    public String[] getCarNames(){
+    public String[] getCarNames() {
         String inputNames = readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] inputSplitNames = splitCarNames(inputNames);
 
         return inputSplitNames;
     }
 
-    public int getGameCount(){
+    public int getGameCount() {
         int inputGameCount = readInt("시도할 회수는 몇회인가요?");
         scanner.nextLine();
         validateInputCount(inputGameCount);
@@ -52,7 +52,7 @@ public class InputView implements AutoCloseable {
     }
 
     @Override
-    public void close(){
+    public void close() {
         scanner.close();
     }
 }

@@ -1,7 +1,5 @@
 package global;
 
-import java.util.random.RandomGenerator;
-
 public class TestNumberGenerator implements RandomUtil {
     private final int testNumber;
 
