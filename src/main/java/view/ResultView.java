@@ -20,10 +20,8 @@ public class ResultView {
     }
 
     public void printRaceResults() {
-        racingGame.getWinner();
-
-        System.out.print(racingGame.findWinnerName());
-        System.out.println("가 최종 우승했습니다.");
+        String winnerNames = racingGame.findWinnerName();
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 
 }

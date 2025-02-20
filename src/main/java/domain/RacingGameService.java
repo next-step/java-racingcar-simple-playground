@@ -7,17 +7,34 @@ import java.util.stream.Collectors;
 public class RacingGameService {
 
     private Cars cars;
-    private Random random;
+    private final NumberGenerator randomGenerator;
 
-    public RacingGameService(Random random) {
-        this.random = random;
+    public RacingGameService(NumberGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
     }
 
     public void carList(List<String> carNames) {
+        throwIfCarsListIsEmpty(carNames);
+
         List<Car> carList = carNames.stream()
-                .map(name -> new Car(name, random))
+                .map(name -> {
+                    throwIfCarNameEmpty(name);
+                    return new Car(name);
+                })
                 .collect(Collectors.toList());
         this.cars = new Cars(carList);
+    }
+
+    private static void throwIfCarNameEmpty(String car) {
+        if (car.trim().isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+    }
+
+    private static void throwIfCarsListIsEmpty(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차 리스트가 비어있을 수 없습니다.");
+        }
     }
 
     public void gameStart(int rounds, ResultView resultView) {
@@ -29,7 +46,7 @@ public class RacingGameService {
 
     public void moveCars() {
         for (Car car : cars.getCars()) {
-            car.move();
+            car.move(randomGenerator.generate());
         }
     }
 
@@ -37,7 +54,7 @@ public class RacingGameService {
         return cars.getCars().stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);  // 🚀 자동차가 없으면 0 반환
+                .orElse(0);
     }
 
 

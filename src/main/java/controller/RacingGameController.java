@@ -1,11 +1,11 @@
 package controller;
 
 import domain.RacingGameService;
+import domain.RandomGenerator;
 import view.InputView;
 import view.ResultView;
 
 import java.util.List;
-import java.util.Random;
 
 public class RacingGameController {
 
@@ -15,11 +15,11 @@ public class RacingGameController {
     private final ResultView resultView;
 
     public RacingGameController() {
-        this(new Random());
+        this(new RandomGenerator());
     }
 
-    public RacingGameController(Random random) {
-        this.racingGame = new RacingGameService(random);
+    public RacingGameController(RandomGenerator randomGenerator) {
+        this.racingGame = new RacingGameService(randomGenerator);
         this.resultView = new ResultView(racingGame);
     }
 

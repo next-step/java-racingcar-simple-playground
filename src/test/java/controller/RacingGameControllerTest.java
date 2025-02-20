@@ -1,11 +1,11 @@
 package controller;
 
+import domain.RandomGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -15,7 +15,7 @@ class RacingGameControllerTest {
 
     @BeforeEach
     void setUp() {
-        racingGameController = new RacingGameController(new Random());
+        racingGameController = new RacingGameController(new RandomGenerator());
     }
 
     @Test

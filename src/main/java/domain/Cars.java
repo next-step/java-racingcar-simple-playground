@@ -10,6 +10,6 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;  // 외부에서 변경할 수 없는 리스트 반환
+        return cars;
     }
 }
