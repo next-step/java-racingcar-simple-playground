@@ -1,6 +1,7 @@
 package controller;
 
 import domain.RacingGameService;
+import domain.RandomGenerator;
 import view.InputView;
 import view.ResultView;
 
@@ -9,9 +10,18 @@ import java.util.List;
 public class RacingGameController {
 
     private final static int NAME_LENGTH = 5;
-    private final RacingGameService racingGame = new RacingGameService();
+    private final RacingGameService racingGame;
     private final InputView inputView = new InputView();
-    private final ResultView resultView = new ResultView(racingGame);
+    private final ResultView resultView;
+
+    public RacingGameController() {
+        this(new RandomGenerator());
+    }
+
+    public RacingGameController(RandomGenerator randomGenerator) {
+        this.racingGame = new RacingGameService(randomGenerator);
+        this.resultView = new ResultView(racingGame);
+    }
 
     public void gamePlay() {
         List<String> carNames = inputView.inputCarNames();
@@ -22,7 +32,7 @@ public class RacingGameController {
         rounds = ensurePositiveRounds(rounds);
 
         System.out.println("실행결과");
-        racingGame.gameStart(rounds);
+        racingGame.gameStart(rounds, resultView);
         resultView.printRaceResults();
     }
 
