@@ -1,6 +1,7 @@
 package service;
 
 import domain.Car;
+
 import java.util.List;
 
 public class RacingGameService {
@@ -13,6 +14,9 @@ public class RacingGameService {
             moveCars(cars);
             printCarsMoving(cars);
         }
+
+        moveCars(cars);
+        printCarsMoving(cars);
 
         return cars;
     }

@@ -4,7 +4,6 @@ import domain.Car;
 import view.InputView;
 import view.ResultView;
 import service.RacingGameService;
-
 import java.util.List;
 
 public class RacingGameController {
@@ -15,13 +14,18 @@ public class RacingGameController {
     }
 
     public void racingGame() {
-        try (InputView inputView = new InputView()) {
-            String[] inputNames = inputView.getCarNames();
-            int gameCount = inputView.getGameCount();
+        InputView inputView = new InputView();
+        String inputNames = inputView.getCarNames();
+        int gameCount = inputView.getGameCount();
 
-            List<Car> cars = racingGameService.playRacingGame(inputNames, gameCount);
+        String[] splitedInputNames = splitCarNames(inputNames);
+        List<Car> cars = racingGameService.playRacingGame(splitedInputNames, gameCount);
 
-            ResultView.printWinners(racingGameService.getWinners(cars));
-        }
+        ResultView.printWinners(racingGameService.getWinners(cars));
+    }
+
+    public String[] splitCarNames(String names) {
+        final String defaultNameDelimiter = ",";
+        return names.split(defaultNameDelimiter);
     }
 }

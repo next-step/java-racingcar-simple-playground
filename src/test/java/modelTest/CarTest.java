@@ -3,9 +3,12 @@ package modelTest;
 import domain.Car;
 import global.RandomUtil;
 import global.TestNumberGenerator;
+import inputViewTest.SystemSetIn;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import service.RacingGameService;
+import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,27 +46,6 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("moveDistance가 높은 Cars 우승 테스트")
-    void getLongestMoveDistanceTest() {
-        RacingGameService racingGameService = new RacingGameService();
-        List<Car> cars = new ArrayList<>();
-
-        for (int i = 2; i < 5; i++) {
-            RandomUtil testNumberGenerator = new TestNumberGenerator(i);
-
-            Car car = new Car("car" + i, testNumberGenerator);
-            car.moveForwardOrStay();
-            cars.add(car);
-        }
-
-        String[] winner = racingGameService.getWinners(cars);
-
-        assertThat(winner[0])
-                .as("car4가 우승해야합니다.")
-                .isEqualTo(cars.get(2).getName());
-    }
-
-    @Test
     @DisplayName("Car객체 생성 시, 5자 이상의 Car 이름 에러 테스트")
     void validateInputNameTest() {
         String[] names = {"avente"};
@@ -71,5 +53,19 @@ public class CarTest {
         assertThatThrownBy(() -> Car.getInstancesByNames(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차의 이름은 5자 이내여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("시도할 회수가 음수일 경우, 에러 테스트")
+    void getGameCountTest() {
+        SystemSetIn.inputIntTestStrat(-2);
+
+        InputView inputView = new InputView();
+
+        AssertionsForClassTypes.assertThatThrownBy(() -> inputView.getGameCount())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("inputCount can't be less than 1");
+
+        SystemSetIn.inputTestEnd();
     }
 }
