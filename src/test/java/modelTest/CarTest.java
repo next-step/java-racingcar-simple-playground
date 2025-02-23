@@ -4,7 +4,7 @@ import domain.Car;
 import global.RandomUtil;
 import global.TestNumberGenerator;
 
-import inputViewTest.SystemSetIn;
+import global.SystemSetIn;
 
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;

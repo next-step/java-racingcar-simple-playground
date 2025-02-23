@@ -1,4 +1,4 @@
-package inputViewTest;
+package global;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
