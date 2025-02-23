@@ -3,15 +3,15 @@ package modelTest;
 import domain.Car;
 import global.RandomUtil;
 import global.TestNumberGenerator;
+
 import inputViewTest.SystemSetIn;
+
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import service.RacingGameService;
 import view.InputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,14 +20,13 @@ public class CarTest {
     @Test
     @DisplayName("Random숫자가 3이하인 경우 테스트")
     void ForwordOrStayIfNumberLessThan4() {
-        RacingGameService racingGameService = new RacingGameService();
         RandomUtil testNumberGenerator = new TestNumberGenerator(3);
 
         Car car = new Car("avante", testNumberGenerator);
         car.moveForwardOrStay();
 
         assertThat(car.getMoveDistance())
-                .as("car의 moveDistance는 1이어야 합니다.")
+                .as("car의 moveDistance는 증가 또는 감소하였으므로 기댓값인 1이 아닙니다.")
                 .isEqualTo(1);
     }
 
@@ -41,7 +40,7 @@ public class CarTest {
         car.moveForwardOrStay();
 
         assertThat(car.getMoveDistance())
-                .as("car의 moveDistance는 2이어야 합니다.")
+                .as("car의 moveDistance는 2로 증가하지 않았습니다.")
                 .isEqualTo(2);
     }
 
