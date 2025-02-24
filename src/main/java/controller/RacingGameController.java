@@ -1,28 +1,31 @@
 package controller;
 
 import domain.Car;
-import global.InputView;
-import global.ResultView;
+import view.InputView;
+import view.ResultView;
 import service.RacingGameService;
-
 import java.util.List;
 
 public class RacingGameController {
-    RacingGameService racingGameService = new RacingGameService();
-    public void racingGame() {
-        try (InputView inputView = new InputView()) {
-            String[] inputNames = inputView.getCarNames();
-            int gameCount = inputView.getGameCount();
+    private final RacingGameService racingGameService;
 
-            printEmptyLine();
-
-            List<Car> cars = racingGameService.playRacingGame(inputNames, gameCount);
-
-            ResultView.printWinners(racingGameService.getWinners(cars));
-        }
+    public RacingGameController(RacingGameService racingGameService) {
+        this.racingGameService = racingGameService;
     }
 
-    private void printEmptyLine() {
-        System.out.println();
+    public void racingGame() {
+        InputView inputView = new InputView();
+        String inputNames = inputView.getCarNames();
+        int gameCount = inputView.getGameCount();
+
+        String[] splitedInputNames = splitCarNames(inputNames);
+        List<Car> cars = racingGameService.playRacingGame(splitedInputNames, gameCount);
+
+        ResultView.printWinners(racingGameService.getWinners(cars));
+    }
+
+    public String[] splitCarNames(String names) {
+        final String defaultNameDelimiter = ",";
+        return names.split(defaultNameDelimiter);
     }
 }

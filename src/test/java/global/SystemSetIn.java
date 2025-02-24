@@ -1,0 +1,16 @@
+package global;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+public class SystemSetIn {
+    public static void inputTestEnd() {
+        System.setIn(System.in);
+    }
+
+    public static void inputIntTestStrat(int input) {
+        String inputStr = String.valueOf(input) + "\n";
+        InputStream inputStream = new ByteArrayInputStream(inputStr.getBytes());
+        System.setIn(inputStream);
+    }
+}
