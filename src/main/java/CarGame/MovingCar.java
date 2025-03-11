@@ -19,19 +19,11 @@ class MovingCar {
         return scanner.nextLine();
     }
     private static int getTargetDistance() {
-        while (true) {
-            try {
-                System.out.print("목표 거리를 입력하세요: ");
-                int targetDistance = Integer.parseInt(scanner.nextLine().trim());
-                if (targetDistance < 1) {
-                    System.out.println("목표 거리는 1 이상이어야 합니다.");
-                    continue;
-                }
-                return targetDistance;
-            } catch (NumberFormatException e) {
-                System.out.println("숫자를 입력해주세요.");
-            }
-        }
+
+        System.out.print("목표 거리를 입력하세요: ");
+        int target = Integer.parseInt(scanner.nextLine().trim());
+        return target;
+
     }
 
     private static void GameStart(Car car,int targetDistance){
