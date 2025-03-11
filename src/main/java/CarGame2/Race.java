@@ -20,36 +20,64 @@ public class Race {
         for(int i=0;i<rounds;i++){
             playRound(i+1);
         }
-        winCar();
+        printWinners();
 
     }
     private void playRound(int curRound) {
         System.out.println("ROUND "+curRound);
         for(Car car:cars) {
-            int prevPosition = car.getPosition();
-            car.move();
-            int newPosition = car.getPosition();
-            System.out.println(car.getCarNum() + "번 자동차 이동 거리: " + (newPosition - prevPosition) + " (현재위치: " + newPosition+")" );
+            moveCar(car);
+            printCarStatus(car);
         }
+        System.out.println("-------------------");
     }
-    private void winCar() {
-        int maxPosition = getMaxPosition();
+    private void moveCar(Car car) {
+        car.move();
+    }
+    private void printCarStatus(Car car) {
+        int position = car.getPosition();
+        System.out.println(car.getCarNum() + "번 자동차 이동거리: "+car.getSpeed()+" [현재 위치: " + position+"]");
+    }
+    private void printWinners() {
+        int maxPosition=getMaxPosition();
+        List<Integer> winners=findWinners(maxPosition);
         System.out.print("우승한 자동차: ");
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getPosition() == maxPosition) {
-                System.out.print((i + 1) + " ");
-            }
+        for(int winner:winners){
+            System.out.print(winner+"번 ");
         }
+
     }
     private int getMaxPosition() {
         int maxPosition = 0;
-        for (int i = 0; i < cars.size(); i++) {
-            if (cars.get(i).getPosition() > maxPosition) {
-                maxPosition = cars.get(i).getPosition();
-            }
+        for (Car car : cars) {
+            maxPosition = getHigherPosition(maxPosition, car.getPosition());
         }
         return maxPosition;
     }
+    private int getHigherPosition(int currentMax, int newPosition) {
+        if (newPosition > currentMax) {
+            return newPosition;
+        }
+        return currentMax;
+    }
+
+    private List<Integer> findWinners(int maxPosition) {
+        List<Integer> winners = new ArrayList<>();
+        for (Car car : cars) {
+            addWinnerIfMatch(winners, car, maxPosition);
+        }
+        return winners;
+    }
+    private void addWinnerIfMatch(List<Integer> winners, Car car, int maxPosition) {
+        if (isWinner(car, maxPosition)) {
+            winners.add(car.getCarNum());
+        }
+    }
+    private boolean isWinner(Car car, int maxPosition) {
+        return car.getPosition() == maxPosition;
+    }
+
+
 }
 
 

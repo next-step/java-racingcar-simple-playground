@@ -32,7 +32,9 @@ public class Car{
     public void setCarNum(int carNum){
         this.carNum=carNum;
     }
-
+    public int getSpeed(){
+        return speed;
+    }
     public void printPosition() {
         // System.out.println(carNum+"의 현재 위치:"+position);
     }
