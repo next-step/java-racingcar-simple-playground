@@ -1,39 +1,30 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RaceInput {
-  public static int n;
-  public static int round;
+  private static BufferedReader br;
 
-  public int[] startRace() throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.print("자동차의 수를 입력하세요: ");
-    n = Integer.parseInt(br.readLine());
-    System.out.print("라운드 수를 입력하세요: ");
-    round = Integer.parseInt(br.readLine());
+  public static List<Car> getCars()throws IOException{
+    br= new BufferedReader(new InputStreamReader(System.in));
+    int carCount=getCarCount();
+    List<Car> cars = new ArrayList<>();
 
-    return runRaceRounds(n, round);
-  }
-
-  public int[] initializeCarsPosition(int carCount) {
-    n = carCount;
-    int[] carsPosition = new int[n + 1];
-    for (int i = 1; i <= n; i++) {
-      carsPosition[i] = 0;
+    for(int i=1;i<=carCount;i++){
+      cars.add(new Car(i));
     }
-    return carsPosition;
+    return cars;
   }
 
-  public int[] runRaceRounds(int carCount, int totalRounds) throws IOException {
-    int[] carsPosition = initializeCarsPosition(carCount);
-    int currentRound = 1;
-
-    while (currentRound <= totalRounds) {
-      carsPosition = MovingCar.simulateRound(n, currentRound, carsPosition);
-      currentRound++;
-    }
-    return carsPosition;
+  private static int getCarCount() throws IOException {
+    System.out.print("자동차 대수를 입력하세요: ");
+    return Integer.parseInt(br.readLine());
   }
 
+  public static int getAttempts() throws IOException {
+    System.out.print("시도 횟수를 입력하세요: ");
+    return Integer.parseInt(br.readLine());
+  }
 }
