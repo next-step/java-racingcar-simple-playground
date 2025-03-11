@@ -31,6 +31,7 @@ public class Car{
     }
     public void printPosition() {
         System.out.println(name + " 의 현재위치는 " + position);
+        System.out.println("-------------");
     }
     public void printSpeed() {
         if(speed>=4)
