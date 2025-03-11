@@ -64,11 +64,11 @@ public class Race {
     private List<Integer> findWinners(int maxPosition) {
         List<Integer> winners = new ArrayList<>();
         for (Car car : cars) {
-            addWinnerIfMatch(winners, car, maxPosition);
+            addWinner(winners, car, maxPosition);
         }
         return winners;
     }
-    private void addWinnerIfMatch(List<Integer> winners, Car car, int maxPosition) {
+    private void addWinner(List<Integer> winners, Car car, int maxPosition) {
         if (isWinner(car, maxPosition)) {
             winners.add(car.getCarNum());
         }
