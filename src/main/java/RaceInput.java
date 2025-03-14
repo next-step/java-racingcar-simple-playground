@@ -1,30 +1,31 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class RaceInput {
-  private static BufferedReader br;
 
-  public static List<Car> getCars()throws IOException{
-    br= new BufferedReader(new InputStreamReader(System.in));
-    int carCount=getCarCount();
-    List<Car> cars = new ArrayList<>();
+  private final static Scanner scanner = new Scanner(System.in);
 
-    for(int i=1;i<=carCount;i++){
-      cars.add(new Car(i));
+  public static void inputCars(CarFactory carFactory) {
+    int carCount = getCarCount();
+    scanner.nextLine();
+    for (int i = 1; i <= carCount; i++) {
+      String name = getCarName(i);
+      carFactory.addCar(name);
     }
-    return cars;
+
   }
 
-  private static int getCarCount() throws IOException {
+  private static int getCarCount() {
     System.out.print("자동차 대수를 입력하세요: ");
-    return Integer.parseInt(br.readLine());
+    return scanner.nextInt();
   }
 
-  public static int getAttempts() throws IOException {
+  public static int getAttempts() {
     System.out.print("시도 횟수를 입력하세요: ");
-    return Integer.parseInt(br.readLine());
+    return scanner.nextInt();
+  }
+
+  private static String getCarName(int index) {
+    System.out.print(index + "번째 차량 이름을 입력하세요: ");
+    return scanner.nextLine();
   }
 }
