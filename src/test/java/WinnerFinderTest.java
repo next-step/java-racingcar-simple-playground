@@ -1,6 +1,7 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,8 @@ import org.junit.jupiter.api.Test;
 public class WinnerFinderTest {
 
   @Test
-  void 우승자가_한_명일_경우_우승자_한명을_반환한다() {
+  @DisplayName("우승작 한 명일 경우 우승자 한 명을 반환한다")
+  void returnOneWinnerWhenOneWinner() {
     Car car1 = new Car("벤츠");
     Car car2 = new Car("아우디");
     Car car3 = new Car("제네시스");
@@ -23,7 +25,8 @@ public class WinnerFinderTest {
   }
 
   @Test
-  void 우승자가_여러_명일_경우_모든_우승자를_반환한다() {
+  @DisplayName("우승자가 여러 명일 겨웅 모든 우승자를 반환한다")
+  void returnAllWinnersWhenMultipleWinners() {
     Car car1 = new Car("벤츠");
     Car car2 = new Car("아우디");
     Car car3 = new Car("제네시스");

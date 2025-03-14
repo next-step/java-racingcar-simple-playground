@@ -1,12 +1,14 @@
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Scanner;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RaceInputTest {
 
   @Test
-  void 자동차_대수가_1이하이면_예외가_발생한다() {
+  @DisplayName("자동차 대수가 1 이하면 예외가 발생한다")
+  void throwExceptionWhenCarCountOneOrLess() {
     Scanner scanner = new Scanner("1\n");
     RaceInput raceInput = new RaceInput(scanner);
     assertThatThrownBy(raceInput::getCarCount)
@@ -15,7 +17,8 @@ public class RaceInputTest {
   }
 
   @Test
-  void 시도_횟수가_1이하이면_예외가_발생한다() {
+  @DisplayName("시도 횟수가 1 이하면 예외가 발생한다")
+  void throwExceptionWhenAttemptsTwoOrLess() {
     Scanner scanner = new Scanner("0\n");
     RaceInput raceInput = new RaceInput(scanner);
 
