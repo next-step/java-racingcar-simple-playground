@@ -15,6 +15,11 @@ public class Car {
     updatePosition(speed);
   }
 
+  public void moveWithSpeed(int speed) {
+    this.speed = speed;
+    updatePosition(speed);
+  }
+
   private void updatePosition(int speed) {
     if (speed >= 4) {
       position += speed;
