@@ -1,12 +1,12 @@
 public class Car {
 
   private int position;
-  private final String name;
+  private final CarName name;
   private int speed;
 
   public Car(String name) {
     this.position = 0;
-    this.name = name;
+    this.name = new CarName(name);
     this.speed = 0;
   }
 
@@ -34,6 +34,6 @@ public class Car {
   }
 
   public String getName() {
-    return name;
+    return name.getName();
   }
 }
