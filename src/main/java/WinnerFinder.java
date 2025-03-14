@@ -1,35 +1,24 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinnerFinder {
-  private List<Car> cars;
-  private int maxPosition;
 
-  public List<Integer> findWinners(List<Car> cars) {
-    this.cars = cars;
-    maxPosition = getMaxPosition();
-    return getWinners();
+  public List<String> findWinners(List<Car> cars) {
+    int maxPosition = getMaxPosition(cars);
+    return getWinners(cars, maxPosition);
   }
 
-  public List<Integer> getWinners() {
-    List<Integer> winners = new ArrayList<>();
-    for (Car car : cars) {
-      checkWinner(winners, car);
-    }
-    return winners;
+  private List<String> getWinners(List<Car> cars, int maxPosition) {
+    return cars.stream()
+        .filter(car -> car.getPosition() == maxPosition)
+        .map(Car::getName)
+        .collect(Collectors.toList());
   }
 
-  private void checkWinner(List<Integer> winners, Car car) {
-    if (car.getPosition() == maxPosition) {
-      winners.add(car.getIndex());
-    }
-  }
-
-  private int getMaxPosition() {
-    int max = 0;
-    for (Car car : cars) {
-      max = Math.max(max, car.getPosition());
-    }
-    return max;
+  private int getMaxPosition(List<Car> cars) {
+    return cars.stream()
+        .mapToInt(Car::getPosition)
+        .max()
+        .orElse(0);
   }
 }
