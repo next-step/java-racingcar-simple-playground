@@ -1,22 +1,28 @@
 public class Car {
-  private int position;
-  private int index;
 
-  public Car(int index){
+  private int position;
+  private final String name;
+  private int speed;
+
+  public Car(String name) {
     this.position = 0;
-    this.index = index;
+    this.name = name;
+    this.speed = 0;
   }
 
-  public int move() {
-    int speed = generateSpeed();
+  public void move() {
+    this.speed = generateSpeed();
     updatePosition(speed);
-    return speed;
   }
 
   private void updatePosition(int speed) {
     if (speed >= 4) {
       position += speed;
     }
+  }
+
+  public int getLastSpeed() {
+    return speed;
   }
 
   private int generateSpeed() {
@@ -27,7 +33,7 @@ public class Car {
     return position;
   }
 
-  public int getIndex() {
-    return index;
+  public String getName() {
+    return name;
   }
 }
