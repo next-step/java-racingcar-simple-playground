@@ -1,24 +1,29 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
+
+    private static final int MOVE_FORWARD = 4;
+    private static final int NOT_MOVE = 3;
+
     @Test
-    void testCarName(){
+    void testCarName() {
         Car car = new Car("KIA");
-        assertEquals("KIA", car.getName());
+        assertThat(car.getName()).isEqualTo("KIA");
     }
 
     @Test
-    void testCarMove(){
+    void testCarMove() {
         Car car = new Car("TestCar");
-        car.move(4);
-        assertEquals(1, car.getDistance());
+        car.move(MOVE_FORWARD);
+        assertThat(car.getDistance()).isEqualTo(1);
     }
 
     @Test
-    void testCarNotMove(){
+    void testCarNotMove() {
         Car car = new Car("TestCar");
-        car.move(3);
-        assertEquals(0, car.getDistance());
+        car.move(NOT_MOVE - 1);
+        assertThat(car.getDistance()).isEqualTo(0);
     }
 }

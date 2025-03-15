@@ -1,8 +1,12 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
 
 public class GameTest {
+
+    private static final int MOVE_FORWARD = 4;
+    private static final int NOT_MOVE = 3;
+
     @Test
     public void testGetWinnerList() {
         Game game = new Game();
@@ -10,13 +14,11 @@ public class GameTest {
         game.carList.add(new Car("B"));
         game.carList.add(new Car("C"));
 
-        game.carList.get(0).move(4);
-        game.carList.get(1).move(3);
-        game.carList.get(2).move(4);
+        game.carList.get(0).move(MOVE_FORWARD);
+        game.carList.get(1).move(NOT_MOVE);
+        game.carList.get(2).move(MOVE_FORWARD);
 
         game.makeWinnerList();
-        assertEquals(true, game.winnerList.contains(game.carList.get(0)));
-        assertEquals(false, game.winnerList.contains(game.carList.get(1)));
-        assertEquals(true, game.winnerList.contains(game.carList.get(2)));
+        assertThat(game.winnerList).containsOnly(game.carList.get(0), game.carList.get(2));
     }
 }
