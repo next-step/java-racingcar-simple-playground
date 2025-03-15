@@ -1,6 +1,8 @@
 public class Car {
 
-    private String name;
+    private static final int CRITICAL_NUMBER_TO_MOVE = 4;
+
+    private final String name;
     private int distance;
 
     public Car(String name) {
@@ -9,7 +11,7 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= CRITICAL_NUMBER_TO_MOVE) {
             distance++;
         }
     }
@@ -20,5 +22,9 @@ public class Car {
 
     public int getDistance() {
         return distance;
+    }
+
+    public boolean isSamePosition(int distance) {
+        return distance == this.distance;
     }
 }

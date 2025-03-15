@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
 
-    List<Car> carList = new ArrayList<Car>();
-    List<Car> winnerList = new ArrayList<Car>();
+    List<Car> carList = new ArrayList<>();
+    List<Car> winnerList = new ArrayList<>();
 
     public void playGame(int carNum, int roundNum) {
         initGame(carNum);
@@ -14,9 +15,10 @@ public class Game {
         makeWinnerList();
     }
 
-    public void initGame(int carNum){
-        for (int i = 0 ; i < carNum ; i++)
-            carList.add(new Car("Car_"+i+""));
+    public void initGame(int carNum) {
+        for (int i = 0; i < carNum; i++) {
+            carList.add(new Car("Car_" + i));
+        }
     }
 
     public void playRound() {
@@ -25,12 +27,11 @@ public class Game {
         }
     }
 
-    public int getRandom(){
-        return (int)(Math.random()*10);
+    public int getRandom() {
+        return new Random().nextInt(10);
     }
 
     public void makeWinnerList() {
-        Car winner = carList.get(0);
         int maxDistance = getMaxDistance();
         for (Car car : carList) {
             addWinner(car, maxDistance);
@@ -38,16 +39,16 @@ public class Game {
     }
 
     private void addWinner(Car car, int maxDistance) {
-        if (car.getDistance() == maxDistance) {
+        if (car.isSamePosition(maxDistance)) {
             winnerList.add(car);
         }
     }
 
     private int getMaxDistance() {
 
-        int maxDistance  = 0;
-        for (int i = 0; i < carList.size(); i++) {
-            maxDistance = Math.max(maxDistance, carList.get(i).getDistance());
+        int maxDistance = 0;
+        for (Car car : carList) {
+            maxDistance = Math.max(maxDistance, car.getDistance());
         }
         return maxDistance;
     }
