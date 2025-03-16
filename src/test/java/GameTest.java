@@ -1,22 +1,21 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class GameTest {
 
     @Test
     void carStopTest() {
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(3);
-        NumberGenerator numberGenerator = new FakeGenerator(list);
-        Car car = new Car("car", numberGenerator);
+        Car car = new Car("car1");
+        CarController carController = new CarController();
 
         //when
-        car.move();
+        carController.moveIfCan(3, car);
 
         //then
         assertThat(car.getDistance()).isEqualTo(0);
@@ -24,28 +23,25 @@ class GameTest {
 
     @Test
     void catMoveTest() {
+
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(4);
-        NumberGenerator numberGenerator = new FakeGenerator(list);
-        Car car = new Car("car", numberGenerator);
+        Car car = new Car("car1");
+        CarController carController = new CarController();
 
         //when
-        car.move();
+        carController.moveIfCan(4, car);
 
         //then
         assertThat(car.getDistance()).isEqualTo(1);
     }
 
     @Test
-    void catMoveInGameTest() {
+    void carMoveInGameTest() {
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(4);
-        list.add(5);
-        NumberGenerator numberGenerator = new FakeGenerator(list);
-        Game game = new Game(2, 1);
-        Car car = game.createCar("car", numberGenerator);
+        Queue<Integer> queue = new LinkedList<>(List.of(4, 4));
+        Game game = new Game(2, 1, new FakeGenerator(queue));
+        Car car = new Car("car");
+        game.addCar(car);
 
         //when
         game.gameStart();
@@ -55,23 +51,48 @@ class GameTest {
     }
 
     @Test
-    void gameTest() {
+    void carStopInGameTest() {
         //given
-        Game game = new Game(2,2);
-        List<Integer> list1 = new ArrayList<>();
-        list1.add(3);
-        list1.add(4);
-        game.createCar("car1", new FakeGenerator(list1));
+        Queue<Integer> queue = new LinkedList<>(List.of(3, 3));
+        Game game = new Game(2, 1, new FakeGenerator(queue));
+        Car car = new Car("car");
+        game.addCar(car);
 
-        List<Integer> list2 = new ArrayList<>();
-        list2.add(5);
-        list2.add(6);
-        Car car2 = game.createCar("car2", new FakeGenerator(list2));
+        //when
+        game.gameStart();
 
-        List<Integer> list3 = new ArrayList<>();
-        list3.add(4);
-        list3.add(4);
-        Car car3 = game.createCar("car3", new FakeGenerator(list3));
+        //then
+        assertThat(car.getDistance()).isEqualTo(0);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenExceedingCarLimit() {
+        //given
+        Queue<Integer> queue = new LinkedList<>(List.of(1,1));
+        Game game = new Game(1, 1, new FakeGenerator(queue));
+        game.addCar(new Car("car1"));
+
+        //then
+        assertThatThrownBy(() -> game.addCar(new Car("car2")))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void gameTest() throws InterruptedException {
+        //given
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Car car3 = new Car("car3");
+
+        Queue<Integer> queue = new LinkedList<> (List.of(
+                3, 4, 4,
+                3, 5, 5,
+                3, 4, 5));
+        NumberGenerator numberGenerator = new FakeGenerator(queue);
+        Game game = new Game(3, 3, numberGenerator);
+        game.addCar(car1);
+        game.addCar(car2);
+        game.addCar(car3);
 
         //when
         game.gameStart();
@@ -83,12 +104,12 @@ class GameTest {
     @Test
     void gameTestWithNotCar() {
         //given
-        Game game = new Game(2,2);
+        Game game = new Game(2,2, new FakeGenerator(new LinkedList<>(List.of(1,2,3))));
 
         //when
-        game.gameStart();
 
         //then
-        assertThat(game.getWinners()).isEmpty();
+        assertThatThrownBy(() -> game.gameStart())
+                .isInstanceOf(NoSuchElementException.class);
     }
 }
