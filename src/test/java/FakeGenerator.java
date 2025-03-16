@@ -1,16 +1,17 @@
 import java.util.List;
+import java.util.Queue;
 
 public class FakeGenerator implements NumberGenerator {
 
-    List<Integer> list;
+    Queue<Integer> queue;
 
-    public FakeGenerator(List<Integer> list) {
-        this.list = list;
+    public FakeGenerator(Queue<Integer> queue) {
+        this.queue = queue;
     }
 
     @Override
-    public int getRandomNumber() {
-        return list.remove(0);
+    public int getNumber() {
+        return queue.remove();
     }
 
 }
