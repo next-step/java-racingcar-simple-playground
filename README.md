@@ -31,15 +31,14 @@
 
 ## 클래스 설계
 - [v] Car: 자동차 상태 관리
-- [v] CarRunner: 게임 진행
+- [v] CarRunner: 게임 진행 및 라운드 관리
 - [v] RaceInput: 입력 처리
-- [v] WinnerFInder: 우승자 판별
 - [v] RaceOutput: 출력 처리
-- [v] CarFactory: 자동차 객체 생성
+- [v] Cars: 자동차 관리, 우승자 결정
 - [v] CarName: 자동차 이름 예외처리
 ## 리펙토링
 - [v] 클래스 역할 정리
-- [] 불필요한 코드 제거 및 정리
+- [v] 불필요한 코드 제거 및 정리
 
 ## 테스트
 - [v] 정상 입력값 테스트
