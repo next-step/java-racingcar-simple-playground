@@ -2,17 +2,12 @@ import java.util.List;
 
 public class CarRunner {
 
-  public static void runRace(List<Car> cars, int attempts) {
+  public static void runRace(Cars cars, int attempts) {
     for (int round = 1; round <= attempts; round++) {
-      moveAllCars(cars);
+      cars.moveAllCars();
       RaceOutput.printRound(cars, round);
     }
-    RaceOutput.printResult(cars);
-  }
-
-  private static void moveAllCars(List<Car> cars) {
-    for (Car car : cars) {
-      car.move();
-    }
+    List<String> winners = cars.findWinners();
+    RaceOutput.printResult(cars, winners);
   }
 }

@@ -2,9 +2,9 @@ import java.util.List;
 
 public class RaceOutput {
 
-  public static void printRound(List<Car> cars, int round) {
+  public static void printRound(Cars cars, int round) {
     System.out.println("-------------" + round + "라운드--------------");
-    printMoves(cars);
+    printMoves(cars.getCars());
     printAllPositions(cars);
     System.out.println();
   }
@@ -24,15 +24,13 @@ public class RaceOutput {
     System.out.println(car.getName() + " 차량은 전진하지 않았습니다.");
   }
 
-  private static void printAllPositions(List<Car> cars) {
-    for (Car car : cars) {
+  private static void printAllPositions(Cars cars) {
+    for (Car car : cars.getCars()) {
       System.out.println("-".repeat(car.getPosition()) + " (" + car.getPosition() + ")");
     }
   }
 
-  public static void printResult(List<Car> cars) {
-    WinnerFinder finder = new WinnerFinder();
-    List<String> winners = finder.findWinners(cars);
+  public static void printResult(Cars cars, List<String> winners) {
     System.out.println("-------------최종 결과--------------");
     printAllPositions(cars);
     System.out.print("우승자: " + winners);
