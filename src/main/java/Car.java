@@ -3,10 +3,11 @@ public class Car {
   private int position;
   private final CarName name;
   private int speed;
+  private static final int MOVABLE_MINIMUM_SPEED = 4;
 
   public Car(String name) {
     this.position = 0;
-    this.name = new CarName(name);
+    this.name = CarName.of(name);
     this.speed = 0;
   }
 
@@ -21,7 +22,7 @@ public class Car {
   }
 
   private void updatePosition(int speed) {
-    if (speed >= 4) {
+    if (speed >= MOVABLE_MINIMUM_SPEED) {
       position += speed;
     }
   }
