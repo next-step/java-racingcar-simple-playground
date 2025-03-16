@@ -1,22 +1,25 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Game {
 
     private final List<Car> cars = new ArrayList<>();
     private final List<Car> winners = new ArrayList<>();
-
+    private final CarController carController = new CarController();
+    private final NumberGenerator numberGenerator;
     private final int times;
     private final int carNum;
 
-    public Game(int times, int carNum) {
+    public Game(int times, int carNum, NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
         this.times = times;
         this.carNum = carNum;
     }
 
     public void gameStart() {
         if (cars.isEmpty()) {
-            return;
+            throw new NoSuchElementException("차량이 없습니다");
         }
 
         for (int i = 0; i < times; i++) {
@@ -25,15 +28,18 @@ public class Game {
         findWinner();
     }
 
-    public Car createCar(String name, NumberGenerator numberGenerator) {
-        Car car = new Car(name, numberGenerator);
+    public void addCar(Car car) {
+
+        if (cars.size() >= carNum) {
+            throw new IllegalStateException("차량의 수 초과입니다.");
+        }
         cars.add(car);
-        return car;
     }
 
     private void turn() {
         for (Car car : cars) {
-            car.move();
+            int num = numberGenerator.getNumber();
+            carController.moveIfCan(num, car);
         }
     }
 
@@ -56,11 +62,9 @@ public class Game {
     }
 
     private int getMaxDistance() {
-        int max = cars.get(0).getDistance();
-
-        for (Car car : cars) {
-            max = Math.max(max, car.getDistance());
-        }
-        return max;
+        return cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElse(0);
     }
 }
