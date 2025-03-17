@@ -1,19 +1,15 @@
 public class Car {
 
-    private final NumberGenerator numberGenerator;
     private final String name;
     private int distance;
 
-    public Car(String name, NumberGenerator numberGenerator) {
+    public Car(String name) {
         this.name = name;
         this.distance = 0;
-        this.numberGenerator = numberGenerator;
     }
 
     void move() {
-        if (numberGenerator.getRandomNumber() >= 4) {
-            distance++;
-        }
+        distance++;
     }
 
     public int getDistance() {
