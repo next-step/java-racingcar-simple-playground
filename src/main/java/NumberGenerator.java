@@ -1,4 +1,4 @@
 public interface NumberGenerator {
 
-    int getRandomNumber();
+    int getNumber();
 }
