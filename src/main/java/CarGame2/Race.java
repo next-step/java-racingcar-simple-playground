@@ -1,24 +1,20 @@
 package CarGame2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    private final List<Car> cars = new ArrayList<>();
+
+    private final Cars cars;
     private final int rounds;
+    private final OutputHandler raceOutput;
 
-    public Race(List<String> carNames, int rounds) {
+    public Race(List<String> carNames, int rounds, Generator generator, OutputHandler raceOutput) {
         this.rounds = rounds;
-        createCars(carNames);
+        this.cars = new Cars(carNames, generator);
+        this.raceOutput = raceOutput;
     }
 
-    private void createCars(List<String> carNames) {
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-    }
-
-    public void startRace() {
+    public void start() {
         for (int i = 0; i < rounds; i++) {
             playRound(i + 1);
         }
@@ -26,21 +22,16 @@ public class Race {
     }
 
     private void playRound(int curRound) {
-        System.out.println("ROUND " + curRound);
-        for (Car car : cars) {
-            car.move();
-            printCarStatus(car);
+        raceOutput.printRoundStart(curRound);
+        cars.moveAll();
+        for (Car car : cars.getCars()) {
+            raceOutput.printCarStatus(car);
         }
-        System.out.println("-------------------");
-    }
-
-    private void printCarStatus(Car car) {
-        System.out.println(car.getName() + " 자동차 이동거리: " + car.getSpeed() + " [현재 위치: " + car.getPosition() + "]");
+        raceOutput.printRoundEnd();
     }
 
     private void printWinners() {
         FindWinner findWinner = new FindWinner(cars);
-        List<String> winners = findWinner.getWinners();
-        System.out.println("우승한 자동차: " + String.join(", ", winners));
+        raceOutput.printWinners(findWinner.getWinners());
     }
 }

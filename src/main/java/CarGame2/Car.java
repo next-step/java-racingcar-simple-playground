@@ -1,28 +1,24 @@
 package CarGame2;
 
-import java.util.Random;
-
 public class Car {
+
     private static final int MIN_SPEED = 4;
     private final String name;
-    private final Random random;
+    private final Generator Generator;
+
     private int position = 0;
     private int speed;
 
-    public Car(String name) {
+    public Car(String name, Generator randomGenerator) {
         this.name = name;
-        this.random = new Random();
+        this.Generator = randomGenerator;
     }
 
     public void move() {
-        speed = generateRandomSpeed();
+        speed = Generator.generate();
         if (speed >= MIN_SPEED) {
             position += speed;
         }
-    }
-
-    private int generateRandomSpeed() {
-        return random.nextInt(10);
     }
 
     public int getPosition() {
