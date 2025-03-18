@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputHandler {
-    
+
     private final Scanner scanner = new Scanner(System.in);
     private static final int MAX_NAME_LENGTH = 5;
 
     public List<String> getCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println("경주할 자동차 이름을 입력하세요. (이름은 쉼표를 기준으로 구분)");
 
         while (true) {
             try {

@@ -8,9 +8,16 @@ public class Cars {
     private final List<Car> cars;
     private final Generator generator;
 
-    public Cars(List<String> carNames, Generator randomGenerator) {
+    public Cars(List<String> carNames, Generator generator) {
+        validateGenerator(generator);
+        this.generator = generator;
         this.cars = createCars(carNames);
-        this.generator = randomGenerator;
+    }
+
+    private void validateGenerator(Generator generator) {
+        if (generator == null) {
+            throw new IllegalArgumentException("Generator가 null입니다. 올바른 Generator를 사용해주세요.");
+        }
     }
 
     private List<Car> createCars(List<String> carNames) {

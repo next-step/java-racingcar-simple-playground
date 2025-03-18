@@ -9,9 +9,16 @@ public class Race {
     private final OutputHandler raceOutput;
 
     public Race(List<String> carNames, int rounds, Generator generator, OutputHandler raceOutput) {
+        validateGenerator(generator);
         this.rounds = rounds;
         this.cars = new Cars(carNames, generator);
         this.raceOutput = raceOutput;
+    }
+
+    private void validateGenerator(Generator generator) {
+        if (generator == null) {
+            throw new IllegalArgumentException("Race에서 Generator가 null입니다.");
+        }
     }
 
     public void start() {
