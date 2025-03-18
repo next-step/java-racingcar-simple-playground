@@ -38,7 +38,11 @@ public class Race {
     }
 
     private void printWinners() {
-        FindWinner findWinner = new FindWinner(cars);
-        raceOutput.printWinners(findWinner.getWinners());
+        List<String> winners = cars.findWinners();
+        raceOutput.printWinners(winners);
+    }
+
+    public Cars getCars() {
+        return cars;
     }
 }

@@ -21,7 +21,7 @@ public class InputHandler {
         }
     }
 
-    private List<String> validateCarNames(String input) {
+    public List<String> validateCarNames(String input) {
         List<String> carNames = parseCarNames(input);
 
         if (carNames.isEmpty()) {
@@ -47,7 +47,7 @@ public class InputHandler {
         carNames.add(name);
     }
 
-    private void validateCarName(String name) {
+    public void validateCarName(String name) {
         if (name.isEmpty()) {
             throw new InvalidInputException("이름이 비어있을 수 없습니다.");
         }
@@ -68,17 +68,17 @@ public class InputHandler {
         }
     }
 
-    private int validateRounds(String input) {
+    public int validateRounds(String input) {
         try {
             int rounds = Integer.parseInt(input);
-            validatePositiveNumber(rounds);
+            validateNumber(rounds);
             return rounds;
         } catch (NumberFormatException e) {
             throw new InvalidInputException("유효한 숫자를 입력해주세요.");
         }
     }
 
-    private void validatePositiveNumber(int rounds) {
+    private void validateNumber(int rounds) {
         if (rounds <= 0) {
             throw new InvalidInputException("1 이상의 숫자를 입력해주세요.");
         }

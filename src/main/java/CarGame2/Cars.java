@@ -34,6 +34,25 @@ public class Cars {
         }
     }
 
+    public List<String> findWinners() {
+        int maxPosition = getMaxPosition();
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            addWinner(winners, car, maxPosition);
+        }
+        return winners;
+    }
+
+    private void addWinner(List<String> winners, Car car, int maxPosition) {
+        if (isWinner(car, maxPosition)) {
+            winners.add(car.getName());
+        }
+    }
+
+    private boolean isWinner(Car car, int maxPosition) {
+        return car.getPosition() == maxPosition;
+    }
+
     public List<Car> getCars() {
         return cars;
     }
