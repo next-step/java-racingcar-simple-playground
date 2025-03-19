@@ -6,7 +6,7 @@ import java.util.List;
 public class OutputView {
 
   public void printStart() {
-    System.out.println("실행 결과");
+    System.out.println("\n실행 결과");
   }
 
   public void printRound(List<Car> cars) {
