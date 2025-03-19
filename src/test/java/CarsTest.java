@@ -1,8 +1,8 @@
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import CarGame2.Car;
-import CarGame2.Cars;
-import CarGame2.Generator;
+import CarGame2.domain.model.Car;
+import CarGame2.domain.model.Cars;
+import CarGame2.domain.service.Generator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,10 @@ public class CarsTest {
     void 조건충족_자동차들_위치_업데이트() {
         Generator fixedGenerator = () -> 4;
 
-        Cars cars = new Cars(List.of("car1", "car2", "car3"), fixedGenerator);
+        Cars cars = new Cars(List.of("car1", "car2", "car3"));
         int initialPosition = cars.getCars().get(0).getPosition();
 
-        cars.moveAll();
+        cars.moveAll(fixedGenerator);
 
         for (Car car : cars.getCars()) {
             assertThat(car.getPosition()).isEqualTo(initialPosition + 4);
@@ -29,10 +29,10 @@ public class CarsTest {
     void 조건충족_안하는_자동차들은_정지() {
         Generator fixedGenerator = () -> 3;
 
-        Cars cars = new Cars(List.of("car1", "car2", "car3"), fixedGenerator);
+        Cars cars = new Cars(List.of("car1", "car2", "car3"));
         int initialPosition = cars.getCars().get(0).getPosition();
 
-        cars.moveAll();
+        cars.moveAll(fixedGenerator);
 
         for (Car car : cars.getCars()) {
             assertThat(car.getPosition()).isEqualTo(initialPosition);
@@ -51,8 +51,8 @@ public class CarsTest {
                 return values[count++ % values.length];
             }
         };
-        Cars cars = new Cars(List.of("car1", "car2", "car3"), fixedGenerator);
-        cars.moveAll();
+        Cars cars = new Cars(List.of("car1", "car2", "car3"));
+        cars.moveAll(fixedGenerator);
         assertThat(cars.getMaxPosition()).isEqualTo(5);
     }
 }

@@ -1,4 +1,4 @@
-package CarGame2;
+package CarGame2.domain.service;
 
 public interface Generator {
 

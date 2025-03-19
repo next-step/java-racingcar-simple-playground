@@ -2,7 +2,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import CarGame2.RandomGenerator;
+import CarGame2.domain.service.RandomGenerator;
 
 public class RandomGeneratorTest {
 

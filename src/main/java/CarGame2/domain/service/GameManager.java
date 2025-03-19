@@ -1,5 +1,8 @@
-package CarGame2;
+package CarGame2.domain.service;
 
+import CarGame2.controller.InputHandler;
+import CarGame2.view.OutputHandler;
+import CarGame2.domain.model.Race;
 import java.util.List;
 
 public class GameManager {
@@ -15,21 +18,17 @@ public class GameManager {
     }
 
     public void setGame() {
-        try {
-            List<String> carNames = inputHandler.getCarNames();
-            int rounds = inputHandler.getRounds();
-            Race race = new Race(carNames, rounds, generator, outputHandler);
-            playGame(race);
-        } catch (Exception e) {
-            System.out.println("시스템 오류가 발생했습니다. 다시 시도해주세요.");
-        }
+        List<String> carNames = inputHandler.getCarNames();
+        int rounds = inputHandler.getRounds();
+        Race race = new Race(carNames, rounds, generator);
+        playGame(race);
     }
 
     private void playGame(Race race) {
         for (int i = 1; i <= race.getRounds(); i++) {
             outputHandler.printRoundStart(i);
             race.playRound();
-            race.printRaceStatus(outputHandler);
+            outputHandler.printRaceStatus(race.getCars());
         }
         outputHandler.printWinners(race.getWinners());
     }

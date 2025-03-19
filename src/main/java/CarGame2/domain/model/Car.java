@@ -1,19 +1,17 @@
-package CarGame2;
+package CarGame2.domain.model;
 
 public class Car {
 
     private static final int MIN_SPEED = 4;
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
-    private final Generator generator;
 
     private int position = 0;
     private int speed;
 
-    public Car(String name, Generator generator) {
+    public Car(String name) {
         validateName(name);
         this.name = name;
-        this.generator = generator;
     }
 
     private void validateName(String name) {
@@ -25,8 +23,7 @@ public class Car {
         }
     }
 
-    public void move() {
-        speed = generator.generate();
+    public void move(int speed) {
         if (speed >= MIN_SPEED) {
             position += speed;
         }

@@ -1,11 +1,20 @@
-package CarGame2;
+package CarGame2.view;
 
+import CarGame2.domain.model.Car;
+import CarGame2.domain.model.Cars;
 import java.util.List;
 
 public class OutputHandler {
 
     public void printRoundStart(int round) {
         System.out.println("\nROUND " + round);
+    }
+
+    public void printRaceStatus(Cars cars) {
+        for (Car car : cars.getCars()) {
+            printCarStatus(car);
+        }
+        printRoundEnd();
     }
 
     public void printCarStatus(Car car) {

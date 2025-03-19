@@ -1,9 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import CarGame2.GameManager;
-import CarGame2.Generator;
-import CarGame2.InputHandler;
-import CarGame2.OutputHandler;
+import CarGame2.domain.service.GameManager;
+import CarGame2.domain.service.Generator;
+import CarGame2.controller.InputHandler;
+import CarGame2.view.OutputHandler;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
