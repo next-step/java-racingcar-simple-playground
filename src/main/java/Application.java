@@ -1,12 +1,18 @@
+import controller.CarRunner;
+import domain.NumberGenerator;
+import domain.RandomNumberGenerator;
 import java.util.Scanner;
+import view.InputView;
+import view.OutputView;
 
 public class Application {
 
   public static void main(String[] args) {
-    RaceInput raceInput = new RaceInput(new Scanner(System.in));
-    Cars cars = raceInput.inputCars();
-    int attempts = raceInput.getAttempts();
-    CarRunner.runRace(cars, attempts);
+    InputView inputView = new InputView(new Scanner(System.in));
+    OutputView outputView = new OutputView();
+    NumberGenerator numberGenerator = new RandomNumberGenerator();
+    CarRunner carRunner = new CarRunner(inputView, outputView, numberGenerator);
+    carRunner.run();
   }
 }
 
