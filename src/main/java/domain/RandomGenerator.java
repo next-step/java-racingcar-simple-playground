@@ -1,3 +1,4 @@
+package domain;
 
 public class RandomGenerator implements NumberGenerator {
 
