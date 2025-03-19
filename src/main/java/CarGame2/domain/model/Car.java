@@ -7,7 +7,6 @@ public class Car {
     private final String name;
 
     private int position = 0;
-    private int speed;
 
     public Car(String name) {
         validateName(name);
