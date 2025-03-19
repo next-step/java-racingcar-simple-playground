@@ -1,4 +1,4 @@
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import CarGame2.Car;
 import CarGame2.Generator;
@@ -28,18 +28,30 @@ class RaceTest {
     @Test
     @DisplayName("게임 시작 후 모든 자동차가 적어도 한 번 이동")
     void start_이후_자동차_이동_테스트() {
-        race.start();
+        race.playRound();
         for (Car car : race.getCars().getCars()) {
             assertThat(car.getPosition()).isGreaterThan(0);
         }
     }
 
     @Test
-    @DisplayName("게임이 올바른 횟수만큼 실행되는지 검증")
-    void playRound_호출_횟수_검증() {
-        race.start();
+    @DisplayName("게임이 올바른 횟수만큼 실행되는지 테스트")
+    void playRound_호출_횟수_확인() {
+        for (int i = 0; i < race.getRounds(); i++) {
+            race.playRound();
+        }
         for (Car car : race.getCars().getCars()) {
             assertThat(car.getPosition()).isEqualTo(15);
         }
+    }
+
+    @Test
+    @DisplayName("게임 종료 후 우승자가 정상적으로 판별되는지 테스트")
+    void 우승자_판별_테스트() {
+        for (int i = 0; i < race.getRounds(); i++) {
+            race.playRound();
+        }
+        List<String> winners = race.getWinners();
+        assertThat(winners).containsExactlyInAnyOrder("car1", "car2", "car3");
     }
 }

@@ -3,6 +3,7 @@ package CarGame2;
 public class Car {
 
     private static final int MIN_SPEED = 4;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private final Generator generator;
 
@@ -10,14 +11,17 @@ public class Car {
     private int speed;
 
     public Car(String name, Generator generator) {
-        validateGenerator(generator);
+        validateName(name);
         this.name = name;
         this.generator = generator;
     }
 
-    private void validateGenerator(Generator generator) {
-        if (generator == null) {
-            throw new IllegalArgumentException("Generator가 null입니다. 올바른 Generator를 주입해주세요.");
+    private void validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
     }
 
@@ -30,10 +34,6 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    public int getSpeed() {
-        return speed;
     }
 
     public String getName() {

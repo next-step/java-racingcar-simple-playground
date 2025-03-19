@@ -9,15 +9,8 @@ public class Cars {
     private final Generator generator;
 
     public Cars(List<String> carNames, Generator generator) {
-        validateGenerator(generator);
         this.generator = generator;
         this.cars = createCars(carNames);
-    }
-
-    private void validateGenerator(Generator generator) {
-        if (generator == null) {
-            throw new IllegalArgumentException("Generator가 null입니다. 올바른 Generator를 사용해주세요.");
-        }
     }
 
     private List<Car> createCars(List<String> carNames) {
@@ -51,6 +44,13 @@ public class Cars {
 
     private boolean isWinner(Car car, int maxPosition) {
         return car.getPosition() == maxPosition;
+    }
+
+    public void printCarStatuses(OutputHandler outputHandler) {
+        for (Car car : cars) {
+            outputHandler.printCarStatus(car);
+        }
+        outputHandler.printRoundEnd();
     }
 
     public List<Car> getCars() {

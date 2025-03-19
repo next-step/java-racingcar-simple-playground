@@ -14,21 +14,11 @@ public class InputHandler {
 
         while (true) {
             try {
-                return validateCarNames(scanner.nextLine());
+                return parseCarNames(scanner.nextLine());
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public List<String> validateCarNames(String input) {
-        List<String> carNames = parseCarNames(input);
-
-        if (carNames.isEmpty()) {
-            throw new InvalidInputException("올바른 자동차 이름을 입력하세요.");
-        }
-
-        return carNames;
     }
 
     private List<String> parseCarNames(String input) {
@@ -36,24 +26,10 @@ public class InputHandler {
         List<String> carNames = new ArrayList<>();
 
         for (String name : names) {
-            addValidatedCarName(carNames, name.trim());
+            carNames.add(name.trim());
         }
 
         return carNames;
-    }
-
-    private void addValidatedCarName(List<String> carNames, String name) {
-        validateCarName(name);
-        carNames.add(name);
-    }
-
-    public void validateCarName(String name) {
-        if (name.isEmpty()) {
-            throw new InvalidInputException("이름이 비어있을 수 없습니다.");
-        }
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new InvalidInputException("이름은 5글자 이내여야 합니다");
-        }
     }
 
     public int getRounds() {

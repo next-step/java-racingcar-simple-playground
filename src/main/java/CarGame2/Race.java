@@ -6,13 +6,11 @@ public class Race {
 
     private final Cars cars;
     private final int rounds;
-    private final OutputHandler raceOutput;
 
     public Race(List<String> carNames, int rounds, Generator generator, OutputHandler raceOutput) {
         validateGenerator(generator);
         this.rounds = rounds;
         this.cars = new Cars(carNames, generator);
-        this.raceOutput = raceOutput;
     }
 
     private void validateGenerator(Generator generator) {
@@ -21,25 +19,20 @@ public class Race {
         }
     }
 
-    public void start() {
-        for (int i = 0; i < rounds; i++) {
-            playRound(i + 1);
-        }
-        printWinners();
-    }
-
-    private void playRound(int curRound) {
-        raceOutput.printRoundStart(curRound);
+    public void playRound() {
         cars.moveAll();
-        for (Car car : cars.getCars()) {
-            raceOutput.printCarStatus(car);
-        }
-        raceOutput.printRoundEnd();
     }
 
-    private void printWinners() {
-        List<String> winners = cars.findWinners();
-        raceOutput.printWinners(winners);
+    public void printRaceStatus(OutputHandler outputHandler) {
+        cars.printCarStatuses(outputHandler);
+    }
+
+    public List<String> getWinners() {
+        return cars.findWinners();
+    }
+
+    public int getRounds() {
+        return rounds;
     }
 
     public Cars getCars() {
