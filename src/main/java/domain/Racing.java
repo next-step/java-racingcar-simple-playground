@@ -13,7 +13,7 @@ public class Racing {
     }
 
     public Cars findWinners() {
-        return carList.findCarsInPosition(carList.getMaxDistance());
+        return carList.findCarsHasSamePosition(carList.getMaxDistance());
     }
 
 }

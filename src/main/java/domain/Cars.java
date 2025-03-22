@@ -6,18 +6,22 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    public static Cars create(String[] carNames, NumberGenerator numberGenerator) {
+    public static Cars create(List<String> carNames, NumberGenerator numberGenerator) {
         List<Car> newCars = new ArrayList<Car>();
         for (String carName : carNames) {
             newCars.add(new Car(carName, numberGenerator));
         }
         return new Cars(newCars);
+    }
+
+    public static Cars of(List<Car> cars) {
+        return new Cars(new ArrayList<>(cars));
     }
 
     public void move() {
@@ -34,16 +38,16 @@ public class Cars {
         return maxDistance;
     }
 
-    public Cars findCarsInPosition(int position) {
-        List<Car> carsInPosition = new ArrayList<>();
-        return new Cars(
-                cars.stream()
-                        .filter(car -> car.isInPosition(position))
-                        .collect(Collectors.toList())
-        );
+    public Cars findCarsHasSamePosition(int position) {
+        List<Car> carsHasSamePosition = cars.stream()
+                .filter(car -> car.hasSamePosition(position))
+                .collect(Collectors.toList());
+
+        return new Cars(carsHasSamePosition);
     }
 
     public List<Car> getCars() {
         return cars;
     }
+
 }

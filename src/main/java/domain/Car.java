@@ -6,7 +6,7 @@ public class Car {
 
     private final String name;
     private int distance;
-    private NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Car {
         }
     }
 
-    public boolean isInPosition(int position) {
+    public boolean hasSamePosition(int position) {
         return distance == position;
     }
 
@@ -31,4 +31,5 @@ public class Car {
     public int getDistance() {
         return distance;
     }
+
 }

@@ -82,7 +82,7 @@ public class CarsTest {
         cars.move();
         cars.move();
 
-        Cars carsInSamePosition = cars.findCarsInSamePosition(2);
+        Cars carsInSamePosition = cars.findCarsHasSamePosition(2);
         assertThat(carsInSamePosition.getCars()).containsOnly(carList.get(1), carList.get(2));
     }
 
