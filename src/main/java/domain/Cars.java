@@ -13,7 +13,7 @@ public class Cars {
     }
 
     public static Cars create(List<String> carNames, NumberGenerator numberGenerator) {
-        List<Car> newCars = new ArrayList<Car>();
+        List<Car> newCars = new ArrayList<>();
         for (String carName : carNames) {
             newCars.add(new Car(carName, numberGenerator));
         }
