@@ -5,13 +5,10 @@ import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
 
-    private static final int MOVE_FORWARD = 4;
-    private static final int NOT_MOVE = 3;
-
     @Test
     void testCarName() {
-        Car car = new Car("KIA", new MovableNumberGenerator());
-        assertThat(car.getName()).isEqualTo("KIA");
+        Car car = new Car("TestCar", new MovableNumberGenerator());
+        assertThat(car.getName()).isEqualTo("TestCar");
     }
 
     @Test
@@ -27,4 +24,19 @@ public class CarTest {
         car.move();
         assertThat(car.getDistance()).isEqualTo(0);
     }
+
+    @Test
+    void testCarHasSamePosition() {
+        Car car = new Car("TestCar", new MovableNumberGenerator());
+        car.move();
+        assertThat(car.hasSamePosition(1)).isEqualTo(true);
+    }
+
+    @Test
+    void testCarIsNotInPosition() {
+        Car car = new Car("TestCar", new MovableNumberGenerator());
+        car.move();
+        assertThat(car.hasSamePosition(0)).isEqualTo(false);
+    }
+
 }
