@@ -59,7 +59,7 @@ public class InputView {
                 .anyMatch(name -> name.trim().isEmpty());
     }
 
-    private static boolean hasDuplicates(List<String> names)  {
+    private static boolean hasDuplicates(List<String> names) {
         Set<String> nameSet = new HashSet<>();
         return names.stream()
                 .anyMatch(name -> !nameSet.add(name));

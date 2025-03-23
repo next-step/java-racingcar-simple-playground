@@ -17,7 +17,8 @@ public class ViewTest {
         assertThat(formattedInfo).isEqualTo("A : --");
     }
 
-    @Test void testFormatWinnerNames() {
+    @Test
+    void testFormatWinnerNames() {
         List<String> winners = Arrays.asList("A", "B", "C");
         String formattedWinners = OutputView.formatWinnerNames(winners);
 

@@ -16,6 +16,4 @@ public class Racing {
         return cars.findCarsHasSamePosition(cars.getMaxDistance());
     }
 
-
-
 }

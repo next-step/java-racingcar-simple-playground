@@ -16,9 +16,9 @@ public class CarsTest {
 
     @BeforeEach
     public void setUp() {
-        movableA_Fixture = new Car("A",new MovableNumberGenerator());
-        movableB_Fixture = new Car("B",new MovableNumberGenerator());
-        notMovableC_Fixture = new Car("C",new NotMovableNumberGenerator());
+        movableA_Fixture = new Car("A", new MovableNumberGenerator());
+        movableB_Fixture = new Car("B", new MovableNumberGenerator());
+        notMovableC_Fixture = new Car("C", new NotMovableNumberGenerator());
 
         cars_Fixture = new ArrayList<>();
         cars_Fixture.add(movableA_Fixture);
@@ -26,7 +26,8 @@ public class CarsTest {
         cars_Fixture.add(notMovableC_Fixture);
     }
 
-    @Test void testCarsFrom() {
+    @Test
+    void testCarsFrom() {
         Cars cars = Cars.from(cars_Fixture);
 
         assertThat(cars.getCars().size()).isEqualTo(3);

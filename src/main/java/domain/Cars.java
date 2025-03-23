@@ -23,13 +23,13 @@ public class Cars {
     }
 
     public static void checkCarNumber(List<Car> cars) {
-        if(cars.size() > MAX_CAR_NUMBER) {
+        if (cars.size() > MAX_CAR_NUMBER) {
             throw new IllegalArgumentException("[Error] 차의 개수는 10대를 초과할 수 없습니다.");
         }
     }
 
     public static void checkDuplicates(List<Car> cars) {
-        if(hasDuplicates(cars)) {
+        if (hasDuplicates(cars)) {
             throw new IllegalArgumentException("[Error] 차의 이름은 중복될 수 없습니다.");
         }
     }
