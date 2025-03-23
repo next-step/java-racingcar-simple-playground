@@ -1,15 +1,15 @@
 package domain;
 
+import java.util.List;
+
 public class Racing {
 
     private final Cars cars;
     MovingStrategy movingStrategy;
-    int roundCount;
 
-    public Racing(Cars cars, MovingStrategy movingStrategy, int roundCount) {
+    public Racing(Cars cars, MovingStrategy movingStrategy) {
         this.cars = cars;
         this.movingStrategy = movingStrategy;
-        this.roundCount = roundCount;
     }
 
     public void round() {
@@ -18,5 +18,9 @@ public class Racing {
 
     public Cars getCars() {
         return cars;
+    }
+
+    public List<Car> getCarList() { // for 테스트 코드
+        return cars.getCars();
     }
 }

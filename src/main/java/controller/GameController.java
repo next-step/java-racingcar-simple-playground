@@ -21,7 +21,7 @@ public class GameController {
 
         //참가 자동차 목록 생성
         final Cars cars = new Cars(carNames);
-        Racing racing = new Racing(cars, movingStrategy, roundCount);
+        Racing racing = new Racing(cars, movingStrategy);
 
         // 경주 시작 & 라운드 별 결과 출력
         OutputView.printResultMessage(); // "실행 결과" 메시지 출력

@@ -1,7 +1,6 @@
 package application;
 
 import controller.GameController;
-import domain.RandomNumberGenerator;
 
 public class RacingCarApplication {
 
