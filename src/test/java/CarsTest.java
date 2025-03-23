@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Cars;
 import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -65,6 +66,28 @@ public class CarsTest {
 
         Cars carsInSamePosition = cars.findCarsHasSamePosition(2);
         assertThat(carsInSamePosition.getCars()).containsOnly(movableA_Fixture, movableB_Fixture);
+    }
+
+    @Test
+    public void testCheckCarNumber() {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            cars.add(new Car("car" + i, new MovableNumberGenerator()));
+        }
+
+        Assertions.assertThatThrownBy(() -> Cars.checkCarNumber(cars))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void testCheckDuplicates() {
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("A", new MovableNumberGenerator()));
+        cars.add(new Car("A", new MovableNumberGenerator()));
+        cars.add(new Car("B", new MovableNumberGenerator()));
+
+        Assertions.assertThatThrownBy(() -> Cars.checkDuplicates(cars))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
