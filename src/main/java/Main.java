@@ -11,7 +11,6 @@ public class Main {
 
         gameController.createCars();
         gameController.gameStart();
-        gameController.displayGameStatus();
         gameController.findWinner();
     }
 }
