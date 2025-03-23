@@ -1,22 +1,24 @@
 package domain;
 
-import static controller.CarRunner.validateCarCount;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
 
   private final List<Car> cars;
+  private static final int MIN_CAR_COUNT = 2;
 
-  public Cars(List<String> carNames,NumberGenerator numberGenerator) {
+  public Cars(List<String> carNames, NumberGenerator numberGenerator) {
     validateCarCount(carNames.size());
+    this.cars = createCarList(carNames, numberGenerator);
+  }
+
+  private static List<Car> createCarList(List<String> carNames, NumberGenerator numberGenerator) {
     List<Car> carList = new ArrayList<>();
     for (String carName : carNames) {
-      carList.add(new Car(carName,numberGenerator));
+      carList.add(new Car(carName, numberGenerator));
     }
-    this.cars = List.copyOf(carList);
+    return List.copyOf(carList);
   }
 
   public void moveAllCars() {
@@ -25,18 +27,13 @@ public class Cars {
     }
   }
 
-  public List<String> findWinners() {
-    int maxPosition = cars.stream()
-        .mapToInt(Car::getPosition)
-        .max()
-        .orElse(0);
-    return cars.stream()
-        .filter(car -> car.getPosition() == maxPosition)
-        .map(Car::getName)
-        .collect(Collectors.toList());
-  }
-
   public List<Car> getCars() {
     return List.copyOf(cars);
+  }
+
+  public static void validateCarCount(int carCount) {
+    if (carCount < MIN_CAR_COUNT) {
+      throw new IllegalArgumentException("경주에는 최소 2대의 자동차가 필요합니다.");
+    }
   }
 }
