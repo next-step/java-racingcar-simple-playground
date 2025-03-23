@@ -26,11 +26,6 @@ public class Car {
     }
   }
 
-  public void moveWithSpeed(int speed) {
-    this.speed = speed;
-    updatePosition(speed);
-  }
-
   public int getLastSpeed() {
     return speed;
   }
