@@ -8,7 +8,7 @@ public class RandomGenerator implements Generator {
     private final Random random = new Random();
 
     @Override
-    public int generate() {
+    public int NumberGenerate() {
         return random.nextInt(MAX_RANDOM_NUMBER);
     }
 }

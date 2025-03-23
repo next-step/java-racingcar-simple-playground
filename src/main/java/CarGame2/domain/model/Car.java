@@ -4,8 +4,8 @@ public class Car {
 
     private static final int MIN_SPEED = 4;
     private static final int MAX_NAME_LENGTH = 5;
-    private final String name;
 
+    private final String name;
     private int position = 0;
 
     public Car(String name) {
@@ -14,7 +14,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
         }
         if (name.length() > MAX_NAME_LENGTH) {

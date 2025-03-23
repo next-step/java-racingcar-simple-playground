@@ -1,8 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import CarGame2.domain.service.GameManager;
+import CarGame2.controller.GameManager;
 import CarGame2.domain.service.Generator;
-import CarGame2.controller.InputHandler;
+import CarGame2.view.InputHandler;
 import CarGame2.view.OutputHandler;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,15 +12,23 @@ import org.junit.jupiter.api.Test;
 public class GameManagerTest {
 
     private GameManager gameManager;
-    private InputHandler inputHandler;
-    private Generator fixedGenerator;
-    private OutputHandler outputHandler;
 
     @BeforeEach
     void setUp() {
-        inputHandler = new TestInputHandler();
-        fixedGenerator = new FixedGenerator(4);
-        outputHandler = new OutputHandler();
+        InputHandler inputHandler = new InputHandler() {
+            @Override
+            public List<String> getCarNames() {
+                return List.of("car1", "car2", "car3");
+            }
+
+            @Override
+            public int getRounds() {
+                return 3;
+            }
+        };
+
+        FixedGenerator fixedGenerator = new FixedGenerator(4);
+        OutputHandler outputHandler = new OutputHandler();
         gameManager = new GameManager(inputHandler, fixedGenerator, outputHandler);
     }
 
@@ -50,7 +58,7 @@ public class GameManagerTest {
         }
 
         @Override
-        public int generate() {
+        public int NumberGenerate() {
             return fixedValue;
         }
     }

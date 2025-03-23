@@ -1,6 +1,8 @@
-package CarGame2.domain.service;
+package CarGame2.controller;
 
-import CarGame2.controller.InputHandler;
+import CarGame2.domain.service.Generator;
+import CarGame2.domain.service.RandomGenerator;
+import CarGame2.view.InputHandler;
 import CarGame2.view.OutputHandler;
 import CarGame2.domain.model.Race;
 import java.util.List;
@@ -10,6 +12,15 @@ public class GameManager {
     private final InputHandler inputHandler;
     private final Generator generator;
     private final OutputHandler outputHandler;
+
+    public static void main(String[] args) {
+        InputHandler inputHandler = new InputHandler();
+        Generator generator = new RandomGenerator();
+        OutputHandler outputHandler = new OutputHandler();
+
+        GameManager gameManager = new GameManager(inputHandler, generator, outputHandler);
+        gameManager.setGame();
+    }
 
     public GameManager(InputHandler inputHandler, Generator generator, OutputHandler outputHandler) {
         this.inputHandler = inputHandler;
@@ -32,4 +43,5 @@ public class GameManager {
         }
         outputHandler.printWinners(race.getWinners());
     }
+
 }

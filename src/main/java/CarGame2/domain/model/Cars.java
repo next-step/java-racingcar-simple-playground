@@ -3,6 +3,7 @@ package CarGame2.domain.model;
 import CarGame2.domain.service.Generator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -22,24 +23,17 @@ public class Cars {
 
     public void moveAll(Generator generator) {
         for (Car car : cars) {
-            int speed = generator.generate();
+            int speed = generator.NumberGenerate();
             car.move(speed);
         }
     }
 
     public List<String> findWinners() {
         int maxPosition = getMaxPosition();
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            addWinner(winners, car, maxPosition);
-        }
-        return winners;
-    }
-
-    private void addWinner(List<String> winners, Car car, int maxPosition) {
-        if (isWinner(car, maxPosition)) {
-            winners.add(car.getName());
-        }
+        return cars.stream()
+                .filter(car -> isWinner(car, maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private boolean isWinner(Car car, int maxPosition) {

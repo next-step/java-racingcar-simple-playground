@@ -1,4 +1,4 @@
-package CarGame2.controller;
+package CarGame2.view;
 
 import java.util.ArrayList;
 import java.util.List;

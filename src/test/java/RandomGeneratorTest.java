@@ -12,7 +12,7 @@ public class RandomGeneratorTest {
     @DisplayName("랜덤 생성값이 0에서 9 사이인지 확인")
     void 랜덤값_범위_테스트() {
         for (int i = 0; i < 100; i++) {
-            int value = generator.generate();
+            int value = generator.NumberGenerate();
             assertThat(value).isBetween(0, 9);
         }
     }
