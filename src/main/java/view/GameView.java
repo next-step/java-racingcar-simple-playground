@@ -30,18 +30,11 @@ public class GameView {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    public void displayGameStatus(List<List<Car>> gameHistory) {
+    public void displayGameStatus(List<Car> gameStatus) {
         System.out.println("실행 결과");
-        for (List<Car> cars : gameHistory) {
-            printCarsStatus(cars);
+        for (Car carStatus : gameStatus) {
+            printCarStatus(carStatus);
         }
-    }
-
-    private void printCarsStatus(List<Car> cars) {
-        for (Car car : cars) {
-            printCarStatus(car);
-        }
-        System.out.println();
     }
 
     private void printCarStatus(Car car) {
