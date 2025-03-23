@@ -1,4 +1,4 @@
-package domain.strategy;
+package domain;
 
 @FunctionalInterface
 public interface MovingStrategy {

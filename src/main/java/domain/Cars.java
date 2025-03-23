@@ -1,7 +1,5 @@
 package domain;
 
-import domain.strategy.MovingStrategy;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +15,7 @@ public class Cars {
     }
 
     public void move(MovingStrategy movingStrategy) {
-        for (Car car : cars){
+        for (Car car : cars) {
             car.move(movingStrategy);
         }
     }

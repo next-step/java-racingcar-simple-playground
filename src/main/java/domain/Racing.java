@@ -1,31 +1,22 @@
 package domain;
 
-import domain.strategy.MovingStrategy;
-import view.OutputView;
-
-import java.util.List;
-
 public class Racing {
 
     private final Cars cars;
-    private final int roundCount;
-    private final MovingStrategy movingStrategy;
+    MovingStrategy movingStrategy;
+    int roundCount;
 
-    public Racing(List<String> names, MovingStrategy movingStrategy, int roundCount) {
-        this.cars = new Cars(names);
-        this.roundCount = roundCount;
+    public Racing(Cars cars, MovingStrategy movingStrategy, int roundCount) {
+        this.cars = cars;
         this.movingStrategy = movingStrategy;
+        this.roundCount = roundCount;
     }
 
-    public void start() {
-        for(int i = 0; i < roundCount; i++) {
-            round();
-        }
-    }
-
-    private void round() {
+    public void round() {
         cars.move(movingStrategy);
-        OutputView.printRound(cars);
     }
 
+    public Cars getCars() {
+        return cars;
+    }
 }

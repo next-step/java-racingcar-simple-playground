@@ -1,7 +1,5 @@
 package domain;
 
-import domain.strategy.MovingStrategy;
-
 public class Car {
 
     private final CarName name;
