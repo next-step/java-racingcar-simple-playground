@@ -3,7 +3,7 @@ package view;
 import domain.Car;
 import java.util.List;
 
-public class OutputView {
+public class ResultView {
 
   public void printStart() {
     System.out.println("\n실행 결과");
