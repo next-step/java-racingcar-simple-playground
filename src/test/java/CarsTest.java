@@ -4,19 +4,30 @@ import domain.Car;
 import domain.Cars;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
+    private List<Car> cars_Fixture;
+    private Car movableA_Fixture;
+    private Car movableB_Fixture;
+    private Car notMovableC_Fixture;
+
+    @BeforeEach
+    public void setUp() {
+        movableA_Fixture = new Car("A",new MovableNumberGenerator());
+        movableB_Fixture = new Car("B",new MovableNumberGenerator());
+        notMovableC_Fixture = new Car("C",new NotMovableNumberGenerator());
+
+        cars_Fixture = new ArrayList<>();
+        cars_Fixture.add(movableA_Fixture);
+        cars_Fixture.add(movableB_Fixture);
+        cars_Fixture.add(notMovableC_Fixture);
+    }
+
     @Test void testCarsFrom() {
-        List<Car> carList = new ArrayList<>();
-        Cars cars;
-
-        carList.add(new Car("A", new MovableNumberGenerator()));
-        carList.add(new Car("B", new MovableNumberGenerator()));
-        carList.add(new Car("C", new MovableNumberGenerator()));
-
-        cars = Cars.from(carList);
+        Cars cars = Cars.from(cars_Fixture);
 
         assertThat(cars.getCars().size()).isEqualTo(3);
         assertThat(cars.getCars().get(0).getName()).isEqualTo("A");
@@ -26,14 +37,7 @@ public class CarsTest {
 
     @Test
     public void testCarsMove() {
-        List<Car> carList = new ArrayList<>();
-        Cars cars;
-
-        carList.add(new Car("A", new MovableNumberGenerator()));
-        carList.add(new Car("B", new MovableNumberGenerator()));
-        carList.add(new Car("C", new NotMovableNumberGenerator()));
-
-        cars = Cars.from(carList);
+        Cars cars = Cars.from(cars_Fixture);
         cars.move();
 
         assertThat(cars.getCars().get(0).getDistance()).isEqualTo(1);
@@ -43,14 +47,7 @@ public class CarsTest {
 
     @Test
     public void testCarsGetMaxDistance() {
-        List<Car> carList = new ArrayList<>();
-        Cars cars;
-
-        carList.add(new Car("A", new NotMovableNumberGenerator()));
-        carList.add(new Car("B", new MovableNumberGenerator()));
-        carList.add(new Car("C", new NotMovableNumberGenerator()));
-
-        cars = Cars.from(carList);
+        Cars cars = Cars.from(cars_Fixture);
 
         cars.move();
         cars.move();
@@ -60,19 +57,13 @@ public class CarsTest {
 
     @Test
     public void testFindCarsInSamePosition() {
-        List<Car> carList = new ArrayList<>();
-
-        carList.add(new Car("A", new NotMovableNumberGenerator()));
-        carList.add(new Car("B", new MovableNumberGenerator()));
-        carList.add(new Car("C", new MovableNumberGenerator()));
-
-        Cars cars = Cars.from(carList);
+        Cars cars = Cars.from(cars_Fixture);
 
         cars.move();
         cars.move();
 
         Cars carsInSamePosition = cars.findCarsHasSamePosition(2);
-        assertThat(carsInSamePosition.getCars()).containsOnly(carList.get(1), carList.get(2));
+        assertThat(carsInSamePosition.getCars()).containsOnly(movableA_Fixture, movableB_Fixture);
     }
 
 }
