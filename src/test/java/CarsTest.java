@@ -8,17 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
-    @Test
-    public void testCreateCars() {
-        List<String> carNames = List.of("A", "B", "C");
-        Cars cars = Cars.create(carNames, new MovableNumberGenerator() );
-
-        assertThat(cars.getCars().size()).isEqualTo(3);
-        assertThat(cars.getCars().get(0).getName()).isEqualTo("A");
-        assertThat(cars.getCars().get(1).getName()).isEqualTo("B");
-        assertThat(cars.getCars().get(2).getName()).isEqualTo("C");
-    }
-
     @Test void testCarsFrom() {
         List<Car> carList = new ArrayList<>();
         Cars cars;

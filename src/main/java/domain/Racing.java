@@ -2,18 +2,18 @@ package domain;
 
 public class Racing {
 
-    private final Cars carList;
+    private final Cars cars;
 
-    public Racing(Cars carList) {
-        this.carList = carList;
+    public Racing(Cars cars) {
+        this.cars = cars;
     }
 
     public void playRound() {
-        carList.move();
+        cars.move();
     }
 
     public Cars findWinners() {
-        return carList.findCarsHasSamePosition(carList.getMaxDistance());
+        return cars.findCarsHasSamePosition(cars.getMaxDistance());
     }
 
 

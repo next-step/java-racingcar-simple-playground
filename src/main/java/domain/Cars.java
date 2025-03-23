@@ -16,18 +16,29 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars create(List<String> carNames, NumberGenerator numberGenerator) {
-        List<Car> newCars = new ArrayList<>();
-        for (String carName : carNames) {
-            newCars.add(new Car(carName, numberGenerator));
-        }
-        checkCarNumber(newCars);
-        checkDuplicates(newCars);
-        return new Cars(newCars);
+    public static Cars from(List<Car> cars) {
+        checkCarNumber(cars);
+        checkDuplicates(cars);
+        return new Cars(new ArrayList<>(cars));
     }
 
-    public static Cars from(List<Car> cars) {
-        return new Cars(new ArrayList<>(cars));
+    public static void checkCarNumber(List<Car> cars) {
+        if(cars.size() > MAX_CAR_NUMBER) {
+            throw new IllegalArgumentException("[Error] 차의 개수는 10대를 초과할 수 없습니다.");
+        }
+    }
+
+    public static void checkDuplicates(List<Car> cars) {
+        if(hasDuplicates(cars)) {
+            throw new IllegalArgumentException("[Error] 차의 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private static boolean hasDuplicates(List<Car> cars) {
+        Set<String> nameSet = new HashSet<>();
+        return cars.stream()
+                .map(car -> car.getName())
+                .anyMatch(name -> !nameSet.add(name));
     }
 
     public void move() {
@@ -53,26 +64,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;
-    }
-
-    public static void checkCarNumber(List<Car> cars) {
-        if(cars.size() > MAX_CAR_NUMBER) {
-            throw new IllegalArgumentException("[Error] 차의 개수는 10대를 초과할 수 없습니다.");
-        }
-    }
-
-    public static void checkDuplicates(List<Car> cars) {
-        if(hasDuplicates(cars)) {
-            throw new IllegalArgumentException("[Error] 차의 이름은 중복될 수 없습니다.");
-        }
-    }
-
-    private static boolean hasDuplicates(List<Car> cars) {
-        Set<String> nameSet = new HashSet<>();
-        return cars.stream()
-                .map(car -> car.getName())
-                .anyMatch(name -> !nameSet.add(name));
+        return new ArrayList<>(cars);
     }
 
 }
