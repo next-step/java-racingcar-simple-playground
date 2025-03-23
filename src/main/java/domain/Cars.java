@@ -37,7 +37,7 @@ public class Cars {
     private static boolean hasDuplicates(List<Car> cars) {
         Set<String> nameSet = new HashSet<>();
         return cars.stream()
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .anyMatch(name -> !nameSet.add(name));
     }
 

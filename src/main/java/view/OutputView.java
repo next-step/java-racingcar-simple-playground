@@ -1,8 +1,8 @@
 package view;
 
 import domain.Car;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -26,20 +26,14 @@ public class OutputView {
     }
 
     public static String formatCarInfo(Car car) {
-        StringBuilder formatted;
-        formatted = new StringBuilder(car.getName() + " : ");
-        for (int i = 0; i < car.getDistance(); i++) {
-            formatted.append("-");
-        }
-        return formatted.toString();
+        return car.getName() + " : " + "-".repeat(car.getDistance());
     }
 
     public static void printWinners(List<Car> winners) {
-        List<String> winnerNames = new ArrayList<>();
-        for (Car winner : winners) {
-            winnerNames.add(winner.getName());
-        }
-        System.out.println(formatWinnerNames(winnerNames) + "가 최종 우승했습니다.");
+        String winnerNames = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 
     public static String formatWinnerNames(List<String> cars) {
