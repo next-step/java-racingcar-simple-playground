@@ -1,6 +1,5 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,9 +25,9 @@ class CarManagerTest {
     @DisplayName("모든 차량을 반횐한다")
     void 모든_차량을_반횐_한다() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
+        Car car3 = Car.createCar("car3");
         carManager.addCar(car1);
         carManager.addCar(car2);
         carManager.addCar(car3);
@@ -44,9 +43,9 @@ class CarManagerTest {
     @DisplayName("차량의 수를 반환한다")
     void 차량의_수를_반환한다() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
+        Car car3 = Car.createCar("car3");
         carManager.addCar(car1);
         carManager.addCar(car2);
         carManager.addCar(car3);
@@ -61,10 +60,10 @@ class CarManagerTest {
     @DisplayName("차량의 이동여부를 검증한후 차량을 이동시킨다")
     void 차량의_이동여부를_검증한후_차량을_이동시킨다() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
-        Car car4 = new Car("car4");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
+        Car car3 = Car.createCar("car3");
+        Car car4 = Car.createCar("car4");
 
         carManager.addCar(car1);
         carManager.addCar(car2);

@@ -17,9 +17,9 @@ class WinnerFinderTest {
     void 우승자_리스트를_찾아서_반환한다() {
         //given
         List<Car> cars = new LinkedList<>();
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
+        Car car3 = Car.createCar("car3");
         cars.add(car1);
         cars.add(car2);
         cars.add(car3);

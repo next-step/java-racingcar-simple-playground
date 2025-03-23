@@ -21,8 +21,8 @@ class CarRepositoryTest {
     @DisplayName("모든 차량을 찾아서 반환한다.")
     void findAllTest() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
         carRepository.addCar(car1);
         carRepository.addCar(car2);
 
@@ -37,10 +37,10 @@ class CarRepositoryTest {
     @DisplayName("차량의 수를 반환한다.")
     void getCarNumberTest() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
-        Car car4 = new Car("car4");
+        Car car1 = Car.createCar("car1");
+        Car car2 = Car.createCar("car2");
+        Car car3 = Car.createCar("car3");
+        Car car4 = Car.createCar("car4");
         carRepository.addCar(car1);
         carRepository.addCar(car2);
         carRepository.addCar(car3);
