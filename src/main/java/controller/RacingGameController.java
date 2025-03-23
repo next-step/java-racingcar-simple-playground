@@ -2,44 +2,48 @@ package controller;
 
 import model.Cars;
 import model.NumberGenerator;
-import model.Winners;
+import view.InputHandler;
 import view.OutputView;
 
 import java.util.List;
 
 public class RacingGameController {
-
-    private final List<String> inputCarNames;
-    private final int tryCount;
+    
     private final NumberGenerator numberGenerator;
-    private Winners winners;
+    private final InputHandler inputHandler;
+    private Cars winners;
 
-    public RacingGameController(List<String> inputCarNames, int inputTryCount, NumberGenerator numberGenerator) {
-        this.inputCarNames = inputCarNames;
-        this.tryCount = inputTryCount;
+    public RacingGameController(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
+        inputHandler = new InputHandler();
     }
 
     public void run() {
-        Cars cars = Cars.create(inputCarNames, numberGenerator);
+        Cars cars = getJoinCars();
+        int tryCount = inputHandler.getTryCount();
         startGame(cars, tryCount);
         finishGame(cars);
+    }
+
+    private Cars getJoinCars() {
+        List<String> carNames = inputHandler.getCarNames();
+        return Cars.create(carNames, numberGenerator);
     }
 
     private void startGame(Cars cars, int tryCount) {
         OutputView.printGameStartMessage();
         for (int i = 0; i < tryCount; i++) {
             cars.moveAll();
-            OutputView.printRoundResult(cars.getCarsPositionToString());
+            OutputView.printRoundResult(cars);
         }
     }
 
     private void finishGame(Cars cars) {
-        Cars leadingCars = cars.getLeadingCars();
-        winners = Winners.create(leadingCars.getCars());
+        winners = cars.getLeadingCars();
+        OutputView.printWinners(winners);
     }
 
-    public Winners getWinners() {
+    public Cars getWinners() {
         if (winners == null) {
             throw new IllegalStateException("레이싱 게임이 아직 시작되지 않았습니다!");
         }

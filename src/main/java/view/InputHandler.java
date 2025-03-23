@@ -1,8 +1,6 @@
-package controller;
+package view;
 
 import utils.Utils;
-import view.InputView;
-import view.OutputView;
 
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class InputHandler {
 
     public List<String> getCarNames() {
         OutputView.printCarNamesInputMessage();
-        String carNames = InputView.getCarNames();
+        String carNames = InputView.getString();
 
         try {
             InputValidator.validateCarNames(carNames);
@@ -27,7 +25,7 @@ public class InputHandler {
 
     public int getTryCount() {
         OutputView.printTryCountInputMessage();
-        int tryCount = InputView.getTryCount();
+        int tryCount = InputView.getInt();
 
         try {
             InputValidator.validateTryCount(tryCount);

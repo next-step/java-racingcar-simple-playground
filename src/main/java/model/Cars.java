@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -47,11 +46,5 @@ public class Cars {
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
-    }
-
-    public String getCarsPositionToString() {
-        return cars.stream()
-                .map(Car::getCarPositionToString)
-                .collect(Collectors.joining("\n"));
     }
 }

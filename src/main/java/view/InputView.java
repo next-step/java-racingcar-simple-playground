@@ -6,11 +6,11 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String getCarNames() {
+    public static String getString() {
         return scanner.nextLine();
     }
 
-    public static int getTryCount() {
+    public static int getInt() {
         return scanner.nextInt();
     }
 }

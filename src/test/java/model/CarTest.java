@@ -31,17 +31,4 @@ class CarTest {
 
         assertThat(car.hasSamePosition(position)).isTrue();
     }
-
-    @Test
-    void 자동차_현재_위치만큼_DASH를_출력한다() {
-        int moveCount = 5;
-        Car car = new Car("car1");
-        for (int i = 0; i < moveCount; i++) {
-            car.move(5);
-        }
-
-        String newPositionMessage = car.getCarPositionToString();
-        long result = newPositionMessage.chars().filter(ch -> ch == '-').count();
-        assertThat(result).isEqualTo(moveCount);
-    }
 }

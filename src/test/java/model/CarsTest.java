@@ -65,6 +65,17 @@ class CarsTest {
     }
 
     @Test
+    void 선두가_두_명_이상_존재할_수_있다() {
+        int movingCount = 5;
+        Cars cars = create(carNames, new MoveNumberGenerator());
+        for (int i = 0; i < movingCount; i++) {
+            cars.moveAll();
+        }
+        Cars leadingCars = cars.getLeadingCars();
+        assertThat(leadingCars.size()).isEqualTo(3);
+    }
+
+    @Test
     void getCars를_통해_얻은_객체를_변경하면_예외가_발생해야_한다() {
         Cars cars = create(carNames, new MoveNumberGenerator());
         List<Car> findCars = cars.getCars();
