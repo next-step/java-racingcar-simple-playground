@@ -18,7 +18,7 @@ public class Name {
 
     public static void checkLength(String name) {
         if(name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("[Error] 이름은 5글자를 초과할 수 없습니다.");
+            throw new IllegalArgumentException("[Error] 이름은 " + MAX_LENGTH  + "자를 초과할 수 없습니다.");
         }
     }
 

@@ -71,8 +71,8 @@ public class Cars {
     private static boolean hasDuplicates(List<Car> cars) {
         Set<String> nameSet = new HashSet<>();
         return cars.stream()
-                .map(car -> car.getName()) // Name 객체에서 String 값 추출
-                .anyMatch(name -> !nameSet.add(name)); // 중복 발생 시 true 반환
+                .map(car -> car.getName())
+                .anyMatch(name -> !nameSet.add(name));
     }
 
 }
