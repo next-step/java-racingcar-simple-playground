@@ -17,7 +17,7 @@ public class RacingTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new MovableNumberGenerator()));
 
-        Racing racing = new Racing(Cars.of(carList));
+        Racing racing = new Racing(Cars.from(carList));
         racing.playRound();
 
         assertThat(carList.get(0).getDistance()).isEqualTo(0);
@@ -33,7 +33,7 @@ public class RacingTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new MovableNumberGenerator()));
 
-        Racing racing = new Racing(Cars.of(carList));
+        Racing racing = new Racing(Cars.from(carList));
         racing.playRound();
 
         Cars winnerList = racing.findWinners();

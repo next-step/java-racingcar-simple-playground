@@ -1,12 +1,10 @@
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import controller.RacingController;
 import domain.Car;
 import domain.Cars;
 import domain.Racing;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +22,7 @@ public class ControllerTest {
         carList.add(new Car("B", new NotMovableNumberGenerator()));
         carList.add(new Car("C", new MovableNumberGenerator()));
 
-        Cars cars = Cars.of(carList);
+        Cars cars = Cars.from(carList);
         Racing racing = new Racing(cars);
 
         racingController.playRace(racing, cars, MOVE_POSITION);
@@ -32,15 +30,6 @@ public class ControllerTest {
         assertThat(cars.getCars().get(0).getDistance()).isEqualTo(MOVE_POSITION);
         assertThat(cars.getCars().get(1).getDistance()).isEqualTo(NOT_MOVE_POSITION);
         assertThat(cars.getCars().get(2).getDistance()).isEqualTo(MOVE_POSITION);
-    }
-
-    @Test
-    public void checkNameLengths () {
-        RacingController racingController = new RacingController();
-        List<String> names = Arrays.asList("Name", "TooLongName");
-
-        assertThatThrownBy(() -> racingController.checkCarNameLengths(names))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

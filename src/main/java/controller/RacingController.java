@@ -9,13 +9,10 @@ import view.OutputView;
 
 public class RacingController {
 
-    private static final int NAME_LENGTH_LIMIT = 5;
-
     public void run(NumberGenerator numberGenerator) {
 
         OutputView.printInputCarNames();
         List<String> carNames = InputView.getCarNames();
-        checkCarNameLengths(carNames);
         Cars carList = Cars.create(carNames, numberGenerator);
 
         OutputView.printInputRoundNumber();
@@ -37,9 +34,4 @@ public class RacingController {
         }
     }
 
-    public void checkCarNameLengths(List<String> names) {
-        if (names.stream().anyMatch(name -> name.length() > NAME_LENGTH_LIMIT)) {
-            throw new IllegalArgumentException("이름의 길이는 " + NAME_LENGTH_LIMIT + "자 이하여야 합니다.");
-        }
-    }
 }

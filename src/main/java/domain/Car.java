@@ -4,12 +4,12 @@ public class Car {
 
     private static final int CRITICAL_NUMBER_TO_MOVE = 4;
 
-    private final String name;
+    private final Name name;
     private int distance;
     private final NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
-        this.name = name;
+        this.name = Name.from(name);
         this.distance = 0;
         this.numberGenerator = numberGenerator;
     }
@@ -25,7 +25,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getDistance() {

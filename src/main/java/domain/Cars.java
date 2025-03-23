@@ -1,10 +1,14 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
+
+    private static final int MAX_CAR_NUMBER = 10;
 
     private final List<Car> cars;
 
@@ -17,10 +21,12 @@ public class Cars {
         for (String carName : carNames) {
             newCars.add(new Car(carName, numberGenerator));
         }
+        checkCarNumber(newCars);
+        checkDuplicates(newCars);
         return new Cars(newCars);
     }
 
-    public static Cars of(List<Car> cars) {
+    public static Cars from(List<Car> cars) {
         return new Cars(new ArrayList<>(cars));
     }
 
@@ -48,6 +54,25 @@ public class Cars {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public static void checkCarNumber(List<Car> cars) {
+        if(cars.size() > MAX_CAR_NUMBER) {
+            throw new IllegalArgumentException("[Error] 차의 개수는 10대를 초과할 수 없습니다.");
+        }
+    }
+
+    public static void checkDuplicates(List<Car> cars) {
+        if(hasDuplicates(cars)) {
+            throw new IllegalArgumentException("[Error] 차의 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private static boolean hasDuplicates(List<Car> cars) {
+        Set<String> nameSet = new HashSet<>();
+        return cars.stream()
+                .map(car -> car.getName()) // Name 객체에서 String 값 추출
+                .anyMatch(name -> !nameSet.add(name)); // 중복 발생 시 true 반환
     }
 
 }

@@ -19,7 +19,7 @@ public class CarsTest {
         assertThat(cars.getCars().get(2).getName()).isEqualTo("C");
     }
 
-    @Test void testCarsOf() {
+    @Test void testCarsFrom() {
         List<Car> carList = new ArrayList<>();
         Cars cars;
 
@@ -27,7 +27,7 @@ public class CarsTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new MovableNumberGenerator()));
 
-        cars = Cars.of(carList);
+        cars = Cars.from(carList);
 
         assertThat(cars.getCars().size()).isEqualTo(3);
         assertThat(cars.getCars().get(0).getName()).isEqualTo("A");
@@ -44,7 +44,7 @@ public class CarsTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new NotMovableNumberGenerator()));
 
-        cars = Cars.of(carList);
+        cars = Cars.from(carList);
         cars.move();
 
         assertThat(cars.getCars().get(0).getDistance()).isEqualTo(1);
@@ -61,7 +61,7 @@ public class CarsTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new NotMovableNumberGenerator()));
 
-        cars = Cars.of(carList);
+        cars = Cars.from(carList);
 
         cars.move();
         cars.move();
@@ -77,7 +77,7 @@ public class CarsTest {
         carList.add(new Car("B", new MovableNumberGenerator()));
         carList.add(new Car("C", new MovableNumberGenerator()));
 
-        Cars cars = Cars.of(carList);
+        Cars cars = Cars.from(carList);
 
         cars.move();
         cars.move();
