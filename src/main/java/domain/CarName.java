@@ -1,3 +1,5 @@
+package domain;
+
 public class CarName {
 
   private final String name;
