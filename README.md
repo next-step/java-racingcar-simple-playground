@@ -41,14 +41,6 @@
             └── 📄 RacingTest.java
 ```
 ---
-## 💬 주요 클래스
-- **application.RacingCarApplication**: 메인 애플리케이션 클래스로 사용자 입력을 받고 경주를 시작합니다.
-- **Car**: 자동차 객체를 관리하는 클래스로 자동차의 이름과 위치를 저장합니다.
-- **Cars**: 여러 대의 자동차를 관리합니다.
-- **Racing**: 경주를 시작하고, 각 라운드마다 경주를 진행하며, 최종 우승자를 결정합니다.
-- **MovingStrategy**: 자동차의 전진 여부를 결정하는 인터페이스입니다.
-- **NumberGenerator**: 난수 생성기를 제공하는 인터페이스입니다.
----
 ## ⏯️ 실행 방법
 
 ### 1. `application.RacingCarApplication` 클래스 실행
