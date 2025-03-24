@@ -1,4 +1,4 @@
-package random;
+package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
