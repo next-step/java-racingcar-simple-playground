@@ -5,7 +5,7 @@ import java.util.List;
 public class Racing {
 
     private final Cars cars;
-    MovingStrategy movingStrategy;
+    private final MovingStrategy movingStrategy;
 
     public Racing(Cars cars, MovingStrategy movingStrategy) {
         this.cars = cars;
@@ -20,7 +20,7 @@ public class Racing {
         return cars;
     }
 
-    public List<Car> getCarList() { // for 테스트 코드
+    public List<Car> getCarList() {
         return cars.getCars();
     }
 }

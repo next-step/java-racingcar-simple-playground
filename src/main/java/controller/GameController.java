@@ -3,7 +3,6 @@ package controller;
 import domain.Cars;
 import domain.MovingStrategy;
 import domain.Racing;
-import domain.RandomMovingStrategy;
 import view.InputView;
 import view.OutputView;
 
@@ -11,10 +10,13 @@ import java.util.List;
 
 public class GameController {
 
+    private final MovingStrategy movingStrategy;
+
+    public GameController(MovingStrategy movingStrategy) {
+        this.movingStrategy = movingStrategy;
+    }
+
     public void start() {
-
-        MovingStrategy movingStrategy = new RandomMovingStrategy();
-
         // 사용자 입력(n대의 자동차 이름, 라운드 횟수)
         final List<String> carNames = InputView.scanCarNames();
         final int roundCount = InputView.scanRoundCount();
