@@ -17,13 +17,18 @@
 ├── 📁 main
 │   └── 📁 java
 │       ├── 📁 application
-│       │   └── 📄 application.RacingCarApplication.java
+│       │   └── 📄 RacingCarApplication.java
+│       ├── 📁 controller
+│       │   └── 📄 GameController.java
 │       ├── 📁 domain
 │       │   ├── 📄 Car.java
+│       │   ├── 📄 CarName.java
 │       │   ├── 📄 Cars.java
 │       │   ├── 📄 MovingStrategy.java
+│       │   ├── 📄 NumberGenerateStrategy.java
 │       │   ├── 📄 Racing.java
-│       │   └── 📄 RandomMovingStrategy.java
+│       │   ├── 📄 RandomMovingStrategy.java
+│       │   └── 📄 RandomNumberGenerator.java
 │       └── 📁 view
 │           ├── 📄 InputView.java
 │           └── 📄 OutputView.java
@@ -31,9 +36,9 @@
 └── 📁 test
     └── 📁 java
         └── 📁 domain
-            ├── 📄 CarTest.java
-            ├── 📄 RacingTest.java
-            └── 📄 RandomMovingStrategyTest.java
+            ├── 📄 CarMoveTest.java
+            ├── 📄 CarNameTest.java
+            └── 📄 RacingTest.java
 ```
 ---
 ## 💬 주요 클래스
