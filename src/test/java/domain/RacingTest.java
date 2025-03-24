@@ -36,5 +36,4 @@ public class RacingTest {
             assertEquals(3, car.getPosition());
         }
     }
-
 }
