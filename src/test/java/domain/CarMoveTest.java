@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CarMoveTest {
+class CarMoveTest {
 
     @Test
     @DisplayName("0-9 사이의 random 값이 4이상이면 전진한다.")
     void forward_test() {
-        Car car = new Car("testCar");
+        Car car = new Car("Car1");
         MovingStrategy alwaysMoveForward = () -> true;
 
         car.move(alwaysMoveForward);
@@ -19,9 +19,9 @@ public class CarMoveTest {
     }
 
     @Test
-    @DisplayName("0-9 사이의 random 값이 4이하면 멈춘다")
+    @DisplayName("0-9 사이의 random 값이 4이하면 멈춘다.")
     void stop_test() {
-        Car car = new Car("testCar");
+        Car car = new Car("Car1");
         MovingStrategy neverMove = () -> false;
 
         car.move(neverMove);

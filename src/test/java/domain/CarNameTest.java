@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CarNameTest {
+class CarNameTest {
 
     @Test
     @DisplayName("이름이 공백으로 되어있다면 예외가 발생된다.")
