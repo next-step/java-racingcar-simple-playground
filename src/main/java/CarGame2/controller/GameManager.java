@@ -1,7 +1,7 @@
 package CarGame2.controller;
 
-import CarGame2.domain.service.Generator;
-import CarGame2.domain.service.RandomGenerator;
+import CarGame2.domain.service.NumberGenerator;
+import CarGame2.domain.service.RandomNumberGenerator;
 import CarGame2.view.InputHandler;
 import CarGame2.view.OutputHandler;
 import CarGame2.domain.model.Race;
@@ -10,19 +10,19 @@ import java.util.List;
 public class GameManager {
 
     private final InputHandler inputHandler;
-    private final Generator generator;
+    private final NumberGenerator generator;
     private final OutputHandler outputHandler;
 
     public static void main(String[] args) {
         InputHandler inputHandler = new InputHandler();
-        Generator generator = new RandomGenerator();
+        NumberGenerator generator = new RandomNumberGenerator();
         OutputHandler outputHandler = new OutputHandler();
 
         GameManager gameManager = new GameManager(inputHandler, generator, outputHandler);
         gameManager.setGame();
     }
 
-    public GameManager(InputHandler inputHandler, Generator generator, OutputHandler outputHandler) {
+    public GameManager(InputHandler inputHandler, NumberGenerator generator, OutputHandler outputHandler) {
         this.inputHandler = inputHandler;
         this.generator = generator;
         this.outputHandler = outputHandler;

@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import CarGame2.controller.GameManager;
-import CarGame2.domain.service.Generator;
+import CarGame2.domain.service.NumberGenerator;
 import CarGame2.view.InputHandler;
 import CarGame2.view.OutputHandler;
 import java.util.List;
@@ -27,7 +27,7 @@ public class GameManagerTest {
             }
         };
 
-        FixedGenerator fixedGenerator = new FixedGenerator(4);
+        FixedNumberGenerator fixedGenerator = new FixedNumberGenerator(4);
         OutputHandler outputHandler = new OutputHandler();
         gameManager = new GameManager(inputHandler, fixedGenerator, outputHandler);
     }
@@ -50,15 +50,15 @@ public class GameManagerTest {
         }
     }
 
-    static class FixedGenerator implements Generator {
+    static class FixedNumberGenerator implements NumberGenerator {
         private final int fixedValue;
 
-        public FixedGenerator(int fixedValue) {
+        public FixedNumberGenerator(int fixedValue) {
             this.fixedValue = fixedValue;
         }
 
         @Override
-        public int NumberGenerate() {
+        public int generate() {
             return fixedValue;
         }
     }

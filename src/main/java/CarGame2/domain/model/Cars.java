@@ -1,6 +1,6 @@
 package CarGame2.domain.model;
 
-import CarGame2.domain.service.Generator;
+import CarGame2.domain.service.NumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,9 +21,9 @@ public class Cars {
         return carsList;
     }
 
-    public void moveAll(Generator generator) {
+    public void moveAll(NumberGenerator generator) {
         for (Car car : cars) {
-            int speed = generator.NumberGenerate();
+            int speed = generator.generate();
             car.move(speed);
         }
     }
@@ -40,7 +40,7 @@ public class Cars {
         return car.getPosition() == maxPosition;
     }
 
-    public int getMaxPosition() {
+    private int getMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());

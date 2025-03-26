@@ -2,7 +2,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import CarGame2.domain.model.Car;
 import CarGame2.domain.model.Race;
-import CarGame2.domain.service.FixedGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +13,7 @@ class RaceTest {
 
     @BeforeEach
     void setUp() {
-        FixedGenerator fixedGenerator = new FixedGenerator(5);
+        FixedNumberGenerator fixedGenerator = new FixedNumberGenerator(5);
         race = new Race(List.of("car1", "car2", "car3"), 3, fixedGenerator);
     }
 
