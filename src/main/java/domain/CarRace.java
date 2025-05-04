@@ -2,12 +2,12 @@ package domain;
 
 import java.util.List;
 
-public class CarRaceGame {
+public class CarRace {
     private final List<Car> cars;
     private List<String> winnerCarNames;
     private final NumberGenerator numberGenerator;
 
-    public CarRaceGame(List<Car> cars, NumberGenerator numberGenerator) {
+    public CarRace(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
         this.numberGenerator = numberGenerator;
     }

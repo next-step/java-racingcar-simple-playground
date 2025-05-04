@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import domain.NumberGeneratorImpl.RandomNumberGenerator;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class CarRaceGameTest {
+public class CarRaceTest {
     @Mock
     NumberGenerator randomNumberGenerator;
 
@@ -25,13 +24,13 @@ public class CarRaceGameTest {
         Car car2 = new Car("b");
         List<Car> cars = Arrays.asList(car1, car2);
         when(randomNumberGenerator.generate()).thenReturn(1,5,1,5,1,5);
-        CarRaceGame carRaceGame = new CarRaceGame(cars, randomNumberGenerator);
+        CarRace carRace = new CarRace(cars, randomNumberGenerator);
 
         // When
-        carRaceGame.start(3);
+        carRace.start(3);
 
         // Then
-        assertThat(carRaceGame.getWinnerCarNames()).isEqualTo(Arrays.asList("b"));
+        assertThat(carRace.getWinnerCarNames()).isEqualTo(Arrays.asList("b"));
     }
 
     @Test
@@ -42,12 +41,12 @@ public class CarRaceGameTest {
         Car car2 = new Car("b");
         List<Car> cars = Arrays.asList(car1, car2);
         when(randomNumberGenerator.generate()).thenReturn(5,5,5,5,5,5);
-        CarRaceGame carRaceGame = new CarRaceGame(cars, randomNumberGenerator);
+        CarRace carRace = new CarRace(cars, randomNumberGenerator);
 
         // When
-        carRaceGame.start(3);
+        carRace.start(3);
 
         // Then
-        assertThat(carRaceGame.getWinnerCarNames()).isEqualTo(Arrays.asList("a","b"));
+        assertThat(carRace.getWinnerCarNames()).isEqualTo(Arrays.asList("a","b"));
     }
 }
