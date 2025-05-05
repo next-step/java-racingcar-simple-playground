@@ -1,3 +1,5 @@
+package domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,7 @@ class CarsTest {
         @Test
         @DisplayName("모든 자동차가 이동 조건을 만족하면 전진한다")
         void allCarsMove() {
-            MoveCondition alwaysMove = new MoveCondition(() -> 5);
+            NumberGenerator alwaysMove = () -> 5;
 
             Cars cars = new Cars(List.of(
                     new Car(new Name("A")),
@@ -33,7 +35,7 @@ class CarsTest {
         @Test
         @DisplayName("모든 자동차가 이동 조건을 만족하지 않으면 멈춘다")
         void allCarsStop() {
-            MoveCondition neverMove = new MoveCondition(() -> 2);
+            NumberGenerator neverMove = () -> 2;
 
             Cars cars = new Cars(List.of(
                     new Car(new Name("A")),
@@ -56,7 +58,7 @@ class CarsTest {
         @Test
         @DisplayName("가장 멀리 간 자동차 한 대를 우승자로 반환한다")
         void findSingleWinner() {
-            Car winner = new Car(new Name("Winner"));
+            Car winner = new Car(new Name("위너"));
             winner.move(new MoveCondition(() -> 5));
 
             Car loser = new Car(new Name("Loser"));

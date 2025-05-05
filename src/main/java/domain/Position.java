@@ -1,3 +1,5 @@
+package domain;
+
 public class Position {
     public static final String INVALID_POSITION_ERROR = "[ERROR] 위치는 음수일 수 없습니다.";
     private static final int MIN_POSITION = 0;

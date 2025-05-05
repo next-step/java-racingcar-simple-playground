@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,8 +12,8 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
-    public void attemptToMoveAll(MoveCondition condition) {
-        cars.forEach(car -> car.move(condition));
+    public void attemptToMoveAll(NumberGenerator generator) {
+        cars.forEach(car -> car.move(new MoveCondition(generator)));
     }
 
     public List<Car> findWinners() {

@@ -1,9 +1,10 @@
+package domain;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class MoveConditionTest {
 
@@ -17,7 +18,7 @@ class MoveConditionTest {
             NumberGenerator generator = () -> input;
             MoveCondition condition = new MoveCondition(generator);
 
-            assertThat(condition.isMoveable()).isTrue();
+            Assertions.assertThat(condition.isMoveable()).isTrue();
         }
     }
 
@@ -31,7 +32,7 @@ class MoveConditionTest {
             NumberGenerator generator = () -> input;
             MoveCondition condition = new MoveCondition(generator);
 
-            assertThat(condition.isMoveable()).isFalse();
+            Assertions.assertThat(condition.isMoveable()).isFalse();
         }
     }
 }

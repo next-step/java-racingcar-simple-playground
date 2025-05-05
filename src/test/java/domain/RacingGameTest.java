@@ -1,3 +1,5 @@
+package domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -16,16 +18,12 @@ class RacingGameTest {
         @Test
         @DisplayName("3번 라운드 실행 시 자동차는 최대 3칸까지 이동할 수 있다")
         void carMovesUpToThreeTimes() {
-            Cars cars = new Cars(List.of(
-                    new Car(new Name("A")),
-                    new Car(new Name("B"))
-            ));
-            MoveCondition alwaysMove = new MoveCondition(() -> 9);
-            RacingGame game = new RacingGame(cars, alwaysMove);
+            List<Car> carList = List.of(new Car(new Name("A")), new Car(new Name("B")));
+            RacingGame game = new RacingGame(new Cars(carList), () -> 9);
 
-            game.run(3);
+            runRounds(game, 3);
 
-            assertThat(cars.getCars())
+            assertThat(game.getCars())
                     .extracting(Car::getPosition)
                     .containsExactly(3, 3);
         }
@@ -33,16 +31,10 @@ class RacingGameTest {
         @Test
         @DisplayName("0번 라운드 실행 시 자동차는 이동하지 않는다")
         void carDoesNotMoveWhenZeroRounds() {
-            Cars cars = new Cars(List.of(
-                    new Car(new Name("A")),
-                    new Car(new Name("B"))
-            ));
-            MoveCondition alwaysMove = new MoveCondition(() -> 9);
-            RacingGame game = new RacingGame(cars, alwaysMove);
+            List<Car> carList = List.of(new Car(new Name("A")), new Car(new Name("B")));
+            RacingGame game = new RacingGame(new Cars(carList), () -> 9);
 
-            game.run(0);
-
-            assertThat(cars.getCars())
+            assertThat(game.getCars())
                     .extracting(Car::getPosition)
                     .containsExactly(0, 0);
         }
@@ -57,34 +49,33 @@ class RacingGameTest {
         void returnsWinnerAfterRace() {
             Car a = new Car(new Name("A"));
             Car b = new Car(new Name("B"));
-            Cars cars = new Cars(List.of(a, b));
-
             List<Integer> values = List.of(5, 2, 2, 2);
             Iterator<Integer> iterator = values.iterator();
+            NumberGenerator generator = iterator::next;
 
-            MoveCondition moveOnlyA = new MoveCondition(iterator::next);
+            RacingGame game = new RacingGame(new Cars(List.of(a, b)), generator);
 
-            RacingGame game = new RacingGame(cars, moveOnlyA);
-            game.run(2);
+            runRounds(game, 2);
 
-            List<Car> winners = game.getWinners();
-            assertThat(winners).containsExactly(a);
+            assertThat(game.getWinners()).containsExactly(a);
         }
-
 
         @Test
         @DisplayName("동일한 위치의 자동차가 여러 대면 모두 우승자다")
         void multipleWinnersWhenSameMaxPosition() {
             Car a = new Car(new Name("A"));
             Car b = new Car(new Name("B"));
-            Cars cars = new Cars(List.of(a, b));
+            RacingGame game = new RacingGame(new Cars(List.of(a, b)), () -> 8);
 
-            MoveCondition alwaysMove = new MoveCondition(() -> 8);
-            RacingGame game = new RacingGame(cars, alwaysMove);
-            game.run(2);
+            runRounds(game, 2);
 
-            List<Car> winners = game.getWinners();
-            assertThat(winners).containsExactlyInAnyOrder(a, b);
+            assertThat(game.getWinners()).containsExactlyInAnyOrder(a, b);
+        }
+    }
+
+    private void runRounds(RacingGame game, int count) {
+        for (int i = 0; i < count; i++) {
+            game.playOneRound();
         }
     }
 }

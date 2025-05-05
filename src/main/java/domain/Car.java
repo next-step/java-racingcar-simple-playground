@@ -1,3 +1,5 @@
+package domain;
+
 public class Car {
     private static final int INITIAL_POSITION = 0;
 

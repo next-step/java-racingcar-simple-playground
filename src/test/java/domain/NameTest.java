@@ -1,8 +1,10 @@
+package domain;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
@@ -17,19 +19,19 @@ class NameTest {
             Name name1 = new Name("사이다");
             Name name2 = new Name("사이다");
 
-            assertThat(name1).isEqualTo(name2);
-            assertThat(name1).isNotSameAs(name2);
-            assertThat(name1.getValue()).isEqualTo("사이다");
+            Assertions.assertThat(name1).isEqualTo(name2);
+            Assertions.assertThat(name1).isNotSameAs(name2);
+            Assertions.assertThat(name1.getValue()).isEqualTo("사이다");
         }
 
         @Test
-        @DisplayName("값이 같은 Name 객체는 양방향 equals 비교 시 true를 반환한다")
+        @DisplayName("값이 같은 domain.Name 객체는 양방향 equals 비교 시 true를 반환한다")
         void nameEqualityIsSymmetric() {
             Name a = new Name("콜라");
             Name b = new Name("콜라");
 
-            assertThat(a).isEqualTo(b);
-            assertThat(b).isEqualTo(a);
+            Assertions.assertThat(a).isEqualTo(b);
+            Assertions.assertThat(b).isEqualTo(a);
         }
 
         @Test
@@ -38,8 +40,8 @@ class NameTest {
             Name a = new Name("물");
             Name b = new Name("물");
 
-            assertThat(a).isEqualTo(b);
-            assertThat(a.hashCode()).isEqualTo(b.hashCode());
+            Assertions.assertThat(a).isEqualTo(b);
+            Assertions.assertThat(a.hashCode()).isEqualTo(b.hashCode());
         }
     }
 
@@ -76,7 +78,7 @@ class NameTest {
         void notEqualToNull() {
             Name name = new Name("환타");
 
-            assertThat(name).isNotEqualTo(null);
+            Assertions.assertThat(name).isNotEqualTo(null);
         }
 
         @Test
@@ -85,7 +87,7 @@ class NameTest {
             Name name = new Name("밀키스");
             String other = "밀키스";
 
-            assertThat(name).isNotEqualTo(other);
+            Assertions.assertThat(name).isNotEqualTo(other);
         }
     }
 }

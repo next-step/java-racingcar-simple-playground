@@ -1,3 +1,6 @@
+package domain;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,7 +18,7 @@ class CarTest {
         void initialPositionIsZero() {
             Car car = new Car(new Name("콜라"));
 
-            assertThat(car.getPosition()).isEqualTo(0);
+            Assertions.assertThat(car.getPosition()).isEqualTo(0);
         }
 
         @Test
@@ -24,7 +27,7 @@ class CarTest {
             Name name = new Name("제로");
             Car car = new Car(name);
 
-            assertThat(car.getName()).isEqualTo("제로");
+            Assertions.assertThat(car.getName()).isEqualTo("제로");
         }
 
         @Test
@@ -36,7 +39,7 @@ class CarTest {
 
             car.move(condition);
 
-            assertThat(car.getPosition()).isEqualTo(1);
+            Assertions.assertThat(car.getPosition()).isEqualTo(1);
         }
     }
 
@@ -53,7 +56,7 @@ class CarTest {
 
             car.move(condition);
 
-            assertThat(car.getPosition()).isEqualTo(0);
+            Assertions.assertThat(car.getPosition()).isEqualTo(0);
         }
     }
 }

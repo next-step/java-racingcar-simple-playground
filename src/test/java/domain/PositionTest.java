@@ -1,8 +1,10 @@
+package domain;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionTest {
@@ -17,19 +19,19 @@ class PositionTest {
             Position p1 = new Position(2);
             Position p2 = new Position(2);
 
-            assertThat(p1).isEqualTo(p2);
-            assertThat(p1).isNotSameAs(p2);
-            assertThat(p1.getValue()).isEqualTo(2);
+            Assertions.assertThat(p1).isEqualTo(p2);
+            Assertions.assertThat(p1).isNotSameAs(p2);
+            Assertions.assertThat(p1.getValue()).isEqualTo(2);
         }
 
         @Test
-        @DisplayName("값이 같은 Position 객체는 양방향 equals 비교 시 true를 반환한다")
+        @DisplayName("값이 같은 domain.Position 객체는 양방향 equals 비교 시 true를 반환한다")
         void positionEqualityIsSymmetric() {
             Position a = new Position(5);
             Position b = new Position(5);
 
-            assertThat(a).isEqualTo(b);
-            assertThat(b).isEqualTo(a);
+            Assertions.assertThat(a).isEqualTo(b);
+            Assertions.assertThat(b).isEqualTo(a);
         }
 
         @Test
@@ -38,8 +40,8 @@ class PositionTest {
             Position a = new Position(4);
             Position b = new Position(4);
 
-            assertThat(a).isEqualTo(b);
-            assertThat(a.hashCode()).isEqualTo(b.hashCode());
+            Assertions.assertThat(a).isEqualTo(b);
+            Assertions.assertThat(a.hashCode()).isEqualTo(b.hashCode());
         }
 
         @Test
@@ -48,10 +50,10 @@ class PositionTest {
             Position origin = new Position(0);
             Position moved = origin.forward();
 
-            assertThat(moved).isEqualTo(new Position(1));
-            assertThat(moved).isNotSameAs(origin);
-            assertThat(origin.getValue()).isEqualTo(0);
-            assertThat(moved.getValue()).isEqualTo(1);
+            Assertions.assertThat(moved).isEqualTo(new Position(1));
+            Assertions.assertThat(moved).isNotSameAs(origin);
+            Assertions.assertThat(origin.getValue()).isEqualTo(0);
+            Assertions.assertThat(moved.getValue()).isEqualTo(1);
         }
     }
 
@@ -72,7 +74,7 @@ class PositionTest {
         void notEqualToNull() {
             Position position = new Position(1);
 
-            assertThat(position).isNotEqualTo(null);
+            Assertions.assertThat(position).isNotEqualTo(null);
         }
 
         @Test
@@ -81,7 +83,7 @@ class PositionTest {
             Position position = new Position(1);
             String other = "1";
 
-            assertThat(position).isNotEqualTo(other);
+            Assertions.assertThat(position).isNotEqualTo(other);
         }
     }
 }

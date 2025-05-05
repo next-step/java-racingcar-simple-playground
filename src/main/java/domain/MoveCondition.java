@@ -1,3 +1,5 @@
+package domain;
+
 public class MoveCondition {
     private static final int MOVE_THRESHOLD = 4;
 
