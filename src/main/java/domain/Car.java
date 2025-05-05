@@ -4,9 +4,20 @@ public class Car {
     private String name;
     private int distance = 0;
     private final int MOVE_STANDARD_NUMBER = 4;
+    private final int MAX_CAR_NAME_LENGTH = 5;
 
     public Car(String name){
+        validate(name);
         this.name = name;
+    }
+
+    private void validate(String name) {
+        if(name.length() > MAX_CAR_NAME_LENGTH ){
+            throw new IllegalArgumentException("자동차의 이름은 5글자 이하여야합니다.");
+        }
+        if(name.trim().isEmpty()){
+            throw new IllegalArgumentException("자동차의 이름은 공백이 될 수 없습니다.");
+        }
     }
 
     public void tryMoveByNumber(int number){
