@@ -1,4 +1,6 @@
 public class Car {
+    private static final int MIN_POWER_TO_MOVE = 3;
+
     private final String name;
     private int position;
 
@@ -22,8 +24,8 @@ public class Car {
         }
     }
 
-    public void canMove(int randomValue) {
-        if (randomValue > 3) {
+    public void moveForward(int power) {
+        if (MIN_POWER_TO_MOVE < power) {
             position++;
         }
     }

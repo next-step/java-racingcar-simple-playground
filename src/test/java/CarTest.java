@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class CarTest {
+    private static final int MIN_POWER_TO_MOVE = 4;
 
     @Test
     @DisplayName("자동차는 정상적으로 이름을 갖는다.")
@@ -29,28 +30,26 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차는 랜덤 값이 4 이상일 경우 전진할 수 있다.")
-    void shouldMoveForward_whenMovableRandomValue() {
+    @DisplayName("자동차는 움직이기 위한 최소 힘 이상을 전달한 경우 전진한다.")
+    void shouldMoveForward_whenMovableValue() {
         // given
         Car car = new Car("jiyun");
 
         // when
-        int randomValue = 4;
-        car.canMove(randomValue);
+        car.moveForward(MIN_POWER_TO_MOVE);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("자동차는 랜덤 값이 3 이하일 경우 멈춘다.")
-    void shouldStop_whenImmovableRandomValue() {
+    @DisplayName("자동차는 움직이기 위한 최소 힘 미만을 전달할 경우 움직이지 않는다.")
+    void shouldStop_whenImmovableValue() {
         // given
         Car car = new Car("jiyun");
 
         // when
-        int randomValue = 3;
-        car.canMove(randomValue);
+        car.moveForward(MIN_POWER_TO_MOVE - 1);
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);
