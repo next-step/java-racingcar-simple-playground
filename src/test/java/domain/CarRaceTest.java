@@ -24,10 +24,11 @@ public class CarRaceTest {
         Car car2 = new Car("b");
         List<Car> cars = Arrays.asList(car1, car2);
         when(randomNumberGenerator.generate()).thenReturn(1,5,1,5,1,5);
-        CarRace carRace = new CarRace(cars, randomNumberGenerator);
+        int playRounds = 3;
+        CarRace carRace = new CarRace(cars,playRounds, randomNumberGenerator);
 
         // When
-        carRace.start(3);
+        carRace.start();
 
         // Then
         assertThat(carRace.getWinnerCarNames()).isEqualTo(Arrays.asList("b"));
@@ -41,10 +42,11 @@ public class CarRaceTest {
         Car car2 = new Car("b");
         List<Car> cars = Arrays.asList(car1, car2);
         when(randomNumberGenerator.generate()).thenReturn(5,5,5,5,5,5);
-        CarRace carRace = new CarRace(cars, randomNumberGenerator);
+        int playRounds = 3;
+        CarRace carRace = new CarRace(cars,playRounds, randomNumberGenerator);
 
         // When
-        carRace.start(3);
+        carRace.start();
 
         // Then
         assertThat(carRace.getWinnerCarNames()).isEqualTo(Arrays.asList("a","b"));

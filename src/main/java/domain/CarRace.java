@@ -4,21 +4,23 @@ import java.util.List;
 
 public class CarRace {
     private final List<Car> cars;
+    private final int gameRounds;
     private List<String> winnerCarNames;
     private final NumberGenerator numberGenerator;
 
-    public CarRace(List<Car> cars, NumberGenerator numberGenerator) {
+    public CarRace(List<Car> cars, int gameRounds, NumberGenerator numberGenerator) {
         this.cars = cars;
+        this.gameRounds = gameRounds;
         this.numberGenerator = numberGenerator;
     }
 
-    public void start(int gameRounds){
-        playRounds(gameRounds);
+    public void start(){
+        playRounds();
         int maxDistance = getMaxDistanceFromCars();
         winnerCarNames = getWinnerCarNames(maxDistance);
     }
 
-    private void playRounds(int gameRounds) {
+    private void playRounds() {
         for(int i=0; i< gameRounds; i++){
             cars.forEach(car -> car.tryMoveByNumber(numberGenerator.generate()));
         }
