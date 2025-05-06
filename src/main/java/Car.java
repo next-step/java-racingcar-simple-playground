@@ -4,9 +4,14 @@ public class Car {
 
     private String carName;
     private int carPosition = 0;
+    private final MoveCondition moveCondition;
 
-    public Car(String carName) {
+    public Car(String carName, MoveCondition moveCondition) {
+        if (carName == null || carName.trim().isEmpty()) {
+            throw new IllegalArgumentException("차의 이름이 비어있습니다");
+        }
         this.carName = carName;
+        this.moveCondition = moveCondition;
     }
 
     public int getPosition() {
@@ -18,14 +23,9 @@ public class Car {
     }
 
     public void move(int value){
-        if (isMovable(value)) {
+        if (moveCondition.isMovable(value)) {
             carPosition++;
         }
     }
-
-    private boolean isMovable(int value) {
-        return value >= MOVE_THRESHOLD;
-    }
 }
-
 
