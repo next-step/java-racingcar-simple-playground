@@ -24,7 +24,7 @@ public class CarRaceApp {
         final CarRace carRace = new CarRace(cars, gameRounds, numberGenerator);
         carRace.start();
 
-        // TODO: 실행 결과 출력
+        outputView.printGameResult(carRace.getGameRoundsOutput());
 
         // TODO: 우승자 출력
 
