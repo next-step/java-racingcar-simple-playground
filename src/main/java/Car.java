@@ -18,13 +18,13 @@ public class Car {
         return position;
     }
 
-    private void validateEmptyName(String name) {
+    private void validateEmptyName(final String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
     }
 
-    public void moveForward(int power) {
+    public void moveForward(final int power) {
         if (MIN_POWER_TO_MOVE < power) {
             position++;
         }
