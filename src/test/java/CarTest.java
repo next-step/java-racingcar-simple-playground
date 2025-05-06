@@ -1,7 +1,10 @@
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class CarTest {
 
@@ -13,6 +16,16 @@ class CarTest {
 
         // when & then
         assertThat(car.getName()).isEqualTo("jiyun");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("자동차 이름에 빈 값이 입력될 경우 예외가 발생한다.")
+    void shouldThrowException_whenEmptyName(String name) {
+        // given & when & then
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름을 입력해주세요.");
     }
 
     @Test
