@@ -17,11 +17,11 @@ class RacingCarTest {
         System.out.println("난수: " + number);
         if (carStatus) {
             System.out.println(name + "는 " + number + " 만큼" + " 전진했습니다");
-        } else {
+        }
+        if (!carStatus) {
             System.out.println(name + "는 " + number + " 가 나와" + " 멈췄습니다");
         }
-
-        System.out.println("----------");
+        System.out.println("============ 구분선 ===============");
     }
 
 }
