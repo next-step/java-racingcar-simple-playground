@@ -14,17 +14,24 @@ public class CarRaceApp {
         final CarNameParser carNameParser = new CarNameParser();
         final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-        outputView.printInputCarsName();
-        String carNames = inputView.readCarNames();
-        List<Car> cars = carNameParser.parse(carNames).stream().map(Car::new).toList();
-
-        outputView.printInputGameRounds();
-        int gameRounds = inputView.readGameRounds();
-
+        List<Car> cars = getCars(outputView, inputView, carNameParser);
+        int gameRounds = getGameRounds(outputView, inputView);
         final CarRace carRace = new CarRace(cars, gameRounds, numberGenerator);
         carRace.start();
 
         outputView.printGameResult(carRace.getGameRoundsOutput());
         outputView.printWinnerCarNames(carRace.getWinnerCarNames());
+    }
+
+    private static int getGameRounds(OutputView outputView, InputView inputView) {
+        outputView.printInputGameRounds();
+        return inputView.readGameRounds();
+    }
+
+    private static List<Car> getCars(OutputView outputView, InputView inputView,
+        CarNameParser carNameParser) {
+        outputView.printInputCarsName();
+        String carNames = inputView.readCarNames();
+        return carNameParser.parse(carNames).stream().map(Car::new).toList();
     }
 }
