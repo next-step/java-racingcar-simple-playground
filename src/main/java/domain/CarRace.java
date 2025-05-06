@@ -7,7 +7,7 @@ public class CarRace {
     private final List<Car> cars;
     private final int gameRounds;
     private final NumberGenerator numberGenerator;
-    private final StringBuilder gameRoundsOutput = new StringBuilder("\n실행결과\n");
+    private final StringBuilder gameRoundsOutput = new StringBuilder("\n실행결과");
     private final String DISTANCE_EXPRESSION = "-";
     private List<String> winnerCarNames;
 
@@ -34,8 +34,8 @@ public class CarRace {
     }
 
     private void recordOutput(Car car) {
-        gameRoundsOutput.append(car.getName()).append(" : ")
-            .append(DISTANCE_EXPRESSION.repeat(car.getDistance())).append("\n");
+        gameRoundsOutput.append("\n").append(car.getName()).append(" : ")
+            .append(DISTANCE_EXPRESSION.repeat(car.getDistance()));
     }
 
     private int getMaxDistanceFromCars() {

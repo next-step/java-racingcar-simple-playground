@@ -25,8 +25,6 @@ public class CarRaceApp {
         carRace.start();
 
         outputView.printGameResult(carRace.getGameRoundsOutput());
-
-        // TODO: 우승자 출력
-
+        outputView.printWinnerCarNames(carRace.getWinnerCarNames());
     }
 }
