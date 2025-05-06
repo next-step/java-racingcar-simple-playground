@@ -20,7 +20,7 @@ public class CarRace {
     public void start() {
         playRounds();
         int maxDistance = getMaxDistanceFromCars();
-        winnerCarNames = getWinnerCarNames(maxDistance);
+        winnerCarNames = getWinnerCarNamesForMaxDistance(maxDistance);
     }
 
     private void playRounds() {
@@ -42,7 +42,7 @@ public class CarRace {
         return cars.stream().mapToInt(Car::getDistance).max().orElse(0);
     }
 
-    private List<String> getWinnerCarNames(int maxDistance) {
+    private List<String> getWinnerCarNamesForMaxDistance(int maxDistance) {
         return cars.stream().filter(car -> car.getDistance() == maxDistance).map(Car::getName)
             .toList();
     }
