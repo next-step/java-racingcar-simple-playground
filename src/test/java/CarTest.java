@@ -6,12 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
+    static MoveCondition moveCondition = new MoveConditionImpl();
 
     @Test
     @DisplayName("Car 객체 생성 시 이름이 정상적으로 저장된다")
     void carIsCreatedWithCorrectName() {
-        Car car1 = new Car("A");
-        Car car2 = new Car("B");
+        Car car1 = new Car("A",moveCondition);
+        Car car2 = new Car("B",moveCondition);
+
+        assertThat(car1.getName()).isEqualTo("A");
+        assertThat(car2.getName()).isEqualTo("B");
+    }
+
+    @Test
+    @DisplayName("Car 객체 생성 시 이름이 정상적으로 저장된다")
+    void carIsCreatedWithCorrect() {
+        Car car1 = new Car("A",moveCondition);
+        Car car2 = new Car("B",moveCondition);
 
         assertThat(car1.getName()).isEqualTo("A");
         assertThat(car2.getName()).isEqualTo("B");
@@ -20,7 +31,7 @@ class CarTest {
     @Test
     @DisplayName("랜덤값이 4 이상이면 자동차가 전진한다")
     void carMovesWhenRandomValueIsGreaterThanOrEqualToThreshold() {
-        Car car = new Car("A");
+        Car car = new Car("A",moveCondition);
         car.move(4);
         assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -28,7 +39,7 @@ class CarTest {
     @Test
     @DisplayName("랜덤값이 3 이하면 자동차는 정지한다")
     void carDoesNotMoveWhenRandomValueIsLessThanThreshold() {
-        Car car = new Car("A");
+        Car car = new Car("A",moveCondition);
         car.move(3);
         assertThat(car.getPosition()).isEqualTo(0);
     }
@@ -36,7 +47,7 @@ class CarTest {
     @Test
     @DisplayName("자동차는 조건을 만족하면 이동을 누적한다")
     void carMultipleMove() {
-        Car car = new Car("A");
+        Car car = new Car("A",moveCondition);
 
         car.move(7); // 이동
         car.move(2); // 정지
