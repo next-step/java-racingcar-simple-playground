@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class CarTest {
-    private static final int MIN_POWER_TO_MOVE = 4;
+    private static final int POWER_THRESHOLD_TO_MOVE = 3;
 
     @Test
     @DisplayName("자동차는 정상적으로 이름을 갖는다.")
@@ -36,7 +36,7 @@ class CarTest {
         Car car = new Car("jiyun");
 
         // when
-        car.moveForward(MIN_POWER_TO_MOVE);
+        car.moveForward(POWER_THRESHOLD_TO_MOVE + 1);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -49,7 +49,7 @@ class CarTest {
         Car car = new Car("jiyun");
 
         // when
-        car.moveForward(MIN_POWER_TO_MOVE - 1);
+        car.moveForward(POWER_THRESHOLD_TO_MOVE);
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);

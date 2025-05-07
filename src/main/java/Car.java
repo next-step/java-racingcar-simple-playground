@@ -1,5 +1,5 @@
 public class Car {
-    private static final int MIN_POWER_TO_MOVE = 3;
+    private static final int POWER_THRESHOLD_TO_MOVE = 3;
 
     private final String name;
     private int position;
@@ -25,7 +25,7 @@ public class Car {
     }
 
     public void moveForward(final int power) {
-        if (MIN_POWER_TO_MOVE < power) {
+        if (POWER_THRESHOLD_TO_MOVE < power) {
             position++;
         }
     }
