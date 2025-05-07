@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -10,6 +11,10 @@ public class InputView {
     }
 
     public int readGameRounds() {
-        return (int)scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            throw new IllegalArgumentException("정수가 아닌 입력입니다.");
+        }
     }
 }
