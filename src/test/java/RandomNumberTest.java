@@ -1,23 +1,16 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 class RandomNumberTest {
 
     @Test
-    @DisplayName("난수 확인하기")
-    void numberStatus() {
-        Random random = new Random();
-
-        int result = RandomNumber.numberStatus();
-
-        assertThat(result).isEqualTo(4);
-        // 랜덤 난수 확인
-
-
+    @DisplayName("랜덤 클래스를 활용한 고정된 시드에서 난수 확인하기")
+    void fixSeed() {
+        RandomNumber randomNumber = new RandomNumber(10); // 시드 고정 10 -> 1로 나옴
+        int result = randomNumber.instanceNumber();
+        assertThat(result).isEqualTo(1);
     }
 }

@@ -5,22 +5,22 @@ public class RacingCar {
      * 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
      */
     // 자바 네이밍 규칙에 따라 상수는 대문자로 작성
-    public static final int FIXNUMBER = 3; // 기준값 선언
+    public static final int FIX_NUMBER = 3; // 기준값 선언
     private final String carName;
-
+    private final RandomNumber randomNumber;
 
     public RacingCar(String carName, RandomNumber randomNumber) {
         this.carName = carName;
-
+        this.randomNumber = randomNumber;
     }
 
-    public String carName() {
+    public String getCarName() {
         return this.carName;
     }
 
     public boolean racingCarStatus() {
-        int num = RandomNumber.numberStatus();
-        if (num > FIXNUMBER) {
+        int num = randomNumber.instanceNumber();
+        if (num > FIX_NUMBER) {
             return true;
         }
         return false;
