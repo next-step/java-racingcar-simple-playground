@@ -1,27 +1,20 @@
 public class Car {
     private static final int POWER_THRESHOLD_TO_MOVE = 3;
 
-    private final String name;
+    private final Name name;
     private int position;
 
     public Car(final String name) {
-        validateEmptyName(name);
-        this.name = name;
+        this.name = new Name(name);
         this.position = 0;
     }
 
     public String getName() {
-        return name;
+        return name.value();
     }
 
     public int getPosition() {
         return position;
-    }
-
-    private void validateEmptyName(final String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("이름을 입력해주세요.");
-        }
     }
 
     public void moveForward(final int power) {
