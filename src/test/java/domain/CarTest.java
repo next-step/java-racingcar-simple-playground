@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import exception.CarNameTooLongException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -45,7 +46,8 @@ public class CarTest {
         @DisplayName("자동차 생성 이름 테스트: 예외")
         void invalidCarNameTest() {
             assertAll(
-                () -> assertThatThrownBy(() -> new Car("aaaaaa")).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThatThrownBy(() -> new Car("aaaaaa")).isInstanceOf(
+                    CarNameTooLongException.class),
                 () -> assertThatThrownBy(() -> new Car("  ")).isInstanceOf(IllegalArgumentException.class),
                 () -> assertThatThrownBy(() -> new Car("")).isInstanceOf(IllegalArgumentException.class)
             );

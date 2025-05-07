@@ -1,5 +1,7 @@
 package domain;
 
+import exception.CarNameTooLongException;
+
 public class Car {
     private String name;
     private int distance = 0;
@@ -13,7 +15,7 @@ public class Car {
 
     private void validate(String name) {
         if(name.length() > MAX_CAR_NAME_LENGTH ){
-            throw new IllegalArgumentException("자동차의 이름은 5글자 이하여야합니다.");
+            throw new CarNameTooLongException("자동차의 이름은 5글자 이하여야합니다.");
         }
         if(name.trim().isEmpty()){
             throw new IllegalArgumentException("자동차의 이름은 공백이 될 수 없습니다.");
