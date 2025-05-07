@@ -5,9 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import strategy.AlwaysFalseMoveStrategy;
+import strategy.AlwaysTrueMoveStrategy;
 
 class CarTest {
-    private static final int POWER_THRESHOLD_TO_MOVE = 3;
 
     @Test
     @DisplayName("자동차는 정상적으로 이름을 갖는다.")
@@ -34,9 +35,10 @@ class CarTest {
     void shouldMoveForward_whenMovableValue() {
         // given
         Car car = new Car("jiyun");
+        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
 
         // when
-        car.moveForward(POWER_THRESHOLD_TO_MOVE + 1);
+        car.moveForward(alwaysTrueMoveStrategy);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -47,9 +49,10 @@ class CarTest {
     void shouldStop_whenImmovableValue() {
         // given
         Car car = new Car("jiyun");
+        AlwaysFalseMoveStrategy alwaysFalseMoveStrategy = new AlwaysFalseMoveStrategy();
 
         // when
-        car.moveForward(POWER_THRESHOLD_TO_MOVE);
+        car.moveForward(alwaysFalseMoveStrategy);
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);

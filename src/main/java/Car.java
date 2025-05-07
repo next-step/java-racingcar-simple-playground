@@ -1,6 +1,6 @@
-public class Car {
-    private static final int POWER_THRESHOLD_TO_MOVE = 3;
+import strategy.MoveStrategy;
 
+public class Car {
     private final Name name;
     private int position;
 
@@ -17,8 +17,8 @@ public class Car {
         return position;
     }
 
-    public void moveForward(final int power) {
-        if (POWER_THRESHOLD_TO_MOVE < power) {
+    public void moveForward(final MoveStrategy moveStrategy) {
+        if (moveStrategy.canMove()) {
             position++;
         }
     }
