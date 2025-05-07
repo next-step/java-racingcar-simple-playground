@@ -56,6 +56,28 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("주어진 횟수 동안 n대의 자동차 중에 우승자가 1명 이상 나온다")
+    void whichCarIsWin() {
+        Car carA = new Car("A",moveCondition);
+        Car carB = new Car("B",moveCondition);
+        Car carC = new Car("C",moveCondition);
+
+        Car[] cars = {carA, carB, carC};
+
+        int testRounds = 1;
+        CarWinner winner = new CarWinner(cars);
+        winner.whichWinner(testRounds);
+
+        //우승자는 1명 이상 나온다
+        assertThat(winner.getWinnerCnt()).isGreaterThanOrEqualTo(1);
+        //우승자의 수와 이름의 수가 같아야 한다
+        assertThat(winner.getWinnerCnt()).isEqualTo(winner.getWinnerName().size());
+
+    }
+
+
+
 
 }
 
