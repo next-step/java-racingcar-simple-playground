@@ -1,3 +1,5 @@
+package model;
+
 import strategy.MoveStrategy;
 
 public class Car {

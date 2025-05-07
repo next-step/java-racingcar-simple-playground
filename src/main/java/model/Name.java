@@ -1,3 +1,5 @@
+package model;
+
 public record Name(String value) {
     public Name {
         validateEmptyName(value);
