@@ -1,6 +1,17 @@
+import java.util.List;
+
 public class RacingGame {
-    public void run(Car car) {
-        int number = (int) (Math.random() * 10);
-        car.move(number);
+    private final Cars cars;
+
+    public RacingGame(List<Car> cars) {
+        this.cars = new Cars(cars);
+    }
+
+    public void run() {
+        cars.moveAll();
+    }
+
+    public List<Car> getWinners() {
+        return cars.getWinners();
     }
 }
