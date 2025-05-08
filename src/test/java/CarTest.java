@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,24 +60,23 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(2);
     }
 
-    @Test
-    @DisplayName("주어진 횟수 동안 n대의 자동차 중에 우승자가 1명 이상 나온다")
-    void whichCarIsWin() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("주어진 횟수 동안 n대의 자동차 중에 우승자가 m명 이상 나온다")
+    void whichCarsIsWin(int value) {
         Car carA = new Car("A",moveCondition);
         Car carB = new Car("B",moveCondition);
         Car carC = new Car("C",moveCondition);
 
-        Car[] cars = {carA, carB, carC};
+        Cars cars = new Cars(List.of(carA, carB, carC));
 
         int testRounds = 1;
-        CarWinner winner = new CarWinner(cars);
-        winner.whichWinner(testRounds);
+        cars.moveAll(testRounds);
 
-        //우승자는 1명 이상 나온다
-        assertThat(winner.getWinnerCnt()).isGreaterThanOrEqualTo(1);
+        //우승자는 n명 이상 나온다
+        assertThat(cars.getWinnerCount()).isGreaterThanOrEqualTo(value);
         //우승자의 수와 이름의 수가 같아야 한다
-        assertThat(winner.getWinnerCnt()).isEqualTo(winner.getWinnerName().size());
-
+        assertThat(cars.getWinnerCount()).isEqualTo(cars.getWinnerNames().size());
     }
 
 
