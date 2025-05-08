@@ -24,9 +24,16 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<Car> findWinners() {
+    public List<Integer> getAllPositions() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .toList();
+    }
+
+    public List<String> findWinners() {
         return cars.stream()
                 .filter(car -> car.getPosition() == findMaxPosition())
+                .map(Car::getName)
                 .toList();
     }
 
@@ -35,12 +42,6 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-    }
-
-    public List<Integer> getAllPositions() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .toList();
     }
 
     public void move(final MoveStrategy moveStrategy) {

@@ -50,7 +50,6 @@ class CarsTest {
 
         // then
         assertThat(cars.findWinners())
-                .extracting(Car::getName)
                 .containsExactly("pobi", "jiyun", "juno");
     }
 }

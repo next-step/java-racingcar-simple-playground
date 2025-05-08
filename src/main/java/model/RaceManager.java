@@ -22,10 +22,7 @@ public class RaceManager {
         return cars.getAllPositions();
     }
 
-
     public List<String> findWinnerNames() {
-        return cars.findWinners().stream()
-                .map(Car::getName)
-                .toList();
+        return cars.findWinners();
     }
 }
