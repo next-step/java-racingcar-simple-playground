@@ -2,16 +2,23 @@ import java.util.List;
 
 public class RacingGame {
     private final Cars cars;
+    private final int tryCount;
 
-    public RacingGame(List<Car> cars) {
-        this.cars = new Cars(cars);
+    public RacingGame(Cars cars, int tryCount) {
+        this.cars = cars;
+        this.tryCount = tryCount;
     }
 
     public void run() {
-        cars.moveAll();
+        Output.printResultHeader();
+        for (int i = 0; i < tryCount; i++) {
+            cars.moveAll();
+            Output.printStatus(cars);
+        }
+        Output.printWinners(getWinnerNames());
     }
 
-    public List<Car> getWinners() {
-        return cars.getWinners();
+    private List<String> getWinnerNames() {
+        return cars.getWinners().stream().map(Car::getName).toList();
     }
 }

@@ -23,4 +23,8 @@ public class Cars {
     private int getMaxPosition() {
         return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
     }
+
+    public List<Car> getCars() {
+        return new ArrayList<>(cars);
+    }
 }
