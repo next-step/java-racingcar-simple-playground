@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarNameParserTest {
     @ParameterizedTest
-    @ValueSource(strings = {"a,b,c", "  a, b,c  "," a , b,  c"})
+    @ValueSource(strings = {"a,b,c", "  a, b,c  ", " a , b,  c"})
     @DisplayName("자동차 문자열 파싱 테스트")
     void splitCarNamesString(String carNamesInput) {
         // Given

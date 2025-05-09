@@ -43,18 +43,18 @@ public class CarRaceAppTest {
         String output = outContent.toString();
         String[] lines = output.split("\\R");
         assertThat(lines).containsExactly(
-            "",
-            "실행결과",
-            "a : ",
-            "b : -",
-            "",
-            "a : ",
-            "b : --",
-            "",
-            "a : ",
-            "b : ---",
-            "",
-            "b가 최종 우승했습니다."
+                "",
+                "실행결과",
+                "a : ",
+                "b : -",
+                "",
+                "a : ",
+                "b : --",
+                "",
+                "a : ",
+                "b : ---",
+                "",
+                "b가 최종 우승했습니다."
         );
 
         System.setOut(System.out);

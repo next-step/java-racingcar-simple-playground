@@ -46,17 +46,17 @@ public class CarTest {
         @DisplayName("자동차 생성 이름 테스트: 예외")
         void invalidCarNameTest() {
             assertAll(
-                () -> assertThatThrownBy(() -> new Car("aaaaaa")).isInstanceOf(
-                    CarNameTooLongException.class),
-                () -> assertThatThrownBy(() -> new Car("  ")).isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() -> new Car("")).isInstanceOf(IllegalArgumentException.class)
+                    () -> assertThatThrownBy(() -> new Car("aaaaaa")).isInstanceOf(
+                            CarNameTooLongException.class),
+                    () -> assertThatThrownBy(() -> new Car("  ")).isInstanceOf(IllegalArgumentException.class),
+                    () -> assertThatThrownBy(() -> new Car("")).isInstanceOf(IllegalArgumentException.class)
             );
         }
 
         @Test
         @DisplayName("자동차 생성 이름 테스트: 정상")
         void validCarName() {
-            assertDoesNotThrow(()->new Car("aaa"));
+            assertDoesNotThrow(() -> new Car("aaa"));
         }
     }
 

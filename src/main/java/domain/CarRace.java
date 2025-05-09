@@ -35,7 +35,7 @@ public class CarRace {
 
     private void recordOutput(Car car) {
         gameRoundsOutput.append("\n").append(car.getName()).append(" : ")
-            .append(DISTANCE_EXPRESSION.repeat(car.getDistance()));
+                .append(DISTANCE_EXPRESSION.repeat(car.getDistance()));
     }
 
     private int getMaxDistanceFromCars() {
@@ -44,7 +44,7 @@ public class CarRace {
 
     private List<String> getWinnerCarNamesForMaxDistance(int maxDistance) {
         return cars.stream().filter(car -> car.getDistance() == maxDistance).map(Car::getName)
-            .toList();
+                .toList();
     }
 
     public List<String> getWinnerCarNames() {

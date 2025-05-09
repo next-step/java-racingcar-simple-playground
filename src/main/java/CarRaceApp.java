@@ -29,7 +29,7 @@ public class CarRaceApp {
     }
 
     private static List<Car> getCars(OutputView outputView, InputView inputView,
-        CarNameParser carNameParser) {
+                                     CarNameParser carNameParser) {
         outputView.printInputCarsName();
         String carNames = inputView.readCarNames();
         return carNameParser.parse(carNames).stream().map(Car::new).toList();

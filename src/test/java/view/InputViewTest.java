@@ -1,11 +1,11 @@
 package view;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import java.io.ByteArrayInputStream;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
     @ParameterizedTest
@@ -18,6 +18,6 @@ public class InputViewTest {
 
         // When & Then
         assertThatThrownBy(inputView::readGameRounds)
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
