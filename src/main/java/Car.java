@@ -3,13 +3,14 @@ public class Car {
     private final String name;
 
     public Car(String name) {
+        validateName(name);
         this.name = name;
     }
 
-    // 테스트를 위해 추가함
-    public Car(String name, int position){
-        this.name = name;
-        this.position = position;
+    private void validateName(String name){
+        if(name.length()>5){
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하만 가능합니다.");
+        }
     }
 
     public void move(RandomNumberProvider provider, Mover mover) {
@@ -17,16 +18,17 @@ public class Car {
         position += mover.move(randomNumber);
     }
 
-    // private으로 작성했기 때문에 get 사용
+    public void move(int number) {
+        if (number >= 4) {
+            position++;
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public String getPositionDisplay() {
-        return name + " : " + "-".repeat(position);
     }
 }
