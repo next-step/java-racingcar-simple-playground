@@ -4,11 +4,11 @@ import java.util.List;
 
 public class CarRace {
 
+    private static final String DISTANCE_EXPRESSION = "-";
     private final List<Car> cars;
     private final int gameRounds;
     private final NumberGenerator numberGenerator;
     private final StringBuilder gameRoundsOutput = new StringBuilder("\n실행결과");
-    private final String DISTANCE_EXPRESSION = "-";
     private List<String> winnerCarNames;
 
     public CarRace(List<Car> cars, int gameRounds, NumberGenerator numberGenerator) {
@@ -25,12 +25,16 @@ public class CarRace {
 
     private void playRounds() {
         for (int i = 0; i < gameRounds; i++) {
-            cars.forEach(car -> {
-                car.tryMoveByNumber(numberGenerator.generate());
-                recordOutput(car);
-            });
+            moveCarsAndRecord();
             gameRoundsOutput.append("\n");
         }
+    }
+
+    private void moveCarsAndRecord() {
+        cars.forEach(car -> {
+            car.tryMoveByNumber(numberGenerator.generate());
+            recordOutput(car);
+        });
     }
 
     private void recordOutput(Car car) {
