@@ -15,4 +15,34 @@ class RacingCarTest {
         System.out.println("랜덤값 참 거짓 확인: " + result);
         assertThat(result).isTrue();
     }
+
+    @Test
+    @DisplayName("n개의 자동차 확인")
+    void withCar() {
+        RandomNumber randomNumber = new RandomNumber(20); // seed20 -> 9
+        RacingCar car1 = new RacingCar("빵빵이", randomNumber);
+        RacingCar car2 = new RacingCar("방방이", randomNumber);
+        RacingCar car3 = new RacingCar("통통이", randomNumber);
+
+        boolean result1 = car1.racingCarStatus();
+        System.out.println("랜덤값 참 거짓 확인: " + result1);
+        assertThat(result1).isTrue();
+
+        boolean result2 = car2.racingCarStatus();
+        System.out.println("랜덤값 참 거짓 확인: " + result2);
+        assertThat(result2).isTrue();
+
+        boolean result3 = car3.racingCarStatus();
+        System.out.println("랜덤값 참 거짓 확인: " + result3);
+        assertThat(result3).isTrue();
+    }
+
+    @Test
+    @DisplayName("n개의 자동차가 레이스에 참여할 수 있다")
+    void winningRace() {
+        RandomNumber randomNumber = new RandomNumber();
+        RacingCar car1 = new RacingCar("빵빵이", randomNumber);
+        RacingCar car2 = new RacingCar("방방이", randomNumber);
+        RacingCar car3 = new RacingCar("통통이", randomNumber);
+    }
 }
