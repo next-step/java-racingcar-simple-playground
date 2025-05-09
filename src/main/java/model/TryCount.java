@@ -9,7 +9,7 @@ public record TryCount(int value) {
 
     private void validateTryCount(final int value) {
         if (value < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 0 이상을 입력해주세요.");
+            throw new IllegalArgumentException("시도 횟수는 1 이상을 입력해주세요.");
         }
     }
 }

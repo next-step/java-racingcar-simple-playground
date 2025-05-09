@@ -16,7 +16,7 @@ public class Cars {
 
     private List<Car> parseToCars(final String names) {
         return Arrays.stream(names.split(CAR_NAME_DELIMITER))
-                .map(name -> new Car(name.trim()))
+                .map(name -> new Car(name.strip()))
                 .toList();
     }
 
