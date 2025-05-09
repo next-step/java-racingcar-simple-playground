@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,6 +18,7 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("4이상의 숫자를 받았을 때 전진")
     void shouldMoveWhenNumberIs4OrMore() {
         RandomNumberProvider provider = new FixedNumberProvider(5);
         Mover mover = new Mover();
@@ -30,6 +32,7 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("3미만의 숫자를 받았을 때 멈춤")
     void shouldNotMoveWhenNumberIsLessThan4() {
         RandomNumberProvider provider = new FixedNumberProvider(2);
         Mover mover = new Mover();

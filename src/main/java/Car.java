@@ -6,6 +6,12 @@ public class Car {
         this.name = name;
     }
 
+    // 테스트를 위해 추가함
+    public Car(String name, int position){
+        this.name = name;
+        this.position = position;
+    }
+
     public void move(RandomNumberProvider provider, Mover mover) {
         int randomNumber = provider.getRandomNumber();
         position += mover.move(randomNumber);
