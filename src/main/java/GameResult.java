@@ -1,75 +1,40 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameResult {
-    private Car[] cars; //참가한 자동차들
-    private int winnerPosition; //우승 자동차의 위치(최대값)
-    private int winnerCnt; //우승 자동차의 수
-    private ArrayList<String> winnerNames; //우승 자동차의 이름
+    private final Cars cars; //참가한 자동차들
 
-    public GameResult(Car[] cars) {
+    public GameResult(Cars cars) {
         this.cars = cars;
-        winnerCnt = 0;
-        winnerPosition = Integer.MIN_VALUE;
-        winnerNames = new ArrayList<>();
     }
 
-    public int getWinnerCnt() {
-        return winnerCnt;
+    //이동된 자동차들의 최대위치 구하기
+    private int getMaxPosition() {
+        return cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
-    public int getWinnerPosition() {
-        return winnerPosition;
+    //우승 자동차 목록
+    public List<Car> getWinners() {
+        int max = getMaxPosition();
+        return cars.getCars().stream()
+                .filter(car -> car.getPosition() == max)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getWinnerName() {
-        return winnerNames;
+    //우승 자동차 이름 목록
+    public List<String> getWinnerNames() {
+        return getWinners().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
-    public void whichWinner(int testRounds){
-        //1. 모든 자동차를 주어진 횟수만큼 이동
-        moveAllCars(testRounds);
-        //2. 우승자의 수와 자동차의 위치(최대값) 계산
-        countWinners();
-        //3. 우승자 이름 저장
-        saveWinnerName();
-    }
-
-    //1. 모든 자동차를 주어진 횟수만큼 이동
-    private void moveAllCars(int testRounds){
-        for (Car car : cars) {
-            for (int i = 0; i < testRounds; i++) {
-                car.move(RandomUtil.randomGenerator());
-            }
-        }
-    }
-
-    //2. 우승자의 수와 자동차의 위치(최대값) 계산
-    private void countWinners(){
-        for (Car car : cars) {
-            updateWinnerCount(car);
-        }
-    }
-
-    //2-1. 자동차 한 대씩 우승자의 수와 최고 위치 갱신
-    private void updateWinnerCount(Car car) {
-        int position = car.getPosition();
-        if (position > winnerPosition) {
-            winnerCnt = 1;
-            winnerPosition = position;
-            return;
-        }
-        if (position == winnerPosition) {
-            winnerCnt++;
-        }
-    }
-
-    //3. 우승자 이름 저장
-    private void saveWinnerName(){
-        for (Car car : cars) {
-            if (car.getPosition() == winnerPosition) {
-                winnerNames.add(car.getName());
-            }
-        }
+    //우승 자동차의 수
+    public int getWinnerCount() {
+        return getWinners().size();
     }
 }
 
