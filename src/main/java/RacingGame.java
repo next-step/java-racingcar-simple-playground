@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class RacingGame {
     /**
@@ -39,11 +41,9 @@ public class RacingGame {
     }
 
     private void moveAllRacingCar(int testRound) {
-        for (RacingCar racingCar : racingCar) {
-            for (int i = 0; i < testRound; i++) {
-                racingCar.move(RandomNumber.numberStatus());
-            }
-        }
+        IntStream.range(0, testRound)
+                .forEach(i -> Arrays.stream(racingCar).forEach(car -> car.move(RandomNumber.numberStatus())));
+
     }
 
     private void countWinner() {    // 우승 자동차 판별 메소드
@@ -65,10 +65,10 @@ public class RacingGame {
     }
 
     private void saveWinnerName() {
-        for (RacingCar racingCar : racingCar) {
-            if (racingCar.getPosition() == winnerPosition) {
-                winnerName.add(racingCar.getCarName());
-            }
+        Arrays.stream(racingCar)
+                .filter(car -> car.getPosition() == winnerPosition)
+                .map(RacingCar::getCarName)
+                .forEach(winnerName::add);
         }
     }
-}
+

@@ -25,15 +25,12 @@ class RacingCarTest {
         RacingCar car3 = new RacingCar("통통이", randomNumber);
 
         boolean result1 = car1.racingCarStatus();
-        System.out.println("랜덤값 참 거짓 확인: " + result1);
         assertThat(result1).isTrue();
 
         boolean result2 = car2.racingCarStatus();
-        System.out.println("랜덤값 참 거짓 확인: " + result2);
         assertThat(result2).isTrue();
 
         boolean result3 = car3.racingCarStatus();
-        System.out.println("랜덤값 참 거짓 확인: " + result3);
         assertThat(result3).isTrue();
     }
 
