@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 
 public class OutputView {
-    private final String WINNER_DELIMITER = ", ";
+    private static final String WINNER_DELIMITER = ", ";
 
     public void printInputCarsName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -14,6 +14,7 @@ public class OutputView {
     }
 
     public void printGameResult(String gameResult) {
+        System.out.print("\n실행결과");
         System.out.println(gameResult);
     }
 

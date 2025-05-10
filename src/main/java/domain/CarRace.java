@@ -8,7 +8,7 @@ public class CarRace {
     private final List<Car> cars;
     private final int gameRounds;
     private final NumberGenerator numberGenerator;
-    private final StringBuilder gameRoundsOutput = new StringBuilder("\n실행결과");
+    private final StringBuilder gameRoundsOutput = new StringBuilder();
     private List<String> winnerCarNames;
 
     public CarRace(List<Car> cars, int gameRounds, NumberGenerator numberGenerator) {
