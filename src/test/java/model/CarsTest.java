@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars("pobi,jiyun,juno");
+        cars = new Cars(List.of("pobi", "jiyun", "juno"));
     }
 
     @Test
