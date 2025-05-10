@@ -73,10 +73,11 @@ class CarTest {
         int testRounds = 1;
         cars.moveAll(testRounds);
 
+        GameResult result = new GameResult(cars);
         //우승자는 n명 이상 나온다
-        assertThat(cars.getWinnerCount()).isGreaterThanOrEqualTo(value);
+        assertThat(result.getWinnerCount()).isGreaterThanOrEqualTo(value);
         //우승자의 수와 이름의 수가 같아야 한다
-        assertThat(cars.getWinnerCount()).isEqualTo(cars.getWinnerNames().size());
+        assertThat(result.getWinnerCount()).isEqualTo(result.getWinnerNames().size());
     }
 
 
