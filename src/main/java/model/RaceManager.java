@@ -4,22 +4,24 @@ import java.util.List;
 import strategy.MoveStrategy;
 
 public class RaceManager {
-    private final TryCount tryCount;
     private final Cars cars;
+    private final TryCount tryCount;
 
-    public RaceManager(final int tryCount, final String carNames) {
-        this.tryCount = new TryCount(tryCount);
+    public RaceManager(final List<String> carNames, final int tryCount) {
         this.cars = new Cars(carNames);
+        this.tryCount = new TryCount(tryCount);
     }
 
-    public void start(final MoveStrategy moveStrategy) {
-        for (int i = 0; i < tryCount.value(); i++) {
-            cars.move(moveStrategy);
-        }
+    public Cars getRaceCars() {
+        return cars;
     }
 
-    public List<Integer> getAllPositions() {
-        return cars.getAllPositions();
+    public int getTryCount() {
+        return tryCount.value();
+    }
+
+    public void moveOnce(final MoveStrategy moveStrategy) {
+        cars.move(moveStrategy);
     }
 
     public List<String> findWinnerNames() {

@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import strategy.AlwaysTrueMoveStrategy;
@@ -13,16 +14,17 @@ class RaceManagerTest {
     void shouldMoveCars_whenInputTryCount() {
         // given
         int tryCount = 3;
-        String carNames = "pobi,jiyun,juno";
-        RaceManager raceManager = new RaceManager(tryCount, carNames);
+        List<String> carNames = List.of("pobi", "jiyun", "juno");
+        RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
 
         // when
-        raceManager.start(alwaysTrueMoveStrategy);
+        raceManager.moveOnce(alwaysTrueMoveStrategy);
 
         // then
-        assertThat(raceManager.getAllPositions())
-                .containsExactly(3, 3, 3);
+        assertThat(raceManager.getRaceCars().getCars())
+                .extracting(Car::getPosition)
+                .containsExactly(1, 1, 1);
     }
 
     @Test
@@ -30,12 +32,12 @@ class RaceManagerTest {
     void shouldReturnWinnerNames() {
         // given
         int tryCount = 1;
-        String carNames = "pobi,jiyun";
-        RaceManager raceManager = new RaceManager(tryCount, carNames);
+        List<String> carNames = List.of("pobi", "jiyun");
+        RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
 
         // when
-        raceManager.start(moveStrategy);
+        raceManager.moveOnce(moveStrategy);
 
         // then
         assertThat(raceManager.findWinnerNames())
