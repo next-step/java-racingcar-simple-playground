@@ -6,6 +6,6 @@ public class RandomUtil {
 
     public static int randomGenerator(){
         //0 <= value <= 9
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_LIMIT);
     }
 }
