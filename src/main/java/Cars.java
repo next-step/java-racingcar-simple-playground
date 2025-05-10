@@ -9,16 +9,23 @@ public class Cars {
         this.cars = cars;
     }
 
-    //자동차 이동
-    public void moveAll(int testRounds) {
+    //모든 자동차 roundCounts만큼 이동
+    public void moveAll(int roundCounts) {
         for (Car car : cars) {
-            IntStream.range(0, testRounds)
+            IntStream.range(0, roundCounts)
                     .forEach(i -> car.move(RandomUtil.randomGenerator()));
         }
     }
 
+    //모든 차를 1라운드씩 이동
+    public void moveAllOneRound() {
+        for (Car car : cars) {
+            car.move(RandomUtil.randomGenerator());
+        }
+    }
+
     public List<Car> getCars() {
-        return cars;
+        return new ArrayList<>(cars); //캡슐화
     }
 
 }
