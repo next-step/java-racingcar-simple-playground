@@ -1,11 +1,10 @@
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class GameResult {
+public class RaceJudge {
     private final Cars cars; //참가한 자동차들
 
-    public GameResult(Cars cars) {
+    public RaceJudge(Cars cars) {
         this.cars = cars;
     }
 
