@@ -38,33 +38,13 @@ class RoundParserTest {
     class FailureCases {
 
         @Test
-        @DisplayName("음수 입력 시 예외 발생")
-        void negativeNumberThrowsException() {
-            String input = "-2";
-
-            assertThatThrownBy(() -> RoundParser.parse(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(RoundParser.INVALID_ROUND_INPUT);
-        }
-
-        @Test
-        @DisplayName("0 입력 시 예외 발생")
-        void zeroThrowsException() {
-            String input = "0";
-
-            assertThatThrownBy(() -> RoundParser.parse(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(RoundParser.INVALID_ROUND_INPUT);
-        }
-
-        @Test
         @DisplayName("숫자가 아닌 문자열 입력 시 예외 발생")
         void nonNumericInputThrowsException() {
             String input = "abc";
 
             assertThatThrownBy(() -> RoundParser.parse(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(RoundParser.INVALID_ROUND_INPUT);
+                    .hasMessage("[ERROR] 시도 횟수는 숫자여야 합니다.");
         }
 
         @Test
@@ -74,7 +54,7 @@ class RoundParserTest {
 
             assertThatThrownBy(() -> RoundParser.parse(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(RoundParser.INVALID_ROUND_INPUT);
+                    .hasMessage("[ERROR] 시도 횟수는 숫자여야 합니다.");
         }
     }
 }

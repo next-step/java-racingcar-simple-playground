@@ -10,8 +10,9 @@ public class WinnersDtoMapper {
 
     public static WinnersDto from(List<Car> winners) {
         List<String> names = winners.stream()
-                .map(Car::getName)
+                .map(car -> car.getName().getValue())
                 .collect(Collectors.toList());
+
         return new WinnersDto(names);
     }
 }

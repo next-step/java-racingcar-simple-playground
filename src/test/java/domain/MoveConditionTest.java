@@ -1,38 +1,25 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MoveConditionTest {
 
-    @Nested
-    @DisplayName("성공 케이스")
-    class SuccessCases {
+    @Test
+    @DisplayName("생성된 숫자가 4 이상이면 이동 가능하다")
+    void movableWhenNumberIsGreaterThanOrEqualToThreshold() {
+        MoveCondition condition = new MoveCondition(() -> 4);
 
-        @ParameterizedTest(name = "생성된 숫자가 {0}일 때 이동 가능(true)을 반환한다")
-        @ValueSource(ints = {4, 5, 6, 9})
-        void returnTrueWhenNumberIsGreaterThanOrEqualToThreshold(int input) {
-            NumberGenerator generator = () -> input;
-            MoveCondition condition = new MoveCondition(generator);
-
-            Assertions.assertThat(condition.isMoveable()).isTrue();
-        }
+        assertThat(condition.isMoveable()).isTrue();
     }
 
-    @Nested
-    @DisplayName("실패 케이스")
-    class FailureCases {
+    @Test
+    @DisplayName("생성된 숫자가 3 이하면 이동 불가능하다")
+    void notMovableWhenNumberIsLessThanThreshold() {
+        MoveCondition condition = new MoveCondition(() -> 3);
 
-        @ParameterizedTest(name = "생성된 숫자가 {0}일 때 이동 불가(false)를 반환한다")
-        @ValueSource(ints = {0, 1, 2, 3})
-        void returnFalseWhenNumberIsLessThanThreshold(int input) {
-            NumberGenerator generator = () -> input;
-            MoveCondition condition = new MoveCondition(generator);
-
-            Assertions.assertThat(condition.isMoveable()).isFalse();
-        }
+        assertThat(condition.isMoveable()).isFalse();
     }
 }

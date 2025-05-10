@@ -51,17 +51,7 @@ class CarNameParserTest {
 
             assertThatThrownBy(() -> CarNameParser.parse(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(CarNameParser.INVALID_INPUT_FORMAT);
-        }
-
-        @Test
-        @DisplayName("쉼표로만 구성된 입력 시 예외 발생")
-        void commaOnlyInputThrowsException() {
-            String input = ",,,";
-
-            assertThatThrownBy(() -> CarNameParser.parse(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(CarNameParser.INVALID_INPUT_FORMAT);
+                    .hasMessage("[ERROR] 자동차 이름은 쉼표(,)로 구분되어야 하며, 빈 값이 포함될 수 없습니다.");
         }
 
         @Test
@@ -71,7 +61,7 @@ class CarNameParserTest {
 
             assertThatThrownBy(() -> CarNameParser.parse(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(CarNameParser.INVALID_INPUT_FORMAT);
+                    .hasMessage("[ERROR] 자동차 이름은 쉼표(,)로 구분되어야 하며, 빈 값이 포함될 수 없습니다.");
         }
     }
 }

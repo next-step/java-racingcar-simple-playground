@@ -24,7 +24,7 @@ class RacingGameTest {
             runRounds(game, 3);
 
             assertThat(game.getCars())
-                    .extracting(Car::getPosition)
+                    .extracting(car -> car.getPosition().getValue())
                     .containsExactly(3, 3);
         }
 
@@ -35,7 +35,7 @@ class RacingGameTest {
             RacingGame game = new RacingGame(new Cars(carList), () -> 9);
 
             assertThat(game.getCars())
-                    .extracting(Car::getPosition)
+                    .extracting(car -> car.getPosition().getValue())
                     .containsExactly(0, 0);
         }
     }

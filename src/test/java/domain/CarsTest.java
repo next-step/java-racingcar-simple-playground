@@ -11,47 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarsTest {
 
     @Nested
-    @DisplayName("자동차 이동 기능")
-    class MoveAllTests {
-
-        @Test
-        @DisplayName("모든 자동차가 이동 조건을 만족하면 전진한다")
-        void allCarsMove() {
-            NumberGenerator alwaysMove = () -> 5;
-
-            Cars cars = new Cars(List.of(
-                    new Car(new Name("A")),
-                    new Car(new Name("B")),
-                    new Car(new Name("C"))
-            ));
-
-            cars.attemptToMoveAll(alwaysMove);
-
-            assertThat(cars.getCars())
-                    .extracting(Car::getPosition)
-                    .containsExactly(1, 1, 1);
-        }
-
-        @Test
-        @DisplayName("모든 자동차가 이동 조건을 만족하지 않으면 멈춘다")
-        void allCarsStop() {
-            NumberGenerator neverMove = () -> 2;
-
-            Cars cars = new Cars(List.of(
-                    new Car(new Name("A")),
-                    new Car(new Name("B")),
-                    new Car(new Name("C"))
-            ));
-
-            cars.attemptToMoveAll(neverMove);
-
-            assertThat(cars.getCars())
-                    .extracting(Car::getPosition)
-                    .containsExactly(0, 0, 0);
-        }
-    }
-
-    @Nested
     @DisplayName("우승자 판별 기능")
     class WinnerTests {
 

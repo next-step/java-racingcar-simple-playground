@@ -2,8 +2,6 @@ package view;
 
 import dto.CarProgressDto;
 import dto.WinnersDto;
-import utils.CarProgressFormatter;
-import utils.WinnersFormatter;
 
 import java.util.List;
 
@@ -31,13 +29,13 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printRoundResult(List<CarProgressDto> carResults) {
         for (CarProgressDto car : carResults) {
-            System.out.println(CarProgressFormatter.format(car));
+            System.out.println(car.toDisplayString());
         }
         System.out.println();
     }
 
     @Override
     public void printWinners(WinnersDto winnersDto) {
-        System.out.println(WinnersFormatter.format(winnersDto));
+        System.out.println(winnersDto.toDisplayString());
     }
 }

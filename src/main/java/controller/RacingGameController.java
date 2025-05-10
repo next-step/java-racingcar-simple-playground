@@ -43,7 +43,8 @@ public class RacingGameController {
 
     private int readRoundCountFromInput() {
         outputView.printRoundPrompt();
-        return RoundParser.parse(inputView.readRound());
+        int roundInput = RoundParser.parse(inputView.readRound());
+        return new Round(roundInput).getValue();
     }
 
     private void playRounds(RacingGame game, int roundCount) {

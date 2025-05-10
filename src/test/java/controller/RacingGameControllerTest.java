@@ -1,6 +1,7 @@
 package controller;
 
 import dto.CarProgressDto;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,8 +11,6 @@ import view.TestOutputView;
 
 import java.util.List;
 import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameControllerTest {
 
@@ -28,19 +27,31 @@ class RacingGameControllerTest {
         controller.run();
 
         // then
-        assertThat(outputView.roundResults).hasSize(Integer.parseInt(roundCount));
+        SoftAssertions softly = new SoftAssertions();
 
-        // 마지막 라운드 결과만 검증
+        // 1. 라운드 수 검증
+        softly.assertThat(outputView.roundResults)
+                .as("라운드 수 검증")
+                .hasSize(Integer.parseInt(roundCount));
+
+        // 2. 마지막 라운드의 위치 값 검증
         List<CarProgressDto> lastRound = outputView.roundResults.get(outputView.roundResults.size() - 1);
         List<Integer> actualPositions = lastRound.stream()
                 .map(CarProgressDto::position)
                 .toList();
 
-        assertThat(actualPositions).containsExactlyElementsOf(expectedPositions);
+        softly.assertThat(actualPositions)
+                .as("최종 라운드 위치 검증")
+                .containsExactlyElementsOf(expectedPositions);
 
-        // 우승자 검증
+        // 3. 우승자 검증
         List<String> actualWinners = outputView.winners.names();
-        assertThat(actualWinners).containsExactlyInAnyOrderElementsOf(expectedWinners);
+
+        softly.assertThat(actualWinners)
+                .as("우승자 검증")
+                .containsExactlyInAnyOrderElementsOf(expectedWinners);
+
+        softly.assertAll();
     }
 
     private static Stream<Arguments> testCases() {

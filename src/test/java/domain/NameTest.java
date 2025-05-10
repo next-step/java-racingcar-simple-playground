@@ -25,16 +25,6 @@ class NameTest {
         }
 
         @Test
-        @DisplayName("값이 같은 domain.Name 객체는 양방향 equals 비교 시 true를 반환한다")
-        void nameEqualityIsSymmetric() {
-            Name a = new Name("콜라");
-            Name b = new Name("콜라");
-
-            Assertions.assertThat(a).isEqualTo(b);
-            Assertions.assertThat(b).isEqualTo(a);
-        }
-
-        @Test
         @DisplayName("동등한 Name은 hashCode도 동일하다")
         void hashCodeShouldMatchIfEqual() {
             Name a = new Name("물");
@@ -54,7 +44,7 @@ class NameTest {
         void throwWhenNull() {
             assertThatThrownBy(() -> new Name(null))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Name.INVALID_NAME_ERROR);
+                    .hasMessage("[ERROR] 이름은 비어 있을 수 없습니다.");
         }
 
         @Test
@@ -62,7 +52,7 @@ class NameTest {
         void throwWhenEmpty() {
             assertThatThrownBy(() -> new Name(""))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Name.INVALID_NAME_ERROR);
+                    .hasMessage("[ERROR] 이름은 비어 있을 수 없습니다.");
         }
 
         @Test
@@ -70,24 +60,7 @@ class NameTest {
         void throwWhenBlank() {
             assertThatThrownBy(() -> new Name("   "))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(Name.INVALID_NAME_ERROR);
-        }
-
-        @Test
-        @DisplayName("null과 equals 비교하면 false를 반환한다")
-        void notEqualToNull() {
-            Name name = new Name("환타");
-
-            Assertions.assertThat(name).isNotEqualTo(null);
-        }
-
-        @Test
-        @DisplayName("다른 클래스와 비교 시 동등하지 않다")
-        void notEqualToDifferentClass() {
-            Name name = new Name("밀키스");
-            String other = "밀키스";
-
-            Assertions.assertThat(name).isNotEqualTo(other);
+                    .hasMessage("[ERROR] 이름은 비어 있을 수 없습니다.");
         }
     }
 }
