@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class CarWinner {
+public class GameResult {
     private Car[] cars; //참가한 자동차들
     private int winnerPosition; //우승 자동차의 위치(최대값)
     private int winnerCnt; //우승 자동차의 수
     private ArrayList<String> winnerNames; //우승 자동차의 이름
 
-    public CarWinner(Car[] cars) {
+    public GameResult(Car[] cars) {
         this.cars = cars;
         winnerCnt = 0;
         winnerPosition = Integer.MIN_VALUE;
