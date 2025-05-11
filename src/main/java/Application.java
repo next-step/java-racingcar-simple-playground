@@ -1,35 +1,33 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
         Scanner scanner =  new Scanner(System.in);
+
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분");
-        String[] racingCarName = scanner.nextLine().split(",");
+        List<String> racingCarName = Arrays.stream(scanner.nextLine().split(","))
+                .map(String::strip)
+                .collect(Collectors.toList());
 
-        if (racingCarName.length > 5) {
-            System.out.println("자동차는 최대 5대까지만 입력할 수 있습니다.");
-            return;
-        }
 
-        Optional<String> invalidName = Arrays.stream(racingCarName)
-                .map(String::trim)
-                .filter(name -> name.length() > 5)
-                .findFirst();
-
-        if (invalidName.isPresent()) {
-            System.out.println("자동차 이름은 5자 이하여야 합니다: " + invalidName.get());
-            return;
-        }
+        racingCarName.stream()
+                .map(String::strip)
+                .forEach(name -> {
+                    if (name.length() > 5) {
+                        throw new IllegalArgumentException("자동차의 이름은 5자 이하로 작성해주세요" + name);
+                    }
+                });
 
         System.out.println("시도할 회수는 몇회인가요?");
         int testRound = Integer.parseInt(scanner.nextLine());
 
-        RacingCar[] racingCar = new RacingCar[racingCarName.length];
-        for (int i = 0; i < racingCarName.length; i++) {
-            racingCar[i] = new RacingCar(racingCarName[i].trim(), new RandomNumber());
-        }
+        List<RacingCar> racingCar = racingCarName.stream()
+                .map(name -> new RacingCar(name, new RandomNumber()))
+                .collect(Collectors.toList());
 
         RacingGame racingGame = new RacingGame(racingCar);
         racingGame.runRace(testRound);
