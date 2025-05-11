@@ -5,7 +5,6 @@ import model.Car;
 import model.Cars;
 
 public class OutputView {
-
     private final static String RESULT_OF_EXECUTION_HEADER = "실행 결과";
 
     private OutputView() {

@@ -4,7 +4,6 @@ import java.util.List;
 import strategy.MoveStrategy;
 
 public class Cars {
-
     private final List<Car> cars;
 
     public Cars(List<String> names) {

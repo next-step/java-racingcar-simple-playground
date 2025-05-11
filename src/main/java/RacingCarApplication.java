@@ -6,7 +6,6 @@ import strategy.RandomMoveStrategy;
 import view.InputView;
 
 public class RacingCarApplication {
-
     public static void main(String[] args) {
         CarNamesDto carNamesDto = new CarNamesDto(InputView.inputName());
         int tryCount = InputView.inputTryCount();
