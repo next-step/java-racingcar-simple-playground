@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import strategy.AlwaysFalseMoveStrategy;
 import strategy.AlwaysTrueMoveStrategy;
 
@@ -30,6 +31,16 @@ class CarTest {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"jiyun","spider"})
+    @DisplayName("자동차 이름이 주어진 최대 이름 길이를 준수하지 않았을 경우 예외가 발생한다.")
+    void shouldThrowException_whenMaxNameLength(String name) {
+        // given & when & then
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름을 최대 이름 길이에 맞게 입력해주세요.");
     }
 
     @Test
