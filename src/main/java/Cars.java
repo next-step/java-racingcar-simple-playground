@@ -25,7 +25,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return new ArrayList<>(cars); //캡슐화
+        return Collections.unmodifiableList(new ArrayList<>(cars));
     }
 
 }
