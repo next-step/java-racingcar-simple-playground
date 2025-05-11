@@ -40,8 +40,8 @@ public class RacingCar {
         return position;
     }
 
-    public void move(int i) {
-        if (i >= 4) {
+    public void move(int point) {
+        if (point >= FIX_NUMBER) {
             position++;
         }
     }
