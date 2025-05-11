@@ -21,14 +21,14 @@ public class RaceJudge {
         int max = getMaxPosition();
         return cars.getCars().stream()
                 .filter(car -> car.getPosition() == max)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     //우승 자동차 이름 목록
     public List<String> getWinnerNames() {
         return getWinners().stream()
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     //우승 자동차의 수

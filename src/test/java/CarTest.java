@@ -132,7 +132,7 @@ class CarTest {
         // Car 객체 생성
         List<Car> carList = names.stream()
                 .map(name -> new Car(name, moveCondition))  // move 조건 정의
-                .collect(Collectors.toList());
+                .toList();
 
         Cars cars = new Cars(carList);
 
