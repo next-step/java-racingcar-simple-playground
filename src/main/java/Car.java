@@ -7,7 +7,7 @@ public class Car {
     private final MoveCondition moveCondition;
 
     public Car(String carName, MoveCondition moveCondition) {
-        if (carName == null || carName.trim().isEmpty()) {
+        if (carName == null || carName.strip().isEmpty()) {
             throw new IllegalArgumentException("차의 이름이 비어있습니다");
         }
         this.name = carName;

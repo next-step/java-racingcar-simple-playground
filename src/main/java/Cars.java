@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Cars {
@@ -10,40 +9,23 @@ public class Cars {
         this.cars = cars;
     }
 
-    //자동차 이동
-    public void moveAll(int testRounds) {
+    //모든 자동차 roundCounts만큼 이동
+    public void moveAll(int roundCounts) {
         for (Car car : cars) {
-            IntStream.range(0, testRounds)
+            IntStream.range(0, roundCounts)
                     .forEach(i -> car.move(RandomUtil.randomGenerator()));
         }
     }
 
-    //이동된 자동차들의 최대위치 구하기
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+    //모든 차를 1라운드씩 이동
+    public void moveAllOneRound() {
+        for (Car car : cars) {
+            car.move(RandomUtil.randomGenerator());
+        }
     }
 
-    //우승 자동차 목록
-    public List<Car> getWinners() {
-        int max = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.getPosition() == max)
-                .collect(Collectors.toList());
-    }
-
-    //우승 자동차 이름 목록
-    public List<String> getWinnerNames() {
-        return getWinners().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    //우승 자동차의 수
-    public int getWinnerCount() {
-        return getWinners().size();
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(new ArrayList<>(cars));
     }
 
 }
