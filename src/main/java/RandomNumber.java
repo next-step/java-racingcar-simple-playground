@@ -8,6 +8,11 @@ public class RandomNumber {
     // 1. 정적(RandomNumber.numberStatus()) 호출용
     private static final Random random = new Random();
     private final Random instanceRandom;
+    private static final int UPPER_NUM = 10;
+
+    public static int generate() {
+        return new Random().nextInt(UPPER_NUM);
+    }
 
     public static int numberStatus() {
         return random.nextInt(9) + 1;

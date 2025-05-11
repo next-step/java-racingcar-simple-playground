@@ -30,8 +30,13 @@ public class RacingGame {
     }
 
     public List<String> getWinnerName() {
+        int maxPosition = racingCar.stream()
+                .mapToInt(RacingCar::getPosition)
+                .max()
+                .orElse(0); // 아무도 안 움직였을 경우
+
         return racingCar.stream()
-                .filter(car -> car.getPosition() == winnerPosition)
+                .filter(car -> car.getPosition() == maxPosition)
                 .map(RacingCar::getCarName)
                 .collect(Collectors.toList());
     }
