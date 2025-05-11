@@ -8,21 +8,21 @@ public class CarRacing {
 		return randomNum >= 0 && randomNum <= 3;
 	}
 
-	public int forward(int randomNum, int distance) {
+	public int forward(int distance) {
 		return distance + 1;
 	}
 
-	public int stop(int randomNum, int distance) {
+	public int stop(int distance) {
 		return distance;
 	}
 
 	public int moveCar(int randomNum, int distance) {
 		if (isForward(randomNum)) {
-			return forward(randomNum, distance);
+			return forward(distance);
 		}
 
 		if (isStop(randomNum)) {
-			return stop(randomNum, distance);
+			return stop(distance);
 		}
 
 		return distance;
