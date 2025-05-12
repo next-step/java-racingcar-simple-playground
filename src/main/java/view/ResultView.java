@@ -1,6 +1,11 @@
+package view;
+
+import domain.Car;
+import domain.Cars;
+
 import java.util.List;
 
-public class GameOutput {
+public class ResultView {
 
     public static void printStart() {
         System.out.println("\n실행 결과");
