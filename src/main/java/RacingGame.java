@@ -24,7 +24,7 @@ public class RacingGame {
         ResultView.printStart();
         for (int i = 0; i < tryCount; i++) {
             cars.moveAllOneRound();
-            ResultView.printRound(cars);
+            ResultView.printRound(cars.getCarDTOs());
         }
     }
 
@@ -33,8 +33,5 @@ public class RacingGame {
         return judge.getWinnerNames();
     }
 
-    public Cars getCars() {
-        return cars;
-    }
 }
 

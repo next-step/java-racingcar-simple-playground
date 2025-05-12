@@ -1,6 +1,7 @@
 package view;
 
 import domain.Car;
+import domain.CarDTO;
 import domain.Cars;
 
 import java.util.List;
@@ -10,8 +11,9 @@ public class ResultView {
     public static void printStart() {
         System.out.println("\n실행 결과");
     }
-    public static void printRound(Cars cars) {
-        for (Car car : cars.getCars()) {
+
+    public static void printRound(List<CarDTO> carDTOs) {
+        for (CarDTO car : carDTOs) {
             StringBuilder sb = new StringBuilder();
             sb.append(car.getName())
                     .append(" : ")
