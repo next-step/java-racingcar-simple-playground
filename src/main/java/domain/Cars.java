@@ -1,5 +1,10 @@
+package domain;
+
+import util.RandomUtil;
+
 import java.util.*;
 import java.util.stream.IntStream;
+
 
 public class Cars {
     //자동차 경주에 참가하는 자동차들의 집합
