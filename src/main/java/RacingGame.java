@@ -1,35 +1,40 @@
+import domain.*;
+import view.InputView;
+import view.ResultView;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class RacingGame {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        GameInput inputHandler = new GameInput(scanner);
+    private final Cars cars;
+    private final int tryCount;
 
-        // 입력
-        List<String> names = inputHandler.readCarNames();
-        int roundCount = inputHandler.readRoundCount();
-
-
-        // Car 객체 생성
+    public RacingGame(List<String> carNames, int tryCount) {
+        this.tryCount = tryCount;
         MoveCondition moveCondition = new MoveConditionImpl();
-        List<Car> carList = names.stream()
-                .map(name -> new Car(name, moveCondition))  // move 조건 정의
+
+        List<Car> carList = carNames.stream()
+                .map(name -> new Car(name, moveCondition))
                 .toList();
 
-        Cars cars = new Cars(carList);
+        this.cars = new Cars(carList);
+    }
 
-        // 실행 결과 출력
-        GameOutput.printStart();
-        for (int i = 0; i < roundCount; i++) {
-            cars.moveAllOneRound(); // 1회씩 이동
-            GameOutput.printRound(cars);
+    public void race() {
+        ResultView.printStart();
+        for (int i = 0; i < tryCount; i++) {
+            cars.moveAllOneRound();
+            ResultView.printRound(cars);
         }
+    }
 
-        // 우승자 출력
-        RaceJudge result = new RaceJudge(cars);
-        GameOutput.printWinners(result.getWinnerNames());
+    public List<String> getWinners() {
+        RaceJudge judge = new RaceJudge(cars);
+        return judge.getWinnerNames();
+    }
 
+    public Cars getCars() {
+        return cars;
     }
 }
 
