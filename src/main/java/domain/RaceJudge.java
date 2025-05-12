@@ -1,5 +1,6 @@
+package domain;
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RaceJudge {
     private final Cars cars; //참가한 자동차들
