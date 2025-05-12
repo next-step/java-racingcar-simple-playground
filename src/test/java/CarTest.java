@@ -1,9 +1,11 @@
+import domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.InputView;
+import view.ResultView;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +13,7 @@ class CarTest {
     static MoveCondition moveCondition = new MoveConditionImpl();
 
     @Test
-    @DisplayName("Car 객체 생성 시 이름이 정상적으로 저장된다")
+    @DisplayName("domain.Car 객체 생성 시 이름이 정상적으로 저장된다")
     void carIsCreatedWithCorrectName() {
         Car car1 = new Car("A",moveCondition);
         Car car2 = new Car("B",moveCondition);
@@ -21,7 +23,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("Car 객체 생성 시 이름이 정상적으로 저장된다")
+    @DisplayName("domain.Car 객체 생성 시 이름이 정상적으로 저장된다")
     void carIsCreatedWithCorrect() {
         Car car1 = new Car("A",moveCondition);
         Car car2 = new Car("B",moveCondition);
@@ -116,40 +118,6 @@ class CarTest {
         assertThat(result.getWinnerCount()).isEqualTo(3);
         assertThat(result.getWinnerNames()).containsExactlyInAnyOrder("A", "B", "C");
     }
-
-    @Test
-    @DisplayName("자동차 경주가 제대로 동작한다")
-    void racingGame() {
-        // 입력
-        String input = "neo,brie,brown\n5\n";
-        Scanner testScanner = new Scanner(input);
-        GameInput inputHandler = new GameInput(testScanner);
-
-        List<String> names = inputHandler.readCarNames();
-        int roundCount = inputHandler.readRoundCount();
-
-
-        // Car 객체 생성
-        List<Car> carList = names.stream()
-                .map(name -> new Car(name, moveCondition))  // move 조건 정의
-                .toList();
-
-        Cars cars = new Cars(carList);
-
-        // 실행 결과 출력
-        GameOutput.printStart();
-        for (int i = 0; i < roundCount; i++) {
-            cars.moveAllOneRound(); // 1회씩 이동
-            GameOutput.printRound(cars);
-        }
-
-        // 우승자 출력
-        RaceJudge result = new RaceJudge(cars);
-        GameOutput.printWinners(result.getWinnerNames());
-    }
-
-
-
 
 }
 
