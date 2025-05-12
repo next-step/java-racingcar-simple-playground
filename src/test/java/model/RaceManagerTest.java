@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import model.dto.CarStatusDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import strategy.AlwaysTrueMoveStrategy;
@@ -14,7 +15,7 @@ class RaceManagerTest {
     void shouldMoveCar_whenInputTryCount() {
         // given
         int tryCount = 3;
-        List<String> carNames = List.of("jiyun");
+        List<String> carNames = List.of("dd");
         RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
 
@@ -22,8 +23,9 @@ class RaceManagerTest {
         raceManager.moveOnce(alwaysTrueMoveStrategy);
 
         // then
-        assertThat(raceManager.getRaceCars().getCars())
-                .extracting(Car::getPosition)
+        assertThat(raceManager.getRaceCars().getCarStatuses().stream()
+                .map(CarStatusDto::position)
+                .toList())
                 .containsExactly(1);
     }
 
@@ -32,7 +34,7 @@ class RaceManagerTest {
     void shouldMoveCars_whenInputTryCount() {
         // given
         int tryCount = 3;
-        List<String> carNames = List.of("pobi", "jiyun", "juno");
+        List<String> carNames = List.of("pobi", "dd", "juno");
         RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
 
@@ -40,8 +42,9 @@ class RaceManagerTest {
         raceManager.moveOnce(alwaysTrueMoveStrategy);
 
         // then
-        assertThat(raceManager.getRaceCars().getCars())
-                .extracting(Car::getPosition)
+        assertThat(raceManager.getRaceCars().getCarStatuses().stream()
+                .map(CarStatusDto::position)
+                .toList())
                 .containsExactly(1, 1, 1);
     }
 
@@ -67,7 +70,7 @@ class RaceManagerTest {
     void shouldReturnMultiWinnerNames() {
         // given
         int tryCount = 1;
-        List<String> carNames = List.of("pobi", "jiyun");
+        List<String> carNames = List.of("pobi", "dd");
         RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
 
@@ -76,6 +79,6 @@ class RaceManagerTest {
 
         // then
         assertThat(raceManager.findWinnerNames())
-                .containsExactly("pobi", "jiyun");
+                .containsExactly("pobi", "dd");
     }
 }

@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
+import model.dto.CarStatusDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,16 +14,16 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars(List.of("pobi", "jiyun", "juno"));
+        cars = new Cars(List.of("pobi", "dd", "juno"));
     }
 
     @Test
     @DisplayName("각 자동차들의 이름을 전달받아 정상적으로 자동차 객체가 생성된다.")
     void shouldCreateCar_whenInputCarsName() {
         // given & when & then
-        assertThat(cars.getCars())
-                .extracting(Car::getName)
-                .containsExactly("pobi", "jiyun", "juno");
+        assertThat(cars.getCarStatuses())
+                .extracting(CarStatusDto::name)
+                .containsExactly("pobi", "dd", "juno");
     }
 
     @Test
@@ -35,8 +36,8 @@ class CarsTest {
         cars.move(alwaysTrueMoveStrategy);
 
         // then
-        assertThat(cars.getCars())
-                .extracting(Car::getPosition)
+        assertThat(cars.getCarStatuses())
+                .extracting(CarStatusDto::position)
                 .containsExactly(1, 1, 1);
     }
 
@@ -51,6 +52,6 @@ class CarsTest {
 
         // then
         assertThat(cars.findWinners())
-                .containsExactly("pobi", "jiyun", "juno");
+                .containsExactly("pobi", "dd", "juno");
     }
 }

@@ -17,10 +17,10 @@ class CarTest {
     @DisplayName("자동차는 정상적으로 이름을 갖는다.")
     void shouldReturnNameForCar() {
         // given
-        Car car = new Car("jiyun");
+        Car car = new Car("dd");
 
         // when & then
-        assertThat(car.getName()).isEqualTo("jiyun");
+        assertThat(car.getName()).isEqualTo("dd");
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ class CarTest {
     @DisplayName("자동차는 움직이기 위한 최소 힘 이상을 전달한 경우 전진한다.")
     void shouldMoveForward_whenMovableValue() {
         // given
-        Car car = new Car("jiyun");
+        Car car = new Car("dd");
         AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
 
         // when
@@ -61,7 +61,7 @@ class CarTest {
     @DisplayName("자동차는 움직이기 위한 최소 힘 미만을 전달할 경우 움직이지 않는다.")
     void shouldStop_whenImmovableValue() {
         // given
-        Car car = new Car("jiyun");
+        Car car = new Car("dd");
         AlwaysFalseMoveStrategy alwaysFalseMoveStrategy = new AlwaysFalseMoveStrategy();
 
         // when

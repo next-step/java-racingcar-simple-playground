@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import model.dto.CarStatusDto;
 import strategy.MoveStrategy;
 
 public class Cars {
@@ -12,8 +13,10 @@ public class Cars {
                 .toList();
     }
 
-    public List<Car> getCars() {
-        return List.copyOf(cars);
+    public List<CarStatusDto> getCarStatuses() {
+        return cars.stream()
+                .map(car -> new CarStatusDto(car.getName(), car.getPosition()))
+                .toList();
     }
 
     public List<String> findWinners() {
