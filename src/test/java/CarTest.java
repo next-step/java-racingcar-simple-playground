@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
     static MoveCondition moveCondition = new MoveConditionImpl();
@@ -30,6 +31,14 @@ class CarTest {
 
         assertThat(car1.getName()).isEqualTo("A");
         assertThat(car2.getName()).isEqualTo("B");
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자 초과이면 예외 발생")
+    void nameLengthExceedsLimit_throwsException() {
+        assertThatThrownBy(() -> new Car("abcdef", moveCondition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("5자 이하");
     }
 
     @Test
