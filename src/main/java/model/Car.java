@@ -4,10 +4,12 @@ import strategy.MoveStrategy;
 
 public class Car {
     private final Name name;
+    private final MoveStrategy moveStrategy;
     private int position;
 
-    public Car(final String name) {
+    public Car(final String name, final MoveStrategy moveStrategy) {
         this.name = new Name(name);
+        this.moveStrategy = moveStrategy;
         this.position = 0;
     }
 
@@ -19,7 +21,7 @@ public class Car {
         return position;
     }
 
-    public void moveForward(final MoveStrategy moveStrategy) {
+    public void moveForward() {
         if (moveStrategy.canMove()) {
             position++;
         }

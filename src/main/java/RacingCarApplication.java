@@ -11,10 +11,10 @@ public class RacingCarApplication {
         int tryCount = InputView.inputTryCount();
         List<String> carNames = carNamesDto.splitNames();
 
-        RaceManager raceManager = new RaceManager(carNames, tryCount);
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
+        RaceManager raceManager = new RaceManager(carNames, tryCount, randomMoveStrategy);
 
-        RacingGame racingGame = new RacingGame(raceManager, randomMoveStrategy);
+        RacingGame racingGame = new RacingGame(raceManager);
         racingGame.run();
     }
 }

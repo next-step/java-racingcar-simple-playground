@@ -1,22 +1,19 @@
 package model;
 
 import java.util.List;
-import model.dto.CarProgress;
 import strategy.MoveStrategy;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> names) {
+    public Cars(final List<String> names, final MoveStrategy moveStrategy) {
         this.cars = names.stream()
-                .map(Car::new)
+                .map((String name) -> new Car(name, moveStrategy))
                 .toList();
     }
 
-    public List<CarProgress> getCarStatuses() {
-        return cars.stream()
-                .map(car -> new CarProgress(car.getName(), car.getPosition()))
-                .toList();
+    public List<Car> getCars() {
+        return List.copyOf(cars);
     }
 
     public List<String> findWinners() {
@@ -33,9 +30,9 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void move(final MoveStrategy moveStrategy) {
+    public void move() {
         for (Car car : cars) {
-            car.moveForward(moveStrategy);
+            car.moveForward();
         }
     }
 }
