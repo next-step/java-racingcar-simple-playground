@@ -1,12 +1,16 @@
-import java.util.List;
+import controller.RacingGameController;
+import domain.generator.NumberGenerator;
+import domain.generator.RandomNumberGenerator;
+import view.InputView;
+import view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
-        List<String> names = Input.getNames();
-        int tryCount = Input.getTryCount();
+        InputView inputView = new InputView();
+        ResultView resultView = new ResultView();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-        Cars cars = new Cars(names.stream().map(Car::new).toList());
-        RacingGame racingGame = new RacingGame(cars, tryCount);
-        racingGame.run();
+        RacingGameController gameController = new RacingGameController(inputView, resultView, numberGenerator);
+        gameController.run();
     }
 }
