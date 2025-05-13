@@ -8,10 +8,15 @@ public class RacingGame {
     private final List<RacingCar> cars;
     private final int count;
 
+
     public RacingGame(List<String> carName, int count) {
+        if (count < 1) {
+            throw new IllegalArgumentException("사도할 회수는 음수로 작성하면 안됩니다.");
+        }
+
         this.cars = carName.stream()
                 .map(RacingCar::new)
-                .collect(Collectors.toList());
+                .toList();
         this.count = count;
     }
 
@@ -29,6 +34,6 @@ public class RacingGame {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(RacingCar::getCarName)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

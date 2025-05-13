@@ -3,13 +3,14 @@ package domain;
 public class RacingCar {
     private final String carName;
     private int position = 0;
+    public static final int FIX_NUMBER = 4;
 
     public RacingCar(String name) {
         this.carName = name;
     }
 
     public void move(int random) {
-        if (random >= 4) {
+        if (random >= FIX_NUMBER) {
             position++;
         }
     }
@@ -20,5 +21,9 @@ public class RacingCar {
 
     public String getCarName() {
         return carName;
+    }
+
+    public boolean racingCarStatus() {
+        return true;
     }
 }
