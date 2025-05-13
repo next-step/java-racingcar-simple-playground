@@ -2,6 +2,7 @@ package domain;
 
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
+    private static final int CAR_NAME_MAX_LENGTH = 5;
 
 
     private String name;
@@ -12,7 +13,7 @@ public class Car {
         if (carName == null || carName.strip().isEmpty()) {
             throw new IllegalArgumentException("차의 이름이 비어있습니다");
         }
-        if (carName.length() > 5) {
+        if (carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다");
         }
         this.name = carName;
