@@ -1,7 +1,7 @@
 package model;
 
 import java.util.List;
-import model.dto.CarStatusDto;
+import model.dto.CarProgress;
 import strategy.MoveStrategy;
 
 public class Cars {
@@ -13,9 +13,9 @@ public class Cars {
                 .toList();
     }
 
-    public List<CarStatusDto> getCarStatuses() {
+    public List<CarProgress> getCarStatuses() {
         return cars.stream()
-                .map(car -> new CarStatusDto(car.getName(), car.getPosition()))
+                .map(car -> new CarProgress(car.getName(), car.getPosition()))
                 .toList();
     }
 

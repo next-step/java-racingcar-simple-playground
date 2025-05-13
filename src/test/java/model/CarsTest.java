@@ -3,7 +3,7 @@ package model;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
-import model.dto.CarStatusDto;
+import model.dto.CarProgress;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class CarsTest {
     void shouldCreateCar_whenInputCarsName() {
         // given & when & then
         assertThat(cars.getCarStatuses())
-                .extracting(CarStatusDto::name)
+                .extracting(CarProgress::name)
                 .containsExactly("pobi", "dd", "juno");
     }
 
@@ -37,7 +37,7 @@ class CarsTest {
 
         // then
         assertThat(cars.getCarStatuses())
-                .extracting(CarStatusDto::position)
+                .extracting(CarProgress::position)
                 .containsExactly(1, 1, 1);
     }
 

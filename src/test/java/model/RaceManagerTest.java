@@ -3,7 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import model.dto.CarStatusDto;
+import model.dto.CarProgress;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import strategy.AlwaysTrueMoveStrategy;
@@ -24,7 +24,7 @@ class RaceManagerTest {
 
         // then
         assertThat(raceManager.getRaceCars().getCarStatuses().stream()
-                .map(CarStatusDto::position)
+                .map(CarProgress::position)
                 .toList())
                 .containsExactly(1);
     }
@@ -43,7 +43,7 @@ class RaceManagerTest {
 
         // then
         assertThat(raceManager.getRaceCars().getCarStatuses().stream()
-                .map(CarStatusDto::position)
+                .map(CarProgress::position)
                 .toList())
                 .containsExactly(1, 1, 1);
     }
