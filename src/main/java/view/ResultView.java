@@ -1,6 +1,7 @@
 package view;
 
 import domain.CarSnapshot;
+import domain.RoundSnapshot;
 
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printAllRounds(List<List<CarSnapshot>> raceHistory) {
+    public static void printAllRounds(List<RoundSnapshot> raceHistory) {
         printStart();
 
-        for (List<CarSnapshot> round : raceHistory) {
-            printRound(round); // 이미 만든 1라운드 출력 재사용
+        for (RoundSnapshot round : raceHistory) {
+            printRound(round.getCarSnapshots()); // 이미 만든 1라운드 출력 재사용
         }
     }
 

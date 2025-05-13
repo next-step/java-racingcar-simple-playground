@@ -3,13 +3,13 @@ package domain;
 import java.util.*;
 
 public class RaceHistory {
-    private final List<List<CarSnapshot>> rounds = new ArrayList<>();
+    private final List<RoundSnapshot> rounds = new ArrayList<>();
 
-    public void addRound(List<CarSnapshot> roundSnapshot) {
-        rounds.add(roundSnapshot);
+    public void addRound(List<CarSnapshot> carSnapshots) {
+        rounds.add(new RoundSnapshot(carSnapshots));
     }
 
-    public List<List<CarSnapshot>> getAll() {
+    public List<RoundSnapshot> getAll() {
         return List.copyOf(rounds);
     }
 
