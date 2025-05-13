@@ -5,6 +5,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class RacingGameTest {
     @Test
@@ -12,14 +13,14 @@ class RacingGameTest {
     void WhenTryCountIsNonPositiveThrowException() {
         List<String> carNames = List.of("A", "B", "C");
 
-        assertAll(
-                () -> assertThrows(IllegalArgumentException.class, () -> {
+        assertSoftly(softly -> {
+                assertThrows(IllegalArgumentException.class, () -> {
                     new RacingGame(carNames, 0); // 0일 때
-                }),
-                () -> assertThrows(IllegalArgumentException.class, () -> {
+                });
+                assertThrows(IllegalArgumentException.class, () -> {
                     new RacingGame(carNames, -1); // 음수일 때
-                })
-        );
+                });
+        });
     }
 
 }
