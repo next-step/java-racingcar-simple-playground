@@ -1,8 +1,6 @@
 package view;
 
-import domain.Car;
-import domain.CarDTO;
-import domain.Cars;
+import domain.CarInfo;
 
 import java.util.List;
 
@@ -12,12 +10,12 @@ public class ResultView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRound(List<CarDTO> carDTOs) {
-        for (CarDTO car : carDTOs) {
+    public static void printRound(List<CarInfo> carDTOs) {
+        for (CarInfo car : carDTOs) {
             StringBuilder sb = new StringBuilder();
-            sb.append(car.getName())
+            sb.append(car.name())
                     .append(" : ")
-                    .append("-".repeat(car.getPosition()));
+                    .append("-".repeat(car.position()));
             System.out.println(sb);
         }
         System.out.println();
