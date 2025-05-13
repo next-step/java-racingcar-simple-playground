@@ -10,6 +10,9 @@ public class RacingGame {
     private final int tryCount;
 
     public RacingGame(List<String> carNames, int tryCount) {
+        if (tryCount < 1) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다");
+        }
         this.tryCount = tryCount;
         MoveCondition moveCondition = new MoveConditionImpl();
 
