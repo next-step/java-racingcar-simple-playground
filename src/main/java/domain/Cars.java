@@ -33,7 +33,7 @@ public class Cars {
         return Collections.unmodifiableList(new ArrayList<>(cars));
     }
 
-    public List<CarInfo> getCarDTOs() {
+    public List<CarInfo> getCarInfos() {
         return cars.stream()
                 .map(car -> new CarInfo(car.getName(), car.getPosition()))
                 .toList();
