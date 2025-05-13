@@ -10,8 +10,8 @@ public class ResultView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRound(List<CarInfo> carDTOs) {
-        for (CarInfo car : carDTOs) {
+    public static void printRound(List<CarInfo> carInfos) {
+        for (CarInfo car : carInfos) {
             StringBuilder sb = new StringBuilder();
             sb.append(car.name())
                     .append(" : ")
@@ -19,6 +19,14 @@ public class ResultView {
             System.out.println(sb);
         }
         System.out.println();
+    }
+
+    public static void printAllRounds(List<List<CarInfo>> raceHistory) {
+        printStart();
+
+        for (List<CarInfo> round : raceHistory) {
+            printRound(round); // 이미 만든 1라운드 출력 재사용
+        }
     }
 
     public static void printWinners(List<String> winners) {

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class RacingGame {
     private final Cars cars;
     private final int tryCount;
+    private final RaceHistory raceHistory = new RaceHistory();
 
     public RacingGame(List<String> carNames, int tryCount) {
         if (tryCount < 1) {
@@ -24,16 +25,19 @@ public class RacingGame {
     }
 
     public void race() {
-        ResultView.printStart();
         for (int i = 0; i < tryCount; i++) {
             cars.moveAllOneRound();
-            ResultView.printRound(cars.getCarDTOs());
+            raceHistory.addRound(cars.getCarInfos()); //기록
         }
     }
 
     public List<String> getWinners() {
         RaceJudge judge = new RaceJudge(cars);
         return judge.getWinnerNames();
+    }
+
+    public RaceHistory getRaceHistory() {
+        return raceHistory;
     }
 
 }

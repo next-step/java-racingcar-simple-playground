@@ -9,6 +9,7 @@ public class Application {
         final var racingGame = new RacingGame(carNames, tryCount);
         racingGame.race();
 
+        ResultView.printAllRounds(racingGame.getRaceHistory().getAll());
         ResultView.printWinners(racingGame.getWinners());
     }
 }
