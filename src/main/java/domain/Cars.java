@@ -33,9 +33,9 @@ public class Cars {
         return Collections.unmodifiableList(new ArrayList<>(cars));
     }
 
-    public List<CarInfo> getCarInfos() {
+    public List<CarSnapshot> getCarInfos() {
         return cars.stream()
-                .map(car -> new CarInfo(car.getName(), car.getPosition()))
+                .map(car -> new CarSnapshot(car.getName(), car.getPosition()))
                 .toList();
     }
 

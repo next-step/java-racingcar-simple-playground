@@ -1,6 +1,6 @@
 package view;
 
-import domain.CarInfo;
+import domain.CarSnapshot;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class ResultView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printRound(List<CarInfo> carInfos) {
-        for (CarInfo car : carInfos) {
+    public static void printRound(List<CarSnapshot> carInfos) {
+        for (CarSnapshot car : carInfos) {
             StringBuilder sb = new StringBuilder();
             sb.append(car.name())
                     .append(" : ")
@@ -21,10 +21,10 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printAllRounds(List<List<CarInfo>> raceHistory) {
+    public static void printAllRounds(List<List<CarSnapshot>> raceHistory) {
         printStart();
 
-        for (List<CarInfo> round : raceHistory) {
+        for (List<CarSnapshot> round : raceHistory) {
             printRound(round); // 이미 만든 1라운드 출력 재사용
         }
     }
