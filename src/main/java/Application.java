@@ -9,15 +9,14 @@ public class Application {
 
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String inputNames = scanner.nextLine();
-        List<Car> cars = Arrays.stream(inputNames.split(","))
+        List<String> carNames = Arrays.stream(inputNames.split(","))
                 .map(String::trim)
-                .map(Car::new)
                 .collect(Collectors.toList());
 
         System.out.println("시도할 회수는 몇회인가요?");
         int rounds = scanner.nextInt();
 
-        RacingGame game = new RacingGame(cars, new RandomNumberProvider());
+        RacingGame game = new RacingGame(carNames,new RandomNumberProvider(), rounds);
         System.out.println("\n실행 결과");
         game.play(rounds);
 

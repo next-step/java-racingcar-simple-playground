@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarTest {
 
@@ -25,6 +26,6 @@ public class CarTest {
     @Test
     @DisplayName("이름이 5글자 이상일 경우 오류 발생")
     void name_error() {
-        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> new Car("toolong"));
+        assertThrows(IllegalArgumentException.class, () -> new Car("toolong"));
     }
 }

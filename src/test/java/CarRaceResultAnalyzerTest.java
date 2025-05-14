@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GetWinnerTest {
+public class CarRaceResultAnalyzerTest {
 
     @Test
     @DisplayName("우승자를 한 대 판단")
@@ -16,7 +16,7 @@ public class GetWinnerTest {
         car2.move(5);
         car3.move(2);
 
-        List<Car> winners = new GetWinner().decideWinner(List.of(car1, car2, car3));
+        List<Car> winners = new CarRaceResultAnalyzer().decideWinner(List.of(car1, car2, car3));
 
         assertThat(winners).hasSize(1);
         assertThat(winners.get(0).getName()).isEqualTo("brie");
@@ -33,7 +33,7 @@ public class GetWinnerTest {
         car2.move(5);
         car3.move(3);
 
-        List<Car> winners = new GetWinner().decideWinner(List.of(car1, car2, car3));
+        List<Car> winners = new CarRaceResultAnalyzer().decideWinner(List.of(car1, car2, car3));
 
         assertThat(winners).hasSize(2);
         assertThat(winners).extracting(Car::getName).containsExactlyInAnyOrder("neo", "brie");
