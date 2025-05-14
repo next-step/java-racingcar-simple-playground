@@ -8,7 +8,7 @@ public class Cars {
 
     public Cars(final List<String> names, final MoveStrategy moveStrategy) {
         this.cars = names.stream()
-                .map((String name) -> new Car(name, moveStrategy))
+                .map(name -> new Car(name, moveStrategy))
                 .toList();
     }
 

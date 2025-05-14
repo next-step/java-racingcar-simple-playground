@@ -1,7 +1,9 @@
 package view;
 
 import java.util.List;
-import model.dto.CarProgress;
+import model.RaceRecorder;
+import model.RaceRound;
+import model.dto.CarRecord;
 
 public class OutputView {
     private static final String RESULT_OF_EXECUTION_HEADER = "실행 결과";
@@ -14,9 +16,15 @@ public class OutputView {
         System.out.println(RESULT_OF_EXECUTION_HEADER);
     }
 
-    public static void printCarProgress(List<CarProgress> progresses) {
-        for (CarProgress progress : progresses) {
-            System.out.println(progress.name() + " : " + "-".repeat(progress.position()));
+    public static void printAllRaceRounds(RaceRecorder raceRecorder) {
+        for (RaceRound round : raceRecorder.getRaceRounds()) {
+            printRoundRecord(round);
+        }
+    }
+
+    private static void printRoundRecord(RaceRound round) {
+        for (CarRecord carRecord : round.carRecords()) {
+            System.out.println(carRecord.name() + " : " + "-".repeat(carRecord.position()));
         }
         System.out.println();
     }

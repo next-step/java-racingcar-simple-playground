@@ -3,8 +3,6 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import mapper.CarToProgressMapper;
-import model.dto.CarProgress;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import strategy.AlwaysTrueMoveStrategy;
@@ -21,15 +19,13 @@ class RaceManagerTest {
         RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce();
+        for (int i = 0; i < tryCount; i++) {
+            raceManager.moveOnce();
+        }
 
         // then
-        List<CarProgress> progresses = CarToProgressMapper.toProgress(raceManager.getRaceCars());
-
-        assertThat(progresses.stream()
-                .map(CarProgress::position)
-                .toList())
-                .containsExactly(1);
+        assertThat(raceManager.getRaceCars().getCars().get(0).getPosition())
+                .isEqualTo(3);
     }
 
 
@@ -43,15 +39,14 @@ class RaceManagerTest {
         RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce();
+        for (int i = 0; i < tryCount; i++) {
+            raceManager.moveOnce();
+        }
 
         // then
-        List<CarProgress> progresses = CarToProgressMapper.toProgress(raceManager.getRaceCars());
-
-        assertThat(progresses.stream()
-                .map(CarProgress::position)
-                .toList())
-                .containsExactly(1, 1, 1);
+        raceManager.getRaceCars().getCars().forEach(car ->
+                assertThat(car.getPosition()).isEqualTo(3)
+        );
     }
 
     @Test
