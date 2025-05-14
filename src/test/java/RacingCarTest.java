@@ -5,7 +5,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingCarTest {
+class RacingCarTest {
 
     //항상 이동을 하게끔 하는 고정 랜덤
     static class FixedRandom extends Random {
