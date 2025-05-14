@@ -4,12 +4,11 @@ import java.util.List;
 import strategy.MoveStrategy;
 
 public class Cars {
-
     private final List<Car> cars;
 
-    public Cars(List<String> names) {
+    public Cars(final List<String> names, final MoveStrategy moveStrategy) {
         this.cars = names.stream()
-                .map(Car::new)
+                .map(name -> new Car(name, moveStrategy))
                 .toList();
     }
 
@@ -31,9 +30,9 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void move(final MoveStrategy moveStrategy) {
+    public void move() {
         for (Car car : cars) {
-            car.moveForward(moveStrategy);
+            car.moveForward();
         }
     }
 }

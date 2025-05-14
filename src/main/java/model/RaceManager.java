@@ -7,8 +7,8 @@ public class RaceManager {
     private final Cars cars;
     private final TryCount tryCount;
 
-    public RaceManager(final List<String> carNames, final int tryCount) {
-        this.cars = new Cars(carNames);
+    public RaceManager(final List<String> carNames, final int tryCount, final MoveStrategy moveStrategy) {
+        this.cars = new Cars(carNames, moveStrategy);
         this.tryCount = new TryCount(tryCount);
     }
 
@@ -20,8 +20,8 @@ public class RaceManager {
         return tryCount.value();
     }
 
-    public void moveOnce(final MoveStrategy moveStrategy) {
-        cars.move(moveStrategy);
+    public void moveOnce() {
+        cars.move();
     }
 
     public List<String> findWinnerNames() {

@@ -10,39 +10,43 @@ import strategy.AlwaysTrueMoveStrategy;
 class RaceManagerTest {
 
     @Test
-    @DisplayName("전달된 시도 횟수만큼 자동차가 정상적으로 움직인다.")
+    @DisplayName("전달된 시도 횟수만큼 한 대의 자동차가 정상적으로 움직인다.")
     void shouldMoveCar_whenInputTryCount() {
         // given
         int tryCount = 3;
-        List<String> carNames = List.of("jiyun");
-        RaceManager raceManager = new RaceManager(carNames, tryCount);
-        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
+        List<String> carNames = List.of("dd");
+        AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
+        RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce(alwaysTrueMoveStrategy);
+        for (int i = 0; i < tryCount; i++) {
+            raceManager.moveOnce();
+        }
 
         // then
-        assertThat(raceManager.getRaceCars().getCars())
-                .extracting(Car::getPosition)
-                .containsExactly(1);
+        assertThat(raceManager.getRaceCars().getCars().get(0).getPosition())
+                .isEqualTo(3);
     }
 
+
     @Test
-    @DisplayName("전달된 시도 횟수만큼 자동차가 정상적으로 움직인다.")
+    @DisplayName("전달된 시도 횟수만큼 여러 대의 자동차가 정상적으로 움직인다.")
     void shouldMoveCars_whenInputTryCount() {
         // given
         int tryCount = 3;
-        List<String> carNames = List.of("pobi", "jiyun", "juno");
-        RaceManager raceManager = new RaceManager(carNames, tryCount);
-        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
+        List<String> carNames = List.of("pobi", "dd", "juno");
+        AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
+        RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce(alwaysTrueMoveStrategy);
+        for (int i = 0; i < tryCount; i++) {
+            raceManager.moveOnce();
+        }
 
         // then
-        assertThat(raceManager.getRaceCars().getCars())
-                .extracting(Car::getPosition)
-                .containsExactly(1, 1, 1);
+        raceManager.getRaceCars().getCars().forEach(car ->
+                assertThat(car.getPosition()).isEqualTo(3)
+        );
     }
 
     @Test
@@ -51,11 +55,11 @@ class RaceManagerTest {
         // given
         int tryCount = 1;
         List<String> carNames = List.of("pobi");
-        RaceManager raceManager = new RaceManager(carNames, tryCount);
         AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
+        RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce(moveStrategy);
+        raceManager.moveOnce();
 
         // then
         assertThat(raceManager.findWinnerNames())
@@ -63,19 +67,19 @@ class RaceManagerTest {
     }
 
     @Test
-    @DisplayName("우승자들을 정상적으로 반환한다.")
+    @DisplayName("여러 명의 우승자을 정상적으로 반환한다.")
     void shouldReturnMultiWinnerNames() {
         // given
         int tryCount = 1;
-        List<String> carNames = List.of("pobi", "jiyun");
-        RaceManager raceManager = new RaceManager(carNames, tryCount);
+        List<String> carNames = List.of("pobi", "dd");
         AlwaysTrueMoveStrategy moveStrategy = new AlwaysTrueMoveStrategy();
+        RaceManager raceManager = new RaceManager(carNames, tryCount, moveStrategy);
 
         // when
-        raceManager.moveOnce(moveStrategy);
+        raceManager.moveOnce();
 
         // then
         assertThat(raceManager.findWinnerNames())
-                .containsExactly("pobi", "jiyun");
+                .containsExactly("pobi", "dd");
     }
 }

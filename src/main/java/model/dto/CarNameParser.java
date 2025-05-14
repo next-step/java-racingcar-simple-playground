@@ -3,7 +3,7 @@ package model.dto;
 import java.util.Arrays;
 import java.util.List;
 
-public record CarNamesDto(String names) {
+public record CarNameParser(String names) {
     private static final String CAR_NAME_DELIMITER = ",";
 
     public List<String> splitNames() {

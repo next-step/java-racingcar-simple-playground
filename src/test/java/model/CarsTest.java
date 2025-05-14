@@ -13,7 +13,9 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars(List.of("pobi", "jiyun", "juno"));
+        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
+        List<String> names = List.of("pobi", "dd", "juno");
+        cars = new Cars(names, alwaysTrueMoveStrategy);
     }
 
     @Test
@@ -22,17 +24,14 @@ class CarsTest {
         // given & when & then
         assertThat(cars.getCars())
                 .extracting(Car::getName)
-                .containsExactly("pobi", "jiyun", "juno");
+                .containsExactly("pobi", "dd", "juno");
     }
 
     @Test
     @DisplayName("각 자동차에게 정상적으로 움직임 명령을 내린다.")
     void shouldMoveOrderToCar() {
-        // given
-        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
-
-        // when
-        cars.move(alwaysTrueMoveStrategy);
+        // given & when
+        cars.move();
 
         // then
         assertThat(cars.getCars())
@@ -43,14 +42,11 @@ class CarsTest {
     @Test
     @DisplayName("자동차들 중 우승자를 정상적으로 반환한다.")
     void shouldReturnWinnersOfCars() {
-        // given
-        AlwaysTrueMoveStrategy alwaysTrueMoveStrategy = new AlwaysTrueMoveStrategy();
-
-        // when
-        cars.move(alwaysTrueMoveStrategy);
+        // given & when
+        cars.move();
 
         // then
         assertThat(cars.findWinners())
-                .containsExactly("pobi", "jiyun", "juno");
+                .containsExactly("pobi", "dd", "juno");
     }
 }
