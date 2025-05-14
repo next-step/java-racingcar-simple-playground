@@ -1,3 +1,5 @@
+import view.InputView;
+
 public class RacingCar {
     /**
      * 자동차는 이름을 가지고 있다.
@@ -11,12 +13,15 @@ public class RacingCar {
      * 자동차 경주 게임을 완료한 후 누가 우승했는지를 구할 수 있다. 우승자는 한 명 이상일 수 있다.
      */
     // 자바 네이밍 규칙에 따라 상수는 대문자로 작성
-    public static final int FIX_NUMBER = 3; // 기준값 선언
+    public static final int FIX_NUMBER = 4; // 기준값 선언
     private final String carName;
     private final RandomNumber randomNumber;
     private int position;
 
     public RacingCar(String carName, RandomNumber randomNumber) {
+        if (carName.length() > InputView.MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
+        }
         this.carName = carName;
         this.randomNumber = randomNumber;
         this.position = 0;
@@ -45,4 +50,5 @@ public class RacingCar {
             position++;
         }
     }
+
 }

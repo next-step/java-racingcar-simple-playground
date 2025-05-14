@@ -8,7 +8,7 @@ public class RacingCarCheck {
         racingCarName.stream()
                 .map(String::strip)
                 .forEach(name -> {
-                    if (name.length() > 5) {
+                    if (name.length() > MAX_NAME_LENGTH) {
                         throw new IllegalArgumentException("자동차의 이름은 5자 이하로 작성해주세요" + name);
                     }
                 });

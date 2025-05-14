@@ -19,10 +19,9 @@ class RacingCarTest {
     @Test
     @DisplayName("n개의 자동차 확인")
     void withCar() {
-        RandomNumber randomNumber = new RandomNumber(20); // seed20 -> 9
-        RacingCar car1 = new RacingCar("빵빵이", randomNumber);
-        RacingCar car2 = new RacingCar("방방이", randomNumber);
-        RacingCar car3 = new RacingCar("통통이", randomNumber);
+        RacingCar car1 = new RacingCar("빵빵이", new RandomNumber(20));
+        RacingCar car2 = new RacingCar("방방이", new RandomNumber(20));
+        RacingCar car3 = new RacingCar("통통이", new RandomNumber(20));
 
         boolean result1 = car1.racingCarStatus();
         assertThat(result1).isTrue();
