@@ -1,26 +1,33 @@
 public class Car {
 
-	String name;
-	int distance;
+    private final String name;
+    private int distance;
 
-	public Car(String name) {
-		this.name = name;
-		this.distance = 0;
-	}
+    public Car(String name, int distance) {
+        this.name = name;
+        this.distance = distance;
+    }
 
-	public String getName() {
+    public Car(String name) {
+        this.name = name;
+        this.distance = 0;
+    }
+
+    public void move(int number) {
+        if (canMove(number)) {
+            this.distance++;
+        }
+    }
+
+    private boolean canMove(int number) {
+        return number >= 4;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public String getName() {
 		return name;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
+    }
 }
