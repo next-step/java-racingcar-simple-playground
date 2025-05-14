@@ -14,6 +14,8 @@ public class RacingGame {
     private final List<RacingCar> racingCar;          // 자동차를 담을 수 있는 배열 생성
     private int winnerNum;                  // 우승 자동차의 수
     private int winnerPosition;             // 우승 자동차의 위치
+    private static final int MAX_NAME_LENGTH = 5;
+
 
     public RacingGame(List<RacingCar> racingCar){
         this.racingCar = racingCar;
@@ -68,6 +70,16 @@ public class RacingGame {
             winnerNum ++;
             // 우승자가 2명 이상이라면 수를 증가시켜주자
         }
+    }
+
+    public static void checkCarName(List<String> racingCarName) {
+        racingCarName.stream()
+                .map(String::strip)
+                .forEach(name -> {
+                    if (name.length() > MAX_NAME_LENGTH) {
+                        throw new IllegalArgumentException("자동차의 이름은 5자 이하로 작성해주세요" + name);
+                    }
+                });
     }
 }
 

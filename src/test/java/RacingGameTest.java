@@ -20,10 +20,10 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름이 5자 초과면 예외 처리")
     void carNameCheckDown() {
-        assertThatThrownBy(() -> new RacingCar("지두지두지두"))   // assertThatThrownBy 예외 처리 함수
+        List<String> names = List.of("지두지두지두");
+        assertThatThrownBy(() -> RacingGame.checkCarName(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차");    // 자동차 이름은 5자 이하여야 합니다 라고 출력해서
-                                                            // hasMessageContaining("자동차") 라고 작성했는데 예외 처리가 잘 된건지 모르겠어요
+                .hasMessageContaining("5자 이하");
     }
 
     @Test

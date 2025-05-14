@@ -10,8 +10,8 @@ public class RacingGame {
 
 
     public RacingGame(List<String> carName, int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("사도할 회수는 음수로 작성하면 안됩니다.");
+        if (count < 1 && count != 0) {
+            throw new IllegalArgumentException("양수만 작성해주세요.");
         }
 
         this.cars = carName.stream()
