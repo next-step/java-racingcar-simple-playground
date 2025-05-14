@@ -1,21 +1,31 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MoverTest {
+public class MoverTest{
 
     @Test
-    @DisplayName("4이상의 숫자가 나올 경우 1 반환")
+    @DisplayName("4 이상의 숫자가 나올 경우 전진")
     void return_1() {
-        Mover mover = new Mover();
-        assertThat(mover.move(4)).isEqualTo(1);
-        assertThat(mover.move(9)).isEqualTo(1);
+        Car car = new Car("neo");
+
+        car.move(4);
+        assertThat(car.getPosition()).isEqualTo(1);
+
+        car.move(9);
+        assertThat(car.getPosition()).isEqualTo(2);
     }
 
     @Test
-    @DisplayName("3이하의 숫자가 나올 경우 0 반환")
+    @DisplayName("3 이하의 숫자가 나올 경우 정지")
     void return_0() {
-        Mover mover = new Mover();
-        assertThat(mover.move(3)).isEqualTo(0);
+        Car car = new Car("neo");
+
+        car.move(2);
+        assertThat(car.getPosition()).isEqualTo(0);
+
+        car.move(3);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GetWinner {
 
@@ -24,12 +25,9 @@ public class GetWinner {
     }
 
     private List<Car> carsAtPosition(List<Car> cars, int position) {
-        List<Car> result = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getPosition() == position) {
-                result.add(car);
-            }
-        }
-        return result;
+        return cars.stream()
+                .filter(car -> car.getPosition() == position)
+                .collect(Collectors.toList());
     }
+
 }

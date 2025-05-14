@@ -1,5 +1,5 @@
 public class Car {
-    private int position;
+    private int position = 0;
     private final String name;
 
     public Car(String name) {
@@ -8,20 +8,19 @@ public class Car {
     }
 
     private void validateName(String name){
-        if(name.length()>5){
+        if (name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 5글자 이하만 가능합니다.");
         }
     }
 
-    public void move(RandomNumberProvider provider, Mover mover) {
-        int randomNumber = provider.getRandomNumber();
-        position += mover.move(randomNumber);
-    }
-
-    public void move(int number) {
-        if (number >= 4) {
+    public void move(int randomNumber) {
+        if(canMove(randomNumber)){
             position++;
         }
+    }
+
+    private boolean canMove(int randomNumber) {
+        return randomNumber >= 4;
     }
 
     public String getName() {
