@@ -1,35 +1,44 @@
+import domain.*;
+import view.InputView;
+import view.ResultView;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class RacingGame {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        GameInput inputHandler = new GameInput(scanner);
+    private final Cars cars;
+    private final int tryCount;
+    private final RaceHistory raceHistory = new RaceHistory();
 
-        // 입력
-        List<String> names = inputHandler.readCarNames();
-        int roundCount = inputHandler.readRoundCount();
-
-
-        // Car 객체 생성
+    public RacingGame(List<String> carNames, int tryCount) {
+        if (tryCount < 1) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다");
+        }
+        this.tryCount = tryCount;
         MoveCondition moveCondition = new MoveConditionImpl();
-        List<Car> carList = names.stream()
-                .map(name -> new Car(name, moveCondition))  // move 조건 정의
+
+        List<Car> carList = carNames.stream()
+                .map(name -> new Car(name, moveCondition))
                 .toList();
 
-        Cars cars = new Cars(carList);
-
-        // 실행 결과 출력
-        GameOutput.printStart();
-        for (int i = 0; i < roundCount; i++) {
-            cars.moveAllOneRound(); // 1회씩 이동
-            GameOutput.printRound(cars);
-        }
-
-        // 우승자 출력
-        RaceJudge result = new RaceJudge(cars);
-        GameOutput.printWinners(result.getWinnerNames());
-
+        this.cars = new Cars(carList);
     }
+
+    public void race() {
+        for (int i = 0; i < tryCount; i++) {
+            cars.moveAllOneRound();
+            raceHistory.addRound(cars.getCarInfos()); //기록
+        }
+    }
+
+    public List<String> getWinners() {
+        RaceJudge judge = new RaceJudge(cars);
+        return judge.getWinnerNames();
+    }
+
+    public RaceHistory getRaceHistory() {
+        return raceHistory;
+    }
+
 }
 
