@@ -6,7 +6,7 @@ public class Car {
     //메서드 : 이름 설정 생성자, 위치 설정 메서드
     public String name;
     public int location = 0;
-    private Random random;
+    private IClass iclass;
 
     //사용자 입장
     public Car(String name) {
@@ -14,15 +14,13 @@ public class Car {
     }
 
     //테스트 용이성을 위해 오버라이딩 (random 고정을 위해서)
-    public Car(String name, Random random) {
+    public Car(String name, IClass iclass) {
         this.name = name;
-        this.random = random;
+        this.iclass = iclass;
     }
 
     public int moveCar() {
-        Random random = new Random();
-        int rand = random.nextInt(10);
-
+        int rand = iclass.giveInt();
         if (rand >= 4) {
             location++;
         }

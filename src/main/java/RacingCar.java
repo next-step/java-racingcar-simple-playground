@@ -7,21 +7,17 @@ import java.util.Random;
 public class RacingCar {
 
     private Car[] cars;
-    private Random random;
 
-    //사용자 입장
-    public RacingCar(String[] names) {
-        this(names, new Random()); //car의 이름 배열, 랜덤 객체 넘겨주기
+    public RacingCar(Car[] cars) {
+        this.cars = cars;
     }
 
-    //테스트 용이성을 위해 오버라이딩 (random 고정을 위해서)
-    public RacingCar(String[] names, Random random) {
+    public RacingCar(String[] names, IClass iclass) {
         this.cars = new Car[names.length]; //사용자가 준 car 이름 배열 크기만큼 객체 배열 생성
-        this.random = random; //테스트 -> 숫자 고정, 사용자 -> 랜덤 객체 전달
 
         //cars라는 객체 배열에 사용자가 준 이름과 랜덤 객체 넘겨주기
         for (int i = 0; i < names.length; i++) {
-            cars[i] = new Car(names[i], random);
+            cars[i] = new Car(names[i], iclass);
         }
     }
 
