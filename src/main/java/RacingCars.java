@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
 
@@ -27,19 +28,21 @@ public class RacingCars {
 
     //우승 차 구하기
     public List<Car> getWinner() {
-        Car[] sorted = Arrays.copyOf(cars, cars.length); //cars 보존을 위해 배열 복사
-        Arrays.sort(sorted,
-            Comparator.comparingInt(car -> car.location)); //car.location을 기준으로 정렬용 배열 생성
-        int maxlocation = sorted[cars.length - 1].location; //제일 앞으로 나간 car의 location 구하기
+        int maxLocation = getMaxLocation();
+        return getCarsAtLocation(maxLocation);
+    }
 
-        //요구사항 에러 부분
-        //1등 차가 여러개인 경우 -> winner 리스트에 넣고 출력
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.location == maxlocation) {
-                winners.add(car);
-            }
-        }
-        return winners;
+    public int getMaxLocation() {
+        return Arrays.stream(cars) //배열의 스트림 형태로 변환
+            .mapToInt(car -> car.location) //각 car 객체에서 .location
+            //값을 꺼내고 -> 그 값들만 흐르는 새로운 IntStream 생성
+            .max()
+            .getAsInt();
+    }
+
+    public List<Car> getCarsAtLocation(int location) {
+        return Arrays.stream(cars)
+            .filter(car -> car.location == location)
+            .collect(Collectors.toList());
     }
 }
