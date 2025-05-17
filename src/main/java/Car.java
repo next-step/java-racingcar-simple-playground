@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Car {
 
     //속성 : 이름, 위치 , 랜덤객체 주입
