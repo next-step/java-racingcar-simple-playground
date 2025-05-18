@@ -15,6 +15,14 @@ public class RacingCars {
         for (Car car : cars) {
             car.moveCar();
         }
+
+        for (Car car : cars) {
+            String bar = "-".repeat(car.location);
+            System.out.println(car.name + ": " + bar);
+        }
+
+        System.out.print("\n");
+
     }
 
     //주어진 횟수만큼 차 움직이기
@@ -42,5 +50,14 @@ public class RacingCars {
         return Arrays.stream(cars)
             .filter(car -> car.location == location)
             .collect(Collectors.toList());
+    }
+
+    //쉼표 마지막 처리 요구사항대로 수정 필요
+    public void printWinner() {
+        List<Car> winners = getWinner();
+        for (Car winner : winners) {
+            System.out.print(winner.name + ",");
+        }
+        System.out.println("가 최종 우승했습니다");
     }
 }
