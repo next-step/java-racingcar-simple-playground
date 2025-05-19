@@ -1,14 +1,16 @@
 import java.util.List;
 import java.util.stream.Collectors;
 
-import utils.NumberUtils;
+import utils.NumberGenerator;
 
 public class RacingGame {
 
+    private final NumberGenerator numberGenerator;
     private final List<Car> cars;
 
-    public RacingGame(List<Car> cars) {
-        this.cars = cars;
+    public RacingGame(NumberGenerator numberGenerator, List<Car> cars) {
+	    this.numberGenerator = numberGenerator;
+	    this.cars = cars;
     }
 
     public void play(int round) {
@@ -19,7 +21,7 @@ public class RacingGame {
 
     private void moveForward() {
         for (Car car : cars) {
-            car.move(NumberUtils.getRandomNumberZeroToNine());
+            car.move(numberGenerator.generate());
         }
     }
 

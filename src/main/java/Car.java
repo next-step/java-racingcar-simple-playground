@@ -9,13 +9,21 @@ public class Car {
     }
 
     public Car(String name) {
-        this.name = name;
+        this.name = validateName(name);
         this.distance = 0;
+    }
+
+    private String validateName(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("차량 이름은 5자 이하여야합니다.");
+        }
+        return name;
     }
 
     public void move(int number) {
         if (canMove(number)) {
             this.distance++;
+            System.out.println("차량 \"" + this.name + "\"이 전진합니다. 거리: " + this.distance + "");
         }
     }
 
