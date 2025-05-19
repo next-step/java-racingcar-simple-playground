@@ -1,10 +1,12 @@
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import utils.FixedNumberGenerator;
 import utils.RandomNumberGenerator;
 
 @DisplayName("자동차 경주 테스트")
@@ -41,6 +43,28 @@ public class RacingGameTest {
 
         assertThat(winners).containsExactlyInAnyOrder(car1, car2);
     }
+
+    @Test
+      @DisplayName("고정된 주사위로 모든 차량이 3라운드 내내 1칸씩 3칸 전진")
+      void moveForwardAllCars() {
+          List<Car> cars = Arrays.asList(new Car("a"), new Car("b"), new Car("c"));
+          RacingGame racingGame = new RacingGame(new FixedNumberGenerator(6), cars);
+
+          racingGame.play(3);
+
+          cars.forEach(car -> assertThat(car.getDistance()).isEqualTo(3));
+      }
+
+      @Test
+      @DisplayName("0~3의 값에서는 차가 모두 정지")
+      void playAllCarsStops() {
+          List<Car> cars = Arrays.asList(new Car("a"), new Car("b"), new Car("c"));
+          RacingGame racingGame = new RacingGame(new FixedNumberGenerator(2), cars);
+
+          racingGame.play(5);
+
+          cars.forEach(car -> assertThat(car.getDistance()).isEqualTo(0));
+      }
 
 }
 
