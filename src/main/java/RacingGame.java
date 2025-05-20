@@ -22,6 +22,7 @@ public class RacingGame {
     private void moveForward() {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
+            System.out.println("차량 \"" + car.getName() + "\"이 전진합니다. 거리: " + car.getDistance());
         }
     }
 

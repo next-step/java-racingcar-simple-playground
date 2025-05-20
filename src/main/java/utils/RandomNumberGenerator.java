@@ -1,11 +1,11 @@
 package utils;
 
-public class RandomNumberGenerator implements NumberGenerator {
+import java.util.concurrent.ThreadLocalRandom;
 
-    private final java.util.Random random = new java.util.Random();
+public class RandomNumberGenerator implements NumberGenerator {
 
 	@Override
 	public int generate() {
-	    return random.nextInt(10);
+	    return ThreadLocalRandom.current().nextInt(0, 10);
 	}
 }

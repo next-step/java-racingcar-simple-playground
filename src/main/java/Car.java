@@ -23,7 +23,6 @@ public class Car {
     public void move(int number) {
         if (canMove(number)) {
             this.distance++;
-            System.out.println("차량 \"" + this.name + "\"이 전진합니다. 거리: " + this.distance + "");
         }
     }
 
