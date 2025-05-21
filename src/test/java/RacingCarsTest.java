@@ -30,8 +30,8 @@ class RacingCarsTest {
         //1등 -> 5 이동성공, 2등 -> 3 이동 실패
         RacingCars game = new RacingCars(cars);
 
-        game.playRound(4);
-
-        assertThat(game.getWinner().get(0).name).isEqualTo("1등");
+        assertThat(game.getWinner())
+            .map(it -> it.name)
+            .containsExactlyInAnyOrder("1등");
     }
 }
