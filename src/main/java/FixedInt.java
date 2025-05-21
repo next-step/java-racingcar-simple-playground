@@ -1,4 +1,4 @@
-public class FixedInt implements IClass {
+public class FixedInt implements NumberGenerator {
 
     private int value;
 
@@ -7,7 +7,7 @@ public class FixedInt implements IClass {
     }
 
     @Override
-    public int giveInt() {
+    public int generateInt() {
         return value;
     }
 
