@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Car> carList  = inputCar(scanner);
+        List<Car> carList = inputCar(scanner);
         int time = inputTime(scanner);
 
         RacingCars game = new RacingCars(carList);
@@ -15,7 +15,7 @@ public class Main {
                 .printWinner();
     }
 
-    private static List<Car> inputCar(Scanner scanner) {
+    public static List<Car> inputCar(Scanner scanner) {
         System.out.println("경주할 자동차 이름을 입력하세요.");
         String input = scanner.nextLine();
         if (input.isEmpty()) {
@@ -33,7 +33,7 @@ public class Main {
         return cars;
     }
 
-    private static int inputTime(Scanner scanner) {
+    public static int inputTime(Scanner scanner) {
         System.out.println("경기횟수를 입력하세요");
         int time = 0;
         try {
@@ -41,7 +41,6 @@ public class Main {
         } catch (InputMismatchException e) {
             System.out.println("숫자가 아닙니다");
         }
-
         return time;
     }
 }
