@@ -18,11 +18,10 @@ public class Main {
         for (String name : names) {
             cars.add(new Car(name, new RandInt()));
         }
-        //Car[] carsArray = cars.toArray(new Car[0]);
+
         RacingCars game = new RacingCars(cars);
-        game.playRound(times);
-        game.getWinner();
-        game.printWinner();
+        game.playRound(times)
+                .printWinner();
     }
 
 }

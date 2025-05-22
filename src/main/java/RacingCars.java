@@ -26,10 +26,11 @@ public class RacingCars {
     }
 
     //주어진 횟수만큼 차 움직이기
-    public void playRound(int roundcnt) {
+    public RacingCars playRound(int roundcnt) {
         for (int i = 0; i < roundcnt; i++) {
             moveCarList();
         }
+        return this;
     }
 
     //우승 차 구하기
@@ -52,12 +53,13 @@ public class RacingCars {
 
     }
 
-    //쉼표 마지막 처리 요구사항대로 수정 필요
-    public void printWinner() {
+    public RacingCars printWinner() {
         List<Car> winners = getWinner();
         String names = winners.stream()
                 .map(car -> car.name)
                 .collect(Collectors.joining(","));
         System.out.println(names + "가 최종 우승했습니다");
+
+        return this;
     }
 }
