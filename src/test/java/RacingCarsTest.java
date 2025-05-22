@@ -16,7 +16,7 @@ class RacingCarsTest {
     void AllWinnerTest() {
         List<Car> cars = new ArrayList<>(
                 List.of(new Car("1등", new FixedInt(5))
-                        , new Car("2등", new FixedInt(3))
+                        , new Car("2등", new FixedInt(4))
                         , new Car("3등", new FixedInt(5))));
         RacingCars game = new RacingCars(cars);
 
@@ -33,6 +33,7 @@ class RacingCarsTest {
                         , new Car("2등", new FixedInt(3))));
         //1등 -> 5 이동성공, 2등 -> 3 이동 실패
         RacingCars game = new RacingCars(cars);
+        game.playRound(1);
 
         assertThat(game.getWinner())
                 .map(it -> it.name)
@@ -42,7 +43,7 @@ class RacingCarsTest {
     @Test
     @DisplayName("이름 입력에 공백이 입력된 경우")
     void inputCar_notString() {
-        Scanner scanner = new Scanner("");
+        Scanner scanner = new Scanner("\n");
         assertThatThrownBy(() -> Main.inputCar(scanner))
                 .isInstanceOf(IllegalArgumentException.class);
     }

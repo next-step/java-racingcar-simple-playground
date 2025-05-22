@@ -40,6 +40,7 @@ public class Main {
             time = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("숫자가 아닙니다");
+            throw e;
         }
         return time;
     }
