@@ -4,15 +4,15 @@ public class Car {
     //메서드 : 이름 설정 생성자, 위치 설정 메서드
     public String name;
     public int location = 0;
-    private NumberGenerator iclass;
+    private NumberGenerator numberGenerator;
 
-    public Car(String name, NumberGenerator iclass) {
+    public Car(String name, NumberGenerator numberGenerator) {
         this.name = name;
-        this.iclass = iclass;
+        this.numberGenerator = numberGenerator;
     }
 
     public int moveCar() {
-        int rand = iclass.generateInt();
+        int rand = numberGenerator.generateInt();
         if (rand >= 4) {
             location++;
         }
