@@ -7,30 +7,41 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        List<Car> carList  = inputCar(scanner);
+        int time = inputTime(scanner);
+
+        RacingCars game = new RacingCars(carList);
+        game.playRound(time)
+                .printWinner();
+    }
+
+    private static List<Car> inputCar(Scanner scanner) {
         System.out.println("경주할 자동차 이름을 입력하세요.");
         String input = scanner.nextLine();
         if (input.isEmpty()) {
-            throw new IllegalArgumentException("단어를 입력하세요");
+            throw new IllegalArgumentException();
         }
+        return GenerateCar(input);
+    }
 
+    private static List<Car> GenerateCar(String input) {
         String[] names = input.split(",");
-        System.out.println("시도할 횟수는 몇 회인가요?");
-        int times = 0;
-
-        try {
-            times = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("숫자가 아닙니다.");
-        }
-
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(new Car(name, new RandInt()));
         }
-
-        RacingCars game = new RacingCars(cars);
-        game.playRound(times)
-                .printWinner();
+        return cars;
     }
 
+    private static int inputTime(Scanner scanner) {
+        System.out.println("경기횟수를 입력하세요");
+        int time = 0;
+        try {
+            time = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("숫자가 아닙니다");
+        }
+
+        return time;
+    }
 }
