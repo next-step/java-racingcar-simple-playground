@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.stream.Collectors;
-
 import utils.NumberGenerator;
 
 public class RacingGame {
@@ -9,20 +8,17 @@ public class RacingGame {
     private final List<Car> cars;
 
     public RacingGame(NumberGenerator numberGenerator, List<Car> cars) {
-	    this.numberGenerator = numberGenerator;
-	    this.cars = cars;
+        this.numberGenerator = numberGenerator;
+        this.cars = cars;
     }
 
-    public void play(int round) {
-        for (int i = 0; i < round; i++) {
-            moveForward();
-        }
+    public List<Car> getCars() {
+        return cars;  // View에서 사용하도록 getter 추가
     }
 
-    private void moveForward() {
+    public void moveForward() {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
-            System.out.println("차량 \"" + car.getName() + "\"이 전진합니다. 거리: " + car.getDistance());
         }
     }
 

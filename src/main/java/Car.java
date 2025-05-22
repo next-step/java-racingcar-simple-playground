@@ -9,15 +9,15 @@ public class Car {
     }
 
     public Car(String name) {
-        this.name = validateName(name);
+        validateName(name);
+        this.name = name;
         this.distance = 0;
     }
 
-    private String validateName(String name) {
+    private void validateName(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("차량 이름은 5자 이하여야합니다.");
         }
-        return name;
     }
 
     public void move(int number) {
@@ -35,6 +35,6 @@ public class Car {
     }
 
     public String getName() {
-		return name;
+        return name;
     }
 }
