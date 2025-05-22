@@ -4,9 +4,9 @@ import java.util.stream.Collectors;
 
 public class RacingCars {
 
-    private Car[] cars;
+    private List<Car> cars;
 
-    public RacingCars(Car[] cars) {
+    public RacingCars(List<Car> cars) {
         this.cars = cars;
     }
 
@@ -39,25 +39,25 @@ public class RacingCars {
     }
 
     public int getMaxLocation() {
-        return Arrays.stream(cars) //배열의 스트림 형태로 변환
-            .mapToInt(car -> car.location) //각 car 객체에서 .location
-            //값을 꺼내고 -> 그 값들만 흐르는 새로운 IntStream 생성
-            .max()
-            .getAsInt();
+        return cars.stream()
+                .mapToInt(car -> car.location)
+                .max()
+                .getAsInt();
     }
 
     public List<Car> getCarsAtLocation(int location) {
-        return Arrays.stream(cars)
-            .filter(car -> car.location == location)
-            .collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.location == location)
+                .toList();
+
     }
 
     //쉼표 마지막 처리 요구사항대로 수정 필요
     public void printWinner() {
         List<Car> winners = getWinner();
-        for (Car winner : winners) {
-            System.out.print(winner.name + ",");
-        }
-        System.out.println("가 최종 우승했습니다");
+        String names = winners.stream()
+                .map(car -> car.name)
+                .collect(Collectors.joining(","));
+        System.out.println(names + "가 최종 우승했습니다");
     }
 }
