@@ -35,13 +35,11 @@ public class Main {
 
     public static int inputTime(Scanner scanner) {
         System.out.println("경기횟수를 입력하세요");
-        int time = 0;
         try {
-            time = scanner.nextInt();
+            return scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("숫자가 아닙니다");
             throw e;
         }
-        return time;
     }
 }
