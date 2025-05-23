@@ -10,8 +10,8 @@ public class Main {
         List<Car> carList = inputCar(scanner);
         int time = inputTime(scanner);
 
-        RacingCars game = new RacingCars(carList);
-        game.playRound(time)
+        new RacingCars(carList)
+                .playRound(time)
                 .printWinner();
     }
 
