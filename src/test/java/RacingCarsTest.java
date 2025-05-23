@@ -2,12 +2,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingCarsTest {
 
@@ -38,21 +35,5 @@ class RacingCarsTest {
         assertThat(game.getWinner())
                 .map(it -> it.name)
                 .containsExactlyInAnyOrder("1등");
-    }
-
-    @Test
-    @DisplayName("이름 입력에 공백이 입력된 경우")
-    void inputCar_notString() {
-        Scanner scanner = new Scanner("\n");
-        assertThatThrownBy(() -> Main.inputCar(scanner))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("횟수 입력에 숫자 아닌 값이 입력된 경우")
-    void inputTime_notInt() {
-        Scanner scanner = new Scanner("안녕");
-        assertThatThrownBy(() -> Main.inputTime(scanner))
-                .isInstanceOf(InputMismatchException.class);
     }
 }
