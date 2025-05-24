@@ -9,6 +9,15 @@ repositories {
     mavenCentral()
 }
 
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += '-Dfile.encoding=UTF-8'
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation platform('org.assertj:assertj-bom:3.25.1')
@@ -20,7 +29,10 @@ test {
     useJUnitPlatform()
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+tasks.register('printEncoding') {
+    doLast {
+        println ">>> CURRENT FILE ENCODING: " + System.getProperty("file.encoding")
+        println ">>> DEFAULT CHARSET: " + java.nio.charset.Charset.defaultCharset()
+    }
 }
 
