@@ -12,9 +12,9 @@ class RacingCarsTest {
     @DisplayName("다같이 1등일 때")
     void AllWinnerTest() {
         List<Car> cars = new ArrayList<>(
-                List.of(new Car("1등", new FixedInt(5))
-                        , new Car("2등", new FixedInt(4))
-                        , new Car("3등", new FixedInt(5))));
+                List.of(new Car("1등", new GeneratedFixedInt(5))
+                        , new Car("2등", new GeneratedFixedInt(4))
+                        , new Car("3등", new GeneratedFixedInt(5))));
         RacingCars game = new RacingCars(cars);
 
         game.playRound(4);
@@ -26,8 +26,8 @@ class RacingCarsTest {
     @DisplayName("1명만 우승일 때")
     void WinnerOnlyOne() {
         List<Car> cars = new ArrayList<>(
-                List.of(new Car("1등", new FixedInt(5))
-                        , new Car("2등", new FixedInt(3))));
+                List.of(new Car("1등", new GeneratedFixedInt(5))
+                        , new Car("2등", new GeneratedFixedInt(3))));
         //1등 -> 5 이동성공, 2등 -> 3 이동 실패
         RacingCars game = new RacingCars(cars);
         game.playRound(1);

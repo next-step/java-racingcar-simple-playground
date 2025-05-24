@@ -28,7 +28,7 @@ public class Main {
         String[] names = input.split(",");
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
-            cars.add(new Car(name, new RandInt()));
+            cars.add(new Car(name, new GeneratedRandInt()));
         }
         return cars;
     }

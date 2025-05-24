@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandInt implements NumberGenerator {
+public class GeneratedRandInt implements NumberGenerator {
 
     private final Random random = new Random();
 

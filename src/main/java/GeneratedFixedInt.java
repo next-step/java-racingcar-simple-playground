@@ -1,8 +1,8 @@
-public class FixedInt implements NumberGenerator {
+public class GeneratedFixedInt implements NumberGenerator {
 
     private int value;
 
-    public FixedInt(int value) {
+    public GeneratedFixedInt(int value) {
         this.value = value;
     }
 
