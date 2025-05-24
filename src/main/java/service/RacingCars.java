@@ -1,13 +1,14 @@
 package service;
 
 import domain.Car;
+import util.InOutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public RacingCars(List<Car> cars) {
         this.cars = cars;
@@ -24,7 +25,7 @@ public class RacingCars {
     public RacingCars playRound(int roundcnt) {
         for (int i = 0; i < roundcnt; i++) {
             moveCarList();
-            printCarsMoving();
+            InOutputView.printCarsMoving(cars);
         }
         return this;
     }
@@ -57,14 +58,5 @@ public class RacingCars {
         System.out.println(names + "가 최종 우승했습니다");
 
         return this;
-    }
-
-    public void printCarsMoving() {
-        for (Car car : cars) {
-            String bar = "-".repeat(car.getLocation());
-            System.out.println(car.getName() + ": " + bar);
-        }
-
-        System.out.print("\n");
     }
 }
