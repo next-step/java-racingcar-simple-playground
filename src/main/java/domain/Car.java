@@ -7,22 +7,6 @@ public class Car {
     private String name;
     private int location = 0;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLocation() {
-        return location;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
     private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
@@ -38,5 +22,11 @@ public class Car {
         return location;
     }
 
-    ;
+    public String getName() {
+        return name;
+    }
+
+    public int getLocation() {
+        return location;
+    }
 }
