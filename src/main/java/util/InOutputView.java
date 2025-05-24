@@ -8,7 +8,12 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class InOutputView {
+public final class InOutputView {
+
+    private InOutputView() {
+        throw new IllegalStateException("must not intantiate util class");
+    }
+
     public static void printCarsMoving(List<Car> cars) {
         for (Car car : cars) {
             String bar = "-".repeat(car.getLocation());
