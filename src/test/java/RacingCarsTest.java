@@ -1,5 +1,8 @@
+import domain.Car;
+import domain.GeneratedFixedInt;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import service.RacingCars;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,7 @@ class RacingCarsTest {
         game.playRound(1);
 
         assertThat(game.getWinner())
-                .map(it -> it.name)
+                .map(it -> it.getName())
                 .containsExactlyInAnyOrder("1등");
     }
 }

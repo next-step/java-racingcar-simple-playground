@@ -1,3 +1,6 @@
+import domain.Car;
+import domain.GeneratedFixedInt;
+import domain.GeneratedRandInt;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

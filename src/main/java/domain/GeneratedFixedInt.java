@@ -1,3 +1,5 @@
+package domain;
+
 public class GeneratedFixedInt implements NumberGenerator {
 
     private int value;

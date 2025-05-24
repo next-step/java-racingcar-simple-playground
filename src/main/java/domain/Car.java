@@ -1,9 +1,28 @@
+package domain;
+
 public class Car {
 
     //속성 : 이름, 위치 , 랜덤객체 주입
     //메서드 : 이름 설정 생성자, 위치 설정 메서드
-    public String name;
-    public int location = 0;
+    private String name;
+    private int location = 0;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
     private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {

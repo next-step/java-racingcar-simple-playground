@@ -1,4 +1,7 @@
-import java.util.Arrays;
+package service;
+
+import domain.Car;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,20 +18,13 @@ public class RacingCars {
         for (Car car : cars) {
             car.moveCar();
         }
-
-        for (Car car : cars) {
-            String bar = "-".repeat(car.location);
-            System.out.println(car.name + ": " + bar);
-        }
-
-        System.out.print("\n");
-
     }
 
     //주어진 횟수만큼 차 움직이기
     public RacingCars playRound(int roundcnt) {
         for (int i = 0; i < roundcnt; i++) {
             moveCarList();
+            printCarsMoving();
         }
         return this;
     }
@@ -41,14 +37,14 @@ public class RacingCars {
 
     public int getMaxLocation() {
         return cars.stream()
-                .mapToInt(car -> car.location)
+                .mapToInt(car -> car.getLocation())
                 .max()
                 .getAsInt();
     }
 
     public List<Car> getCarsAtLocation(int location) {
         return cars.stream()
-                .filter(car -> car.location == location)
+                .filter(car -> car.getLocation() == location)
                 .toList();
 
     }
@@ -56,10 +52,19 @@ public class RacingCars {
     public RacingCars printWinner() {
         List<Car> winners = getWinner();
         String names = winners.stream()
-                .map(car -> car.name)
+                .map(car -> car.getName())
                 .collect(Collectors.joining(","));
         System.out.println(names + "가 최종 우승했습니다");
 
         return this;
+    }
+
+    public void printCarsMoving() {
+        for (Car car : cars) {
+            String bar = "-".repeat(car.getLocation());
+            System.out.println(car.getName() + ": " + bar);
+        }
+
+        System.out.print("\n");
     }
 }
