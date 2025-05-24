@@ -1,25 +1,24 @@
 import java.util.List;
 import java.util.stream.Collectors;
-
-import utils.NumberUtils;
+import utils.NumberGenerator;
 
 public class RacingGame {
 
+    private final NumberGenerator numberGenerator;
     private final List<Car> cars;
 
-    public RacingGame(List<Car> cars) {
+    public RacingGame(NumberGenerator numberGenerator, List<Car> cars) {
+        this.numberGenerator = numberGenerator;
         this.cars = cars;
     }
 
-    public void play(int round) {
-        for (int i = 0; i < round; i++) {
-            moveForward();
-        }
+    public List<Car> getCars() {
+        return cars;  // View에서 사용하도록 getter 추가
     }
 
-    private void moveForward() {
+    public void moveForward() {
         for (Car car : cars) {
-            car.move(NumberUtils.getRandomNumberZeroToNine());
+            car.move(numberGenerator.generate());
         }
     }
 
