@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CarSimulator {
 
-    private static final String CAR_NAME_DELIMITER = ",";
     private final ArrayList<Car> cars = new ArrayList<>();
     private final int numberOfRounds;
 
