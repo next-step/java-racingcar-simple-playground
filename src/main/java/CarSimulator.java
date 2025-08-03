@@ -3,17 +3,16 @@ import java.util.Scanner;
 
 public class CarSimulator {
 
-    private static final Scanner scanner = new Scanner(System.in);
     private static final String CAR_NAME_DELIMITER = ",";
-
     private final ArrayList<Car> cars = new ArrayList<>();
-    private int numberOfRounds;
+    private final int numberOfRounds;
 
-    /*
-     * 자동차 경주를 시작합니다.
-     */
+    public CarSimulator(String carNames, String numberOfRounds) {
+        this.cars.addAll(createCars(carNames));
+        this.numberOfRounds = parsingNumberOfRounds(numberOfRounds);
+    }
+
     public void start() {
-        setup();
         simulate();
         end();
     }
@@ -27,17 +26,6 @@ public class CarSimulator {
             }
             System.out.println();
         }
-    }
-
-    private void setup() {
-        String[] inputCarNames = inputCarNames();
-        createCars(inputCarNames);
-        this.numberOfRounds = inputNumberOfRounds();
-    }
-
-    private String[] inputCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return scanner.nextLine().split(CAR_NAME_DELIMITER);
     }
 
     private void end() {
@@ -60,26 +48,46 @@ public class CarSimulator {
             .orElseThrow(() -> new IllegalStateException("자동차가 없습니다."));
     }
 
-    private void createCars(String[] inputCarNames) {
-        for (String carName : inputCarNames) {
-            if (!carName.isEmpty()) {
-                this.cars.add(new Car(carName.trim()));
-            }
-        }
-    }
+    private ArrayList<Car> createCars(String inputCarNames) {
+        String[] CarNames = parsingCarNames(inputCarNames);
+        ArrayList<Car> addCars = new ArrayList<>();
 
-    private int inputNumberOfRounds() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        String input = scanner.nextLine();
-        return parsingNumberOfRounds(input);
+        for (String carName : CarNames) {
+            if (carName.isEmpty()) {
+                throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+            }
+            addCars.add(new Car(carName));
+        }
+
+        return addCars;
     }
 
     private int parsingNumberOfRounds(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("회수는 비어있을 수 없습니다.");
+        }
+
+        if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("회수는 숫자여야 합니다.");
         }
+
+        if (Integer.parseInt(input) <= 0) {
+            throw new IllegalArgumentException("회수는 0보다 큰 숫자여야 합니다.");
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    private String[] parsingCarNames(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+
+        if (!input.contains(CAR_NAME_DELIMITER)) {
+            throw new IllegalArgumentException("자동차 이름은 '" + CAR_NAME_DELIMITER + "'로 구분되어 2대 이상이 존재해야합니다.");
+        }
+
+        return input.split(CAR_NAME_DELIMITER);
     }
 
 }
