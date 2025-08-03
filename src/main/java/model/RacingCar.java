@@ -1,11 +1,10 @@
 package model;
 
 public class RacingCar {
-
     private final String carName;
     private int forwardCount = 0;
 
-    RacingCar(String carName) {
+    public RacingCar(String carName) {
         if(carName == null || carName.isEmpty()){
             throw new RuntimeException("제대로된 자동차 이름을 입력해주세요.");
         }
