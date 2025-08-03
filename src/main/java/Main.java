@@ -1,11 +1,15 @@
+import java.util.List;
+
 import view.InputView;
+import view.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        final var carNames = InputView.getCarNames();
-        final var tryCount = InputView.getNumberOfRounds();
+        final List<String> carNames = InputView.getCarNames();
+        final int tryCount = InputView.getNumberOfRounds();
 
         CarSimulator carSimulator = new CarSimulator(carNames, tryCount);
-        carSimulator.start();
+        carSimulator.simulate();
+        ResultView.printWinners(carSimulator.getWinners());
     }
 }
