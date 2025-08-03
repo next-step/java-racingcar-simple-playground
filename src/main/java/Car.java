@@ -1,4 +1,5 @@
-import java.util.Random;
+
+import util.RandomUtil;
 
 public class Car {
 
@@ -15,7 +16,7 @@ public class Car {
     }
 
     public void move() {
-        int randomValue = new Random().nextInt(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND + 1);
+        int randomValue = RandomUtil.getRandomValue(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND);
         if (randomValue >= MOVE_THRESHOLD) {
             position++;
         }
