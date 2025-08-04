@@ -1,4 +1,4 @@
-import model.RacingGame;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,6 +24,7 @@ class GameTest {
 
     @Test
     void pickMoreThanOneWinnerTest() {
+
         RacingGame game = new RacingGame(new Random());
         game.initializeGame(new String[]{"neo", "brie"}, 5);
 
@@ -45,7 +46,7 @@ class GameTest {
         RacingGame game = new RacingGame(mockRandom);
         game.initializeGame(new String[]{"pobi", "crong"}, 5);
 
-        game.playRound(); // 1라운드 실행
+        game.playRound();
         assertEquals(1, game.getRacingCars().get(0).getForwardCount());
         assertEquals(0, game.getRacingCars().get(1).getForwardCount());
 
