@@ -48,4 +48,12 @@ public class CarSimulator {
         return cars;
     }
 
+    public List<Car> getCars() {
+        return new ArrayList<>(cars);
+    }
+
+    public int getNumberOfRounds() {
+        return numberOfRounds;
+    }
+
 }
