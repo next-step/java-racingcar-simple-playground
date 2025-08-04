@@ -22,6 +22,10 @@ public class RacingGame {
         }
     }
 
+    public void playOneRound() {
+        moveAllCars();
+    }
+
     private void validateRounds(int rounds) {
         if (rounds < 0) {
             throw new IllegalArgumentException("경주 횟수는 0 이상이어야 합니다");
