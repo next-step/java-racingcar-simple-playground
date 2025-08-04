@@ -14,11 +14,15 @@ public class CarSimulator {
     public void simulate() {
         System.out.println("\n실행 결과");
         for (int i = 0; i < numberOfRounds; i++) {
-            for (Car car : cars) {
-                car.move();
-                car.displayPosition();
-            }
+            moveCars();
             System.out.println();
+        }
+    }
+
+    public void moveCars() {
+        for (Car car : cars) {
+            car.move();
+            car.displayPosition();
         }
     }
 
