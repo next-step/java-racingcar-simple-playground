@@ -11,6 +11,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateName(name);
         this.name = name;
         this.position = 0;
     }
@@ -34,4 +35,9 @@ public class Car {
         System.out.println(name + " : " + "-".repeat(position));
     }
 
+    private void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+    }
 }
