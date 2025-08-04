@@ -1,22 +1,33 @@
+package domain;
+
 import java.util.List;
 import java.util.ArrayList;
 
 public class RacingGame {
     private final List<Car> cars;
+    private final int rounds;
 
-    public RacingGame(List<Car> cars) {
-        validateCars(cars);
-        this.cars = new ArrayList<>(cars);
+    public RacingGame(List<String> carNames, int rounds) {
+        validateRounds(rounds);
+        this.cars = createCars(carNames);
+        this.rounds = rounds;
     }
 
-    private void validateCars(List<Car> cars) {
-        if (cars == null) {
-            throw new IllegalArgumentException("자동차 리스트는 null일 수 없습니다");
+    private void validateRounds(int rounds) {
+        if (rounds < 0) {
+            throw new IllegalArgumentException("경주 횟수는 0 이상이어야 합니다");
         }
     }
 
-    public void race(int rounds) {
-        validateRounds(rounds);
+    private List<Car> createCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNames) {
+            cars.add(new Car(name));
+        }
+        return cars;
+    }
+
+    public void race() {
         for (int i = 0; i < rounds; i++) {
             moveAllCars();
         }
@@ -24,12 +35,6 @@ public class RacingGame {
 
     public void playOneRound() {
         moveAllCars();
-    }
-
-    private void validateRounds(int rounds) {
-        if (rounds < 0) {
-            throw new IllegalArgumentException("경주 횟수는 0 이상이어야 합니다");
-        }
     }
 
     private void moveAllCars() {
