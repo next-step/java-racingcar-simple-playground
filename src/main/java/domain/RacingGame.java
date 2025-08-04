@@ -64,11 +64,15 @@ public class RacingGame {
     private List<String> findCarsAtPosition(int targetPosition) {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            if (car.getPosition() == targetPosition) {
-                winners.add(car.getName());
-            }
+            addCarIfAtPosition(car, targetPosition, winners);
         }
         return winners;
+    }
+
+    private void addCarIfAtPosition(Car car, int targetPosition, List<String> winners) {
+        if (car.getPosition() == targetPosition) {
+            winners.add(car.getName());
+        }
     }
 
     public List<Car> getCars() {
