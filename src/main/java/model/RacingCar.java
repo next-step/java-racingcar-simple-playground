@@ -5,7 +5,7 @@ public class RacingCar {
     private int forwardCount = 0;
 
     public RacingCar(String carName) {
-        validateCarName();
+        validateCarName(carName);
         this.carName = carName;
     }
 
@@ -23,12 +23,12 @@ public class RacingCar {
         return forwardCount;
     }
 
-    private void validateCarName() {
-        if (carName == null || carName.isEmpty()) {
+    private void validateCarName(String name) {
+        if (name == null || name.isEmpty()) {
             throw new RuntimeException("제대로된 자동차 이름을 입력해주세요.");
         }
 
-        if (carName.length() > 5) {
+        if (name.length() > 5) {
             throw new RuntimeException("자동차 이름은 5자 이하로 설정해주세요.");
         }
     }
