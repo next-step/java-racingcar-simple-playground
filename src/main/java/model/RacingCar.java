@@ -5,24 +5,28 @@ public class RacingCar {
     private int forwardCount = 0;
 
     public RacingCar(String carName) {
-        if(carName == null || carName.isEmpty()){
+        if (carName == null || carName.isEmpty()) {
             throw new RuntimeException("제대로된 자동차 이름을 입력해주세요.");
         }
-        if(carName.length() > 5){
+
+        if (carName.length() > 5) {
             throw new RuntimeException("자동차 이름은 5자 이하로 설정해주세요.");
         }
+
         this.carName = carName;
     }
 
-    public String getCarName(){
+    public String getCarName() {
         return carName;
     }
 
-    public void move(int randomNumber){
-        if(randomNumber >= 4) ++forwardCount;
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            ++forwardCount;
+        }
     }
 
-    public int getForwardCount(){
+    public int getForwardCount() {
         return forwardCount;
     }
 }

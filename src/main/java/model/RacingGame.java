@@ -9,8 +9,8 @@ public class RacingGame {
     private final Random random;
     private int runCount;
 
-    public RacingGame(Random random){
-        this.random =  random;
+    public RacingGame(Random random) {
+        this.random = random;
     }
 
     public void initializeGame(String[] carNames, int runCount) {
@@ -39,7 +39,9 @@ public class RacingGame {
                 .mapToInt(RacingCar::getForwardCount)
                 .max()
                 .orElse(0);
+
         List<String> winners = new ArrayList<>();
+
         for (RacingCar car : racingCars) {
             if (getWinner(car, maxPosition)) {
                 winners.add(car.getCarName());
@@ -48,7 +50,7 @@ public class RacingGame {
         return winners;
     }
 
-    private boolean getWinner(RacingCar car, int maxPosition){
+    private boolean getWinner(RacingCar car, int maxPosition) {
         return car.getForwardCount() == maxPosition;
     }
 }
