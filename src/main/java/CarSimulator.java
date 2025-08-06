@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import view.ResultView;
+
 public class CarSimulator {
 
     private final ArrayList<Car> cars = new ArrayList<>();
@@ -12,7 +14,7 @@ public class CarSimulator {
     }
 
     public void simulate() {
-        System.out.println("\n실행 결과");
+        ResultView.printResultHeader();
         for (int i = 0; i < numberOfRounds; i++) {
             moveCars();
             System.out.println();
@@ -22,7 +24,7 @@ public class CarSimulator {
     public void moveCars() {
         for (Car car : cars) {
             car.move();
-            car.displayPosition();
+            ResultView.printCarPosition(car.getName(), car.getPosition());
         }
     }
 

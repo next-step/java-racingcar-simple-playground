@@ -31,10 +31,6 @@ public class Car {
         return position;
     }
 
-    public void displayPosition() {
-        System.out.println(name + " : " + "-".repeat(position));
-    }
-
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
