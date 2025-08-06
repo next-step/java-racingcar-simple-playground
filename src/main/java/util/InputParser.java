@@ -26,6 +26,10 @@ public class InputParser {
             throw new IllegalArgumentException("빈 자동차 이름이 존재합니다.");
         }
 
+        if (trimmedNames.stream().anyMatch(name -> name.length() > 5)) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하이어야 합니다.");
+        }
+
         return trimmedNames;
     }
 
