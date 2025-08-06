@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import strategy.MoveStrategy;
+import strategy.RandomMoveStrategy;
 import view.ResultView;
 
 public class CarSimulator {
 
     private final ArrayList<Car> cars = new ArrayList<>();
     private final int numberOfRounds;
+    private MoveStrategy moveStrategy = new RandomMoveStrategy();
 
     public CarSimulator(List<String> carNames, int numberOfRounds) {
         this.cars.addAll(getCars(carNames));
@@ -23,7 +26,7 @@ public class CarSimulator {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.move();
+            car.move(moveStrategy);
             ResultView.printCarPosition(car.getName(), car.getPosition());
         }
     }
@@ -62,4 +65,11 @@ public class CarSimulator {
         return numberOfRounds;
     }
 
+    public MoveStrategy getMoveStrategy() {
+        return moveStrategy;
+    }
+
+    public void setMoveStrategy(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
 }

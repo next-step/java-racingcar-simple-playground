@@ -1,11 +1,6 @@
-
-import util.RandomUtil;
+import strategy.MoveStrategy;
 
 public class Car {
-
-    private static final int RANDOM_LOWER_BOUND = 0;
-    private static final int RANDOM_UPPER_BOUND = 9;
-    private static final int MOVE_THRESHOLD = 4;
 
     private final String name;
     private int position;
@@ -16,9 +11,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move() {
-        int randomValue = RandomUtil.getRandomValue(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND);
-        if (randomValue >= MOVE_THRESHOLD) {
+    public void move(MoveStrategy strategy) {
+        if (strategy.isMovable()) {
             position++;
         }
     }
