@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NameParser {
-    public List<String> parseName(String str) {
-        return Arrays.stream(str.split(",", -1)).toList();
+
+    public static List<String> parse(String nameStr) {
+        return Arrays.stream(nameStr.split(",", -1)).toList();
     }
 }

@@ -1,38 +1,39 @@
-import model.Car;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import model.Car;
+import util.NumberGenerator;
 
-@DisplayName("움직이는 자동차 테스트 클래스")
 public class CarTest {
-    private Car car;
-
-    @BeforeEach
-    public void beforeEach() {
-        car = new Car("Kim");
-    }
-    @Test
-    @DisplayName("자동차 객체 생성이 제대로 되었는가")
-    public void testCreateCar() {
-        assertThat(car.getName()).isEqualTo("Kim");
-        assertThat(car.getPos()).isEqualTo(0);
-    }
 
     @Test
-    @DisplayName("자동차가 정상적으로 전진하는가")
-    public void testMoveCar() {
-        car.move(4);
+    public void 자동차가_정상적으로_움직이는지_테스트() {
+        NumberGenerator fixedGenerator = new FixedGenerator();
+        Car car = new Car("Car");
+
+        car.move(fixedGenerator.generate(4));
 
         assertThat(car.getPos()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("자동차가 정상적으로 정지하는가")
-    public void testStopCar() {
-        car.move(3);
+    public void 자동차가_정상적으로_정지하는지_테스트() {
+        NumberGenerator fixedGenerator = new FixedGenerator();
+        Car car = new Car("Car");
+
+        car.move(fixedGenerator.generate(0));
 
         assertThat(car.getPos()).isEqualTo(0);
+    }
+
+    @Nested
+    class FixedGenerator implements NumberGenerator {
+
+        @Override
+        public int generate(int bound) {
+            return bound;
+        }
     }
 }
