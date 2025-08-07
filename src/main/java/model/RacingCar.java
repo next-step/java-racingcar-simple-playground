@@ -1,0 +1,35 @@
+package model;
+
+public class RacingCar {
+    private final String carName;
+    private int forwardCount = 0;
+
+    public RacingCar(String carName) {
+        validateCarName(carName);
+        this.carName = carName;
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            ++forwardCount;
+        }
+    }
+
+    public int getForwardCount() {
+        return forwardCount;
+    }
+
+    private void validateCarName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("제대로된 자동차 이름을 입력해주세요.");
+        }
+
+        if (name.length() > 5) {
+            throw new RuntimeException("자동차 이름은 5자 이하로 설정해주세요.");
+        }
+    }
+}
