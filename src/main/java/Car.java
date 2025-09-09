@@ -1,8 +1,9 @@
 public class Car {
     public String carName;
+    public int carPosition;
 
     public void go(){
-        // 자동차가 전진한다.
+        carPosition++;
     }
 
     public void stop(){
@@ -15,8 +16,9 @@ public class Car {
         }
         stop();
     }
-    public Car(String carName) {
+    public Car(String carName, int carPosition) {
         this.carName = carName;
+        this.carPosition = carPosition;
     }
 }
 
