@@ -5,7 +5,7 @@ public class Race {
     public int carCount;
     public int raceTurn;
 
-    public List<Car>generateCars(int carCount){
+    public List<Car>generateCars(){
         List<Car> cars = new ArrayList<>();
         for(int i = 0; i < carCount; i++){
             Car car = new Car("Car No." +  i, 0);
@@ -16,11 +16,11 @@ public class Race {
 
     public void initRace(List<Car> cars){
         for(Car car : cars){
-            car.carLocation = 0;
+            car.carPosition = 0;
         }
     }
 
-    public void PlaySingleTurn(List<Car> cars){
+    public void playSingleTurn(List<Car> cars){
         for(Car car : cars){
             int randomDigit = new RandomDigitGenerator().generateRandomDigit();
             car.move(randomDigit);
@@ -29,10 +29,23 @@ public class Race {
 
     public void getWinner(List<Car> cars){
         List<Car> winners = new ArrayList<>();
-
+        int maxPosition = getMaxPosition(cars);
+        for (Car car : cars) {
+            if (car.carPosition == maxPosition) {
+                winners.add(car);
+            }
+        }
     }
 
-    public void PlayRace(List<Car> cars , int raceTurn){
+    public int getMaxPosition(List<Car> cars){
+        int maxPosition = 0;
+        for(Car car: cars) {
+            maxPosition = Math.max(maxPosition, car.carPosition);
+        }
+        return maxPosition;
+    }
+
+    public void playRace(List<Car> cars , int raceTurn){
         initRace(cars);
         for(int i=0;i<raceTurn;i++){
             PlaySingleTurn(cars);
