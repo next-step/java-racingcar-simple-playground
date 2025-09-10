@@ -1,3 +1,5 @@
+package domain;
+
 public class Car {
     public String carName;
     public int carPosition;
