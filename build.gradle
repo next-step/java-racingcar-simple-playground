@@ -9,6 +9,12 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "io.suhan.racingcar.Main"
+    }
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation platform('org.assertj:assertj-bom:3.25.1')
