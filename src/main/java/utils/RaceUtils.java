@@ -4,6 +4,7 @@ import domain.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RaceUtils {
 
@@ -15,14 +16,8 @@ public class RaceUtils {
     }
 
     public List<Car> getWinner(List<Car> cars){
-        List<Car> winners = new ArrayList<>();
         int maxPosition = getMaxPosition(cars);
-        for (Car car : cars) {
-            if (car.carPosition == maxPosition) {
-                winners.add(car);
-            }
-        }
-        return winners;
+        return cars.stream().filter(car -> car.carPosition == maxPosition).collect(Collectors.toList());
     }
 
     public int getMaxPosition(List<Car> cars){
