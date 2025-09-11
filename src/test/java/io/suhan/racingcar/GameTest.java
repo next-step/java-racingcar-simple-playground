@@ -30,6 +30,7 @@ public class GameTest {
 
     @Test
     void 누가_우승했는지를_구할_수_있다() {
+        // given
         Game game = new Game(5);
 
         FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(4);
@@ -43,11 +44,13 @@ public class GameTest {
         game.getCarRegistry().registerCar(brie);
         game.getCarRegistry().registerCar(brown);
 
-        game.start();
-
-        List<String> winnerNames = game.getWinners().stream().map(Car::getName).toList();
         List<String> expectedNames = List.of("neo", "brown");
 
+        // when
+        game.start();
+        List<String> winnerNames = game.getWinners().stream().map(Car::getName).toList();
+
+        // then
         assertIterableEquals(expectedNames, winnerNames);
     }
 }
