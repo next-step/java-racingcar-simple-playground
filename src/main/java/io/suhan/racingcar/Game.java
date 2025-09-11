@@ -23,17 +23,9 @@ public class Game {
     }
 
     public List<Car> getWinners() {
-        int bestPosition = -1;
-
-        for (Car car : carRegistry.getRegisteredCars()) {
-            int position = car.getPosition();
-
-            if (position > bestPosition) {
-                bestPosition = position;
-            }
-        }
-
         List<Car> winners = new ArrayList<>();
+
+        int bestPosition = this.getBestPosition();
 
         for (Car car : carRegistry.getRegisteredCars()) {
             if (car.getPosition() == bestPosition) {
@@ -46,5 +38,19 @@ public class Game {
 
     public void setRounds(int rounds) {
         this.rounds = rounds;
+    }
+
+    private int getBestPosition() {
+        int bestPosition = -1;
+
+        for (Car car : carRegistry.getRegisteredCars()) {
+            int position = car.getPosition();
+
+            if (position > bestPosition) {
+                bestPosition = position;
+            }
+        }
+
+        return bestPosition;
     }
 }
