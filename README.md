@@ -8,9 +8,13 @@
 
 ## 프로젝트 구조
 ```
+- generator/
+  - NumberGenerator.java : 숫자 생성기 Interface 정의
+  - FixedNumberGenerator.java : 고정 숫자 생성기
+  - RandomNumberGenerator.java : 랜덤 숫자 생성기
 - Car.java : 자동차 객체 정의
+- CarRegistry.java : 자동차 목록 관리
 - Game.java : 전반적인 게임 실행 담당
-- GameState.java : 게임 진행 상태 정의
 ```
 
 ## 시작하기
