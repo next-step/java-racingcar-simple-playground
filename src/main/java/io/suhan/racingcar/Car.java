@@ -24,6 +24,7 @@ public class Car {
 
     public void move() {
         int number = this.generator.generate();
+
         if (number >= CAR_MOVE_THRESHOLD) {
             this.incrementPosition();
         }

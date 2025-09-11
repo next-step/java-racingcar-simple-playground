@@ -1,6 +1,5 @@
 package io.suhan.racingcar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -20,17 +19,9 @@ public class Game {
     }
 
     public List<Car> getWinners() {
-        List<Car> winners = new ArrayList<>();
-
         int bestPosition = this.getBestPosition();
 
-        for (Car car : carRegistry.getRegisteredCars()) {
-            if (car.getPosition() == bestPosition) {
-                winners.add(car);
-            }
-        }
-
-        return winners;
+        return carRegistry.getRegisteredCars().stream().filter((car) -> car.getPosition() == bestPosition).toList();
     }
 
     public void setTrialRoundsCount(int rounds) {
@@ -38,17 +29,7 @@ public class Game {
     }
 
     private int getBestPosition() {
-        int bestPosition = -1;
-
-        for (Car car : carRegistry.getRegisteredCars()) {
-            int position = car.getPosition();
-
-            if (position > bestPosition) {
-                bestPosition = position;
-            }
-        }
-
-        return bestPosition;
+        return carRegistry.getRegisteredCars().stream().mapToInt(Car::getPosition).max().orElse(-1);
     }
 
     public CarRegistry getCarRegistry() {
