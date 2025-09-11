@@ -24,20 +24,12 @@ public class Game {
     }
 
     public List<Car> getWinners() {
-        int bestPosition = getBestPosition();
+        int bestPosition = carRegistry.getBestPosition();
 
         return carRegistry.getRegisteredCars()
                 .stream()
                 .filter((car) -> car.getPosition() == bestPosition)
                 .toList();
-    }
-
-    private int getBestPosition() {
-        return carRegistry.getRegisteredCars()
-                .stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(-1);
     }
 
     public CarRegistry getCarRegistry() {

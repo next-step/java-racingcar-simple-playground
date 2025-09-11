@@ -23,4 +23,12 @@ public class CarRegistry {
             car.move();
         }
     }
+
+    public int getBestPosition() {
+        return cars
+                .stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(-1);
+    }
 }
