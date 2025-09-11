@@ -14,11 +14,8 @@ public class Game {
 
     public void start() {
         for (int i = 0; i < this.rounds; i++) {
-            // TODO: 자동차 이동 구현
+            this.carRegistry.moveCars();
         }
-
-        List<Car> winners = this.getWinners();
-
         // TODO: 우승자 출력
     }
 
@@ -52,5 +49,9 @@ public class Game {
         }
 
         return bestPosition;
+    }
+
+    public CarRegistry getCarRegistry() {
+        return this.carRegistry;
     }
 }

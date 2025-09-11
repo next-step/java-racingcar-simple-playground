@@ -1,21 +1,29 @@
 package io.suhan.racingcar;
 
-import java.util.Random;
+import io.suhan.racingcar.generator.NumberGenerator;
+import io.suhan.racingcar.generator.RandomNumberGenerator;
 
 public class Car {
     private static final int CAR_MOVE_THRESHOLD = 4;
-    private static final int RANDOM_BOUND = 10;
 
     private final String name;
+    private final NumberGenerator generator;
     private int position;
 
     public Car(String name) {
         this.name = name;
+        this.generator = new RandomNumberGenerator();
+        this.position = 0;
+    }
+
+    public Car(String name, NumberGenerator generator) {
+        this.name = name;
+        this.generator = generator;
         this.position = 0;
     }
 
     public void move() {
-        int number = this.generateNumber();
+        int number = this.generator.generate();
         if (number >= CAR_MOVE_THRESHOLD) {
             this.incrementPosition();
         }
@@ -23,12 +31,6 @@ public class Car {
 
     private void incrementPosition() {
         this.position += 1;
-    }
-
-    private int generateNumber() {
-        Random random = new Random();
-
-        return random.nextInt(RANDOM_BOUND);
     }
 
     public String getName() {

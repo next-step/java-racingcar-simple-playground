@@ -17,4 +17,10 @@ public class CarRegistry {
     public List<Car> getRegisteredCars() {
         return cars;
     }
+
+    public void moveCars() {
+        for (Car car : cars) {
+            car.move();
+        }
+    }
 }
