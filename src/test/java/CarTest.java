@@ -3,13 +3,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import io.suhan.racingcar.Car;
 import io.suhan.racingcar.generator.FixedNumberGenerator;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
+@DisplayNameGeneration(ReplaceUnderscores.class)
 public class CarTest {
     @Test
-    @DisplayName("자동차는 이름을 가지고 있다.")
-    void carHasName() {
+    void 자동차는_이름을_가지고_있다() {
         String name = "neo";
 
         Car car = new Car(name);
@@ -18,8 +20,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("생성된 값이 4 이상일 경우 자동차가 움직일 수 있다.")
-    void carCanMove() {
+    void 생성된_값이_4_이상일_경우_자동차가_움직일_수_있다() {
         FixedNumberGenerator generator = new FixedNumberGenerator(4);
         Car car = new Car("neo", generator);
 
@@ -31,8 +32,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("생성된 값이 3 이하일 경우 자동차가 멈춘다.")
-    void carCanNotMove() {
+    void 생성된_값이_3_이하일_경우_자동차가_멈춘다() {
         FixedNumberGenerator generator = new FixedNumberGenerator(3);
         Car car = new Car("neo", generator);
 

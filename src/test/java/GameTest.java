@@ -4,13 +4,15 @@ import io.suhan.racingcar.Car;
 import io.suhan.racingcar.Game;
 import io.suhan.racingcar.generator.FixedNumberGenerator;
 import java.util.List;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
+@DisplayNameGeneration(ReplaceUnderscores.class)
 public class GameTest {
     @Test
-    @DisplayName("n대의 자동차가 참여할 수 있다.")
-    void registerableCars() {
+    void n대의_자동차가_참여할_수_있다() {
         List<String> names = List.of("neo", "brie", "brown");
 
         Game game = new Game();
@@ -27,8 +29,7 @@ public class GameTest {
     }
 
     @Test
-    @DisplayName("누가 우승했는지를 구할 수 있다.")
-    void getWinners() {
+    void 누가_우승했는지를_구할_수_있다() {
         Game game = new Game(5);
 
         FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(4);
