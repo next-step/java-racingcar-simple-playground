@@ -1,14 +1,15 @@
 package domain;
 
-import utils.RandomDigitGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import utils.RaceUtils;
 
 public class Race {
     public int carCount;
     public int raceTurn;
 
+    private RaceUtils raceUtils = new RaceUtils();
 
 
     public void initRace(List<Car> cars){
@@ -17,10 +18,13 @@ public class Race {
         }
     }
 
-
-
-
-
+    public List<Car> playRace(List<Car> cars , int raceTurn){
+        initRace(cars);
+        for(int i=0;i<raceTurn;i++){
+            raceUtils.playSingleTurn(cars);
+        }
+        return raceUtils.getWinner(cars);
+    }
 
 
 

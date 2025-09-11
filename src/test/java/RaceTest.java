@@ -1,5 +1,9 @@
 import domain.Race;
+import domain.Car;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RaceTest {
@@ -9,6 +13,9 @@ class RaceTest {
     @Test
     void 레이스의_우승자가_존재한다() {
         Race race = new Race(testCarCount, testRaceTurn);
-        assertTrue(race.winner.size() >= 1);
+
+        List<Car> cars = new utils.CarListGenerator().generateCars(testCarCount);
+        List<Car> winners = race.playRace(cars, testRaceTurn);
+        assertTrue(!winners.isEmpty());
     }
 }

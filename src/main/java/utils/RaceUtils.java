@@ -33,12 +33,5 @@ public class RaceUtils {
         return maxPosition;
     }
 
-    public void playRace(List<Car> cars , int raceTurn){
-        initRace(cars);
-        for(int i=0;i<raceTurn;i++){
-            playSingleTurn(cars);
-        }
-
-    }
 
 }
