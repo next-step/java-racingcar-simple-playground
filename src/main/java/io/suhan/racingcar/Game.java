@@ -21,7 +21,10 @@ public class Game {
     public List<Car> getWinners() {
         int bestPosition = getBestPosition();
 
-        return carRegistry.getRegisteredCars().stream().filter((car) -> car.getPosition() == bestPosition).toList();
+        return carRegistry.getRegisteredCars()
+                .stream()
+                .filter((car) -> car.getPosition() == bestPosition)
+                .toList();
     }
 
     public void setTrialRoundsCount(int rounds) {
@@ -29,7 +32,11 @@ public class Game {
     }
 
     private int getBestPosition() {
-        return carRegistry.getRegisteredCars().stream().mapToInt(Car::getPosition).max().orElse(-1);
+        return carRegistry.getRegisteredCars()
+                .stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(-1);
     }
 
     public CarRegistry getCarRegistry() {
