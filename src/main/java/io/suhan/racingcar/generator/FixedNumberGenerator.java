@@ -9,6 +9,6 @@ public class FixedNumberGenerator implements NumberGenerator {
 
     @Override
     public int generate() {
-        return this.fixedNumber;
+        return fixedNumber;
     }
 }

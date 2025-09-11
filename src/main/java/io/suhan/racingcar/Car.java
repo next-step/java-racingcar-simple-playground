@@ -23,22 +23,22 @@ public class Car {
     }
 
     public void move() {
-        int number = this.generator.generate();
+        int number = generator.generate();
 
         if (number >= CAR_MOVE_THRESHOLD) {
-            this.incrementPosition();
+            incrementPosition();
         }
     }
 
     private void incrementPosition() {
-        this.position += 1;
+        position += 1;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
     }
 }

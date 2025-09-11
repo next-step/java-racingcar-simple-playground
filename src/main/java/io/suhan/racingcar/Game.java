@@ -13,13 +13,13 @@ public class Game {
 
     public void start() {
         for (int i = 0; i < this.rounds; i++) {
-            this.carRegistry.moveCars();
+            carRegistry.moveCars();
         }
         // TODO: 우승자 출력
     }
 
     public List<Car> getWinners() {
-        int bestPosition = this.getBestPosition();
+        int bestPosition = getBestPosition();
 
         return carRegistry.getRegisteredCars().stream().filter((car) -> car.getPosition() == bestPosition).toList();
     }
@@ -33,6 +33,6 @@ public class Game {
     }
 
     public CarRegistry getCarRegistry() {
-        return this.carRegistry;
+        return carRegistry;
     }
 }

@@ -11,7 +11,7 @@ public class CarRegistry {
     }
 
     public void registerCar(Car car) {
-        this.cars.add(car);
+        cars.add(car);
     }
 
     public List<Car> getRegisteredCars() {
