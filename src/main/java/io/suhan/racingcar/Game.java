@@ -6,7 +6,7 @@ import java.util.List;
 public class Game {
     private final List<Car> cars;
     private GameState state;
-    int rounds;
+    private int rounds;
 
     public Game() {
         this.cars = new ArrayList<>();

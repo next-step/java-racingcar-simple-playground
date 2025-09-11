@@ -11,18 +11,6 @@ public class Car {
         this.position = 0;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    public void incrementPosition() {
-        this.position += 1;
-    }
-
     public void move() {
         int number = this.generateNumber();
         if (number >= 4) {
@@ -30,9 +18,21 @@ public class Car {
         }
     }
 
+    private void incrementPosition() {
+        this.position += 1;
+    }
+
     private int generateNumber() {
         Random random = new Random();
 
         return random.nextInt(10);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }
