@@ -29,8 +29,7 @@ public class GameTest {
     @Test
     @DisplayName("누가 우승했는지를 구할 수 있다.")
     void getWinners() {
-        Game game = new Game();
-        game.setTrialRoundsCount(5);
+        Game game = new Game(5);
 
         FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(4);
         FixedNumberGenerator stopGenerator = new FixedNumberGenerator(3);

@@ -4,11 +4,16 @@ import java.util.List;
 
 public class Game {
     private final CarRegistry carRegistry;
-    private int rounds;
+    private final int rounds;
 
     public Game() {
         this.carRegistry = new CarRegistry();
         this.rounds = 0;
+    }
+
+    public Game(int rounds) {
+        this.carRegistry = new CarRegistry();
+        this.rounds = rounds;
     }
 
     public void start() {
@@ -25,10 +30,6 @@ public class Game {
                 .stream()
                 .filter((car) -> car.getPosition() == bestPosition)
                 .toList();
-    }
-
-    public void setTrialRoundsCount(int rounds) {
-        this.rounds = rounds;
     }
 
     private int getBestPosition() {
