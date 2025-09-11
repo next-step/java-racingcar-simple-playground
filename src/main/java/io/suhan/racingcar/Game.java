@@ -36,7 +36,7 @@ public class Game {
         return winners;
     }
 
-    public void setRounds(int rounds) {
+    public void setTrialRoundsCount(int rounds) {
         this.rounds = rounds;
     }
 
