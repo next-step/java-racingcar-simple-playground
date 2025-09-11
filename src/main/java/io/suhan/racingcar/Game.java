@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private final List<Car> cars;
+    private final CarRegistry carRegistry;
     private int rounds;
 
     public Game() {
-        this.cars = new ArrayList<>();
+        this.carRegistry = new CarRegistry();
         this.rounds = 0;
-    }
-
-    public void registerCar(Car car) {
-        this.cars.add(car);
     }
 
     public void start() {
@@ -29,7 +25,7 @@ public class Game {
     public List<Car> getWinners() {
         int bestPosition = -1;
 
-        for (Car car : cars) {
+        for (Car car : carRegistry.getRegisteredCars()) {
             int position = car.getPosition();
 
             if (position > bestPosition) {
@@ -39,7 +35,7 @@ public class Game {
 
         List<Car> winners = new ArrayList<>();
 
-        for (Car car : cars) {
+        for (Car car : carRegistry.getRegisteredCars()) {
             if (car.getPosition() == bestPosition) {
                 winners.add(car);
             }
