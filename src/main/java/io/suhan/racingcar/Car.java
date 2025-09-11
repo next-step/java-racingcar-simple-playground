@@ -6,7 +6,6 @@ public class Car {
     private static final int CAR_MOVE_THRESHOLD = 4;
     private static final int RANDOM_BOUND = 10;
 
-
     private final String name;
     private int position;
 
