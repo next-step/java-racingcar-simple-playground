@@ -1,7 +1,8 @@
+package io.suhan.racingcar;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import io.suhan.racingcar.Car;
 import io.suhan.racingcar.generator.FixedNumberGenerator;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;

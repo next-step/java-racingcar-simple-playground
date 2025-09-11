@@ -1,7 +1,7 @@
+package io.suhan.racingcar;
+
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
-import io.suhan.racingcar.Car;
-import io.suhan.racingcar.Game;
 import io.suhan.racingcar.generator.FixedNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayNameGeneration;
