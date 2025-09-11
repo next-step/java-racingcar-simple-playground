@@ -3,6 +3,10 @@ package io.suhan.racingcar;
 import java.util.Random;
 
 public class Car {
+    private static final int CAR_MOVE_THRESHOLD = 4;
+    private static final int RANDOM_BOUND = 10;
+
+
     private final String name;
     private int position;
 
@@ -13,7 +17,7 @@ public class Car {
 
     public void move() {
         int number = this.generateNumber();
-        if (number >= 4) {
+        if (number >= CAR_MOVE_THRESHOLD) {
             this.incrementPosition();
         }
     }
@@ -25,7 +29,7 @@ public class Car {
     private int generateNumber() {
         Random random = new Random();
 
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_BOUND);
     }
 
     public String getName() {
