@@ -20,7 +20,7 @@ public class GameTest {
         for (String name : names) {
             Car car = new Car(name);
 
-            game.getCarRegistry().registerCar(car);
+            game.getCarRegistry().register(car);
         }
 
         List<String> registeredNames = game.getCarRegistry().getRegisteredCars().stream().map(Car::getName).toList();
@@ -40,9 +40,9 @@ public class GameTest {
         Car brie = new Car("brie", stopGenerator);
         Car brown = new Car("brown", forwardGenerator);
 
-        game.getCarRegistry().registerCar(neo);
-        game.getCarRegistry().registerCar(brie);
-        game.getCarRegistry().registerCar(brown);
+        game.getCarRegistry().register(neo);
+        game.getCarRegistry().register(brie);
+        game.getCarRegistry().register(brown);
 
         List<String> expectedNames = List.of("neo", "brown");
 

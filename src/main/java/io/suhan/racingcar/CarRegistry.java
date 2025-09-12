@@ -10,7 +10,7 @@ public class CarRegistry {
         this.cars = new ArrayList<>();
     }
 
-    public void registerCar(Car car) {
+    public void register(Car car) {
         cars.add(car);
     }
 
