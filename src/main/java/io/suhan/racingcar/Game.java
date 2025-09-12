@@ -6,14 +6,17 @@ public class Game {
     private final CarRegistry carRegistry;
     private final int rounds;
 
-    public Game() {
-        this.carRegistry = new CarRegistry();
-        this.rounds = 0;
+    private Game(int rounds) {
+        this.carRegistry = CarRegistry.of();
+        this.rounds = rounds;
     }
 
-    public Game(int rounds) {
-        this.carRegistry = new CarRegistry();
-        this.rounds = rounds;
+    public static Game of() {
+        return new Game(0);
+    }
+
+    public static Game of(int rounds) {
+        return new Game(rounds);
     }
 
     public void start() {

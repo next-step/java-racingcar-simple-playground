@@ -6,8 +6,12 @@ import java.util.List;
 public class CarRegistry {
     private final List<Car> cars;
 
-    public CarRegistry() {
+    private CarRegistry() {
         this.cars = new ArrayList<>();
+    }
+
+    public static CarRegistry of() {
+        return new CarRegistry();
     }
 
     public void register(Car car) {

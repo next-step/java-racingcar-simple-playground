@@ -15,10 +15,10 @@ public class GameTest {
     void n대의_자동차가_참여할_수_있다() {
         List<String> names = List.of("neo", "brie", "brown");
 
-        Game game = new Game();
+        Game game = Game.of();
 
         for (String name : names) {
-            Car car = new Car(name);
+            Car car = Car.of(name);
 
             game.getCarRegistry().register(car);
         }
@@ -31,14 +31,14 @@ public class GameTest {
     @Test
     void 누가_우승했는지를_구할_수_있다() {
         // given
-        Game game = new Game(5);
+        Game game = Game.of(5);
 
         FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(4);
         FixedNumberGenerator stopGenerator = new FixedNumberGenerator(3);
 
-        Car neo = new Car("neo", forwardGenerator);
-        Car brie = new Car("brie", stopGenerator);
-        Car brown = new Car("brown", forwardGenerator);
+        Car neo = Car.of("neo", forwardGenerator);
+        Car brie = Car.of("brie", stopGenerator);
+        Car brown = Car.of("brown", forwardGenerator);
 
         game.getCarRegistry().register(neo);
         game.getCarRegistry().register(brie);

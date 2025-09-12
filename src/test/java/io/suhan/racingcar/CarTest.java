@@ -15,7 +15,7 @@ public class CarTest {
     void 자동차는_이름을_가지고_있다() {
         String name = "neo";
 
-        Car car = new Car(name);
+        Car car = Car.of(name);
 
         assertEquals(name, car.getName());
     }
@@ -23,7 +23,7 @@ public class CarTest {
     @Test
     void 생성된_값이_4_이상일_경우_자동차가_움직일_수_있다() {
         FixedNumberGenerator generator = new FixedNumberGenerator(4);
-        Car car = new Car("neo", generator);
+        Car car = Car.of("neo", generator);
 
         car.move();
 
@@ -35,7 +35,7 @@ public class CarTest {
     @Test
     void 생성된_값이_3_이하일_경우_자동차가_멈춘다() {
         FixedNumberGenerator generator = new FixedNumberGenerator(3);
-        Car car = new Car("neo", generator);
+        Car car = Car.of("neo", generator);
 
         car.move();
 

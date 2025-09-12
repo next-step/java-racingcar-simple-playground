@@ -10,16 +10,18 @@ public class Car {
     private final NumberGenerator generator;
     private int position;
 
-    public Car(String name) {
-        this.name = name;
-        this.generator = new RandomNumberGenerator();
-        this.position = 0;
-    }
-
-    public Car(String name, NumberGenerator generator) {
+    private Car(String name, NumberGenerator generator) {
         this.name = name;
         this.generator = generator;
         this.position = 0;
+    }
+
+    public static Car of(String name) {
+        return new Car(name, new RandomNumberGenerator());
+    }
+
+    public static Car of(String name, NumberGenerator generator) {
+        return new Car(name, generator);
     }
 
     public void move() {
