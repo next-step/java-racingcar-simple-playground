@@ -4,13 +4,20 @@ import domain.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CarListGenerator {
 
+    private final Scanner scanner = new Scanner(System.in);
+
     public List<Car> generateCars(int carCount) {
+
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carCount; i++) {
-            Car car = new Car("Car No." + i, 0);
+            System.out.print((i + 1) + "번 자동차의 이름: ");
+            String carName = scanner.nextLine();
+
+            Car car = new Car(carName, 0);
             cars.add(car);
         }
         return cars;
