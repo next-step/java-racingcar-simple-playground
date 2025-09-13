@@ -10,20 +10,20 @@ public class Car {
         this.carPosition = carPosition;
     }
 
-    public void go() {
-        carPosition++;
-    }
-
-    public void stop() {
-        // 자동차가 정지한다.
-    }
-
     public void move(int randomDigit) {
         if (randomDigit >= 4) {
             go();
             return;
         }
         stop();
+    }
+
+    private void go() {
+        carPosition++;
+    }
+
+    private void stop() {
+        // 자동차가 정지한다.
     }
 
 }
