@@ -1,10 +1,9 @@
-import domain.Race;
 import domain.Car;
+import domain.Race;
 import org.junit.jupiter.api.Test;
 import utils.RaceUtils;
 
 import java.util.Arrays;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +24,7 @@ class RaceTest {
     }
 
     @Test
-    void 레이스의_우승자는_한명_존재할_수_있다(){
+    void 레이스의_우승자는_한명_존재할_수_있다() {
         List<Car> cars = Arrays.asList(
                 new Car("car1", 1),
                 new Car("car2", 3),
@@ -40,7 +39,7 @@ class RaceTest {
     }
 
     @Test
-    void 레이스의_우승자는_두명_이상_존재할_수_있다(){
+    void 레이스의_우승자는_두명_이상_존재할_수_있다() {
         List<Car> cars = Arrays.asList(
                 new Car("car1", 1),
                 new Car("car2", 2),
@@ -56,7 +55,7 @@ class RaceTest {
     }
 
     @Test
-    void 전진하지_않은_모두가_공동우승자일_수_있다(){
+    void 전진하지_않은_모두가_공동우승자일_수_있다() {
         List<Car> cars = Arrays.asList(
                 new Car("car1", 0),
                 new Car("car2", 0),
