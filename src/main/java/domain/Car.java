@@ -23,4 +23,3 @@ public class Car {
         this.carPosition = carPosition;
     }
 }
-
