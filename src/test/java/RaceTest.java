@@ -1,7 +1,7 @@
 import domain.Car;
-import domain.CarListGenerator;
 import domain.Race;
 import org.junit.jupiter.api.Test;
+import utils.RandomDigitGenerator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,13 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RaceTest {
     int testCarCount = 3;
     int testRaceTurn = 5;
+    RandomDigitGenerator randomDigitGenerator = new RandomDigitGenerator();
 
     //요구사항
     @Test
     void 레이스의_우승자가_존재한다() {
-        Race race = new Race(testCarCount, testRaceTurn);
+        Race race = new Race(testCarCount, testRaceTurn, randomDigitGenerator);
 
-        List<Car> cars = new CarListGenerator().generateCars(testCarCount);
+        List<Car> cars = Arrays.asList(
+                new Car("car1", 1),
+                new Car("car2", 3),
+                new Car("car3", 2)
+        );
         List<Car> winners = race.playRace(cars, testRaceTurn);
         assertTrue(!winners.isEmpty());
     }
@@ -31,11 +36,10 @@ class RaceTest {
                 new Car("car3", 2)
         );
 
-        RaceUtils raceUtils = new RaceUtils();
-        List<Car> winners = raceUtils.getWinner(cars);
+        List<Car> winners = new Race(testCarCount, testRaceTurn, randomDigitGenerator).getWinner(cars);
 
         assertEquals(1, winners.size());
-        assertEquals("car2", winners.get(0).carName);
+        assertEquals("car2", winners.get(0).getCarName());
     }
 
     @Test
@@ -46,12 +50,11 @@ class RaceTest {
                 new Car("car3", 2)
         );
 
-        RaceUtils raceUtils = new RaceUtils();
-        List<Car> winners = raceUtils.getWinner(cars);
+        List<Car> winners = new Race(testCarCount, testRaceTurn, randomDigitGenerator).getWinner(cars);
 
         assertEquals(2, winners.size());
-        assertEquals("car2", winners.get(0).carName);
-        assertEquals("car3", winners.get(1).carName);
+        assertEquals("car2", winners.get(0).getCarName());
+        assertEquals("car3", winners.get(1).getCarName());
     }
 
     @Test
@@ -61,12 +64,11 @@ class RaceTest {
                 new Car("car2", 0),
                 new Car("car3", 0)
         );
-        RaceUtils raceUtils = new RaceUtils();
-        List<Car> winners = raceUtils.getWinner(cars);
+        List<Car> winners = new Race(testCarCount, testRaceTurn, randomDigitGenerator).getWinner(cars);
 
         assertEquals(3, winners.size());
-        assertEquals("car1", winners.get(0).carName);
-        assertEquals("car2", winners.get(1).carName);
-        assertEquals("car3", winners.get(2).carName);
+        assertEquals("car1", winners.get(0).getCarName());
+        assertEquals("car2", winners.get(1).getCarName());
+        assertEquals("car3", winners.get(2).getCarName());
     }
 }

@@ -6,36 +6,37 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Race {
-    public int carCount;
-    public int raceTurn;
+    private int carCount;
+    private int raceTurn;
+    private RandomDigitGenerator randomDigitGenerator;
 
-    public Race(int carCount, int raceTurn) {
+    public Race(int carCount, int raceTurn, RandomDigitGenerator randomDigitGenerator) {
         this.carCount = carCount;
         this.raceTurn = raceTurn;
+        this.randomDigitGenerator = randomDigitGenerator;
     }
 
     public void initRace(List<Car> cars) {
         for (Car car : cars) {
-            car.carPosition = 0;
+            car.resetPosition();
         }
     }
 
     public void playSingleTurn(List<Car> cars) {
         for (Car car : cars) {
-            int randomDigit = new RandomDigitGenerator().generateRandomDigit();
-            car.move(randomDigit);
+            car.move(randomDigitGenerator.generateRandomDigit());
         }
     }
 
     public List<Car> getWinner(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
-        return cars.stream().filter(car -> car.carPosition == maxPosition).collect(Collectors.toList());
+        return cars.stream().filter(car -> car.getCarPosition() == maxPosition).collect(Collectors.toList());
     }
 
     public int getMaxPosition(List<Car> cars) {
         int maxPosition = 0;
         for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.carPosition);
+            maxPosition = Math.max(maxPosition, car.getCarPosition());
         }
         return maxPosition;
     }
@@ -46,5 +47,13 @@ public class Race {
             playSingleTurn(cars);
         }
         return getWinner(cars);
+    }
+
+    public int getCarCount() {
+        return carCount;
+    }
+
+    public int getRaceTurn() {
+        return raceTurn;
     }
 }

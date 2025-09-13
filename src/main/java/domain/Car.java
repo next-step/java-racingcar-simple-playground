@@ -2,8 +2,8 @@ package domain;
 
 public class Car {
 
-    public int carPosition;
-    public String carName;
+    private int carPosition;
+    private String carName;
 
     public Car(String carName, int carPosition) {
         this.carName = carName;
@@ -16,6 +16,18 @@ public class Car {
             return;
         }
         stop();
+    }
+
+    public int getCarPosition() {
+        return carPosition;
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public void resetPosition() {
+        this.carPosition = 0;
     }
 
     private void go() {
