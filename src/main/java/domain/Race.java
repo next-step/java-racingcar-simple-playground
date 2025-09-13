@@ -1,11 +1,11 @@
 package domain;
 
-import utils.RaceUtils;
+import utils.RandomDigitGenerator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Race {
-    private final RaceUtils raceUtils = new RaceUtils();
     public int carCount;
     public int raceTurn;
 
@@ -20,11 +20,31 @@ public class Race {
         }
     }
 
+    public void playSingleTurn(List<Car> cars) {
+        for (Car car : cars) {
+            int randomDigit = new RandomDigitGenerator().generateRandomDigit();
+            car.move(randomDigit);
+        }
+    }
+
+    public List<Car> getWinner(List<Car> cars) {
+        int maxPosition = getMaxPosition(cars);
+        return cars.stream().filter(car -> car.carPosition == maxPosition).collect(Collectors.toList());
+    }
+
+    public int getMaxPosition(List<Car> cars) {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.carPosition);
+        }
+        return maxPosition;
+    }
+
     public List<Car> playRace(List<Car> cars, int raceTurn) {
         initRace(cars);
         for (int i = 0; i < raceTurn; i++) {
-            raceUtils.playSingleTurn(cars);
+            playSingleTurn(cars);
         }
-        return raceUtils.getWinner(cars);
+        return getWinner(cars);
     }
 }

@@ -1,6 +1,4 @@
-package utils;
-
-import domain.Car;
+package domain;
 
 import java.util.ArrayList;
 import java.util.List;

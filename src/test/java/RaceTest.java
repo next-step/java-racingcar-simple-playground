@@ -1,7 +1,7 @@
 import domain.Car;
+import domain.CarListGenerator;
 import domain.Race;
 import org.junit.jupiter.api.Test;
-import utils.RaceUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ class RaceTest {
     void 레이스의_우승자가_존재한다() {
         Race race = new Race(testCarCount, testRaceTurn);
 
-        List<Car> cars = new utils.CarListGenerator().generateCars(testCarCount);
+        List<Car> cars = new CarListGenerator().generateCars(testCarCount);
         List<Car> winners = race.playRace(cars, testRaceTurn);
         assertTrue(!winners.isEmpty());
     }
