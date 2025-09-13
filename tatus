@@ -1,0 +1,26 @@
+[33mcommit 3a8cf149dee9db980754dac9f3f4ee64b7d52b9b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtae-wooo[m[33m, [m[1;31mupstream/yeran27[m[33m, [m[1;31mupstream/twootwoo[m[33m, [m[1;31mupstream/taeyeonroyce[m[33m, [m[1;31mupstream/tae-wooo[m[33m, [m[1;31mupstream/stonecau[m[33m, [m[1;31mupstream/sseung3424[m[33m, [m[1;31mupstream/soundbar91[m[33m, [m[1;31mupstream/nonactress[m[33m, [m[1;31mupstream/mintcoke123[m[33m, [m[1;31mupstream/main[m[33m, [m[1;31mupstream/lhc0312[m[33m, [m[1;31mupstream/koreatech04[m[33m, [m[1;31mupstream/kimsky247-coder[m[33m, [m[1;31mupstream/ke-62[m[33m, [m[1;31mupstream/junyoung0321[m[33m, [m[1;31mupstream/jihyun-yun42[m[33m, [m[1;31mupstream/janoogwan[m[33m, [m[1;31mupstream/jaehan0524[m[33m, [m[1;31mupstream/idle2534[m[33m, [m[1;31mupstream/hong-sile[m[33m, [m[1;31mupstream/gy102912[m[33m, [m[1;31mupstream/chemistryx[m[33m, [m[1;31mupstream/bingle625[m[33m, [m[1;31mupstream/HEAD[m[33m, [m[1;31morigin/tae-wooo[m[33m)[m
+Author: jaeyeonling <jaeyeonling@gmail.com>
+Date:   Mon Mar 4 13:57:31 2024 +0900
+
+    first commit
+
+ .gitignore   | 7 [32m++[m[31m-----[m
+ build.gradle | 6 [32m++++[m[31m--[m
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+[33mcommit 39d06bb760213ff0923bf81f97af3cce21a35b6f[m
+Author: jaeyeonling <jaeyeonling@gmail.com>
+Date:   Mon Mar 4 13:52:00 2024 +0900
+
+    first commit
+
+ .gitignore                               |  42 [32m++++++[m
+ build.gradle                             |  19 [32m+++[m
+ gradle/wrapper/gradle-wrapper.jar        | Bin [31m0[m -> [32m60756[m bytes
+ gradle/wrapper/gradle-wrapper.properties |   6 [32m+[m
+ gradlew                                  | 234 [32m+++++++++++++++++++++++++++++++[m
+ gradlew.bat                              |  89 [32m++++++++++++[m
+ settings.gradle                          |   2 [32m+[m
+ src/main/java/.gitkeep                   |   0
+ src/test/java/.gitkeep                   |   0
+ 9 files changed, 392 insertions(+)
