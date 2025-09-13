@@ -3,9 +3,9 @@ package utils;
 import java.util.Random;
 
 public class RandomDigitGenerator {
-    private Random random = new Random();
+    private final Random random = new Random();
 
-    public int generateRandomDigit(){
+    public int generateRandomDigit() {
         return random.nextInt(10);
     }
 
