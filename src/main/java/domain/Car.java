@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car {
 
     private int carPosition;
@@ -30,6 +33,14 @@ public class Car {
         this.carPosition = 0;
     }
 
+    public static List<Car> generateCarList(List<String> carNames) {
+        List<Car> cars = new ArrayList<>(carNames.size());
+        for (String name : carNames) {
+            cars.add(new Car(name, 0));
+        }
+        return cars;
+    }
+
     private void go() {
         carPosition++;
     }
@@ -37,5 +48,4 @@ public class Car {
     private void stop() {
         // 자동차가 정지한다.
     }
-
 }
