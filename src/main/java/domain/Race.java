@@ -16,14 +16,6 @@ public class Race {
         this.randomDigitGenerator = randomDigitGenerator;
     }
 
-    public boolean isCarStartPoint(Car car) {
-        return car.getCarPosition() == 0;
-    }
-
-    public boolean isAllCarsStartPoint(List<Car> cars) {
-        return cars.stream().allMatch(this::isCarStartPoint);
-    }
-
     public void playSingleTurn(List<Car> cars) {
         for (Car car : cars) {
             car.move(randomDigitGenerator.generateRandomDigit());
@@ -48,11 +40,6 @@ public class Race {
     }
 
     public List<Car> playRace(List<Car> cars, int raceTurn) {
-        if (!isAllCarsStartPoint(cars)) {
-            throwIlligalStartException();
-            return null;
-        }
-
         for (int i = 0; i < raceTurn; i++) {
             playSingleTurn(cars);
         }

@@ -18,9 +18,7 @@ public class Car {
     public void move(int randomDigit) {
         if (randomDigit >= carMoveBaseline) {
             go();
-            return;
         }
-        stop();
     }
 
     public int getCarPosition() {
@@ -47,7 +45,4 @@ public class Car {
         carPosition++;
     }
 
-    private void stop() {
-        // 자동차가 정지한다.
-    }
 }
