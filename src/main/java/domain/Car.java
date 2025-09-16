@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Car {
 
+    private static final int carMoveBaseline = 4;
+
     private int carPosition;
     private String carName;
 
@@ -14,7 +16,7 @@ public class Car {
     }
 
     public void move(int randomDigit) {
-        if (randomDigit >= 4) {
+        if (randomDigit >= carMoveBaseline) {
             go();
             return;
         }

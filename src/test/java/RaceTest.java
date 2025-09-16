@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RaceTest {
-    int testCarCount = 3;
-    int testRaceTurn = 5;
+    private static final int testCarCount = 3;
+    private static final int testRaceTurn = 5;
     RandomDigitGenerator randomDigitGenerator = new RandomDigitGenerator();
 
     //요구사항
