@@ -29,10 +29,6 @@ public class Car {
         return carName;
     }
 
-    public void resetPosition() {
-        this.carPosition = 0;
-    }
-
     public static List<Car> generateCarList(List<String> carNames) {
         List<Car> cars = new ArrayList<>(carNames.size());
         for (String name : carNames) {
