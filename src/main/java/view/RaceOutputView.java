@@ -20,11 +20,8 @@ public class RaceOutputView {
         System.out.println("실행 결과");
     }
 
-    public void printShowRaceStepsMessage(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getCarName() + ":" + "-".repeat(car.getCarPosition()));
-        }
-        System.out.println();
+    public void printShowRaceStepsMessage(Car car) {
+        System.out.println(car.getCarName() + ":" + "-".repeat(car.getCarPosition()));
     }
 
     public void printEndShowResultMessage(List<Car> winners) {
