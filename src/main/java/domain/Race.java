@@ -35,13 +35,6 @@ public class Race {
         return maxPosition;
     }
 
-    public List<Car> playRace(List<Car> cars, int raceTurn) {
-        for (int i = 0; i < raceTurn; i++) {
-            playSingleTurn(cars);
-        }
-        return getWinner(cars);
-    }
-
     public int getCarCount() {
         return carCount;
     }
