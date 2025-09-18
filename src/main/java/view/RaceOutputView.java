@@ -16,6 +16,7 @@ public class RaceOutputView {
     }
 
     public void printStartShowResultMessage() {
+        System.out.println();
         System.out.println("실행 결과");
     }
 
