@@ -1,5 +1,10 @@
 package view;
 
+import domain.Car;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RaceOutputView {
 
     public void printGetCarNameMessage() {
@@ -8,6 +13,23 @@ public class RaceOutputView {
 
     public void printGetRaceTurnMessage() {
         System.out.println("시도할 회수는 몇회인가요?");
+    }
+
+    public void printStartShowResultMessage() {
+        System.out.println("실행 결과");
+    }
+
+    public void printShowRaceStepsMessage(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getCarName() + ":" + "-".repeat(car.getCarPosition()));
+        }
+    }
+
+    public void printEndShowResultMessage(List<Car> winners) {
+        String names = winners.stream()
+                .map(Car::getCarName)
+                .collect(Collectors.joining(", "));
+        System.out.println(names + "가 최종 우승했습니다.");
     }
 
 }
