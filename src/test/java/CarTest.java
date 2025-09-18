@@ -28,4 +28,19 @@ class CarTest {
         // then
         assertEquals(0, car.getCarPosition());
     }
+
+    @Test
+    void 여러_번_전진하면_위치가_누적된다() {
+        // given
+        Car car = new Car("car", 0);
+
+        // when
+        car.move(9);
+        car.move(6);
+        car.move(4);
+        car.move(3);
+
+        // then
+        assertEquals(3, car.getCarPosition());
+    }
 }
