@@ -11,12 +11,13 @@ import java.util.List;
 public class RaceController {
     private final RaceInputView raceInputView;
     private final RaceOutputView raceOutputView;
+    private final RandomDigitGenerator digitGenerator;
     private Race race;
 
-    public RaceController() {
-        raceInputView = new RaceInputView();
-        raceOutputView = new RaceOutputView();
-
+    public RaceController(RaceInputView raceInputView, RaceOutputView raceOutputView, RandomDigitGenerator digitGenerator) {
+        this.raceInputView = raceInputView;
+        this.raceOutputView = raceOutputView;
+        this.digitGenerator = digitGenerator;
     }
 
     public void runRace() {
@@ -27,7 +28,7 @@ public class RaceController {
         int raceTurns = raceInputView.getRaceTurnNumber();
 
         List<Car> cars = Car.generateCarList(carNames);
-        this.race = new Race(cars.size(), raceTurns, new RandomDigitGenerator());
+        this.race = new Race(cars.size(), raceTurns, digitGenerator);
 
         raceOutputView.printStartShowResultMessage();
 
