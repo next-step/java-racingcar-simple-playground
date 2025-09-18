@@ -35,7 +35,7 @@ public class RaceController {
         raceOutputView.printEndShowResultMessage(winners);
     }
 
-    private void printOneTurnRace(List<Car> cars) {
+    private void printRaceOneTurn(List<Car> cars) {
         for (Car car : cars) {
             raceOutputView.printShowRaceStepsMessage(car);
         }
@@ -45,8 +45,9 @@ public class RaceController {
     private List<Car> playRace(List<Car> cars) {
         for (int i = 0; i < race.getRaceTurn(); i++) {
             race.playSingleTurn(cars);
-            printOneTurnRace(cars);
+            printRaceOneTurn(cars);
         }
         return race.getWinner(cars);
     }
+
 }

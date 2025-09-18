@@ -21,7 +21,7 @@ public class RaceOutputView {
     }
 
     public void printShowRaceStepsMessage(Car car) {
-        System.out.println(car.getCarName() + ":" + "-".repeat(car.getCarPosition()));
+        System.out.println(car.getCarName() + " : " + "-".repeat(car.getCarPosition()));
     }
 
     public void printEndShowResultMessage(List<Car> winners) {
