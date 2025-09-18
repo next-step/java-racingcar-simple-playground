@@ -6,6 +6,7 @@ import java.util.List;
 public class Car {
 
     private static final int carMoveBaseline = 4;
+    private static final int validCarNameSize = 5;
 
     private int carPosition;
     private String carName;
@@ -35,6 +36,22 @@ public class Car {
             cars.add(new Car(name, 0));
         }
         return cars;
+    }
+
+    public static boolean isValidCarName(String carName) {
+        if (carName.length() > validCarNameSize) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidCarNames(List<String> carNames) {
+        for (String name : carNames) {
+            if (!isValidCarName(name)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void go() {
