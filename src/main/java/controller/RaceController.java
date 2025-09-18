@@ -45,7 +45,7 @@ public class RaceController {
 
     private List<Car> playRace(List<Car> cars) {
         for (int i = 0; i < race.getRaceTurn(); i++) {
-            race.playSingleTurn(cars);
+            race.playSingleTurn(cars, digitGenerator);
             printRaceOneTurn(cars);
         }
         return race.getWinner(cars);
