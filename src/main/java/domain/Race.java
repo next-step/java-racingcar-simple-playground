@@ -16,7 +16,7 @@ public class Race {
         this.randomDigitGenerator = randomDigitGenerator;
     }
 
-    public void playSingleTurn(List<Car> cars) {
+    public void playSingleTurn(List<Car> cars, RandomDigitGenerator randomDigitGenerator) {
         for (Car car : cars) {
             car.move(randomDigitGenerator.generateRandomDigit());
         }
