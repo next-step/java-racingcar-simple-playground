@@ -22,27 +22,43 @@ public class RaceController {
         this.digitGenerator = digitGenerator;
     }
 
-    public List<String> getValidCarNames() {
-        raceOutputView.printGetCarNameMessage();
-        List<String> carNames = raceInputView.getCarNames();
-        while (!isValidCarNames(carNames)) {
+    private void printExceptionWhenInvalidName(List<String> carNames){
+        if(!isValidCarNames(carNames)){
             raceOutputView.printInvalidNameExceptionMessage();
+        }
+    }
+
+    public List<String> getValidCarNames() {
+        List<String> carNames;
+
+        do {
             raceOutputView.printGetCarNameMessage();
             carNames = raceInputView.getCarNames();
-        }
+            printExceptionWhenInvalidName(carNames);
+        }while (!isValidCarNames(carNames));
+
         return carNames;
     }
 
-    public int getValidTurn() {
-        raceOutputView.printGetRaceTurnMessage();
-        int raceTurns = raceInputView.getRaceTurnNumber();
-        while (raceTurns <= 0) {
+    private void printExceptionWhenInvalidTurn(int raceTruns){
+        if(raceTruns <= 0){
             raceOutputView.printInvalidTurnExceptionMessage();
+        }
+    }
+
+
+    public int getValidTurn() {
+        int raceTurns;
+        do{
             raceOutputView.printGetRaceTurnMessage();
             raceTurns = raceInputView.getRaceTurnNumber();
-        }
+            printExceptionWhenInvalidTurn(raceTurns);
+        }while (raceTurns <= 0);
+
         return raceTurns;
     }
+
+
 
     public void runRace() {
         List<String> carNames = getValidCarNames();
