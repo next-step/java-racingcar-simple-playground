@@ -32,6 +32,13 @@ public class RaceOutputView {
         System.out.println(car.getCarName() + " : " + "-".repeat(car.getCarPosition()));
     }
 
+    public void printRaceOneTurn(List<Car> cars) {
+        for (Car car : cars) {
+            printShowRaceStepsMessage(car);
+        }
+        System.out.println();
+    }
+
     public void printEndShowResultMessage(List<Car> winners) {
         String names = winners.stream()
                 .map(Car::getCarName)

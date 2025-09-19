@@ -57,17 +57,12 @@ public class RaceController {
         raceOutputView.printEndShowResultMessage(winners);
     }
 
-    private void printRaceOneTurn(List<Car> cars) {
-        for (Car car : cars) {
-            raceOutputView.printShowRaceStepsMessage(car);
-        }
-        System.out.println();
-    }
+
 
     private List<Car> playRace(List<Car> cars) {
         for (int i = 0; i < race.getRaceTurn(); i++) {
             race.playSingleTurn(cars, digitGenerator);
-            printRaceOneTurn(cars);
+            raceOutputView.printRaceOneTurn(cars);
         }
         return race.getWinner(cars);
     }
