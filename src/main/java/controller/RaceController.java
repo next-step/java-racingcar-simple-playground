@@ -42,7 +42,8 @@ public class RaceController {
         int raceTurns;
         do {
             raceOutputView.printGetRaceTurnMessage();
-            raceTurns = raceInputView.getRaceTurnNumber();
+            String raceTurnsInput = raceInputView.getRaceTurnNumber();
+            raceTurns = RaceTurnsToInt(raceTurnsInput);
         } while (!validateRaceTurns(raceTurns));
 
         return raceTurns;
@@ -59,6 +60,20 @@ public class RaceController {
 
         List<Car> winners = playRace(cars);
         raceOutputView.printEndShowResultMessage(winners);
+    }
+
+    private int RaceTurnsToInt(String getRaceTurnNumber) {
+        if (!getRaceTurnNumber.matches("^[0-9]+$")) {
+            return -1;
+        }
+
+        java.math.BigInteger v = new java.math.BigInteger(getRaceTurnNumber);
+        java.math.BigInteger max = java.math.BigInteger.valueOf(Integer.MAX_VALUE);
+        if (v.compareTo(max) > 0) {
+            return -2;
+        }
+
+        return v.intValue();
     }
 
     private boolean validateCarNames(List<String> carNames) {
@@ -79,8 +94,13 @@ public class RaceController {
         return true;
     }
 
-    private boolean validateRaceTurns(int raceTruns) {
-        if (raceTruns <= 0) {
+    private boolean validateRaceTurns(int raceTurns) {
+        if (raceTurns == -2) {
+            raceOutputView.printInvalidIntSizeExceptionMessage();
+            return false;
+        }
+
+        if (raceTurns <= 0) {
             raceOutputView.printInvalidTurnExceptionMessage();
             return false;
         }

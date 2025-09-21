@@ -27,6 +27,10 @@ public class RaceOutputView {
         System.out.println("양의 정수의 값을 입력해주세요.");
     }
 
+    public void printInvalidIntSizeExceptionMessage() {
+        System.out.println("int 범위 내의 값을 입력해주세요.(최대 2,147,483,647)");
+    }
+
     public void printGetRaceTurnMessage() {
         System.out.println("시도할 회수는 몇회인가요?");
     }

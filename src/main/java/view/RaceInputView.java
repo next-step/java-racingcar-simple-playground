@@ -14,10 +14,9 @@ public class RaceInputView {
         return carNames;
     }
 
-    public int getRaceTurnNumber() {
+    public String getRaceTurnNumber() {
         Scanner scanner = new Scanner(System.in);
-        int raceTurnNumber = scanner.nextInt();
-
-        return raceTurnNumber;
+        String raceTurnNumberInput = scanner.nextLine();
+        return raceTurnNumberInput;
     }
 }
