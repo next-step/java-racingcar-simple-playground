@@ -30,6 +30,30 @@ class CarTest {
     }
 
     @Test
+    void 숫자가_매우_큰_경우에_전진한다() {
+        // given
+        Car car = new Car("car1", 0);
+
+        // when
+        car.move(2147483647);
+
+        // then
+        assertEquals(1, car.getCarPosition());
+    }
+
+    @Test
+    void 숫자가_매우_작은_경우에_정지한다() {
+        // given
+        Car car = new Car("car1", 0);
+
+        // when
+        car.move(-2147483647);
+
+        // then
+        assertEquals(0, car.getCarPosition());
+    }
+
+    @Test
     void 여러_번_전진하면_위치가_누적된다() {
         // given
         Car car = new Car("car", 0);
