@@ -8,7 +8,8 @@ import view.RaceOutputView;
 
 import java.util.List;
 
-import static domain.Car.isValidCarNames;
+import static domain.Car.isValidCarNamesLanguage;
+import static domain.Car.isValidCarNamesLength;
 
 public class RaceController {
     private final RaceInputView raceInputView;
@@ -61,8 +62,18 @@ public class RaceController {
     }
 
     private boolean validateCarNames(List<String> carNames) {
-        if (!isValidCarNames(carNames)) {
-            raceOutputView.printInvalidNameExceptionMessage();
+        if (carNames == null || carNames.isEmpty()) {
+            raceOutputView.printEmptyNameExceptionMessage(); // 새 메서드(아래 2) 참고)
+            return false;
+        }
+
+        if (!isValidCarNamesLanguage(carNames)) {
+            raceOutputView.printInvalidNameLanguageExceptionMessage();
+            return false;
+        }
+
+        if (!isValidCarNamesLength(carNames)) {
+            raceOutputView.printInvalidNameLengthExceptionMessage();
             return false;
         }
         return true;

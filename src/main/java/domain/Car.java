@@ -37,21 +37,27 @@ public class Car {
         }
         return cars;
     }
- 
-    public static boolean isValidCarName(String carName) {
+
+    public static boolean isValidCarNameLanguage(String carName) {
+        if (carName == null || carName.isEmpty() || carName.isBlank()) {
+            return false;
+        }
+        return carName.matches("^[A-Za-z]+$");
+    }
+
+    public static boolean isValidCarNamesLanguage(List<String> carNames) {
+        return carNames.stream().allMatch(Car::isValidCarNameLanguage);
+    }
+
+    public static boolean isValidCarNameLength(String carName) {
         if (carName.length() > VALID_CAR_NAME_SIZE) {
             return false;
         }
         return true;
     }
 
-    public static boolean isValidCarNames(List<String> carNames) {
-        for (String name : carNames) {
-            if (!isValidCarName(name)) {
-                return false;
-            }
-        }
-        return true;
+    public static boolean isValidCarNamesLength(List<String> carNames) {
+        return carNames.stream().allMatch(Car::isValidCarNameLength);
     }
 
     private void go() {

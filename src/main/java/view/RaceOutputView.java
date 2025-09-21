@@ -11,8 +11,16 @@ public class RaceOutputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
-    public void printInvalidNameExceptionMessage() {
+    public void printEmptyNameExceptionMessage() {
+        System.out.println("자동차 이름을 최소 1개 이상 입력해주세요.");
+    }
+
+    public void printInvalidNameLengthExceptionMessage() {
         System.out.println("5자 이하의 이름을 입력해주세요.");
+    }
+
+    public void printInvalidNameLanguageExceptionMessage() {
+        System.out.println("자동차 이름은 영어 알파벳으로 된 문자열만 입력해주세요.");
     }
 
     public void printInvalidTurnExceptionMessage() {
