@@ -16,7 +16,11 @@ public class RaceController {
     private final RandomDigitGenerator digitGenerator;
     private Race race;
 
-    public RaceController(RaceInputView raceInputView, RaceOutputView raceOutputView, RandomDigitGenerator digitGenerator) {
+    public RaceController(
+            RaceInputView raceInputView,
+            RaceOutputView raceOutputView,
+            RandomDigitGenerator digitGenerator
+    ) {
         this.raceInputView = raceInputView;
         this.raceOutputView = raceOutputView;
         this.digitGenerator = digitGenerator;
@@ -28,8 +32,7 @@ public class RaceController {
         do {
             raceOutputView.printGetCarNameMessage();
             carNames = raceInputView.getCarNames();
-            printExceptionWhenInvalidName(carNames);
-        } while (!isValidCarNames(carNames));
+        } while (!validateCarNames(carNames));
 
         return carNames;
     }
@@ -39,8 +42,7 @@ public class RaceController {
         do {
             raceOutputView.printGetRaceTurnMessage();
             raceTurns = raceInputView.getRaceTurnNumber();
-            printExceptionWhenInvalidTurn(raceTurns);
-        } while (raceTurns <= 0);
+        } while (!validateRaceTurns(raceTurns));
 
         return raceTurns;
     }
@@ -58,16 +60,20 @@ public class RaceController {
         raceOutputView.printEndShowResultMessage(winners);
     }
 
-    private void printExceptionWhenInvalidName(List<String> carNames) {
+    private boolean validateCarNames(List<String> carNames) {
         if (!isValidCarNames(carNames)) {
             raceOutputView.printInvalidNameExceptionMessage();
+            return false;
         }
+        return true;
     }
 
-    private void printExceptionWhenInvalidTurn(int raceTruns) {
+    private boolean validateRaceTurns(int raceTruns) {
         if (raceTruns <= 0) {
             raceOutputView.printInvalidTurnExceptionMessage();
+            return false;
         }
+        return true;
     }
 
     private List<Car> playRace(List<Car> cars) {

@@ -49,8 +49,10 @@ class RaceTest {
         race.playSingleTurn(cars, fixedDigit);
 
         // then
-        assertEquals(List.of(1, 2, 1),
-                cars.stream().map(Car::getCarPosition).toList());
+        assertEquals(
+                List.of(1, 2, 1),
+                cars.stream().map(Car::getCarPosition).toList()
+        );
     }
 
     // getWinner 테스트
@@ -117,7 +119,7 @@ class RaceTest {
                 new Car("car3", 0)
         );
         Race race = new Race(TEST_CAR_COUNT, TEST_RACE_TURN, new RandomDigitGenerator());
-
+        
         // when
         List<Car> winners = race.getWinner(cars);
 
