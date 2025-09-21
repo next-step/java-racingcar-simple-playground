@@ -5,17 +5,15 @@ plugins {
 group = 'cholog'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation platform('org.assertj:assertj-bom:3.25.1')
-    testImplementation('org.junit.jupiter:junit-jupiter')
-    testImplementation('org.assertj:assertj-core')
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
 }
 
-test {
-    useJUnitPlatform()
-}
+test { useJUnitPlatform() }
