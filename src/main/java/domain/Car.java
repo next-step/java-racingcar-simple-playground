@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Car {
 
-    private static final int carMoveBaseline = 4;
-    private static final int validCarNameSize = 5;
+    private static final int CAR_MOVE_BASE_LINE = 4;
+    private static final int VALID_CAR_NAME_SIZE = 5;
 
     private int carPosition;
     private String carName;
@@ -17,7 +17,7 @@ public class Car {
     }
 
     public void move(int randomDigit) {
-        if (randomDigit >= carMoveBaseline) {
+        if (randomDigit >= CAR_MOVE_BASE_LINE) {
             go();
         }
     }
@@ -37,9 +37,9 @@ public class Car {
         }
         return cars;
     }
-
+ 
     public static boolean isValidCarName(String carName) {
-        if (carName.length() > validCarNameSize) {
+        if (carName.length() > VALID_CAR_NAME_SIZE) {
             return false;
         }
         return true;
