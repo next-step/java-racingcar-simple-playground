@@ -67,13 +67,13 @@ public class RaceController {
             return -1;
         }
 
-        java.math.BigInteger v = new java.math.BigInteger(getRaceTurnNumber);
+        java.math.BigInteger turnsToNumber = new java.math.BigInteger(getRaceTurnNumber);
         java.math.BigInteger max = java.math.BigInteger.valueOf(Integer.MAX_VALUE);
-        if (v.compareTo(max) > 0) {
+        if (turnsToNumber.compareTo(max) > 0) {
             return -2;
         }
 
-        return v.intValue();
+        return turnsToNumber.intValue();
     }
 
     private boolean validateCarNames(List<String> carNames) {
