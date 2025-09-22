@@ -5,8 +5,10 @@ import java.util.List;
 
 public class Car {
 
+
     private static final int CAR_MOVE_BASE_LINE = 4;
     private static final int VALID_CAR_NAME_SIZE = 5;
+
 
     private int carPosition;
     private String carName;
@@ -17,9 +19,11 @@ public class Car {
     }
 
     public void move(int randomDigit) {
+
         if (randomDigit >= CAR_MOVE_BASE_LINE) {
             go();
         }
+
     }
 
     public int getCarPosition() {
@@ -30,6 +34,12 @@ public class Car {
         return carName;
     }
 
+
+    public void resetPosition() {
+        this.carPosition = 0;
+    }
+
+
     public static List<Car> generateCarList(List<String> carNames) {
         List<Car> cars = new ArrayList<>(carNames.size());
         for (String name : carNames) {
@@ -37,6 +47,7 @@ public class Car {
         }
         return cars;
     }
+
 
     public static boolean isValidCarNameLanguage(String carName) {
         if (carName == null || carName.isEmpty() || carName.isBlank()) {
@@ -60,8 +71,10 @@ public class Car {
         return carNames.stream().allMatch(Car::isValidCarNameLength);
     }
 
+
     private void go() {
         carPosition++;
     }
+
 
 }

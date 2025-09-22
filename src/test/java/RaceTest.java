@@ -70,12 +70,15 @@ class RaceTest {
         List<Car> winners = race.getWinner(cars);
 
         // then
+
         assertTrue(!winners.isEmpty());
     }
 
     @Test
+
     void getWinner_레이스의_우승자는_한명_존재할_수_있다() {
         // given
+
         List<Car> cars = Arrays.asList(
                 new Car("car1", 1),
                 new Car("car2", 3),
@@ -87,6 +90,7 @@ class RaceTest {
         List<Car> winners = race.getWinner(cars);
 
         // then
+
         assertEquals(1, winners.size());
         assertEquals("car2", winners.get(0).getCarName());
     }
@@ -113,11 +117,13 @@ class RaceTest {
     @Test
     void getWinner_전진하지_않은_모두가_공동우승자일_수_있다() {
         // given
+
         List<Car> cars = Arrays.asList(
                 new Car("car1", 0),
                 new Car("car2", 0),
                 new Car("car3", 0)
         );
+
         Race race = new Race(TEST_CAR_COUNT, TEST_RACE_TURN, new RandomDigitGenerator());
         
         // when
