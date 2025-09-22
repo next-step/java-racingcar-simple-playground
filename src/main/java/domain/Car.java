@@ -5,6 +5,11 @@ import java.util.List;
 
 public class Car {
 
+
+    private static final int CAR_MOVE_BASE_LINE = 4;
+    private static final int VALID_CAR_NAME_SIZE = 5;
+
+
     private int carPosition;
     private String carName;
 
@@ -14,11 +19,11 @@ public class Car {
     }
 
     public void move(int randomDigit) {
-        if (randomDigit >= 4) {
+
+        if (randomDigit >= CAR_MOVE_BASE_LINE) {
             go();
-            return;
         }
-        stop();
+
     }
 
     public int getCarPosition() {
@@ -29,9 +34,11 @@ public class Car {
         return carName;
     }
 
+
     public void resetPosition() {
         this.carPosition = 0;
     }
+
 
     public static List<Car> generateCarList(List<String> carNames) {
         List<Car> cars = new ArrayList<>(carNames.size());
@@ -41,11 +48,33 @@ public class Car {
         return cars;
     }
 
+
+    public static boolean isValidCarNameLanguage(String carName) {
+        if (carName == null || carName.isEmpty() || carName.isBlank()) {
+            return false;
+        }
+        return carName.matches("^[A-Za-z]+$");
+    }
+
+    public static boolean isValidCarNamesLanguage(List<String> carNames) {
+        return carNames.stream().allMatch(Car::isValidCarNameLanguage);
+    }
+
+    public static boolean isValidCarNameLength(String carName) {
+        if (carName.length() > VALID_CAR_NAME_SIZE) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidCarNamesLength(List<String> carNames) {
+        return carNames.stream().allMatch(Car::isValidCarNameLength);
+    }
+
+
     private void go() {
         carPosition++;
     }
 
-    private void stop() {
-        // 자동차가 정지한다.
-    }
+
 }

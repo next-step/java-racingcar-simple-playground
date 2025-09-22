@@ -1,0 +1,118 @@
+package controller;
+
+import domain.Car;
+import domain.Race;
+import utils.RandomDigitGenerator;
+import view.RaceInputView;
+import view.RaceOutputView;
+
+import java.util.List;
+
+import static domain.Car.isValidCarNamesLanguage;
+import static domain.Car.isValidCarNamesLength;
+
+public class RaceController {
+    private final RaceInputView raceInputView;
+    private final RaceOutputView raceOutputView;
+    private final RandomDigitGenerator digitGenerator;
+    private Race race;
+
+    public RaceController(
+            RaceInputView raceInputView,
+            RaceOutputView raceOutputView,
+            RandomDigitGenerator digitGenerator
+    ) {
+        this.raceInputView = raceInputView;
+        this.raceOutputView = raceOutputView;
+        this.digitGenerator = digitGenerator;
+    }
+
+    public List<String> getValidCarNames() {
+        List<String> carNames;
+
+        do {
+            raceOutputView.printGetCarNameMessage();
+            carNames = raceInputView.getCarNames();
+        } while (!validateCarNames(carNames));
+
+        return carNames;
+    }
+
+    public int getValidTurn() {
+        int raceTurns;
+        do {
+            raceOutputView.printGetRaceTurnMessage();
+            String raceTurnsInput = raceInputView.getRaceTurnNumber();
+            raceTurns = RaceTurnsToInt(raceTurnsInput);
+        } while (!validateRaceTurns(raceTurns));
+
+        return raceTurns;
+    }
+
+    public void runRace() {
+        List<String> carNames = getValidCarNames();
+        int raceTurns = getValidTurn();
+
+        List<Car> cars = Car.generateCarList(carNames);
+        this.race = new Race(cars.size(), raceTurns, digitGenerator);
+
+        raceOutputView.printStartShowResultMessage();
+
+        List<Car> winners = playRace(cars);
+        raceOutputView.printEndShowResultMessage(winners);
+    }
+
+    private int RaceTurnsToInt(String getRaceTurnNumber) {
+        if (!getRaceTurnNumber.matches("^[0-9]+$")) {
+            return -1;
+        }
+
+        java.math.BigInteger turnsToNumber = new java.math.BigInteger(getRaceTurnNumber);
+        java.math.BigInteger max = java.math.BigInteger.valueOf(Integer.MAX_VALUE);
+        if (turnsToNumber.compareTo(max) > 0) {
+            return -2;
+        }
+
+        return turnsToNumber.intValue();
+    }
+
+    private boolean validateCarNames(List<String> carNames) {
+        if (carNames == null || carNames.isEmpty()) {
+            raceOutputView.printEmptyNameExceptionMessage(); // 새 메서드(아래 2) 참고)
+            return false;
+        }
+
+        if (!isValidCarNamesLanguage(carNames)) {
+            raceOutputView.printInvalidNameLanguageExceptionMessage();
+            return false;
+        }
+
+        if (!isValidCarNamesLength(carNames)) {
+            raceOutputView.printInvalidNameLengthExceptionMessage();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateRaceTurns(int raceTurns) {
+        if (raceTurns == -2) {
+            raceOutputView.printInvalidIntSizeExceptionMessage();
+            return false;
+        }
+
+        if (raceTurns <= 0) {
+            raceOutputView.printInvalidTurnExceptionMessage();
+            return false;
+        }
+        return true;
+    }
+
+    private List<Car> playRace(List<Car> cars) {
+        for (int i = 0; i < race.getRaceTurn(); i++) {
+            race.playSingleTurn(cars, digitGenerator);
+            raceOutputView.printRaceOneTurn(cars);
+        }
+        return race.getWinner(cars);
+    }
+
+}

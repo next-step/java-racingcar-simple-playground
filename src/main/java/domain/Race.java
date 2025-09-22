@@ -16,23 +16,12 @@ public class Race {
         this.randomDigitGenerator = randomDigitGenerator;
     }
 
-    public boolean isCarStartPoint(Car car) {
-        return car.getCarPosition() == 0;
-    }
-
-    public boolean isAllCarsStartPoint(List<Car> cars) {
-        return cars.stream().allMatch(this::isCarStartPoint);
-    }
-
-    public void playSingleTurn(List<Car> cars) {
+    public void playSingleTurn(List<Car> cars, RandomDigitGenerator randomDigitGenerator) {
         for (Car car : cars) {
             car.move(randomDigitGenerator.generateRandomDigit());
         }
     }
 
-    public void throwIlligalStartException() {
-        System.out.println("illigal start");
-    }
 
     public List<Car> getWinner(List<Car> cars) {
         int maxPosition = getMaxPosition(cars);
@@ -47,17 +36,6 @@ public class Race {
         return maxPosition;
     }
 
-    public List<Car> playRace(List<Car> cars, int raceTurn) {
-        if (!isAllCarsStartPoint(cars)) {
-            throwIlligalStartException();
-            return null;
-        }
-
-        for (int i = 0; i < raceTurn; i++) {
-            playSingleTurn(cars);
-        }
-        return getWinner(cars);
-    }
 
     public int getCarCount() {
         return carCount;
