@@ -1,6 +1,8 @@
-package io.suhan.racingcar;
+package io.suhan.racingcar.domain;
 
+import static io.suhan.racingcar.domain.Car.CAR_MOVE_THRESHOLD;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import io.suhan.racingcar.generator.FixedNumberGenerator;
 import java.util.List;
@@ -17,11 +19,7 @@ public class GameTest {
 
         Game game = Game.of();
 
-        for (String name : names) {
-            Car car = Car.of(name);
-
-            game.getCarRegistry().register(car);
-        }
+        game.getCarRegistry().registerCars(names);
 
         List<String> registeredNames = game.getCarRegistry().getRegisteredCars().stream().map(Car::getName).toList();
 
@@ -33,8 +31,8 @@ public class GameTest {
         // given
         Game game = Game.of(5);
 
-        FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(4);
-        FixedNumberGenerator stopGenerator = new FixedNumberGenerator(3);
+        FixedNumberGenerator forwardGenerator = new FixedNumberGenerator(CAR_MOVE_THRESHOLD);
+        FixedNumberGenerator stopGenerator = new FixedNumberGenerator(CAR_MOVE_THRESHOLD - 1);
 
         Car neo = Car.of("neo", forwardGenerator);
         Car brie = Car.of("brie", stopGenerator);
@@ -47,10 +45,15 @@ public class GameTest {
         List<String> expectedNames = List.of("neo", "brown");
 
         // when
-        game.start();
+        game.execute();
         List<String> winnerNames = game.getWinners().stream().map(Car::getName).toList();
 
         // then
         assertIterableEquals(expectedNames, winnerNames);
+    }
+
+    @Test
+    void 시도_횟수는_1_이상만_가능하다() {
+        assertThrows(IllegalArgumentException.class, () -> Game.of(0));
     }
 }

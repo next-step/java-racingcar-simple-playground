@@ -1,10 +1,11 @@
-package io.suhan.racingcar;
+package io.suhan.racingcar.domain;
 
 import io.suhan.racingcar.generator.NumberGenerator;
 import io.suhan.racingcar.generator.RandomNumberGenerator;
 
 public class Car {
-    private static final int CAR_MOVE_THRESHOLD = 4;
+    public static final int CAR_MOVE_THRESHOLD = 4;
+    public static final int CAR_NAME_MAXIMUM_LENGTH = 5;
 
     private final String name;
     private final NumberGenerator generator;
@@ -17,10 +18,14 @@ public class Car {
     }
 
     public static Car of(String name) {
-        return new Car(name, new RandomNumberGenerator());
+        return Car.of(name, new RandomNumberGenerator());
     }
 
     public static Car of(String name, NumberGenerator generator) {
+        if (name.length() > CAR_NAME_MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException("자동차의 이름은 " + CAR_NAME_MAXIMUM_LENGTH + "자 이하만 가능합니다.");
+        }
+
         return new Car(name, generator);
     }
 
@@ -42,5 +47,12 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public Car copy() {
+        Car copy = Car.of(this.name, this.generator);
+        copy.position = this.position;
+
+        return copy;
     }
 }

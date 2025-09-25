@@ -1,4 +1,4 @@
-package io.suhan.racingcar;
+package io.suhan.racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,22 @@ public class CarRegistry {
         for (Car car : cars) {
             car.move();
         }
+    }
+
+    public void registerCars(List<String> names) {
+        for (String name : names) {
+            Car car = Car.of(name);
+            cars.add(car);
+        }
+    }
+
+    public List<Car> getCarsWithBestPosition() {
+        int bestPosition = getBestPosition();
+
+        return getRegisteredCars()
+                .stream()
+                .filter((car) -> car.getPosition() == bestPosition)
+                .toList();
     }
 
     public int getBestPosition() {
