@@ -1,39 +1,44 @@
-package domain;
+package view;
 
-import org.junit.jupiter.api.Test;
+import domain.Cars;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class InputView {
+    private static final Scanner scanner = new Scanner(System.in);
 
-class CarsTest {
-    @Test
-    void 이름리스트로Cars를생성한다() {
-        // given
-        List<String> carNames = Arrays.asList("car1", "car2", "car3");
+    public static Cars inputCarName() {
+        while (true) {
+            try {
+                System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+                String[] inputName = scanner.nextLine().split(",");
+                for (int i = 0; i < inputName.length; i++) {
+                    inputName[i] = inputName[i].trim();
+                }
+                List<String> names = Arrays.asList(inputName);
 
-        // when
-        Cars cars = Cars.carsCreate(carNames);
+                return Cars.createCars(names);
 
-        // then
-        assertEquals(3, cars.getCars().size());
-        assertEquals("car1", cars.getCars().get(0).getCarName());
-        assertEquals("car2", cars.getCars().get(1).getCarName());
-        assertEquals("car3", cars.getCars().get(2).getCarName());
+            } catch (IllegalArgumentException input) {
+                System.out.println("입력 오류이므로 다시 입력해주세요.");
+            }
+        }
     }
 
-    @Test
-    void 자동차를추가할수있다() {
-        // given
-        Cars cars = Cars.carsCreate(Arrays.asList("car1"));
-        Car car2 = Car.namePositionOf("car2");
-
-        // when
-        cars.addCar(car2);
-
-        // then
-        assertEquals(2, cars.getCars().size());
-        assertEquals("car2", cars.getCars().get(1).getCarName());
+    public static int inputRound() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        while (true) {
+            try {
+                int round = scanner.nextInt();
+                scanner.nextLine();
+                return round;
+            } catch (InputMismatchException input) {
+                System.out.println("회수는 숫자로 입력해 주세요!!");
+                scanner.nextLine();
+            }
+        }
     }
 }

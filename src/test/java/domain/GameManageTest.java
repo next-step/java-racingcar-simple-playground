@@ -12,13 +12,13 @@ class GameManageTest {
     @Test
     void 한라운드후자동차가이동할수있다() {
         // given
-        Cars cars = Cars.carsCreate(Arrays.asList("car1", "car2"));
-        Winners winners = Winners.winnersCreate();
-        GameManage game = new GameManage(cars, winners);
+        Cars cars = Cars.createCars(Arrays.asList("car1", "car2"));
+        GameManage game = new GameManage(cars);
+
+        cars.getCars().get(0).moveCar();
 
         // when
         game.raceOneRound();
-
         // then
         List<Car> result = cars.getCars();
         assertTrue(result.get(0).getCarPosition() >= 0);
@@ -28,14 +28,13 @@ class GameManageTest {
     @Test
     void 우승자가한명이다() {
         // given
-        Cars cars = Cars.carsCreate(Arrays.asList("car1", "car2"));
-        Winners winners = Winners.winnersCreate();
-        GameManage game = new GameManage(cars, winners);
+        Cars cars = Cars.createCars(Arrays.asList("car1", "car2"));
+        GameManage game = new GameManage(cars);
 
-        cars.getCars().get(0).move();
+        cars.getCars().get(0).moveCar();
 
         // when
-        game.findWinner();
+        Winners winners = game.race(0);
 
         // then
         List<String> result = winners.getWinners();
@@ -46,15 +45,14 @@ class GameManageTest {
     @Test
     void 우승자가두명이다() {
         // given
-        Cars cars = Cars.carsCreate(Arrays.asList("car1", "car2"));
-        Winners winners = Winners.winnersCreate();
-        GameManage game = new GameManage(cars, winners);
+        Cars cars = Cars.createCars(Arrays.asList("car1", "car2"));
+        GameManage game = new GameManage(cars);
 
-        cars.getCars().get(0).move();
-        cars.getCars().get(1).move();
+        cars.getCars().get(0).moveCar();
+        cars.getCars().get(1).moveCar();
 
         // when
-        game.findWinner();
+        Winners winners = game.race(0);
 
         // then
         List<String> result = winners.getWinners();

@@ -10,11 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class WinnersTest {
     @Test
     void 우승자를설정할수있다() {
-        // given
-        Winners winners = Winners.winnersCreate();
-
-        // when
-        winners.setWinners(Arrays.asList("car1", "car2"));
+        // given,when
+        Winners winners = Winners.of(Arrays.asList("car1", "car2"));
 
         // then
         List<String> result = winners.getWinners();

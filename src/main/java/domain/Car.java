@@ -1,32 +1,31 @@
 package domain;
 
-import util.Generater;
-
+import util.GenerateNumber;
 
 public class Car {
     private static final int STANDARD = 4;
 
-    private final String carName;
+    private final CarName carName;
     private int carPosition;
 
-    private Car(String carName) {
+    private Car(CarName carName) {
         this.carName = carName;
         this.carPosition = 0;
     }
 
-    public static Car namePositionOf(String carName) {
+    public static Car createCarByCarName(CarName carName) {
         return new Car(carName);
     }
 
-    public void move() {
-        int randomNumber = Generater.generateNumber();
+    public void moveCar() {
+        int randomNumber = GenerateNumber.generateNumber();
         if (randomNumber >= STANDARD) {
             carPosition++;
         }
     }
 
     public String getCarName() {
-        return carName;
+        return carName.getCarName();
     }
 
     public int getCarPosition() {
