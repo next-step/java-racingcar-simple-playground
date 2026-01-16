@@ -9,6 +9,7 @@ public class GameManager {
 
     private static final int RANDOM_BOUND = 10;
     private static final int MIN_VALUE_TO_MOVE = 4;
+    private static final int MOVE_DISTANCE = 1;
     private static final String POSITION_FORMAT = "-";
     private static final String NAME_POSITION_SEPARATOR = ": ";
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -39,7 +40,7 @@ public class GameManager {
 
     public void move(Car car, int randomValue) {
         if (canMove(randomValue)) {
-            car.moveForward();
+            car.moveForward(MOVE_DISTANCE);
         }
     }
 
