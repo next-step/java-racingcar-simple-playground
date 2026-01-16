@@ -15,8 +15,8 @@ public class GameManager {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     public List<Car> cars;
-    private Random random;
-    private Scanner scanner;
+    private final Random random;
+    private final Scanner scanner;
 
     public GameManager() {
         this.cars = new ArrayList<>();
