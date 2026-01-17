@@ -2,6 +2,7 @@ package racingcar;
 
 public class Car {
 
+    private static final int MOVE_DISTANCE = 1;
     private final String name;
     private int position;
 
@@ -18,7 +19,7 @@ public class Car {
         return position;
     }
 
-    public void moveForward(int value) {
-        this.position += value;
+    public void moveForward() {
+        this.position += MOVE_DISTANCE;
     }
 }
