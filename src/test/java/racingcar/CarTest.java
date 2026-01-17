@@ -14,10 +14,9 @@ class CarTest {
         Car car = new Car("test");
 
         // when
-        int MOVE_DISTANCE = 1;
-        car.moveForward(MOVE_DISTANCE);
+        car.moveForward();
 
         // then
-        assertThat(car.getPosition()).isEqualTo(MOVE_DISTANCE);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 }
