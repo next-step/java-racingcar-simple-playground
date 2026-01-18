@@ -1,15 +1,19 @@
 package racingcar.view;
 
+import static racingcar.exception.InputErrorCode.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
+import racingcar.exception.InvalidInputException;
 
 public class ConsoleView {
 
     private final Scanner scanner;
+
+    private static final int MAX_ATTEMPT_COUNT = 1000;
 
     private static final String INPUT_RACING_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String CAR_NAME_SEPARATOR = ",";
@@ -27,18 +31,19 @@ public class ConsoleView {
         this.scanner = new Scanner(System.in);
     }
 
-    // TODO: Car 이름 정책에 따라 예외처리하기
     public List<String> readCarNames() {
         print(INPUT_RACING_CAR_NAME);
-        String carNames = scanner.nextLine();
-        return formatCarName(carNames);
+        String input = scanner.nextLine();
+        validateCarNamesInput(input);
+        return parseCarNames(input);
     }
 
-    // TODO: 숫자 입력 아닐 시 예외처리하기
     public int readAttempt() {
         print(INPUT_ATTEMPT);
-        String attempt = scanner.nextLine();
-        return Integer.parseInt(attempt);
+        String input = scanner.nextLine();
+        int attempt = parseAttempt(input);
+        validateAttempt(attempt);
+        return attempt;
     }
 
     public void printRacePrefix() {
@@ -53,8 +58,13 @@ public class ConsoleView {
         print(formatWinCars(winCars) + WIN_CAR_DESCRIPTION);
     }
 
-    private List<String> formatCarName(String carNames) {
-        return Arrays.stream(carNames.split(CAR_NAME_SEPARATOR)).toList();
+
+    private List<String> parseCarNames(String input) {
+        List<String> carNames = Arrays.stream(input.split(CAR_NAME_SEPARATOR))
+                .map(String::trim)
+                .toList();
+        validateCarNames(carNames);
+        return carNames;
     }
 
     private String formatRoundResult(List<Car> cars) {
@@ -84,5 +94,47 @@ public class ConsoleView {
 
     private void print(String value) {
         System.out.println(value);
+    }
+
+
+    private void validateCarNamesInput(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new InvalidInputException(CAR_NAME_BLANK);
+        }
+        if (!input.contains(CAR_NAME_SEPARATOR)) {
+            throw new InvalidInputException(CAR_NAMES_BAD_FORMAT);
+        }
+
+        String[] tokens = input.split(CAR_NAME_SEPARATOR, -1);
+        boolean hasEmptyToken = Arrays.stream(tokens)
+                .map(String::trim)
+                .anyMatch(String::isEmpty);
+
+        if (hasEmptyToken) {
+            throw new InvalidInputException(CAR_NAMES_BAD_FORMAT);
+        }
+    }
+
+    private void validateCarNames(List<String> carNames) {
+        if (carNames.stream().distinct().count() != carNames.size()) {
+            throw new InvalidInputException(CAR_NAME_DUPLICATED);
+        }
+    }
+
+    private int parseAttempt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new InvalidInputException(ATTEMPT_NOT_NUMBER);
+        }
+    }
+
+    private void validateAttempt(int attempt) {
+        if (attempt <= 0) {
+            throw new InvalidInputException(ATTEMPT_NOT_POSITIVE);
+        }
+        if (attempt >= MAX_ATTEMPT_COUNT) {
+            throw new InvalidInputException(ATTEMPT_TOO_LARGE);
+        }
     }
 }

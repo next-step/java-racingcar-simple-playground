@@ -12,7 +12,7 @@ public class Application {
         ConsoleView consoleView = new ConsoleView();
 
         List<String> carNames = consoleView.readCarNames();
-        gameManager.setCars(carNames);
+        gameManager.createCars(carNames);
 
         int attempt = consoleView.readAttempt();
         consoleView.printRacePrefix();

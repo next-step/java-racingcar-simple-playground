@@ -3,6 +3,8 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import racingcar.exception.InputErrorCode;
+import racingcar.exception.InvalidInputException;
 
 public class GameManager {
 
@@ -17,13 +19,15 @@ public class GameManager {
         this.random = new Random();
     }
 
-    // TODO: parse 시 예외처리하기
-    public void setCars(List<String> carNames) {
-        this.cars = createCarsFromNames(carNames);
-    }
-
     public List<Car> getCars() {
         return this.cars;
+    }
+
+    public void createCars(List<String> carNames) {
+        if (carNames == null || carNames.isEmpty()) {
+            throw new InvalidInputException(InputErrorCode.CAR_NAMES_BAD_FORMAT);
+        }
+        this.cars = getCarsFromNames(carNames);
     }
 
     public void raceOneRound() {
@@ -46,21 +50,21 @@ public class GameManager {
                 .toList();
     }
 
-    List<Car> createCarsFromNames(List<String> carNames) {
+    private List<Car> getCarsFromNames(List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
                 .toList();
     }
 
-    int getRandomValue() {
+    private int getRandomValue() {
         return random.nextInt(RANDOM_BOUND);
     }
 
-    boolean canMove(int randomValue) {
+    private boolean canMove(int randomValue) {
         return randomValue >= MIN_VALUE_TO_MOVE;
     }
 
-    int getMaxPosition(List<Car> cars) {
+    private int getMaxPosition(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()

@@ -1,29 +1,59 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.GameManager;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.InputErrorCode;
+import racingcar.exception.InvalidInputException;
 
 class GameManagerTest {
 
-    private GameManager gameManager;
+    private final GameManager gameManager = new GameManager();
 
-    @BeforeEach
-    void setUp() {
-        gameManager = new GameManager();
+
+    @DisplayName("자동차 이름 리스트로 자동차를 생성하고 보관한다.")
+    @Test
+    void createsCarsFromNames() {
+        // given
+        List<String> names = List.of("A", "B", "C");
+
+        // when
+        gameManager.createCars(names);
+
+        // then
+        assertThat(gameManager.getCars()).hasSize(3);
+        assertThat(gameManager.getCars())
+                .extracting(Car::getName)
+                .containsExactly("A", "B", "C");
+    }
+
+    @DisplayName("자동차 이름 리스트가 Null 이거나 비어있으면 예외를 발생시킨다.")
+    @Test
+    void createCars_throws_whenNamesEmpty() {
+        assertThatThrownBy(() -> gameManager.createCars(List.of()))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(InputErrorCode.CAR_NAMES_BAD_FORMAT.message());
+    }
+
+    @DisplayName("자동차 이름 리스트가 null이면 예외를 발생시킨다.")
+    @Test
+    void createCars_throws_whenNamesNull() {
+        assertThatThrownBy(() -> gameManager.createCars(null))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(InputErrorCode.CAR_NAMES_BAD_FORMAT.message());
     }
 
     @DisplayName("랜덤 값이 4 이상인 경우에는 전진한다.")
-    @Test
-    void moveWhenRandomValueIs4OrMore() {
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void moveWhenRandomValueIs4OrMore(int randomValue) {
         // given
         Car car = new Car("test");
-        int randomValue = 4;
 
         // when
         gameManager.move(car, randomValue);
@@ -33,11 +63,11 @@ class GameManagerTest {
     }
 
     @DisplayName("랜덤 값이 3 이하일 경우에는 전진하지 않는다.")
-    @Test
-    void stopWhenRandomValueIs3OrLess() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void stopWhenRandomValueIs3OrLess(int randomValue) {
         // given
         Car car = new Car("test");
-        int randomValue = 3;
 
         // when
         gameManager.move(car, randomValue);
