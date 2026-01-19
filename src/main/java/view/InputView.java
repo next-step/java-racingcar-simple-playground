@@ -15,7 +15,20 @@ public final class InputView {
     }
 
     public int readTryCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextInt();
+        while (true) {
+            System.out.println("시도할 회수는 몇회인가요?");
+            String input = scanner.nextLine().trim();
+
+            try {
+                int tryCount = Integer.parseInt(input);
+                if (tryCount < 1) {
+                    System.out.println("시도 횟수는 1 이상의 정수여야 합니다.");
+                    continue;
+                }
+                return tryCount;
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해 주세요.");
+            }
+        }
     }
 }
