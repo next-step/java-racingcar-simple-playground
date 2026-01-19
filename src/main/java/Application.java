@@ -1,3 +1,12 @@
+import domain.Cars;
+import domain.Race;
+import domain.RandomNumberGenerator;
+import domain.RandomNumberGeneratorImpl;
+import service.RacingCarGame;
+import util.CarNamesParser;
+import view.InputView;
+import view.OutputView;
+
 import java.util.Scanner;
 
 public final class Application {

@@ -1,3 +1,9 @@
+package service;
+
+import domain.Race;
+import domain.RandomNumberGenerator;
+import view.OutputView;
+
 public final class RacingCarGame {
     private final Race race;
     private final RandomNumberGenerator generator;

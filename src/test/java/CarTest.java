@@ -1,3 +1,4 @@
+import domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@DisplayName("Car 1단계 테스트")
+@DisplayName("domain.Car 1단계 테스트")
 public class CarTest {
     @Nested
     @DisplayName("이동 규칙")

@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Random;
 
 public final class RandomNumberGeneratorImpl implements RandomNumberGenerator {

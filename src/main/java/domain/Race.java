@@ -1,3 +1,5 @@
+package domain;
+
 public final class Race {
     private final Cars cars;
 

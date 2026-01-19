@@ -1,3 +1,6 @@
+import domain.Car;
+import domain.Cars;
+import domain.Race;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Race 2단계 테스트")
+@DisplayName("domain.Race 2단계 테스트")
 public class RaceTest {
 
     @Nested

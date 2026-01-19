@@ -1,3 +1,5 @@
+import domain.RandomNumberGenerator;
+
 public final class FixedNumberGenerator implements RandomNumberGenerator {
     private final int number;
 

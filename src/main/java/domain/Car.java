@@ -1,3 +1,5 @@
+package domain;
+
 public final class Car {
     private final CarName name;
     private int position;
