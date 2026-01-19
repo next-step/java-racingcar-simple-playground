@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public final class Cars {
@@ -40,6 +39,6 @@ public final class Cars {
     }
 
     public List<Car> asList() {
-        return Collections.unmodifiableList(cars);
+        return cars;
     }
 }
