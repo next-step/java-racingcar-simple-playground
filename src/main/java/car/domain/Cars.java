@@ -1,4 +1,4 @@
-package car;
+package car.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,9 +14,9 @@ public class Cars {
         }
     }
 
-    public void moveAllCars(List<Integer> randomValues) { // 각 자동차에 대해 move 메서드 호출
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(randomValues.get(i));
+    public void moveAllCars(MovingStrategy movingStrategy) {
+        for (MovingCar car : cars) {
+            car.move(movingStrategy); // 각 자동차는 전달받은 전략에 따라 이동 여부 결정
         }
     }
 

@@ -2,6 +2,8 @@ package car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import car.domain.Cars;
+import car.domain.MovingCar;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,24 +26,22 @@ public class CarsTest {
     @Nested
     class Describe_moveAllCars {
 
-        @DisplayName("랜덤 정수값을 받아서")
+        @DisplayName("이동 전략을 받아서")
         @Nested
-        class Context_with_car_name_list {
+        class Context_with_moving_strategy {
 
             @DisplayName("각 자동차에 대해 move 메서드 호출한다")
             @Test
-            void it_moves_all_cars_or_not_by_random_number() {
-                // given
-                List<Integer> randomValues = List.of(5, 3, 8);
+            void it_applies_strategy_to_all_cars() {
 
                 // when
-                cars.moveAllCars(randomValues);
+                cars.moveAllCars(() -> true);
 
                 // then
                 List<MovingCar> carList = cars.getCars();
-                assertThat(carList.get(0).getLocation()).isEqualTo(1); // Car1 이동
-                assertThat(carList.get(1).getLocation()).isEqualTo(0); // Car2 이동하지 않음
-                assertThat(carList.get(2).getLocation()).isEqualTo(1); // Car3 이동
+                assertThat(carList).allSatisfy(car ->
+                    assertThat(car.getLocation()).isEqualTo(1)
+                );
             }
         }
     }
@@ -58,7 +58,10 @@ public class CarsTest {
             @DisplayName("위치가 가장 높은 자동차를 반환한다")
             void it_returns_car_at_max_location() {
                 // given: Car1만 전진시킴
-                cars.moveAllCars(List.of(4, 0, 2));
+                List<MovingCar> carList = cars.getCars();
+                carList.get(0).move(() -> true);  // Car1 이동
+                carList.get(1).move(() -> false); // Car2 정지
+                carList.get(2).move(() -> false); // Car3 정지
 
                 // when
                 List<MovingCar> winners = cars.findWinners();
@@ -78,7 +81,10 @@ public class CarsTest {
             @DisplayName("위치가 가장 높은 모든 자동차를 반환한다")
             void it_returns_all_cars_at_max_location() {
                 // given: Car1과 Car3만 전진시킴
-                cars.moveAllCars(List.of(4, 0, 4));
+                List<MovingCar> carList = cars.getCars();
+                carList.get(0).move(() -> true);
+                carList.get(1).move(() -> false);
+                carList.get(2).move(() -> true);
 
                 // when
                 List<MovingCar> winners = cars.findWinners();

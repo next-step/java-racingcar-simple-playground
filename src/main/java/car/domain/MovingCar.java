@@ -1,4 +1,4 @@
-package car;
+package car.domain;
 
 public class MovingCar {
 
@@ -21,14 +21,10 @@ public class MovingCar {
         }
     }
 
-    public void move(int randomValue) {
-        if (randomValue >= THRESHOLD) {
-            forward();
+    public void move(MovingStrategy strategy) {
+        if (strategy.canMove()) {
+            location++;
         }
-    }
-
-    private void forward() {
-        location += 1;
     }
 
     public int getLocation() {

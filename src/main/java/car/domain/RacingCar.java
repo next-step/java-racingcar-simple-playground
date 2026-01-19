@@ -1,5 +1,7 @@
-package car;
+package car.domain;
 
+import car.domain.Cars;
+import car.domain.MovingCar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,16 +26,17 @@ public class RacingCar {
 
     public void start() {
         System.out.println("\n실행 결과");
+        MovingStrategy strategy = new RandomMovingStrategy();
+
         for (int i = 0; i < tryCount; i++) {
-            playOneRound();
+            playOneRound(strategy); // 매 라운드마다 전략 전달
             printRoundResult();
         }
         printWinners();
     }
 
-    private void playOneRound() {
-        List<Integer> randomValues = generateRandomValues(cars.getCars().size());
-        cars.moveAllCars(randomValues);
+    private void playOneRound(MovingStrategy movingStrategy) {
+        cars.moveAllCars(movingStrategy);
     }
 
     private void printRoundResult() {

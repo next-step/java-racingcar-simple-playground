@@ -1,10 +1,13 @@
 package car;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import car.domain.MovingCar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,46 +16,90 @@ public class MovingCarTest {
 
     private MovingCar car;
 
-    @BeforeEach
-    void setUp() {
-        car = new MovingCar("TestCar");
+    @Nested
+    @DisplayName("MovingCar 생성자는")
+    class Describe_constructor {
+
+        @Nested
+        @DisplayName("유효한 이름이 주어지면")
+        class Context_with_valid_name {
+
+            @ParameterizedTest
+            @DisplayName("자동차 객체를 생성한다")
+            @ValueSource(strings = {"Car1", "MyCar", "A", "12345"})
+            void it_creates_moving_car(String name) {
+                MovingCar car = new MovingCar(name);
+
+                assertThat(car.getName()).isEqualTo(name);
+                assertThat(car.getLocation()).isEqualTo(0);
+            }
+        }
+
+        @Nested
+        @DisplayName("자동차 이름이 빈 값이거나 공백이면")
+        class Context_with_invalid_name_empty_or_blank {
+
+            @ParameterizedTest
+            @DisplayName("예외를 던진다")
+            @ValueSource(strings = {"", " ", "     "})
+            void it_throws_exception(String name) {
+                assertThatThrownBy(() -> new MovingCar(name))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("자동차 이름은 빈 값일 수 없습니다.");
+            }
+        }
+
+        @Nested
+        @DisplayName("자동차 이름이 5자 초과이면")
+        class Context_with_invalid_name_too_long {
+
+            @ParameterizedTest
+            @DisplayName("예외를 던진다")
+            @ValueSource(strings = {"Car123", "LongName", "Exceeding"})
+            void it_throws_exception(String name) {
+                assertThatThrownBy(() -> new MovingCar(name))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("이름은 5자 이하만 가능합니다.");
+            }
+        }
     }
 
     @Nested
     @DisplayName("move 메서드는")
     class Describe_move {
 
+        @BeforeEach
+        void setUp() {
+            car = new MovingCar("Test");
+        }
+
         @Nested
-        @DisplayName("임계값 이상의 값이 주어지면")
-        class Context_with_random_value_greater_than_or_equal_to_threshold {
+        @DisplayName("이동 가능한 전략이 주어지면")
+        class Context_with_movable_strategy {
 
-            @ParameterizedTest
+            @Test
             @DisplayName("자동차가 앞으로 한 칸 이동한다")
-            @ValueSource(ints = {4, 5, 6, 7, 8, 9, 10})
-            void it_moves_forward(int randomValue) {
-                car.move(randomValue); // 임계값 4 이상
+            void it_moves_forward() {
+                // when
+                car.move(() -> true);
 
-                assertThat(car.getName()).isEqualTo("TestCar");
+                // then
                 assertThat(car.getLocation()).isEqualTo(1);
             }
         }
         @Nested
-        @DisplayName("임계값 미만의 값이 주어지면")
+        @DisplayName("이동 불가능한 전략이 주어지면")
         class Context_with_random_value_less_than_threshold {
 
-            @ParameterizedTest
+            @Test
             @DisplayName("자동차가 이동하지 않는다")
-            @ValueSource(ints = {0, 1, 2, 3})
-            void it_moves_forward(int randomValue) {
-                car.move(randomValue); // 임계값 4 미만
+            void it_moves_forward() {
+                // when
+                car.move(() -> false);
 
-                assertThat(car.getName()).isEqualTo("TestCar");
+                // then
                 assertThat(car.getLocation()).isEqualTo(0);
             }
         }
-
-
-
     }
-
 }
