@@ -1,31 +1,26 @@
 package car;
 
+import car.domain.RacingGame;
+import car.domain.RandomMovingStrategy;
+import car.view.InputView;
+import car.view.OutputView;
 import java.util.List;
-import java.util.Scanner;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        List<String> names = InputView.getCarNames();
+        int tryCount = InputView.getTryCount();
 
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String nameInput = sc.nextLine();
-        List<String> names = List.of(nameInput.split(","));
+        RacingGame game = new RacingGame(names);
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        int count = inputCount(sc);
-
-        RacingCar game = new RacingCar(names, count);
-        game.start();
-    }
-
-    private static int inputCount(Scanner sc) {
-        System.out.println("시도할 회수는 몇회인가요?");
-        try {
-            return Integer.parseInt(sc.nextLine()); // nextInt()보다 nextLine() 후 파싱이 버퍼 관리에 유리합니다.
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < tryCount; i++) {
+            game.playOneRound(new RandomMovingStrategy()); // 전략 주입
+            OutputView.printRoundResult(game.getCars());  // 뷰에 데이터 전달
         }
+
+        OutputView.printWinners(game.getWinners());
     }
 }
