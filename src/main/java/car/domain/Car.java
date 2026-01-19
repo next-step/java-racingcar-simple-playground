@@ -3,12 +3,11 @@ package car.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-public class Cars {
+public class Car {
 
     private final List<MovingCar> cars = new ArrayList<>();
 
-    public Cars(List<String> carNames) {
+    public Car(List<String> carNames) {
         for (String name : carNames) {
             cars.add(new MovingCar(name));
         }
