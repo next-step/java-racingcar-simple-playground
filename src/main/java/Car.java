@@ -1,9 +1,9 @@
 public final class Car {
-    private final String name;
+    private final CarName name;
     private int position;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new CarName(name);
     }
 
     public void move(RandomNumberGenerator generator) {
@@ -21,7 +21,7 @@ public final class Car {
     }
 
     public String name() {
-        return name;
+        return name.value();
     }
 
     public int position() {
