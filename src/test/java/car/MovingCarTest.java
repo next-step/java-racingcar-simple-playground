@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import car.domain.MovingCar;
+import car.domain.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -28,9 +29,10 @@ public class MovingCarTest {
             @DisplayName("자동차 객체를 생성한다")
             @ValueSource(strings = {"Car1", "MyCar", "A", "12345"})
             void it_creates_moving_car(String name) {
-                MovingCar car = new MovingCar(name);
+                Name expectedName = new Name(name);
+                MovingCar car = new MovingCar(expectedName);
 
-                assertThat(car.getName()).isEqualTo(name);
+                assertThat(car.getName()).isEqualTo(expectedName);
                 assertThat(car.getLocation()).isEqualTo(0);
             }
         }
@@ -43,7 +45,7 @@ public class MovingCarTest {
             @DisplayName("예외를 던진다")
             @ValueSource(strings = {"", " ", "     "})
             void it_throws_exception(String name) {
-                assertThatThrownBy(() -> new MovingCar(name))
+                assertThatThrownBy(() -> new MovingCar(new Name(name)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 빈 값일 수 없습니다.");
             }
@@ -57,7 +59,7 @@ public class MovingCarTest {
             @DisplayName("예외를 던진다")
             @ValueSource(strings = {"Car123", "LongName", "Exceeding"})
             void it_throws_exception(String name) {
-                assertThatThrownBy(() -> new MovingCar(name))
+                assertThatThrownBy(() -> new MovingCar(new Name(name)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("이름은 5자 이하만 가능합니다.");
             }
@@ -70,7 +72,7 @@ public class MovingCarTest {
 
         @BeforeEach
         void setUp() {
-            car = new MovingCar("Test");
+            car = new MovingCar(new Name("Test"));
         }
 
         @Nested

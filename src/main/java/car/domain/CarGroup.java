@@ -13,6 +13,7 @@ public class CarGroup {
 
     public static CarGroup from(List<String> carNames) {
         List<MovingCar> movingCars = carNames.stream()
+            .map(Name::new)
             .map(MovingCar::new)
             .toList();
         return new CarGroup(movingCars);
