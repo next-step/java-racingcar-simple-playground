@@ -41,11 +41,10 @@ public class CarGroup {
     }
 
     private int getMaxLocation() {
-        int max = 0;
-        for (MovingCar car : cars) {
-            max = Math.max(max, car.getLocation());
-        }
-        return max;
+        return cars.stream()
+            .mapToInt(MovingCar::getLocation)
+            .max()
+            .orElse(0);
     }
 
     public List<MovingCar> getCars() {
