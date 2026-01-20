@@ -1,23 +1,22 @@
 package car.view;
 
-import car.domain.Car;
+import car.domain.CarGroup;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static List<String> getCarNames() {
+    public static CarGroup getCars() {
         try {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             String input = sc.nextLine();
             List<String> names = List.of(input.split(","));
 
-            new Car(names); // 임시로 Cars 객체를 생성하여 이름 규칙 검증
-            return names;
+            return CarGroup.from(names);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getCarNames();
+            return getCars();
         }
     }
 

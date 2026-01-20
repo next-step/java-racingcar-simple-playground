@@ -3,14 +3,19 @@ package car.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-public class Car {
+public class CarGroup {
 
-    private final List<MovingCar> cars = new ArrayList<>();
+    private final List<MovingCar> cars;
 
-    public Car(List<String> carNames) {
-        for (String name : carNames) {
-            cars.add(new MovingCar(name));
-        }
+    public CarGroup(List<MovingCar> cars) {
+        this.cars = cars;
+    }
+
+    public static CarGroup from(List<String> carNames) {
+        List<MovingCar> movingCars = carNames.stream()
+            .map(MovingCar::new)
+            .toList();
+        return new CarGroup(movingCars);
     }
 
     public void moveAllCars(MovingStrategy movingStrategy) {

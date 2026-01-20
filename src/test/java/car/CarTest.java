@@ -2,7 +2,7 @@ package car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import car.domain.Car;
+import car.domain.CarGroup;
 import car.domain.MovingCar;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 @DisplayName("우승 자동차 구하기 테스트")
 public class CarTest {
 
-    private Car cars;
+    private CarGroup cars;
 
     @BeforeEach
     void setUp() {
         // 객체가 태어날 때부터 이미 자동차들을 품고 있음
-        cars = new Car(List.of("Car1", "Car2", "Car3"));
+        cars = CarGroup.from(List.of("Car1", "Car2", "Car3"));
     }
 
 

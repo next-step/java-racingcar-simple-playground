@@ -4,10 +4,10 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final Car cars;
+    private final CarGroup cars;
 
-    public RacingGame(List<String> names) {
-        this.cars = new Car(names);
+    public RacingGame(CarGroup cars) {
+        this.cars = cars;
     }
 
     public void playOneRound(MovingStrategy movingStrategy) {
