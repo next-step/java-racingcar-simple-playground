@@ -29,7 +29,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new InvalidInputException(InputErrorCode.CAR_NAME_BLANK);
         }
         if (name.trim().length() > MAX_CAR_NAME_LENGTH) {

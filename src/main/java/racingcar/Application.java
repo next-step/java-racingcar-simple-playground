@@ -1,28 +1,18 @@
 package racingcar;
 
-import java.util.List;
-import racingcar.domain.Car;
-import racingcar.domain.GameManager;
-import racingcar.view.ConsoleView;
+import java.util.Random;
+import java.util.Scanner;
+import racingcar.controller.RacingCarApplication;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        GameManager gameManager = new GameManager();
-        ConsoleView consoleView = new ConsoleView();
+        Random random = new Random();
+        InputView inputView = new InputView(new Scanner(System.in));
+        OutputView outputView = new OutputView();
 
-        List<String> carNames = consoleView.readCarNames();
-        gameManager.createCars(carNames);
-
-        int attempt = consoleView.readAttempt();
-        consoleView.printRacePrefix();
-
-        for (int i = 0; i < attempt; i++) {
-            gameManager.raceOneRound();
-            consoleView.printRoundResult(gameManager.getCars());
-        }
-
-        List<Car> winCars = gameManager.getWinCars(gameManager.getCars());
-        consoleView.printWinCars(winCars);
+        new RacingCarApplication(random, inputView, outputView).race();
     }
 }
