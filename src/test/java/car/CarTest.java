@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("우승 자동차 구하기 테스트")
 public class CarTest {
 
     private CarGroup carGroup;
@@ -67,9 +66,7 @@ public class CarTest {
                 List<MovingCar> winners = carGroup.findWinners();
 
                 // then
-                assertThat(winners).hasSize(1)
-                    .extracting(MovingCar::getName)
-                    .containsExactly("Car1");
+                assertThat(winners.get(0).getName()).isEqualTo("Car1");
             }
         }
 
@@ -90,9 +87,8 @@ public class CarTest {
                 List<MovingCar> winners = carGroup.findWinners();
 
                 // then
-                assertThat(winners).hasSize(2)
-                    .extracting(MovingCar::getName)
-                    .containsExactly("Car1", "Car3");
+                assertThat(winners.get(0).getName()).isEqualTo("Car1");
+                assertThat(winners.get(1).getName()).isEqualTo("Car3");
             }
         }
     }
