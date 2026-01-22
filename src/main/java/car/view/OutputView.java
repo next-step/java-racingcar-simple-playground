@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printRoundResult(List<MovingCar> cars) {
-        for (MovingCar car : cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getLocation()));
+    public static void printRoundResult(List<MovingCar> movingCars) {
+        for (MovingCar movingCar : movingCars) {
+            System.out.println(movingCar.getName() + " : " + "-".repeat(movingCar.getLocation()));
         }
         System.out.println();
     }

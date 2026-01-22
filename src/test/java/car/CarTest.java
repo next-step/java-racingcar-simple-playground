@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 @DisplayName("우승 자동차 구하기 테스트")
 public class CarTest {
 
-    private CarGroup cars;
+    private CarGroup carGroup;
 
     @BeforeEach
     void setUp() {
         // 객체가 태어날 때부터 이미 자동차들을 품고 있음
-        cars = CarGroup.from(List.of("Car1", "Car2", "Car3"));
+        carGroup = CarGroup.from(List.of("Car1", "Car2", "Car3"));
     }
 
 
@@ -35,11 +35,11 @@ public class CarTest {
             void it_applies_strategy_to_all_cars() {
 
                 // when
-                cars.moveAllCars(() -> true);
+                carGroup.moveAllCars(() -> true);
 
                 // then
-                List<MovingCar> carList = cars.getCars();
-                assertThat(carList).allSatisfy(car ->
+                List<MovingCar> movingCars = carGroup.getCars();
+                assertThat(movingCars).allSatisfy(car ->
                     assertThat(car.getLocation()).isEqualTo(1)
                 );
             }
@@ -58,13 +58,13 @@ public class CarTest {
             @DisplayName("위치가 가장 높은 자동차를 반환한다")
             void it_returns_car_at_max_location() {
                 // given: Car1만 전진시킴
-                List<MovingCar> carList = cars.getCars();
-                carList.get(0).move(() -> true);  // Car1 이동
-                carList.get(1).move(() -> false); // Car2 정지
-                carList.get(2).move(() -> false); // Car3 정지
+                List<MovingCar> movingCars = carGroup.getCars();
+                movingCars.get(0).move(() -> true);  // Car1 이동
+                movingCars.get(1).move(() -> false); // Car2 정지
+                movingCars.get(2).move(() -> false); // Car3 정지
 
                 // when
-                List<MovingCar> winners = cars.findWinners();
+                List<MovingCar> winners = carGroup.findWinners();
 
                 // then
                 assertThat(winners).hasSize(1)
@@ -81,13 +81,13 @@ public class CarTest {
             @DisplayName("위치가 가장 높은 모든 자동차를 반환한다")
             void it_returns_all_cars_at_max_location() {
                 // given: Car1과 Car3만 전진시킴
-                List<MovingCar> carList = cars.getCars();
-                carList.get(0).move(() -> true);
-                carList.get(1).move(() -> false);
-                carList.get(2).move(() -> true);
+                List<MovingCar> movingCars = carGroup.getCars();
+                movingCars.get(0).move(() -> true);
+                movingCars.get(1).move(() -> false);
+                movingCars.get(2).move(() -> true);
 
                 // when
-                List<MovingCar> winners = cars.findWinners();
+                List<MovingCar> winners = carGroup.findWinners();
 
                 // then
                 assertThat(winners).hasSize(2)
