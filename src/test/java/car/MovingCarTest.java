@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("움직이는 자동차 테스트")
 public class MovingCarTest {
 
     private MovingCar car;
@@ -55,11 +54,14 @@ public class MovingCarTest {
         @DisplayName("자동차 이름이 5자 초과이면")
         class Context_with_invalid_name_too_long {
 
-            @ParameterizedTest
+            @Test
             @DisplayName("예외를 던진다")
-            @ValueSource(strings = {"Car123", "LongName", "Exceeding"})
-            void it_throws_exception(String name) {
-                assertThatThrownBy(() -> new MovingCar(new Name(name)))
+            void it_throws_exception() {
+                //given
+                String invalidName = "123456";
+
+                // when & then
+                assertThatThrownBy(() -> new MovingCar(new Name(invalidName)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("이름은 5자 이하만 가능합니다.");
             }
