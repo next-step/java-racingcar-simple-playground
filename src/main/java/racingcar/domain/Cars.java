@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.List;
-import java.util.Random;
 import racingcar.exception.InputErrorCode;
 import racingcar.exception.InvalidInputException;
 
