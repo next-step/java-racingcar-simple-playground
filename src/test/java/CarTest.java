@@ -7,10 +7,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@DisplayName("domain.Car 1단계 테스트")
 public class CarTest {
     @Nested
-    @DisplayName("이동 규칙")
+    @DisplayName("하나의 자동차로 이동 규칙")
     class MoveRule {
 
         @ParameterizedTest

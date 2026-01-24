@@ -8,11 +8,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("domain.Cars 2단계 테스트")
 public class CarsTest {
 
     @Nested
-    @DisplayName("이동")
+    @DisplayName("모든 자동차 이동")
     class MoveAll {
 
         @Test
@@ -21,7 +20,7 @@ public class CarsTest {
             Cars cars = new Cars(List.of(
                     new Car("meow"),
                     new Car("kitty"),
-                    new Car("yeongeun")
+                    new Car("aa")
             ));
 
             cars.moveAll(new FixedNumberGenerator(4));
@@ -40,13 +39,13 @@ public class CarsTest {
         @DisplayName("가장 많이 이동한 자동차 한 명을 우승자로 반환한다")
         void returnsSingleWinner() {
             Car meow = new Car("meow");
-            Car yeongeun = new Car("yeongeun");
+            Car aa = new Car("aa");
 
             meow.move(new FixedNumberGenerator(4));
             meow.move(new FixedNumberGenerator(4));
-            yeongeun.move(new FixedNumberGenerator(4));
+            aa.move(new FixedNumberGenerator(4));
 
-                    Cars cars = new Cars(List.of(meow, yeongeun));
+                    Cars cars = new Cars(List.of(meow, aa));
 
             assertThat(cars.winnerNames()).containsExactly("meow");
         }
@@ -56,13 +55,13 @@ public class CarsTest {
         void returnsMultipleWinnersWhenTied() {
             Car meow = new Car("meow");
             Car kitty = new Car("kitty");
-            Car yeongeun = new Car("yeongeun");
+            Car aa = new Car("aa");
 
             meow.move(new FixedNumberGenerator(4));
             kitty.move(new FixedNumberGenerator(4));
-            yeongeun.move(new FixedNumberGenerator(3));
+            aa.move(new FixedNumberGenerator(3));
 
-            Cars cars = new Cars(List.of(meow, kitty, yeongeun));
+            Cars cars = new Cars(List.of(meow, kitty, aa));
 
             assertThat(cars.winnerNames()).containsExactlyInAnyOrder(
                     "meow", "kitty");
