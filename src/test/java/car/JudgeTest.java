@@ -14,10 +14,16 @@ import org.junit.jupiter.api.Test;
 class JudgeTest {
 
     private Judge judge;
+    MovingCar car1;
+    MovingCar car2;
+    MovingCar car3;
 
     @BeforeEach
     void setUp() {
         judge = new Judge();
+        car1 = new MovingCar(new Name("lambo"));
+        car2 = new MovingCar(new Name("ferr"));
+        car3 = new MovingCar(new Name("pors"));
     }
 
     @DisplayName("findWinners 메서드는")
@@ -31,10 +37,6 @@ class JudgeTest {
             @Test
             @DisplayName("가장 멀리 이동한 자동차 1명만 반환한다")
             void it_returns_one_winner() {
-                // given: 위치가 각각 1, 2, 3인 자동차 리스트 생성
-                MovingCar car1 = new MovingCar(new Name("lambo"));
-                MovingCar car2 = new MovingCar(new Name("ferr"));
-                MovingCar car3 = new MovingCar(new Name("pors"));
 
                 // 수동으로 위치 조절 (전략 주입 활용)
                 car1.move(() -> true); // loc: 1
@@ -59,11 +61,6 @@ class JudgeTest {
             @Test
             @DisplayName("가장 멀리 이동한 모든 자동차를 반환한다")
             void it_returns_multiple_winners() {
-                // given: pobi와 jun이 똑같이 2칸 이동
-                MovingCar car1 = new MovingCar(new Name("lambo"));
-                MovingCar car2 = new MovingCar(new Name("ferr"));
-                MovingCar car3 = new MovingCar(new Name("pors"));
-
 
                 car1.move(() -> true); car1.move(() -> true); // loc: 2
                 car2.move(() -> true); // loc: 1
@@ -88,9 +85,7 @@ class JudgeTest {
             @Test
             @DisplayName("모든 자동차를 공동 우승자로 반환한다")
             void it_returns_all_cars_as_winners() {
-                // given: 모든 자동차가 위치 0
-                MovingCar car1 = new MovingCar(new Name("lambo"));
-                MovingCar car2 = new MovingCar(new Name("ferr"));
+                // given
                 List<MovingCar> participants = List.of(car1, car2);
 
                 // when
