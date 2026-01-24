@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.GameManager;
+import racingcar.domain.MoveStrategy;
+import racingcar.domain.RandomMoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -23,7 +25,8 @@ public class RacingCarApplication {
         outputView.printInputRacingCarName();
         List<String> carNames = inputView.readCarNames();
 
-        GameManager gameManager = new GameManager(random, carNames);
+        MoveStrategy moveStrategy = new RandomMoveStrategy(random);
+        GameManager gameManager = new GameManager(carNames, moveStrategy);
 
         outputView.printInputAttempt();
         int attempt = inputView.readAttempt();

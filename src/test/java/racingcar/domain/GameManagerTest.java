@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,8 @@ class GameManagerTest {
     @Test
     void raceOneRound() {
         // given
-        GameManager gameManager = new GameManager(new FixedRandom(4), List.of("A", "B"));
+        FixedMoveStrategy alwaysMove = new FixedMoveStrategy(true);
+        GameManager gameManager = new GameManager(List.of("A", "B"), alwaysMove);
 
         // when
         gameManager.raceOneRound();
@@ -29,19 +29,5 @@ class GameManagerTest {
                         .extracting(Car::getName)
                         .containsExactlyInAnyOrder("A", "B")
         );
-    }
-
-    private static class FixedRandom extends Random {
-
-        private final int value;
-
-        private FixedRandom(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public int nextInt(int bound) {
-            return value;
-        }
     }
 }

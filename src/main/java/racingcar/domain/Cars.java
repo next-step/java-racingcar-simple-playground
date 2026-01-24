@@ -24,14 +24,10 @@ public final class Cars {
         return List.copyOf(cars);
     }
 
-    public void raceOneRound(Random random, int bound, int minValueToMove) {
-        for (Car car : cars) {
-            int randomValue = random.nextInt(bound);
-
-            if (randomValue >= minValueToMove) {
-                car.moveForward();
-            }
-        }
+    public void raceOneRound(MoveStrategy moveStrategy) {
+       cars.stream()
+               .filter(car -> moveStrategy.canMove())
+               .forEach(Car::moveForward);
     }
 
     public List<Car> winners() {

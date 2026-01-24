@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.Random;
@@ -24,11 +25,14 @@ class CarsTest {
         Cars cars = Cars.from(names);
 
         // then
-        assertThat(cars.asUnmodifiableList()).hasSize(3);
-        assertThat(cars.asUnmodifiableList())
-                .extracting(Car::getName)
-                .containsExactly("A", "B", "C");
+        assertAll(
+                () -> assertThat(cars.asUnmodifiableList()).hasSize(3),
+                () -> assertThat(cars.asUnmodifiableList())
+                        .extracting(Car::getName)
+                        .containsExactly("A", "B", "C")
+        );
     }
+
 
     @DisplayName("자동차 이름 리스트가 비어있으면 예외를 발생시킨다.")
     @Test
@@ -46,34 +50,32 @@ class CarsTest {
                 .hasMessage(InputErrorCode.CAR_NAMES_BAD_FORMAT.message());
     }
 
-    @DisplayName("랜덤 값이 4 이상인 경우에는 전진한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void raceOneRound_movesWhenRandomValueIs4OrMore(int randomValue) {
+    @DisplayName("움직일 수 있는 경우에는 전진한다.")
+    @Test
+    void raceOneRound_moves_whenStrategyAllows() {
         // given
         Cars cars = Cars.from(List.of("A"));
-        Random fixedRandom = new FixedRandom(randomValue);
+        MoveStrategy alwaysMove = new FixedMoveStrategy(true);
 
         // when
-        cars.raceOneRound(fixedRandom, 10, 4);
+        cars.raceOneRound(alwaysMove);
 
         // then
-        assertThat(cars.asUnmodifiableList().get(0).getPosition()).isEqualTo(1);
+        assertThat(findByName(cars, "A").getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("랜덤 값이 3 이하일 경우에는 전진하지 않는다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    void raceOneRound_stopsWhenRandomValueIs3OrLess(int randomValue) {
+    @DisplayName("움직일 수 없는 경우에는 전진하지 않는다.")
+    @Test
+    void raceOneRound_doesNotMove_whenStrategyDenies() {
         // given
         Cars cars = Cars.from(List.of("A"));
-        Random fixedRandom = new FixedRandom(randomValue);
+        MoveStrategy neverMove = new FixedMoveStrategy(false);
 
         // when
-        cars.raceOneRound(fixedRandom, 10, 4);
+        cars.raceOneRound(neverMove);
 
         // then
-        assertThat(cars.asUnmodifiableList().get(0).getPosition()).isEqualTo(0);
+        assertThat(findByName(cars, "A").getPosition()).isEqualTo(0);
     }
 
     @DisplayName("가장 큰 Position을 가진 자동차를 우승자로 선정할 수 있다. - 우승자 한 명")
@@ -93,10 +95,12 @@ class CarsTest {
         List<Car> winners = cars.winners();
 
         // then
-        assertThat(winners).hasSize(1);
-        assertThat(winners)
-                .extracting(Car::getName)
-                .containsExactly("A");
+        assertAll(
+                () -> assertThat(winners).hasSize(1),
+                () -> assertThat(winners)
+                        .extracting(Car::getName)
+                        .containsExactly("A")
+        );
     }
 
     @DisplayName("가장 큰 Position을 가진 자동차를 우승자로 선정할 수 있다. - 우승자 한 명 이상")
@@ -116,10 +120,12 @@ class CarsTest {
         List<Car> winners = cars.winners();
 
         // then
-        assertThat(winners).hasSize(2);
-        assertThat(winners)
-                .extracting(Car::getName)
-                .containsExactlyInAnyOrder("A", "C");
+        assertAll(
+                () -> assertThat(winners).hasSize(2),
+                () -> assertThat(winners)
+                        .extracting(Car::getName)
+                        .containsExactlyInAnyOrder("A", "C")
+        );
     }
 
     private void moveForwardTimes(Car car, int times) {
@@ -133,19 +139,5 @@ class CarsTest {
                 .filter(car -> car.getName().equals(name))
                 .findFirst()
                 .orElseThrow();
-    }
-
-    private static class FixedRandom extends Random {
-
-        private final int value;
-
-        private FixedRandom(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public int nextInt(int bound) {
-            return value;
-        }
     }
 }

@@ -45,7 +45,7 @@ public class InputView {
     }
 
     private void validateCarNamesInput(String input) {
-        if (input == null || input.trim().isEmpty()) {
+        if (input == null || input.isBlank()) {
             throw new InvalidInputException(CAR_NAME_BLANK);
         }
         if (!input.contains(CAR_NAME_SEPARATOR)) {
