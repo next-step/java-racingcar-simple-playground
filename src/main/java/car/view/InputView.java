@@ -9,7 +9,6 @@ public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
     private InputView() {
-        throw new AssertionError("InputView는 인스턴스를 생성할 수 없습니다.");
     }
 
     private static <T> T repeatUntilSuccess(Supplier<T> supplier) {
