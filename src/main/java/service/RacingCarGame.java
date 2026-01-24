@@ -5,6 +5,8 @@ import domain.RandomNumberGenerator;
 import view.OutputView;
 
 public final class RacingCarGame {
+    private static final int MIN_TRYCOUNT = 1;
+
     private final Race race;
     private final RandomNumberGenerator generator;
     private final OutputView outputView;
@@ -16,9 +18,17 @@ public final class RacingCarGame {
     }
 
     public void play(int tryCount) {
+        validateTryCount(tryCount);
+
         outputView.printStart();
         runAndPrint(tryCount);
         outputView.printWinners(race.cars().winnerNames());
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount < MIN_TRYCOUNT) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상의 정수여야 합니다.");
+        }
     }
 
     private void runAndPrint(int tryCount) {
