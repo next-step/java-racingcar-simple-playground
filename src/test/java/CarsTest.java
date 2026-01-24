@@ -25,7 +25,7 @@ public class CarsTest {
 
             cars.moveAll(new FixedNumberGenerator(4));
 
-            assertThat(cars.asList())
+            assertThat(cars.getCars())
                     .extracting(Car::position)
                     .containsExactly(1, 1, 1);
         }

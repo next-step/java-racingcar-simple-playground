@@ -22,7 +22,7 @@ class RaceTest {
 
         race.run(3, new FixedNumberGenerator(4));
 
-        assertThat(race.cars().asList())
+        assertThat(race.cars().getCars())
                 .extracting(Car::position)
                 .containsExactly(3, 3);
     }

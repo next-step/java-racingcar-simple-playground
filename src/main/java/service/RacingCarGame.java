@@ -34,7 +34,7 @@ public final class RacingCarGame {
     private void runAndPrint(int tryCount) {
         for (int i = 0; i < tryCount; i++) {
             race.cars().moveAll(generator);
-            outputView.printRound(race.cars().asList());
+            outputView.printRound(race.cars().getCars());
         }
     }
 }

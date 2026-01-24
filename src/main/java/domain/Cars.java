@@ -28,17 +28,7 @@ public final class Cars {
         return winners;
     }
 
-    private int maxPosition() {
-        int max = 0;
-        for (Car car : cars) {
-            if (car.position() > max) {
-                max = car.position();
-            }
-        }
-        return max;
-    }
-
-    public List<Car> asList() {
+    public List<Car> getCars() {
         return cars;
     }
 }
