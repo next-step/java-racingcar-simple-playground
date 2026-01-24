@@ -3,6 +3,7 @@ package domain;
 public final class Car {
     private final CarName name;
     private int position;
+    private static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
         this.name = new CarName(name);
@@ -19,7 +20,7 @@ public final class Car {
     }
 
     private boolean isMovable(int number) {
-        return number >= 4;
+        return number >= MOVE_THRESHOLD;
     }
 
     public String name() {
