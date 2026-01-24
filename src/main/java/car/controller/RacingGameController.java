@@ -1,7 +1,8 @@
 package car.controller;
 
-import car.domain.model.CarGroup;
 import car.domain.RacingGame;
+import car.domain.model.CarGroup;
+import car.domain.model.Judge;
 import car.domain.strategy.RandomMovingStrategy;
 import car.view.InputView;
 import car.view.OutputView;
@@ -12,8 +13,9 @@ public class RacingGameController {
 
         CarGroup carGroup = InputView.getCars();
         int tryCount = InputView.getTryCount();
+        Judge judge = new Judge();
 
-        RacingGame game = new RacingGame(carGroup);
+        RacingGame game = new RacingGame(carGroup, judge);
 
         OutputView.printExecutionResultMessage();
 

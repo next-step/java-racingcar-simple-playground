@@ -31,7 +31,7 @@ public class MovingCarTest {
                 Name expectedName = new Name(name);
                 MovingCar car = new MovingCar(expectedName);
 
-                assertThat(car.getName()).isEqualTo(expectedName);
+                assertThat(car.getName()).isEqualTo(expectedName.getValue());
                 assertThat(car.getLocation()).isEqualTo(0);
             }
         }
@@ -46,7 +46,7 @@ public class MovingCarTest {
             void it_throws_exception(String name) {
                 assertThatThrownBy(() -> new MovingCar(new Name(name)))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("자동차 이름은 빈 값일 수 없습니다.");
+                    .hasMessage("이름은 빈 값일 수 없습니다.");
             }
         }
 
@@ -104,6 +104,36 @@ public class MovingCarTest {
                 // then
                 assertThat(car.getLocation()).isEqualTo(0);
             }
+        }
+    }
+
+    @Nested
+    @DisplayName("isAt 메서드는")
+    class Describe_isAt {
+        @BeforeEach
+        void setUp() {
+            car = new MovingCar(new Name("Test"));
+        }
+
+        @Test
+        @DisplayName("현재 위치와 일치하는 값을 전달하면 true를 반환한다")
+        void it_returns_true_when_position_matches() {
+            // given: 1칸 이동
+            car.move(() -> true);
+
+            // when & then
+            assertThat(car.isAt(1)).isTrue();
+        }
+
+        @Test
+        @DisplayName("현재 위치와 일치하지 않는 값을 전달하면 false를 반환한다")
+        void it_returns_false_when_position_differs() {
+            // given: 1칸 이동
+            car.move(() -> true);
+
+            // when & then
+            assertThat(car.isAt(0)).isFalse();
+            assertThat(car.isAt(2)).isFalse();
         }
     }
 }

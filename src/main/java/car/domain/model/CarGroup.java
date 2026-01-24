@@ -26,29 +26,6 @@ public class CarGroup {
         }
     }
 
-    public List<MovingCar> findWinners() {
-        List<MovingCar> winners = new ArrayList<>();
-        int maxLocation = getMaxLocation();
-
-        for (MovingCar movingCar : movingCars) {
-            addIfWinner(winners, movingCar, maxLocation); // 최대 위치와 같은 위치에 있는 자동차를 우승자로 추가
-        }
-        return winners;
-    }
-
-    private void addIfWinner(List<MovingCar> winners, MovingCar movingCar, int maxLocation) {
-        if (movingCar.getLocation() == maxLocation) {
-            winners.add(movingCar);
-        }
-    }
-
-    private int getMaxLocation() {
-        return movingCars.stream()
-            .mapToInt(MovingCar::getLocation)
-            .max()
-            .orElse(0);
-    }
-
     public List<MovingCar> getCars() {
         return Collections.unmodifiableList(movingCars); // 읽기 전용 리스트 반환
     }

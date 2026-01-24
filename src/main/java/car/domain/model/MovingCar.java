@@ -23,4 +23,8 @@ public class MovingCar {
     public String getName() {
         return name.getValue();
     }
+
+    public boolean isAt(int position) {
+        return this.location == position;
+    }
 }
