@@ -11,6 +11,15 @@ public class MovingCar {
         this.name = name;
     }
 
+    private MovingCar(Name name, int location) {
+        this.name = name;
+        this.location = location;
+    }
+
+    public MovingCar createSnapshot() {
+        return new MovingCar(this.name, this.location);
+    }
+
     public void move(MovingStrategy strategy) {
         if (strategy.canMove()) {
             location++;
