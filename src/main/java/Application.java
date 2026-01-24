@@ -17,12 +17,14 @@ public final class Application {
         InputView inputView = new InputView(scanner);
         OutputView outputView = new OutputView();
 
-        Cars cars = new Cars(new CarsFactory().from(inputView.readCarNames()));
+        CarsFactory carsFactory = new CarsFactory();
+        Cars cars = new Cars(carsFactory.from(inputView.readCarNames()));
         int tryCount = inputView.readTryCount();
 
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
 
-        new RacingCarGame(race, generator, outputView).play(tryCount);
+        RacingCarGame game = new RacingCarGame(race, generator, outputView);
+        game.play(tryCount);
     }
 }
