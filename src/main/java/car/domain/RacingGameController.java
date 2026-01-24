@@ -12,7 +12,8 @@ public class RacingGameController {
 
         RacingGame game = new RacingGame(carGroup);
 
-        System.out.println("\n실행 결과");
+        OutputView.printExecutionResultMessage();
+
         for (int i = 0; i < tryCount; i++) {
             game.playOneRound(new RandomMovingStrategy());
             OutputView.printRoundResult(game.getCars());
