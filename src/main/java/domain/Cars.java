@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class Cars {
@@ -16,16 +15,18 @@ public final class Cars {
         }
     }
 
-    public List<String> winnerNames() {
-        int max = maxPosition();
-        List<String> winners = new ArrayList<>();
+    public int maxPosition() {
+        return cars.stream()
+                .mapToInt(Car::position)
+                .max()
+                .orElse(0);
+    }
 
-        for (Car car : cars) {
-            if (car.position() == max) {
-                winners.add(car.name());
-            }
-        }
-        return winners;
+
+    public List<Car> findByPosition(int position) {
+        return cars.stream()
+                .filter(car -> car.position() == position)
+                .toList();
     }
 
     public List<Car> getCars() {

@@ -1,7 +1,4 @@
-import domain.Cars;
-import domain.Race;
-import domain.RandomNumberGenerator;
-import domain.RandomNumberGeneratorImpl;
+import domain.*;
 import service.RacingCarGame;
 import util.CarsFactory;
 import view.InputView;
@@ -24,7 +21,13 @@ public final class Application {
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
 
-        RacingCarGame game = new RacingCarGame(race, generator, outputView);
-        game.play(tryCount);
+        RacingCarGame game = new RacingCarGame(race, generator, new WinnerSelector());
+
+        outputView.printStart();
+
+        RacingCarGame.GameResult result =
+                game.play(tryCount, outputView::printRound);
+
+        outputView.printWinners(result.winners());
     }
 }
