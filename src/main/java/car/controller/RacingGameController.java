@@ -13,9 +13,8 @@ public class RacingGameController {
 
         CarGroup carGroup = InputView.getCars();
         int tryCount = InputView.getTryCount();
-        Judge judge = new Judge();
 
-        RacingGame game = new RacingGame(carGroup, judge);
+        RacingGame game = new RacingGame(carGroup);
 
         OutputView.printExecutionResultMessage();
 

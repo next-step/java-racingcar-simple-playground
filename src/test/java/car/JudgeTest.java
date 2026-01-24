@@ -1,8 +1,8 @@
 package car;
 
+import static car.domain.model.Judge.findWinners;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import car.domain.model.Judge;
 import car.domain.model.MovingCar;
 import car.domain.model.Name;
 import java.util.List;
@@ -12,15 +12,12 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class JudgeTest {
-
-    private Judge judge;
     MovingCar car1;
     MovingCar car2;
     MovingCar car3;
 
     @BeforeEach
     void setUp() {
-        judge = new Judge();
         car1 = new MovingCar(new Name("lambo"));
         car2 = new MovingCar(new Name("ferr"));
         car3 = new MovingCar(new Name("pors"));
@@ -46,7 +43,7 @@ class JudgeTest {
                 List<MovingCar> participants = List.of(car1, car2, car3);
 
                 // when
-                List<MovingCar> winners = judge.findWinners(participants);
+                List<MovingCar> winners = findWinners(participants);
 
                 // then
                 assertThat(winners).hasSize(1);
@@ -69,7 +66,7 @@ class JudgeTest {
                 List<MovingCar> participants = List.of(car1, car2, car3);
 
                 // when
-                List<MovingCar> winners = judge.findWinners(participants);
+                List<MovingCar> winners = findWinners(participants);
 
                 // then
                 assertThat(winners).hasSize(2);
@@ -89,7 +86,7 @@ class JudgeTest {
                 List<MovingCar> participants = List.of(car1, car2);
 
                 // when
-                List<MovingCar> winners = judge.findWinners(participants);
+                List<MovingCar> winners = findWinners(participants);
 
                 // then
                 assertThat(winners).hasSize(2);

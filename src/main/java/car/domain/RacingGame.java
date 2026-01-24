@@ -1,5 +1,7 @@
 package car.domain;
 
+import static car.domain.model.Judge.findWinners;
+
 import car.domain.model.CarGroup;
 import car.domain.model.Judge;
 import car.domain.model.MovingCar;
@@ -9,11 +11,9 @@ import java.util.List;
 public class RacingGame {
 
     private final CarGroup carGroup;
-    private final Judge judge;
 
-    public RacingGame(CarGroup carGroup, Judge judge) {
+    public RacingGame(CarGroup carGroup) {
         this.carGroup = carGroup;
-        this.judge = judge;
     }
 
     public void playOneRound(MovingStrategy movingStrategy) {
@@ -25,7 +25,7 @@ public class RacingGame {
     }
 
     public List<MovingCar> getWinners() {
-        return judge.findWinners(carGroup.getCars());
+        return findWinners(carGroup.getCars());
     }
 }
 
