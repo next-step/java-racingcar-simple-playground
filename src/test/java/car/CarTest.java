@@ -2,8 +2,8 @@ package car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import car.domain.CarGroup;
-import car.domain.MovingCar;
+import car.domain.model.CarGroup;
+import car.domain.model.MovingCar;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,5 +1,6 @@
-package car.domain;
+package car.domain.strategy;
 
+import car.domain.strategy.MovingStrategy;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomMovingStrategy implements MovingStrategy {

@@ -1,6 +1,6 @@
 package car.view;
 
-import car.domain.CarGroup;
+import car.domain.model.CarGroup;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;

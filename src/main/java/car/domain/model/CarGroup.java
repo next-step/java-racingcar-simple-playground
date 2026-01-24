@@ -1,5 +1,6 @@
-package car.domain;
+package car.domain.model;
 
+import car.domain.strategy.MovingStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

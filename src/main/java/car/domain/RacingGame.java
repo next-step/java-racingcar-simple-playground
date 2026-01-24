@@ -1,5 +1,8 @@
 package car.domain;
 
+import car.domain.model.CarGroup;
+import car.domain.model.MovingCar;
+import car.domain.strategy.MovingStrategy;
 import java.util.List;
 
 public class RacingGame {

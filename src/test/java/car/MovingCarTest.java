@@ -3,8 +3,8 @@ package car;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import car.domain.MovingCar;
-import car.domain.Name;
+import car.domain.model.MovingCar;
+import car.domain.model.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
