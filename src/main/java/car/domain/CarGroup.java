@@ -7,7 +7,7 @@ public class CarGroup {
 
     private final List<MovingCar> movingCars;
 
-    public CarGroup(List<MovingCar> cars) {
+    private CarGroup(List<MovingCar> cars) {
         this.movingCars = cars;
     }
 
