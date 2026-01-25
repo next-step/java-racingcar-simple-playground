@@ -1,4 +1,6 @@
-package car.domain;
+package car.domain.model;
+
+import car.domain.strategy.MovingStrategy;
 
 public class MovingCar {
 
@@ -7,6 +9,15 @@ public class MovingCar {
     private int location = 0;
     public MovingCar(Name name) {
         this.name = name;
+    }
+
+    private MovingCar(Name name, int location) {
+        this.name = name;
+        this.location = location;
+    }
+
+    public MovingCar createSnapshot() {
+        return new MovingCar(this.name, this.location);
     }
 
     public void move(MovingStrategy strategy) {
@@ -20,5 +31,9 @@ public class MovingCar {
     }
     public String getName() {
         return name.getValue();
+    }
+
+    public boolean isAt(int position) {
+        return this.location == position;
     }
 }
