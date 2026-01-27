@@ -1,6 +1,6 @@
 package view;
 
-import domain.Car;
+import domain.RoundResult;
 
 import java.util.List;
 
@@ -11,15 +11,17 @@ public final class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printRound(List<Car> cars) {
-        for (Car car : cars) {
-            printCarLine(car);
+    public void printRounds(List<RoundResult> rounds) {
+        for (RoundResult round : rounds) {
+            printCarLine(round);
         }
-        System.out.println();
     }
 
-    private void printCarLine(Car car) {
-        System.out.println(car.name() + " : " + "-".repeat(car.position()));
+    public void printCarLine(RoundResult round) {
+        for (RoundResult.CarState s : round.states()) {
+            System.out.println(s.name() + " : " + "-".repeat(s.position()));
+        }
+        System.out.println();
     }
 
     public void printWinners(List<String> winners) {
