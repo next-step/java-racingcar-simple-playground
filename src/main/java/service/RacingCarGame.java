@@ -18,7 +18,7 @@ public final class RacingCarGame {
         this.winnerSelector = winnerSelector;
     }
 
-    public GameResult play(int tryCount, Consumer<List<Car>> onRoundFinished) {
+    public List<String> play(int tryCount, Consumer<List<Car>> onRoundFinished) {
         validateTryCount(tryCount);
 
         Cars cars = race.cars();
@@ -28,15 +28,12 @@ public final class RacingCarGame {
             onRoundFinished.accept(cars.getCars());
         }
 
-        return new GameResult(winnerSelector.select(cars));
+        return winnerSelector.select(cars);
     }
 
     private void validateTryCount(int tryCount) {
         if (tryCount < MIN_TRYCOUNT) {
             throw new IllegalArgumentException("시도 횟수는 1 이상의 정수여야 합니다.");
         }
-    }
-
-    public record GameResult(List<String> winners) {
     }
 }

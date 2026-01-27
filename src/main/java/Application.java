@@ -4,6 +4,7 @@ import util.CarsFactory;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public final class Application {
@@ -25,9 +26,8 @@ public final class Application {
 
         outputView.printStart();
 
-        RacingCarGame.GameResult result =
-                game.play(tryCount, outputView::printRound);
+        List<String> winners = game.play(tryCount, outputView::printRound);
 
-        outputView.printWinners(result.winners());
+        outputView.printWinners(winners);
     }
 }
