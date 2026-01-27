@@ -21,12 +21,13 @@ public final class Application {
 
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
+        WinnerSelector winnerSelector = new WinnerSelector();
 
-        RacingCarGame game = new RacingCarGame(race, generator, new WinnerSelector());
+        RacingCarGame game = new RacingCarGame(race, generator, winnerSelector, outputView);
 
         outputView.printStart();
 
-        List<String> winners = game.play(tryCount, outputView::printRound);
+        List<String> winners = game.play(tryCount);
 
         outputView.printWinners(winners);
     }
