@@ -22,11 +22,15 @@ public final class Application {
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
 
-        RacingCarGame game = new RacingCarGame(race, generator, outputView);
+        RacingCarGame game = new RacingCarGame(race, generator);
 
         outputView.printStart();
 
-        List<String> winners = game.play(tryCount);
+        List<RoundResult> rounds = game.play(tryCount);
+
+        outputView.printRounds(rounds);
+
+        List<String> winners = game.winners();
 
         outputView.printWinners(winners);
     }
