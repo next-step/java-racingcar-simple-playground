@@ -1,9 +1,9 @@
 package service;
 
 import domain.*;
+import view.OutputView;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public final class RacingCarGame {
     private static final int MIN_TRYCOUNT = 1;
@@ -11,24 +11,33 @@ public final class RacingCarGame {
     private final Race race;
     private final RandomNumberGenerator generator;
     private final WinnerSelector winnerSelector;
+    private final OutputView outputView;
 
-    public RacingCarGame(Race race, RandomNumberGenerator generator, WinnerSelector winnerSelector) {
+    public RacingCarGame(Race race,
+                         RandomNumberGenerator generator,
+                         WinnerSelector winnerSelector,
+                         OutputView outputView) {
         this.race = race;
         this.generator = generator;
         this.winnerSelector = winnerSelector;
+        this.outputView = outputView;
     }
 
-    public List<String> play(int tryCount, Consumer<List<Car>> onRoundFinished) {
+
+    public List<String> play(int tryCount) {
         validateTryCount(tryCount);
 
-        Cars cars = race.cars();
+        outputView.printStart();
 
+        Cars cars = race.cars();
         for (int i = 0; i < tryCount; i++) {
             cars.moveAll(generator);
-            onRoundFinished.accept(cars.getCars());
+            outputView.printRound(cars.getCars());
         }
 
-        return winnerSelector.select(cars);
+        List<String> winners = winnerSelector.select(cars);
+        outputView.printWinners(winners);
+        return winners;
     }
 
     private void validateTryCount(int tryCount) {
