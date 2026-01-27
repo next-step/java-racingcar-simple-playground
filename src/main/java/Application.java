@@ -1,5 +1,5 @@
 import domain.*;
-import service.RacingCarGame;
+import domain.RacingCarGame;
 import util.CarsFactory;
 import view.InputView;
 import view.OutputView;
@@ -21,9 +21,8 @@ public final class Application {
 
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
-        WinnerSelector winnerSelector = new WinnerSelector();
 
-        RacingCarGame game = new RacingCarGame(race, generator, winnerSelector, outputView);
+        RacingCarGame game = new RacingCarGame(race, generator, outputView);
 
         outputView.printStart();
 
