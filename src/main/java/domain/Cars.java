@@ -32,4 +32,9 @@ public final class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public List<String> winnerNames() {
+        int max = maxPosition();
+        return findByPosition(max).stream().map(Car::name).toList();
+    }
 }
