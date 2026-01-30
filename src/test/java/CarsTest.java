@@ -1,6 +1,5 @@
 import domain.Car;
 import domain.Cars;
-import domain.WinnerSelector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,6 @@ public class CarsTest {
     @Nested
     @DisplayName("우승자")
     class Winners {
-        private final WinnerSelector winnerSelector = new WinnerSelector();
 
         @Test
         @DisplayName("가장 많이 이동한 자동차 한 명을 우승자로 반환한다")
@@ -47,9 +45,11 @@ public class CarsTest {
             meow.move(new FixedNumberGenerator(4));
             aa.move(new FixedNumberGenerator(4));
 
-                    Cars cars = new Cars(List.of(meow, aa));
+            Cars cars = new Cars(List.of(meow, aa));
 
-            assertThat(winnerSelector.select(cars))
+            List<String> winners = cars.winnerNames();
+
+            assertThat(winners)
                     .containsExactly("meow");
         }
 
@@ -66,7 +66,9 @@ public class CarsTest {
 
             Cars cars = new Cars(List.of(meow, kitty, aa));
 
-            assertThat(winnerSelector.select(cars))
+            List<String> winners = cars.winnerNames();
+
+            assertThat(winners)
                     .containsExactlyInAnyOrder("meow", "kitty");
         }
     }

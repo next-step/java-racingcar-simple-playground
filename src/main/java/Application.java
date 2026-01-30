@@ -1,9 +1,10 @@
 import domain.*;
-import service.RacingCarGame;
+import domain.RacingCarGame;
 import util.CarsFactory;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public final class Application {
@@ -21,13 +22,16 @@ public final class Application {
         Race race = new Race(cars);
         RandomNumberGenerator generator = new RandomNumberGeneratorImpl();
 
-        RacingCarGame game = new RacingCarGame(race, generator, new WinnerSelector());
+        RacingCarGame game = new RacingCarGame(race, generator);
 
         outputView.printStart();
 
-        RacingCarGame.GameResult result =
-                game.play(tryCount, outputView::printRound);
+        List<RoundResult> rounds = game.play(tryCount);
 
-        outputView.printWinners(result.winners());
+        outputView.printRounds(rounds);
+
+        List<String> winners = game.winners();
+
+        outputView.printWinners(winners);
     }
 }
