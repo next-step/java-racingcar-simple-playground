@@ -3,10 +3,8 @@ package racingcar.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class CarTest {
-    private static final int START_POSITION = 0;
     private static final int MOVABLE_NUMBER = 4;
     private static final int NON_MOVABLE_NUMBER = 3;
 
