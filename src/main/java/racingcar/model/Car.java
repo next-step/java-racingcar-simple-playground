@@ -20,7 +20,7 @@ public class Car {
     }
 
     public void moveForward(NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() >= FORWARD_RULE) {
+        if (numberGenerator.generateNumber() >= FORWARD_RULE) {
             position++;
         }
     }
