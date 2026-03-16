@@ -7,15 +7,8 @@ public class Cars {
     private static final int START_POSITION = 0;
     private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-    }
-
-    public List<Car> getCars() {
-        return cars;
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<Car> getWinners() {
@@ -41,4 +34,13 @@ public class Cars {
         return maxPosition;
     }
 
+    void moveCarAt(int index, NumberGenerator numberGenerator) {
+        if (isValidateIndex(index)) {
+            cars.get(index).moveForward(numberGenerator);
+        }
+    }
+
+    private boolean isValidateIndex(int index) {
+        return index >= 0 && index < cars.size();
+    }
 }
