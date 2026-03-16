@@ -15,31 +15,37 @@ public class CarsTest {
     @DisplayName("우승자 구하는 기능: 단독 우승자를 정상적으로 구하는지 확인")
     void get_SingleWinner() {
         //given
-        Cars cars = new Cars(List.of("winner1", "loser1", "loser2", "loser3"));
-        List<Car> carList = cars.getCars();
+        Car winner = new Car("winner1");
+        Car loser1 = new Car("loser1");
+        Car loser2 = new Car("loser2");
+        Cars cars = new Cars(List.of(winner, loser1, loser2));
         //when
-        carList.get(0).moveForward(() -> MOVABLE_NUMBER);
-        carList.get(1).moveForward(() -> NON_MOVABLE_NUMBER);
-        carList.get(2).moveForward(() -> NON_MOVABLE_NUMBER);
-        carList.get(3).moveForward(() -> NON_MOVABLE_NUMBER);
+        cars.moveCarAt(0, ()->MOVABLE_NUMBER);
+        cars.moveCarAt(1, ()->NON_MOVABLE_NUMBER);
+        cars.moveCarAt(2, ()->NON_MOVABLE_NUMBER);
         List<Car> winners = cars.getWinners();
         //then
-        assertThat(winners).extracting(Car::getName).containsExactly("winner1");
+        assertThat(winners).extracting(Car::getName)
+                .containsExactlyInAnyOrder("winner1");
     }
 
     @Test
     @DisplayName("우승자 구하는 기능: 공동 우승자를 정상적으로 구하는지 확인")
     void get_MultiWinner() {
         //given
-        Cars cars = new Cars(List.of("winner1", "winner2", "loser1", "loser2"));
-        List<Car> carList = cars.getCars();
+        Car winner1 = new Car("winner1");
+        Car winner2 = new Car("winner2");
+        Car loser1 = new Car("loser1");
+        Car loser2 = new Car("loser2");
+        Cars cars = new Cars(List.of(winner1, winner2, loser1, loser2));
         //when
-        carList.get(0).moveForward(() -> MOVABLE_NUMBER);
-        carList.get(1).moveForward(() -> MOVABLE_NUMBER);
-        carList.get(2).moveForward(() -> NON_MOVABLE_NUMBER);
-        carList.get(3).moveForward(() -> NON_MOVABLE_NUMBER);
+        cars.moveCarAt(0, ()->MOVABLE_NUMBER);
+        cars.moveCarAt(1, ()->MOVABLE_NUMBER);
+        cars.moveCarAt(2, ()->NON_MOVABLE_NUMBER);
+        cars.moveCarAt(3, ()->NON_MOVABLE_NUMBER);
         List<Car> winners = cars.getWinners();
         //then
-        assertThat(winners).extracting(Car::getName).containsExactly("winner1", "winner2");
+        assertThat(winners).extracting(Car::getName)
+                .containsExactlyInAnyOrder("winner1", "winner2");
     }
 }
