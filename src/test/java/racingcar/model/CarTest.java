@@ -2,15 +2,45 @@ package racingcar.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class CarTest {
     private static final int MOVABLE_NUMBER = 4;
-    private static final int NON_MOVABLE_NUMBER = 3;
+    private static final int START_POSITION = 0;
 
     @Test
-    @DisplayName("자동차 앞으로 이동: 이동 조건이 성립할 경우, 위치 1 증가 확인.")
-    void move_Forward() {
+    @DisplayName("Car 객체 생성: Car 객체 생성 후, 이름과 초기 위치 확인")
+    void create_Car() {
+        //given
+        String expectedName = "Red";
+        //when
+        Car car = new Car(expectedName);
+        //then
+        assertAll(
+                () -> assertThat(car.getName()).isEqualTo(expectedName),
+                () -> assertThat(car.getPosition()).isEqualTo(START_POSITION)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    @DisplayName("앞으로 단일 이동: 이동 조건이 성립할 경우, 위치 1 증가 확인.")
+    void move_Forward(int movableValue) {
+        //given
+        Car car = new Car("Red");
+        //when
+        car.moveForward(() -> movableValue);
+        //then
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("앞으로 다회 이동: 여러 번 이동도 정상적으로 작동하는지 확인.")
+    void move_MultiForward() {
         //given
         Car car = new Car("Red");
         //when
@@ -22,16 +52,14 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(4);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
     @DisplayName("자동차 정지: 이동 조건이 성립하지 않을 경우, 위치는 변화 없음 확인.")
-    void move_Stop() {
+    void move_Stop(int num) {
         //given
         Car car = new Car("Red");
         //when
-        car.moveForward(() -> NON_MOVABLE_NUMBER);
-        car.moveForward(() -> NON_MOVABLE_NUMBER);
-        car.moveForward(() -> NON_MOVABLE_NUMBER);
-        car.moveForward(() -> NON_MOVABLE_NUMBER);
+        car.moveForward(() -> num);
         //then
         assertThat(car.getPosition()).isEqualTo(0);
     }
