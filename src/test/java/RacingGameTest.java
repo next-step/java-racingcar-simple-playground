@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,39 +8,51 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingGameTest {
 
     @Test
-    @DisplayName("한명이 우승했다")
+    @DisplayName("한 번의 라운드에서 자동차들이 전진 또는 멈춘다")
+    void playRound() {
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+
+        NumberGenerator generator = new TestNumberGenerator(List.of(4, 3));
+        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
+
+        racingGame.playRound();
+
+        assertThat(pobi.getPosition()).isEqualTo(1);
+        assertThat(crong.getPosition()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("한 명이 우승한다")
     void oneWinner() {
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
 
-        pobi.move(4);
-        pobi.move(4);
-        crong.move(4);
+        NumberGenerator generator = new TestNumberGenerator(List.of(4, 3, 4, 4));
+        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
 
-        RacingGame racingGame = new RacingGame(List.of(pobi, crong));
+        racingGame.playRound();
+        racingGame.playRound();
 
-        List<Car> winners = racingGame.getWinners();
-
-        assertThat(winners).hasSize(1);
-        assertThat(winners.get(0).getName()).isEqualTo("pobi");
+        assertThat(racingGame.getWinners())
+                .extracting(Car::getName)
+                .containsExactly("pobi");
     }
 
     @Test
-    @DisplayName("다수가 우승했다")
-    void winners() {
+    @DisplayName("다수가 우승한다")
+    void multipleWinners() {
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
 
-        pobi.move(4);
-        crong.move(4);
+        NumberGenerator generator = new TestNumberGenerator(List.of(4, 4, 3, 3));
+        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
 
-        RacingGame racingGame = new RacingGame(List.of(pobi, crong));
+        racingGame.playRound();
+        racingGame.playRound();
 
-        List<Car> winners = racingGame.getWinners();
-
-        assertThat(winners).hasSize(2);
-        assertThat(winners.get(0).getName()).isEqualTo("pobi");
-        assertThat(winners.get(1).getName()).isEqualTo("crong");
+        assertThat(racingGame.getWinners())
+                .extracting(Car::getName)
+                .containsExactlyInAnyOrder("pobi", "crong");
     }
-
 }

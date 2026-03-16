@@ -4,9 +4,17 @@ import java.util.List;
 public class RacingGame {
 
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
-    public RacingGame(List<Car> cars) {
+    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
+        this.numberGenerator = numberGenerator;
+    }
+
+    public void playRound() {
+        for (Car car : cars) {
+            moveCar(car);
+        }
     }
 
     public List<Car> getWinners() {
@@ -19,10 +27,8 @@ public class RacingGame {
         return winners;
     }
 
-    private void addWinner(List<Car> winners, Car car, int maxPosition) {
-        if (car.getPosition() == maxPosition) {
-            winners.add(car);
-        }
+    private void moveCar(Car car) {
+        car.move(numberGenerator.generate());
     }
 
     private int getMaxPosition() {
@@ -32,5 +38,11 @@ public class RacingGame {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }
         return maxPosition;
+    }
+
+    private void addWinner(List<Car> winners, Car car, int maxPosition) {
+        if (car.getPosition() == maxPosition) {
+            winners.add(car);
+        }
     }
 }
