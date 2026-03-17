@@ -5,19 +5,11 @@ import java.util.List;
 
 public class Cars {
     private static final int START_POSITION = 0;
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
-    }
-
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            addIfWinner(winners, car, maxPosition);
-        }
-        return winners;
     }
 
     private void addIfWinner(List<Car> winners, Car car, int maxPosition) {
@@ -34,13 +26,12 @@ public class Cars {
         return maxPosition;
     }
 
-    void moveCarAt(int index, NumberGenerator numberGenerator) {
-        if (isValidateIndex(index)) {
-            cars.get(index).moveForward(numberGenerator);
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        List<Car> winners = new ArrayList<>();
+        for (Car car : cars) {
+            addIfWinner(winners, car, maxPosition);
         }
-    }
-
-    private boolean isValidateIndex(int index) {
-        return index >= 0 && index < cars.size();
+        return winners;
     }
 }
