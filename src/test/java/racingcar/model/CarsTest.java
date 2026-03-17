@@ -18,11 +18,12 @@ public class CarsTest {
         Car winner = new Car("winner1");
         Car loser1 = new Car("loser1");
         Car loser2 = new Car("loser2");
+        winner.moveForward(()->MOVABLE_NUMBER);
+        loser1.moveForward(()->NON_MOVABLE_NUMBER);
+        loser2.moveForward(()->NON_MOVABLE_NUMBER);
+
         Cars cars = new Cars(List.of(winner, loser1, loser2));
         //when
-        cars.moveCarAt(0, ()->MOVABLE_NUMBER);
-        cars.moveCarAt(1, ()->NON_MOVABLE_NUMBER);
-        cars.moveCarAt(2, ()->NON_MOVABLE_NUMBER);
         List<Car> winners = cars.getWinners();
         //then
         assertThat(winners).extracting(Car::getName)
@@ -37,12 +38,13 @@ public class CarsTest {
         Car winner2 = new Car("winner2");
         Car loser1 = new Car("loser1");
         Car loser2 = new Car("loser2");
+        winner1.moveForward(()->MOVABLE_NUMBER);
+        winner2.moveForward(()->MOVABLE_NUMBER);
+        loser1.moveForward(()->NON_MOVABLE_NUMBER);
+        loser2.moveForward(()->NON_MOVABLE_NUMBER);
+
         Cars cars = new Cars(List.of(winner1, winner2, loser1, loser2));
         //when
-        cars.moveCarAt(0, ()->MOVABLE_NUMBER);
-        cars.moveCarAt(1, ()->MOVABLE_NUMBER);
-        cars.moveCarAt(2, ()->NON_MOVABLE_NUMBER);
-        cars.moveCarAt(3, ()->NON_MOVABLE_NUMBER);
         List<Car> winners = cars.getWinners();
         //then
         assertThat(winners).extracting(Car::getName)
