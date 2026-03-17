@@ -1,3 +1,5 @@
+package racingcar.domain;
+
 public class Car {
 
     private static final int MOVE_CONDITION = 4;

@@ -1,5 +1,9 @@
+package racingcar.domain;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.generator.NumberGenerator;
+import racingcar.generator.TestNumberGenerator;
 
 import java.util.List;
 
@@ -14,7 +18,8 @@ public class RacingGameTest {
         Car crong = new Car("crong");
 
         NumberGenerator generator = new TestNumberGenerator(List.of(4, 3));
-        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
+        Cars cars = new Cars(List.of(pobi, crong));
+        RacingGame racingGame = new RacingGame(cars, generator);
 
         racingGame.playRound();
 
@@ -29,7 +34,8 @@ public class RacingGameTest {
         Car crong = new Car("crong");
 
         NumberGenerator generator = new TestNumberGenerator(List.of(4, 3, 4, 4));
-        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
+        Cars cars = new Cars(List.of(pobi, crong));
+        RacingGame racingGame = new RacingGame(cars, generator);
 
         racingGame.playRound();
         racingGame.playRound();
@@ -46,7 +52,8 @@ public class RacingGameTest {
         Car crong = new Car("crong");
 
         NumberGenerator generator = new TestNumberGenerator(List.of(4, 4, 3, 3));
-        RacingGame racingGame = new RacingGame(List.of(pobi, crong), generator);
+        Cars cars = new Cars(List.of(pobi, crong));
+        RacingGame racingGame = new RacingGame(cars, generator);
 
         racingGame.playRound();
         racingGame.playRound();

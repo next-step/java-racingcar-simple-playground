@@ -1,3 +1,5 @@
+package racingcar.generator;
+
 import java.util.List;
 
 public class TestNumberGenerator implements NumberGenerator {
