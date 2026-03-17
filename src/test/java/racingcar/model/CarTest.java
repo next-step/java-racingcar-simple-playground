@@ -28,19 +28,25 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("Car 객체 생성 실패(이름 오류): 에러 메시지 확인")
-    void createFail_Car() {
+    @DisplayName("Car 객체 생성 실패(비어있는 이름): 에러 메시지 확인")
+    void create_Car_Empty_Name() {
         //given
         String emptyName = "";
+        //when
+        IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(emptyName));
+        //then
+        assertThat(e.getMessage()).isEqualTo("비어 있는 이름은 허용되지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("Car 객체 생성 실패(10자 초과 이름): 에러 메시지 확인")
+    void create_Car_Overlong_Name() {
+        //given
         String overlongName = "GREENORANGE";
         //when
-        IllegalArgumentException e1 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(emptyName));
-        IllegalArgumentException e2 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(overlongName));
+        IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(overlongName));
         //then
-        assertAll(
-                () -> assertThat(e1.getMessage()).isEqualTo("비어 있는 이름은 허용되지 않습니다."),
-                () -> assertThat(e2.getMessage()).isEqualTo("10자를 초과하는 이름은 허용되지 않습니다.")
-        );
+        assertThat(e.getMessage()).isEqualTo("10자를 초과하는 이름은 허용되지 않습니다.");
     }
 
     @ParameterizedTest
