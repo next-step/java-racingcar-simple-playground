@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,6 +24,22 @@ class CarTest {
         assertAll(
                 () -> assertThat(car.getName()).isEqualTo(expectedName),
                 () -> assertThat(car.getPosition()).isEqualTo(START_POSITION)
+        );
+    }
+
+    @Test
+    @DisplayName("Car 객체 생성 실패(이름 오류): 에러 메시지 확인")
+    void createFail_Car() {
+        //given
+        String emptyName = "";
+        String overlongName = "GREENORANGE";
+        //when
+        IllegalArgumentException e1 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(emptyName));
+        IllegalArgumentException e2 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(overlongName));
+        //then
+        assertAll(
+                () -> assertThat(e1.getMessage()).isEqualTo("비어 있는 이름은 허용되지 않습니다."),
+                () -> assertThat(e2.getMessage()).isEqualTo("10자를 초과하는 이름은 허용되지 않습니다.")
         );
     }
 
