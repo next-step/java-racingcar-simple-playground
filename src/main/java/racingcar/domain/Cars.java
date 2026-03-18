@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.generator.NumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
@@ -9,7 +10,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public void moveAll(NumberGenerator numberGenerator) {
@@ -20,6 +21,10 @@ public class Cars {
 
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
+
+        if (maxPosition == 0) {
+            return new ArrayList<>();
+        }
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)

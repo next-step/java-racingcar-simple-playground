@@ -17,10 +17,6 @@ public class Car {
         }
     }
 
-    private boolean isMovable(int number) {
-        return number >= MOVE_CONDITION;
-    }
-
     public String getName() {
         return name;
     }
@@ -28,4 +24,9 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    private boolean isMovable(int number) {
+        return number >= MOVE_CONDITION;
+    }
+
 }
