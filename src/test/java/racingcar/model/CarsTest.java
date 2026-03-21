@@ -24,10 +24,9 @@ public class CarsTest {
 
         Cars cars = new Cars(List.of(winner, loser1, loser2));
         //when
-        List<Car> winners = cars.getWinners();
+        List<String> winners = cars.getWinners();
         //then
-        assertThat(winners).extracting(Car::getName)
-                .containsExactlyInAnyOrder("winner1");
+        assertThat(winners).containsExactlyInAnyOrder("winner1");
     }
 
     @Test
@@ -45,9 +44,8 @@ public class CarsTest {
 
         Cars cars = new Cars(List.of(winner1, winner2, loser1, loser2));
         //when
-        List<Car> winners = cars.getWinners();
+        List<String> winners = cars.getWinners();
         //then
-        assertThat(winners).extracting(Car::getName)
-                .containsExactlyInAnyOrder("winner1", "winner2");
+        assertThat(winners).containsExactlyInAnyOrder("winner1", "winner2");
     }
 }
