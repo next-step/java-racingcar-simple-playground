@@ -53,7 +53,6 @@ public class GameManageController {
     }
 
     private void playGame(Cars playerCars, NumberGenerator numberGenerator, int playCount) {
-        List<CarStatus> carStatus = playerCars.getCarsStatus();
         for (int i = 0; i < playCount; i++) {
             playerCars.moveCars(numberGenerator);
             printRoundResult(playerCars);
