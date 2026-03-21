@@ -19,11 +19,8 @@ public class Car {
     }
 
     private void validName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("비어 있는 이름은 허용되지 않습니다.");
-        }
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("5자를 초과하는 이름은 허용되지 않습니다.");
+        if (name == null || name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException("이름은 1자 이상, 5자 이하여야 합니다.");
         }
     }
 
