@@ -12,8 +12,7 @@ public class CarsTest {
     private static final int NON_MOVABLE_NUMBER = 3;
 
     @Test
-    @DisplayName("우승자 구하는 기능: 단독 우승자를 정상적으로 구하는지 확인")
-    void get_SingleWinner() {
+    void 우승자가_1명일_수_있다() {
         //given
         Car winner = new Car("winner1");
         Car loser1 = new Car("loser1");
@@ -30,8 +29,7 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자 구하는 기능: 공동 우승자를 정상적으로 구하는지 확인")
-    void get_MultiWinner() {
+    void 우승자가_여러_명일_수_있다() {
         //given
         Car winner1 = new Car("winner1");
         Car winner2 = new Car("winner2");
