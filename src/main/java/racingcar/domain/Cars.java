@@ -31,6 +31,10 @@ public class Cars {
                 .toList();
     }
 
+    public List<Car> getCars() {
+        return new ArrayList<>(cars);
+    }
+
     private int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
