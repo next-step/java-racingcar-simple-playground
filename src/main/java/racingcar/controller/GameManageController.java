@@ -58,7 +58,6 @@ public class GameManageController {
         for (int i = 0; i < playCount; i++) {
             playerCars.moveCars(numberGenerator);
             printRoundResult(playerCars);
-            outputView.printEmptyLine();
         }
     }
 
@@ -71,5 +70,6 @@ public class GameManageController {
         for (CarStatus carStatus : carStatuses) {
             outputView.printCurrentPosition(carStatus.name(), carStatus.position());
         }
+        outputView.printEmptyLine();
     }
 }
