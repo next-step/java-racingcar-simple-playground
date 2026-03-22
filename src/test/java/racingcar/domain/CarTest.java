@@ -30,8 +30,15 @@ public class CarTest {
 
     @DisplayName("차 이름이 5자 초과되면 예외처리된다")
     @Test
-    void validName() {
+    void validateNameLength() {
         assertThatThrownBy(() -> new Car("abcdef"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("차 이름을 입력하지 않으면 예외처리된다")
+    @Test
+    void isEmptyName() {
+        assertThatThrownBy(() -> new Car(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -9,7 +9,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        validNameLength(name);
+        validateName(name);
         this.name = name;
     }
 
@@ -31,7 +31,10 @@ public class Car {
         return number >= MOVE_CONDITION;
     }
 
-    private void validNameLength(String name) {
+    private void validateName(String name) {
+        if(name.isBlank()){
+            throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다.");
+        }
         if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 " + MAXIMUM_CAR_NAME_LENGTH + "자 이하만 가능합니다.");
         }
