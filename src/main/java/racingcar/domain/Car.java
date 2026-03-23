@@ -39,5 +39,4 @@ public class Car {
             throw new IllegalArgumentException("자동차 이름은 " + MAXIMUM_CAR_NAME_LENGTH + "자 이하만 가능합니다.");
         }
     }
-
 }
