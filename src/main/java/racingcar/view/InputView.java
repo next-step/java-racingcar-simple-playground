@@ -17,14 +17,15 @@ public class InputView {
     public static int readTryCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
 
-        return validateTryCount();
+        int tryCount = scanner.nextInt();
+        validateTryCount(tryCount);
+
+        return tryCount;
     }
 
-    private static int validateTryCount() {
-        try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            throw new IllegalArgumentException("시도 횟수는 정수만 입력 가능합니다.");
+    private static void validateTryCount(int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 1이상이어야 합니다.");
         }
     }
 }
