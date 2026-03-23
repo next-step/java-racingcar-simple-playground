@@ -7,6 +7,7 @@
 ---
 ## 기능 요구사항
 
+n 대의 자동차를 리스트로 관리하며, 우승자(가능하면 여러 명)을 구하여 출력할 수 있다.
 1. 입력 및 검증
    + 자동차 이름 입력: 쉼표(,)로 구분 
      + 이름은 1~5자 사이여야 함 
@@ -26,10 +27,13 @@
 ```text
 src/main/java/racingcar
 ├── controller
+│   ├── InputValidator.java         # 입력 검증
 │   ├── GameManageController.java   # 게임 흐름 제어
 │   └── ExceptionHandler.java       # 공통 예외 처리
 ├── model
 │   ├── Car.java                    # 자동차 도메인 모델
+│   ├── Cars.java                   # 여러 자동차 리스트 모델
+│   ├── CarStatus                   # 자동차 정보 레코드
 │   └── RandomNumberGenerator.java  # 랜덤 로직
 ├── view
 │   ├── InputView.java              # 사용자 입력
