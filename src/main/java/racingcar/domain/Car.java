@@ -32,7 +32,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if(name.isBlank()){
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름이 입력되지 않았습니다.");
         }
         if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
