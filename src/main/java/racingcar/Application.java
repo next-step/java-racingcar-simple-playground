@@ -14,12 +14,11 @@ public class Application {
 
     public static void main(String[] args) {
         String[] carNames = InputView.readCarNames();
-        int tryCount = InputView.readTryCount();
-
         RacingGame racingGame = createRacingGame(carNames);
 
+        int tryCount = InputView.readTryCount();
         OutputView.printResultHeader();
-        playRounds(racingGame,tryCount);
+        playRounds(racingGame, tryCount);
         OutputView.printWinners(racingGame.getWinners());
     }
 
@@ -34,7 +33,7 @@ public class Application {
                 .toList();
     }
 
-    private static void playRounds(RacingGame racingGame, int tryCount){
+    private static void playRounds(RacingGame racingGame, int tryCount) {
         for (int i = 0; i < tryCount; i++) {
             racingGame.playRound();
             OutputView.printRoundResult(racingGame.getCars());
