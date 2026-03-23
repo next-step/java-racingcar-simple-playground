@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,7 +17,14 @@ public class InputView {
     public static int readTryCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
 
-        return scanner.nextInt();
+        return validateTryCount();
     }
 
+    private static int validateTryCount() {
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            throw new IllegalArgumentException("시도 횟수는 정수만 입력 가능합니다.");
+        }
+    }
 }
