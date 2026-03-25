@@ -1,6 +1,9 @@
 package racingcar.controller;
 
-import racingcar.model.*;
+import racingcar.model.Cars;
+import racingcar.model.Car;
+import racingcar.model.NumberGenerator;
+import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
