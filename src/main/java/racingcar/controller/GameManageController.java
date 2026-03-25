@@ -8,10 +8,10 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class GameManageController {
-    private final ExceptionHandler exceptionHandler;
     private final InputView inputView;
     private final OutputView outputView;
     private final InputValidator inputValidator;
@@ -20,7 +20,6 @@ public class GameManageController {
     private int tryCount;
 
     public GameManageController() {
-        exceptionHandler = new ExceptionHandler();
         inputView = new InputView();
         outputView = new OutputView();
         inputValidator = new InputValidator();
@@ -41,8 +40,18 @@ public class GameManageController {
         outputView.printWinners(playerCars.getWinners());
     }
 
+    private <T> T retryUntilSuccess(Supplier<T> callback) {
+        while (true) {
+            try {
+                return callback.get();
+            } catch (IllegalArgumentException exception) {
+               outputView.printErrorMessage(exception.getMessage());
+            }
+        }
+    }
+
     private List<Car> repeatUntilSuccessName() {
-        return exceptionHandler.run(() -> {
+        return retryUntilSuccess(() -> {
             outputView.printNameGuide();
             String inputNames = inputView.readInput();
             List<String> nameList = inputCarsName(inputNames);
@@ -51,7 +60,7 @@ public class GameManageController {
     }
 
     private int repeatUntilNum() {
-        return exceptionHandler.run(() -> {
+        return retryUntilSuccess(() -> {
             outputView.printCountGuide();
             String input = inputView.readInput();
             return inputValidator.validatePlayCount(input);
