@@ -19,10 +19,10 @@ public class GameManageController {
     private Cars playerCars;
     private int tryCount;
 
-    public GameManageController() {
-        inputView = new InputView();
-        outputView = new OutputView();
-        inputValidator = new InputValidator();
+    public GameManageController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.inputValidator = inputValidator;
     }
 
     public void readyRacingGame() {
@@ -53,7 +53,7 @@ public class GameManageController {
     private List<Car> repeatUntilSuccessName() {
         return retryUntilSuccess(() -> {
             outputView.printNameGuide();
-            String inputNames = inputView.readInput();
+            String inputNames = inputView.readCarNames();
             List<String> nameList = inputCarsName(inputNames);
             return inputValidator.validateCarName(nameList);
         });
@@ -62,7 +62,7 @@ public class GameManageController {
     private int repeatUntilNum() {
         return retryUntilSuccess(() -> {
             outputView.printCountGuide();
-            String input = inputView.readInput();
+            String input = inputView.readTryCount();
             return inputValidator.validatePlayCount(input);
         });
     }
