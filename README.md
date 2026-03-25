@@ -33,8 +33,12 @@ src/main/java/racingcar
 ├── model
 │   ├── Car.java                    # 자동차 도메인 모델
 │   ├── Cars.java                   # 여러 자동차 리스트 모델
-│   ├── CarStatus                   # 자동차 정보 레코드
+
 │   └── RandomNumberGenerator.java  # 랜덤 로직
+├── constant
+│   └── ErrorMessage.java           # 에러 메시지 Enum
+├── dto
+│   └── CarStatus.java              # 자동차 정보 레코드
 ├── view
 │   ├── InputView.java              # 사용자 입력
 │   └── OutputView.java             # 결과 출력
