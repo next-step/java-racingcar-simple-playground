@@ -13,8 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class InputValidatorTest {
-
-
     @Test
     void 이름은_1자_이상_5자_이하여야_한다() {
         //given
