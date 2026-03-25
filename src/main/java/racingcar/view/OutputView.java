@@ -21,7 +21,7 @@ public class OutputView {
 
     public void printCurrentPosition(String name, int position) {
         System.out.print(name + " : ");
-        for (int i = 0; i <= position; i++) {
+        for (int i = 0; i < position; i++) {
             System.out.print(ONE_STEP);
         }
         System.out.println();
