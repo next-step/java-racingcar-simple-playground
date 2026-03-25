@@ -5,6 +5,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameManageController {
     private final ExceptionHandler exceptionHandler;
@@ -62,7 +63,10 @@ public class GameManageController {
     }
 
     private List<String> inputCarsName(String inputNames) {
-        return List.of(inputNames.split(","));
+        List<String> splitList = List.of(inputNames.split(","));
+        return splitList.stream()
+                .map(String::strip)
+                .collect(Collectors.toList());
     }
 
     private void printRoundResult(Cars playerCars) {
