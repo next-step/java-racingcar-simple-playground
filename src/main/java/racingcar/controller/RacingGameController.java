@@ -1,14 +1,10 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class RacingGameController {
     public void run() {
@@ -22,14 +18,7 @@ public class RacingGameController {
     }
 
     private RacingGame createRacingGame(String[] carNames) {
-        return new RacingGame(new Cars(createCars(carNames)), new RandomNumberGenerator());
-    }
-
-    private List<Car> createCars(String[] carNames) {
-        return Arrays.stream(carNames)
-                .map(String::trim)
-                .map(Car::new)
-                .toList();
+        return new RacingGame(new Cars(Cars.createCars(carNames)), new RandomNumberGenerator());
     }
 
     private void playRounds(RacingGame racingGame, int tryCount) {

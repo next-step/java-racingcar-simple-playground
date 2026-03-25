@@ -40,8 +40,7 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        assertThat(racingGame.getWinners())
-                .extracting(Car::getName)
+        assertThat(racingGame.getWinnerNames())
                 .containsExactly("pobi");
     }
 
@@ -58,8 +57,7 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        assertThat(racingGame.getWinners())
-                .extracting(Car::getName)
+        assertThat(racingGame.getWinnerNames())
                 .containsExactlyInAnyOrder("pobi", "crong");
     }
 
@@ -76,6 +74,6 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        assertThat(racingGame.getWinners()).isEmpty();
+        assertThat(racingGame.getWinnerNames()).isEmpty();
     }
 }

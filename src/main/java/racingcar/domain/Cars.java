@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.generator.NumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
@@ -11,6 +12,13 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
+    }
+
+    public static List<Car> createCars(String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(String::trim)
+                .map(Car::new)
+                .toList();
     }
 
     public void moveAll(NumberGenerator numberGenerator) {
