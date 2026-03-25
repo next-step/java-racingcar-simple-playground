@@ -19,21 +19,21 @@ public class InputValidator {
     }
 
     public int validatePlayCount(String inputTryCount) {
-        validateNumber(inputTryCount);
-        validateCountRange(inputTryCount);
-        return Integer.parseInt(inputTryCount);
+        int parsedCount = validateNumber(inputTryCount);
+        validateCountRange(parsedCount);
+        return parsedCount;
     }
 
-    private void validateNumber(String inputTryCount) {
+    private int validateNumber(String inputTryCount) {
         try {
-            Integer.parseInt(inputTryCount);
+            return Integer.parseInt(inputTryCount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다.");
         }
     }
 
-    private void validateCountRange(String inputTryCount) {
-        if (Integer.parseInt(inputTryCount) <= 0) {
+    private void validateCountRange(int tryCount) {
+        if (tryCount <= 0) {
             throw new IllegalArgumentException("1번 이상의 시도를 해야 합니다.");
         }
     }
