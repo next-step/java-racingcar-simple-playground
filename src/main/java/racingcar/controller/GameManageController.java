@@ -33,10 +33,7 @@ public class GameManageController {
 
     public void runRacingGame(NumberGenerator numberGenerator) {
         outputView.printExecutionResultMessage();
-
         playGame(playerCars, numberGenerator, tryCount);
-
-        printRoundResult(playerCars);
         outputView.printWinners(playerCars.getWinners());
     }
 
