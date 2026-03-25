@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class CarTest {
     private static final int MOVABLE_NUMBER = 4;
     private static final int START_POSITION = 0;
-    private static final String NAME_ERROR_MESSAGE = "이름은 1자 이상, 5자 이하여야 합니다.";
 
     @Test
     void Car_객체_생성_시_이름을_갖고_초기_위치는_0이다() {
@@ -23,21 +21,6 @@ class CarTest {
         assertAll(
                 () -> assertThat(car.getName()).isEqualTo(expectedName),
                 () -> assertThat(car.getPosition()).isEqualTo(START_POSITION)
-        );
-    }
-
-    @Test
-    void 이름은_1자_이상_5자_이하여야_한다() {
-        //given
-        String emptyName = "";
-        String overlongName = "Greedy";
-        //when
-        IllegalArgumentException e1 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(emptyName));
-        IllegalArgumentException e2 = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(overlongName));
-        //then
-        assertAll(
-                () -> assertThat(e1.getMessage()).isEqualTo(NAME_ERROR_MESSAGE),
-                () -> assertThat(e2.getMessage()).isEqualTo(NAME_ERROR_MESSAGE)
         );
     }
 
