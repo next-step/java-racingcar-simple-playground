@@ -1,10 +1,12 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class OutputView {
     private static final String ONE_STEP = "-";
     private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
+    private static final String ERROR = "[ERROR] ";
 
     public void printNameGuide() {
         System.out.println("경주할 자동차의 이름을 입력하세요(이름은 쉽표(,)를 기준으로 구분)");
@@ -34,5 +36,9 @@ public class OutputView {
 
     public void printEmptyLine() {
         System.out.println();
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(ERROR + errorMessage);
     }
 }
