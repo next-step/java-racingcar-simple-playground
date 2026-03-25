@@ -16,6 +16,12 @@ public class InputValidator {
                 .toList();
     }
 
+    public int validatePlayCount(String inputTryCount) {
+        int parsedCount = validateNumber(inputTryCount);
+        validateCountRange(parsedCount);
+        return parsedCount;
+    }
+
     private void validateNameCount(List<String> carNameList) {
         if (carNameList.size() <= 1) {
             throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT.getMessage());
@@ -27,12 +33,6 @@ public class InputValidator {
         if (uniqueNameSet.size() != carNameList.size()) {
             throw new IllegalArgumentException(ErrorMessage.NAME_DUPLICATE.getMessage());
         }
-    }
-
-    public int validatePlayCount(String inputTryCount) {
-        int parsedCount = validateNumber(inputTryCount);
-        validateCountRange(parsedCount);
-        return parsedCount;
     }
 
     private int validateNumber(String inputTryCount) {
