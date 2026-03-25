@@ -18,7 +18,7 @@ public class RacingGameController {
         int tryCount = InputView.readTryCount();
         OutputView.printResultHeader();
         playRounds(racingGame, tryCount);
-        OutputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(racingGame.getWinnerNames());
     }
 
     private RacingGame createRacingGame(String[] carNames) {
