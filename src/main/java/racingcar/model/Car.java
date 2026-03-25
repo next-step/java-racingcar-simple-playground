@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.constant.ErrorMessage;
+
 public class Car {
     private static final int FORWARD_RULE = 4;
 
@@ -20,7 +22,7 @@ public class Car {
 
     private void validName(String name) {
         if (name == null || name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException("이름은 1자 이상, 5자 이하여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH.getMessage());
         }
     }
 
