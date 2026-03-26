@@ -1,11 +1,11 @@
-package racingcar.model;
+package racingcar.controller;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constant.ErrorMessage;
-import racingcar.controller.InputValidator;
 
 import java.util.List;
 
@@ -13,10 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class InputValidatorTest {
+    private InputValidator inputValidator;
+
+    @BeforeEach
+    void setUp() {
+        inputValidator = new InputValidator();
+    }
+
     @Test
     void 이름은_1자_이상_5자_이하여야_한다() {
         //given
-        InputValidator inputValidator = new InputValidator();
         List<String> emptyNameList = List.of("", "name");
         List<String> overlongNameList = List.of("Greedy", "name");
         //when
@@ -38,7 +44,6 @@ public class InputValidatorTest {
     @Test
     void 중복된_이름이_존재해서는_안된다() {
         //given
-        InputValidator inputValidator = new InputValidator();
         List<String> duplicateNameList = List.of("name", "name");
         //when
         IllegalArgumentException e = Assertions.assertThrows(
@@ -52,7 +57,6 @@ public class InputValidatorTest {
     @Test
     void 이름은_두_개_이상_입력되어야_한다() {
         //given
-        InputValidator inputValidator = new InputValidator();
         List<String> invalidLengthNameList = List.of("name");
         //when
         IllegalArgumentException e = Assertions.assertThrows(
@@ -66,7 +70,6 @@ public class InputValidatorTest {
     @Test
     void 시도횟수는_정수여야_한다() {
         //given
-        InputValidator inputValidator = new InputValidator();
         String tryCount = "문자";
         //when
         IllegalArgumentException e = Assertions.assertThrows(
@@ -80,8 +83,6 @@ public class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-100"})
     void 시도횟수는_1_이상이어야_한다(String invalidCount) {
-        //given
-        InputValidator inputValidator = new InputValidator();
         //when
         IllegalArgumentException e = Assertions.assertThrows(
                 IllegalArgumentException.class,
