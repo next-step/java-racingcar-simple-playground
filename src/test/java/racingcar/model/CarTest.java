@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,8 +12,7 @@ class CarTest {
     private static final int START_POSITION = 0;
 
     @Test
-    @DisplayName("Car 객체 생성: Car 객체 생성 후, 이름과 초기 위치 확인")
-    void create_Car() {
+    void Car_객체_생성_시_이름을_갖고_초기_위치는_0이다() {
         //given
         String expectedName = "Red";
         //when
@@ -27,32 +24,9 @@ class CarTest {
         );
     }
 
-    @Test
-    @DisplayName("Car 객체 생성 실패(비어있는 이름): 에러 메시지 확인")
-    void create_Car_Empty_Name() {
-        //given
-        String emptyName = "";
-        //when
-        IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(emptyName));
-        //then
-        assertThat(e.getMessage()).isEqualTo("비어 있는 이름은 허용되지 않습니다.");
-    }
-
-    @Test
-    @DisplayName("Car 객체 생성 실패(10자 초과 이름): 에러 메시지 확인")
-    void create_Car_Overlong_Name() {
-        //given
-        String overlongName = "GREENORANGE";
-        //when
-        IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(overlongName));
-        //then
-        assertThat(e.getMessage()).isEqualTo("10자를 초과하는 이름은 허용되지 않습니다.");
-    }
-
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    @DisplayName("앞으로 단일 이동: 이동 조건이 성립할 경우, 위치 1 증가 확인.")
-    void move_Forward(int movableValue) {
+    void 자동차는_4에서_9_사이_정수를_넣으면_전진한다(int movableValue) {
         //given
         Car car = new Car("Red");
         //when
@@ -62,8 +36,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("앞으로 다회 이동: 여러 번 이동도 정상적으로 작동하는지 확인.")
-    void move_MultiForward() {
+    void 자동차는_여러_번_이동할_수_있다() {
         //given
         Car car = new Car("Red");
         //when
@@ -77,8 +50,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
-    @DisplayName("자동차 정지: 이동 조건이 성립하지 않을 경우, 위치는 변화 없음 확인.")
-    void move_Stop(int num) {
+    void 자동차는_0에서_3_사이_정수를_넣으면_정지한다(int num) {
         //given
         Car car = new Car("Red");
         //when

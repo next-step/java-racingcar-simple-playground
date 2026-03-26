@@ -7,17 +7,40 @@
 ---
 ## 기능 요구사항
 
-1. List<Car>를 통해 n대의 Car 객체를 관리한다.
-2. Car 객체는 이름과 이동 거리를 속성으로 가진다.  
-   + 이름은 1자 이상 9자 이하여야 한다.
-3. 각 자동차는 Random 클래스를 활용해 0과 9 사이에서 값이 4 이상일 경우 전진하고, 3 이하일 경우에 멈춘다. 
-4. 자동차 경주 종료 이후에 우승자를 구할 수 있고, 우승자는 한 명 이상일 수 있다.
+n 대의 자동차를 리스트로 관리하며, 우승자(가능하면 여러 명)을 구하여 출력할 수 있다.
+1. 입력 및 검증
+   + 자동차 이름 입력: 쉼표(,)로 구분 
+     + 이름은 1~5자 사이여야 함 
+     + 최소 1대 이상의 자동차 이름이 입력되어야 함
+   + 시도 횟수 입력: 경주를 반복할 횟수 수신 
+     + 양의 정수만 가능
+2. 경주 진행 
+   + 전진 조건: 0~9 사이 무작위 값 생성 후 4 이상일 때만 전진 
+   + 이동 관리: 각 자동차의 이름과 현재 위치(거리)를 누적하여 관리 
+   + 차수별 실행: 입력한 시도 횟수만큼 모든 자동차의 전진 여부 판단
+3. 결과 출력
+   + 라운드 결과: 매 차수마다 자동차별 이름과 전진 상태(-) 출력 
+   + 최종 우승자: 가장 멀리 간 자동차 출력 (중복 시 쉼표로 구분)
+
 ---
 ## 프로젝트 구조
 ```text
-src/main/java/racingcar/model
-├── Car.java                 # 자동차의 상태(이름, 위치)와 이동 로직을 담당하는 객체
-├── Cars.java                # 자동차 객체들을 관리하는 리스트 및 우승자 판별 로직
-├── NumberGenerator.java     # 전진 여부를 판단하기 위한 숫자 생성 인터페이스
-└── RandomNumberGenerator.java # 0~9 사이의 랜덤 숫자를 생성하는 인터페이스 구현체
+src/main/java/racingcar
+├── controller
+│   ├── InputValidator.java         # 입력 검증
+│   ├── GameManageController.java   # 게임 흐름 제어
+│   └── ExceptionHandler.java       # 공통 예외 처리
+├── model
+│   ├── Car.java                    # 자동차 도메인 모델
+│   ├── Cars.java                   # 여러 자동차 리스트 모델
+
+│   └── RandomNumberGenerator.java  # 랜덤 로직
+├── constant
+│   └── ErrorMessage.java           # 에러 메시지 Enum
+├── dto
+│   └── CarStatus.java              # 자동차 정보 레코드
+├── view
+│   ├── InputView.java              # 사용자 입력
+│   └── OutputView.java             # 결과 출력
+└── Application.java                # 프로그램 시작점
 ```
