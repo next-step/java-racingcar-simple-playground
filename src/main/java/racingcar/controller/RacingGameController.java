@@ -24,7 +24,7 @@ public class RacingGameController {
     }
 
     private RacingGame createRacingGame(String[] carNames) {
-        return new RacingGame(new Cars(Cars.createCars(carNames)), new RandomNumberGenerator());
+        return new RacingGame(Cars.from(carNames), new RandomNumberGenerator());
     }
 
     private void playRounds(RacingGame racingGame, int tryCount) {

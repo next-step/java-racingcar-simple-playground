@@ -14,9 +14,9 @@ public class CarsTest {
     @Test
     @DisplayName("이름 배열로 자동차 목록을 생성한다")
     void createCars() {
-        List<Car> cars = Cars.createCars(new String[]{"pobi", "crong"});
+        Cars cars = Cars.from(new String[]{"pobi", "crong"});
 
-        assertThat(cars)
+        assertThat(cars.getCars())
                 .extracting(Car::getName)
                 .containsExactly("pobi", "crong");
     }
