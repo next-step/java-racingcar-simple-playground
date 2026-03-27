@@ -1,8 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -11,9 +10,9 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void printRoundResult(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+    public static void printRoundResult(Map<String, Integer> roundResult) {
+        for (Map.Entry<String, Integer> entry : roundResult.entrySet()) {
+            System.out.println(entry.getKey() + " : " + "-".repeat(entry.getValue()));
         }
         System.out.println();
     }
