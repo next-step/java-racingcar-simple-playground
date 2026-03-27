@@ -14,11 +14,15 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
-    public static Cars from(String[] carNames) {
-        return new Cars(Arrays.stream(carNames)
+    public Cars(String[] carNames) {
+        this.cars = createCars(carNames);
+    }
+
+    private static List<Car> createCars(String[] carNames) {
+        return Arrays.stream(carNames)
                 .map(String::trim)
                 .map(Car::new)
-                .toList());
+                .toList();
     }
 
     public void moveAll(NumberGenerator numberGenerator) {

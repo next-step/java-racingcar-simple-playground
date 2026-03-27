@@ -14,7 +14,7 @@ public class CarsTest {
     @Test
     @DisplayName("이름 배열로 자동차 목록을 생성한다")
     void createCars() {
-        Cars cars = Cars.from(new String[]{"pobi", "crong"});
+        Cars cars = new Cars(new String[]{"pobi", "crong"});
 
         assertThat(cars.getCars())
                 .extracting(Car::getName)
