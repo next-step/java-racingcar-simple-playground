@@ -40,8 +40,7 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        assertThat(racingGame.getWinners())
-                .extracting(Car::getName)
+        assertThat(racingGame.getWinnerNames())
                 .containsExactly("pobi");
     }
 
@@ -58,8 +57,23 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        assertThat(racingGame.getWinners())
-                .extracting(Car::getName)
+        assertThat(racingGame.getWinnerNames())
                 .containsExactlyInAnyOrder("pobi", "crong");
+    }
+
+    @Test
+    @DisplayName("아무도 움직이지 않으면 우승자는 없다")
+    void noWinners() {
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+
+        NumberGenerator generator = new TestNumberGenerator(List.of(3, 3, 3, 3));
+        Cars cars = new Cars(List.of(pobi, crong));
+        RacingGame racingGame = new RacingGame(cars, generator);
+
+        racingGame.playRound();
+        racingGame.playRound();
+
+        assertThat(racingGame.getWinnerNames()).isEmpty();
     }
 }

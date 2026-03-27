@@ -18,7 +18,13 @@ public class RacingGame {
         cars.moveAll(numberGenerator);
     }
 
-    public List<Car> getWinners() {
-        return cars.getWinners();
+    public List<String> getWinnerNames() {
+        return cars.getWinners().stream()
+                .map(Car::getName)
+                .toList();
+    }
+
+    public List<Car> getCars() {
+        return cars.getCars();
     }
 }
