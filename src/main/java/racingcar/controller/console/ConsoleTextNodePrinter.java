@@ -15,7 +15,6 @@ public class ConsoleTextNodePrinter {
         }
     }
 
-
     private void print(TextView.Leaf leaf) {
         for (String line : leaf.getLines()) {
             System.out.println(line);

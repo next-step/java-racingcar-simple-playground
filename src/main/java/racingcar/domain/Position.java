@@ -13,7 +13,6 @@ public class Position {
         this.value = value;
     }
 
-
     public int get() {
         return value;
     }
@@ -25,4 +24,5 @@ public class Position {
             throw new IllegalStateException("현재 위치에서 전진할 수 없습니다. 현재 위치: " + value, e);
         }
     }
+
 }

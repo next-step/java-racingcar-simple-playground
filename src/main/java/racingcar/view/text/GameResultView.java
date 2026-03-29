@@ -8,11 +8,9 @@ public class GameResultView implements TextView.Leaf {
 
     private final List<Car> winners;
 
-
     public GameResultView(List<Car> winners) {
         this.winners = winners;
     }
-
 
     @Override
     public List<String> getLines() {

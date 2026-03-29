@@ -40,7 +40,6 @@ public class CarRacing {
         return new Car(environment, name);
     }
 
-
     public GameResult playGame() {
         List<Progression> progressions = new ArrayList<>();
         for (int i = 0; i < gameCount; i++) {
@@ -68,7 +67,6 @@ public class CarRacing {
 
         return new Progression(carProgressions);
     }
-
 
     private List<Car> getWinners() {
         if (cars.isEmpty()) {

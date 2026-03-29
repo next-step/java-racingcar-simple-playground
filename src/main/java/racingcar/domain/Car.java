@@ -24,11 +24,9 @@ public class Car {
         this.name = name;
     }
 
-
     public String getName() {
         return name.value;
     }
-
 
     public int getPosition() {
         return position.get();

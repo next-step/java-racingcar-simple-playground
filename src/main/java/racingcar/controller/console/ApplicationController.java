@@ -13,7 +13,6 @@ public class ApplicationController {
     private final PromptHandler promptHandler = new ConsolePromptHandler();
     private final ConsoleTextNodePrinter nodePrinter = new ConsoleTextNodePrinter();
 
-
     public void playCarRacing() {
         ApplicationViewInput input = promptViewInput();
         ApplicationView view = playGame(input);

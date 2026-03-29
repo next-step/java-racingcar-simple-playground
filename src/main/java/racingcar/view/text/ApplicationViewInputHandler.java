@@ -13,7 +13,6 @@ public class ApplicationViewInputHandler {
         this.promptHandler = promptHandler;
     }
 
-
     public ApplicationViewInput promptInput() {
         List<Car.Name> carNames = promptCarNames();
         int gameCount = promptGameCount();

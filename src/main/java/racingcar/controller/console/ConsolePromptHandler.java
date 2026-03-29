@@ -9,7 +9,6 @@ public class ConsolePromptHandler implements PromptHandler {
 
     private final Scanner input = new Scanner(System.in);
 
-
     @Override
     public String prompt(String message) {
         System.out.println(message);
