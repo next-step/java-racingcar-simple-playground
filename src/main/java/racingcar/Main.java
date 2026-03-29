@@ -1,13 +1,13 @@
 package racingcar;
 
 
-import racingcar.controller.console.ApplicationController;
+import racingcar.controller.console.ConsoleApplicationController;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationController controller = new ApplicationController();
+        ConsoleApplicationController controller = new ConsoleApplicationController();
         controller.playCarRacing();
     }
 
