@@ -21,8 +21,8 @@ public class ApplicationController {
     }
 
     private ApplicationViewInput promptViewInput() {
-        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler();
-        return inputHandler.promptInput(promptHandler);
+        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler(promptHandler);
+        return inputHandler.promptInput();
     }
 
     private ApplicationView playGame(ApplicationViewInput input) {

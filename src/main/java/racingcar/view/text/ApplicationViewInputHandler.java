@@ -7,15 +7,22 @@ import racingcar.domain.Car;
 
 public class ApplicationViewInputHandler {
 
-    public ApplicationViewInput promptInput(PromptHandler handler) {
-        List<Car.Name> carNames = promptCarNames(handler);
-        int gameCount = promptGameCount(handler);
+    private final PromptHandler promptHandler;
+
+    public ApplicationViewInputHandler(PromptHandler promptHandler) {
+        this.promptHandler = promptHandler;
+    }
+
+
+    public ApplicationViewInput promptInput() {
+        List<Car.Name> carNames = promptCarNames();
+        int gameCount = promptGameCount();
 
         return new ApplicationViewInput(carNames, gameCount);
     }
 
-    List<Car.Name> promptCarNames(PromptHandler handler) {
-        String str = handler.prompt("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+    List<Car.Name> promptCarNames() {
+        String str = promptHandler.prompt("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 
         try {
             return Stream.of(str.split(","))
@@ -27,8 +34,8 @@ public class ApplicationViewInputHandler {
         }
     }
 
-    int promptGameCount(PromptHandler handler) {
-        String str = handler.prompt("시도할 횟수는 몇회인가요?");
+    int promptGameCount() {
+        String str = promptHandler.prompt("시도할 횟수는 몇회인가요?");
 
         try {
             return Integer.parseInt(str);

@@ -13,12 +13,12 @@ import racingcar.domain.Car;
 @SuppressWarnings("NonAsciiCharacters")
 public class ApplicationViewInputTest {
 
-    private final ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler();
 
     @Test
     void 입력을_파싱할_수_있다() {
         PromptHandler prompt = new Prompts("a,b ,c", "5");
-        ApplicationViewInput input = inputHandler.promptInput(prompt);
+        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler(prompt);
+        ApplicationViewInput input = inputHandler.promptInput();
         assertThat(input.carNames())
                 .map(Car.Name::value)
                 .isEqualTo(List.of("a", "b", "c"));
@@ -30,7 +30,8 @@ public class ApplicationViewInputTest {
     @Test
     void 자동차_이름의_길이가_너무_길면_예외를_발생시킨다() {
         PromptHandler prompt = new Prompts("aefewfwefge,wefwergerge");
-        assertThatThrownBy(() -> inputHandler.promptCarNames(prompt))
+        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler(prompt);
+        assertThatThrownBy(inputHandler::promptCarNames)
                 .isInstanceOf(ApplicationViewInputHandler.ParseException.class)
                 .hasMessageContaining("자동차 이름");
     }
@@ -38,7 +39,8 @@ public class ApplicationViewInputTest {
     @Test
     void 게임_횟수가_숫자가_아니면_예외를_발생시킨다() {
         PromptHandler prompt = new Prompts("notNumber");
-        assertThatThrownBy(() -> inputHandler.promptGameCount(prompt))
+        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler(prompt);
+        assertThatThrownBy(inputHandler::promptGameCount)
                 .isInstanceOf(ApplicationViewInputHandler.ParseException.class)
                 .hasMessageContaining("게임 횟수");
     }
