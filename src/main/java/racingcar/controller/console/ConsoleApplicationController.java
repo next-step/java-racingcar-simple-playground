@@ -1,9 +1,9 @@
 package racingcar.controller.console;
 
-import racingcar.domain.CarRacing;
+import racingcar.controller.text.TextApplicationController;
+import racingcar.view.text.ApplicationTextInput;
+import racingcar.view.text.ApplicationTextInputHandler;
 import racingcar.view.text.ApplicationView;
-import racingcar.view.text.ApplicationViewInput;
-import racingcar.view.text.ApplicationViewInputHandler;
 
 
 public class ConsoleApplicationController extends TextApplicationController {
@@ -12,8 +12,8 @@ public class ConsoleApplicationController extends TextApplicationController {
     private final ConsoleTextNodePrinter nodePrinter = new ConsoleTextNodePrinter();
 
     @Override
-    protected ApplicationViewInput promptViewInput() {
-        ApplicationViewInputHandler inputHandler = new ApplicationViewInputHandler(promptHandler);
+    protected ApplicationTextInput promptViewInput() {
+        ApplicationTextInputHandler inputHandler = new ApplicationTextInputHandler(promptHandler);
         return inputHandler.promptInput();
     }
 

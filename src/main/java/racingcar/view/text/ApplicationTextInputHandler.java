@@ -5,19 +5,19 @@ import java.util.stream.Stream;
 import racingcar.domain.Car;
 
 
-public class ApplicationViewInputHandler {
+public class ApplicationTextInputHandler {
 
     private final PromptHandler promptHandler;
 
-    public ApplicationViewInputHandler(PromptHandler promptHandler) {
+    public ApplicationTextInputHandler(PromptHandler promptHandler) {
         this.promptHandler = promptHandler;
     }
 
-    public ApplicationViewInput promptInput() {
+    public ApplicationTextInput promptInput() {
         List<Car.Name> carNames = promptCarNames();
         int gameCount = promptGameCount();
 
-        return new ApplicationViewInput(carNames, gameCount);
+        return new ApplicationTextInput(carNames, gameCount);
     }
 
     List<Car.Name> promptCarNames() {
