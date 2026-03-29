@@ -16,14 +16,14 @@ public class ConsoleTextNodePrinter {
     }
 
 
-    public void print(TextNode.Leaf node) {
-        for (String line : node.lines()) {
+    public void print(TextNode.Leaf leaf) {
+        for (String line : leaf.lines()) {
             System.out.println(line);
         }
     }
 
-    public void print(TextNode.Sections node) {
-        List<TextNode> content = node.content();
+    public void print(TextNode.Sections sections) {
+        List<TextNode> content = sections.content();
         for (TextNode section : content) {
             System.out.println();
             print(section);
