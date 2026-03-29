@@ -9,7 +9,7 @@ import racingcar.domain.CarRacing;
  * <p>
  * 한번 차를 전진시킨 후에는 차의 위치와 같은 정보를 보여주기 위해 저장해야 하는데, 해당 정보가 이 클래스에 저장되어 있습니다.
  */
-public class ProgressionView implements TextNode.Leaf {
+public class ProgressionView implements TextView.Leaf {
 
     private final List<CarRacing.CarProgression> cars;
 
@@ -18,13 +18,13 @@ public class ProgressionView implements TextNode.Leaf {
     }
 
     @Override
-    public List<String> lines() {
+    public List<String> getLines() {
         return cars.stream()
-                .map(this::line)
+                .map(this::getLine)
                 .toList();
     }
 
-    private String line(CarRacing.CarProgression car) {
+    private String getLine(CarRacing.CarProgression car) {
         StringBuilder str = new StringBuilder();
         str.append(car.getName());
         str.append(" : ");

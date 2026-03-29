@@ -5,7 +5,7 @@ import racingcar.view.text.ApplicationView;
 import racingcar.view.text.ApplicationViewInput;
 import racingcar.view.text.ApplicationViewInputHandler;
 import racingcar.view.text.PromptHandler;
-import racingcar.view.text.TextNode;
+import racingcar.view.text.TextView;
 
 
 public class ApplicationController {
@@ -32,7 +32,7 @@ public class ApplicationController {
         return new ApplicationView(result);
     }
 
-    private void printView(TextNode node) {
+    private void printView(TextView node) {
         nodePrinter.print(node);
     }
 

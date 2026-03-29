@@ -4,7 +4,7 @@ import java.util.List;
 import racingcar.domain.Car;
 
 
-public class GameResultView implements TextNode.Leaf {
+public class GameResultView implements TextView.Leaf {
 
     private final List<Car> winners;
 
@@ -15,11 +15,11 @@ public class GameResultView implements TextNode.Leaf {
 
 
     @Override
-    public List<String> lines() {
-        return List.of(line());
+    public List<String> getLines() {
+        return List.of(getLine());
     }
 
-    private String line() {
+    private String getLine() {
         StringBuilder str = new StringBuilder();
 
         for (Car winner : winners) {

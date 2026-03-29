@@ -5,7 +5,7 @@ import java.util.List;
 import racingcar.domain.CarRacing;
 
 
-public class ApplicationView implements TextNode.Sections {
+public class ApplicationView implements TextView.Sections {
 
     private final List<ProgressionView> progressions;
     private final GameResultView result;
@@ -19,8 +19,8 @@ public class ApplicationView implements TextNode.Sections {
     }
 
     @Override
-    public List<TextNode> content() {
-        List<TextNode> nodes = new ArrayList<>();
+    public List<TextView> getContent() {
+        List<TextView> nodes = new ArrayList<>();
         nodes.addAll(progressions);
         nodes.add(result);
         return nodes;
