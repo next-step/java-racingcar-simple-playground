@@ -1,6 +1,7 @@
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
+!**/src/Model.Car/**/build/
 !**/src/Car/**/build/
 !**/src/test/**/build/
 
@@ -10,6 +11,7 @@ build/
 *.iml
 *.ipr
 out/
+!**/src/Model.Car/**/out/
 !**/src/Car/**/out/
 !**/src/test/**/out/
 
@@ -22,6 +24,7 @@ out/
 .springBeans
 .sts4-cache
 bin/
+!**/src/Model.Car/**/bin/
 !**/src/Car/**/bin/
 !**/src/test/**/bin/
 
