@@ -8,13 +8,10 @@ public class Car {
         CarName = carName;
     }
 
-    Random moveCar1 () {
-        Random random = new Random();
-        random.nextInt(10);
-        return random;
-    }
-
-    int moveCar2 () {
-        return (int) (Math.random() * 10);
+    void moveCar () {
+        int n = (int) (Math.random() * 10);
+        if (n > 3) {
+            location += 1;
+        }
     }
 }
