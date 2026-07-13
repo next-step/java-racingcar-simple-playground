@@ -12,4 +12,8 @@ public class Car {
     public void move(NumberGenerator generator){
         if(generator.generate() >= FORWARD_RULE) position++;
     }
+
+    public int getPosition(){
+        return position;
+    }
 }
