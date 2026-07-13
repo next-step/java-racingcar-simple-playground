@@ -4,6 +4,10 @@ public class Car {
     String CarName;
     int location = 0;
 
+    public Car(String carName) {
+        CarName = carName;
+    }
+
     Random moveCar1 () {
         Random random = new Random();
         random.nextInt(10);
