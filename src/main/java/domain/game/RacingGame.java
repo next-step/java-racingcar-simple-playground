@@ -16,6 +16,8 @@ public class RacingGame {
     }
 
     public void run(int count) {
+        validateCount(count);
+
         for (int i = 0; i < count; i++) {
             moveCars();
         }
@@ -40,5 +42,11 @@ public class RacingGame {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(() -> new IllegalArgumentException("Car 목록이 비어있습니다."));
+    }
+
+    private void validateCount(int count) {
+        if(count <= 0){
+            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
+        }
     }
 }
