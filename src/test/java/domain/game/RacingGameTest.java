@@ -29,7 +29,9 @@ public class RacingGameTest {
     void 전진_조건이면_주어진_횟수만큼_모든_자동차의_position이_증가한다() {
         RacingGame racingGame = new RacingGame(cars, () -> 4);
 
-        racingGame.run(3);
+        for(int i = 0; i < 3; i++) {
+            racingGame.run();
+        }
 
         assertThat(cars).extracting(Car::getPosition).containsExactly(3, 3, 3);
     }
@@ -62,14 +64,6 @@ public class RacingGameTest {
         RacingGame racingGame = new RacingGame(empty, () -> 4);
 
         assertThatThrownBy(racingGame::findWinners)
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 시도횟수가_0이하라면_예외를_던진다(){
-        RacingGame racingGame = new RacingGame(cars, () -> 4);
-
-        assertThatThrownBy(() -> racingGame.run(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

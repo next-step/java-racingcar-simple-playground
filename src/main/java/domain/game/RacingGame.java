@@ -15,15 +15,7 @@ public class RacingGame {
         this.generator = generator;
     }
 
-    public void run(int count) {
-        validateCount(count);
-
-        for (int i = 0; i < count; i++) {
-            moveCars();
-        }
-    }
-
-    private void moveCars() {
+    public void run() {
         for (Car car : cars) {
             car.move(generator.generate());
         }
@@ -44,9 +36,4 @@ public class RacingGame {
                 .orElseThrow(() -> new IllegalArgumentException("Car 목록이 비어있습니다."));
     }
 
-    private void validateCount(int count) {
-        if(count <= 0){
-            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
-        }
-    }
 }

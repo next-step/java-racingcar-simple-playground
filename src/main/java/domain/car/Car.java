@@ -23,6 +23,10 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateName(String name) {
         if (name == null || name.isBlank()){
             throw new IllegalArgumentException("이름은 비어 있을 수 없습니다.");
