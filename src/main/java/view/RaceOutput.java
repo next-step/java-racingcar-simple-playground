@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class RaceOutput {
 
+    private static final String POSITION_MARK = "-";
     private static final String RESULT_SEPARATOR = " : ";
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String WINNER_MESSAGE = "최종 우승자 : ";
@@ -20,12 +21,6 @@ public class RaceOutput {
         System.out.println(formatCars(cars));
     }
 
-    public void showResults(List<List<Car>> raceResults) {
-        for (List<Car> cars : raceResults) {
-            showResult(cars);
-        }
-    }
-
     public void showWinners(List<String> winners) {
         System.out.println(WINNER_MESSAGE + String.join(DEFAULT_SEPARATOR, winners));
     }
@@ -37,6 +32,6 @@ public class RaceOutput {
     }
 
     private String formatCar(Car car) {
-        return car.getName() + RESULT_SEPARATOR + car.getLocation();
+        return car.getName() + RESULT_SEPARATOR + POSITION_MARK.repeat(car.getLocation());
     }
 }

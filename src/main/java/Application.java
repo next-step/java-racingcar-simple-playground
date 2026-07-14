@@ -32,6 +32,9 @@ public class Application {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         raceOutput.showResultMessage();
-        raceOutput.showResults(racingGame.race(trialNumber, numberGenerator));
+        for (int count = 0; count < trialNumber; count++) {
+            racingGame.race(numberGenerator);
+            raceOutput.showResult(racingGame.getCars());
+        }
     }
 }
