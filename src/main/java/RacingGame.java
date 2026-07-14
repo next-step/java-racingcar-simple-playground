@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class RacingGame {
+    private final List<Car> cars;
+    private final NumberGenerator generator;
+
+    public RacingGame(List<Car> cars, NumberGenerator generator) {
+        this.cars = new ArrayList<>(cars);
+        this.generator = generator;
+    }
+
+    public void run(int count) {
+        for (int i = 0; i < count; i++) {
+            moveCars();
+        }
+    }
+
+    private void moveCars() {
+        for (Car car : cars) {
+            car.move(generator);
+        }
+    }
+
+    public List<Car> findWinners() {
+        int max = maxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == max)
+                .toList();
+    }
+
+    private int maxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("Car 목록이 비어있습니다."));
+    }
+}
