@@ -64,4 +64,12 @@ public class RacingGameTest {
         assertThatThrownBy(racingGame::findWinners)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 시도횟수가_0이하라면_예외를_던진다(){
+        RacingGame racingGame = new RacingGame(cars, () -> 4);
+
+        assertThatThrownBy(() -> racingGame.run(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
