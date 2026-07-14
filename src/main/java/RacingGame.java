@@ -18,7 +18,7 @@ public class RacingGame {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.move(generator);
+            car.move(generator.generate());
         }
     }
 

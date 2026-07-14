@@ -9,8 +9,10 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(NumberGenerator generator) {
-        if (generator.generate() >= FORWARD_RULE) position++;
+    public void move(int number) {
+        if (number >= FORWARD_RULE) {
+            position++;
+        }
     }
 
     public int getPosition() {
