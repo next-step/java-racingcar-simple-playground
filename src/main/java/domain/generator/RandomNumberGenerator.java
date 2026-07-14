@@ -1,3 +1,5 @@
+package domain.generator;
+
 import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {

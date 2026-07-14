@@ -1,3 +1,6 @@
+package domain.game;
+
+import domain.car.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
