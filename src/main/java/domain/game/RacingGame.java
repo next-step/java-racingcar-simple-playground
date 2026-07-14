@@ -29,6 +29,10 @@ public class RacingGame {
                 .toList();
     }
 
+    public List<Car> getCars() {
+        return List.copyOf(cars);
+    }
+
     private int maxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
