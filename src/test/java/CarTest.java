@@ -1,19 +1,35 @@
+import domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
     @Test
-    @DisplayName("자동차 이름 확인 테스트")
+    @DisplayName("자동차 이름 확인 테스트(5글자 이하면 성공)")
     void CarNameTest() {
         String carName = "자동차";
+        int expectedPosition = 0;
 
         Car car = new Car(carName);
-        String actual = car.getName();
+        String actualName = car.getName();
+        int actualPosition = car.getPosition();
 
-        assertThat(actual).isEqualTo(carName);
+        assertThat(actualName).isEqualTo(carName);
+        assertThat(actualPosition).isEqualTo(expectedPosition);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5글자 초과시 예외 발생 테스트")
+    void CarNameLengthTest() {
+        String carName = "여섯글자이름";
+        String throwMessage = "자동차 이름은 5자 이하만 가능합니다.";
+
+        assertThatThrownBy(() -> new Car(carName))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(throwMessage);
     }
 
     @Test
@@ -21,13 +37,13 @@ public class CarTest {
     void CarMoveTest() {
         String carName = "자동차";
         int random = 4;
-        int expected = 1;
+        int expectedPosition = 1;
 
         Car car = new Car(carName);
         car.move(random);
-        int actual = car.getPosition();
+        int actualPosition = car.getPosition();
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actualPosition).isEqualTo(expectedPosition);
     }
 
     @Test
@@ -35,12 +51,12 @@ public class CarTest {
     void CarNotMoveTest() {
         String carName = "자동차";
         int random = 3;
-        int expected = 0;
+        int expectedPosition = 0;
 
         Car car = new Car(carName);
         car.move(random);
-        int actual = car.getPosition();
+        int actualPosition = car.getPosition();
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actualPosition).isEqualTo(expectedPosition);
     }
 }
