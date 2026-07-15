@@ -72,4 +72,37 @@ class RacingcarGameTest {
         //Then
         assertThat(result).isTrue();
     }
+
+    /*
+     * 자동차간의 이동거리 비교 테스트
+     * */
+    @Test
+    void max값보다_더_큰_경우() {
+        //Given
+        RacingcarGame racingcarGame = new RacingcarGame();
+        int max = 3;    // max = 3
+        Car car = new Car("testCar");
+        car.move(7); car.move(7); car.move(7); car.move(7); // 4칸 이동
+
+        //When
+        int result = racingcarGame.maxDistance(max, car);
+
+        //Then
+        assertEquals(4, result);
+    }
+    @Test
+    void max값보다_작거나_같은_경우() {
+        //Given
+        RacingcarGame racingcarGame = new RacingcarGame();
+        int max = 5;    // max = 5
+        Car car = new Car("testCar");
+        car.move(7); car.move(7); car.move(7); car.move(7); // 4칸 이동
+
+        //When
+        int result = racingcarGame.maxDistance(max, car);
+
+        //Then
+        assertEquals(5, result);
+    }
+
 }

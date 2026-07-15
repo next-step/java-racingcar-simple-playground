@@ -5,7 +5,7 @@ public class RacingcarGame {
     private List<Car> carList = new ArrayList<>(); // 자동차 객체를 잠는 리스트
     private Scanner sc = new Scanner(System.in);
     private String[] nameArr; // 자동차들의 이름을 저장하는 문자열 배열
-    public int moveCount; // 몇번 이동할지
+    public int moveCount; // 자동차들이 이동할 횟수를 저장
 
     /*
      *  carList에 car 추가
