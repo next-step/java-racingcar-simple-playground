@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
-    private static final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_SEPARATOR = ",";
     private static final int INITIAL_LOCATION = 0;
 
     private final List<Car> cars;
 
     private List<Car> createCars(String carNames) {
-        return Arrays.stream(carNames.split(CAR_NAME_DELIMITER))
+        return Arrays.stream(carNames.split(CAR_NAME_SEPARATOR))
                 .map(String::trim)
                 .map(name -> new Car(name, INITIAL_LOCATION))
                 .toList();
