@@ -4,6 +4,10 @@ public class Car {
     private String name; // 자동차의 이름
     private int totalDistance = 0; // 이동한 누적 거리, 초기값은 0
 
+    public Car(String name) {
+        this.name = name;
+    }
+
     // 랜덤값 반환 메서드
     private int randomValue() {
         Random random = new Random();

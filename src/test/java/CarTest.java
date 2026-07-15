@@ -9,7 +9,7 @@ class CarTest {
     @Test
     void 랜덤값_0일때_멈춤() {
         // Given(준비)
-        Car car = new Car();
+        Car car = new Car("car");
         // When(실행)
         car.move(0);
         // Then(검증)
@@ -18,7 +18,7 @@ class CarTest {
     @Test
     void 랜덤값_3일때_멈춤() {
         // Given(준비)
-        Car car = new Car();
+        Car car = new Car("car");
         // When(실행)
         car.move(3);
         // Then(검증)
@@ -27,7 +27,7 @@ class CarTest {
     @Test
     void 랜덤값_4일때_전진() {
         // Given(준비)
-        Car car = new Car();
+        Car car = new Car("car");
         // When(실행)
         car.move(4);
         // Then(검증)
@@ -36,7 +36,7 @@ class CarTest {
     @Test
     void 랜덤값_9일때_전진() {
         // Given(준비)
-        Car car = new Car();
+        Car car = new Car("car");
         // When(실행)
         car.move(9);
         // Then(검증)
