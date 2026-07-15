@@ -20,8 +20,7 @@ class CarTest {
     void stopWhenRandomNumberIsThreeOrLess() {
         Car car = new Car("greenCar");
 
-        car.moveCar
-                (3);
+        car.moveCar(3);
 
         assertThat(car.getLocation()).isZero();
     }
