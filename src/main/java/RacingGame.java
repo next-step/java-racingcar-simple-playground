@@ -14,7 +14,7 @@ public class RacingGame {
         }
     }
 
-    void moveCars(int count) { // 주어진 횟수동안 자동차 움직임
+    void moveCars(int count) {
         for (int i = 0; i < count; i++) {
             moveCars();
         }
@@ -22,19 +22,24 @@ public class RacingGame {
 
     List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
-        int max = -1;
+        int winnerLocation = findWinnerLocation();
         for (Car car : cars) {
-            if (max < car.getLocation()) {
-                max = car.getLocation();
-            }
-        }
-        for (Car car : cars) {
-            if (car.getLocation() == max) {
-                winners.add(car);
-            }
+            addIfWinner(winners, car, winnerLocation);
         }
         return winners;
     }
 
+    private int findWinnerLocation() {
+        int max = -1;
+        for (Car car : cars) {
+            max = Math.max(max, car.getLocation());
+        }
+        return max;
+    }
 
+    private void addIfWinner(List<Car> winners, Car car, int winnerLocation) {
+        if (car.getLocation() == winnerLocation) {
+            winners.add(car);
+        }
+    }
 }
