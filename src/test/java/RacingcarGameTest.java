@@ -2,9 +2,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RacingcarGameTest {
+    /*
+    * 우승 자동차 구하기 로직 테스트
+    * */
     @Test
     void 공동_우승자가_없을_때() {
         //Given(준비)
@@ -36,5 +40,36 @@ class RacingcarGameTest {
         assertEquals(car2, winner1);
         Car winner2 = winnerCarsList.get(1);
         assertEquals(car3, winner2);
+    }
+
+    /*
+    * 자동차 이름 입력받기 테스트
+    * */
+    @Test void 이름이_5자_이하인_경우() {
+        //Given
+        RacingcarGame racingcarGame = new RacingcarGame();
+        String name = "1234";
+        //When
+        boolean result = racingcarGame.checkNameLength(name);
+        //Then
+        assertThat(result).isTrue();
+    }
+    @Test void 이름이_5자_이상인_경우() {
+        //Given
+        RacingcarGame racingcarGame = new RacingcarGame();
+        String name = "123456";
+        //When
+        boolean result = racingcarGame.checkNameLength(name);
+        //Then
+        assertThat(result).isfalse();
+    }
+    @Test void 이름이_5자인_경우() {
+        //Given
+        RacingcarGame racingcarGame = new RacingcarGame();
+        String name = "12345";
+        //When
+        boolean result = racingcarGame.checkNameLength(name);
+        //Then
+        assertThat(result).isTrue();
     }
 }
