@@ -61,7 +61,7 @@ class RacingcarGameTest {
         //When
         boolean result = racingcarGame.checkNameLength(name);
         //Then
-        assertThat(result).isfalse();
+        assertThat(result).isFalse();
     }
     @Test void 이름이_5자인_경우() {
         //Given

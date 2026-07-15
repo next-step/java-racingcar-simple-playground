@@ -8,6 +8,10 @@ public class Car {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     // 랜덤값 반환 메서드
     private int randomValue() {
         Random random = new Random();
