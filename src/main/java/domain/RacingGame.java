@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class RacingGame {
         this.cars = cars;
     }
 
-    void moveCars() {
+    public void moveCars() {
         for (Car car : cars) {
             car.move();
         }
@@ -20,7 +22,7 @@ public class RacingGame {
         }
     }
 
-    List<Car> findWinners() {
+    public List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
         int winnerLocation = findWinnerLocation();
         for (Car car : cars) {

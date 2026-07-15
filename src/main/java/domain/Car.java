@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Random;
 
 public class Car {
@@ -22,11 +24,11 @@ public class Car {
         }
     }
 
-    int getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

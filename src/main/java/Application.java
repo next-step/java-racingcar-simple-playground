@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import domain.Car;
+import domain.RacingGame;
+
 public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
