@@ -10,7 +10,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("우승자가 한 대인 경기")
     void findSingleWinner() {
-        Car car1 = new Car("Hyundai");
+        Car car1 = new Car("hyun");
         Car car2 = new Car("Kia");
 
         car1.moveCar(5); // 4 이상 이므로 +1
@@ -26,7 +26,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("우승자가 두 대 이상인 경기")
     void findMultiWinner() {
-        Car car1 = new Car("Hyundai");
+        Car car1 = new Car("hyun");
         Car car2 = new Car("Kia");
         Car car3 = new Car("Tesla");
 
@@ -58,7 +58,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("주어진 횟수 이후 우승한 차 구하는 경기")
     void findMultiCountRaceWinner() {
-        Car car1 = new FixedNumberCar("Hyundai", 3);
+        Car car1 = new FixedNumberCar("hyun", 3);
         Car car2 = new FixedNumberCar("Kia", 4);
         Car car3 = new FixedNumberCar("Tesla", 6);
 
