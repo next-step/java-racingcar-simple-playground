@@ -1,17 +1,20 @@
-import java.util.Random;
-
 public class Car {
-    String CarName;
-    int location = 0;
+    private final String name;
+    private int location;
+
+    public int randomNumber = (int) (Math.random()*10);
 
     public Car(String carName) {
-        CarName = carName;
+        this.name = carName;
     }
 
-    void moveCar () {
-        int n = (int) (Math.random() * 10);
-        if (n > 3) {
+    void move(int randomNumber) {
+        if (randomNumber >= 4) {
             location += 1;
         }
+    }
+
+    int getLocation() {
+        return location;
     }
 }
