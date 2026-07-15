@@ -8,6 +8,7 @@ public class Application {
         List<Car> cars = createCars(scanner);
         RacingGame racingGame = new RacingGame(cars);
         runRace(racingGame, cars, tryCount(scanner));
+        printWinners(racingGame.findWinners());
     }
 
     private static List<Car> createCars(Scanner scanner) {
@@ -51,5 +52,20 @@ public class Application {
             carLocation.append("-");
         }
         return carLocation.toString();
+    }
+
+    private static void printWinners(List<Car> winners) {
+        StringBuilder winnerNames = new StringBuilder();
+        for (Car winner : winners) {
+            appendWinnerName(winnerNames, winner);
+        }
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
+    }
+
+    private static void appendWinnerName(StringBuilder winnerNames, Car winner) {
+        if (winnerNames.length() > 0) {
+            winnerNames.append(", ");
+        }
+        winnerNames.append(winner.getName());
     }
 }
