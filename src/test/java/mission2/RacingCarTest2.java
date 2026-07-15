@@ -1,17 +1,15 @@
 package mission2;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class RacingCarTest2 {
     @Test
-    void test_레이싱카2(){
-        Race race = new Race(5,3);
+    @DisplayName("레이킹카 리뉴얼 버전")
+    void test_레이싱카(){
         String[] names = {"a", "b", "c"};
-        List<String> list = race.getWinners(names);
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i) + "가 우승했습니다.");
-        }
+        int count = 5;
+        Racing racing = new Racing(names,count);
+        racing.start();
     }
 }

@@ -11,11 +11,9 @@ public class RacingCar {
         this.name = name;
         distance = 0;
     }
-
     public int getDistance() {
         return distance;
     }
-
     public void moveAndStop(int randomNum){
         if(randomNum >=4){
             distance++;
