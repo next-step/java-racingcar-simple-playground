@@ -37,7 +37,7 @@ public class WinRacingCarTest {
         RacingCar car3 = new RacingCar("test3");
         RacingCar car4 = new RacingCar("test4");
         RacingCar car5 = new RacingCar("test5");
-        WinRacingCar win = new WinRacingCar();
+        WinRacingCar winRacingCar = new WinRacingCar();
 
         List<RacingCar> cars = Arrays.asList(car1, car2, car3, car4, car5);
         List<RacingCar> winners = new ArrayList<>();
@@ -48,7 +48,7 @@ public class WinRacingCarTest {
         car4.move(5);
         car5.move(1);
 
-        winners = win.whoWin(cars);
+        winners = winRacingCar.whoWin(cars);
         final var expected = List.of(car1, car3, car4);
 
         assertThat(winners).containsExactlyElementsOf(expected);
