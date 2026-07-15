@@ -26,13 +26,13 @@ public class Race {
         return findCarsAt(maxPosition);
     }
 
-    // --------------------------------------------------
-
-    private void playRound() {
+    public void playRound() {
         for (Car car : cars) {
             car.move(random.nextInt(10));
         }
     }
+
+    // --------------------------------------------------
 
     private int findMaxPosition() {
         return cars.stream()
