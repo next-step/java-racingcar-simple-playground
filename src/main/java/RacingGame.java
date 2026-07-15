@@ -14,6 +14,12 @@ public class RacingGame {
         }
     }
 
+    void moveCars(int count) { // 주어진 횟수동안 자동차 움직임
+        for (int i = 0; i < count; i++) {
+            moveCars();
+        }
+    }
+
     List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
         int max = -1;
@@ -29,4 +35,6 @@ public class RacingGame {
         }
         return winners;
     }
+
+
 }

@@ -40,4 +40,34 @@ public class RacingGameTest {
 
         assertThat(winners).containsExactly(car1, car3);
     }
+
+    private static class FixedNumberCar extends Car { // 테스트를 위해 예측 가능한 자동차의 움직임을 구현
+        private final int number;
+
+        FixedNumberCar(String name, int number) {
+            super(name);
+            this.number = number;
+        }
+
+        @Override
+        void move() {
+            moveCar(number);
+        }
+    }
+
+    @Test
+    @DisplayName("주어진 횟수 이후 우승한 차 구하는 경기")
+    void findMultiCountRaceWinner() {
+        Car car1 = new FixedNumberCar("Hyundai", 3);
+        Car car2 = new FixedNumberCar("Kia", 4);
+        Car car3 = new FixedNumberCar("Tesla", 6);
+
+        RacingGame game = new RacingGame(List.of(car1, car2, car3));
+
+        game.moveCars(3);
+
+        List<Car> winners = game.findWinners();
+
+        assertThat(winners).containsExactly(car2, car3);
+    }
 }
