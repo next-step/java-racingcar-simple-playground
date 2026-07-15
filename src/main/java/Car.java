@@ -1,5 +1,8 @@
+import java.util.Random;
+
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final Random RANDOM = new Random();
 
     private final String name;
     private int location;
@@ -34,6 +37,6 @@ public class Car {
     }
 
     private int createRandomNumber() {
-        return (int) (Math.random() * 10);
+        return RANDOM.nextInt(10);
     }
 }
