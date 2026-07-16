@@ -29,7 +29,7 @@ public class RacingGameTest {
     void 전진_조건이면_주어진_횟수만큼_모든_자동차의_position이_증가한다() {
         RacingGame racingGame = new RacingGame(cars, () -> 4);
 
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             racingGame.run();
         }
 

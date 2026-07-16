@@ -1,12 +1,13 @@
 package view;
 
 import domain.car.Car;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
     public void printCars(List<Car> cars) {
-        for (Car car : cars){
+        for (Car car : cars) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
         System.out.println();

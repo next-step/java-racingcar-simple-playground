@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class CarTest {
 
     @Test
-    void random값이_4이상이면_position값이_증가한다(){
+    void random값이_4이상이면_position값이_증가한다() {
         Car car = new Car("test1");
 
         car.move(4);
@@ -17,7 +17,7 @@ public class CarTest {
     }
 
     @Test
-    void random값이_3이하면_position값은_변하지_않는다(){
+    void random값이_3이하면_position값은_변하지_않는다() {
         Car car = new Car("test1");
 
         car.move(3);
@@ -26,7 +26,7 @@ public class CarTest {
     }
 
     @Test
-    void 전진_조건과_정지_조건이_섞이면_전진한_횟수만큼만_position값이_증가한다(){
+    void 전진_조건과_정지_조건이_섞이면_전진한_횟수만큼만_position값이_증가한다() {
         Car car = new Car("test1");
 
         car.move(4);
@@ -38,13 +38,13 @@ public class CarTest {
     }
 
     @Test
-    void 자동차의_이름이_5자를_초과하면_예외를_던진다(){
+    void 자동차의_이름이_5자를_초과하면_예외를_던진다() {
         assertThatThrownBy(() -> new Car("abcdef"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 자동차의_이름이_빈_이름이라면_예외를_던진다(){
+    void 자동차의_이름이_빈_이름이라면_예외를_던진다() {
         assertThatThrownBy(() -> new Car(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -40,13 +40,13 @@ public class GameController {
     }
 
     private void validateTryCount(int tryCount) {
-        if(tryCount <= 0){
+        if (tryCount <= 0) {
             throw new IllegalArgumentException("시도 횟수는 1이상만 가능합니다.");
         }
     }
 
     private void play(RacingGame racingGame, int tryCount) {
-        for(int i = 0; i < tryCount; i++){
+        for (int i = 0; i < tryCount; i++) {
             racingGame.run();
             resultView.printCars(racingGame.getCars());
         }
