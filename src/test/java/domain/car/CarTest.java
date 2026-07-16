@@ -26,6 +26,22 @@ public class CarTest {
     }
 
     @Test
+    void random값이_0미만이면_예외를_던진다() {
+        Car car = new Car("test1");
+
+        assertThatThrownBy(() -> car.move(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void random값이_9초과면_예외를_던진다() {
+        Car car = new Car("test1");
+
+        assertThatThrownBy(() -> car.move(10))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 전진_조건과_정지_조건이_섞이면_전진한_횟수만큼만_position값이_증가한다() {
         Car car = new Car("test1");
 
