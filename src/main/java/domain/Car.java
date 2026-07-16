@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_NUMBER = 4;
     private static final Random RANDOM = new Random();
 
     private final String name;
@@ -19,7 +20,7 @@ public class Car {
     }
 
     void moveCar(int number) {
-        if (number >= 4) {
+        if (number >= MOVE_NUMBER) {
             location += 1;
         }
     }
