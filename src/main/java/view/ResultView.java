@@ -33,7 +33,7 @@ public class ResultView {
      * 우승 자동차 출력
      * */
     // 리펙터링: winners를 매개 변수로 받아 사용
-    public static void printWinners(ArrayList<Car> winners) {
+    public static void printWinners(List<Car> winners) {
 
         StringJoiner joiner = new StringJoiner(", "); // 중요! StringJoiner
         // StringJoiner 없이 구현하려면 쉼표 출력 여부를 검사하는 메서드 추가 필요
@@ -41,7 +41,6 @@ public class ResultView {
         for (Car car : winners) {
             joiner.add(car.getName());
         }
-
         System.out.println(joiner + "가 최종 우승했습니다.");
     }
 }

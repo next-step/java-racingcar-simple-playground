@@ -7,7 +7,7 @@ import view.ResultView;
 public class RacingcarGame {
     private List<Car> carList = new ArrayList<>(); // 자동차 객체를 잠는 리스트
     private String[] nameArr; // 자동차들의 이름을 저장하는 문자열 배열
-    public int moveCount; // 자동차들이 이동할 횟수를 저장
+    private int moveCount; // 자동차들이 이동할 횟수를 저장
 
     /*
      *  carList에 car 추가
@@ -23,8 +23,9 @@ public class RacingcarGame {
         // 1) 차 이름 입력받기 -> 이름 입력받고, 5자 이하이면 통과, 아니면 반복
         while (true) {
             nameArr = InputView.inputCarNames();
-            if (checkNames()) // 전부 5자 이하면 통과
+            if (checkNames()) { // 전부 5자 이하면 통과
                 break;
+            }
             System.out.println("이름은 5자 이하로 입력해야 합니다.");
         }
         putNamesToList(nameArr); // 리스트에 domain.Car 객체들 담기
@@ -39,8 +40,9 @@ public class RacingcarGame {
      * */
     public boolean checkNames() {
         for (int i = 0; i < nameArr.length; i++) {
-            if (!checkNameLength(nameArr[i]))
+            if (!checkNameLength(nameArr[i])) {
                 return false;
+            }
         }
         return true;
     }
@@ -49,7 +51,9 @@ public class RacingcarGame {
      * 이름이 5자 이하인지 검사
      * */
     public boolean checkNameLength(String name) {
-        if (name.length() <= 5) return true;
+        if (name.length() <= 5) {
+            return true;
+        }
         return false;
     }
 
@@ -76,7 +80,7 @@ public class RacingcarGame {
      * moveCount 만큼 게임을 실행
      * */
     public void playGame() {
-        System.out.println("\n실행 결과");
+        System.out.println("\n실행결과");
 
         for (int i = 0; i < moveCount; i++) { // moveCount만큼 반복
             addDistance();
@@ -101,7 +105,7 @@ public class RacingcarGame {
 
     // 차 비교하기
     public int compare() {
-        int max = 0;
+        int max = 0; 
         for (Car car : carList) {
             max = maxDistance(max, car);
         }
@@ -110,12 +114,16 @@ public class RacingcarGame {
 
     // Car의 누적거리가 max보다 크면 max값 갱신
     public int maxDistance(int max, Car car) {
-        if (max < car.getTotalDistance()) max = car.getTotalDistance();
+        if (max < car.getTotalDistance()) {
+            max = car.getTotalDistance();
+        }
         return max;
     }
 
     // max와 누적거리가 같은 Car를 winner에 담기
     public void putWinner(int max, Car car, ArrayList<Car> winners) {
-        if (max == car.getTotalDistance()) winners.add(car);
+        if (max == car.getTotalDistance()) {
+            winners.add(car);
+        }
     }
 }

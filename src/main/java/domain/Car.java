@@ -22,7 +22,9 @@ public class Car {
 
     // 자동차가 움직일지, 멈출지 검사하는 메서드
     public boolean isMove(int ranVal) {
-        if (ranVal >= 4) return true; // 랜덤값이 4 이상이면 true
+        if (ranVal >= 4) {
+            return true; // 랜덤값이 4 이상이면 true
+        }
         return false; // 3 이하면 false
     }
     /*
@@ -31,11 +33,15 @@ public class Car {
 
     // 1) 매개변수 직접 입력(테스트용)
     public void move(int ranVal) {
-        if(isMove(ranVal)) totalDistance++;
+        if (isMove(ranVal)) {
+            totalDistance++;
+        }
     }
     // 2) 매개변수 X
     public void move() {
-        if(isMove(randomValue())) totalDistance++;
+        if (isMove(randomValue())) {
+            totalDistance++;
+        }
     }
 
     // 누적 이동거리 반환하는 메서드
