@@ -18,7 +18,9 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int getNumber() {
-        return random.nextInt(MAX_BOUND);
+        int number = random.nextInt(MAX_BOUND);
+        validateNumber(number);
+        return number;
     }
 
     private void validateNumber(int number) {
