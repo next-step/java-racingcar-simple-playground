@@ -17,9 +17,16 @@ public class InputView {
         String[] carNames = SCANNER.nextLine().split(",");
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName.strip()));
         }
+        validateEmptyCars(cars);
         return cars;
+    }
+
+    private static void validateEmptyCars(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("자동차는 최소 1대 이상 필요합니다.");
+        }
     }
 
     public static int tryCount() {
