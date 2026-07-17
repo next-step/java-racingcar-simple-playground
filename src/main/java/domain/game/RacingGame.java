@@ -1,4 +1,7 @@
-package domain;
+package domain.game;
+
+import domain.car.Car;
+import domain.generator.NumberGenerator;
 
 import java.util.Arrays;
 import java.util.List;

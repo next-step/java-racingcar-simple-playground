@@ -1,6 +1,6 @@
-import domain.NumberGenerator;
-import domain.RandomNumberGenerator;
-import domain.RacingGame;
+import domain.generator.NumberGenerator;
+import domain.generator.RandomNumberGenerator;
+import domain.game.RacingGame;
 import view.CarNameInput;
 import view.RaceOutput;
 import view.RaceTrialNumberInput;

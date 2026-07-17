@@ -1,5 +1,6 @@
-import domain.Car;
-import domain.WinnerFinder;
+package domain.game;
+
+import domain.car.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ class WinnerFinderTest {
                 new Car("red", 2)
         );
 
-        List<String> winners = new WinnerFinder().findWinners(cars);
+        List<String> winners = WinnerFinder.findWinners(cars);
 
         assertThat(winners).containsExactly("white");
     }
@@ -32,7 +33,7 @@ class WinnerFinderTest {
                 new Car("red", 2)
         );
 
-        List<String> winners = new WinnerFinder().findWinners(cars);
+        List<String> winners = WinnerFinder.findWinners(cars);
 
         assertThat(winners).containsExactly("white", "blue");
     }
@@ -40,7 +41,7 @@ class WinnerFinderTest {
     @Test
     @DisplayName("자동차 이름 비어 있을 때 테스트")
     void return_empty_list_when_cars_are_empty() {
-        List<String> winners = new WinnerFinder().findWinners(List.of());
+        List<String> winners = WinnerFinder.findWinners(List.of());
 
         assertThat(winners).isEmpty();
     }

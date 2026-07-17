@@ -1,9 +1,11 @@
-import domain.NumberGenerator;
-import domain.RacingGame;
+package domain.game;
+
+import domain.generator.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingGameTest {
 
@@ -29,6 +31,15 @@ class RacingGameTest {
         assertThat(racingGame.getCars())
                 .extracting("name")
                 .containsExactly("white", "blue");
+    }
+
+    @Test
+    @DisplayName("자동차 목록 불변 반환 테스트")
+    void return_unmodifiable_cars() {
+        RacingGame racingGame = new RacingGame("white, blue");
+
+        assertThatThrownBy(() -> racingGame.getCars().add(null))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 
     @Test

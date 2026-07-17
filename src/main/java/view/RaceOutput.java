@@ -1,6 +1,6 @@
 package view;
 
-import domain.Car;
+import domain.car.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;
