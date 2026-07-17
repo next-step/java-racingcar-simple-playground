@@ -6,8 +6,10 @@ import view.ResultView;
 
 public class RacingcarGame {
     private List<Car> carList = new ArrayList<>(); // 자동차 객체를 잠는 리스트
-    private String[] nameArr; // 자동차들의 이름을 저장하는 문자열 배열
     private int moveCount; // 자동차들이 이동할 횟수를 저장
+
+    // 랜덤 생성기, Car 생성자에 들어감
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     /*
      *  carList에 car 추가
@@ -21,9 +23,11 @@ public class RacingcarGame {
      * */
     public void run() {
         // 1) 차 이름 입력받기 -> 이름 입력받고, 5자 이하이면 통과, 아니면 반복
+        String[] nameArr; // 리펙터링: nameArr을 지역변수로 이동
+
         while (true) {
             nameArr = InputView.inputCarNames();
-            if (checkNames()) { // 전부 5자 이하면 통과
+            if (checkNames(nameArr)) { // 전부 5자 이하면 통과
                 break;
             }
             System.out.println("이름은 5자 이하로 입력해야 합니다.");
@@ -38,7 +42,7 @@ public class RacingcarGame {
     /*
      * 이름이 들어있는 배열 순회
      * */
-    public boolean checkNames() {
+    public boolean checkNames(String[] nameArr) {
         for (int i = 0; i < nameArr.length; i++) {
             if (!checkNameLength(nameArr[i])) {
                 return false;
@@ -62,7 +66,7 @@ public class RacingcarGame {
      * */
     public void putNamesToList(String[] nameArr) {
         for (int i = 0; i < nameArr.length; i++) {
-            Car car = new Car(nameArr[i]);
+            Car car = new Car(nameArr[i], numberGenerator);
             carList.add(car);
         }
     }
