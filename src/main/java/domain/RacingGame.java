@@ -9,13 +9,6 @@ public class RacingGame {
 
     private final List<Car> cars;
 
-    private List<Car> createCars(String carNames) {
-        return Arrays.stream(carNames.split(CAR_NAME_SEPARATOR))
-                .map(String::trim)
-                .map(name -> new Car(name, INITIAL_LOCATION))
-                .toList();
-    }
-
     public RacingGame(String carNames) {
         cars = createCars(carNames);
     }
@@ -27,10 +20,17 @@ public class RacingGame {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return List.copyOf(cars);
     }
 
     public List<String> findWinners() {
-        return new WinnerFinder().findWinners(cars);
+        return WinnerFinder.findWinners(cars);
+    }
+
+    private List<Car> createCars(String carNames) {
+        return Arrays.stream(carNames.split(CAR_NAME_SEPARATOR))
+                .map(String::trim)
+                .map(name -> new Car(name, INITIAL_LOCATION))
+                .toList();
     }
 }

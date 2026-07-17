@@ -4,7 +4,10 @@ import java.util.List;
 
 public class WinnerFinder {
 
-    public List<String> findWinners(List<Car> cars) {
+    private WinnerFinder() {
+    }
+
+    public static List<String> findWinners(List<Car> cars) {
         int maxLocation = findMaxLocation(cars);
 
         return cars.stream()
@@ -13,7 +16,7 @@ public class WinnerFinder {
                 .toList();
     }
 
-    private int findMaxLocation(List<Car> cars) {
+    private static int findMaxLocation(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getLocation)
                 .max()
