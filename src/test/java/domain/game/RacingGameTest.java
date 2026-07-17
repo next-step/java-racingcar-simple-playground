@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class RacingGameTest {
 
     @Test
-    @DisplayName("자동차 여러대 생성 테스트")
+    @DisplayName("쉼표로 구분된 자동차 이름을 입력하면 자동차 목록을 생성한다")
     void create_cars_from_comma_separated_names() {
         RacingGame racingGame = new RacingGame("white, blue, red");
 
@@ -24,7 +24,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("자동차 여러대일 때 ',' trim 테스트")
+    @DisplayName("자동차 이름 앞뒤에 공백이 있으면 공백을 제거하고 자동차를 생성한다")
     void trim_car_names_when_creating_cars() {
         RacingGame racingGame = new RacingGame("white, blue");
 
@@ -34,7 +34,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("자동차 목록 불변 반환 테스트")
+    @DisplayName("자동차 목록을 조회한 뒤 외부에서 수정하려 하면 예외가 발생한다")
     void return_unmodifiable_cars() {
         RacingGame racingGame = new RacingGame("white, blue");
 
@@ -43,7 +43,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("차 레이싱 기능 테스트")
+    @DisplayName("자동차별 생성 숫자가 이동 조건을 만족하면 해당 자동차만 전진한다")
     void race_each_car_with_generated_numbers() {
         RacingGame racingGame = new RacingGame("white,blue,red");
 
@@ -55,7 +55,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("레이싱 여러 번 반복시 캐싱 버그 테스트")
+    @DisplayName("같은 레이싱 게임에서 레이스를 여러 번 진행하면 위치가 누적된다")
     void accumulate_location_when_racing_multiple_times() {
         RacingGame racingGame = new RacingGame("white, blue");
 
@@ -68,7 +68,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("우승자 찾기 검증 테스트")
+    @DisplayName("레이스가 끝난 뒤 가장 멀리 이동한 자동차 이름을 우승자로 반환한다")
     void find_winners_after_race() {
         RacingGame racingGame = new RacingGame("white,blue,red");
 
