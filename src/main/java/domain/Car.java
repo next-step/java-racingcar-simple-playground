@@ -1,6 +1,9 @@
 package domain;
 
 public class Car {
+    private static final int MOVABLE_THRESHOLD = 4;
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     private int position;
 
@@ -24,15 +27,15 @@ public class Car {
     }
 
     public void move(int random) {
-        if (random < 4) {
+        if (random < MOVABLE_THRESHOLD) {
             return;
         }
         position++;
     }
 
     private void validateName(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "자 이하만 가능합니다.");
         }
     }
 }
