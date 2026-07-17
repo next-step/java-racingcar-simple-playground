@@ -2,11 +2,11 @@ package domain;
 
 import java.util.Random;
 
-public class RandomNumber implements Number {
+public class RandomNumberGenerator implements NumberGenerator {
     private final Random random = new Random();
 
     @Override
-    public int getNumber() {
+    public int generate() {
         return random.nextInt(10);
     }
 }

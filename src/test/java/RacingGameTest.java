@@ -1,5 +1,5 @@
 import domain.Car;
-import domain.FixedNumber;
+import domain.FixedNumberGenerator;
 import domain.RacingGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class RacingGameTest {
         );
         int expectedPosition = 1;
 
-        RacingGame game = new RacingGame(carNames, 1, new FixedNumber(9));
+        RacingGame game = new RacingGame(carNames, 1, new FixedNumberGenerator(9));
         game.playRound();
 
         assertThat(game.getCars())
@@ -49,7 +49,7 @@ public class RacingGameTest {
         );
         Car expectedWinnerCar = cars.get(1);
 
-        RacingGame game = new RacingGame(cars, new FixedNumber(9));
+        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(9));
         List<Car> actualWinners = game.getWinners();
 
         assertThat(actualWinners)
@@ -68,7 +68,7 @@ public class RacingGameTest {
         Car expectedWinnerCar1 = cars.get(1);
         Car expectedWinnerCar2 = cars.get(2);
 
-        RacingGame game = new RacingGame(cars, new FixedNumber(9));
+        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(9));
         List<Car> actualWinners = game.getWinners();
 
         assertThat(actualWinners)

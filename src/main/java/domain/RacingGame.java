@@ -6,27 +6,27 @@ import java.util.List;
 public class RacingGame {
     private final List<Car> cars;
     private final int tryCount;
-    private final Number number;
+    private final NumberGenerator numberGenerator;
 
-    public RacingGame(List<Car> cars, Number number) { // 테스트용 생성자
+    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) { // 테스트용 생성자
         this.cars = cars;
         this.tryCount = 1;
-        this.number = number;
+        this.numberGenerator = numberGenerator;
     }
 
     public RacingGame(List<String> carNames, int tryCount) {
-        this(carNames, tryCount, new RandomNumber());
+        this(carNames, tryCount, new RandomNumberGenerator());
     }
 
-    public RacingGame(List<String> carNames, int tryCount, Number number) {
+    public RacingGame(List<String> carNames, int tryCount, NumberGenerator numberGenerator) {
         this.cars = toCars(carNames);
         this.tryCount = tryCount;
-        this.number = number;
+        this.numberGenerator = numberGenerator;
     }
 
     public void playRound() {
         for (Car car : cars) {
-            car.move(number.getNumber());
+            car.move(numberGenerator.generate());
         }
     }
 
