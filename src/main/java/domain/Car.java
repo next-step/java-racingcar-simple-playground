@@ -1,7 +1,6 @@
 package domain;
 
 public class Car {
-    private static final int MOVABLE_THRESHOLD = 4;
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
@@ -26,11 +25,10 @@ public class Car {
         return position;
     }
 
-    public void move(int random) {
-        if (random < MOVABLE_THRESHOLD) {
-            return;
+    public void move(MovingStrategy movingStrategy, int number) {
+        if (movingStrategy.isMovable(number)) {
+            position++;
         }
-        position++;
     }
 
     private void validateName(String name) {

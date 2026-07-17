@@ -1,4 +1,5 @@
 import domain.Car;
+import domain.NumberMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ public class CarTest {
         int expectedPosition = 1;
 
         Car car = new Car(carName);
-        car.move(random);
+        car.move(new NumberMovingStrategy(), random);
         int actualPosition = car.getPosition();
 
         assertThat(actualPosition).isEqualTo(expectedPosition);
@@ -54,7 +55,7 @@ public class CarTest {
         int expectedPosition = 0;
 
         Car car = new Car(carName);
-        car.move(random);
+        car.move(new NumberMovingStrategy(), random);
         int actualPosition = car.getPosition();
 
         assertThat(actualPosition).isEqualTo(expectedPosition);
