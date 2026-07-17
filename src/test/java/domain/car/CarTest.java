@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CarTest {
+class CarTest {
 
     @Test
     void random값이_4이상이면_position값이_증가한다() {
