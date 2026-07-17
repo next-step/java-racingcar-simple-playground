@@ -1,5 +1,5 @@
 package domain;
 
-public interface NumberGenerator  {
+public interface NumberGenerator    {
     int getNumber();
 }
