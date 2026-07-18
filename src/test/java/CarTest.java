@@ -23,6 +23,16 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차 이름이 5글자일 때 생성 성공 테스트")
+    void carNameMaxLengthTest() {
+        String carName = "다섯글자다";
+
+        Car car = new Car(carName);
+
+        assertThat(car.getName()).isEqualTo(carName);
+    }
+
+    @Test
     @DisplayName("자동차 이름이 5글자 초과시 예외 발생 테스트")
     void carNameLengthTest() {
         String carName = "여섯글자이름";
