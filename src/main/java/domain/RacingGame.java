@@ -8,10 +8,6 @@ public class RacingGame {
     private final NumberGenerator numberGenerator;
     private final MovingStrategy movingStrategy;
 
-    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) { // 테스트용 생성자
-        this(new Cars(cars), 1, numberGenerator, new NumberMovingStrategy());
-    }
-
     public RacingGame(List<String> carNames, int tryCount) { // 기본 레이싱 게임
         this(carNames, tryCount, new RandomNumberGenerator(), new NumberMovingStrategy());
     }

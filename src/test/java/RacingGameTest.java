@@ -1,6 +1,7 @@
 import domain.Car;
 import domain.FixedNumberGenerator;
 import domain.RacingGame;
+import domain.SequenceNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,37 +43,32 @@ class RacingGameTest {
     @Test
     @DisplayName("단독 우승 테스트")
     void singleWinnerTest() {
-        List<Car> cars = List.of(
-                new Car("AAA", 7),
-                new Car("BBB", 9),
-                new Car("CCC", 3)
+        List<String> carNames = List.of(
+                "AAA", "BBB", "CCC"
         );
-        Car expectedWinnerCar = cars.get(1);
+        SequenceNumberGenerator generator = new SequenceNumberGenerator(1, 6, 3); // BBB만 전진
 
-        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(9));
-        List<Car> actualWinners = game.getWinners();
+        RacingGame game = new RacingGame(carNames, 1, generator);
+        game.playRound();
 
-        assertThat(actualWinners)
+        assertThat(game.getWinners())
                 .extracting(Car::getName)
-                .containsExactly(expectedWinnerCar.getName());
+                .containsExactly("BBB");
     }
 
     @Test
     @DisplayName("공동 우승 테스트")
     void coWinnersTest() {
-        List<Car> cars = List.of(
-                new Car("AAA", 7),
-                new Car("BBB", 9),
-                new Car("CCC", 9)
+        List<String> carNames = List.of(
+                "AAA", "BBB", "CCC"
         );
-        Car expectedWinnerCar1 = cars.get(1);
-        Car expectedWinnerCar2 = cars.get(2);
+        SequenceNumberGenerator generator = new SequenceNumberGenerator(3, 4, 4); // BBB, CCC 전진
 
-        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(9));
-        List<Car> actualWinners = game.getWinners();
+        RacingGame game = new RacingGame(carNames, 1, generator);
+        game.playRound();
 
-        assertThat(actualWinners)
+        assertThat(game.getWinners())
                 .extracting(Car::getName)
-                .containsExactly(expectedWinnerCar1.getName(), expectedWinnerCar2.getName());
+                .containsExactly("BBB", "CCC");
     }
 }

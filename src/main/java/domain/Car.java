@@ -7,14 +7,10 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this(name, 0);
-    }
-
-    public Car(String name, int position) {
         validateName(name);
 
         this.name = name;
-        this.position = position;
+        this.position = 0;
     }
 
     public String getName() {
