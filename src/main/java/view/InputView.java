@@ -7,6 +7,7 @@ import java.util.Scanner;
 import domain.Car;
 
 public class InputView {
+    private static final int MINIMUM_TRY_COUNT = 1;
     private static final Scanner SCANNER = new Scanner(System.in);
 
     private InputView() {
@@ -30,7 +31,24 @@ public class InputView {
     }
 
     public static int tryCount() {
+        int tryCount;
         System.out.println("시도할 회수는 몇회인가요?");
-        return SCANNER.nextInt();
+        validateNumber();
+
+        tryCount = SCANNER.nextInt();
+        validateMinimumNumber(tryCount);
+        return tryCount;
+    }
+
+    private static void validateNumber() {
+        if (!SCANNER.hasNextInt()) {
+            throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
+        }
+    }
+
+    private static void validateMinimumNumber(int number) {
+        if (number < MINIMUM_TRY_COUNT) {
+            throw new IllegalArgumentException("시도 횟수는 최소 1회 이상이어야 합니다.");
+        }
     }
 }

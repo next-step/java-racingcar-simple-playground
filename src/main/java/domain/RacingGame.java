@@ -6,8 +6,9 @@ import java.util.List;
 public class RacingGame {
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
+
     public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
-        this.cars = cars;
+        this.cars = List.copyOf(cars);
         this.numberGenerator = numberGenerator;
     }
 
