@@ -1,8 +1,6 @@
 package domain;
 
 import java.util.*;
-import view.InputView;
-import view.ResultView;
 
 public class RacingcarGame {
     private List<Car> carList = new ArrayList<>(); // 자동차 객체를 잠는 리스트
@@ -19,29 +17,30 @@ public class RacingcarGame {
     }
 
     /*
-     * 게임 실행, 자동차는 이름 5자 이하 제한,
+    * 리펙터링: Application에서 carList를 비우기 위해 추가
+    * */
+    public void clearCarList() {
+        carList.clear();
+    }
+
+    /*
+    * 리펙터링: Application에서 moveCount를 변경하기 위해 추가
+    * */
+    public void setMoveCount(int moveCount) {
+        this.moveCount = moveCount;
+    }
+    /*
+     * 리펙터링: Application에서 moveCount를 사용하기 위해 추가
      * */
-    public void run() {
-        String[] nameArr;
+    public int getMoveCount() {
+         return this.moveCount;
+    }
 
-        while (true) {
-            try {
-                carList.clear();
-
-                nameArr = InputView.inputCarNames();
-
-                putNamesToList(nameArr); // Car 객체를 생성하며 이름 길이 검증, 오류 발생시 재입력 요구
-
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-
-        }
-
-        moveCount = InputView.inputMoveCount(); // 이동 횟수 입력
-
-        playGame(); // 게임 실행
+    /*
+    * 리펙터링: Application에서 carList를 사용하기 위해 추가
+    * */
+    public List<Car> getCarList() {
+        return this.carList;
     }
 
     /*
@@ -64,24 +63,10 @@ public class RacingcarGame {
     }
 
     /*
-     * moveCount 만큼 게임을 실행
-     * */
-    public void playGame() {
-        System.out.println("\n실행결과");
-
-        for (int i = 0; i < moveCount; i++) { // moveCount만큼 반복
-            addDistance();
-            ResultView.printCarDistance(carList);
-        }
-        ResultView.printWinners(getWinner());
-    }
-
-
-    /*
      * 우승 자동차 구하기
      * */
-    public ArrayList<Car> getWinner() {
-        ArrayList<Car> winners = new ArrayList<>(); // 우승 자동차 저장할 리스트
+    public List<Car> getWinner() {
+        List<Car> winners = new ArrayList<>(); // 우승 자동차 저장할 리스트
         int max = compare(); // 가장 높은 이동거리를 max에 저장
 
         for (Car car : carList) { // carList에서 이동거리가 max와 같은 Car를 winners 리스트에 저장
@@ -108,7 +93,7 @@ public class RacingcarGame {
     }
 
     // max와 누적거리가 같은 Car를 winner에 담기
-    public void putWinner(int max, Car car, ArrayList<Car> winners) {
+    public void putWinner(int max, Car car, List<Car> winners) {
         if (max == car.getTotalDistance()) {
             winners.add(car);
         }
