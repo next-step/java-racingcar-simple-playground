@@ -3,10 +3,8 @@ package domain;
 import java.util.*;
 
 public class RacingcarGame {
-    private List<Car> carList = new ArrayList<>(); // 자동차 객체를 잠는 리스트
-    private int moveCount; // 자동차들이 이동할 횟수를 저장
-
-    // 랜덤 생성기, Car 생성자에 들어감
+    private final List<Car> carList = new ArrayList<>();
+    private int moveCount;
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     /*
@@ -66,16 +64,16 @@ public class RacingcarGame {
      * 우승 자동차 구하기
      * */
     public List<Car> getWinner() {
-        List<Car> winners = new ArrayList<>(); // 우승 자동차 저장할 리스트
-        int max = compare(); // 가장 높은 이동거리를 max에 저장
+        List<Car> winners = new ArrayList<>();
+        int max = compare();
 
-        for (Car car : carList) { // carList에서 이동거리가 max와 같은 Car를 winners 리스트에 저장
+        for (Car car : carList) {
             putWinner(max, car, winners);
         }
         return winners;
     }
 
-    // 차 비교하기
+    // 차들간 누적거리 비교
     public int compare() {
         int max = 0; 
         for (Car car : carList) {

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
-    class TestNumberGenerator implements NumberGenerator {
+    static class TestNumberGenerator implements NumberGenerator {
         private final int number;
 
         public TestNumberGenerator(int number) {

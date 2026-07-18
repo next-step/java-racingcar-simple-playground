@@ -3,7 +3,7 @@ import view.InputView;
 import view.ResultView;
 
 public class Application {
-    RacingcarGame racingcarGame = new RacingcarGame();
+    private final RacingcarGame racingcarGame = new RacingcarGame();
     /*
     * 리펙터링: RacingCarGame에서 Application으로 이동(UI)
     * */
@@ -25,7 +25,7 @@ public class Application {
 
         }
 
-        int moveCount = InputView.inputMoveCount(); // 이동 횟수 입력
+        int moveCount = InputView.inputMoveCount();
         racingcarGame.setMoveCount(moveCount);
 
         playGame(); // 게임 실행
@@ -38,7 +38,7 @@ public class Application {
     public void playGame() {
         System.out.println("\n실행결과");
 
-        for (int i = 0; i < racingcarGame.getMoveCount(); i++) { // moveCount만큼 반복
+        for (int i = 0; i < racingcarGame.getMoveCount(); i++) {
             racingcarGame.addDistance();
             ResultView.printCarDistance(racingcarGame.getCarList());
         }
@@ -48,6 +48,5 @@ public class Application {
     public static void main(String[] args) {
         Application app = new Application();
         app.run();
-
     }
 }
