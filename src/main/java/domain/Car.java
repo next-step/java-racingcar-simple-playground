@@ -14,7 +14,7 @@ public class Car {
         this.name = carName;
     }
 
-    void moveCar(int number) {
+    void move(int number) {
         if (number >= MINIMUM_MOVE_NUMBER) {
             location += 1;
         }

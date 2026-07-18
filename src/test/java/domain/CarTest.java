@@ -13,7 +13,7 @@ class CarTest {
     void moveWhenRandomNumberIsFourOrMore() {
         Car car = new Car("green");
 
-        car.moveCar(4);
+        car.move(4);
 
         assertThat(car.getLocation()).isEqualTo(1);
     }
@@ -23,7 +23,7 @@ class CarTest {
     void stopWhenRandomNumberIsThreeOrLess() {
         Car car = new Car("green");
 
-        car.moveCar(3);
+        car.move(3);
 
         assertThat(car.getLocation()).isZero();
     }

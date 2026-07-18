@@ -15,8 +15,8 @@ public class RacingGameTest {
         Car car1 = new Car("hyun");
         Car car2 = new Car("Kia");
 
-        car1.moveCar(5); // 4 이상 이므로 +1
-        car2.moveCar(3); // 3 이하 이므로 stop
+        car1.move(5); // 4 이상 이므로 +1
+        car2.move(3); // 3 이하 이므로 stop
 
         RacingGame game = new RacingGame(List.of(car1, car2), new FixedNumberGenerator(0));
 
@@ -32,9 +32,9 @@ public class RacingGameTest {
         Car car2 = new Car("Kia");
         Car car3 = new Car("Tesla");
 
-        car1.moveCar(5);
-        car2.moveCar(3);
-        car3.moveCar(6);
+        car1.move(5);
+        car2.move(3);
+        car3.move(6);
 
         RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(0));
 
