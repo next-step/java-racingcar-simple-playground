@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CarTest {
+class CarTest {
 
     @Test
     @DisplayName("자동차 이름 확인 테스트(5글자 이하면 성공)")
