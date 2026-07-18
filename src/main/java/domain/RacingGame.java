@@ -18,7 +18,6 @@ public class RacingGame {
         }
     }
 
-
     public List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
         int winnerLocation = findWinnerLocation();
@@ -40,5 +39,9 @@ public class RacingGame {
         if (car.getLocation() == winnerLocation) {
             winners.add(car);
         }
+    }
+    
+    public List<Car> getCars() {
+        return List.copyOf(cars);
     }
 }
