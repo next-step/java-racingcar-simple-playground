@@ -8,21 +8,19 @@ import java.util.Random;
 
 public class Racing {
     private final Random random;
-    private final String[] player;
     private final List<RacingCar> racingCarList;
     private final int gameCount;
 
     public Racing(String[] player, int gameCount){
-        this.player = player;
         this.gameCount = gameCount;
         this.random = new Random();
         this.racingCarList = new LinkedList<>();
-        init();
+        init(player);
     }
 
-    private void init(){
-        for(int i = 0; i < player.length; i++){
-            racingCarList.add(new RacingCar(player[i]));
+    private void init(String[] player){
+        for (String s : player) {
+            racingCarList.add(new RacingCar(s));
         }
     }
 
@@ -35,7 +33,7 @@ public class Racing {
 
 
     private void move(){
-        for(int i = 0; i < player.length; i++){
+        for(int i = 0; i < racingCarList.size(); i++){
             racingCarList.get(i).moveAndStop(random.nextInt(10));
         }
     }
@@ -43,8 +41,8 @@ public class Racing {
 
     private void roundResult(){
         move();
-        for(int i = 0; i < player.length; i++){
-            System.out.println(player[i] + " : " + playerMoveRes(i));
+        for(int i = 0; i < racingCarList.size(); i++){
+            System.out.println(racingCarList.get(i).getName() + " : " + playerMoveRes(i));
         }
         System.out.println();
     }
@@ -71,7 +69,7 @@ public class Racing {
         for(int i = 0; i < racingCarList.size(); i++){
             sb.append(winner(i, max));
         }
-        return sb.toString().substring(0,sb.toString().length()-2);
+        return sb.substring(0,sb.toString().length()-2);
     }
 
     private String winner(int i, int max){
