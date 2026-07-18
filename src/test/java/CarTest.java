@@ -10,7 +10,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차 이름 확인 테스트(5글자 이하면 성공)")
-    void CarNameTest() {
+    void carNameTest() {
         String carName = "자동차";
         int expectedPosition = 0;
 
@@ -24,7 +24,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차 이름이 5글자 초과시 예외 발생 테스트")
-    void CarNameLengthTest() {
+    void carNameLengthTest() {
         String carName = "여섯글자이름";
         String throwMessage = "자동차 이름은 5자 이하만 가능합니다.";
 
@@ -35,7 +35,7 @@ class CarTest {
 
     @Test
     @DisplayName("4이상일 때 자동차가 움직이는지 테스트")
-    void CarMoveTest() {
+    void carMoveTest() {
         String carName = "자동차";
         int random = 4;
         int expectedPosition = 1;
@@ -49,7 +49,7 @@ class CarTest {
 
     @Test
     @DisplayName("3이하일 때 자동차가 안 움직이는지 테스트")
-    void CarNotMoveTest() {
+    void carNotMoveTest() {
         String carName = "자동차";
         int random = 3;
         int expectedPosition = 0;

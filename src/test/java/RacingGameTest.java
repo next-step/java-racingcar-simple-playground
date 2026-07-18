@@ -41,7 +41,7 @@ class RacingGameTest {
 
     @Test
     @DisplayName("단독 우승 테스트")
-    void SingleWinnerTest() {
+    void singleWinnerTest() {
         List<Car> cars = List.of(
                 new Car("AAA", 7),
                 new Car("BBB", 9),
@@ -59,7 +59,7 @@ class RacingGameTest {
 
     @Test
     @DisplayName("공동 우승 테스트")
-    void CoWinnersTest() {
+    void coWinnersTest() {
         List<Car> cars = List.of(
                 new Car("AAA", 7),
                 new Car("BBB", 9),
