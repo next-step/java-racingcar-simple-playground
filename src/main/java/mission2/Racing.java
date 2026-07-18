@@ -20,7 +20,14 @@ public class Racing {
 
     private void init(String[] player){
         for (String s : player) {
+            isMaximumLength(s);
             racingCarList.add(new RacingCar(s));
+        }
+    }
+
+    public void isMaximumLength(String s) {
+        if(s.length() > 5){
+            throw new RuntimeException("이름은 5글자를 넘을 수 없습니다.");
         }
     }
 
