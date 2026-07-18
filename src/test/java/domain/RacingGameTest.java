@@ -18,7 +18,7 @@ public class RacingGameTest {
         car1.moveCar(5); // 4 이상 이므로 +1
         car2.moveCar(3); // 3 이하 이므로 stop
 
-        RacingGame game = new RacingGame(List.of(car1, car2));
+        RacingGame game = new RacingGame(List.of(car1, car2), new FixedNumberGenerator(0));
 
         List<Car> winners = game.findWinners();
 
@@ -36,40 +36,42 @@ public class RacingGameTest {
         car2.moveCar(3);
         car3.moveCar(6);
 
-        RacingGame game = new RacingGame(List.of(car1, car2, car3));
+        RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(0));
 
         List<Car> winners = game.findWinners();
 
         assertThat(winners).containsExactly(car1, car3);
     }
 
-    private static class FixedNumberCar extends Car { // 테스트를 위해 예측 가능한 자동차의 움직임을 구현
+    @Test
+    @DisplayName("주어진 횟수 이후 우승한 차 구하는 경기")
+    void findMultiCountRaceWinner() {
+        Car car1 = new Car("hyun");
+        Car car2 = new Car("Kia");
+        Car car3 = new Car("Tesla");
+
+        RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(4));
+
+        for (int count = 0; count < 3; count++) {
+            game.moveCars();
+        }
+
+        List<Car> winners = game.findWinners();
+
+        assertThat(winners).containsExactly(car1, car2, car3);
+    }
+
+    private static class FixedNumberGenerator implements NumberGenerator {
         private final int number;
 
-        FixedNumberCar(String name, int number) {
-            super(name);
+        private FixedNumberGenerator(int number) {
             this.number = number;
         }
 
         @Override
-        void move() {
-            moveCar(number);
+        public int generateNumber() {
+            return number;
         }
     }
 
-    @Test
-    @DisplayName("주어진 횟수 이후 우승한 차 구하는 경기")
-    void findMultiCountRaceWinner() {
-        Car car1 = new FixedNumberCar("hyun", 3);
-        Car car2 = new FixedNumberCar("Kia", 4);
-        Car car3 = new FixedNumberCar("Tesla", 6);
-
-        RacingGame game = new RacingGame(List.of(car1, car2, car3));
-
-        game.moveCars(3);
-
-        List<Car> winners = game.findWinners();
-
-        assertThat(winners).containsExactly(car2, car3);
-    }
 }

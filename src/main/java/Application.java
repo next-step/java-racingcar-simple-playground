@@ -2,6 +2,7 @@ import java.util.List;
 
 import domain.Car;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import view.InputView;
 import view.ResultView;
 
@@ -9,7 +10,8 @@ public class Application {
     public static void main(String[] args) {
         List<Car> cars = InputView.readCars();
         int tryCount = InputView.tryCount();
-        RacingGame racingGame = new RacingGame(cars);
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        RacingGame racingGame = new RacingGame(cars, randomNumberGenerator);
         ResultView.printRaceResult();
         runRace(racingGame, cars, tryCount);
         ResultView.printWinners(racingGame.findWinners());

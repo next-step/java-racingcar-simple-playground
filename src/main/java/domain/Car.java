@@ -1,11 +1,9 @@
 package domain;
 
-import java.util.Random;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MINIMUM_MOVE_NUMBER = 4;
-    private static final Random RANDOM = new Random();
 
     private final String name;
     private int location;
@@ -14,10 +12,6 @@ public class Car {
         validateNameBlank(carName);
         validateNameLength(carName);
         this.name = carName;
-    }
-
-    void move() {
-        moveCar(createRandomNumber());
     }
 
     void moveCar(int number) {
@@ -44,9 +38,5 @@ public class Car {
         if (carName.isBlank()) {
             throw new IllegalArgumentException("자동차 이름에 빈 문자나 공백만으로 구성할 수 없습니다.");
         }
-    }
-
-    private int createRandomNumber() {
-        return RANDOM.nextInt(10);
     }
 }

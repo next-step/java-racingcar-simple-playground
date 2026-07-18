@@ -5,22 +5,18 @@ import java.util.List;
 
 public class RacingGame {
     private final List<Car> cars;
-
-    public RacingGame(List<Car> cars) {
+    private final NumberGenerator numberGenerator;
+    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
+        this.numberGenerator = numberGenerator;
     }
 
     public void moveCars() {
         for (Car car : cars) {
-            car.move();
+            car.moveCar(numberGenerator.generateNumber());
         }
     }
 
-    void moveCars(int count) {
-        for (int i = 0; i < count; i++) {
-            moveCars();
-        }
-    }
 
     public List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
