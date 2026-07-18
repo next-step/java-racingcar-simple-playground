@@ -40,7 +40,7 @@ public class RacingGame {
             winners.add(car);
         }
     }
-    
+
     public List<Car> getCars() {
         return List.copyOf(cars);
     }

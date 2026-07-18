@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 import domain.Car;
 
@@ -37,17 +38,10 @@ public class ResultView {
     }
 
     private static String createWinnerNames(List<Car> winners) {
-        StringBuilder winnerNames = new StringBuilder();
+        StringJoiner winnerNames = new StringJoiner(", ");
         for (Car winner : winners) {
-            appendWinnerName(winnerNames, winner);
+            winnerNames.add(winner.getName());
         }
         return winnerNames.toString();
-    }
-
-    private static void appendWinnerName(StringBuilder winnerNames, Car winner) {
-        if (winnerNames.length() > 0) {
-            winnerNames.append(", ");
-        }
-        winnerNames.append(winner.getName());
     }
 }
