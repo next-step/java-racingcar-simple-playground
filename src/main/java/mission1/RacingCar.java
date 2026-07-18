@@ -19,4 +19,8 @@ public class RacingCar {
             distance++;
         }
     }
+    public boolean isMaximumDistance(int distance){
+        return this.distance == distance;
+    }
+
 }
