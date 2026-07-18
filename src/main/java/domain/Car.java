@@ -12,12 +12,19 @@ public class Car {
 
     // 생성자에서 랜덤 생성기를 받음,
     public Car(String name, NumberGenerator numberGenerator) {
+        validateName(name);
         this.name = name;
         this.numberGenerator = numberGenerator;
     }
 
     public String getName() {
         return name;
+    }
+
+    private void validateName(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
+        }
     }
 
     // 자동차가 움직일지, 멈출지 검사하는 메서드

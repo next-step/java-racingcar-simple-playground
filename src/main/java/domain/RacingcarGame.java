@@ -19,46 +19,29 @@ public class RacingcarGame {
     }
 
     /*
-     * 게임 실행
+     * 게임 실행, 자동차는 이름 5자 이하 제한,
      * */
     public void run() {
-        // 1) 차 이름 입력받기 -> 이름 입력받고, 5자 이하이면 통과, 아니면 반복
-        String[] nameArr; // 리펙터링: nameArr을 지역변수로 이동
+        String[] nameArr;
 
         while (true) {
-            nameArr = InputView.inputCarNames();
-            if (checkNames(nameArr)) { // 전부 5자 이하면 통과
+            try {
+                carList.clear();
+
+                nameArr = InputView.inputCarNames();
+
+                putNamesToList(nameArr);
+
                 break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            System.out.println("이름은 5자 이하로 입력해야 합니다.");
+
         }
-        putNamesToList(nameArr); // 리스트에 domain.Car 객체들 담기
 
         moveCount = InputView.inputMoveCount(); // 이동 횟수 입력
 
         playGame(); // 게임 실행
-    }
-
-    /*
-     * 이름이 들어있는 배열 순회
-     * */
-    public boolean checkNames(String[] nameArr) {
-        for (int i = 0; i < nameArr.length; i++) {
-            if (!checkNameLength(nameArr[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /*
-     * 이름이 5자 이하인지 검사
-     * */
-    public boolean checkNameLength(String name) {
-        if (name.length() <= 5) {
-            return true;
-        }
-        return false;
     }
 
     /*
