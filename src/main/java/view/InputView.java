@@ -1,4 +1,5 @@
 package view;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -17,9 +18,17 @@ public class InputView {
     /*
      * 이동 횟수 입력받기
      * */
-    // 리펙터링: InputView로 이동, moveCount를 리턴
+    // 리펙터링: InputView로 이동, moveCount를 리턴, 예외 처리
     public static int inputMoveCount() {
-        System.out.println("시도할 횟수는 몇회인가요?");
-        return sc.nextInt();
+        while (true) {
+            try {
+                System.out.println("시도할 횟수는 몇회인가요?");
+                    return sc.nextInt();
+                } catch(InputMismatchException e) {
+                    System.out.println("숫자만 입력해주세요.");
+                    sc.nextLine();
+                }
+        }
     }
+
 }

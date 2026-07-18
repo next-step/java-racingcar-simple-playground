@@ -30,7 +30,7 @@ public class RacingcarGame {
 
                 nameArr = InputView.inputCarNames();
 
-                putNamesToList(nameArr);
+                putNamesToList(nameArr); // Car 객체를 생성하며 이름 길이 검증, 오류 발생시 재입력 요구
 
                 break;
             } catch (IllegalArgumentException e) {
