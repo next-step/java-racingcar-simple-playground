@@ -25,5 +25,3 @@
 //        dis = car.getDistance();
 //    }
 //}
-//
-//

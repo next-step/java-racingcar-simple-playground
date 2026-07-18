@@ -28,7 +28,4 @@
 //    public int getDistance() {
 //        return this.distance;
 //    }
-//
 //}
-//
-//

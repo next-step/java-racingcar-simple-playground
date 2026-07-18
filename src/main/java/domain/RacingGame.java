@@ -5,15 +5,21 @@ import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
-    private List<RacingCar> cars;
-    private int tryCount;
+    private final List<RacingCar> cars;
+    private final int tryCount;
+    private final NumberGenerator numberGenerator;
 
     public RacingGame(List<String> carNames, int tryCount) {
-        this.cars = createCars(carNames);
-        this.tryCount = tryCount;
+        this(carNames, tryCount, () -> new Random().nextInt(10));
     }
 
-    public List<RacingCar> createCars(List<String> carNames) {
+    public RacingGame(List<String> carNames, int tryCount, NumberGenerator numberGenerator) {
+        this.cars = createCars(carNames);
+        this.tryCount = tryCount;
+        this.numberGenerator = numberGenerator;
+    }
+
+    private List<RacingCar> createCars(List<String> carNames) {
         List<RacingCar> cars = new ArrayList<>();
         for (String name : carNames) {
             cars.add(new RacingCar(name));
@@ -21,15 +27,9 @@ public class RacingGame {
         return cars;
     }
 
-    public int randomNum() {
-        Random random = new Random();
-        int num = random.nextInt(10);
-        return num;
-    }
-
     public void moveCars() {
         for (RacingCar car : cars) {
-            car.move(randomNum());
+            car.move(numberGenerator.generate());
         }
     }
 
@@ -41,7 +41,7 @@ public class RacingGame {
         return cars;
     }
 
-    public int findMaxDistance(List<RacingCar> cars) {
+    private int findMaxDistance(List<RacingCar> cars) {
         int maxDistance = 0;
         for (RacingCar car : cars) {
             maxDistance = Math.max(maxDistance, car.getDistance());
@@ -49,7 +49,7 @@ public class RacingGame {
         return maxDistance;
     }
 
-    public void findWinner(RacingCar car, int maxDistance, List<RacingCar> winners) {
+    private void findWinner(RacingCar car, int maxDistance, List<RacingCar> winners) {
         if (maxDistance == car.getDistance()) {
             winners.add(car);
         }

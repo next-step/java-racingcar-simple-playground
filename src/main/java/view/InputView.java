@@ -14,17 +14,10 @@ public class InputView {
         String value = scanner.nextLine();
         String[] splitNames = value.split(",");
         for (String name : splitNames) {
-            carNames.add(nameError(name.trim()));
+            carNames.add(name.trim());
         }
 
         return carNames;
-    }
-
-    public static String nameError(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다");
-        }
-        return name;
     }
 
     public static int getTryCount() {

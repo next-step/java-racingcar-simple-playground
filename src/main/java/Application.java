@@ -12,7 +12,7 @@ public class Application {
 
         RacingGame racingGame = new RacingGame(carNames, tryCount);
 
-        System.out.println("실행 결과");
+        ResultView.printHeader();
         for (int i = 0; i < racingGame.getTryCount(); i++) {
             racingGame.moveCars();
             ResultView.printRound(racingGame.getCars());
