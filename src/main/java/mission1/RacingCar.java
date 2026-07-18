@@ -14,7 +14,7 @@ public class RacingCar {
     public int getDistance() {
         return distance;
     }
-    public void moveAndStop(int randomNum){
+    public void tryAdvance(int randomNum){
         if(randomNum >=4){
             distance++;
         }

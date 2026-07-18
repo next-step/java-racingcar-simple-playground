@@ -34,7 +34,7 @@ public class Racing {
 
     private void move(){
         for(int i = 0; i < racingCarList.size(); i++){
-            racingCarList.get(i).moveAndStop(random.nextInt(10));
+            racingCarList.get(i).tryAdvance(random.nextInt(10));
         }
     }
 
