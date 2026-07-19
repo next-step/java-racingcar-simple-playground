@@ -4,6 +4,7 @@ public class Car {
     private final String name;
     private final NumberGenerator numberGenerator;
     private int totalDistance = 0;
+    private static final int MAX_NAME_LENGTH = 5;
 
     public Car(String name, NumberGenerator numberGenerator) {
         validateName(name);
@@ -19,7 +20,7 @@ public class Car {
     * 이름 길이가 5자 이하인지 검사
     * */
     private void validateName(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
         }
     }
