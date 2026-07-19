@@ -7,16 +7,14 @@ import view.ResultView;
 public class Application {
     private RacingcarGame racingcarGame;
     private final NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    /*
-    * 리펙터링: RacingCarGame에서 Application으로 이동(UI)
-    * */
+
     public void run() {
-        String[] nameArr;
+        String[] names;
 
         while (true) {
             try {
-                nameArr = InputView.inputCarNames();
-                racingcarGame = new RacingcarGame(nameArr, randomNumberGenerator);
+                names = InputView.inputCarNames();
+                racingcarGame = new RacingcarGame(names, randomNumberGenerator);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -26,19 +24,15 @@ public class Application {
         int moveCount = InputView.inputMoveCount();
         racingcarGame.setMoveCount(moveCount);
 
-        playGame(); // 게임 실행
+        playGame();
     }
 
-    /*
-     * moveCount 만큼 게임을 실행
-     * 리펙터링: RacingCarGame에서 Application으로 이동(UI)
-     * */
     public void playGame() {
         System.out.println("\n실행결과");
 
         for (int i = 0; i < racingcarGame.getMoveCount(); i++) {
             racingcarGame.addDistance();
-            ResultView.printCarDistance(racingcarGame.getCarList());
+            ResultView.printCarDistance(racingcarGame.getCars());
         }
         ResultView.printWinners(racingcarGame.getWinner());
         }

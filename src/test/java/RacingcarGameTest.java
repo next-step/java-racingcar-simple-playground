@@ -3,7 +3,6 @@ import domain.NumberGenerator;
 import domain.RacingcarGame;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +28,7 @@ class RacingcarGameTest {
         String[] names = {"car1", "car2", "car3"};
         RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
 
-        List<Car> cars = testGame.getCarList();
+        List<Car> cars = testGame.getCars();
         cars.get(2).move();
 
         // When
@@ -45,7 +44,7 @@ class RacingcarGameTest {
         String[] names = {"car1", "car2", "car3"};
         RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
 
-        List<Car> cars = testGame.getCarList();
+        List<Car> cars = testGame.getCars();
         cars.get(1).move();
         cars.get(2).move();
 
@@ -63,7 +62,7 @@ class RacingcarGameTest {
         String[] names = {"car1", "car2", "car3"};
         RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
 
-        List<Car> cars = testGame.getCarList();
+        List<Car> cars = testGame.getCars();
 
         // When
         List<Car> winnerCars = testGame.getWinner();
