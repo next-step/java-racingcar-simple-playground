@@ -37,14 +37,14 @@ public class Application {
         System.out.println("\n실행결과");
 
         for (int i = 0; i < racingcarGame.getMoveCount(); i++) {
-        racingcarGame.addDistance();
+            racingcarGame.addDistance();
             ResultView.printCarDistance(racingcarGame.getCarList());
         }
         ResultView.printWinners(racingcarGame.getWinner());
         }
 
-public static void main(String[] args) {
-    Application app = new Application();
-    app.run();
-}
+    public static void main(String[] args) {
+        Application app = new Application();
+        app.run();
+    }
 }

@@ -38,7 +38,7 @@ public class RacingcarGame {
     * 리펙터링: Application에서 carList를 사용하기 위해 추가
     * */
     public List<Car> getCarList() {
-        return this.carList;
+       return new ArrayList<>(this.carList);
     }
 
     /*
