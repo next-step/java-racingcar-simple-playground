@@ -2,32 +2,28 @@ package domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
-    @ParameterizedTest
-    @DisplayName("랜덤값이 4 이상이면 자동차가 한 칸 전진한다")
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void move_forward_when_number_is_four_or_more(int randomNumber) {
-        Car car = new Car("white", 0);
+    @Test
+    @DisplayName("이동 조건을 만족하면 자동차가 한 칸 전진한다")
+    void move_forward_when_move_condition_is_true() {
+        Car car = new Car("white", 0, number -> true);
 
-        car.moveCar(randomNumber);
+        car.moveCar(0);
 
         assertThat(car.getLocation()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @DisplayName("랜덤값이 3 이하이면 자동차가 전진하지 않는다")
-    @ValueSource(ints = {0, 1, 2, 3})
-    void stop_when_number_is_three_or_less(int randomNumber) {
-        Car car = new Car("white", 0);
+    @Test
+    @DisplayName("이동 조건을 만족하지 않으면 자동차가 전진하지 않는다")
+    void stop_when_move_condition_is_false() {
+        Car car = new Car("white", 0, number -> false);
 
-        car.moveCar(randomNumber);
+        car.moveCar(0);
 
         assertThat(car.getLocation()).isZero();
     }
