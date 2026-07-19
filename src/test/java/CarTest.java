@@ -52,21 +52,23 @@ class CarTest {
     /*
     * 이름 길이 검증 로직 테스트
     * */
-    @Test
-    void 이름이_5글자_이하인_경우() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "123", "12345"})
+    void 이름이_5글자_이하인_경우(String name) {
         //Given
         NumberGenerator testNumberGenerator = new TestNumberGenerator(0);
 
         //When & Then
-        assertDoesNotThrow(() -> new Car("12345", testNumberGenerator));
+        assertDoesNotThrow(() -> new Car(name, testNumberGenerator));
     }
-    @Test
-    void 이름이_5글자_초과인_경우() {
+    @ParameterizedTest
+    @ValueSource(strings = {"123456", "12345678", "1234567890"})
+    void 이름이_5글자_초과인_경우(String name) {
         //Given
         NumberGenerator testNumberGenerator = new TestNumberGenerator(0);
 
         //When & Then
         assertThrows(IllegalArgumentException.class, ()
-                -> new Car("123456", testNumberGenerator));
+                -> new Car(name, testNumberGenerator));
     }
 }
