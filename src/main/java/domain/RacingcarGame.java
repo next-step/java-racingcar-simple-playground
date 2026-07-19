@@ -74,7 +74,7 @@ public class RacingcarGame {
     }
 
     // 차들간 누적거리 비교
-    public int compare() {
+    private int compare() {
         int max = 0; 
         for (Car car : carList) {
             max = maxDistance(max, car);
@@ -83,7 +83,7 @@ public class RacingcarGame {
     }
 
     // Car의 누적거리가 max보다 크면 max값 갱신
-    public int maxDistance(int max, Car car) {
+    private int maxDistance(int max, Car car) {
         if (max < car.getTotalDistance()) {
             max = car.getTotalDistance();
         }
@@ -91,7 +91,7 @@ public class RacingcarGame {
     }
 
     // max와 누적거리가 같은 Car를 winner에 담기
-    public void putWinner(int max, Car car, List<Car> winners) {
+    private void putWinner(int max, Car car, List<Car> winners) {
         if (max == car.getTotalDistance()) {
             winners.add(car);
         }

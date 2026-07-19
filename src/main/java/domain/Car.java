@@ -2,8 +2,8 @@ package domain;
 
 public class Car {
     private final String name;
-    private int totalDistance = 0;
     private final NumberGenerator numberGenerator;
+    private int totalDistance = 0;
 
     public Car(String name, NumberGenerator numberGenerator) {
         validateName(name);

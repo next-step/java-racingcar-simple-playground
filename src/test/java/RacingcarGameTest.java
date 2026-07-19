@@ -45,6 +45,7 @@ class RacingcarGameTest {
 
         // Then
         assertEquals(car3, winnerCars.get(0));
+        assertEquals(1, winnerCars.size());
     }
     @Test
     void 공동_우승자가_있을_때() {
@@ -69,6 +70,7 @@ class RacingcarGameTest {
         // Then
         assertEquals(car2, winnerCars.get(0));
         assertEquals(car3, winnerCars.get(1));
+        assertEquals(2, winnerCars.size());
     }
 
 
