@@ -25,7 +25,7 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     private void validateNumber(int number) {
         if (number < MIN_BOUND || number >= MAX_BOUND) {
-            throw new IllegalArgumentException("랜덤값은 0에서 9 사이여야 합니다.");
+            throw new IllegalArgumentException("랜덤값은" + MIN_BOUND + "에서" + (MAX_BOUND-1) + "사이여야 합니다.");
         }
     }
 }
