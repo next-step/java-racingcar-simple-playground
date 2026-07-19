@@ -4,18 +4,17 @@ import java.util.*;
 
 public class RacingcarGame {
     private final List<Car> carList;
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
     private int moveCount;
 
-    public RacingcarGame(String[] nameArr) {
+    public RacingcarGame(String[] nameArr, NumberGenerator numberGenerator) {
         this.carList = new ArrayList<>();
-        putNamesToList(nameArr);
+        putNamesToList(nameArr, numberGenerator);
     }
 
     /*
      * nameArr에서 이름을 하나씩 꺼내 domain.Car 객체 생성 후 carList에 add
      * */
-    private void putNamesToList(String[] nameArr) {
+    private void putNamesToList(String[] nameArr, NumberGenerator numberGenerator) {
         for (int i = 0; i < nameArr.length; i++) {
             Car car = new Car(nameArr[i], numberGenerator);
             carList.add(car);

@@ -1,9 +1,12 @@
+import domain.NumberGenerator;
 import domain.RacingcarGame;
+import domain.RandomNumberGenerator;
 import view.InputView;
 import view.ResultView;
 
 public class Application {
     private RacingcarGame racingcarGame;
+    private final NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     /*
     * 리펙터링: RacingCarGame에서 Application으로 이동(UI)
     * */
@@ -13,12 +16,12 @@ public class Application {
         while (true) {
             try {
                 nameArr = InputView.inputCarNames();
+                racingcarGame = new RacingcarGame(nameArr, randomNumberGenerator);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        racingcarGame = new RacingcarGame(nameArr);
 
         int moveCount = InputView.inputMoveCount();
         racingcarGame.setMoveCount(moveCount);
