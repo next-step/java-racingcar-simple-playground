@@ -1,6 +1,5 @@
 import domain.Car;
 import domain.NumberGenerator;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -21,9 +20,6 @@ class CarTest {
         }
     }
 
-    /*
-     * 경계값 테스트 => 0, 3, 4, 9
-     * */
     @ParameterizedTest
     @ValueSource(ints = {0, 3})
     void 랜덤값_0과_3일때_멈춤(int ranVal) {
@@ -49,9 +45,6 @@ class CarTest {
         assertEquals(1, car.getTotalDistance());
     }
 
-    /*
-    * 이름 길이 검증 로직 테스트
-    * */
     @ParameterizedTest
     @ValueSource(strings = {"1", "123", "12345"})
     void 이름이_5글자_이하인_경우(String name) {

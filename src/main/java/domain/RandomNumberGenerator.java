@@ -3,6 +3,7 @@ package domain;
 import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {
+    private static final int RANDOM_BOUND = 10;
     private final Random random;
 
     public RandomNumberGenerator() {
@@ -11,6 +12,6 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int getNumber() {
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_BOUND);
     }
 }

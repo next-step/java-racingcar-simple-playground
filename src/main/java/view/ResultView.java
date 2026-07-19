@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 
 public class ResultView {
 
-    public static void printDistance(Car car) {
+    private static void printDistance(Car car) {
         for (int i = 0; i < car.getTotalDistance(); i++) {
             System.out.print("-");
         }

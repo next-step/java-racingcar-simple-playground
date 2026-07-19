@@ -5,8 +5,8 @@ import view.InputView;
 import view.ResultView;
 
 public class Application {
-    private RacingcarGame racingcarGame;
     private final NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private RacingcarGame racingcarGame;
 
     public void run() {
         String[] names;

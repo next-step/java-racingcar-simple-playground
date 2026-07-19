@@ -1,10 +1,12 @@
 package domain;
 
 public class Car {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_THRESHOLD = 4;
     private final String name;
     private final NumberGenerator numberGenerator;
     private int totalDistance = 0;
-    private static final int MAX_NAME_LENGTH = 5;
+
 
     public Car(String name, NumberGenerator numberGenerator) {
         validateName(name);
@@ -22,8 +24,8 @@ public class Car {
         }
     }
 
-    public boolean canMove(int randomValue) {
-        return randomValue >= 4;
+    private boolean canMove(int randomValue) {
+        return randomValue >= MOVE_THRESHOLD;
     }
 
     public void move() {
