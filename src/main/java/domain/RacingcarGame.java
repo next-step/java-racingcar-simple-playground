@@ -3,22 +3,23 @@ package domain;
 import java.util.*;
 
 public class RacingcarGame {
-    private final List<Car> carList = new ArrayList<>();
-    private int moveCount;
+    private final List<Car> carList;
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private int moveCount;
 
-    /*
-     *  carList에 car 추가
-     * */
-    public void addCar(Car car) {
-        carList.add(car);
+    public RacingcarGame(String[] nameArr) {
+        this.carList = new ArrayList<>();
+        putNamesToList(nameArr);
     }
 
     /*
-    * 리펙터링: Application에서 carList를 비우기 위해 추가
-    * */
-    public void clearCarList() {
-        carList.clear();
+     * nameArr에서 이름을 하나씩 꺼내 domain.Car 객체 생성 후 carList에 add
+     * */
+    private void putNamesToList(String[] nameArr) {
+        for (int i = 0; i < nameArr.length; i++) {
+            Car car = new Car(nameArr[i], numberGenerator);
+            carList.add(car);
+        }
     }
 
     /*
@@ -39,16 +40,6 @@ public class RacingcarGame {
     * */
     public List<Car> getCarList() {
         return this.carList;
-    }
-
-    /*
-     * nameArr에서 이름을 하나씩 꺼내 domain.Car 객체 생성 후 carList에 add
-     * */
-    public void putNamesToList(String[] nameArr) {
-        for (int i = 0; i < nameArr.length; i++) {
-            Car car = new Car(nameArr[i], numberGenerator);
-            carList.add(car);
-        }
     }
 
     /*

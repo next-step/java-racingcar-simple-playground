@@ -3,7 +3,7 @@ import view.InputView;
 import view.ResultView;
 
 public class Application {
-    private final RacingcarGame racingcarGame = new RacingcarGame();
+    private RacingcarGame racingcarGame;
     /*
     * 리펙터링: RacingCarGame에서 Application으로 이동(UI)
     * */
@@ -12,18 +12,13 @@ public class Application {
 
         while (true) {
             try {
-                racingcarGame.clearCarList();
-
                 nameArr = InputView.inputCarNames();
-
-                racingcarGame.putNamesToList(nameArr); // Car 객체를 생성하며 이름 길이 검증, 오류 발생시 재입력 요구
-
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
+        racingcarGame = new RacingcarGame(nameArr);
 
         int moveCount = InputView.inputMoveCount();
         racingcarGame.setMoveCount(moveCount);
@@ -39,14 +34,14 @@ public class Application {
         System.out.println("\n실행결과");
 
         for (int i = 0; i < racingcarGame.getMoveCount(); i++) {
-            racingcarGame.addDistance();
+        racingcarGame.addDistance();
             ResultView.printCarDistance(racingcarGame.getCarList());
         }
         ResultView.printWinners(racingcarGame.getWinner());
-    }
+        }
 
-    public static void main(String[] args) {
-        Application app = new Application();
-        app.run();
-    }
+public static void main(String[] args) {
+    Application app = new Application();
+    app.run();
+}
 }
