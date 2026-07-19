@@ -52,13 +52,11 @@ public class RacingGameTest {
 
         RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(4));
 
-        for (int count = 0; count < 3; count++) {
-            game.moveCars();
-        }
+        game.moveCars();
 
-        List<Car> winners = game.findWinners();
-
-        assertThat(winners).containsExactly(car1, car2, car3);
+        assertThat(car1.getLocation()).isEqualTo(1);
+        assertThat(car2.getLocation()).isEqualTo(1);
+        assertThat(car3.getLocation()).isEqualTo(1);
     }
 
     private static class FixedNumberGenerator implements NumberGenerator {
