@@ -1,6 +1,6 @@
 package domain;
 
-public class  RacingCar {
+public class RacingCar {
     private final String name;
     private int distance;
 
@@ -16,8 +16,8 @@ public class  RacingCar {
         return name;
     }
 
-    public void move(int num) {
-        if (num >= 4) {
+    public void move(boolean isMovable) {
+        if(isMovable) {
             this.distance++;
         }
     }

@@ -18,7 +18,7 @@ public class Application {
             ResultView.printRound(racingGame.getCars());
         }
 
-        List<RacingCar> winners = racingGame.whoWin(racingGame.getCars());
+        List<RacingCar> winners = racingGame.whoWin();
         ResultView.printWinners(winners);
     }
 }

@@ -7,16 +7,23 @@ import java.util.Random;
 public class RacingGame {
     private final List<RacingCar> cars;
     private final int tryCount;
-    private final NumberGenerator numberGenerator;
+    private final MoveRule moveRule;
 
     public RacingGame(List<String> carNames, int tryCount) {
-        this(carNames, tryCount, () -> new Random().nextInt(10));
+        this(carNames, tryCount, () -> new Random().nextInt(10)>=4);
     }
 
-    public RacingGame(List<String> carNames, int tryCount, NumberGenerator numberGenerator) {
+    public RacingGame(List<String> carNames, int tryCount, MoveRule moveRule) {
         this.cars = createCars(carNames);
-        this.tryCount = tryCount;
-        this.numberGenerator = numberGenerator;
+        this.tryCount = validateTryCountError(tryCount);
+        this.moveRule = moveRule;
+    }
+
+    private int validateTryCountError(int tryCount) {
+        if(tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
+        }
+        return tryCount;
     }
 
     private List<RacingCar> createCars(List<String> carNames) {
@@ -24,12 +31,13 @@ public class RacingGame {
         for (String name : carNames) {
             cars.add(new RacingCar(name));
         }
+
         return cars;
     }
 
     public void moveCars() {
         for (RacingCar car : cars) {
-            car.move(numberGenerator.generate());
+            car.move(moveRule.isMovable());
         }
     }
 
@@ -38,29 +46,21 @@ public class RacingGame {
     }
 
     public List<RacingCar> getCars() {
-        return cars;
+        return new ArrayList<>(cars);
     }
 
-    private int findMaxDistance(List<RacingCar> cars) {
-        int maxDistance = 0;
-        for (RacingCar car : cars) {
-            maxDistance = Math.max(maxDistance, car.getDistance());
-        }
-        return maxDistance;
+    private int findMaxDistance() {
+        return cars.stream()
+                .mapToInt(car -> car.getDistance())
+                .max()
+                .orElse(0);
     }
 
-    private void findWinner(RacingCar car, int maxDistance, List<RacingCar> winners) {
-        if (maxDistance == car.getDistance()) {
-            winners.add(car);
-        }
-    }
+    public List<RacingCar> whoWin() {
+        int maxDistance = findMaxDistance();
 
-    public List<RacingCar> whoWin(List<RacingCar> cars) {
-        int maxDistance = findMaxDistance(cars);
-        List<RacingCar> winners = new ArrayList<>();
-        for (RacingCar car : cars) {
-            findWinner(car, maxDistance, winners);
-        }
-        return winners;
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .toList();
     }
 }
