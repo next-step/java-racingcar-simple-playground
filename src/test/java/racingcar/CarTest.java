@@ -1,5 +1,7 @@
 package racingcar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +12,11 @@ class CarTest {
     void carMovingTest(){
         Car car = new Car("car1");
 
-        car.moveCar();
-        car.getLocation();
+        car.moveCar(4);
+        assertEquals(1, car.getLocation());
+
+        car.moveCar(3);
+        assertEquals(1, car.getLocation());
     }
 }
 

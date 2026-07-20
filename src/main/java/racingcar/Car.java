@@ -25,8 +25,7 @@ public class Car {
         return random.nextInt(10);
     }
 
-    public void moveCar() {
-        int randomValue = makeNum();
+    public void moveCar(int randomValue) {
         if (randomValue >= 4) {
             location += 1; //한번에 1씩 전진한다고 가정한다..
         }
