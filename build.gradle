@@ -16,6 +16,14 @@ dependencies {
     testImplementation('org.assertj:assertj-core')
 }
 
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
 test {
     useJUnitPlatform()
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "🔍 Checkstyle 검사를 시작합니다..."
+chmod +x checkstyle.sh
+./checkstyle.sh
