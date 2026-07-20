@@ -1,5 +1,6 @@
 import domain.Car;
 import domain.FixedNumberGenerator;
+import domain.NumberMovingStrategy;
 import domain.RacingGame;
 import domain.SequenceNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +20,7 @@ class RacingGameTest {
         );
         int expectedCarCount = 3;
 
-        RacingGame game = new RacingGame(carNames, 1);
+        RacingGame game = new RacingGame(carNames, 1, new FixedNumberGenerator(0), new NumberMovingStrategy());
 
         assertThat(game.getCars()).hasSize(expectedCarCount);
     }
@@ -32,7 +33,7 @@ class RacingGameTest {
         );
         int expectedPosition = 1;
 
-        RacingGame game = new RacingGame(carNames, 1, new FixedNumberGenerator(9));
+        RacingGame game = new RacingGame(carNames, 1, new FixedNumberGenerator(9), new NumberMovingStrategy());
         game.playRound();
 
         assertThat(game.getCars())
@@ -48,7 +49,7 @@ class RacingGameTest {
         );
         SequenceNumberGenerator generator = new SequenceNumberGenerator(1, 6, 3); // BBB만 전진
 
-        RacingGame game = new RacingGame(carNames, 1, generator);
+        RacingGame game = new RacingGame(carNames, 1, generator, new NumberMovingStrategy());
         game.playRound();
 
         assertThat(game.getWinners())
@@ -64,7 +65,7 @@ class RacingGameTest {
         );
         SequenceNumberGenerator generator = new SequenceNumberGenerator(3, 4, 4); // BBB, CCC 전진
 
-        RacingGame game = new RacingGame(carNames, 1, generator);
+        RacingGame game = new RacingGame(carNames, 1, generator, new NumberMovingStrategy());
         game.playRound();
 
         assertThat(game.getWinners())

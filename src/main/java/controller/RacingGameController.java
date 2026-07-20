@@ -1,6 +1,8 @@
 package controller;
 
+import domain.NumberMovingStrategy;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import view.InputView;
 import view.ResultView;
 
@@ -12,7 +14,7 @@ public class RacingGameController {
         List<String> carNames = InputView.getCarNames();
         int tryCount = InputView.getTryCount();
 
-        RacingGame racingGame = new RacingGame(carNames, tryCount);
+        RacingGame racingGame = new RacingGame(carNames, tryCount, new RandomNumberGenerator(), new NumberMovingStrategy());
 
         ResultView.printHeader();
         for (int i = 0; i < racingGame.getTryCount(); i++) {

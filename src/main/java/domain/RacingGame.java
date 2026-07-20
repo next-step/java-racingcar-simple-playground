@@ -8,24 +8,8 @@ public class RacingGame {
     private final NumberGenerator numberGenerator;
     private final MovingStrategy movingStrategy;
 
-    public RacingGame(List<String> carNames, int tryCount) { // 기본 레이싱 게임
-        this(carNames, tryCount, new RandomNumberGenerator(), new NumberMovingStrategy());
-    }
-
-    public RacingGame(List<String> carNames, int tryCount, NumberGenerator numberGenerator) {
-        this(carNames, tryCount, numberGenerator, new NumberMovingStrategy());
-    }
-
-    public RacingGame(List<String> carNames, int tryCount, MovingStrategy movingStrategy) {
-        this(carNames, tryCount, new RandomNumberGenerator(), movingStrategy);
-    }
-
     public RacingGame(List<String> carNames, int tryCount, NumberGenerator numberGenerator, MovingStrategy movingStrategy) {
-        this(Cars.from(carNames), tryCount, numberGenerator, movingStrategy);
-    }
-
-    private RacingGame(Cars cars, int tryCount, NumberGenerator numberGenerator, MovingStrategy movingStrategy) {
-        this.cars = cars;
+        this.cars = Cars.from(carNames);
         this.tryCount = tryCount;
         this.numberGenerator = numberGenerator;
         this.movingStrategy = movingStrategy;
