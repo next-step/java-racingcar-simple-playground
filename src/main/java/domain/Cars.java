@@ -22,9 +22,15 @@ public class Cars {
         return List.copyOf(cars);
     }
 
-    public void move(MovingStrategy movingStrategy, NumberGenerator numberGenerator) {
+    public void moveAll(MovingStrategy movingStrategy, NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.move(movingStrategy, numberGenerator.generate());
+            moveIfMovable(car, movingStrategy, numberGenerator);
+        }
+    }
+
+    private void moveIfMovable(Car car, MovingStrategy movingStrategy, NumberGenerator numberGenerator) {
+        if (movingStrategy.isMovable(numberGenerator.generate())) {
+            car.move();
         }
     }
 

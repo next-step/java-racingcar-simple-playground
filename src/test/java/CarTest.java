@@ -1,5 +1,4 @@
 import domain.Car;
-import domain.NumberMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,30 +43,13 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("4이상일 때 자동차가 움직이는지 테스트")
+    @DisplayName("자동차가 1칸 전진하는지 테스트")
     void carMoveTest() {
-        String carName = "자동차";
-        int random = 4;
         int expectedPosition = 1;
 
-        Car car = new Car(carName);
-        car.move(new NumberMovingStrategy(), random);
-        int actualPosition = car.getPosition();
+        Car car = new Car("자동차");
+        car.move();
 
-        assertThat(actualPosition).isEqualTo(expectedPosition);
-    }
-
-    @Test
-    @DisplayName("3이하일 때 자동차가 안 움직이는지 테스트")
-    void carNotMoveTest() {
-        String carName = "자동차";
-        int random = 3;
-        int expectedPosition = 0;
-
-        Car car = new Car(carName);
-        car.move(new NumberMovingStrategy(), random);
-        int actualPosition = car.getPosition();
-
-        assertThat(actualPosition).isEqualTo(expectedPosition);
+        assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 }

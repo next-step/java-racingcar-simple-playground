@@ -21,10 +21,8 @@ public class Car {
         return position;
     }
 
-    public void move(MovingStrategy movingStrategy, int number) {
-        if (movingStrategy.isMovable(number)) {
-            position++;
-        }
+    public void move() {
+        position++;
     }
 
     private void validateName(String name) {

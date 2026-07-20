@@ -36,7 +36,7 @@ public class RacingGame {
     }
 
     public void playRound() {
-        cars.move(movingStrategy, numberGenerator);
+        cars.moveAll(movingStrategy, numberGenerator);
     }
 
     public List<Car> getCars() {
