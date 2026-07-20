@@ -1,55 +1,53 @@
 import domain.Car;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
-    @Test
-    @DisplayName("자동차 이름 확인 테스트(5글자 이하면 성공)")
-    void carNameTest() {
-        String carName = "자동차";
-        int expectedPosition = 0;
+    @Nested
+    @DisplayName("자동차 이름 테스트")
+    class name {
 
-        Car car = new Car(carName);
-        String actualName = car.getName();
-        int actualPosition = car.getPosition();
+        @ParameterizedTest
+        @ValueSource(strings = {"a", "세글자", "다섯글자5"})
+        @DisplayName("이름이 5자 이하면 생성 성공 테스트")
+        void 이름이_5자_이하면_생성_성공(String carName) {
+            Car car = new Car(carName);
 
-        assertThat(actualName).isEqualTo(carName);
-        assertThat(actualPosition).isEqualTo(expectedPosition);
+            assertThat(car.getName()).isEqualTo(carName);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"여섯글자66", "일곱글자777"})
+        @DisplayName("이름이 5자를 초과하면 예외 발생 테스트")
+        void 이름이_5자_초과면_예외_발생(String carName) {
+            String throwMessage = "자동차 이름은 5자 이하만 가능합니다.";
+
+            assertThatThrownBy(() -> new Car(carName))
+                    .isInstanceOf(RuntimeException.class)
+                    .hasMessage(throwMessage);
+        }
     }
 
-    @Test
-    @DisplayName("자동차 이름이 5글자일 때 생성 성공 테스트")
-    void carNameMaxLengthTest() {
-        String carName = "다섯글자다";
+    @Nested
+    @DisplayName("자동차 이동 테스트")
+    class move {
 
-        Car car = new Car(carName);
+        @Test
+        @DisplayName("move() 호출 시 한 칸 전진 테스트")
+        void move_호출시_한칸_전진() {
+            int expectedPosition = 1;
 
-        assertThat(car.getName()).isEqualTo(carName);
-    }
+            Car car = new Car("자동차");
+            car.move();
 
-    @Test
-    @DisplayName("자동차 이름이 5글자 초과시 예외 발생 테스트")
-    void carNameLengthTest() {
-        String carName = "여섯글자이름";
-        String throwMessage = "자동차 이름은 5자 이하만 가능합니다.";
-
-        assertThatThrownBy(() -> new Car(carName))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessage(throwMessage);
-    }
-
-    @Test
-    @DisplayName("자동차가 1칸 전진하는지 테스트")
-    void carMoveTest() {
-        int expectedPosition = 1;
-
-        Car car = new Car("자동차");
-        car.move();
-
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+            assertThat(car.getPosition()).isEqualTo(expectedPosition);
+        }
     }
 }
