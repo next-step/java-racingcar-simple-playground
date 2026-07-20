@@ -30,7 +30,18 @@ class CarTest {
             String throwMessage = "자동차 이름은 5자 이하만 가능합니다.";
 
             assertThatThrownBy(() -> new Car(carName))
-                    .isInstanceOf(RuntimeException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(throwMessage);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", " "})
+        @DisplayName("이름이 비어 있으면 예외 발생 테스트")
+        void 이름이_비어있으면_예외_발생(String carName) {
+            String throwMessage = "자동차 이름은 비어 있을 수 없습니다.";
+
+            assertThatThrownBy(() -> new Car(carName))
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(throwMessage);
         }
     }

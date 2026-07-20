@@ -7,7 +7,18 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateDistinct(cars);
         this.cars = List.copyOf(cars);
+    }
+
+    private void validateDistinct(List<Car> cars) {
+        long distinctCount = cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+        if (distinctCount != cars.size()) {
+            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+        }
     }
 
     public static Cars from(List<String> carNames) {

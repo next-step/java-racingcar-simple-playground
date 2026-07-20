@@ -14,6 +14,10 @@ public class InputView {
 
     public static int getTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("시도 횟수는 숫자로 입력해야 합니다.");
+        }
     }
 }
