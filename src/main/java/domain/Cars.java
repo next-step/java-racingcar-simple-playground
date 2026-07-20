@@ -7,7 +7,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        this.cars = cars;
+        this.cars = List.copyOf(cars);
     }
 
     public static Cars from(List<String> carNames) {
