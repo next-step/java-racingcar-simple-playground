@@ -17,7 +17,7 @@ public class RacingCar {
     }
 
     public void move(boolean isMovable) {
-        if(isMovable) {
+        if (isMovable) {
             this.distance++;
         }
     }

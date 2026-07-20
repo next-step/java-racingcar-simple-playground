@@ -1,36 +1,15 @@
-import domain.RacingCar;
-import domain.RacingGame;
-import view.InputView;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class RefactorTest {
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-    @Test
-    @DisplayName("racing car move test success")
-    public void moveTest() {
-        RacingCar car = new RacingCar("test");
-        car.move(true);
-        assertThat(car.getDistance()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("racing car move test fail")
-    public void moveTest2() {
-        RacingCar car = new RacingCar("test");
-        car.move(false);
-        assertThat(car.getDistance()).isEqualTo(0);
-    }
-
+public class RacingGameTest {
     @Test
     @DisplayName("one winner")
     public void winnerTest() {
@@ -86,21 +65,12 @@ public class RefactorTest {
     }
 
     @Test
-    @DisplayName("exception test")
-    public void nameLengthExceptionTest() {
-        assertThatThrownBy(() -> new RacingCar("toolongname"))
-                .isInstanceOf(IllegalArgumentException.class)
-
-                .hasMessage("자동차 이름은 5자 이하만 가능합니다");
-    }
-
-    @Test
     @DisplayName("move all cars test -> all move")
     public void moveAllCarTest() {
         RacingGame racingGame = new RacingGame(Arrays.asList("test1", "test2", "test3"), 1, () -> true);
 
         racingGame.moveCars();
-        for(RacingCar car : racingGame.getCars()) {
+        for (RacingCar car : racingGame.getCars()) {
             assertThat(car.getDistance()).isEqualTo(1);
         }
 
@@ -112,8 +82,16 @@ public class RefactorTest {
         RacingGame racingGame = new RacingGame(Arrays.asList("test1", "test2", "test3"), 1, () -> false);
 
         racingGame.moveCars();
-        for(RacingCar car : racingGame.getCars()) {
+        for (RacingCar car : racingGame.getCars()) {
             assertThat(car.getDistance()).isEqualTo(0);
         }
+    }
+
+    @Test
+    @DisplayName("tryCount exception test")
+    public void validateTryCountTest() {
+        assertThatThrownBy(() -> new RacingGame(Arrays.asList("test1"), 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("시도 횟수는 1 이상이어야 합니다.");
     }
 }

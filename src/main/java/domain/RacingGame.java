@@ -10,7 +10,7 @@ public class RacingGame {
     private final MoveRule moveRule;
 
     public RacingGame(List<String> carNames, int tryCount) {
-        this(carNames, tryCount, () -> new Random().nextInt(10)>=4);
+        this(carNames, tryCount, () -> new Random().nextInt(10) >= 4);
     }
 
     public RacingGame(List<String> carNames, int tryCount, MoveRule moveRule) {
@@ -20,19 +20,17 @@ public class RacingGame {
     }
 
     private int validateTryCountError(int tryCount) {
-        if(tryCount <= 0) {
+        if (tryCount <= 0) {
             throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
         }
         return tryCount;
     }
 
     private List<RacingCar> createCars(List<String> carNames) {
-        List<RacingCar> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new RacingCar(name));
-        }
 
-        return cars;
+        return carNames.stream()
+                .map(name -> new RacingCar(name))
+                .toList();
     }
 
     public void moveCars() {
@@ -51,9 +49,8 @@ public class RacingGame {
 
     private int findMaxDistance() {
         return cars.stream()
-                .mapToInt(car -> car.getDistance())
-                .max()
-                .orElse(0);
+                .map(RacingCar::getDistance)
+                .reduce(0, Math::max);
     }
 
     public List<RacingCar> whoWin() {
