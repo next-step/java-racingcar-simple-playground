@@ -5,7 +5,8 @@ import java.util.*;
 public class RacingcarGame {
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
-    private int moveCount;
+    private int totalRound;
+    private int currentRound = 0;
 
     public RacingcarGame(String[] names, NumberGenerator numberGenerator) {
         this.cars = new ArrayList<>();
@@ -14,29 +15,33 @@ public class RacingcarGame {
     }
 
     private void putNamesToList(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-            Car car = new Car(names[i]);
-            cars.add(car);
+        for (String name : names) {
+            cars.add(new Car(name));
         }
     }
 
-    public void setMoveCount(int moveCount) {
-        this.moveCount = moveCount;
-    }
-
-    public int getMoveCount() {
-         return this.moveCount;
+    public void setTotalRound(int totalRound) {
+        this.totalRound = totalRound;
     }
 
     public List<Car> getCars() {
        return new ArrayList<>(this.cars);
     }
 
-    public void addDistance() {
+    private void addDistance() {
         for (Car car : cars) {
             int randomValue = numberGenerator.getNumber();
             car.move(randomValue);
         }
+    }
+
+    public void playRound() {
+        addDistance();
+        currentRound++;
+    }
+
+    public boolean isFinished() {
+        return totalRound == currentRound;
     }
 
     public List<Car> getWinner() {

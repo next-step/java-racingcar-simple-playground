@@ -16,7 +16,7 @@ class RacingcarGameTest {
     }
 
     @Test
-    void 공동_우승자가_없는_때() {
+    void 공동_우승자가_없는_경우() {
         // Given
         String[] names = {"car1", "car2", "car3"};
         NumberGenerator numberGenerator = new TestNumberGenerator();

@@ -22,18 +22,19 @@ public class Application {
         }
 
         int moveCount = InputView.inputMoveCount();
-        racingcarGame.setMoveCount(moveCount);
+        racingcarGame.setTotalRound(moveCount);
 
         playGame();
     }
 
-    public void playGame() {
+    private void playGame() {
         System.out.println("\n실행결과");
 
-        for (int i = 0; i < racingcarGame.getMoveCount(); i++) {
-            racingcarGame.addDistance();
+        while (!racingcarGame.isFinished()) {
+            racingcarGame.playRound();
             ResultView.printCarDistance(racingcarGame.getCars());
         }
+
         ResultView.printWinners(racingcarGame.getWinner());
     }
 
