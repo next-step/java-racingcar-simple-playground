@@ -14,9 +14,16 @@ class CarTest {
 
         car.moveCar(4);
         assertEquals(1, car.getLocation());
+    }
+
+    @Test
+    @DisplayName("자동차_전진하지_않는_테스트")
+    void carNotMovingTest(){
+        Car car = new Car("car1");
 
         car.moveCar(3);
-        assertEquals(1, car.getLocation());
+        assertEquals(0, car.getLocation());
     }
+
 }
 

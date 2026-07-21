@@ -20,7 +20,7 @@ public class Car {
     }
 
     //랜덤한 숫자를 0-9중에 만드는 함수
-    private int makeNum() {
+    public int makeNum() {
         Random random = new Random();
         return random.nextInt(10);
     }
