@@ -1,92 +1,88 @@
 package mission2;
 
 import mission1.RacingCar;
+import mission4.NumberGenerator;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Racing {
-    private final Random random;
     private final List<RacingCar> racingCarList;
+    private final List<Map<String, Integer>> history;
     private final int gameCount;
+    private final NumberGenerator numberGenerator;
 
-    public Racing(String[] player, int gameCount){
+    public Racing(String[] player, int gameCount, NumberGenerator numberGenerator) {
         this.gameCount = gameCount;
-        this.random = new Random();
-        this.racingCarList = new LinkedList<>();
+        this.history = new ArrayList<>();
+        this.racingCarList = new ArrayList<>();
+        this.numberGenerator = numberGenerator;
         init(player);
     }
 
-    private void init(String[] player){
+    private void init(String[] player) {
+        validateDuplicateNames(player);
         for (String s : player) {
-            isMaximumLength(s);
             racingCarList.add(new RacingCar(s));
         }
     }
 
-    public void isMaximumLength(String s) {
-        if(s.length() > 5){
-            throw new RuntimeException("이름은 5글자를 넘을 수 없습니다.");
+    private void validateDuplicateNames(String[] players) {
+        List<String> names = new ArrayList<>();
+        for (String name : players) {
+            names.add(name);
         }
-    }
-
-    public void start(){
-        for(int i = 0; i < gameCount; i++){
-            roundResult();
-        }
-        getWinner();
-    }
-
-
-    private void move(){
-        for(int i = 0; i < racingCarList.size(); i++){
-            racingCarList.get(i).tryAdvance(random.nextInt(10));
+        Set<String> uniqueNames = new HashSet<>(names);
+        if (names.size() != uniqueNames.size()) {
+            throw new IllegalArgumentException("중복된 이름은 허용하고 있지 않습니다.");
         }
     }
 
 
-    private void roundResult(){
+    public void start() {
+        for (int i = 0; i < gameCount; i++) {
+            history.add(roundResult());
+        }
+    }
+
+    private void move() {
+        for (RacingCar racingCar : racingCarList) {
+            racingCar.tryAdvance(numberGenerator.numberGenerator());
+        }
+    }
+
+    private Map<String, Integer> roundResult() {
+        Map<String, Integer> result = new HashMap<>();
         move();
-        for(int i = 0; i < racingCarList.size(); i++){
-            System.out.println(racingCarList.get(i).getName() + " : " + playerMoveRes(i));
+        for (RacingCar racingCar : racingCarList) {
+            result.put(racingCar.getName(), racingCar.getDistance());
         }
-        System.out.println();
+        return result;
     }
 
-    private String playerMoveRes(int index){
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < racingCarList.get(index).getDistance(); i++){
-            sb.append("-");
-        }
-        return sb.toString();
-    }
-
-    private int maxDistance(){
-        int max = racingCarList.get(0).getDistance();
-        for(int i = 1; i < racingCarList.size(); i++){
-            max = Math.max(max, racingCarList.get(i).getDistance());
+    private int maxDistance() {
+        int max = 0;
+        for (RacingCar racingCar : racingCarList) {
+            max = Math.max(max, racingCar.getDistance());
         }
         return max;
     }
 
-    private String compareMoveDistance(){
-        StringBuilder sb = new StringBuilder();
-        int max = maxDistance();
-        for(int i = 0; i < racingCarList.size(); i++){
-            sb.append(winner(i, max));
-        }
-        return sb.substring(0,sb.toString().length()-2);
+    public List<String> getWinners() {
+            List<String> winners = new ArrayList<>();
+            int max = maxDistance();
+            for (RacingCar racingCar : racingCarList) {
+                addIfWinner(winners, racingCar, max);
+            }
+            return winners;
     }
 
-    private String winner(int i, int max){
-        if(racingCarList.get(i).getDistance() == max){
-            return racingCarList.get(i).getName() + ", ";
+    private void addIfWinner(List<String> winners, RacingCar racingCar, int max){
+        if(racingCar.isWinner(max)){
+            winners.add(racingCar.getName());
         }
-        return "";
     }
 
-    private void getWinner(){
-        System.out.println(compareMoveDistance() + "가 우승했습니다");
+    public List<Map<String, Integer>> getHistory(){
+        return history;
     }
 }
