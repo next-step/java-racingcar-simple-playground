@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class Car {
     String Name;
@@ -8,11 +7,6 @@ public class Car {
         this.Name = carName;
     }
     Car() {
-    }
-
-    int setNum() {
-        Random random = new Random();
-        return random.nextInt(10);
     }
 
     void moveCar() {

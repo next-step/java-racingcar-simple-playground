@@ -9,7 +9,7 @@ public class CarTest {
     @Test
     @DisplayName("움직이는 기능이 의도대로 동작하는지 테스트")
     void moveTest() {
-        var num = car.setNum();
+        var num = MakeRandomNum.setNum();
         if (num <= 3) {
             return;
         }
@@ -22,7 +22,7 @@ public class CarTest {
     @Test
     @DisplayName("멈추는 기능이 의도대로 동작하는지 테스트")
     void stopTest() {
-        var num = car.setNum();
+        var num = MakeRandomNum.setNum();
         if (num >= 4) {
             return;
         }
