@@ -4,16 +4,18 @@ import java.util.*;
 
 public class RacingcarGame {
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
     private int moveCount;
 
     public RacingcarGame(String[] names, NumberGenerator numberGenerator) {
         this.cars = new ArrayList<>();
-        putNamesToList(names, numberGenerator);
+        this.numberGenerator = numberGenerator;
+        putNamesToList(names);
     }
 
-    private void putNamesToList(String[] names, NumberGenerator numberGenerator) {
+    private void putNamesToList(String[] names) {
         for (int i = 0; i < names.length; i++) {
-            Car car = new Car(names[i], numberGenerator);
+            Car car = new Car(names[i]);
             cars.add(car);
         }
     }
@@ -32,38 +34,19 @@ public class RacingcarGame {
 
     public void addDistance() {
         for (Car car : cars) {
-            car.move();
+            int randomValue = numberGenerator.getNumber();
+            car.move(randomValue);
         }
     }
 
     public List<Car> getWinner() {
-        List<Car> winners = new ArrayList<>();
-        int max = compare();
+        int max = cars.stream()
+                .mapToInt(car -> car.getTotalDistance())
+                .max()
+                .orElse(0);
 
-        for (Car car : cars) {
-            putWinner(max, car, winners);
-        }
-        return winners;
-    }
-
-    private int compare() {
-        int max = 0; 
-        for (Car car : cars) {
-            max = maxDistance(max, car);
-        }
-        return max;
-    }
-
-    private int maxDistance(int max, Car car) {
-        if (max < car.getTotalDistance()) {
-            max = car.getTotalDistance();
-        }
-        return max;
-    }
-
-    private void putWinner(int max, Car car, List<Car> winners) {
-        if (max == car.getTotalDistance()) {
-            winners.add(car);
-        }
+        return cars.stream()
+                .filter(car -> car.getTotalDistance() == max)
+                .toList();
     }
 }

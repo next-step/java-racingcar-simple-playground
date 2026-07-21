@@ -8,28 +8,22 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RacingcarGameTest {
-
-    class TestNumberGenerator implements NumberGenerator {
-        private final int number;
-
-        public TestNumberGenerator(int number) { this.number = number; }
-
+    static class TestNumberGenerator implements NumberGenerator {
         @Override
-        public int getNumber(){
-            return number;
+        public int getNumber() {
+            return 0;
         }
     }
-    /*
-    * 우승 자동차 구하기 로직 테스트
-    * */
+
     @Test
     void 공동_우승자가_없는_때() {
         // Given
         String[] names = {"car1", "car2", "car3"};
-        RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
+        NumberGenerator numberGenerator = new TestNumberGenerator();
+        RacingcarGame testGame = new RacingcarGame(names, numberGenerator);
 
         List<Car> cars = testGame.getCars();
-        cars.get(2).move();
+        cars.get(2).move(7);
 
         // When
         List<Car> winnerCars = testGame.getWinner();
@@ -42,11 +36,12 @@ class RacingcarGameTest {
     void 공동_우승자가_있는_경우() {
         // Given
         String[] names = {"car1", "car2", "car3"};
-        RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
+        NumberGenerator numberGenerator = new TestNumberGenerator();
+        RacingcarGame testGame = new RacingcarGame(names, numberGenerator);
 
         List<Car> cars = testGame.getCars();
-        cars.get(1).move();
-        cars.get(2).move();
+        cars.get(1).move(7);
+        cars.get(2).move(7);
 
         // When
         List<Car> winnerCars = testGame.getWinner();
@@ -60,7 +55,8 @@ class RacingcarGameTest {
     void 모든_자동차가_공동_우승자인_경우() {
         // Given
         String[] names = {"car1", "car2", "car3"};
-        RacingcarGame testGame = new RacingcarGame(names, new TestNumberGenerator(7));
+        NumberGenerator numberGenerator = new TestNumberGenerator();
+        RacingcarGame testGame = new RacingcarGame(names, numberGenerator);
 
         List<Car> cars = testGame.getCars();
 

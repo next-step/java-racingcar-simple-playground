@@ -35,7 +35,7 @@ public class Application {
             ResultView.printCarDistance(racingcarGame.getCars());
         }
         ResultView.printWinners(racingcarGame.getWinner());
-        }
+    }
 
     public static void main(String[] args) {
         Application app = new Application();

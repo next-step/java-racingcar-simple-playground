@@ -4,14 +4,12 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_THRESHOLD = 4;
     private final String name;
-    private final NumberGenerator numberGenerator;
     private int totalDistance = 0;
 
 
-    public Car(String name, NumberGenerator numberGenerator) {
+    public Car(String name) {
         validateName(name);
         this.name = name;
-        this.numberGenerator = numberGenerator;
     }
 
     public String getName() {
@@ -28,8 +26,8 @@ public class Car {
         return randomValue >= MOVE_THRESHOLD;
     }
 
-    public void move() {
-        if (canMove(numberGenerator.getNumber())) {
+    public void move(int randomValue) {
+        if (canMove(randomValue)) {
             totalDistance++;
         }
     }
