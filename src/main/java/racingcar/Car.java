@@ -7,8 +7,12 @@ public class Car {
     private int location;
 
     public Car(String name) {    //생성자
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다."); // 3단계 조건 - "이름은 5자 이하만 가능하다"
+        }
         this.name = name;
         this.location = 0;
+
     }
 
     public String getName() {
