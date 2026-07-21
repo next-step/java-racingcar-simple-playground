@@ -2,8 +2,7 @@ package mission4;
 
 import mission2.Racing;
 import mission4.view.InputView;
-
-import java.util.Scanner;
+import mission4.view.ResultView;
 
 public class MissionMain {
     public static void main(String[] args) {
@@ -11,8 +10,10 @@ public class MissionMain {
         final var carNameArr = InputView.getCarNames();
         final var racingCount = InputView.getTryCount();
 
-        Racing racing = new Racing(carNameArr, racingCount);
-        System.out.println("실행결과");
+        Racing racing = new Racing(carNameArr, racingCount, new RandomNum(10));
+
         racing.start();
+        ResultView.printRoundResult(racing.getHistory());
+        ResultView.printWinner(racing.getWinners());
     }
 }
