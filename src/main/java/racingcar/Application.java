@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Application {
     public static void main(final String... args) {
-        final List<String> carNames = InputView.getCarNames();
-        final int tryCount = InputView.getTryCount();
+        final List<String> carNames = InputView.setCarNames();
+        final int tryCount = InputView.setTryCount();
 
         final RacingGame racingGame = new RacingGame(carNames.size(), tryCount);
 
