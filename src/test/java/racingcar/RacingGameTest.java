@@ -4,7 +4,7 @@ import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RacingTest {
+public class RacingGameTest {
 
     @Test
     @DisplayName("[2단계] 자동차 경주 기능테스트")
