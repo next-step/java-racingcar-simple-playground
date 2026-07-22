@@ -29,6 +29,10 @@ public class ResultView {
         System.out.println(car.getName() + " : " + createPosition(car.getLocation()));
     }
 
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     private static String createPosition(int location) {
         StringBuilder carLocation = new StringBuilder();
         for (int count = 0; count < location; count++) {

@@ -5,6 +5,14 @@ import view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
+        try {
+            run();
+        } catch (IllegalArgumentException exception) {
+            ResultView.printError(exception.getMessage());
+        }
+    }
+
+    private static void run() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         RacingGame racingGame = new RacingGame(InputView.readCars(), randomNumberGenerator);
         int tryCount = InputView.tryCount();
