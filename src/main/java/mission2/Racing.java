@@ -51,7 +51,7 @@ public class Racing {
     }
 
     private Map<String, Integer> roundResult() {
-        Map<String, Integer> result = new HashMap<>();
+        Map<String, Integer> result = new LinkedHashMap<>();
         move();
         for (RacingCar racingCar : racingCarList) {
             result.put(racingCar.getName(), racingCar.getDistance());

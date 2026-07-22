@@ -14,7 +14,7 @@ public class ResultView {
     private static String toRoundLine(Map<String, Integer> round){
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<String, Integer> entry : round.entrySet()){
-            sb.append(entry.getKey()).append(" : ").append("-".repeat(entry.getValue())).append("/n");
+            sb.append(entry.getKey()).append(" : ").append("-".repeat(entry.getValue())).append("\n");
         }
         return sb.toString();
     }
