@@ -1,15 +1,35 @@
+package domain;
+
 import java.util.*;
 
 public class RacingGame {
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 
-    public RacingGame(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
+    public RacingGame(List<String> carNames, int round) {
+        for (String carName : carNames) {
+            Car car = new Car(carName.trim());
+            this.cars.add(car);
+        }
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     public void playRound() {
         List<Integer> numbers = makeNumbers();
         moveCars(numbers);
+    }
+
+    private List<Integer> makeNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        Random random = new Random();
+
+        for(int i = 0; i < cars.size(); i++) {
+            numbers.add(random.nextInt(10));
+        }
+
+        return numbers;
     }
 
     public void moveCars(List<Integer> numbers) {
@@ -25,27 +45,6 @@ public class RacingGame {
         }
     }
 
-    public List<Integer> makeNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        Random random = new Random();
-
-        for(int i = 0; i < cars.size(); i++) {
-            numbers.add(random.nextInt(10));
-        }
-
-        return numbers;
-    }
-
-    public int findMaxPosition() {
-        int maxPosition = Integer.MIN_VALUE;
-
-        for(Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-
-        return maxPosition;
-    }
-
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         List<Car> winners = new ArrayList<>();
@@ -55,6 +54,16 @@ public class RacingGame {
         }
 
         return winners;
+    }
+
+    private int findMaxPosition() {
+        int maxPosition = Integer.MIN_VALUE;
+
+        for(Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+
+        return maxPosition;
     }
 
     private void addIfWinner(Car car, int maxPosition, List<Car> winners) {
