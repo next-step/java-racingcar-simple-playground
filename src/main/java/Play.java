@@ -5,9 +5,12 @@ import java.util.List;
 public class Play {
     List<Car> cars;
     List<Car> winner;
-    public Play(List<Car> cars) {
+    NumberGenerator numberGenerator;
+
+    public Play(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
         this.winner = new ArrayList<>();
+        this.numberGenerator = numberGenerator;
     }
     void totalPlay(int playNum) {
         for (int i = 0; i < playNum; i++) {
@@ -16,7 +19,7 @@ public class Play {
     }
     void playRound() {
         for (int i = 0; i < cars.size(); i++) { //라운드의 플레이 하나
-            int presentNum = MakeRandomNum.setNum();
+            int presentNum = numberGenerator.generate();
             setState(presentNum, i);
         }
     }
