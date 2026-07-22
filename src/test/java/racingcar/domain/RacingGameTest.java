@@ -1,25 +1,28 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RacingGameTest {
+public class RacingGameTest {
 
     @Test
-    void 자동차_이름들로_레이싱게임을_생성한다() {
+    @DisplayName("레이싱 게임에 자동차를 추가하면, 자동차 목록에서 확인할 수 있다")
+    void addCar_To_RacingGame() {
         // given
-        List<String> carNames = Arrays.asList("pobi", "woni", "jun");
+        RacingGame racingGame = new RacingGame(5, 3);
 
         // when
-        RacingGame racingGame = new RacingGame(carNames);
-        List<Car> cars = racingGame.getCars();
+        racingGame.addCar("Car1");
+        racingGame.addCar("Car2");
+        racingGame.addCar("Car3");
 
         // then
-        assertThat(cars).hasSize(3);
-        assertThat(cars.get(0).getName()).isEqualTo("pobi");
-        assertThat(cars.get(1).getName()).isEqualTo("woni");
-        assertThat(cars.get(2).getName()).isEqualTo("jun");
+        List<Car> cars = racingGame.getCarList();
+        assertThat(cars).hasSize(3); // 3대의 차가 추가되었는지 확인
+        assertThat(cars.get(0).getName()).isEqualTo("Car1");
+        assertThat(cars.get(1).getName()).isEqualTo("Car2");
+        assertThat(cars.get(2).getName()).isEqualTo("Car3");
     }
 }

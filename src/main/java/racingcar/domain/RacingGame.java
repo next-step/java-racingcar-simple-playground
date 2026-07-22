@@ -56,4 +56,8 @@ public class RacingGame { //리팩토링 예시에 맞춰서 클래스 이름 �
         }
         return winners;
     }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
 }
