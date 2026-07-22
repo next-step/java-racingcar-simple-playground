@@ -1,0 +1,27 @@
+package domain.game;
+
+import domain.car.Car;
+
+import java.util.List;
+
+public class WinnerFinder {
+
+    private WinnerFinder() {
+    }
+
+    public static List<String> findWinners(List<Car> cars) {
+        int maxLocation = findMaxLocation(cars);
+
+        return cars.stream()
+                .filter(car -> car.getLocation() == maxLocation)
+                .map(Car::getName)
+                .toList();
+    }
+
+    private static int findMaxLocation(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(Car::getLocation)
+                .max()
+                .orElse(0);
+    }
+}
