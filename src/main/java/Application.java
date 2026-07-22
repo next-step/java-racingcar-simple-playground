@@ -17,8 +17,11 @@ public class Application {
             cars.add(new Car(name));
         }
 
+        RacingGame racingGame = new RacingGame(cars);
+
         System.out.println("실행 결과");
         for (int i = 0; i < round; i++) {
+            racingGame.playRound();
             for (Car car : cars) {
                 System.out.print(car.getName() + ":");
                 for (int j = 0; j < car.getPosition(); j++) {
@@ -28,8 +31,6 @@ public class Application {
             }
             System.out.println();
         }
-
-        RacingGame racingGame = new RacingGame(cars);
 
         List<Car> winners = new ArrayList<>();
 

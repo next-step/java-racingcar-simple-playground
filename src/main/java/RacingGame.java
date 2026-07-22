@@ -7,6 +7,11 @@ public class RacingGame {
         this.cars = new ArrayList<>(cars);
     }
 
+    public void playRound() {
+        List<Integer> numbers = makeNumbers();
+        moveCars(numbers);
+    }
+
     public void moveCars(List<Integer> numbers) {
         for(int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
@@ -14,6 +19,17 @@ public class RacingGame {
 
             car.move(number);
         }
+    }
+
+    public List<Integer> makeNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        Random random = new Random();
+
+        for(int i = 0; i < cars.size(); i++) {
+            numbers.add(random.nextInt(10));
+        }
+
+        return numbers;
     }
 
     public int findMaxPosition() {
