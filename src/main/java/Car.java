@@ -1,6 +1,7 @@
 public class Car {
     private String name;
     private int position = 0;
+    private int randomNumber = (int) (Math.random() * 10);
 
     public Car(String name) {
         this.name = name;
@@ -10,7 +11,11 @@ public class Car {
         return position;
     }
 
-    public void move(int randomNumber) {
+    public String getName() {
+        return name;
+    }
+
+    public void move() {
 
         if (randomNumber >= 4) {
             position++;
