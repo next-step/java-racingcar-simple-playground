@@ -13,7 +13,7 @@ public class Application {
         System.out.println();
 
         for (String name : carNames.split(",")) {
-            cars.add(new Car(name));
+            cars.add(new Car(name.trim()));
         }
 
         RacingGame racingGame = new RacingGame(cars);
