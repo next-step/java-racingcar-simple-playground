@@ -9,23 +9,13 @@ import org.junit.jupiter.api.Test;
 class CarTest {
 
     @Test
-    @DisplayName("랜덤 값이 4 이상이면 전진한다")
-    void moveWhenRandomNumberIsFourOrMore() {
+    @DisplayName("차가 1칸 이동한다")
+    void moveCarOneBlock() {
         Car car = new Car("green");
 
-        car.move(4);
+        car.move();
 
         assertThat(car.getLocation()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("랜덤 값이 3 이하이면 정지한다")
-    void stopWhenRandomNumberIsThreeOrLess() {
-        Car car = new Car("green");
-
-        car.move(3);
-
-        assertThat(car.getLocation()).isZero();
     }
 
     @Test

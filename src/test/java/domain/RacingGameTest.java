@@ -15,11 +15,9 @@ public class RacingGameTest {
         Car car1 = new Car("hyun");
         Car car2 = new Car("Kia");
 
-        car1.move(5); // 4 이상 이므로 +1
-        car2.move(3); // 3 이하 이므로 stop
 
-        RacingGame game = new RacingGame(List.of(car1, car2), new FixedNumberGenerator(0));
-
+        RacingGame game = new RacingGame(List.of(car1, car2), new SequentialNumberGenerator(4, 3));
+        game.moveCars();
         List<Car> winners = game.findWinners();
 
         assertThat(winners).containsExactly(car1);
@@ -32,19 +30,15 @@ public class RacingGameTest {
         Car car2 = new Car("Kia");
         Car car3 = new Car("Tesla");
 
-        car1.move(5);
-        car2.move(3);
-        car3.move(6);
-
-        RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(0));
-
+        RacingGame game = new RacingGame(List.of(car1, car2, car3), new SequentialNumberGenerator(4, 2, 6));
+        game.moveCars();
         List<Car> winners = game.findWinners();
 
         assertThat(winners).containsExactly(car1, car3);
     }
 
     @Test
-    @DisplayName("주어진 횟수 이후 우승한 차 구하는 경기")
+    @DisplayName("여러 라운드 실행 후 자동차 위치 확인")
     void findMultiCountRaceWinner() {
         Car car1 = new Car("hyun");
         Car car2 = new Car("Kia");
@@ -53,10 +47,11 @@ public class RacingGameTest {
         RacingGame game = new RacingGame(List.of(car1, car2, car3), new FixedNumberGenerator(4));
 
         game.moveCars();
+        game.moveCars();
 
-        assertThat(car1.getLocation()).isEqualTo(1);
-        assertThat(car2.getLocation()).isEqualTo(1);
-        assertThat(car3.getLocation()).isEqualTo(1);
+        assertThat(car1.getLocation()).isEqualTo(2);
+        assertThat(car2.getLocation()).isEqualTo(2);
+        assertThat(car3.getLocation()).isEqualTo(2);
     }
 
     private static class FixedNumberGenerator implements NumberGenerator {
@@ -72,4 +67,16 @@ public class RacingGameTest {
         }
     }
 
+    private static class SequentialNumberGenerator implements NumberGenerator {
+        private final int[] numbers;
+        private int index = 0;
+        private SequentialNumberGenerator(int... numbers) {
+            this.numbers = numbers;
+        }
+
+        @Override
+        public int generateNumber() {
+            return numbers[index++];
+        }
+    }
 }

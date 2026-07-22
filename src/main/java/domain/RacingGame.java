@@ -14,7 +14,13 @@ public class RacingGame {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.move(numberGenerator.generateNumber());
+            moveCar(car);
+        }
+    }
+
+    private void moveCar(Car car) {
+        if (MoveRule.canMove(numberGenerator.generateNumber())) {
+            car.move();
         }
     }
 
