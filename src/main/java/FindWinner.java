@@ -2,19 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindWinner {
-    private Car[] cars;
+    private List<Car> cars = new ArrayList<>();
     private int longestPosition = 0;
     private List<String> winnerNames = new ArrayList<>();
 
-    public FindWinner(Car[] cars) {
+    public FindWinner(List<Car> cars) {
         this.cars = cars;
     }
 
-    public void startRacing() {
-        for (int i = 0; i <= 7; i++) {
+    public void startRacing(int count) {
+        System.out.println("실행결과");
+        for (int i = 0; i < count; i++) {
             for (Car car : cars) {
-                car.move();
+                int randomNumber = (int) (Math.random() * 10);
+                car.move(randomNumber);
+                System.out.println(car.getName() + " : ");
+                for (int j = 0; j < car.getPosition(); j++) {
+                    System.out.println("-");
+                }
             }
+            System.out.println("\n");
         }
     }
 
