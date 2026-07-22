@@ -3,7 +3,7 @@ package mission4;
 import mission2.Racing;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import testutil.FixedNum;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

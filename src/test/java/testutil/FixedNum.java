@@ -1,9 +1,8 @@
-package mission4;
+package testutil;
 
-import java.util.Random;
+import mission4.NumberGenerator;
 
-public class FixedNum implements NumberGenerator{
-    Random random = new Random();
+public class FixedNum implements NumberGenerator {
     private final int fixedNum;
 
     public FixedNum(int fixedNum) {
