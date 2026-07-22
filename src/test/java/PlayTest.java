@@ -1,3 +1,5 @@
+import domain.Car;
+import domain.Play;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

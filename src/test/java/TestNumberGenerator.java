@@ -1,6 +1,8 @@
+import domain.NumberGenerator;
+
 import java.util.Random;
 
-public class TestNumberGenerator implements NumberGenerator{
+public class TestNumberGenerator implements NumberGenerator {
     int seedNum;
     Random random;
     public TestNumberGenerator(int seedNum) {

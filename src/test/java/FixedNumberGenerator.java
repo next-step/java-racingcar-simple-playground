@@ -1,4 +1,6 @@
-public class FixedNumberGenerator implements NumberGenerator{
+import domain.NumberGenerator;
+
+public class FixedNumberGenerator implements NumberGenerator {
     int fixedNumber;
     public FixedNumberGenerator(int fixedNumber) {
         this.fixedNumber = fixedNumber;

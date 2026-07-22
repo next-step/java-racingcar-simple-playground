@@ -1,6 +1,8 @@
+package domain;
+
 import java.util.Random;
 
-public class MakeRandomNum implements NumberGenerator{
+public class MakeRandomNum implements NumberGenerator {
     @Override
     public int generate() {
         Random random = new Random();
