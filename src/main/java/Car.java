@@ -1,10 +1,10 @@
 
 public class Car {
-    String Name;
+    String name;
     int position = 0;
 
     Car(String carName) {
-        this.Name = carName;
+        this.name = carName;
     }
     Car() {
     }
