@@ -9,7 +9,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차_전진_테스트")
-    void carMovingTest(){
+    void carMovingTest() {
         Car car = new Car("car1");
 
         car.moveCar(4);
@@ -18,7 +18,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차_전진하지_않는_테스트")
-    void carNotMovingTest(){
+    void carNotMovingTest() {
         Car car = new Car("car1");
 
         car.moveCar(3);
