@@ -47,11 +47,15 @@ public class RacingGame {
         List<Car> winners = new ArrayList<>();
 
         for(Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car);
-            }
+            addIfWinner(car, maxPosition, winners);
         }
 
         return winners;
+    }
+
+    private void addIfWinner(Car car, int maxPosition, List<Car> winners) {
+        if (car.getPosition() == maxPosition) {
+            winners.add(car);
+        }
     }
 }
