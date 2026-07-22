@@ -13,6 +13,10 @@ public class RacingGame {
     }
 
     public void moveCars(List<Integer> numbers) {
+        if(cars.size() != numbers.size()) {
+            throw new IllegalArgumentException("자동차 수와 숫자의 개수가 같아야 합니다.");
+        }
+
         for(int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
             int number = numbers.get(i);
