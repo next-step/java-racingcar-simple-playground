@@ -15,7 +15,7 @@ public class CarTest {
         if (num >= 4) {
             car.moveCar();
         }
-        assertEquals(1, car.position);
+        assertEquals(1, car.getPosition());
     }
 
     @Test
@@ -27,6 +27,6 @@ public class CarTest {
         if (num <= 3) {
             car.stopCar();
         }
-        assertEquals(0, car.position);
+        assertEquals(0, car.getPosition());
     }
 }

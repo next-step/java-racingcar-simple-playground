@@ -23,16 +23,18 @@ public class PlayTest {
         cars.add(car2);
         cars.add(car3);
         Play play1 = new Play(cars, testNumberGenerator);
-        play1.totalPlay(4);
+        for (int i = 0; i < 4; i++) {
+            play1.playRound();
+        }
         play1.getWinners(cars);
 
-        System.out.println("소나타 위치: " + car1.position);
-        System.out.println("아반떼 위치: " + car2.position);
-        System.out.println("벤틀리 위치: " + car3.position);
-        System.out.println("우승자 수: " + play1.winner.size());
+        System.out.println("소나타 위치: " + car1.getPosition());
+        System.out.println("아반떼 위치: " + car2.getPosition());
+        System.out.println("벤틀리 위치: " + car3.getPosition());
+        System.out.println("우승자 수: " + play1.getWinner().size());
 
-        assertSame(car2, play1.winner.get(0));
-        assertEquals(1, play1.winner.size());
+        assertSame(car2, play1.getWinner().get(0));
+        assertEquals(1, play1.getWinner().size());
     }
 
 }
