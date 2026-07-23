@@ -5,7 +5,7 @@ import java.util.*;
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();
 
-    public RacingGame(List<String> carNames, int round) {
+    public RacingGame(List<String> carNames) {
         for (String carName : carNames) {
             Car car = new Car(carName.trim());
             this.cars.add(car);

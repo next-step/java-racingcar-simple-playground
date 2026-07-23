@@ -17,7 +17,7 @@ public class Application {
         List<String> carNames = inputView.getCarNames();
         int round = inputView.getRound();
 
-        RacingGame racingGame = new RacingGame(carNames, round);
+        RacingGame racingGame = new RacingGame(carNames);
 
         outputView.printStartMessage();
 

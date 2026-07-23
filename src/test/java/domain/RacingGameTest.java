@@ -13,7 +13,7 @@ public class RacingGameTest {
     void movesMultipleCars() {
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
-        RacingGame racingGame = new RacingGame(carNames, 1);
+        RacingGame racingGame = new RacingGame(carNames);
 
         racingGame.moveCars(Arrays.asList(4, 3, 7));
 
@@ -29,7 +29,7 @@ public class RacingGameTest {
     void findWinnerWithMaxPosition() {
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
-        RacingGame racingGame = new RacingGame(carNames, 1);
+        RacingGame racingGame = new RacingGame(carNames);
 
         racingGame.moveCars(Arrays.asList(4, 3, 7));
         racingGame.moveCars(Arrays.asList(5, 2, 2));
@@ -45,7 +45,7 @@ public class RacingGameTest {
     void findAllWinnersWithMaxPosition() {
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
-        RacingGame racingGame = new RacingGame(carNames, 1);
+        RacingGame racingGame = new RacingGame(carNames);
 
         racingGame.moveCars(Arrays.asList(4, 3, 7));
         racingGame.moveCars(Arrays.asList(5, 2, 5));
@@ -62,7 +62,7 @@ public class RacingGameTest {
     void throwExceptionWhenCarAndNumberCountsDiffer() {
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
-        RacingGame racingGame = new RacingGame(carNames, 1);
+        RacingGame racingGame = new RacingGame(carNames);
 
         List<Integer> numbers = Arrays.asList(6, 2);
 
@@ -77,7 +77,7 @@ public class RacingGameTest {
     void findsAllCarsAsWinnersWhenPositionsAreEqual() {
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
-        RacingGame racingGame = new RacingGame(carNames, 1);
+        RacingGame racingGame = new RacingGame(carNames);
 
         List<Car> winners = racingGame.findWinners();
 
