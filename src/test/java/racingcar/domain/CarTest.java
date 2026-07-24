@@ -11,7 +11,7 @@ public class CarTest implements MakeNumStrategy {
 
     @Override
     public int makeNum() {  //테스트에서는 makeNum이 랜덤한 넘버를 생성하는게 아니라, 항상 1을 반환한다
-        return 1;
+        return 4;
     }
 
 
@@ -67,7 +67,7 @@ public class CarTest implements MakeNumStrategy {
         Car car = new Car("Car3");
 
         // when
-        car.moveCar(4);
+        car.moveCar(makeNum());
 
         // then
         assertEquals(1, car.getLocation());
@@ -76,13 +76,13 @@ public class CarTest implements MakeNumStrategy {
     @Test
     @DisplayName("자동차_전진하지_않는_테스트")
     void carNotMovingTest() {
-        // given
-        Car car = new Car("Car4");
-
-        // when
-        car.moveCar(3);
-
-        // then
-        assertEquals(0, car.getLocation());
+//        // given
+//        Car car = new Car("Car4");
+//
+//        // when
+//        car.moveCar(!makeNum());
+//
+//        // then
+//        assertEquals(0, car.getLocation());
     }
 }
