@@ -1,11 +1,8 @@
 package domain;
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-
-    Random rd = new Random();
 
     int tryCount;
     Car[] cars;
@@ -18,6 +15,7 @@ public class RacingGame {
             cars[i] = new Car(carNames[i]);
         }
     }
+
 
     int findMax(){
 
@@ -45,23 +43,21 @@ public class RacingGame {
         return winners.toArray(new String[0]);
     }
 
+
     private boolean isWinner(Car car, int max) {
         return car.getLocation() == max;
     }
 
-    public void eachRound(){
+
+    public int[] eachRound(){
+        int[] carLocations = new int[cars.length];
+
         for (int i = 0; i < cars.length; i++) {
             cars[i].move();
-            System.out.println(cars[i].getCarName() + " : " + "-".repeat(cars[i].getLocation()));
+            carLocations[i] = cars[i].getLocation();
         }
-        System.out.println();
-    }
 
-    public void race(){
-        System.out.println("실행 결과");
-        for(int i = 0; i < tryCount; i++){
-            eachRound();
-        }
+        return carLocations;
     }
 
 }
