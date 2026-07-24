@@ -8,7 +8,7 @@ class CarTest {
 
     @Test
     void 숫자가_4_이상시_자동차_이동() {
-        final Car car = new Car("pobi");
+        Car car = new Car("pobi");
 
         car.move(4);
 
@@ -16,8 +16,8 @@ class CarTest {
     }
 
     @Test
-    void 숫자가_4보다_작을시_자동차_이동하지_않음() {
-        final Car car = new Car("pobi");
+    void 숫자가_4보다_작을시_자동차_이동하지않음() {
+        Car car = new Car("pobi");
 
         car.move(3);
 

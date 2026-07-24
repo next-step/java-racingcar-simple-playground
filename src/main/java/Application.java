@@ -1,17 +1,31 @@
+import domain.NumberGenerator;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import view.InputView;
 import view.ResultView;
 
 public class Application {
 
     public static void main(String[] args) {
-        final var carNames = InputView.getCarNames();
-        final var tryCount = InputView.getTryCount();
+        InputView inputView = new InputView();
+        ResultView resultView = new ResultView();
 
-        final var racingGame = new RacingGame(carNames, tryCount);
+        final var carNames = inputView.getCarNames();
+        final var tryCount = inputView.getTryCount();
+
+        NumberGenerator numberGenerator =
+                new RandomNumberGenerator();
+
+        RacingGame racingGame = new RacingGame(
+                carNames,
+                tryCount,
+                numberGenerator
+        );
+
         final var raceResults = racingGame.race();
+        final var winners = racingGame.getWinners();
 
-        ResultView.printRaceResults(raceResults);
-        ResultView.printWinners(racingGame.getWinners());
+        resultView.printRaceResults(raceResults);
+        resultView.printWinners(winners);
     }
 }

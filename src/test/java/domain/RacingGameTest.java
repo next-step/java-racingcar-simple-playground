@@ -9,28 +9,22 @@ class RacingGameTest {
 
     @Test
     void 정해진_횟수만큼_자동차_경주_진행() {
-        final NumberGenerator generator = () -> 4;
-        final RacingGame game = new RacingGame(
-                List.of("pobi", "woni"), 3, generator
-        );
+        NumberGenerator generator = new SequenceNumberGenerator(List.of(4,4,4,4,4,4));
 
-        game.race();
-
-        assertThat(game.getWinners())
-                .containsExactly("pobi", "woni");
+        RacingGame game = new RacingGame(List.of("pobi", "woni"), 3, generator);
+        List<List<Car>> results = game.race();
+        assertThat(results).hasSize(3);
+        assertThat(game.getWinners()).containsExactly("pobi", "woni");
     }
 
     @Test
     void 가장_멀리_이동한_자동차_우승() {
-        final NumberGenerator generator = new SequenceNumberGenerator(
-                List.of(4, 3)
-        );
-        final RacingGame game = new RacingGame(
-                List.of("pobi", "woni"), 1, generator
-        );
+       NumberGenerator generator = new SequenceNumberGenerator(List.of(4,3));
 
-        game.race();
+       RacingGame game = new RacingGame(List.of("pobi", "woni"), 1, generator);
 
-        assertThat(game.getWinners()).containsExactly("pobi");
+       game.race();
+
+       assertThat(game.getWinners()).containsExactly("pobi");
     }
 }
