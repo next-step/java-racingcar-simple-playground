@@ -9,7 +9,13 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNames = scanner.nextLine();
 
-        return Arrays.asList(carNames.split(","));
+        String[] names = carNames.split(",");
+
+        for(int i = 0; i < names.length; i++ ) {
+            names[i] = names[i].trim();
+        }
+
+        return Arrays.asList(names);
     }
     
     public int getRound() {

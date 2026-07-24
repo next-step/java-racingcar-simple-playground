@@ -15,9 +15,10 @@ public class Application {
         OutputView outputView = new OutputView();
 
         List<String> carNames = inputView.getCarNames();
-        int round = inputView.getRound();
 
         RacingGame racingGame = new RacingGame(carNames);
+
+        int round = inputView.getRound();
 
         outputView.printStartMessage();
 

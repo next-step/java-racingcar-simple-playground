@@ -7,7 +7,7 @@ public class RacingGame {
 
     public RacingGame(List<String> carNames) {
         for (String carName : carNames) {
-            Car car = new Car(carName.trim());
+            Car car = new Car(carName);
             this.cars.add(car);
         }
     }
