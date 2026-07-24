@@ -5,6 +5,10 @@ import java.util.InputMismatchException;
 
 public class InputView {
 
+    private static final int MAX_NAME_LENGTH = 10;
+    private static final int MIN_TRY_COUNT = 1;
+    private static final int MAX_TRY_COUNT = 20;
+
     static Scanner scanner = new Scanner(System.in);
 
     public static String[] getCarNames() {
@@ -29,7 +33,7 @@ public class InputView {
             if(names[i].isBlank()){
                 throw new IllegalArgumentException("각 이름은 1자 이상으로 입력해주세요.");
             }
-            if(names[i].length() > 10){
+            if(names[i].length() > MAX_NAME_LENGTH){
                 throw new IllegalArgumentException("각 이름은 10자 이하로 입력해주세요.");
             }
         }
@@ -44,7 +48,7 @@ public class InputView {
             int count = scanner.nextInt();
 
             // 예외처리 - 횟수는 1 ~ 20으로 제한
-            if (count < 1 || count > 20) {
+            if (count < MIN_TRY_COUNT || count > MAX_TRY_COUNT) {
                 throw new IllegalArgumentException("횟수는 1회 ~ 20회 중 입력해주세요.");
             }
             return count;
