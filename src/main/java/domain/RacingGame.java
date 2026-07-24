@@ -13,7 +13,7 @@ public class RacingGame {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return List.copyOf(cars);
     }
 
     public void playRound() {
