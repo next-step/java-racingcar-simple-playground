@@ -8,6 +8,9 @@ public class Car implements MakeNumStrategy {
 
     public Car(String name) {    //생성자
         this.name = name;
+        if (name == null || name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 공백이 아닌 5자 이하 글자여야합니다.");
+        }
         this.location = 0;
     }
 
