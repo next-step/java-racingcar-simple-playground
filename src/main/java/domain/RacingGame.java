@@ -1,5 +1,7 @@
 package domain;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGame {
 
@@ -29,35 +31,22 @@ public class RacingGame {
     }
 
 
-    int getWinnerNumber(){
-
-        int winner_number = 0;
-        int max = findMax();
-
-        for(int i = 0; i < cars.length; i++){
-            if(max == cars[i].getLocation()){
-                winner_number++;
-            }
-        }
-
-        return winner_number;
-    }
-
-
     public String[] getWinners(){
 
-        String[] winners = new String[getWinnerNumber()];
-        int k = 0;
+        List<String> winners = new ArrayList<>();
         int max = findMax();
 
         for(int i = 0; i < cars.length; i++){
-            if(max == cars[i].getLocation()){
-                winners[k] = cars[i].getCarName();
-                k++;
+            if (isWinner(cars[i], max)) {
+                winners.add(cars[i].getCarName());
             }
         }
 
-        return winners;
+        return winners.toArray(new String[0]);
+    }
+
+    private boolean isWinner(Car car, int max) {
+        return car.getLocation() == max;
     }
 
     public void move(Car car) {
