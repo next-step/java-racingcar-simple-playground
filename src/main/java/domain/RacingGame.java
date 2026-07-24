@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public RacingGame(List<String> carNames) {
         for (String carName : carNames) {
@@ -50,7 +50,7 @@ public class RacingGame {
 
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
-        
+
         List<Car> winners = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
