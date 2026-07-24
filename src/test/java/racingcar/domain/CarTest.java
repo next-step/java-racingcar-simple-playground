@@ -4,6 +4,7 @@ import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest implements MakeNumStrategy {
@@ -28,15 +29,21 @@ public class CarTest implements MakeNumStrategy {
     }
 
     @Test
+    @DisplayName("자동차는 공백 이름을 가질 수 없다")
+    void createCarWithBlankName() {
+        // AssertJ를 사용한 예외 검증
+        assertThatThrownBy(() -> new Car(" "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("공백이 아닌 5자 이하 글자");
+    }
+
+    @Test
     @DisplayName("자동차는 빈 이름을 가질 수 없다")
     void createCarWithNoName() {
-        // given
-        Car car = new Car(" ");
-
-        //when
-
-        //예외가 터질것임
-
+        // AssertJ를 사용한 예외 검증
+        assertThatThrownBy(() -> new Car(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("공백이 아닌 5자 이하 글자");
     }
 
 
