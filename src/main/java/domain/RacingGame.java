@@ -4,12 +4,10 @@ import java.util.List;
 
 public class RacingGame {
 
-    int tryCount;
-    Car[] cars;
+    private final Car[] cars;
 
-    public RacingGame(String[] carNames, int tryCount){
+    public RacingGame(String[] carNames){
         cars = new Car[carNames.length];
-        this.tryCount = tryCount;
 
         for(int i = 0; i < carNames.length; i++){
             cars[i] = new Car(carNames[i]);
@@ -17,7 +15,7 @@ public class RacingGame {
     }
 
 
-    int findMax(){
+    private int findMax(){
 
         int max = 0;
 
