@@ -49,19 +49,9 @@ public class RacingGame {
         return car.getLocation() == max;
     }
 
-    public void move(Car car) {
-        int number = rd.nextInt(10);
-
-        if(number >= 4){
-            car.setLocation(car.getLocation() + 1);
-            return;
-        }
-        car.setLocation(car.getLocation());
-    }
-
-    public void moveAllCar(){
+    public void eachRound(){
         for (int i = 0; i < cars.length; i++) {
-            move(cars[i]);
+            cars[i].move();
             System.out.println(cars[i].getCarName() + " : " + "-".repeat(cars[i].getLocation()));
         }
         System.out.println();
@@ -70,7 +60,7 @@ public class RacingGame {
     public void race(){
         System.out.println("실행 결과");
         for(int i = 0; i < tryCount; i++){
-            moveAllCar();
+            eachRound();
         }
     }
 
