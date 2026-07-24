@@ -23,8 +23,12 @@ public class Car {
         return location;
     }
 
-    public void move() {
+    public void move(){
         int number = random.nextInt(RANDOM_RANGE);
+        decide(number);
+    }
+
+    public void decide(int number) {
         if(number >= MOVE_THRESHOLD){
             location++;
         }
