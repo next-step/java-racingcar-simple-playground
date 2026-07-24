@@ -25,8 +25,4 @@ public class RacingGameWinner {
         }
         return winners;
     }
-
-
-
-
 }

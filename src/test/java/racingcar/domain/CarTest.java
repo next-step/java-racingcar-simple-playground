@@ -1,11 +1,18 @@
 package racingcar.domain;
 
+import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CarTest {
+public class CarTest implements MakeNumStrategy {
+
+    @Override
+    public int makeNum() {  //테스트에서는 makeNum이 랜덤한 넘버를 생성하는게 아니라, 항상 1을 반환한다
+        return 1;
+    }
+
 
     @Test
     @DisplayName("자동차는 이름을 가진다")
@@ -19,6 +26,19 @@ public class CarTest {
         // then
         assertThat(carName).isEqualTo("Car1");
     }
+
+    @Test
+    @DisplayName("자동차는 빈 이름을 가질 수 없다")
+    void createCarWithNoName() {
+        // given
+        Car car = new Car(" ");
+
+        //when
+
+        //예외가 터질것임
+
+    }
+
 
     @Test
     @DisplayName("자동차는 초기에 위치가 0이다")

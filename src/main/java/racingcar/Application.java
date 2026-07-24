@@ -11,13 +11,8 @@ public class Application {
         final List<String> carNames = InputView.setCarNames();
         final int tryCount = InputView.setTryCount();
 
-        final RacingGameSetting racingGameSetting = new RacingGameSetting(carNames.size(), tryCount);
+        final RacingGameSetting racingGameSetting = new RacingGameSetting(carNames, tryCount);
         final RacingGame racingGame = new RacingGame(racingGameSetting);
-
-
-        for (String carName : carNames) {
-            racingGameSetting.addCar(carName);
-        }
 
         System.out.println("실행 결과");
 
