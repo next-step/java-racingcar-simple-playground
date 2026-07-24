@@ -14,7 +14,7 @@ public class Car {
         if(name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다.");
         }
-        
+
         this.name = name;
         this.position = 0;
     }
