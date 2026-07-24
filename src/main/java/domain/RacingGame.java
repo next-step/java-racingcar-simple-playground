@@ -1,6 +1,8 @@
 package domain;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();

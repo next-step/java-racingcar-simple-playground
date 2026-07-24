@@ -1,6 +1,8 @@
 package view;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.List;
+import java.util.Arrays;
 
 public class InputView {
     Scanner scanner = new Scanner(System.in);
