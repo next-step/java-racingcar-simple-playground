@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CarTest implements MakeNumStrategy {
 
     @Override
-    public int makeNum() {  //테스트에서는 makeNum이 랜덤한 넘버를 생성하는게 아니라, 항상 1을 반환한다
+    public int makeNum() {  //테스트에서는 makeNum이 랜덤한 넘버를 생성하는게 아니라, 항상 4를 반환한다
         return 4;
     }
 
