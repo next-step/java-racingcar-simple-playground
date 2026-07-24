@@ -16,6 +16,7 @@ public class OutputView {
             printPosition(car.getPosition());
             System.out.println();
         }
+        System.out.println();
     }
 
     private void printPosition(int position) {
