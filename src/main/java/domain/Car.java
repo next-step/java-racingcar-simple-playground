@@ -1,8 +1,9 @@
 package domain;
 
 public class Car {
-    private String name;
+    final private String name;
     private int position = 0;
+    static final int THRESHOLD = 4;
 
     public Car(String name) {
         this.name = name;

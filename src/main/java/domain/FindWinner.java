@@ -12,18 +12,26 @@ public class FindWinner {
         this.cars = cars;
     }
 
+    public void eachCarRacing() {
+        for (Car car : cars) {
+            int randomNumber = (int) (Math.random() * 10);
+            car.move(randomNumber);
+            System.out.println(car.getName() + " : ");
+            printPosition(car);
+        }
+        System.out.println("\n");
+    }
+
+    public void printPosition(Car car) {
+        for (int j = 0; j < car.getPosition(); j++) {
+            System.out.println("-");
+        }
+    }
+
     public void startRacing(int count) {
         System.out.println("실행결과");
         for (int i = 0; i < count; i++) {
-            for (Car car : cars) {
-                int randomNumber = (int) (Math.random() * 10);
-                car.move(randomNumber);
-                System.out.println(car.getName() + " : ");
-                for (int j = 0; j < car.getPosition(); j++) {
-                    System.out.println("-");
-                }
-            }
-            System.out.println("\n");
+            eachCarRacing();
         }
     }
 
