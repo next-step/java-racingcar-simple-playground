@@ -16,16 +16,9 @@ public class FindWinner {
         for (Car car : cars) {
             int randomNumber = (int) (Math.random() * 10);
             car.move(randomNumber);
-            System.out.println(car.getName() + " : ");
-            printPosition(car);
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
         System.out.println("\n");
-    }
-
-    public void printPosition(Car car) {
-        for (int j = 0; j < car.getPosition(); j++) {
-            System.out.println("-");
-        }
     }
 
     public void startRacing(int count) {

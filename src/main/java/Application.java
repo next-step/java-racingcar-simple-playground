@@ -1,16 +1,15 @@
-import view.*;
-import domain.*;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class CarTest {
-    @Test
-    @DisplayName("자동차 경주")
-    void movesWhenNumberIsFourOrMore() {
+import domain.Car;
+import domain.FindWinner;
+import view.*;
+
+public class Application {
+
+    public static void main(String[] args) {
+
         List<Car> cars = new ArrayList<>();
 
         // String input = "neo,brie,brown\n5\n";

@@ -13,11 +13,9 @@ public class View {
     private int number;
     private String[] carNames;
 
-    public View(String input) {
-        this.input = input;
-        Scanner scanner = new Scanner(input);
-        this.carNames = scanner.nextLine().split(",");
-        this.number = scanner.nextInt();
+    public View(String[] carNames, int number) {
+        this.carNames = carNames;
+        this.number = number;
     }
 
     public List<Car> enrollCars() throws Exception {
