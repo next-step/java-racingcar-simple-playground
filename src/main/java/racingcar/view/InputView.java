@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,8 +14,18 @@ public class InputView {
     }
 
     public static int setTryCount() {
+        int number = 0;
         System.out.println("시도할 회수는 몇회인가요?");
-        int number = scanner.nextInt();
+        try {
+            number = scanner.nextInt();//1회 미만일경우 예외처리, Integer가 아닐경우 예외처리
+            if (number < 1){
+                throw new IllegalArgumentException("횟수는 1회 이상으로 입력해주세요.");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("횟수는 정수로 입력해주세요.");
+            scanner.next();
+        }
+
         System.out.println(); // 출력 형식에 맞추기 위한 줄바꿈
         return number;
     }
