@@ -3,7 +3,7 @@ package view;
 public class ResultView {
 
     public static void printExecutionResult(){
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public static void printRound(String[] carNames, int[] carLocations){
