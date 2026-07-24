@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();
@@ -49,11 +50,10 @@ public class RacingGame {
 
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
-        List<Car> winners = new ArrayList<>();
-
-        for(Car car : cars) {
-            addIfWinner(car, maxPosition, winners);
-        }
+        
+        List<Car> winners = cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .collect(Collectors.toList());
 
         return winners;
     }
@@ -66,11 +66,5 @@ public class RacingGame {
         }
 
         return maxPosition;
-    }
-
-    private void addIfWinner(Car car, int maxPosition, List<Car> winners) {
-        if (car.getPosition() == maxPosition) {
-            winners.add(car);
-        }
     }
 }
