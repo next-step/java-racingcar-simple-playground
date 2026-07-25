@@ -12,7 +12,10 @@ public class Cars {
     }
 
     private void validateDuplicate(List<Car> cars) {
-        Set<Car> nonDuplicateMembers = new HashSet<>(cars);
+        Set<String> nonDuplicateMembers = new HashSet<>();
+        for (Car car : cars) {
+            nonDuplicateMembers.add(car.getName());
+        }
         if (nonDuplicateMembers.size() != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복 될 수 없습니다.");
         }

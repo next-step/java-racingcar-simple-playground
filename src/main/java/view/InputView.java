@@ -27,7 +27,7 @@ public class InputView {
     public static int getTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         int number = scanner.nextInt();
-        if (number > 1000 || number <= 0) {
+        if (number < 1 || number >= 1000) {
             throw new IllegalArgumentException("시도 횟수는 1이상 999 이하만 가능합니다.");
         }
         return number;
