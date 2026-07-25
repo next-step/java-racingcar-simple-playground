@@ -1,22 +1,20 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import domain.Car;
-
 public class InputHandler {
+    View view = new View();
     private String[] carNames;
     private int number;
 
     public void inputHandling() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)");
-        String[] carNames = scanner.nextLine().split(",");
+        String[] carNames = view.intro();
+
+        for (String carName : carNames) {
+            if (carName.length() > 5) {
+                throw new IllegalArgumentException("자동차이름은 5자를 넘길수 없습니다.");
+            }
+        }
         this.carNames = carNames;
-        System.out.println("시도할 횟수는 몇회인가요?");
-        int number = scanner.nextInt();
+        int number = view.inputNum();
         this.number = number;
     }
 

@@ -1,34 +1,15 @@
 package domain;
 
+import view.View;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FindWinner {
-    private List<Car> cars = new ArrayList<>();
+    View view = new View();
     private int longestPosition = 0;
     private List<String> winnerNames = new ArrayList<>();
 
-    public FindWinner(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public void eachCarRacing() {
-        for (Car car : cars) {
-            int randomNumber = (int) (Math.random() * 10);
-            car.move(randomNumber);
-            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-        }
-        System.out.println("\n");
-    }
-
-    public void startRacing(int count) {
-        System.out.println("실행결과");
-        for (int i = 0; i < count; i++) {
-            eachCarRacing();
-        }
-    }
-
-    public int FindLongestPosition() {
+    public int FindLongestPosition(List<Car> cars) {
         for (Car car : cars) {
             if (car.getPosition() >= longestPosition) {
                 longestPosition = car.getPosition();
@@ -37,7 +18,7 @@ public class FindWinner {
         return longestPosition;
     }
 
-    public List<String> FindWinnerName() {
+    public List<String> FindWinnerName(List<Car> cars) {
         for (Car car : cars) {
             if (car.getPosition() == longestPosition) {
                 winnerNames.add(car.getName());
