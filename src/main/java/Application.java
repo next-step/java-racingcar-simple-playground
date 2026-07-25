@@ -1,6 +1,8 @@
 import java.util.List;
 
+import domain.NumberGenerator;
 import domain.RacingGame;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -13,10 +15,11 @@ public class Application {
     private void runGame() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         List<String> carNames = inputView.getCarNames();
 
-        RacingGame racingGame = new RacingGame(carNames);
+        RacingGame racingGame = new RacingGame(carNames, numberGenerator);
 
         int round = inputView.getRound();
 
