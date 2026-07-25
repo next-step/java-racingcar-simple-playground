@@ -1,10 +1,12 @@
 package view;
+
 import domain.Car;
+import domain.Cars;
 
 import java.util.List;
 
 public class ResultView {
-    public static void printRace(List<Car> cars) {
+    public static void printRace(Cars cars) {
         System.out.println("실행결과");
         for (int i = 0; i < cars.size(); i++) {
             System.out.printf("%s : ", cars.get(i).getName());
@@ -13,8 +15,8 @@ public class ResultView {
             }
             System.out.println();
         }
-
     }
+
     public static void printWinner(List<Car> winner) {
         for (int i = 0; i < winner.size(); i++) {
             System.out.printf("%s ", winner.get(i).getName());
