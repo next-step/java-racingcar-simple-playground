@@ -1,31 +1,34 @@
 package racingcar.domain;
 
-import racingcar.view.ResultView;
+import java.util.List;
 
 public class RacingGame {
-    private final RacingGameSetting setting;
-    private RacingGameWinner winner;
+    private List<Car> racingCars;
+    private final int lapCount;
+    private RandomNumGenerator randomNumGenerator;
 
-    public RacingGame(RacingGameSetting setting) {
-        this.setting = setting;
-        this.winner = new RacingGameWinner();
+    public RacingGame(List<Car> racingCars, int lapCount) {
+        this.racingCars = racingCars;
+        this.lapCount = lapCount;
     }
 
-    public void race() {
-        for (int i = 0; i < setting.getMoveTimes(); i++) {
-            startLap();
+    public List<Car> getRacingCars() {
+        return racingCars;
+    }
+
+    public int getLapCount() {
+        return lapCount;
+    }
+
+    //한번의 lap에 대한 메서드 -  List<Car>형태로 반환할 것.. 반환을 받아서 print를 application에서 호출할것이므로..
+    public List<Car> startLap() {
+        for (Car racingCar : racingCars) {
+            racingCar.moveCar(randomNumGenerator.makeNum());   //실제 랜덤넘버 만드는 것이 호출될 것임
         }
-        ResultView.printWinners(winner.selectWinners(setting)); //경기 결과 출력하도록 수정
+        return racingCars;
     }
 
-    private void startLap() {
-        int random;
-        RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
-        for (Car car : setting.getCarList()) {
-            random = randomNumGenerator.makeNum();
-            car.moveCar(random);
-        }
-        ResultView.printLapResult(setting.getCarList());
-    }
+    //lap을 lapCount만큼 순회하도록 하는것을 둬야할까? 이걸 여기에 두면 출력이 애매해지는데.
+
 
 }

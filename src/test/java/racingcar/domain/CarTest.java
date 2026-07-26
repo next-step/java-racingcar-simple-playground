@@ -8,6 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarTest {
+    public MakeNumStrategy makeNumStrategy;
 
     @Test
     @DisplayName("자동차는 이름을 가진다")
@@ -62,7 +63,7 @@ public class CarTest {
         FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator();
 
         // when
-        car.moveCar(fixedNumberGenerator.makeNum());
+        car.moveCar(makeNumStrategy.makeNum());
 
         // then
         assertEquals(1, car.getLocation());

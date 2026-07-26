@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameWinner {
-    public int getMaxLocation(RacingGameSetting racingGameSetting) {
+    public int getMaxLocation(RacingGame racingGame) {
         int maxLocation = 0;
-        for (Car car : racingGameSetting.getCarList()) {
+        for (Car car : racingGame.getRacingCars()) {
             if (car.getLocation() >= maxLocation) {
                 maxLocation = car.getLocation();
             }
@@ -14,10 +14,10 @@ public class RacingGameWinner {
         return maxLocation;
     }
 
-    public List<Car> selectWinners(RacingGameSetting racingGameSetting) {
+    public List<Car> selectWinners(RacingGame racingGame) {
         List<Car> winners = new ArrayList<>();
-        int maxLocation = getMaxLocation(racingGameSetting);
-        for (Car car : racingGameSetting.getCarList()) {
+        int maxLocation = getMaxLocation(racingGame);
+        for (Car car : racingGame.getRacingCars()) {
             if (car.getLocation() == maxLocation) {
                 winners.add(car);
             }
