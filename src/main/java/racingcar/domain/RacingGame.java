@@ -15,7 +15,7 @@ public class RacingGame {
         for (int i = 0; i < setting.getMoveTimes(); i++) {
             startLap();
         }
-        winner.selectWinners(setting); // 직접 호출하도록 수정
+        ResultView.printWinners(winner.selectWinners(setting)); //경기 결과 출력하도록 수정
     }
 
     private void startLap() {

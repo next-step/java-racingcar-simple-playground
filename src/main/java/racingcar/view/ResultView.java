@@ -15,10 +15,10 @@ public class ResultView {
     }
 
     public static void printWinners(List<Car> winners) {
-        StringJoiner sj = new StringJoiner(", ");
+        StringJoiner stringJoiner = new StringJoiner(", "); //의도를 드러내는 변수명으로 수정
         for (Car car : winners) {
-            sj.add(car.getName());
+            stringJoiner.add(car.getName());
         }
-        System.out.print(sj + "가 최종 우승했습니다.");
+        System.out.print(stringJoiner + "가 최종 우승했습니다.");
     }
 }
