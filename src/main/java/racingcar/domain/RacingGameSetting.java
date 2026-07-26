@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameSetting {
-    private List<Car> carList;  //경기에 참여하는 차
-    private int moveTimes;  //랩 횟수
+    private final List<Car> carList;  //경기에 참여하는 차
+    private final int moveTimes;  //랩 횟수
 
     public RacingGameSetting(List<String> carNames, int moveTimes) {
         carList = new ArrayList<>();

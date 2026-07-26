@@ -3,7 +3,7 @@ package racingcar.domain;
 import racingcar.view.ResultView;
 
 public class RacingGame {
-    private RacingGameSetting setting;
+    private final RacingGameSetting setting;
     private RacingGameWinner winner;
 
     public RacingGame(RacingGameSetting setting) {
