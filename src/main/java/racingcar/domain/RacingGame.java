@@ -20,8 +20,9 @@ public class RacingGame {
 
     private void startLap() {
         int random;
+        RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
         for (Car car : setting.getCarList()) {
-            random = car.makeNum();
+            random = randomNumGenerator.makeNum();
             car.moveCar(random);
         }
         ResultView.printLapResult(setting.getCarList());

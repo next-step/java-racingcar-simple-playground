@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Random;
 
-public class Car implements MakeNumStrategy {
+public class Car {
     private String name;
     private int location;
 
@@ -28,11 +28,5 @@ public class Car implements MakeNumStrategy {
         }
     }
 
-    //랜덤한 숫자를 0-9중에 만드는 메서드
-    @Override
-    public int makeNum() {
-        Random random = new Random();
-        return random.nextInt(10);
-    }
 }
 
