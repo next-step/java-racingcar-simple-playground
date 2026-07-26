@@ -7,13 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CarTest implements MakeNumStrategy {
-
-    @Override
-    public int makeNum() {  //테스트에서는 makeNum이 랜덤한 넘버를 생성하는게 아니라, 항상 4를 반환한다
-        return 4;
-    }
-
+public class CarTest {
 
     @Test
     @DisplayName("자동차는 이름을 가진다")
@@ -65,9 +59,10 @@ public class CarTest implements MakeNumStrategy {
     void carMovingTest() {
         // given
         Car car = new Car("Car3");
+        FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator();
 
         // when
-        car.moveCar(makeNum());
+        car.moveCar(fixedNumberGenerator.makeNum());
 
         // then
         assertEquals(1, car.getLocation());
