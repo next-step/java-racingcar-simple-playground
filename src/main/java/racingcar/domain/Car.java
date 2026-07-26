@@ -5,7 +5,7 @@ public class Car {
     private final String name;
     private int location;
 
-    public Car(String name) {    //생성자
+    public Car(String name) {
         this.name = name;
         if (name == null || name.isBlank() || name.length() > 5) {  //자동차 이름에 대한 예외처리니까 Car 클래스에서 처리
             throw new IllegalArgumentException("자동차 이름은 공백이 아닌 5자 이하 글자여야합니다.");

@@ -2,15 +2,13 @@ package racingcar.domain;
 
 import java.util.InputMismatchException;
 
-public class RacingLap { // lap횟수를 입력하면 생성되고, 입력을 controller로부터 넘겨받아서, 검증까지
+public class RacingLap {
     private int lapCount;
     public RacingLap(int lapCount) {
         checkLapCount(lapCount);
         this.lapCount = lapCount;
     }
 
-    //lapCount 비즈니스 규칙 설정. 예외처리까지 싹
-    //경기 횟수 입력 관련 예외처리 전용 메서드
     private static void checkLapCount(int lapCount) {
         try {
             if (lapCount < 1){
@@ -21,7 +19,6 @@ public class RacingLap { // lap횟수를 입력하면 생성되고, 입력을 co
         }
     }
 
-    //lapCount getter
     public int getLapCount() {
         return this.lapCount;
     }
