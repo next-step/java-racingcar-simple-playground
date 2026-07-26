@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car {
+    public static final int CAR_MOVING_THRESHOLD = 4;
     private final String name;
     private int location;
 
@@ -21,7 +22,7 @@ public class Car {
     }
 
     public void moveCar(int randomValue) {
-        if (randomValue >= 4) {
+        if (randomValue >= CAR_MOVING_THRESHOLD) {
             location += 1; //한번에 1씩 전진한다고 가정한다..
         }
     }
