@@ -1,10 +1,10 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class RacingLapTest {
 
@@ -28,8 +28,7 @@ class RacingLapTest {
         int invalidCount = 0;
 
         // when, then
-        assertThatThrownBy(() -> new RacingLap(invalidCount))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new RacingLap(invalidCount)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("횟수는 1회 이상으로 입력해주세요.");
     }
 

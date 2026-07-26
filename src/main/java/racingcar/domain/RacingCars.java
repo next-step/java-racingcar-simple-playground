@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCars {
-    private List<String> carNames;
-    private List<Car> racingGameCars;
+    private final List<String> carNames;
+    private final List<Car> racingGameCars;
 
     public RacingCars(List<String> carNames) {
         this.carNames = carNames;

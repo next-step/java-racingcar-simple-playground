@@ -3,9 +3,9 @@ package racingcar.domain;
 import java.util.List;
 
 public class RacingGame {
-    private List<Car> racingCars;
     private final int lapCount;
-    private RandomNumGenerator randomNumGenerator;
+    private final List<Car> racingCars;
+    private final RandomNumGenerator randomNumGenerator;
 
     public RacingGame(List<Car> racingCars, int lapCount) {
         this.racingCars = racingCars;

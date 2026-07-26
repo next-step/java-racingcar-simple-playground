@@ -1,11 +1,11 @@
 package racingcar.domain;
 
-import java.util.Random;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class CarTest {
     public static final int CAR_MOVING_THRESHOLD = 4;
@@ -28,8 +28,7 @@ public class CarTest {
     @DisplayName("자동차는 공백 이름을 가질 수 없다")
     void createCarWithBlankName() {
         // AssertJ를 사용한 예외 검증
-        assertThatThrownBy(() -> new Car(" "))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Car(" ")).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("공백이 아닌 5자 이하 글자");
     }
 
@@ -37,8 +36,7 @@ public class CarTest {
     @DisplayName("자동차는 빈 이름을 가질 수 없다")
     void createCarWithNoName() {
         // AssertJ를 사용한 예외 검증
-        assertThatThrownBy(() -> new Car(""))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Car("")).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("공백이 아닌 5자 이하 글자");
     }
 
@@ -103,8 +101,7 @@ public class CarTest {
         String invalidName = "abcdefgh";
 
         // when, then
-        assertThatThrownBy(() -> new Car(invalidName))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Car(invalidName)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 공백이 아닌 5자 이하 글자여야합니다.");
     }
 
@@ -115,8 +112,7 @@ public class CarTest {
         String blankName = " ";
 
         // when, then
-        assertThatThrownBy(() -> new Car(blankName))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Car(blankName)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 공백이 아닌 5자 이하 글자여야합니다.");
     }
 
