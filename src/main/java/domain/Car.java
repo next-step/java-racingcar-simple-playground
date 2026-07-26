@@ -13,10 +13,6 @@ public class Car {
         position += 1;
     }
 
-    public void stopCar() {
-        position += 0;
-    }
-
     public String getName() {
         return name;
     }

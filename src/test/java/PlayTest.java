@@ -30,8 +30,7 @@ public class PlayTest {
         for (int i = 0; i < 4; i++) {
             play1.playRound();
         }
-        testCars.getWinner();
-        
+
         //then
         assertSame(car2, testCars.getWinner().get(0));
         assertEquals(1, testCars.getWinner().size());

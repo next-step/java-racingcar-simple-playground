@@ -23,7 +23,6 @@ public class Main {
             race.playRound();
             ResultView.printRace(cars);
         }
-        cars.getWinner();
         ResultView.printWinner(cars.getWinner());
     }
 }

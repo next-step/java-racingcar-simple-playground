@@ -1,8 +1,8 @@
 package domain;
 
 public class Play {
-    private Cars cars;
-    NumberGenerator numberGenerator;
+    private final Cars cars;
+    private final NumberGenerator numberGenerator;
 
     public Play(Cars cars, NumberGenerator numberGenerator) {
         this.cars = cars;
@@ -19,8 +19,6 @@ public class Play {
     private void setState(int num, int i) {
         if (num >= 4) {
             cars.get(i).moveCar();
-            return;
         }
-        cars.get(i).stopCar();
     }
 }

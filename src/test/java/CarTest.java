@@ -9,7 +9,7 @@ public class CarTest {
     @Test
     @DisplayName("움직이는 기능이 의도대로 동작하는지 테스트")
     void moveTest() {
-        Car car = new Car("테스트_자동차");
+        Car car = new Car("test");
         NumberGenerator numberGenerator = new FixedNumberGenerator(4);
         var num = numberGenerator.generate();
         if (num >= 4) {
