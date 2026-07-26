@@ -1,14 +1,11 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import domain.Car;
 
 public class View {
-    private int number;
-
     public String[] intro() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)");
@@ -16,25 +13,27 @@ public class View {
     }
 
     public int inputNum() {
+        int number;
         Scanner scanner = new Scanner(System.in);
         System.out.println("시도할 횟수는 몇회인가요?");
-        return scanner.nextInt();
-    }
+        number = scanner.nextInt();
 
-    public void printCarPosition(Car car) {
-        System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-    }
-
-    public void printRacingResult() {
-        System.out.println("실행결과");
-
-    }
-
-    public int getNum() {
+        while (true) {
+            if (number < 0) {
+                System.out.println("0또는 양수를 입력해주세요");
+                number = scanner.nextInt();
+            } else {
+                break;
+            }
+        }
         return number;
     }
 
-    public void setNum(int num) {
-        this.number = num;
+    public void printCarPosition(List<Car> cars) {
+        System.out.println("실행결과");
+        for (Car car : cars) {
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+        }
+        System.out.println("");
     }
 }

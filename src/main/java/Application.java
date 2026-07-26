@@ -4,7 +4,6 @@ import java.util.List;
 import domain.Car;
 import domain.FindWinner;
 import domain.Racing;
-import view.InputHandler;
 import view.View;
 
 public class Application {
@@ -13,26 +12,19 @@ public class Application {
 
         List<Car> cars = new ArrayList<>();
         View view = new View();
-        InputHandler inputHandler = new InputHandler();
         Racing racing = new Racing();
         FindWinner winnerFinder = new FindWinner();
 
-        try {
-            inputHandler.inputHandling();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-        }
+        String[] carNames = view.intro();
+        int number = view.inputNum();
 
-        String[] carNames = inputHandler.getCarNames();
-        int number = inputHandler.getNumber();
-
-        view.setNum(number);
         cars = racing.enrollCars(carNames);
-        number = view.getNum();
-        racing.startRacing(number);
-        winnerFinder.FindLongestPosition(cars);
+        cars = racing.startRacing(number, cars);
 
-        List<String> winnerNames = winnerFinder.FindWinnerName(cars);
+        view.printCarPosition(cars);
+
+        int longestPosition = winnerFinder.findLongestPosition(cars);
+        List<String> winnerNames = winnerFinder.findWinnerName(cars, longestPosition);
 
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }

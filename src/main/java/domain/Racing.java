@@ -3,32 +3,32 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import view.View;
-
 public class Racing {
     private List<Car> cars = new ArrayList<>();
-    View view = new View();
 
     public List<Car> enrollCars(String[] carNames) {
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            try {
+                cars.add(new Car(carName));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
         }
         return cars;
     }
 
-    public void eachCarRacing() {
+    public List<Car> eachCarRacing(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = (int) (Math.random() * 10);
             car.move(randomNumber);
-            view.printCarPosition(car);
         }
-        System.out.println("\n");
+        return cars;
     }
 
-    public void startRacing(int count) {
-        view.printRacingResult();
+    public List<Car> startRacing(int count, List<Car> cars) {
         for (int i = 0; i < count; i++) {
-            eachCarRacing();
+            cars = eachCarRacing(cars);
         }
+        return cars;
     }
 }
