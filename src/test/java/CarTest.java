@@ -12,13 +12,16 @@ public class CarTest {
     void moveIf4OrMore() {
 
         // 준비
-        Car car = new Car("seoin");
+        Car car1 = new Car("Player1");
+        Car car2 = new Car("Player2");
 
         // 실행
-        car.decide(4);
+        car1.decide(4);
+        car2.decide(7);
 
         // 검증
-        assertEquals(1, car.getLocation());
+        assertEquals(1, car1.getLocation());
+        assertEquals(1, car2.getLocation());
 
     }
 
@@ -27,12 +30,15 @@ public class CarTest {
     void notMoveIfLessThan4(){
 
         // 준비
-        Car car = new Car("seoin");
+        Car car1 = new Car("Player1");
+        Car car2 = new Car("Player2");
 
         // 실행
-        car.decide(1);
+        car1.decide(1);
+        car2.decide(3);
 
         // 검증
-        assertEquals(0, car.getLocation());
+        assertEquals(0, car1.getLocation());
+        assertEquals(0, car2.getLocation());
     }
 }
