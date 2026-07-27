@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import util.SequenceNumberGenerator;
-import util.FixedNumberGenerator;
+import support.SequenceNumberGenerator;
+import support.FixedNumberGenerator;
 
 import java.util.List;
 import java.util.Arrays;

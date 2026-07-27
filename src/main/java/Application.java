@@ -2,7 +2,7 @@ import java.util.List;
 
 import domain.NumberGenerator;
 import domain.RacingGame;
-import util.RandomNumberGenerator;
+import infrastructure.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
