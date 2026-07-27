@@ -1,4 +1,4 @@
-import domain.RacingCar;
+import domain.RacingGame;
 import view.InputView;
 import view.ResultView;
 
@@ -9,14 +9,14 @@ public class Application {
         String[] names = InputView.carName();
         int number = InputView.playNum();
 
-        RacingCar racingCar = new RacingCar();
-        racingCar.init(names);
+        RacingGame racingGame = new RacingGame();
+        racingGame.init(names);
 
         for (int i = 0; i < number; i++) {
-            racingCar.play(names);
-            ResultView.result(names, racingCar);
+            racingGame.play();
+            ResultView.result(racingGame);
         }
 
-        ResultView.printWinner(racingCar);
+        ResultView.printWinner(racingGame);
     }
 }
