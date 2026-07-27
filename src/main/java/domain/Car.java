@@ -1,10 +1,11 @@
 package domain;
 
 public class Car {
-    private String name;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_THRESHOLD = 4;
+
+    private final String name;
     private int position;
-    public static final int MAX_NAME_LENGTH = 5;
-    public static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
         if (name.isBlank()) {
