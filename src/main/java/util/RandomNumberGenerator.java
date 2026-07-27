@@ -5,12 +5,12 @@ import java.util.Random;
 import domain.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
+    private static final int RANDOM_NUMBER_BOUND = 10;
+
+    private final Random random = new Random();
+
     @Override
     public int generate() {
-        Random random = new Random();
-
-        int number = random.nextInt(10);
-
-        return number;
+        return random.nextInt(RANDOM_NUMBER_BOUND);
     }
 }
