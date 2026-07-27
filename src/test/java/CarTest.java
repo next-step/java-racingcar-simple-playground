@@ -24,11 +24,17 @@ class CarTest {
         assertEquals(car.getPosition(), 0);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = { 0, 5 })
+    @Test
     void isNameLengthOverFive() {
         assertThatThrownBy(() -> {
             Car car = new Car("seungmin");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 5 })
+    void isValidCarName(int nameLength) {
+        Car car = new Car("seung");
+        assertThat(nameLength == car.getName().length()).isTrue();
     }
 }
