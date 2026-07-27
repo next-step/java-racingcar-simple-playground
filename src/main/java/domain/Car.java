@@ -19,7 +19,7 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int randomNumber) {
+    void move(int randomNumber) {
         if(randomNumber >= MOVE_THRESHOLD) {
             position++;
         }

@@ -27,7 +27,7 @@ public class Application {
 
         for (int i = 0; i < round; i++) {
             racingGame.playRound();
-            outputView.printRoundResult(racingGame.getCars());
+            outputView.printRoundResult(racingGame.getCarSnapshots());
         }
 
         outputView.printWinners(racingGame.findWinners());

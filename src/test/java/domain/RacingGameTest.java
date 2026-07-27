@@ -23,7 +23,7 @@ public class RacingGameTest {
 
         racingGame.playRound();
 
-        List<Car> cars = racingGame.getCars();
+        List<CarSnapshot> cars = racingGame.getCarSnapshots();
 
         assertEquals(1, cars.get(0).getPosition());
         assertEquals(0, cars.get(1).getPosition());
@@ -42,7 +42,7 @@ public class RacingGameTest {
         racingGame.playRound();
         racingGame.playRound();
 
-        List<Car> winners = racingGame.findWinners();
+        List<CarSnapshot> winners = racingGame.findWinners();
 
         assertEquals(1, winners.size());
         assertEquals("test3", winners.get(0).getName());
@@ -59,7 +59,7 @@ public class RacingGameTest {
 
         racingGame.playRound();
 
-        List<Car> winners = racingGame.findWinners();
+        List<CarSnapshot> winners = racingGame.findWinners();
 
         assertEquals(2, winners.size());
         assertEquals("test1", winners.get(0).getName());
@@ -75,7 +75,7 @@ public class RacingGameTest {
 
         RacingGame racingGame = new RacingGame(carNames, numberGenerator);
 
-        List<Car> winners = racingGame.findWinners();
+        List<CarSnapshot> winners = racingGame.findWinners();
 
         assertEquals(3, winners.size());
     }

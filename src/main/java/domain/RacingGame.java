@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class RacingGame {
     private final List<Car> cars = new ArrayList<>();
@@ -16,8 +15,15 @@ public class RacingGame {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Car> getCars() {
-        return List.copyOf(cars);
+    public List<CarSnapshot> getCarSnapshots() {
+        List<CarSnapshot> snapshots = new ArrayList<>();
+
+        for (Car car : cars) {
+            CarSnapshot snapshot = CarSnapshot.from(car);
+            snapshots.add(snapshot);
+        }
+
+        return List.copyOf(snapshots);
     }
 
     public void playRound() {
@@ -27,12 +33,13 @@ public class RacingGame {
         }
     }
 
-    public List<Car> findWinners() {
+    public List<CarSnapshot> findWinners() {
         int maxPosition = findMaxPosition();
 
-        List<Car> winners = cars.stream()
+        List<CarSnapshot> winners = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
-                .collect(Collectors.toList());
+                .map(CarSnapshot::from)
+                .toList();
 
         return winners;
     }
