@@ -13,13 +13,13 @@ public class InputView {
 
         String[] names = carNames.split(",");
 
-        for(int i = 0; i < names.length; i++ ) {
+        for (int i = 0; i < names.length; i++) {
             names[i] = names[i].trim();
         }
 
         return Arrays.asList(names);
     }
-    
+
     public int getRound() {
         System.out.println("시도할 회수는 몇회인가요?");
         int round = scanner.nextInt();

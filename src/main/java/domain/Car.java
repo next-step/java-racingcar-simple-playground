@@ -7,11 +7,11 @@ public class Car {
     public static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
-        if(name.isBlank()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
         }
 
-        if(name.length() > MAX_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다.");
         }
 
@@ -20,7 +20,7 @@ public class Car {
     }
 
     void move(int randomNumber) {
-        if(randomNumber >= MOVE_THRESHOLD) {
+        if (randomNumber >= MOVE_THRESHOLD) {
             position++;
         }
     }

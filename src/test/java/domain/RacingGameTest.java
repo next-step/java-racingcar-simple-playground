@@ -15,7 +15,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("한 라운드에 자동차 여러대가 각자 이동한다")
     void movesMultipleCars() {
-        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(4,3,7));
+        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(4, 3, 7));
 
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
@@ -33,7 +33,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차가 한 대이면 우승자도 한 명이다")
     void findWinnerWithMaxPosition() {
-        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(3,3,7,3,3,7));
+        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(3, 3, 7, 3, 3, 7));
 
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
@@ -51,8 +51,8 @@ public class RacingGameTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차가 여러 대이면 우승자도 여러 명이다")
     void findAllWinnersWithMaxPosition() {
-        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(4,3,7));
-        
+        NumberGenerator numberGenerator = new SequenceNumberGenerator(Arrays.asList(4, 3, 7));
+
         List<String> carNames = Arrays.asList("test1", "test2", "test3");
 
         RacingGame racingGame = new RacingGame(carNames, numberGenerator);

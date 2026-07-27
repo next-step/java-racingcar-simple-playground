@@ -27,7 +27,7 @@ public class RacingGame {
     }
 
     public void playRound() {
-        for(Car car : cars) {
+        for (Car car : cars) {
             int number = numberGenerator.generate();
             car.move(number);
         }
@@ -47,7 +47,7 @@ public class RacingGame {
     private int findMaxPosition() {
         int maxPosition = Integer.MIN_VALUE;
 
-        for(Car car : cars) {
+        for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
         }
 

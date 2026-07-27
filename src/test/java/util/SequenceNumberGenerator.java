@@ -11,7 +11,7 @@ public class SequenceNumberGenerator implements NumberGenerator {
     public SequenceNumberGenerator(List<Integer> numbers) {
         this.numbers = List.copyOf(numbers);
     }
-    
+
     @Override
     public int generate() {
         if (index >= numbers.size()) {
@@ -20,7 +20,7 @@ public class SequenceNumberGenerator implements NumberGenerator {
 
         int number = numbers.get(index);
         index++;
-        
+
         return number;
     }
 }

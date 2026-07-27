@@ -31,16 +31,16 @@ public class CarTest {
     @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생한다")
     void throwExceptionWhenNameExceedsFiveCharacters() {
         assertThrows(
-            IllegalArgumentException.class,
-            () -> new Car("abcdef")
-        );        
+                IllegalArgumentException.class,
+                () -> new Car("abcdef")
+        );
     }
 
     @Test
     @DisplayName("자동차 이름이 5자 이하이면 정상적으로 생성된다")
     void createCarWithFiveCharacterNameSuccessfully() {
-        Car car = new Car("12345");   
-        
+        Car car = new Car("12345");
+
         assertEquals("12345", car.getName());
     }
 }
