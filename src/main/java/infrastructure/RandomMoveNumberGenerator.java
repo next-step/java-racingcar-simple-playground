@@ -2,9 +2,9 @@ package infrastructure;
 
 import java.util.Random;
 
-import domain.NumberGenerator;
+import domain.MoveNumberGenerator;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class RandomMoveNumberGenerator implements MoveNumberGenerator {
     private static final int RANDOM_NUMBER_BOUND = 10;
 
     private final Random random = new Random();

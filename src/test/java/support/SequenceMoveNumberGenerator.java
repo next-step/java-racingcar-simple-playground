@@ -2,13 +2,13 @@ package support;
 
 import java.util.List;
 
-import domain.NumberGenerator;
+import domain.MoveNumberGenerator;
 
-public class SequenceNumberGenerator implements NumberGenerator {
+public class SequenceMoveNumberGenerator implements MoveNumberGenerator {
     private final List<Integer> numbers;
     private int index = 0;
 
-    public SequenceNumberGenerator(List<Integer> numbers) {
+    public SequenceMoveNumberGenerator(List<Integer> numbers) {
         this.numbers = List.copyOf(numbers);
     }
 

@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class RacingGame {
     private final List<Car> cars = new ArrayList<>();
-    private final NumberGenerator numberGenerator;
+    private final MoveNumberGenerator moveNumberGenerator;
 
-    public RacingGame(List<String> carNames, NumberGenerator numberGenerator) {
+    public RacingGame(List<String> carNames, MoveNumberGenerator moveNumberGenerator) {
         for (String carName : carNames) {
             Car car = new Car(carName);
             this.cars.add(car);
         }
-        this.numberGenerator = numberGenerator;
+        this.moveNumberGenerator = moveNumberGenerator;
     }
 
     public List<CarSnapshot> getCarSnapshots() {
@@ -28,7 +28,7 @@ public class RacingGame {
 
     public void playRound() {
         for (Car car : cars) {
-            int number = numberGenerator.generate();
+            int number = moveNumberGenerator.generate();
             car.move(number);
         }
     }
