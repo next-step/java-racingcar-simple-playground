@@ -23,11 +23,12 @@ public class PlayTest {
         testCar.add(car2);
         testCar.add(car3);
         Cars testCars = new Cars(testCar);
-        TestNumberGenerator testNumberGenerator = new TestNumberGenerator(9);
-        Play play1 = new Play(testCars, testNumberGenerator);
+        SequentialNumberGenerator sequentialNumberGenerator = new SequentialNumberGenerator(new ArrayList<>(List.of(3, 4, 3)));
+        sequentialNumberGenerator.addSequentialNumber(new ArrayList<>(List.of(3, 5, 4)));
+        Play play1 = new Play(testCars, sequentialNumberGenerator);
 
         //when
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             play1.playRound();
         }
 

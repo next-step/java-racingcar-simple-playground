@@ -17,8 +17,6 @@ public class Play {
     }
 
     private void setState(int num, int i) {
-        if (num >= 4) {
-            cars.get(i).moveCar();
-        }
+        cars.get(i).move(num);
     }
 }

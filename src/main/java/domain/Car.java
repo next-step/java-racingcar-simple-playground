@@ -9,8 +9,10 @@ public class Car {
         this.name = carName;
     }
 
-    public void moveCar() {
-        position += 1;
+    public void move(int generatedNumber) {
+        if (generatedNumber >= 4) {
+            position += 1;
+        }
     }
 
     public String getName() {
