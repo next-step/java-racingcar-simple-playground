@@ -16,8 +16,8 @@ public class CarTest {
         Car car2 = new Car("Player2");
 
         // 실행
-        car1.decide(4);
-        car2.decide(7);
+        car1.move(4);
+        car2.move(7);
 
         // 검증
         assertEquals(1, car1.getLocation());
@@ -34,8 +34,8 @@ public class CarTest {
         Car car2 = new Car("Player2");
 
         // 실행
-        car1.decide(1);
-        car2.decide(3);
+        car1.move(1);
+        car2.move(3);
 
         // 검증
         assertEquals(0, car1.getLocation());

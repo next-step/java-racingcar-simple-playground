@@ -62,7 +62,7 @@ public class RacingGame {
         int[] carLocations = new int[cars.length];
 
         for (int i = 0; i < cars.length; i++) {
-            cars[i].decide(numbers[i]);
+            cars[i].move(numbers[i]);
             carLocations[i] = cars[i].getLocation();
         }
 

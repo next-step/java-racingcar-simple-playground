@@ -1,13 +1,8 @@
 package domain;
-import java.util.Random;
 
 public class Car {
 
     private static final int MAX_NAME_LENGTH = 10;
-    private static final int MOVE_THRESHOLD = 4;
-    private static final int RANDOM_RANGE = 10;
-
-    Random random = new Random();
 
     private int location = 0;
     private final String name;
@@ -33,14 +28,11 @@ public class Car {
     }
 
     public void move(){
-        int number = random.nextInt(RANDOM_RANGE);
-        decide(number);
+        location = MoveRule.moveRandom(location);
     }
 
-    public void decide(int number) {
-        if(number >= MOVE_THRESHOLD){
-            location++;
-        }
+    public void move(int number) {
+        location = MoveRule.moveExplicit(location, number);
     }
 
 }
