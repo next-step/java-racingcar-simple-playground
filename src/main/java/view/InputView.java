@@ -45,7 +45,7 @@ public class InputView {
         }
         // 예외처리 - 정수가 아닌 값 처리
         catch (InputMismatchException e){
-            throw new InputMismatchException("시도 횟수는 정수로 입력해주세요.");
+            throw new IllegalArgumentException("시도 횟수는 정수로 입력해주세요.");
         }
     }
 
