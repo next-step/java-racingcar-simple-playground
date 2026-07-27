@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
     @Test
@@ -42,5 +45,16 @@ public class CarTest {
         Car car = new Car("12345");
 
         assertEquals("12345", car.getName());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"", "   "})
+    @DisplayName("자동차 이름이 null이거나 공백이면 예외가 발생한다")
+    void throwsExceptionWhenCarNameIsNullOrBlank(String name) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car(name)
+        );
     }
 }
