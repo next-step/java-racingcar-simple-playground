@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 
 public class InputView {
 
-    private static final int MAX_NAME_LENGTH = 10;
     private static final int MIN_TRY_COUNT = 1;
     private static final int MAX_TRY_COUNT = 20;
 
@@ -26,15 +25,6 @@ public class InputView {
                 if(names[i].equals(names[j])){
                     throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
                 }
-            }
-        }
-
-        for(int i = 0; i < names.length; i++){ // 예외처리 - 이름의 길이는 1 ~ 10으로 제한
-            if(names[i].isBlank()){
-                throw new IllegalArgumentException("각 이름은 1자 이상으로 입력해주세요.");
-            }
-            if(names[i].length() > MAX_NAME_LENGTH){
-                throw new IllegalArgumentException("각 이름은 10자 이하로 입력해주세요.");
             }
         }
 
