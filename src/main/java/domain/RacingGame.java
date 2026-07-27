@@ -47,7 +47,7 @@ public class RacingGame {
     }
 
 
-    public int[] eachRound(){
+    public int[] eachRound(){ // 위치 랜덤
         int[] carLocations = new int[cars.length];
 
         for (int i = 0; i < cars.length; i++) {
@@ -58,4 +58,14 @@ public class RacingGame {
         return carLocations;
     }
 
+    public int[] eachRound(int[] numbers){ // 위치 명시
+        int[] carLocations = new int[cars.length];
+
+        for (int i = 0; i < cars.length; i++) {
+            cars[i].decide(numbers[i]);
+            carLocations[i] = cars[i].getLocation();
+        }
+
+        return carLocations;
+    }
 }
