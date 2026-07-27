@@ -20,9 +20,9 @@ public class InputView {
         return Arrays.asList(names);
     }
 
-    public int getRound() {
+    public String readRound() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int round = scanner.nextInt();
+        String round = scanner.nextLine();
         System.out.println();
 
         return round;

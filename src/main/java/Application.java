@@ -2,6 +2,7 @@ import java.util.List;
 
 import domain.MoveNumberGenerator;
 import domain.RacingGame;
+import domain.Round;
 import infrastructure.RandomMoveNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -21,11 +22,12 @@ public class Application {
 
         RacingGame racingGame = new RacingGame(carNames, moveNumberGenerator);
 
-        int round = inputView.getRound();
+        String input = inputView.readRound();
+        Round round = Round.from(input);
 
         outputView.printStartMessage();
 
-        for (int i = 0; i < round; i++) {
+        for (int i = 0; i < round.getValue(); i++) {
             racingGame.playRound();
             outputView.printRoundResult(racingGame.getCarSnapshots());
         }
