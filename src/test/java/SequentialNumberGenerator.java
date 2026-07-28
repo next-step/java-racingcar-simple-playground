@@ -3,7 +3,7 @@ import domain.NumberGenerator;
 import java.util.List;
 
 public class SequentialNumberGenerator implements NumberGenerator {
-    private List<Integer> sequentialNumber;
+    private final List<Integer> sequentialNumber;
     private int i = 0;
 
     public SequentialNumberGenerator(List<Integer> sequentialNumber) {
