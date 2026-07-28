@@ -5,13 +5,16 @@ import java.util.List;
 public class RacingGame {
 
     private final Car[] cars;
+    private final MoveRule moveRule;
 
-    public RacingGame(String[] carNames){
+    public RacingGame(String[] carNames, MoveRule moveRule){
         cars = new Car[carNames.length];
 
         for(int i = 0; i < carNames.length; i++){
             cars[i] = new Car(carNames[i]);
         }
+
+        this.moveRule = moveRule;
     }
 
 
@@ -51,18 +54,7 @@ public class RacingGame {
         int[] carLocations = new int[cars.length];
 
         for (int i = 0; i < cars.length; i++) {
-            cars[i].move();
-            carLocations[i] = cars[i].getLocation();
-        }
-
-        return carLocations;
-    }
-
-    public int[] eachRound(int[] numbers){ // 위치 명시
-        int[] carLocations = new int[cars.length];
-
-        for (int i = 0; i < cars.length; i++) {
-            cars[i].move(numbers[i]);
+            cars[i].move(moveRule);
             carLocations[i] = cars[i].getLocation();
         }
 

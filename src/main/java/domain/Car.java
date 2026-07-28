@@ -31,6 +31,6 @@ public class Car {
     }
 
     public void move(MoveRule moveRule){
-        moveRule.move(location);
+        location = moveRule.move(location);
     }
 }
