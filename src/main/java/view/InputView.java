@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -12,20 +13,15 @@ public class InputView {
 
     public static String[] getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분, 1~10자)");
-        String racingcars = scanner.nextLine();
+        String racingCars = scanner.nextLine();
 
-        String[] names = racingcars.split(",");
+        String[] names = racingCars.split(",");
 
-        for(int i = 0; i < names.length; i++){ // 공백 처리
-            names[i] = names[i].trim();
-        }
+        names = Arrays.stream(names).map(String::trim).toArray(String[]:: new); // 공백 처리
 
-        for(int i = 0; i < names.length; i++){ // 자동차 이름 중복 처리
-            for(int j = i + 1; j < names.length; j++){
-                if(names[i].equals(names[j])){
-                    throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
-                }
-            }
+        long distinct = Arrays.stream(names).distinct().count(); // 중복 처리
+        if(names.length != distinct){
+            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
         }
 
         return names;
