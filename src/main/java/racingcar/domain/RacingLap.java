@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.InputMismatchException;
 
 public class RacingLap {
+    public static final int MIN_RACINGGAME_LAP_COUNT = 1;
     private int lapCount;
     public RacingLap(int lapCount) {
         checkLapCount(lapCount);
@@ -11,7 +12,7 @@ public class RacingLap {
 
     private static void checkLapCount(int lapCount) {
         try {
-            if (lapCount < 1){
+            if (lapCount < MIN_RACINGGAME_LAP_COUNT){
                 throw new IllegalArgumentException("횟수는 1회 이상으로 입력해주세요.");
             }
         } catch (InputMismatchException e) {

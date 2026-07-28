@@ -2,6 +2,7 @@ package racingcar.domain;
 
 public class Car {
     public static final int CAR_MOVING_THRESHOLD = 4;
+    public static final int CAR_MOVE_ONCE_DISTANCE = 1;
     private final String name;
     private int location;
 
@@ -23,7 +24,7 @@ public class Car {
 
     public void moveCar(int randomValue) {
         if (randomValue >= CAR_MOVING_THRESHOLD) {
-            this.location += 1;
+            this.location += CAR_MOVE_ONCE_DISTANCE;
         }
     }
 
