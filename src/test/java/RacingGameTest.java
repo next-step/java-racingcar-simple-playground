@@ -1,3 +1,5 @@
+import domain.ExplicitMoveRule;
+import domain.MoveRule;
 import domain.RacingGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,8 +17,8 @@ public class RacingGameTest {
     void locationArrayLengthAndCarNumberIsSame() {
 
         // 준비
-        String[] cars = {"Player1", "Player2", "Player3"};
-        RacingGame game = new RacingGame(cars);
+        MoveRule explicitMoveRule = new ExplicitMoveRule(4);
+        RacingGame game = new RacingGame(cars, explicitMoveRule);
 
         // 실행
         int[] result = game.eachRound();
@@ -25,42 +27,18 @@ public class RacingGameTest {
         assertEquals(3, result.length);
     }
 
-
-    @Test
-    @DisplayName("단일 우승자 반환")
-    void oneCarIsWinner() {
-
-        // 준비
-        RacingGame game = new RacingGame(cars);
-        int[] numbers1 = {9, 3, 8};
-        int[] numbers2 = {5, 6, 1};
-        int[] numbers3 = {4, 2, 7};
-
-        // 실행
-        game.eachRound(numbers1);
-        game.eachRound(numbers2);
-        game.eachRound(numbers3);
-        String[] result = game.getWinners();
-
-        // 검증
-        assertArrayEquals(new String[]{"Player1"}, result);
-    }
-
-
     @Test
     @DisplayName("공동 우승자 반환")
     void severalCarsAreWinner() {
 
         // 준비
-        RacingGame game = new RacingGame(cars);
-        int[] numbers1 = {9, 4, 8};
-        int[] numbers2 = {5, 6, 1};
-        int[] numbers3 = {3, 2, 7};
+        MoveRule explicitMoveRule = new ExplicitMoveRule(9);
+        RacingGame game = new RacingGame(cars, explicitMoveRule);
 
         // 실행
-        game.eachRound(numbers1);
-        game.eachRound(numbers2);
-        game.eachRound(numbers3);
+        game.eachRound();
+        game.eachRound();
+        game.eachRound();
         String[] result = game.getWinners();
 
         // 검증

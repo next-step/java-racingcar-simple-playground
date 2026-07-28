@@ -1,4 +1,6 @@
 import domain.Car;
+import domain.ExplicitMoveRule;
+import domain.MoveRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +14,14 @@ public class CarTest {
     void moveIf4OrMore() {
 
         // 준비
+        MoveRule explicitMoveRule1 = new ExplicitMoveRule(4);
+        MoveRule explicitMoveRule2 = new ExplicitMoveRule(7);
         Car car1 = new Car("Player1");
         Car car2 = new Car("Player2");
 
         // 실행
-        car1.move(4);
-        car2.move(7);
+        car1.move(explicitMoveRule1);
+        car2.move(explicitMoveRule2);
 
         // 검증
         assertEquals(1, car1.getLocation());
@@ -30,12 +34,14 @@ public class CarTest {
     void notMoveIfLessThan4(){
 
         // 준비
+        MoveRule explicitMoveRule1 = new ExplicitMoveRule(1);
+        MoveRule explicitMoveRule2 = new ExplicitMoveRule(3);
         Car car1 = new Car("Player1");
         Car car2 = new Car("Player2");
 
         // 실행
-        car1.move(1);
-        car2.move(3);
+        car1.move(explicitMoveRule1);
+        car2.move(explicitMoveRule2);
 
         // 검증
         assertEquals(0, car1.getLocation());
