@@ -38,4 +38,32 @@ public class PlayTest {
         assertThat(testCars.getWinner()).containsExactly(car2);
     }
 
+    @Test
+    @DisplayName("공동우승자 구하기 테스트")
+    void findJointWinner() {
+        Car car1 = new Car("소나타");
+        Car car2 = new Car("아반떼");
+        Car car3 = new Car("벤틀리");
+        List<Car> testCar = new ArrayList<>();
+        testCar.add(car1);
+        testCar.add(car2);
+        testCar.add(car3);
+        Cars testCars = new Cars(testCar);
+        SequentialNumberGenerator sequentialNumberGenerator =
+                new SequentialNumberGenerator(List.of(
+                        3, 5, 5,
+                        2, 5, 4,
+                        2, 5, 5
+                ));
+        Play play2 = new Play(testCars, sequentialNumberGenerator);
+
+        //when
+        for (int i = 0; i < 3; i++) {
+            play2.playRound();
+        }
+
+        //then
+        assertThat(testCars.getWinner()).containsExactly(car2, car3);
+    }
+
 }
