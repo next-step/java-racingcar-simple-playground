@@ -4,7 +4,7 @@ import view.ResultView;
 import domain.RacingGame;
 import domain.MoveRule;
 
-public class Aplication {
+public class Application {
     public static void main(String[] args) {
         MoveRule randomMoveRule = new RandomMoveRule();
 
