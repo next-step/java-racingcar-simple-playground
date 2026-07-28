@@ -23,7 +23,7 @@ public class RacingGame {
 
     public List<Car> startLap() {
         for (Car racingCar : racingCars) {
-            racingCar.moveCar(randomNumGenerator.makeNum());   //실제 랜덤넘버 만드는 것이 호출될 것임
+            racingCar.moveCar(randomNumGenerator.makeNum());
         }
         return racingCars;
     }

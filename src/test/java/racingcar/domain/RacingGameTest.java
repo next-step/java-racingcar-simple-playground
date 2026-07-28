@@ -11,23 +11,20 @@ class RacingGameTest {
     @Test
     @DisplayName("RacingGame 객체가 정상적으로 생성된다.")
     void createRacingGame() {
-        // given
         Car car1 = new Car("Car1");
         Car car2 = new Car("Car2");
         List<Car> cars = List.of(car1, car2);
         int lapCount = 5;
 
-        // when
         RacingGame racingGame = new RacingGame(cars, lapCount);
 
-        // then
         assertThat(racingGame.getRacingCars()).hasSize(2);
         assertThat(racingGame.getLapCount()).isEqualTo(5);
     }
 
     @Test
     @DisplayName("startLap을 실행하면..")
-    void startLap_ReturnsCars() {   //어떻게 테스트하지?
+    void startLap_ReturnsCars() {   // todo
 //        // given
 //        Car car1 = new Car("Car1");
 //        Car car2 = new Car("Car2");

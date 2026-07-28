@@ -16,7 +16,7 @@ public class InputView {
     public static int setLapCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         int number = scanner.nextInt();
-        System.out.println(); // 출력 형식에 맞추기 위한 줄바꿈
+        System.out.println();
         return number;
     }
 

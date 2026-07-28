@@ -14,7 +14,7 @@ public class ResultView {
     }
 
     public static void printWinners(List<Car> winners) {
-        StringJoiner stringJoiner = new StringJoiner(", "); //의도를 드러내는 변수명으로 수정
+        StringJoiner stringJoiner = new StringJoiner(", ");
         for (Car car : winners) {
             stringJoiner.add(car.getName());
         }

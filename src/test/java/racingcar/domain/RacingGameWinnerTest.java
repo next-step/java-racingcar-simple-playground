@@ -12,7 +12,6 @@ class RacingGameWinnerTest {
     @Test
     @DisplayName("가장 많이 전진한 자동차가 단독 우승자가 된다.")
     void selectSingleWinner() {
-        // given
         Car car1 = new Car("Car1");
         Car car2 = new Car("Car2");
         Car car3 = new Car("Car3");
@@ -25,10 +24,8 @@ class RacingGameWinnerTest {
         RacingGame racingGame = new RacingGame(List.of(car1, car2, car3), 5);
         RacingGameWinner winnerSelector = new RacingGameWinner();
 
-        // when
         List<Car> winners = winnerSelector.selectWinners(racingGame);
 
-        // then
         assertThat(winners).hasSize(1);
         assertThat(winners.get(0).getName()).isEqualTo("Car2");
     }
@@ -36,20 +33,17 @@ class RacingGameWinnerTest {
     @Test
     @DisplayName("최고 위치에 도달한 자동차가 여러 대일 경우 공동 우승자가 된다.")
     void selectMultipleWinners() {
-        // given
         Car car1 = new Car("Car1");
         Car car2 = new Car("Car2");
 
         car1.moveCar(fixedNumberGenerator.makeNum());
-        car2.moveCar(fixedNumberGenerator.makeNum()); //공동 1등
+        car2.moveCar(fixedNumberGenerator.makeNum());
 
         RacingGame racingGame = new RacingGame(List.of(car1, car2), 5);
         RacingGameWinner winnerSelector = new RacingGameWinner();
 
-        // when
         List<Car> winners = winnerSelector.selectWinners(racingGame);
 
-        // then
         assertThat(winners).hasSize(2).extracting(Car::getName).containsExactlyInAnyOrder("Car1", "Car2");
     }
 }

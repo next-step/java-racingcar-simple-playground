@@ -12,12 +12,11 @@ import racingcar.view.ResultView;
 public class Application {
     public static void main(final String... args) {
         final List<String> carNames = InputView.setCarNames();
-        RacingCars racingCars = new RacingCars(carNames);   //입력을 받자마자 검증
+        RacingCars racingCars = new RacingCars(carNames);
 
         final int lapCount = InputView.setLapCount();
-        RacingLap racingLap = new RacingLap(lapCount);  //입력을 받자마자 검증
+        RacingLap racingLap = new RacingLap(lapCount);
 
-        //검증된 것으로 인스턴스를 생성
         final List<Car> validatedCarNames = racingCars.getCarsList();
         final int validatedLapCount = racingLap.getLapCount();
         RacingGame racingGame = new RacingGame(validatedCarNames, validatedLapCount);

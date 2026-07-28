@@ -7,7 +7,7 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
-        if (name == null || name.isBlank() || name.length() > 5) {  //자동차 이름에 대한 예외처리니까 Car 클래스에서 처리
+        if (name == null || name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 공백이 아닌 5자 이하 글자여야합니다.");
         }
         this.location = 0;
@@ -23,7 +23,7 @@ public class Car {
 
     public void moveCar(int randomValue) {
         if (randomValue >= CAR_MOVING_THRESHOLD) {
-            this.location += 1; //한번에 1씩 전진한다고 가정한다..
+            this.location += 1;
         }
     }
 
