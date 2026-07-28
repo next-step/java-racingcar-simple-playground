@@ -8,8 +8,11 @@ public class Car {
     private final String name;
 
     public Car(String name){
+        verifyName(name);
         this.name = name;
+    }
 
+    private void verifyName(String name){
         // 예외처리 - 이름의 길이는 1~10자로 제한
         if(name.isBlank()){
             throw new IllegalArgumentException("각 이름은 1자 이상으로 입력해주세요.");
