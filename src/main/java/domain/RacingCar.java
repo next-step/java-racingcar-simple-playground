@@ -1,12 +1,9 @@
 package domain;
 
-import java.util.*;
-
-
 public class RacingCar {
 
-    String name;
-    int position;
+    private final String name;
+    private int position;
 
     private static final int MOVE_STATUS = 4;
 
@@ -15,7 +12,7 @@ public class RacingCar {
         this.position = position;
     }
 
-    public boolean moveReturn(int randomMove) {
+    private boolean moveReturn(int randomMove) {
         return randomMove >= MOVE_STATUS;
     }
 

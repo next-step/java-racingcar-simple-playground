@@ -14,9 +14,9 @@ public class Application {
 
         for (int i = 0; i < number; i++) {
             racingGame.play();
-            ResultView.result(racingGame);
+            ResultView.result(racingGame.getCars());
         }
 
-        ResultView.printWinner(racingGame);
+        ResultView.printWinner(racingGame.winner());
     }
 }

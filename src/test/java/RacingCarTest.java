@@ -16,7 +16,8 @@ public class RacingCarTest {
     @DisplayName("경계값 테스트: 4, 5일 때 전진")
     void moveForward(int value) {
         RacingCar racingCar = new RacingCar("car1", 0);
-        assertEquals(true, racingCar.moveReturn(value));
+        racingCar.move(value);
+        assertEquals(1, racingCar.getPosition());
     }
 
 
@@ -24,7 +25,8 @@ public class RacingCarTest {
     @DisplayName("경계값 테스트: 3일 때 정지")
     void moveStop() {
         RacingCar racingCar = new RacingCar("car1", 0);
-        assertEquals(false, racingCar.moveReturn(3));
+        racingCar.move(3);
+        assertEquals(0, racingCar.getPosition());
     }
 
 

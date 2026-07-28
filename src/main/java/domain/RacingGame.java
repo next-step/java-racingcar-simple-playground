@@ -8,8 +8,8 @@ public class RacingGame {
     Random random = new Random();
 
     public void init(String names[]) {
-        for (int i = 0; i < names.length; i++) {
-            cars.add(new RacingCar(names[i], 0));
+        for (String name: names) {
+            cars.add(new RacingCar(name, 0));
         }
     }
 
@@ -21,7 +21,7 @@ public class RacingGame {
         }
     }
 
-    public int updateMax (int max, List<String> winners, int i) {
+    private int updateMax (int max, List<String> winners, int i) {
         if (max > cars.get(i).getPosition()) {
             return max;
         }
@@ -47,6 +47,6 @@ public class RacingGame {
     }
 
     public List<RacingCar> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }
