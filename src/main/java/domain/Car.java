@@ -30,12 +30,7 @@ public class Car {
         return location;
     }
 
-    public void move(){
-        location = MoveRule.moveRandom(location);
+    public void move(MoveRule moveRule){
+        moveRule.move(location);
     }
-
-    public void move(int number) {
-        location = MoveRule.moveExplicit(location, number);
-    }
-
 }
