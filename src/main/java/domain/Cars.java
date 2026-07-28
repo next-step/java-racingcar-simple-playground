@@ -53,4 +53,11 @@ public class Cars {
     public Car get(int i) {
         return cars.get(i);
     }
+
+    public void racingCars(NumberGenerator numberGenerator) {
+        for (int i = 0; i < cars.size(); i++) {
+            int number = numberGenerator.generate();
+            cars.get(i).move(number);
+        }
+    }
 }

@@ -19,8 +19,8 @@ public class Main {
         NumberGenerator numberGenerator = new MakeRandomNum();
         Play race = new Play(cars, numberGenerator);
         for (int i = 0; i < totalPlay; i++) {
-            race.playRound();
             ResultView.printRace(cars);
+            race.playRound();
         }
         ResultView.printWinner(cars.getWinner());
     }

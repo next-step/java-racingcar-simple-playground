@@ -10,13 +10,6 @@ public class Play {
     }
 
     public void playRound() {
-        for (int i = 0; i < cars.size(); i++) { //라운드의 플레이 하나
-            int presentNum = numberGenerator.generate();
-            setState(presentNum, i);
-        }
-    }
-
-    private void setState(int num, int i) {
-        cars.get(i).move(num);
+        cars.racingCars(numberGenerator);
     }
 }
