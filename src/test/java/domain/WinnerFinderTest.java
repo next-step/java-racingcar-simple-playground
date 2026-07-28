@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class WinnerFinderTest {
 
     @Test
-    void 가장_멀리_이동한_자동차를_찾음() {
+    void 가장_멀리_이동한_자동차를_찾는다() {
         Car pobi = new Car("pobi");
         Car woni = new Car("woni");
 
@@ -17,13 +17,13 @@ class WinnerFinderTest {
 
         WinnerFinder winnerFinder = new WinnerFinder();
 
-        assertThat(winnerFinder.findWinners(
-                List.of(pobi, woni)
-        )).containsExactly("pobi");
+        assertThat(
+                winnerFinder.findWinners(List.of(pobi, woni))
+        ).containsExactly("pobi");
     }
 
     @Test
-    void 같은_위치라면_공동_우승() {
+    void 같은_위치라면_공동_우승한다() {
         Car pobi = new Car("pobi");
         Car woni = new Car("woni");
 
@@ -32,8 +32,8 @@ class WinnerFinderTest {
 
         WinnerFinder winnerFinder = new WinnerFinder();
 
-        assertThat(winnerFinder.findWinners(
-                List.of(pobi, woni)
-        )).containsExactly("pobi", "woni");
+        assertThat(
+                winnerFinder.findWinners(List.of(pobi, woni))
+        ).containsExactly("pobi", "woni");
     }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class CarTest {
 
     @Test
-    void 숫자가_4_이상시_자동차_이동() {
+    void 숫자가_4_이상이면_자동차가_이동한다() {
         Car car = new Car("pobi");
 
         car.move(4);
@@ -16,7 +16,7 @@ class CarTest {
     }
 
     @Test
-    void 숫자가_4보다_작을시_자동차_이동하지않음() {
+    void 숫자가_4보다_작으면_자동차가_이동하지_않는다() {
         Car car = new Car("pobi");
 
         car.move(3);
