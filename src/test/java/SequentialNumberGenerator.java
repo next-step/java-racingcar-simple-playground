@@ -16,11 +16,4 @@ public class SequentialNumberGenerator implements NumberGenerator {
         i++;
         return number;
     }
-
-    public void addSequentialNumber(List<Integer> addedSequentialNumber) {
-        for (int i = 0; i < addedSequentialNumber.size(); i++) {
-            sequentialNumber.add(addedSequentialNumber.get(i));
-        }
-    }
-
 }

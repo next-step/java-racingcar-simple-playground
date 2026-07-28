@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class PlayTest {
     @Test
@@ -23,8 +22,11 @@ public class PlayTest {
         testCar.add(car2);
         testCar.add(car3);
         Cars testCars = new Cars(testCar);
-        SequentialNumberGenerator sequentialNumberGenerator = new SequentialNumberGenerator(new ArrayList<>(List.of(3, 4, 3)));
-        sequentialNumberGenerator.addSequentialNumber(new ArrayList<>(List.of(3, 5, 4)));
+        SequentialNumberGenerator sequentialNumberGenerator =
+                new SequentialNumberGenerator(List.of(
+                        3, 4, 3, // 1라운드
+                        3, 5, 4  // 2라운드
+                ));
         Play play1 = new Play(testCars, sequentialNumberGenerator);
 
         //when
@@ -33,8 +35,7 @@ public class PlayTest {
         }
 
         //then
-        assertSame(car2, testCars.getWinner().get(0));
-        assertEquals(1, testCars.getWinner().size());
+        assertThat(testCars.getWinner()).containsExactly(car2);
     }
 
 }
