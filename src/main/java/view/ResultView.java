@@ -10,11 +10,13 @@ public class ResultView {
         System.out.println("실행결과");
         for (int i = 0; i < cars.size(); i++) {
             System.out.printf("%s : ", cars.get(i).getName());
-            for (int j = 0; j < cars.get(i).getPosition(); j++) {
-                System.out.print("-");
-            }
+            System.out.printf("%s", makePosition(cars.get(i).getPosition()));
             System.out.println();
         }
+    }
+
+    private static String makePosition(int position) {
+        return "-".repeat(position);
     }
 
     public static void printWinner(List<Car> winner) {
