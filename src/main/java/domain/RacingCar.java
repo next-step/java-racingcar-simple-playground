@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Objects;
-
 public class RacingCar {
 
     private final String name;
