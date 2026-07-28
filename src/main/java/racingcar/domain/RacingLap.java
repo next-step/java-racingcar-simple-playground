@@ -4,15 +4,16 @@ import java.util.InputMismatchException;
 
 public class RacingLap {
     public static final int MIN_RACINGGAME_LAP_COUNT = 1;
-    private int lapCount;
+    private final int lapCount;
+
     public RacingLap(int lapCount) {
         checkLapCount(lapCount);
         this.lapCount = lapCount;
     }
 
-    private static void checkLapCount(int lapCount) {
+    private void checkLapCount(int lapCount) {
         try {
-            if (lapCount < MIN_RACINGGAME_LAP_COUNT){
+            if (lapCount < MIN_RACINGGAME_LAP_COUNT) {
                 throw new IllegalArgumentException("횟수는 1회 이상으로 입력해주세요.");
             }
         } catch (InputMismatchException e) {
