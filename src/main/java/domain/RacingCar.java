@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class RacingCar {
 
     private final String name;
@@ -8,8 +10,23 @@ public class RacingCar {
     private static final int MOVE_STATUS = 4;
 
     public RacingCar(String name, int position) {
+        validateName(name);
+        validatePosition(position);
+
         this.name = name;
         this.position = position;
+    }
+
+    private void validateName(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validatePosition(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private boolean moveReturn(int randomMove) {

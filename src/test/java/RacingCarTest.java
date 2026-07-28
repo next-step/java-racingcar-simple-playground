@@ -6,6 +6,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import domain.RacingCar;
 import domain.RacingGame;
 
@@ -45,6 +47,18 @@ public class RacingCarTest {
         List<String> actual = racingGame.winner();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("이름이 비었는지 테스트")
+    void nameEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> new RacingCar("", 0));
+    }
+
+    @Test
+    @DisplayName("위치가 음수인지 테스트")
+    void positionNegative() {
+        assertThrows(IllegalArgumentException.class, () -> new RacingCar("a", -1));
     }
 
 
