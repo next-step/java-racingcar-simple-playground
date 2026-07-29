@@ -1,0 +1,48 @@
+package view;
+
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class InputView {
+
+    private static final int MIN_TRY_COUNT = 1;
+    private static final int MAX_TRY_COUNT = 20;
+
+    static Scanner scanner = new Scanner(System.in);
+
+    public static String[] getCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분, 1~10자)");
+        String racingCars = scanner.nextLine();
+
+        String[] names = racingCars.split(",");
+
+        names = Arrays.stream(names).map(String::trim).toArray(String[]:: new); // 공백 처리
+
+        long distinct = Arrays.stream(names).distinct().count(); // 중복 처리
+        if(names.length != distinct){
+            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+        }
+
+        return names;
+    }
+
+
+    public static int getTryCount(){
+        System.out.println("시도할 횟수는 몇 회인가요?");
+        try {
+            int count = scanner.nextInt();
+
+            // 예외처리 - 횟수는 1 ~ 20으로 제한
+            if (count < MIN_TRY_COUNT || count > MAX_TRY_COUNT) {
+                throw new IllegalArgumentException("횟수는 1회 ~ 20회 중 입력해주세요.");
+            }
+            return count;
+        }
+        // 예외처리 - 정수가 아닌 값 처리
+        catch (InputMismatchException e){
+            throw new IllegalArgumentException("시도 횟수는 정수로 입력해주세요.");
+        }
+    }
+
+}
