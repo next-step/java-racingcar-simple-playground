@@ -12,17 +12,9 @@ public class InputView {
         for (int i = 0; i < carName.length; i++) {
             carName[i] = carName[i].trim();
         }
-        carNameLengthCheck(carName);
         return carName;
     }
-
-    public static void carNameLengthCheck(String[] carName) {
-        for (int i = 0; i < carName.length; i++) {
-            if (carName[i].length() > 5) {
-                throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
-            }
-        }
-    }
+    
 
     public static int getTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
