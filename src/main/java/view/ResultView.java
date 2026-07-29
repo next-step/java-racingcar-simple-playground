@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ResultView {
     public static void printRace(Cars cars) {
-        System.out.println("실행결과");
         for (int i = 0; i < cars.size(); i++) {
             System.out.printf("%s : ", cars.get(i).getName());
             System.out.printf("%s", makePosition(cars.get(i).getPosition()));

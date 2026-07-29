@@ -18,6 +18,7 @@ public class Main {
         Cars cars = new Cars(carsList);
         NumberGenerator numberGenerator = new MakeRandomNum();
         Play race = new Play(cars, numberGenerator);
+        System.out.println("실행결과");
         for (int i = 0; i < totalPlay; i++) {
             ResultView.printRace(cars);
             race.playRound();
