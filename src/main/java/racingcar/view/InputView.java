@@ -14,10 +14,16 @@ public class InputView {
     }
 
     public static int setLapCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
-        int number = scanner.nextInt();
-        System.out.println();
-        return number;
+        int numberInt = 0;
+        try {
+            System.out.println("시도할 회수는 몇회인가요?");
+            String numberString = scanner.nextLine();
+            numberInt = Integer.parseInt(numberString);
+            System.out.println();
+        } catch (NumberFormatException e) {
+            System.out.println("올바른 정수 형식으로 입력해주세요");
+        }
+        return numberInt;
     }
 
     public static void closeScanner() {

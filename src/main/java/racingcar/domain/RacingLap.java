@@ -12,12 +12,8 @@ public class RacingLap {
     }
 
     private void checkLapCount(int lapCount) {
-        try {
-            if (lapCount < MIN_RACINGGAME_LAP_COUNT) {
-                throw new IllegalArgumentException("횟수는 1회 이상으로 입력해주세요.");
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("횟수는 정수로 입력해주세요.");
+        if (lapCount < MIN_RACINGGAME_LAP_COUNT) {
+            throw new IllegalArgumentException("횟수는 1회 이상으로 입력해주세요.");
         }
     }
 
