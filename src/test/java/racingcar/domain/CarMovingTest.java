@@ -8,11 +8,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class CarTest {
+public class CarMovingTest {
     public static final int CAR_MOVING_THRESHOLD = 4;
     public CarMoveNumberGenerator carMoveNumberGenerator = new CarMoveNumberGenerator();
 
     Car car = new Car("Car1");
+
+    @Test
+    @DisplayName("자동차 이름이 5자 이하일 경우 정상적으로 생성된다.")
+    void createCarSuccess() {
+        String validName = "CarA";
+        Car car = new Car(validName);
+
+        assertThat(car.getName()).isEqualTo(validName);
+        assertThat(car.getLocation()).isEqualTo(0);
+    }
 
     @Nested
     @DisplayName("Car 생성자로 인스턴스를 생성하면")
@@ -35,7 +45,7 @@ public class CarTest {
 
         @Nested
         @DisplayName("자동차는 이동을 결정짓는 값이 임계값 이상일때 1 전진한다")
-        public class CallMoveCar{
+        public class CallMoveCar {
             @Test
             @DisplayName("자동차는 위치 1만큼 전진한다")
             void carMovingTest() {
@@ -56,42 +66,9 @@ public class CarTest {
         }
     }
 
-    @Test
-    @DisplayName("자동차는 전진하지 않고 기존 위치에 멈춰있다.")
-    void carNotMovingTest() {
-//        // when
-//        car.moveCar(!makeNum());
-//
-//        // then
-//        assertEquals(0, car.getLocation());
-    }
-
-    @Test
-    @DisplayName("무작위 값이 3 이하일때 자동차는 이동하지 않는다.")
-    void moveCarStop() {
-//        // given
-//        int randomValue = CAR_MOVING_THRESHOLD - 1;
-//
-//        // when
-//        car.moveCar(randomValue);
-//
-//        // then
-//        assertThat(car.getLocation()).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("자동차 이름이 5자 이하일 경우 정상적으로 생성된다.")
-    void createCarSuccess() {
-        String validName = "CarA";
-        Car car = new Car(validName);
-
-        assertThat(car.getName()).isEqualTo(validName);
-        assertThat(car.getLocation()).isEqualTo(0);
-    }
-
     @Nested
     @DisplayName("자동차 이름에 관련된 예외 발생시 정상적으로 처리된다.")
-    public class ExceptionTest{
+    public class ExceptionTest {
         @Test
         @DisplayName("자동차는 공백 이름을 가질 수 없다")
         void createCarWithBlankName() {

@@ -22,11 +22,11 @@ public class Car {
         return this.location;
     }
 
-    public void moveCar(int randomValue) {
+    public int moveCar(int randomValue) {
         if (randomValue >= CAR_MOVING_THRESHOLD) {
             this.location += CAR_MOVE_ONCE_DISTANCE;
         }
+        return randomValue;
     }
 
 }
-
