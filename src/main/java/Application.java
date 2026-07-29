@@ -1,4 +1,5 @@
 import domain.RacingGame;
+import dto.DtoList;
 import view.InputView;
 import view.ResultView;
 
@@ -14,7 +15,8 @@ public class Application {
 
         for (int i = 0; i < number; i++) {
             racingGame.play();
-            ResultView.result(racingGame.getCars());
+            DtoList dtos = new DtoList(racingGame.getCars());
+            ResultView.result(dtos);
         }
 
         ResultView.printWinner(racingGame.winner());

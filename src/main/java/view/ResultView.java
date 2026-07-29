@@ -1,14 +1,15 @@
 package view;
 
-import domain.RacingCar;
+import dto.DtoList;
+import dto.RacingCarDto;
 
 import java.util.List;
 
 public class ResultView {
-    public static void result(List<RacingCar> cars) {
+    public static void result(DtoList cars) {
         System.out.println("\n실행 결과");
 
-        for (RacingCar car : cars) {
+        for (RacingCarDto car : cars.getCars()) {
             System.out.println(car.getName()+ ":" + car.getPosition());
         }
     }

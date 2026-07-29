@@ -4,8 +4,8 @@ import java.util.*;
 
 public class RacingGame {
 
-    public List<RacingCar> cars = new ArrayList<>();
-    Random random = new Random();
+    private final List<RacingCar> cars = new ArrayList<>();
+    private final Random random = new Random();
 
     public void init(String names[]) {
         for (String name: names) {
