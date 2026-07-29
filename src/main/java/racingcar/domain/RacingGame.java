@@ -5,12 +5,10 @@ import java.util.List;
 public class RacingGame {
     private final int lapCount;
     private final List<Car> racingCars;
-    private final RandomNumGenerator randomNumGenerator;
 
     public RacingGame(List<Car> racingCars, int lapCount) {
         this.racingCars = racingCars;
         this.lapCount = lapCount;
-        this.randomNumGenerator = new RandomNumGenerator();
     }
 
     public List<Car> getRacingCars() {
@@ -23,7 +21,7 @@ public class RacingGame {
 
     public List<Car> startLap() {
         for (Car racingCar : racingCars) {
-            racingCar.moveCar(randomNumGenerator.makeNum());
+            racingCar.moveCar(RandomNumGenerator.makeNum());
         }
         return racingCars;
     }
