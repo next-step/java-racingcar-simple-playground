@@ -1,0 +1,60 @@
+package domain;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+public class CarTest {
+    @Test
+    @DisplayName("숫자가 4이상이면 자동차가 전진한다")
+    void movesWhenNumberIsGreaterThanThree() {
+        Car car = new Car("test");
+
+        car.move(4);
+
+        assertEquals(1, car.getPosition());
+    }
+
+    @Test
+    @DisplayName("숫자가 3이하이면 자동차가 멈춘다")
+    void doesNotMoveWhenNumberIsThreeOrLess() {
+        Car car = new Car("test");
+
+        car.move(3);
+
+        assertEquals(0, car.getPosition());
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생한다")
+    void throwExceptionWhenNameExceedsFiveCharacters() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car("abcdef")
+        );
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자 이하이면 정상적으로 생성된다")
+    void createCarWithFiveCharacterNameSuccessfully() {
+        Car car = new Car("12345");
+
+        assertEquals("12345", car.getName());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"", "   "})
+    @DisplayName("자동차 이름이 null이거나 공백이면 예외가 발생한다")
+    void throwsExceptionWhenCarNameIsNullOrBlank(String name) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Car(name)
+        );
+    }
+}
