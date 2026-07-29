@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingGameWinnerTest {
-    FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator();
+    CarMoveNumberGenerator carMoveNumberGenerator = new CarMoveNumberGenerator();
 
     @Test
     @DisplayName("가장 많이 전진한 자동차가 단독 우승자가 된다.")
@@ -16,10 +16,10 @@ class RacingGameWinnerTest {
         Car car2 = new Car("Car2");
         Car car3 = new Car("Car3");
 
-        car1.moveCar(fixedNumberGenerator.makeNum());
-        car2.moveCar(fixedNumberGenerator.makeNum());
-        car2.moveCar(fixedNumberGenerator.makeNum());
-        car3.moveCar(fixedNumberGenerator.makeNum());
+        car1.moveCar(carMoveNumberGenerator.makeNum());
+        car2.moveCar(carMoveNumberGenerator.makeNum());
+        car2.moveCar(carMoveNumberGenerator.makeNum());
+        car3.moveCar(carMoveNumberGenerator.makeNum());
 
         RacingGame racingGame = new RacingGame(List.of(car1, car2, car3), 5);
         RacingGameWinner winnerSelector = new RacingGameWinner();
@@ -36,8 +36,8 @@ class RacingGameWinnerTest {
         Car car1 = new Car("Car1");
         Car car2 = new Car("Car2");
 
-        car1.moveCar(fixedNumberGenerator.makeNum());
-        car2.moveCar(fixedNumberGenerator.makeNum());
+        car1.moveCar(carMoveNumberGenerator.makeNum());
+        car2.moveCar(carMoveNumberGenerator.makeNum());
 
         RacingGame racingGame = new RacingGame(List.of(car1, car2), 5);
         RacingGameWinner winnerSelector = new RacingGameWinner();

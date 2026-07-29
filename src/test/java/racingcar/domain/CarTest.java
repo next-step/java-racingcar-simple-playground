@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
     public static final int CAR_MOVING_THRESHOLD = 4;
-    public FixedNumberGenerator fixedNumberGenerator = new FixedNumberGenerator();
+    public CarMoveNumberGenerator carMoveNumberGenerator = new CarMoveNumberGenerator();
 
     Car car = new Car("Car1");
 
@@ -39,7 +39,7 @@ public class CarTest {
             @Test
             @DisplayName("자동차는 위치 1만큼 전진한다")
             void carMovingTest() {
-                car.moveCar(fixedNumberGenerator.makeNum());
+                car.moveCar(carMoveNumberGenerator.makeNum());
 
                 assertEquals(1, car.getLocation());
             }

@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class FixedNumberGenerator implements MakeNumStrategy {
+public class CarMoveNumberGenerator implements MakeNumStrategy {
     public static final int CAR_MOVING_THRESHOLD = 4;
 
     @Override
