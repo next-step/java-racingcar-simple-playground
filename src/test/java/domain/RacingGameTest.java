@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class RacingGameTest {
 
     @Test
-    void 정해진_횟수만큼_자동차_경주를_진행한다() {
+    void racesForGivenAttemptCount() {
         NumberGenerator generator =
                 new SequenceNumberGenerator(
                         List.of(4, 4, 4, 4, 4, 4)
@@ -28,7 +28,7 @@ class RacingGameTest {
     }
 
     @Test
-    void 가장_멀리_이동한_자동차가_우승한다() {
+    void findsTheFarthestCarAsWinner() {
         NumberGenerator generator =
                 new SequenceNumberGenerator(
                         List.of(4, 3)
