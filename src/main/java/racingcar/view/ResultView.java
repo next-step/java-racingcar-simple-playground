@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.StringJoiner;
 import racingcar.domain.Car;
 
-public class ResultView {
+public final class ResultView {
+
+    private ResultView() {
+    }
 
     public static void printLapResult(List<Car> carList) {
         for (Car car : carList) {
