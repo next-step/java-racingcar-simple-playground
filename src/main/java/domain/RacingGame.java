@@ -49,4 +49,8 @@ public class RacingGame {
     public List<RacingCar> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
+    public void addCar(RacingCar racingCar) {
+        cars.add(racingCar);
+    }
 }
