@@ -2,8 +2,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-    private static final int MOVE_MIN = 4;
-    private static final int NON_MOVE_UNDER = 3;
+    private static final int MOVABLE_MIN = 4;
+    private static final int NON_MOVABLE_UNDER = 3;
 
 
     @Test
@@ -13,7 +13,7 @@ public class CarTest {
         Car car = new Car("Greedy");
 
         //실행
-        car.move(MOVE_MIN);
+        car.move(MOVABLE_MIN);
 
         //검즘
         assertThat(car.getPosition()).isEqualTo(1);
@@ -25,7 +25,7 @@ public class CarTest {
         Car car = new Car("Greedy");
 
         //실행
-        car.move(NON_MOVE_UNDER);
+        car.move(NON_MOVABLE_UNDER);
 
         //검즘
         assertThat(car.getPosition()).isEqualTo(0);
