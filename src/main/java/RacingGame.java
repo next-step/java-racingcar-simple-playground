@@ -3,6 +3,7 @@ import java.util.List;
 
 public class RacingGame {
 
+    private final static int START_POSITION = 0;
     private final List<Car> cars;
 
     public RacingGame(List<Car> cars) {
@@ -52,7 +53,7 @@ public class RacingGame {
 
     }
     private int findMaxPosition(){
-        int maxPosition = 0;
+        int maxPosition = START_POSITION;
         for(Car car : cars){
             maxPosition = Math.max(car.getPosition(),maxPosition);
         }
