@@ -21,7 +21,9 @@ public class CarRace {
     // 누가 우승했는지 구하기
 
     public ArrayList<Car> getWinners() {
-        race();
+        for (int i = 0; i < carCount; i++) {
+            findMaxPosition(cars.get(i));
+        }
         for (Car car : cars) {
             findWinners(car);
         }
