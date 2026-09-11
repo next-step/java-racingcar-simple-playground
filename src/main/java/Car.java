@@ -1,9 +1,9 @@
 public class Car {
     private String name;
-    private int pos;
+    private int position;
 
     public void moveCar(int number) {
-        if (shouldMove(number)) pos++;
+        if (shouldMove(number)) position++;
     }
     private int makeRandomNum() {
         return (int)(Math.random() * 10);
@@ -19,15 +19,15 @@ public class Car {
     public void setName(String name) {
         this.name = name;
     }
-    public int getPos() {
-        return pos;
+    public int getPosition() {
+        return position;
     }
-    public void setPos(int pos) {
-        this.pos = pos;
+    public void setPosition(int pos) {
+        this.position = pos;
     }
 
     public Car(String name) {
         this.name = name;
-        pos = 0;
+        position = 0;
     }
 }

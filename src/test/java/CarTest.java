@@ -8,10 +8,10 @@ class CarTest {
     void moveCar() {
         Car car = new Car("Car1");
         car.moveCar(3);
-        assertEquals(0, car.getPos());
+        assertEquals(0, car.getPosition());
 
         car = new Car("Car2");
         car.moveCar(4);
-        assertEquals(1, car.getPos());
+        assertEquals(1, car.getPosition());
     }
 }
