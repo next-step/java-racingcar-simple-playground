@@ -5,7 +5,7 @@ public class Car {
     public void moveCar(int number) {
         if (shouldMove(number)) position++;
     }
-    private int makeRandomNum() {
+    public int makeRandomNum() {
         return (int)(Math.random() * 10);
     }
     private boolean shouldMove(int randomNum) {
