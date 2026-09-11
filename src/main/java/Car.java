@@ -2,6 +2,11 @@ public class Car {
     private String name;
     private int position;
 
+    public Car(String name) {
+        this.name = name;
+        position = 0;
+    }
+
     public void moveCar(int number) {
         if (shouldMove(number)) position++;
     }
@@ -24,10 +29,5 @@ public class Car {
     }
     public void setPosition(int pos) {
         this.position = pos;
-    }
-
-    public Car(String name) {
-        this.name = name;
-        position = 0;
     }
 }
