@@ -3,6 +3,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
+    private static final int MOVABLE_NUM = 4;
 
     @Test
     void findsSingleWinner() {
@@ -10,9 +11,9 @@ class RacingGameTest {
         //준비
         Car first = new Car("Greedy");
         Car second = new Car("GReedy");
-        first.move(4);
-        first.move(4);
-        second.move(4);
+        first.move(MOVABLE_NUM);
+        first.move(MOVABLE_NUM);
+        second.move(MOVABLE_NUM);
 
         //실행
         RacingGame game = new RacingGame(Arrays.asList(first, second));
@@ -27,8 +28,8 @@ class RacingGameTest {
         Car first = new Car("Greedy");
         Car second = new Car("GReedy");
         Car third = new Car("GREedy");
-        first.move(4);
-        second.move(4);
+        first.move(MOVABLE_NUM);
+        second.move(MOVABLE_NUM);
 
         //실행
         RacingGame game = new RacingGame(Arrays.asList(first, second, third));
