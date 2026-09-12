@@ -25,12 +25,12 @@ public class FindCarWinner {
     private int getMaxPosition(Cars cars) {//다른데서 쓸일 없으니까 여기서만 쓰니까 private
         int maxPosition = 0;
         for (int i = 0; i < cars.size(); i++) { //이게 최대위치 구한거
-            maxPosition = getMaxPosition(maxPosition, cars.getCars().get(i).getCarPosition());
+            maxPosition = compareMax(maxPosition, cars.getCars().get(i).getCarPosition());
         }
         return maxPosition;
     }
 
-    private int getMaxPosition(int maxPosition, int carPosition) {
+    private int compareMax(int maxPosition, int carPosition) {
         if (maxPosition < carPosition) {
             return carPosition;
         }
