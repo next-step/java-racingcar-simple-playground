@@ -27,17 +27,22 @@ public class Race {
     List<Car> getWinner() {
         getResult();
 
-        int max = 0;
-        List<Car> Winner = new ArrayList<>();
+        List<Car> winners = new ArrayList<>();
+        int max = getMax();
+        for (Car car : Cars) {
+            if (car.getDistance() == max)
+                winners.add(car);
+        }
+        return winners;
+    }
+
+    private int getMax() {
+        int max= 0;
         for (Car car : Cars) {
             if (max <= car.getDistance())
                 max = car.getDistance();
         }
-        for (Car car : Cars) {
-            if (car.getDistance() == max)
-                Winner.add(car);
-        }
-        return Winner;
+        return max;
     }
 
 }
