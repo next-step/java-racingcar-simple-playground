@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGame {
+    private static final int RANDOM_BOUND = 10;
+
     private final List<Car> cars;
 
     public RacingGame(List<Car> cars) {
@@ -16,8 +19,12 @@ public class RacingGame {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.move(car.getRandomValue());
+            car.move(getRandomValue());
         }
+    }
+
+    private int getRandomValue() {
+        return new Random().nextInt(RANDOM_BOUND);
     }
 
     private int findMaxPosition() {

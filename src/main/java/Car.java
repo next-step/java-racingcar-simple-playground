@@ -1,7 +1,6 @@
 import java.util.Random;
 
 public class Car {
-    private static final int RANDOM_BOUND = 10;
     private static final int MOVE_CRITERION = 4;
 
     private final String name;
@@ -24,9 +23,5 @@ public class Car {
         if (randomValue >= MOVE_CRITERION) {
             position++;
         }
-    }
-
-    public int getRandomValue() {
-        return new Random().nextInt(RANDOM_BOUND);
     }
 }
