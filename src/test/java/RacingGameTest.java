@@ -6,6 +6,20 @@ import java.util.List;
 
 public class RacingGameTest {
     @Test
+    void raceTest() {
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        NumberGenerator generator = () -> 4;
+
+        RacingGame racingGame = new RacingGame(List.of(car1, car2), generator);
+
+        racingGame.race(3);
+
+        assertThat(car1.getPosition()).isEqualTo(3);
+        assertThat(car2.getPosition()).isEqualTo(3);
+    }
+
+    @Test
     void getSingleWinner() {
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
