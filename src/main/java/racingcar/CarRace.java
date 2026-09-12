@@ -11,5 +11,19 @@ public class CarRace {
         this.numberGenerator = numberGenerator;
     }
 
-    
+    public void race(int roundCount) {
+        for (int i = 0; i < roundCount; i++) {
+            playRound();
+        }
+
+    }
+
+    private void playRound() {
+        for (Car car : cars) {
+            int number = numberGenerator.generate();
+            car.move(number);
+        }
+    }
+
+
 }
