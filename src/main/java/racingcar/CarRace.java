@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarRace {
@@ -33,5 +34,15 @@ public class CarRace {
             }
         }
         return maxPosition;
+    }
+    public List<Car> findWinners(){
+        int maxPosition = findMaxPosition();
+        List<Car> winners=new ArrayList<>();
+        for(Car car:cars){
+            if(maxPosition==car.getPosition()){
+                winners.add(car);
+            }
+        }
+        return winners;
     }
 }
