@@ -25,5 +25,13 @@ public class CarRace {
         }
     }
 
-
+    private int findMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            if (maxPosition < car.getPosition()) {
+                maxPosition = car.getPosition();
+            }
+        }
+        return maxPosition;
+    }
 }
