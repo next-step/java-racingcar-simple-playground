@@ -12,7 +12,7 @@ public class TestNumberGenerator implements NumberGenerator {
 
     @Override
     public int generate() {
-        int number=this.numbers.get(index);
+        int number = this.numbers.get(index);
         index++;
         return number;
     }

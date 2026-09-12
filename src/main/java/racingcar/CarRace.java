@@ -35,11 +35,12 @@ public class CarRace {
         }
         return maxPosition;
     }
-    public List<Car> findWinners(){
+
+    public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
-        List<Car> winners=new ArrayList<>();
-        for(Car car:cars){
-            if(maxPosition==car.getPosition()){
+        List<Car> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (maxPosition == car.getPosition()) {
                 winners.add(car);
             }
         }
