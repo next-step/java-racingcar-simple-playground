@@ -36,5 +36,4 @@ public class FindCarWinnerTest {
         assertThat(cars.findWinner()).containsExactlyInAnyOrder(a, b);
     }
 
-
 }
