@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Winner {
 
-    public int findMaximum(List<Car> cars) {
+    private int findMaximum(List<Car> cars) {
         int maximum = 0;
         for (Car car : cars) {
             maximum = Math.max(maximum, car.getPosition());
