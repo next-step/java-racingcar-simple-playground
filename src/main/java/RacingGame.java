@@ -33,10 +33,6 @@ public class RacingGame {
         }
     }
 
-    private int generateRandomNumber() {
-        return (int) (Math.random() * 10);
-    }
-
     public List<String> getWinners() {
         int maxPosition = findMaxPosition();
         List<String> winners = new ArrayList<>();
