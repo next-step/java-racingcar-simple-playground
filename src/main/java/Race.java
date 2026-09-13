@@ -7,18 +7,18 @@ public class Race {
 
     private List<Car> cars=new ArrayList<>();
 
-    void initCars(String name){
+    public void initCars(String name){
         cars.add(new Car(name));
     }
 
-    void start(NumberGenerator numberGenerator){
+    public void start(NumberGenerator numberGenerator){
         int n=numberGenerator.generate();
         for (Car car : cars) {
             car.Move(n);
         }
     }
 
-    void getResult(){
+    private void getResult(){
         for (Car car : cars) {
             System.out.println(car.getName()+": "+car.getDistance());
         }
@@ -27,7 +27,7 @@ public class Race {
     /**
      * 우승자 구하기
      */
-    List<Car> getWinner() {
+    public List<Car> getWinner() {
         getResult();
 
         List<Car> winners = new ArrayList<>();
