@@ -1,9 +1,12 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 
 class RacingGameTest {
     private static final int MOVABLE_NUM = 4;
@@ -66,5 +69,26 @@ class RacingGameTest {
 
         //검즘
         assertThat(game.getWinners()).containsExactly("Green");
+    }
+
+    @Test
+    void rejectsEmptyCars() {
+        // 준비
+        List<Car> cars = new ArrayList<>();
+
+        // 실행, 검증
+        assertThatThrownBy(() -> new RacingGame(cars))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void rejectsNegativeRounds() {
+        // 준비
+        List<Car> cars = Arrays.asList(new Car("Green"));
+        RacingGame game = new RacingGame(cars);
+
+        // 실행, 검증
+        assertThatThrownBy(() -> game.race(-1))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
