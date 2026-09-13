@@ -16,11 +16,10 @@ public class Winner {
         int maximum = findMaximum(cars) ;
 
         for (Car car : cars) {
-            if(car.getPosition() == maximum){
+            if (car.isSamePosition(maximum)) {
                 winners.add(car.getName());
             }
         }
-
         return winners;
     }
 }
