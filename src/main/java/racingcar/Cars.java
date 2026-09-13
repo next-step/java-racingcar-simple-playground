@@ -43,10 +43,14 @@ public class Cars {
     }
 
     private void addWinnerIfMatch(int maxPosition, List<Car> winners, int i) {
-        int carPosition = cars.get(i).getCarPosition();
-        if (carPosition == maxPosition) {
-            winners.add(cars.get(i));
+        Car car = cars.get(i);
+        if (car.samePosition(maxPosition)) {
+            winners.add(car);
         }
+        //int carPosition = cars.get(i).getCarPosition();
+        //if (carPosition == maxPosition) {
+        //    winners.add(cars.get(i));
+        //}
     }
 
     private int getMaxPosition() {//다른데서 쓸일 없으니까 여기서만 쓰니까 private
