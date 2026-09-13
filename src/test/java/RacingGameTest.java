@@ -91,4 +91,36 @@ class RacingGameTest {
         assertThatThrownBy(() -> game.race(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void allCarsMoveAllRound() {
+        // 준비
+        Car first = new Car("Green");
+        Car second = new Car("Blue");
+        List<Car> cars = Arrays.asList(first, second);
+        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(4));
+
+        // 실행
+        game.race(3);
+
+        // 검증
+        assertThat(first.getPosition()).isEqualTo(3);
+        assertThat(second.getPosition()).isEqualTo(3);
+    }
+
+    @Test
+    void allCarsStayAllRound() {
+        // 준비
+        Car first = new Car("Green");
+        Car second = new Car("Blue");
+        List<Car> cars = Arrays.asList(first, second);
+        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(3));
+
+        // 실행
+        game.race(3);
+
+        // 검증
+        assertThat(first.getPosition()).isEqualTo(0);
+        assertThat(second.getPosition()).isEqualTo(0);
+    }
 }
