@@ -15,7 +15,7 @@ public class Car {
     }
 
 
-    public void Move(int n) {
+    public void move(int n) {
         if (n >= 4)
             distance++;
     }
