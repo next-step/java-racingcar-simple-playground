@@ -15,14 +15,14 @@ public class CarRaceTest {
         race.initCars("b");
         race.initCars("c");
 
-        race.start(new FixNumberGenerator(2));
-        race.start(new FixNumberGenerator(3));
-        race.start(new FixNumberGenerator(4));
-        race.start(new FixNumberGenerator(5));
+        race.start(new FixNumberGenerator(new int[]{2,3,3}));
+        race.start(new FixNumberGenerator(new int[]{2,3,3}));
+        race.start(new FixNumberGenerator(new int[]{2,4,4}));
+        race.start(new FixNumberGenerator(new int[]{4,4,4}));
 
         List<Car> winners = race.getWinner();
 
-        assertThat(winners).hasSize(3);
+        assertThat(winners).hasSize(2);
         assertThat(winners.get(0).getDistance()).isEqualTo(2);
     }
 }
