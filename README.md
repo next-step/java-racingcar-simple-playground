@@ -25,7 +25,7 @@ src/main/java
 
 src/test/java
 ├── CarTest.java
-├── CarListTest.java
+├── FindWinnersTest
 ├── AlwaysMovable.java
 └── NeverMovable.java
 ````
