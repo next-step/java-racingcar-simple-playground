@@ -5,9 +5,10 @@ public class RacingGame {
 
     private final static int START_POSITION = 0;
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
-
-    public RacingGame(List<Car> cars) {
+    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("자동차가 필요합니다.");
         }
@@ -28,7 +29,7 @@ public class RacingGame {
 
     private void raceOneRound() {
         for (Car car : cars) {
-            car.move(generateRandomNumber());
+            car.move(numberGenerator.generate());
         }
     }
 
