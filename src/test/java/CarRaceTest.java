@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions;
+import NumberGenerator.FixNumberGenerator;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 

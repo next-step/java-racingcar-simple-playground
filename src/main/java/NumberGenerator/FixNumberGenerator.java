@@ -1,4 +1,6 @@
-public class FixNumberGenerator implements NumberGenerator{
+package NumberGenerator;
+
+public class FixNumberGenerator implements NumberGenerator {
     private int number;
 
     public FixNumberGenerator(int number) {

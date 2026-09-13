@@ -1,3 +1,5 @@
+import NumberGenerator.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,6 @@ public class Race {
     void initCars(String name){
         cars.add(new Car(name));
     }
-    //List는 인덱스로 접근 불가 !! 메서드이용할것.
 
     void start(NumberGenerator numberGenerator){
         int n=numberGenerator.generate();
@@ -23,7 +24,6 @@ public class Race {
         }
     }
 
-    //우승자구하기
     List<Car> getWinner() {
         getResult();
 
