@@ -12,8 +12,8 @@ class RacingGameTest {
     void findsSingleWinner() {
 
         //준비
-        Car first = new Car("Greedy");
-        Car second = new Car("GReedy");
+        Car first = new Car("Green");
+        Car second = new Car("Blue");
         first.move(MOVABLE_NUM);
         first.move(MOVABLE_NUM);
         second.move(MOVABLE_NUM);
@@ -22,15 +22,15 @@ class RacingGameTest {
         RacingGame game = new RacingGame(Arrays.asList(first, second));
 
         //검즘
-        assertThat(game.getWinners()).containsExactly("Greedy");
+        assertThat(game.getWinners()).containsExactly("Green");
     }
 
     @Test
     void findsJointWinners() {
         //준비
-        Car first = new Car("Greedy");
-        Car second = new Car("GReedy");
-        Car third = new Car("GREedy");
+        Car first = new Car("Green");
+        Car second = new Car("Blue");
+        Car third = new Car("Red");
         first.move(MOVABLE_NUM);
         second.move(MOVABLE_NUM);
 
@@ -39,32 +39,32 @@ class RacingGameTest {
 
         //검즘
         assertThat(game.getWinners())
-                .containsExactlyInAnyOrder("Greedy", "GReedy");
+                .containsExactlyInAnyOrder("Green", "Blue");
     }
 
     @Test
     void allCarsNonMove() {
         //준비
-        Car first = new Car("Greedy");
-        Car second = new Car("GReedy");
+        Car first = new Car("Green");
+        Car second = new Car("Blue");
 
         //실행
         RacingGame game = new RacingGame(Arrays.asList(first, second));
 
         //검즘
         assertThat(game.getWinners())
-                .containsExactlyInAnyOrder("Greedy", "GReedy");
+                .containsExactlyInAnyOrder("Green", "Blue");
     }
 
     @Test
     void singleCarWin() {
         //준비
-        Car car = new Car("Greedy");
+        Car car = new Car("Green");
 
         //실행
         RacingGame game = new RacingGame(List.of(car));
 
         //검즘
-        assertThat(game.getWinners()).containsExactly("Greedy");
+        assertThat(game.getWinners()).containsExactly("Green");
     }
 }
