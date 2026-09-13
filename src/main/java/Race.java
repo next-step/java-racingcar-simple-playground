@@ -24,6 +24,9 @@ public class Race {
         }
     }
 
+    /**
+     * 우승자 구하기
+     */
     List<Car> getWinner() {
         getResult();
 
