@@ -1,7 +1,7 @@
 public class Car {
     private String name;
     private int distance;
-    private final static int MOVE_THRESHOLD=4;
+    private static final int MOVE_THRESHOLD=4;
     public Car(String name) {
         this.name = name;
     }
