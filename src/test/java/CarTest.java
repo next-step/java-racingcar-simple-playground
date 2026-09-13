@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -7,7 +8,7 @@ public class CarTest {
 
 
     @Test
-    void move_Available(){
+    void move_Available() {
 
         //준비
         Car car = new Car("Greedy");
@@ -20,7 +21,7 @@ public class CarTest {
     }
 
     @Test
-    void move_Impossible_Under(){
+    void move_Impossible_Under() {
         //준비
         Car car = new Car("Greedy");
 

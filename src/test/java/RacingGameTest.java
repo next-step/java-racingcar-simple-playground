@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
@@ -59,7 +62,7 @@ class RacingGameTest {
         Car car = new Car("Greedy");
 
         //실행
-        RacingGame game = new RacingGame(Arrays.asList(car));
+        RacingGame game = new RacingGame(List.of(car));
 
         //검즘
         assertThat(game.getWinners()).containsExactly("Greedy");

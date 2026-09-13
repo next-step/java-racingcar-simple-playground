@@ -2,29 +2,29 @@
 public class Car {
 
     private static final int MOVABLE_MIN = 4;
-    private String name;
+    private final String name;
     private int position;
 
-    public Car(String name ){
+    public Car(String name) {
         this.name = name;
         this.position = 0;
     }
 
-    public void move(int num){
-        if(isMovable(num)){
+    public void move(int num) {
+        if (isMovable(num)) {
             position++;
         }
     }
 
-    private boolean isMovable(int num){
-        return  num >=MOVABLE_MIN;
+    private boolean isMovable(int num) {
+        return num >= MOVABLE_MIN;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 }
