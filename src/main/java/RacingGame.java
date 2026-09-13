@@ -6,6 +6,7 @@ public class RacingGame {
     private final static int START_POSITION = 0;
     private final List<Car> cars;
 
+
     public RacingGame(List<Car> cars) {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("자동차가 필요합니다.");
