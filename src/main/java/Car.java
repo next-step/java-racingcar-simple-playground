@@ -1,7 +1,7 @@
 public class Car {
     private String name;
     private int distance;
-
+    private final static int MOVE_THRESHOLD=4;
     public Car(String name) {
         this.name = name;
     }
@@ -16,7 +16,7 @@ public class Car {
 
 
     public void move(int n) {
-        if (n >= 4)
+        if (n >= MOVE_THRESHOLD)
             distance++;
     }
 

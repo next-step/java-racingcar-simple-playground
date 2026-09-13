@@ -14,7 +14,7 @@ public class Race {
     public void start(NumberGenerator numberGenerator){
         for (Car car : cars) {
             int n=numberGenerator.generate();
-            car.Move(n);
+            car.move(n);
         }
     }
 
