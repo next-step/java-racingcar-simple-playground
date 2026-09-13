@@ -5,7 +5,7 @@ public class RandomMovement implements CarMovement {
 
     @Override
     public boolean isMovable() {
-        int number = random.nextInt(10);
-        return number >= 4;
+        int number = random.nextInt(Constants.RANDOM_BOUND);
+        return number >= Constants.MOVABLE_CONDITION;
     }
 }
