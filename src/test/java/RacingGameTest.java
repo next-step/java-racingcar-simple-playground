@@ -22,7 +22,7 @@ class RacingGameTest {
         second.move(MOVABLE_NUM);
 
         //실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second));
+        RacingGame game = new RacingGame(Arrays.asList(first, second), new FixedNumberGenerator(4));
 
         //검즘
         assertThat(game.getWinners()).containsExactly("Green");
@@ -37,8 +37,8 @@ class RacingGameTest {
         first.move(MOVABLE_NUM);
         second.move(MOVABLE_NUM);
 
-        //실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second, third));
+        //실행ㅛㅛㅛ
+        RacingGame game = new RacingGame(Arrays.asList(first, second, third), new FixedNumberGenerator(4));
 
         //검즘
         assertThat(game.getWinners())
@@ -52,7 +52,7 @@ class RacingGameTest {
         Car second = new Car("Blue");
 
         //실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second));
+        RacingGame game = new RacingGame(Arrays.asList(first, second), new FixedNumberGenerator(4));
 
         //검즘
         assertThat(game.getWinners())
@@ -65,7 +65,7 @@ class RacingGameTest {
         Car car = new Car("Green");
 
         //실행
-        RacingGame game = new RacingGame(List.of(car));
+        RacingGame game = new RacingGame(List.of(car), new FixedNumberGenerator(4));
 
         //검즘
         assertThat(game.getWinners()).containsExactly("Green");
@@ -77,7 +77,7 @@ class RacingGameTest {
         List<Car> cars = new ArrayList<>();
 
         // 실행, 검증
-        assertThatThrownBy(() -> new RacingGame(cars))
+        assertThatThrownBy(() -> new RacingGame(cars, new FixedNumberGenerator(4)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -85,7 +85,7 @@ class RacingGameTest {
     void rejectsNegativeRounds() {
         // 준비
         List<Car> cars = Arrays.asList(new Car("Green"));
-        RacingGame game = new RacingGame(cars);
+        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(4));
 
         // 실행, 검증
         assertThatThrownBy(() -> game.race(-1))
