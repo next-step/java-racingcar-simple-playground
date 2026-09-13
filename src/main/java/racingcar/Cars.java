@@ -42,8 +42,8 @@ public class Cars {
         return winners;
     }
 
-    private void addWinnerIfMatch(int CarPosition, int maxPosition, List<Car> winners, int i) {
-        if (CarPosition == maxPosition) {
+    private void addWinnerIfMatch(int carPosition, int maxPosition, List<Car> winners, int i) {
+        if (carPosition == maxPosition) {
             winners.add(cars.get(i));
         }
     }
