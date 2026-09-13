@@ -36,10 +36,10 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        int maxPosistion = findMaxPosition();
+        int maxPosition = findMaxPosition();
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            addWinnersName(car, maxPosistion, winners);
+            addWinnersName(car, maxPosition, winners);
         }
         return winners;
     }
