@@ -37,12 +37,13 @@ public class Cars {
         int maxPosition = getMaxPosition();
         List<Car> winners = new ArrayList<>();
         for (int i = 0; i < cars.size(); i++) {
-            addWinnerIfMatch(cars.get(i).getCarPosition(), maxPosition, winners, i);
+            addWinnerIfMatch(maxPosition, winners, i);
         }
         return winners;
     }
 
-    private void addWinnerIfMatch(int carPosition, int maxPosition, List<Car> winners, int i) {
+    private void addWinnerIfMatch(int maxPosition, List<Car> winners, int i) {
+        int carPosition = cars.get(i).getCarPosition();
         if (carPosition == maxPosition) {
             winners.add(cars.get(i));
         }
