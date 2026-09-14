@@ -10,9 +10,11 @@ public class Car {
     public void moveCar(int number) {
         if (shouldMove(number)) position++;
     }
+
     public int makeRandomNum() {
         return (int)(Math.random() * 10);
     }
+
     private boolean shouldMove(int randomNum) {
         if (randomNum >= 4) return true;
         return false;
