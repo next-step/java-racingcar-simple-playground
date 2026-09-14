@@ -9,11 +9,26 @@ public class CarRace {
 
     // 생성자: n대 정보 추가, 리스트 생성
     public CarRace(ArrayList<Car> cars, int roundCount) {
+        validateCars(cars);
+        validateRoundCount(roundCount);
+
         carCount = cars.size();
         this.roundCount = roundCount;
         maxPosition = 0;
         this.cars = cars;
         winners = new ArrayList<>();
+    }
+
+    private void validateCars(ArrayList<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("자동차 입력 안 됨");
+        }
+    }
+
+    private void validateRoundCount(int roundCount) {
+        if (roundCount <= 0) {
+            throw new IllegalArgumentException("roundCount가 0 이하임");
+        }
     }
 
     private static final int MAX_RANDOM_VALUE = 9;
