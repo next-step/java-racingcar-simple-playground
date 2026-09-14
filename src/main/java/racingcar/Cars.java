@@ -55,15 +55,8 @@ public class Cars {
 
     private int getMaxPosition() {//다른데서 쓸일 없으니까 여기서만 쓰니까 private
         int maxPosition = 0;
-        for (int i = 0; i < cars.size(); i++) { //이게 최대위치 구한거
-            maxPosition = compareMax(maxPosition, cars.get(i).getCarPosition());
-        }
-        return maxPosition;
-    }
-
-    private int compareMax(int maxPosition, int carPosition) {
-        if (maxPosition < carPosition) {
-            return carPosition;
+        for (Car car : cars) { //이게 최대위치 구한거
+            maxPosition = Math.max(maxPosition, car.getCarPosition());
         }
         return maxPosition;
     }
