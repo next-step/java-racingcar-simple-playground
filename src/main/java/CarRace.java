@@ -8,8 +8,8 @@ public class CarRace {
     ArrayList<Car> winners;
 
     // 생성자: n대 정보 추가, 리스트 생성
-    public CarRace(ArrayList<Car> cars, int carCount, int roundCount) {
-        this.carCount = carCount;
+    public CarRace(ArrayList<Car> cars, int roundCount) {
+        carCount = cars.size();
         this.roundCount = roundCount;
         maxPosition = 0;
         this.cars = cars;

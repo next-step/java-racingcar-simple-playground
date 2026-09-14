@@ -17,7 +17,7 @@ class CarRaceTest {
         loser.moveCar(3);
         ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
 
-        CarRace carRace = new CarRace(cars, 3, 1);
+        CarRace carRace = new CarRace(cars, 1);
         ArrayList<Car> expected = new ArrayList<>(List.of(winner1, winner2));
 
         assertEquals(expected, carRace.getWinners());
