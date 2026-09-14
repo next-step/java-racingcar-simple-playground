@@ -17,20 +17,13 @@ n대의 자동차가 주어진 횟수만큼 이동하며 경주하는 게임.
 ````
 src/main/java
 ├── Car.java
+├── Race.java
 ├── CarMovement.java
 ├── RandomMovement.java
-├── Cars.java
 ├── InputView.java
 └── OutputView.java
 
 src/test/java
 ├── CarTest.java
-├── FindWinnersTest
-├── AlwaysMovable.java
-└── NeverMovable.java
+└── RaceTest.java
 ````
-
-## 설계 포인트
-
-- **판단과 이동의 분리**: `Car`는 랜덤값을 직접 다루지 않고, "이동 가능한지" 여부(`boolean`)만 받아서 위치를 바꾼다. 판단 로직은 `CarMovement` 인터페이스로 분리되어 있어, 테스트 시 랜덤 없이 `AlwaysMovable`/`NeverMovable` 같은 고정된 결과를 주입해 검증할 수 있다.
-- **책임 분리**: 자동차 한 대(`Car`)는 자기 이름·위치와 이동 여부만 책임지고, 여러 대를 관리하고 우승자를 찾는 일은 `Cars`가 담당한다.

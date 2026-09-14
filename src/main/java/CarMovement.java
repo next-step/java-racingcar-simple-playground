@@ -1,3 +1,3 @@
 public interface CarMovement {
-    boolean isMovable();
+    int generate();
 }

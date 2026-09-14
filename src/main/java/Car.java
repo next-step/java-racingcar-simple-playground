@@ -7,10 +7,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(boolean isMovable) {
-        if(isMovable){
-            this.position += 1;
-        }
+    public void move() {
+        position++;
     }
 
     public boolean isSamePosition(int target) {
