@@ -14,10 +14,6 @@ public class Car {
         }
     }
 
-    public int makeRandomNum() {
-        return (int)(Math.random() * 10);
-    }
-
     private static final int MOVE_THRESHOLD = 4;
 
     private boolean shouldMove(int number) {
@@ -27,16 +23,7 @@ public class Car {
         return false;
     }
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     public int getPosition() {
         return position;
-    }
-    public void setPosition(int pos) {
-        this.position = pos;
     }
 }
