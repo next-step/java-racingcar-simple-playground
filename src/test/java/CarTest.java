@@ -7,11 +7,13 @@ class CarTest {
     @Test
     void moveCar() {
         Car car = new Car("Car1");
-        car.moveCar(3);
+        FixedNumGenerator fixedNumber3 = new FixedNumGenerator(3);
+        car.moveCar(fixedNumber3);
         assertEquals(0, car.getPosition());
 
         car = new Car("Car2");
-        car.moveCar(4);
+        FixedNumGenerator fixedNumber4 = new FixedNumGenerator(4);
+        car.moveCar(fixedNumber4);
         assertEquals(1, car.getPosition());
     }
 }

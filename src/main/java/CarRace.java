@@ -16,10 +16,7 @@ public class CarRace {
         winners = new ArrayList<>();
     }
 
-    // 경주 진행 메서드
-    // 반복문으로 moveCar 실행
-    // 누가 우승했는지 구하기
-
+    // 우승자들을 찾아서 반환
     public ArrayList<Car> getWinners() {
         for (int i = 0; i < carCount; i++) {
             findMaxPosition(cars.get(i));
@@ -30,6 +27,7 @@ public class CarRace {
         return winners;
     }
 
+    // 가장 많이 움직인 자동차들을 찾기
     private void findWinners(Car car) {
         if (car.getPosition() == maxPosition) {
             winners.add(car);
@@ -42,16 +40,21 @@ public class CarRace {
         }
     }
 
+    // 최대 position 찾기
     private void findMaxPosition(Car car) {
         if (car.getPosition() > maxPosition) {
             maxPosition = car.getPosition();
         }
     }
 
+    private static final int MAX_RANDOM_VALUE = 9;
+
+    // 경기를 1회 진행
     private void moveCars() {
+        RandomNumGenerator randomNumgenerator =
+                new RandomNumGenerator(MAX_RANDOM_VALUE);
         for (int i = 0; i < carCount; i++) {
-            int randomNumber = cars.get(i).makeRandomNum();
-            cars.get(i).moveCar(randomNumber);
+            cars.get(i).moveCar(randomNumgenerator);
             findMaxPosition(cars.get(i));
         }
     }

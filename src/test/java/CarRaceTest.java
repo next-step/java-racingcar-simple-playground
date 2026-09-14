@@ -12,9 +12,11 @@ class CarRaceTest {
         Car winner1 = new Car("winner1");
         Car winner2 = new Car("winner2");
         Car loser = new Car("loser");
-        winner1.moveCar(4);
-        winner2.moveCar(4);
-        loser.moveCar(3);
+        FixedNumGenerator fixedNum3 = new FixedNumGenerator(3);
+        FixedNumGenerator fixedNum4 = new FixedNumGenerator(4);
+        winner1.moveCar(fixedNum4);
+        winner2.moveCar(fixedNum4);
+        loser.moveCar(fixedNum3);
         ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
 
         CarRace carRace = new CarRace(cars, 1);

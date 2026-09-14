@@ -7,7 +7,8 @@ public class Car {
         position = 0;
     }
 
-    public void moveCar(int number) {
+    public void moveCar(RandomNumber randomNum) {
+        int number = randomNum.generate();
         if (shouldMove(number)) {
             position++;
         }
@@ -19,8 +20,8 @@ public class Car {
 
     private static final int MOVE_THRESHOLD = 4;
 
-    private boolean shouldMove(int randomNum) {
-        if (randomNum >= MOVE_THRESHOLD) {
+    private boolean shouldMove(int number) {
+        if (number >= MOVE_THRESHOLD) {
             return true;
         }
         return false;
