@@ -2,6 +2,7 @@ public class Car {
     private String name;
     private int distance;
     private static final int MOVE_THRESHOLD=4;
+
     public Car(String name) {
         this.name = name;
     }
@@ -20,5 +21,8 @@ public class Car {
             distance++;
     }
 
-
+    @Override
+    public String toString() {
+        return name + ": " + distance;
+    }
 }
