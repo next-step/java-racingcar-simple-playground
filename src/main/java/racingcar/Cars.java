@@ -22,7 +22,7 @@ public class Cars {
     private void move(RandomNumber randomNumber) {
         for (int i = 0; i < cars.size(); i++) {
             int number = randomNumber.getRandomNumber();
-            cars.get(i).movePoint(number);
+            cars.get(i).moveIfPossible(number);
         }
     }
 

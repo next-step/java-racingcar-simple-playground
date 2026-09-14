@@ -14,9 +14,9 @@ public class FindCarWinnerTest {
     void findWinnerTest() {
         Car a = new Car("A");
         Car b = new Car("B");
-        a.movePoint(4);
-        a.movePoint(5);
-        b.movePoint(4);
+        a.moveIfPossible(4);
+        a.moveIfPossible(5);
+        b.moveIfPossible(4);
 
         Cars cars = new Cars(List.of(a, b));
 
@@ -28,8 +28,8 @@ public class FindCarWinnerTest {
     void findWinnerTests() {
         Car a = new Car("A");
         Car b = new Car("B");
-        a.movePoint(4);
-        b.movePoint(4);
+        a.moveIfPossible(4);
+        b.moveIfPossible(4);
 
         Cars cars = new Cars(List.of(a, b));
 

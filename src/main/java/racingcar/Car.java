@@ -20,7 +20,7 @@ public class Car {
         return carPosition;
     }
 
-    public void movePoint(int randomNumber) {
+    public void moveIfPossible(int randomNumber) {
         if (randomNumber >= 4) {
             carPosition++;
         }

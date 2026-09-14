@@ -14,7 +14,7 @@ public class CarMovingTest {
     public void moveForwardTest(int number) {
         Car car = new Car("TestCar");
 
-        car.movePoint(number);
+        car.moveIfPossible(number);
 
         assertThat(car.getCarPosition()).isEqualTo(1);
     }
@@ -26,7 +26,7 @@ public class CarMovingTest {
     public void notMoveForwardTest(int number) {
         Car car = new Car("TestCar");
 
-        car.movePoint(number);
+        car.moveIfPossible(number);
 
         assertThat(car.getCarPosition()).isEqualTo(0);
     }
