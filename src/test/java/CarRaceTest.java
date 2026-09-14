@@ -25,4 +25,23 @@ class CarRaceTest {
         assertEquals(expected, carRace.getWinners());
     }
 
+    @Test
+    void getWinnersTwoRounds() {
+        Car winner1 = new Car("winner1");
+        Car winner2 = new Car("winner2");
+        Car loser = new Car("loser");
+        ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
+        ArrayList<Car> expected = new ArrayList<>(List.of(winner1, winner2));
+
+        CarRace carRace = new CarRace(cars, 2);
+        FixedNumGenerator fixedNum3 = new FixedNumGenerator(3);
+        FixedNumGenerator fixedNum4 = new FixedNumGenerator(4);
+        carRace.moveCars(fixedNum4, 0, 2);
+        carRace.moveCars(fixedNum3, 2, 3);
+        carRace.moveCars(fixedNum4, 0, 3);
+        // winner1, 2는 2번 이동, loser는 1번 이동
+
+        assertEquals(expected, carRace.getWinners());
+    }
+
 }
