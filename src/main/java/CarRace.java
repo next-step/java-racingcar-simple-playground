@@ -4,8 +4,8 @@ public class CarRace {
     private int carCount;
     private int roundCount;
     private int maxPosition;
-    ArrayList<Car> cars;
-    ArrayList<Car> winners;
+    private ArrayList<Car> cars;
+    private ArrayList<Car> winners;
 
     // 생성자: n대 정보 추가, 리스트 생성
     public CarRace(ArrayList<Car> cars, int roundCount) {
@@ -14,6 +14,24 @@ public class CarRace {
         maxPosition = 0;
         this.cars = cars;
         winners = new ArrayList<>();
+    }
+
+    private static final int MAX_RANDOM_VALUE = 9;
+
+    // 경기를 roundCount만큼 진행
+    public void race() {
+        RandomNumGenerator randomNumGenerator =
+                new RandomNumGenerator(MAX_RANDOM_VALUE);
+        for (int i = 0; i < roundCount; i++) {
+            moveCars(randomNumGenerator, 0, carCount);
+        }
+    }
+
+    // 경기를 1회 진행
+    public void moveCars(RandomNumber randomNumber, int start, int end) {
+        for (int i = start; i < end; i++) {
+            cars.get(i).moveCar(randomNumber);
+        }
     }
 
     // 우승자들을 찾아서 반환
@@ -27,19 +45,6 @@ public class CarRace {
         return winners;
     }
 
-    // 가장 많이 움직인 자동차들을 찾기
-    private void findWinners(Car car) {
-        if (car.getPosition() == maxPosition) {
-            winners.add(car);
-        }
-    }
-
-    private void race() {
-        for (int i = 0; i < roundCount; i++) {
-            moveCars();
-        }
-    }
-
     // 최대 position 찾기
     private void findMaxPosition(Car car) {
         if (car.getPosition() > maxPosition) {
@@ -47,15 +52,10 @@ public class CarRace {
         }
     }
 
-    private static final int MAX_RANDOM_VALUE = 9;
-
-    // 경기를 1회 진행
-    private void moveCars() {
-        RandomNumGenerator randomNumgenerator =
-                new RandomNumGenerator(MAX_RANDOM_VALUE);
-        for (int i = 0; i < carCount; i++) {
-            cars.get(i).moveCar(randomNumgenerator);
-            findMaxPosition(cars.get(i));
+    // 가장 많이 움직인 자동차들을 찾기
+    private void findWinners(Car car) {
+        if (car.getPosition() == maxPosition) {
+            winners.add(car);
         }
     }
 }
