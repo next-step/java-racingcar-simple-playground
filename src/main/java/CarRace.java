@@ -40,7 +40,7 @@ public class CarRace {
     }
 
     // 경기를 1회 진행
-    public void moveCars(RandomNumber randomNumber, int start, int end) {
+    public void moveCars(NumberGenerator randomNumber, int start, int end) {
         for (int i = start; i < end; i++) {
             cars.get(i).moveCar(randomNumber);
         }

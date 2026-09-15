@@ -1,4 +1,4 @@
-public class RandomNumGenerator implements RandomNumber{
+public class RandomNumGenerator implements NumberGenerator {
     private static final int MAX_RANDOM_VALUE = 9;
 
     @Override

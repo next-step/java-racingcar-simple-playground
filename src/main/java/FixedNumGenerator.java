@@ -1,4 +1,4 @@
-public class FixedNumGenerator implements RandomNumber{
+public class FixedNumGenerator implements NumberGenerator {
     private int value;
 
     public FixedNumGenerator(int value) {

@@ -9,7 +9,7 @@ public class Car {
         position = 0;
     }
 
-    public void moveCar(RandomNumber randomNum) {
+    public void moveCar(NumberGenerator randomNum) {
         int number = randomNum.generate();
         if (shouldMove(number)) {
             position++;
