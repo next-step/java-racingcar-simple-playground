@@ -17,10 +17,15 @@ public class Car {
     }
 
     private boolean shouldMove(int number) {
-        if (number >= MOVE_THRESHOLD) {
-            return true;
-        }
-        return false;
+        return number >= MOVE_THRESHOLD;
+    }
+
+    public int getLargerPosition(int maxPosition) {
+        return Math.max(position, maxPosition);
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public int getPosition() {

@@ -48,25 +48,29 @@ public class CarRace {
 
     // 우승자들을 찾아서 반환
     public ArrayList<Car> getWinners() {
-        for (int i = 0; i < carCount; i++) {
-            findMaxPosition(cars.get(i));
-        }
-        for (Car car : cars) {
-            findWinners(car);
-        }
+        findMaxPosition();
+        findWinners();
         return winners;
     }
 
     // 최대 position 찾기
-    private void findMaxPosition(Car car) {
-        if (car.getPosition() > maxPosition) {
-            maxPosition = car.getPosition();
+    private void findMaxPosition() {
+        int max;
+        for (Car car : cars) {
+            max = car.getLargerPosition(maxPosition);
+            maxPosition = max;
         }
     }
 
     // 가장 많이 움직인 자동차들을 찾기
-    private void findWinners(Car car) {
-        if (car.getPosition() == maxPosition) {
+    private void findWinners() {
+        for (Car car : cars) {
+            addWinners(car);
+        }
+    }
+
+    private void addWinners(Car car) {
+        if (car.isSamePosition(maxPosition)) {
             winners.add(car);
         }
     }
