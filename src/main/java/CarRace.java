@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class CarRace {
-    private final int carCount;
     private final int roundCount;
     private int maxPosition;
     private ArrayList<Car> cars;
@@ -12,7 +11,6 @@ public class CarRace {
         validateCars(cars);
         validateRoundCount(roundCount);
 
-        carCount = cars.size();
         this.roundCount = roundCount;
         maxPosition = 0;
         this.cars = cars;
@@ -34,13 +32,13 @@ public class CarRace {
 
     public void race() {
         for (int i = 0; i < roundCount; i++) {
-            moveCars(numberGenerator, 0, carCount);
+            moveCars(numberGenerator);
         }
     }
 
-    private void moveCars(NumberGenerator randomNumber, int start, int end) {
-        for (int i = start; i < end; i++) {
-            cars.get(i).moveCar(randomNumber);
+    private void moveCars(NumberGenerator randomNumber) {
+        for (Car car : cars) {
+            car.moveCar(randomNumber);
         }
     }
 
