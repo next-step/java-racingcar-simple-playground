@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 public class CarRace {
-    private static final int MAX_RANDOM_VALUE = 9;
-
     private final int carCount;
     private final int roundCount;
     private int maxPosition;
@@ -35,8 +33,7 @@ public class CarRace {
 
     // 경기를 roundCount만큼 진행
     public void race() {
-        RandomNumGenerator randomNumGenerator =
-                new RandomNumGenerator(MAX_RANDOM_VALUE);
+        RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
         for (int i = 0; i < roundCount; i++) {
             moveCars(randomNumGenerator, 0, carCount);
         }

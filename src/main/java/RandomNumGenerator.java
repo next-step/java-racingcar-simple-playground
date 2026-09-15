@@ -1,12 +1,8 @@
 public class RandomNumGenerator implements RandomNumber{
-    private int bound;
-
-    public RandomNumGenerator(int bound) {
-        this.bound = bound;
-    }
+    private static final int MAX_RANDOM_VALUE = 9;
 
     @Override
     public int generate() {
-        return (int) (Math.random() * bound);
+        return (int) (Math.random() * (MAX_RANDOM_VALUE + 1));
     }
 }
