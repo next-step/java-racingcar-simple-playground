@@ -8,7 +8,6 @@ public class CarRace {
     private ArrayList<Car> winners;
     private NumberGenerator numberGenerator;
 
-    // 생성자: n대 정보 추가, 리스트 생성
     public CarRace(ArrayList<Car> cars, int roundCount, NumberGenerator numberGenerator) {
         validateCars(cars);
         validateRoundCount(roundCount);
@@ -33,28 +32,24 @@ public class CarRace {
         }
     }
 
-    // 경기를 roundCount만큼 진행
     public void race() {
         for (int i = 0; i < roundCount; i++) {
             moveCars(numberGenerator, 0, carCount);
         }
     }
 
-    // 경기를 1회 진행
     private void moveCars(NumberGenerator randomNumber, int start, int end) {
         for (int i = start; i < end; i++) {
             cars.get(i).moveCar(randomNumber);
         }
     }
 
-    // 우승자들을 찾아서 반환
     public ArrayList<Car> getWinners() {
         findMaxPosition();
         findWinners();
         return winners;
     }
 
-    // 최대 position 찾기
     private void findMaxPosition() {
         int max;
         for (Car car : cars) {
@@ -63,7 +58,6 @@ public class CarRace {
         }
     }
 
-    // 가장 많이 움직인 자동차들을 찾기
     private void findWinners() {
         for (Car car : cars) {
             addWinners(car);
