@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> cars;
     private CarMovement carMovement;
-    private Race race;
 
     public Cars(List<String> names, CarMovement carMovement) {
         this.cars = new ArrayList<>();
@@ -16,7 +15,10 @@ public class Cars {
         }
     }
 
-    //고쳐야함
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public void moveAll() {
         for (Car car : cars) {
             moveIfPossible(car);
@@ -39,7 +41,6 @@ public class Cars {
     }
 
     public List<Car> filterByPosition(int maximum) {
-        List<Car> filtered = new ArrayList<>();
         return cars.stream()
                 .filter(car -> car.getPosition() == maximum)
                 .collect(Collectors.toList());

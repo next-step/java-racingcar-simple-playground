@@ -17,6 +17,7 @@ n대의 자동차가 주어진 횟수만큼 이동하며 경주하는 게임.
 ````
 src/main/java
 ├── Car.java
+├── Cars.java
 ├── Race.java
 ├── CarMovement.java
 ├── RandomMovement.java
