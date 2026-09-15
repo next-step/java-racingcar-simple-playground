@@ -32,9 +32,9 @@ public class CarsTest {
         car2.move(4);
         car2.move(4);
 
-        RacingGame racingGame = new RacingGame(List.of(car1, car2, car3));
+        Cars cars = new Cars(List.of(car1, car2, car3));
 
-        assertThat(racingGame.findWinners()).containsExactly(car2);
+        assertThat(cars.findWinners()).containsExactly(car2);
     }
 
     @Test
@@ -52,8 +52,8 @@ public class CarsTest {
         car3.move(4);
         car3.move(5);
 
-        RacingGame racingGame = new RacingGame(List.of(car1, car2, car3));
+        Cars cars = new Cars(List.of(car1, car2, car3));
 
-        assertThat(racingGame.findWinners()).containsExactlyInAnyOrder(car2, car3);
+        assertThat(cars.findWinners()).containsExactlyInAnyOrder(car2, car3);
     }
 }

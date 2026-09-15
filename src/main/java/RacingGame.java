@@ -5,10 +5,6 @@ public class RacingGame {
     private final Cars cars;
     private final NumberGenerator numberGenerator;
 
-    public RacingGame(List<Car> cars) {
-        this(cars, new RandomNumberGenerator());
-    }
-
     public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = new Cars(cars);
         this.numberGenerator = numberGenerator;
