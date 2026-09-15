@@ -1,12 +1,15 @@
-public class FixedNumGenerator implements NumberGenerator {
-    private int value;
+import java.util.LinkedList;
+import java.util.List;
 
-    public FixedNumGenerator(int value) {
-        this.value = value;
+public class FixedNumGenerator implements NumberGenerator {
+    private LinkedList<Integer> numbers;
+
+    public FixedNumGenerator(List<Integer> numbers) {
+        this.numbers = new LinkedList<>(numbers);
     }
 
     @Override
     public int generate() {
-        return value;
+        return numbers.removeFirst();
     }
 }

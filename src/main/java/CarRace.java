@@ -6,9 +6,10 @@ public class CarRace {
     private int maxPosition;
     private ArrayList<Car> cars;
     private ArrayList<Car> winners;
+    private NumberGenerator numberGenerator;
 
     // 생성자: n대 정보 추가, 리스트 생성
-    public CarRace(ArrayList<Car> cars, int roundCount) {
+    public CarRace(ArrayList<Car> cars, int roundCount, NumberGenerator numberGenerator) {
         validateCars(cars);
         validateRoundCount(roundCount);
 
@@ -17,6 +18,7 @@ public class CarRace {
         maxPosition = 0;
         this.cars = cars;
         winners = new ArrayList<>();
+        this.numberGenerator = numberGenerator;
     }
 
     private void validateCars(ArrayList<Car> cars) {
@@ -33,14 +35,13 @@ public class CarRace {
 
     // 경기를 roundCount만큼 진행
     public void race() {
-        RandomNumGenerator randomNumGenerator = new RandomNumGenerator();
         for (int i = 0; i < roundCount; i++) {
-            moveCars(randomNumGenerator, 0, carCount);
+            moveCars(numberGenerator, 0, carCount);
         }
     }
 
     // 경기를 1회 진행
-    public void moveCars(NumberGenerator randomNumber, int start, int end) {
+    private void moveCars(NumberGenerator randomNumber, int start, int end) {
         for (int i = start; i < end; i++) {
             cars.get(i).moveCar(randomNumber);
         }

@@ -12,14 +12,12 @@ class CarRaceTest {
         Car winner1 = new Car("winner1");
         Car winner2 = new Car("winner2");
         Car loser = new Car("loser");
-        FixedNumGenerator fixedNum3 = new FixedNumGenerator(3);
-        FixedNumGenerator fixedNum4 = new FixedNumGenerator(4);
-        winner1.moveCar(fixedNum4);
-        winner2.moveCar(fixedNum4);
-        loser.moveCar(fixedNum3);
         ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
+        FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4, 3));
+        CarRace carRace = new CarRace(cars, 1, fixedNum);
 
-        CarRace carRace = new CarRace(cars, 1);
+        carRace.race();
+
         ArrayList<Car> expected = new ArrayList<>(List.of(winner1, winner2));
 
         assertEquals(expected, carRace.getWinners());
@@ -32,14 +30,10 @@ class CarRaceTest {
         Car loser = new Car("loser");
         ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
         ArrayList<Car> expected = new ArrayList<>(List.of(winner1, winner2));
+        FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4, 3, 4, 4, 4));
+        CarRace carRace = new CarRace(cars, 2, fixedNum);
 
-        CarRace carRace = new CarRace(cars, 2);
-        FixedNumGenerator fixedNum3 = new FixedNumGenerator(3);
-        FixedNumGenerator fixedNum4 = new FixedNumGenerator(4);
-        carRace.moveCars(fixedNum4, 0, 2);
-        carRace.moveCars(fixedNum3, 2, 3);
-        carRace.moveCars(fixedNum4, 0, 3);
-        // winner1, 2는 2번 이동, loser는 1번 이동
+        carRace.race();
 
         assertEquals(expected, carRace.getWinners());
     }
