@@ -37,21 +37,16 @@ public class Cars {
         //최대위치인 차만 고르면됨
         int maxPosition = getMaxPosition();
         List<Car> winners = new ArrayList<>();
-        for (int i = 0; i < cars.size(); i++) {
-            addWinnerIfMatch(maxPosition, winners, i);
+        for (Car car : cars) {
+            addWinnerIfMatch(maxPosition, winners, car);
         }
         return winners;
     }
 
-    private void addWinnerIfMatch(int maxPosition, List<Car> winners, int i) {
-        Car car = cars.get(i);
+    private void addWinnerIfMatch(int maxPosition, List<Car> winners, Car car) {
         if (car.samePosition(maxPosition)) {
             winners.add(car);
         }
-        //int carPosition = cars.get(i).getCarPosition();
-        //if (carPosition == maxPosition) {
-        //    winners.add(cars.get(i));
-        //}
     }
 
     private int getMaxPosition() {//다른데서 쓸일 없으니까 여기서만 쓰니까 private
