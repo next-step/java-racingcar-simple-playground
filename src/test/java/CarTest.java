@@ -8,7 +8,7 @@ public class CarTest {
 
 
     @Test
-    void move_Available() {
+    void movesWhenNumberIsFourOrMore() {
 
         //준비
         Car car = new Car("Greedy");
@@ -21,7 +21,7 @@ public class CarTest {
     }
 
     @Test
-    void move_Impossible_Under() {
+    void nonMovesWhenNuberIsUnderFour() {
         //준비
         Car car = new Car("Greedy");
 
