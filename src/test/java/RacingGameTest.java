@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class RacingGameTest {
-    private final static int MOVABLE_NUM = 4;
+    private static final int MOVABLE_NUM = 4;
 
     @Test
     void findsSingleWinner() {
