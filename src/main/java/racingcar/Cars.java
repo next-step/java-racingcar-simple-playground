@@ -20,16 +20,10 @@ public class Cars {
         return cars.size();
     }
 
-    private void move(RandomNumber randomNumber) {
+    public void move(RandomNumber randomNumber) {
         for (int i = 0; i < cars.size(); i++) {
             int number = randomNumber.getRandomNumber();
             cars.get(i).moveIfPossible(number);
-        }
-    }
-
-    public void carRace(RandomNumber randomNumber, int raceCount) {
-        for (int i = 0; i < raceCount; i++) {
-            move(randomNumber);
         }
     }
 
