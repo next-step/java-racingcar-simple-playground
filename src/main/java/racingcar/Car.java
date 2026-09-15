@@ -1,7 +1,9 @@
 package racingcar;
 
 public class Car {
-
+    private static final int FORWARD_CONDITION = 4;
+    //static은 클랫 전체가 공유하는 변수
+    
     private final String carName;
     //final이 자바스크립트의 const와 유사?
     //private는 이제 직접 수정못하게하는? 외부에서 직접 접근 불가하게 하는것?
@@ -21,7 +23,7 @@ public class Car {
     }
 
     public void moveIfPossible(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= FORWARD_CONDITION) {
             carPosition++;
         }
     }
