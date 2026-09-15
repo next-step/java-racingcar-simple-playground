@@ -1,4 +1,6 @@
 public class Car {
+    private static final int MOVE_THRESHOLD = 4;
+
     private String name;
     private int position;
 
@@ -13,8 +15,6 @@ public class Car {
             position++;
         }
     }
-
-    private static final int MOVE_THRESHOLD = 4;
 
     private boolean shouldMove(int number) {
         if (number >= MOVE_THRESHOLD) {

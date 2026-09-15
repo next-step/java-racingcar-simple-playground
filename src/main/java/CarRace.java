@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
 public class CarRace {
-    private int carCount;
-    private int roundCount;
+    private static final int MAX_RANDOM_VALUE = 9;
+
+    private final int carCount;
+    private final int roundCount;
     private int maxPosition;
     private ArrayList<Car> cars;
     private ArrayList<Car> winners;
@@ -30,8 +32,6 @@ public class CarRace {
             throw new IllegalArgumentException("roundCount가 0 이하임");
         }
     }
-
-    private static final int MAX_RANDOM_VALUE = 9;
 
     // 경기를 roundCount만큼 진행
     public void race() {
