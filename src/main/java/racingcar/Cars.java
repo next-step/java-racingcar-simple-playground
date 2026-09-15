@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -8,11 +9,11 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars); //외부에서 수정 못하게 막는거
     }
 
     public int size() {
