@@ -52,8 +52,8 @@ public class Main {
 
     //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
     private static void raceCars(Cars carsList, int tryCount) {
-        RandomNumber randomNumber = new RandomNumber();
-        RacingGame racingGame = new RacingGame(carsList, randomNumber, tryCount);
+        DefaultRandomNumber defaultRandomNumber = new DefaultRandomNumber();
+        RacingGame racingGame = new RacingGame(carsList, defaultRandomNumber, tryCount);
         for (int i = 0; i < tryCount; i++) {
             racingGame.carRaceOnce();
             //경주할때마다 값 출력하기
