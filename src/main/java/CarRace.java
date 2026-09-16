@@ -49,10 +49,8 @@ public class CarRace {
     }
 
     private void findMaxPosition() {
-        int max;
         for (Car car : cars) {
-            max = car.getLargerPosition(maxPosition);
-            maxPosition = max;
+            maxPosition = car.getLargerPosition(maxPosition);
         }
     }
 
