@@ -33,8 +33,6 @@ public class Cars {
     }
 
     public int findMaximum() {
-        int maximum = 0;
-
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
