@@ -11,9 +11,14 @@ public class RacingGame {
         this.raceCount = raceCount;
     }
 
-    public void carRace() {
-        for (int i = 0; i < raceCount; i++) {
-            cars.move(randomNumber);
-        }
+    public void carRaceOnce() {
+        cars.move(randomNumber);
     }
+
+    //한 라운드당 끊어서 경주를 해야하므로 밑에껀 주석 처리함
+    //public void carRace() {
+    //    for (int i = 0; i < raceCount; i++) {
+    //        cars.move(randomNumber);
+    //    }
+    //}
 }
