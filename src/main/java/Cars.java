@@ -34,10 +34,11 @@ public class Cars {
 
     public int findMaximum() {
         int maximum = 0;
-        for (Car car : cars) {
-            maximum = Math.max(maximum, car.getPosition());
-        }
-        return maximum;
+
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     public List<Car> filterByPosition(int target) {
