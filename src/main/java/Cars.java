@@ -40,9 +40,9 @@ public class Cars {
         return maximum;
     }
 
-    public List<Car> filterByPosition(int maximum) {
+    public List<Car> filterByPosition(int target) {
         return cars.stream()
-                .filter(car -> car.getPosition() == maximum)
+                .filter(car ->car.isSamePosition(target))
                 .collect(Collectors.toList());
     }
 }
