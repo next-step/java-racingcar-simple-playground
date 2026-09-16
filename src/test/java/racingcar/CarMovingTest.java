@@ -1,10 +1,10 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarMovingTest {
 
@@ -12,7 +12,7 @@ public class CarMovingTest {
     @ParameterizedTest //얘는 이재 밑에를 반복해서 테스트 실행할꺼다. 라는 것을 선언? 알리는 것
     @ValueSource(ints = {4, 5, 6, 7, 8, 9}) //이 값들을 가지고 반복해서 실행한다.
     public void moveForwardTest(int number) {
-        Car car = new Car("TestCar");
+        Car car = new Car("Test");
 
         car.moveIfPossible(number);
 
@@ -24,7 +24,7 @@ public class CarMovingTest {
     @ParameterizedTest //얘는 이재 밑에를 반복해서 테스트 실행할꺼다. 라는 것을 선언? 알리는 것
     @ValueSource(ints = {0, 1, 2, 3}) //이 값들을 가지고 반복해서 실행한다.
     public void notMoveForwardTest(int number) {
-        Car car = new Car("TestCar");
+        Car car = new Car("Test");
 
         car.moveIfPossible(number);
 

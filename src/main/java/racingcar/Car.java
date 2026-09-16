@@ -2,6 +2,7 @@ package racingcar;
 
 public class Car {
     private static final int FORWARD_CONDITION = 4;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
     //static은 클랫 전체가 공유하는 변수
 
     private final String carName;
@@ -13,6 +14,9 @@ public class Car {
     public Car(String carName) {
         if (carName == null || carName.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 비어있을 수 없습니다.");
+        }
+        if (carName.length() > MAX_CAR_NAME_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.");
         }
         this.carName = carName;
     }
