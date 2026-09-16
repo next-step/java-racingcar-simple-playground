@@ -27,6 +27,15 @@ public class Cars {
         }
     }
 
+    //자동차 생성시키기(위치가 여기가 맞는것같음)
+    public static Cars createCars(String[] carNameArray) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNameArray) {
+            cars.add(new Car(name.trim()));
+        }
+        return new Cars(cars);
+    }
+
     public List<Car> findWinner() {
         //최대위치인 차만 고르면됨
         int maxPosition = getMaxPosition();

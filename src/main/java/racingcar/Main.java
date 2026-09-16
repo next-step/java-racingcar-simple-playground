@@ -1,5 +1,7 @@
 package racingcar;
 
+import static racingcar.Cars.createCars;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +16,7 @@ public class Main {
         //자동차 이름 입력받기
         String[] carNameArray = readCarName();
         //자동차 생성시키기
-        Cars carsList = new Cars(createCars(carNameArray));
+        Cars carsList = createCars(carNameArray);
         //시도할 횟수 받기
         int tryCount = readTryCount();
         System.out.println();
@@ -34,14 +36,7 @@ public class Main {
         return carNames.split(",");
     }
 
-    //자동차 생성시키기
-    private static List<Car> createCars(String[] carNameArray) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNameArray) {
-            cars.add(new Car(name.trim()));
-        }
-        return cars;
-    }
+    //자동차 생성시키기는 Cars로 옮겼음
 
     //시도할 횟수 받기
     private static int readTryCount() {
