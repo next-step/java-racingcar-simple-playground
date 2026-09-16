@@ -27,7 +27,7 @@ public class Cars {
 
     private void moveIfPossible(Car car) {
         int number = carMovement.generate();
-        if(Race.isMovable(number)) {
+        if(Car.isMovable(number)) {
             car.move();
         }
     }

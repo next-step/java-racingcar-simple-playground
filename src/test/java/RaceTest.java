@@ -14,7 +14,7 @@ public class RaceTest {
     })
 
     void 숫자에_따라_이동가능여부가_결정된다(int number, boolean expected) {
-        assertThat(Race.isMovable(number)).isEqualTo(expected);
+        assertThat(Car.isMovable(number)).isEqualTo(expected);
     }
 
     @Test
