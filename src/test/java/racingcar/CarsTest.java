@@ -67,4 +67,15 @@ public class CarsTest {
         assertThat(b.getCarPosition()).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("자동차 생성 테스트")
+    void createCarsTest() {
+        Cars cars = Cars.createCars(new String[]{" neo", " brie ", "brown"});
+        //공백이 있어도 잘 만들어지는지...
+        assertThat(cars.size()).isEqualTo(3);
+        assertThat(cars.getCars().get(0).getCarName()).isEqualTo("neo");
+        assertThat(cars.getCars().get(1).getCarName()).isEqualTo("brie");
+        assertThat(cars.getCars().get(2).getCarName()).isEqualTo("brown");
+    }
+
 }
