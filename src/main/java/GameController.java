@@ -4,7 +4,6 @@ import java.util.StringJoiner;
 
 public class GameController {
     private ArrayList<Car> cars;
-    private ArrayList<Car> winners;
     private int roundCount;
 
     public GameController() {
@@ -14,7 +13,6 @@ public class GameController {
     public void run() {
         input();
         playRace();
-        printWinners();
     }
 
     private void input() {
@@ -42,7 +40,7 @@ public class GameController {
             carRace.moveCars();
             printResult();
         }
-        winners = carRace.getWinners();
+        printWinners(carRace.getWinners());
     }
 
     private void printResult() {
@@ -51,7 +49,7 @@ public class GameController {
         }
     }
 
-    private void printWinners() {
+    private void printWinners(ArrayList<Car> winners) {
         StringJoiner winnerNames = new StringJoiner(", ");
         for (Car winner : winners) {
             winnerNames.add(winner.getName());
