@@ -37,9 +37,9 @@ public class GameController {
 
     private void playRace() {
         System.out.println("실행 결과");
-        CarRace carRace = new CarRace(cars, roundCount, new RandomNumGenerator());
+        CarRace carRace = new CarRace(cars, new RandomNumGenerator());
         for (int i = 0; i < roundCount; i++) {
-            carRace.moveCars(new RandomNumGenerator());
+            carRace.moveCars();
             printResult();
         }
         winners = carRace.getWinners();

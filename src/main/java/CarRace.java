@@ -1,17 +1,14 @@
 import java.util.ArrayList;
 
 public class CarRace {
-    private final int roundCount;
     private int maxPosition;
     private ArrayList<Car> cars;
     private ArrayList<Car> winners;
     private NumberGenerator numberGenerator;
 
-    public CarRace(ArrayList<Car> cars, int roundCount, NumberGenerator numberGenerator) {
+    public CarRace(ArrayList<Car> cars, NumberGenerator numberGenerator) {
         validateCars(cars);
-        validateRoundCount(roundCount);
 
-        this.roundCount = roundCount;
         maxPosition = 0;
         this.cars = cars;
         winners = new ArrayList<>();
@@ -24,21 +21,9 @@ public class CarRace {
         }
     }
 
-    private void validateRoundCount(int roundCount) {
-        if (roundCount <= 0) {
-            throw new IllegalArgumentException("roundCount가 0 이하임");
-        }
-    }
-
-    public void race() {
-        for (int i = 0; i < roundCount; i++) {
-            moveCars(numberGenerator);
-        }
-    }
-
-    public void moveCars(NumberGenerator randomNumber) {
+    public void moveCars() {
         for (Car car : cars) {
-            car.moveCar(randomNumber);
+            car.moveCar(numberGenerator);
         }
     }
 
