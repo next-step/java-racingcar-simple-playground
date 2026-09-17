@@ -36,7 +36,7 @@ public class CarRace {
         }
     }
 
-    private void moveCars(NumberGenerator randomNumber) {
+    public void moveCars(NumberGenerator randomNumber) {
         for (Car car : cars) {
             car.moveCar(randomNumber);
         }

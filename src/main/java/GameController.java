@@ -1,25 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class GameController {
-    // 입력받기
-    // 경주하기
-    // 출력하기
     private ArrayList<Car> cars;
     private ArrayList<Car> winners;
     private int roundCount;
 
     public GameController() {
+        cars = new ArrayList<>();
     }
 
     public void run() {
         input();
-
-        CarRace carRace = new CarRace(cars, roundCount, new RandomNumGenerator());
-        carRace.race();
-        winners = carRace.getWinners();
-
-
+        playRace();
+        printWinners();
     }
 
     private void input() {
@@ -38,5 +33,29 @@ public class GameController {
         for (String name : names) {
             cars.add(new Car(name));
         }
+    }
+
+    private void playRace() {
+        System.out.println("실행 결과");
+        CarRace carRace = new CarRace(cars, roundCount, new RandomNumGenerator());
+        for (int i = 0; i < roundCount; i++) {
+            carRace.moveCars(new RandomNumGenerator());
+            printResult();
+        }
+        winners = carRace.getWinners();
+    }
+
+    private void printResult() {
+        for (Car car : cars) {
+            car.print();
+        }
+    }
+
+    private void printWinners() {
+        StringJoiner winnerNames = new StringJoiner(", ");
+        for (Car winner : winners) {
+            winnerNames.add(winner.getName());
+        }
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 }
