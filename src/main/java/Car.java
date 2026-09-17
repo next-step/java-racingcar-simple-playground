@@ -1,11 +1,10 @@
 public class Car {
     private final String name;
-    private int position = 0;
+    private int position;
     private static final int MOVE_THRESHOLD = 4;
 
-    public Car(String name, int position) {
+    public Car(String name) {
         this.name = name;
-        this.position = position;
     }
 
     static boolean isMovable(int number) {

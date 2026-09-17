@@ -11,7 +11,7 @@ public class Cars {
         this.carMovement = carMovement;
 
         for (String name : names) {
-            cars.add(new Car(name, 0));
+            cars.add(new Car(name));
         }
     }
 
