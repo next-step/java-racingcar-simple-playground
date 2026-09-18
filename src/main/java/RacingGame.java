@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
@@ -10,10 +9,8 @@ public class RacingGame {
         this.numberGenerator = numberGenerator;
     }
 
-    public void race(int count) {
-        for (int i = 0; i < count; i++) {
-            cars.move(numberGenerator);
-        }
+    public void race() {
+        cars.move(numberGenerator);
     }
 
     public List<Car> findWinners() {
