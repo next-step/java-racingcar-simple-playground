@@ -7,6 +7,10 @@ public class Cars {
     private CarMovement carMovement;
 
     public Cars(List<String> names, CarMovement carMovement) {
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException("자동차가 0대일 수 없습니다.");
+        }
+
         this.cars = new ArrayList<>();
         this.carMovement = carMovement;
 
