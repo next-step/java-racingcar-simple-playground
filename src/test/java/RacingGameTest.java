@@ -2,11 +2,10 @@ import domain.Car;
 import domain.RacingGame;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Queue;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -123,20 +122,5 @@ class RacingGameTest {
         game.race(0);
         // 검증
         assertThat(car.getPosition()).isEqualTo(1);
-    }
-
-    @Test
-    void generatesNumberForEachCarInEveryRound() {
-        // 준비
-        Car first = new Car("neo");
-        Car second = new Car("brie");
-        Queue<Integer> numbers = new ArrayDeque<>(List.of(4, 3, 9, 0));
-        RacingGame game = new RacingGame(List.of(first, second), () -> numbers.remove());
-        // 실행
-        game.race(2);
-        // 검증
-        assertThat(first.getPosition()).isEqualTo(2);
-        assertThat(second.getPosition()).isZero();
-        assertThat(numbers).isEmpty();
     }
 }

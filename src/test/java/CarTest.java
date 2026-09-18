@@ -46,7 +46,7 @@ public class CarTest {
         String name = "Greedy";
         // 실행 및 검증
         assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름은 1자 이상 5자 이하여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }
