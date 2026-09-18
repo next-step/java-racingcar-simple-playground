@@ -1,4 +1,4 @@
-package NumberGenerator;
+package numberGenerator;
 
 public interface NumberGenerator {
     int generate();
