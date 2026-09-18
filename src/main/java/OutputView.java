@@ -5,6 +5,7 @@ public class OutputView {
         for (Car car : cars.iterateCars()) {
             printCar(car);
         }
+        System.out.println();
     }
 
     private void printCar(Car car) {
@@ -26,5 +27,10 @@ public class OutputView {
         String joinedNames = String.join(", ",  winnerNames);
 
         System.out.println(joinedNames + "가 최종 우승했습니다.");
+    }
+
+    public void printResultHeader() {
+        System.out.println();
+        System.out.println("실행 결과");
     }
 }
