@@ -9,8 +9,9 @@ public class RacingGameTest {
         // given
         Car car1 = new Car("car1");
         Car car2 = new Car("car2");
+        Cars cars = new Cars(List.of(car1, car2));
         NumberGenerator generator = () -> 4;
-        RacingGame racingGame = new RacingGame(List.of(car1, car2), generator);
+        RacingGame racingGame = new RacingGame(cars, generator);
 
         // when
         racingGame.race();

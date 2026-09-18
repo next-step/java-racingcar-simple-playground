@@ -1,19 +1,13 @@
-import java.util.List;
-
 public class RacingGame {
     private final Cars cars;
     private final NumberGenerator numberGenerator;
 
-    public RacingGame(List<Car> cars, NumberGenerator numberGenerator) {
-        this.cars = new Cars(cars);
+    public RacingGame(Cars cars, NumberGenerator numberGenerator) {
+        this.cars = cars;
         this.numberGenerator = numberGenerator;
     }
 
     public void race() {
         cars.move(numberGenerator);
-    }
-
-    public List<Car> findWinners() {
-        return cars.findWinners();
     }
 }
