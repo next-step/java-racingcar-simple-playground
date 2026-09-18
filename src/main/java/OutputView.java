@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class OutputView {
     public void printCars(Cars cars) {
         for (Car car : cars.iterateCars()) {
@@ -13,5 +15,16 @@ public class OutputView {
         }
 
         System.out.println();
+    }
+
+    public void printWinners(List<Car> winners) {
+        String[] winnerNames = new String[winners.size()];
+        for (int i = 0; i < winners.size(); i++) {
+            winnerNames[i] = winners.get(i).getName();
+        }
+
+        String joinedNames = String.join(", ",  winnerNames);
+
+        System.out.println(joinedNames + "가 최종 우승했습니다.");
     }
 }
