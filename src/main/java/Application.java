@@ -7,7 +7,7 @@ public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Car> cars = readCars(scanner);
-        int rounds = readRounds(scanner);
+        int rounds = readValidRounds(scanner);
 
         RacingGame game = new RacingGame(cars, new RandomNumberGenerator());
         System.out.println("\n실행결과");
@@ -33,9 +33,26 @@ public class Application {
         }
     }
 
+    private static int readValidRounds(Scanner scanner) {
+        Integer rounds = null;
+        while (rounds == null) {
+            rounds = tryReadRounds(scanner);
+        }
+        return rounds;
+    }
+
+    private static Integer tryReadRounds(Scanner scanner) {
+        try {
+            return readRounds(scanner);
+        } catch (IllegalArgumentException e) {
+            System.out.println("0 이상의 정수를 입력해주세요.");
+            return null;
+        }
+    }
+
     private static int readRounds(Scanner scanner) {
         System.out.println("시도할 회수는 몇회인가요?");
-        int rounds = scanner.nextInt();
+        int rounds = Integer.parseInt(scanner.nextLine());
         if (rounds < 0) {
             throw new IllegalArgumentException("횟수는 음수일 수 없습니다.");
         }
