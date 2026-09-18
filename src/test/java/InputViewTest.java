@@ -48,9 +48,19 @@ class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"abc", "1.5", "", "2147483648"})
     void rejectsInvalidInteger(String input) {
-        // 준비 : @Valuesource
+        // 준비 : @Valuesource에서 잘못된 숫자 입력을 전달합니다
         // 실행 및 검증
         assertThatThrownBy(() -> InputView.readRounds(input))
                 .isInstanceOf(NumberFormatException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", ",neo", "neo,", "neo,,brie", "neo, ", "neo,Greedy"})
+    void rejectsInvalidCarNames(String input) {
+        // 준비: @ValueSource에서 잘못된 자동차 이름 입력을 전달합니다
+        // 실행 및 검증
+        assertThatThrownBy(() -> InputView.readCars(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 1자 이상 5자 이하여야 합니다.");
     }
 }
