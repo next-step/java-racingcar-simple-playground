@@ -45,11 +45,11 @@ public class Application {
     private static void runRace(RacingGame game, List<Car> cars, int rounds) {
         for (int round = 0; round < rounds; round++) {
             game.race(1);
-            printCars(game, cars);
+            printCars(cars);
         }
     }
 
-    private static void printCars(RacingGame game, List<Car> cars) {
+    private static void printCars(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
         }
