@@ -1,3 +1,5 @@
+import domain.Car;
+import domain.RacingGame;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

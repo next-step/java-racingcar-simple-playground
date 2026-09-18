@@ -1,3 +1,5 @@
+import domain.NumberGenerator;
+
 class FixedNumberGenerator implements NumberGenerator {
     private final int number;
 
