@@ -1,37 +1,30 @@
 public class Car {
-    private final String name;
-    private int position;
+    private final CarName name;
+    private Position position;
     private static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("이름은 비워둘 수 없습니다.");
-        }
-
-        if (name.length() < 5) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
-        }
-
-        this.name = name;
+        this.name = new CarName(name);
+        this.position = new Position();
     }
 
     static boolean isMovable(int number) {
-        return number >= MOVE_THRESHOLD;
+        return number >= Car.MOVE_THRESHOLD;
     }
 
     public void move() {
-        position++;
+       this.position = this.position.next();
     }
 
     public boolean isSamePosition(int target) {
-        return this.position == target;
+        return this.position.isSameValue(target);
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getValue();
     }
 
     public int getPosition() {
-        return this.position;
+        return this.position.getValue();
     }
 }
