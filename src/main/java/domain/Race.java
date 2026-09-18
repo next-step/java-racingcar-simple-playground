@@ -1,6 +1,8 @@
-import NumberGenerator.NumberGenerator;
+package domain;
+
 import java.util.List;
 import java.util.stream.Collectors;
+import numberGenerator.NumberGenerator;
 
 public class Race {
 
@@ -20,7 +22,6 @@ public class Race {
             cars.moveAll(numberGenerator);
             getResult();
         }
-        getWinners();
     }
 
     public List<Car> getWinners() {

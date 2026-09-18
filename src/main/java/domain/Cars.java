@@ -1,6 +1,8 @@
-import NumberGenerator.NumberGenerator;
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
+import numberGenerator.NumberGenerator;
 
 public class Cars {
 
