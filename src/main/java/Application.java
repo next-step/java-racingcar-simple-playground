@@ -21,14 +21,25 @@ public class Application {
         String[] names = scanner.nextLine().split(",", -1);
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
+            validateName(name);
             cars.add(new Car(name));
         }
         return cars;
     }
 
+    private static void validateName(String name) {
+        if (name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
+        }
+    }
+
     private static int readRounds(Scanner scanner) {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        int rounds = scanner.nextInt();
+        if (rounds < 0) {
+            throw new IllegalArgumentException("횟수는 음수일 수 없습니다.");
+        }
+        return rounds;
     }
 
     private static void runRace(RacingGame game, List<Car> cars, int rounds) {
