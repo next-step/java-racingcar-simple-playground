@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
     @Test
-    public void moveAvailable() {
+    public void 값이_4_이상이면_자동차가_전진한다() {
         Car car = new Car("car");
 
         car.move(4);
@@ -14,7 +14,7 @@ public class CarTest {
     }
 
     @Test
-    public void moveUnavailable() {
+    public void 값이_4보다_작으면_자동차가_전진하지_않는다() {
         Car car = new Car("car");
 
         car.move(3);
