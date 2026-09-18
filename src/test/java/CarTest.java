@@ -11,7 +11,7 @@ public class CarTest {
     void move_Available() {
 
         //준비
-        Car car = new Car("Greedy");
+        Car car = new Car("Green");
 
         //실행
         car.move(MOVABLE_MIN);
@@ -23,7 +23,7 @@ public class CarTest {
     @Test
     void move_Impossible_Under() {
         //준비
-        Car car = new Car("Greedy");
+        Car car = new Car("Green");
 
         //실행
         car.move(NON_MOVABLE_UNDER);
