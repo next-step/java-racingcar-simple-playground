@@ -1,3 +1,4 @@
+import domain.Car;
 import domain.Cars;
 import domain.Race;
 import org.junit.jupiter.api.Test;
