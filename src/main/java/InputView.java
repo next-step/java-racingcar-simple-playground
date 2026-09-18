@@ -6,7 +6,7 @@ public class InputView {
     public List<String> getCarName() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("5자 이하의 이름을 입력하세요. 이름은 쉼표로 구분됩니다.");
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carName = scanner.nextLine();
         String[] names = carName.split(",");
         return Arrays.asList(names);
@@ -15,7 +15,7 @@ public class InputView {
     public int getTryCount() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("반복할 라운드 횟수를 입력하세요.");
+        System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
         return Integer.parseInt(input);
     }
