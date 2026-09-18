@@ -1,5 +1,4 @@
 import NumberGenerator.NumberGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,20 +6,20 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<String> names) {
-        cars= new ArrayList<>();
-        for (String name : names) {
+    public Cars(List<String> carNames) {
+        cars = new ArrayList<>();
+        for (String name : carNames) {
             cars.add(new Car(name));
         }
     }
 
-    public void moveAll(NumberGenerator numberGenerator){
+    public void moveAll(NumberGenerator numberGenerator) {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
         }
     }
 
-    public void printAll(){
+    public void printAll() {
         for (Car car : cars) {
             System.out.println(car);
         }
@@ -33,8 +32,8 @@ public class Cars {
         int max = getMax();
 
         return cars.stream()
-                   .filter(car -> car.getDistance()==max)
-                   .toList();
+                .filter(car -> car.getDistance() == max)
+                .toList();
     }
 
     /**
@@ -44,9 +43,9 @@ public class Cars {
     private int getMax() {
 
         return cars.stream()
-                   .mapToInt(Car::getDistance)
-                   .max()
-                   .orElse(0);
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElse(0);
     }
 
 }
