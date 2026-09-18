@@ -10,7 +10,7 @@ public class Car {
         this.position = new Position();
     }
 
-    static boolean isMovable(int number) {
+    public static boolean isMovable(int number) {
         return number >= Car.MOVE_THRESHOLD;
     }
 
