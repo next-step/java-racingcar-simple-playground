@@ -1,6 +1,9 @@
+package view;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.Scanner;
 
 public class InputViewTest {

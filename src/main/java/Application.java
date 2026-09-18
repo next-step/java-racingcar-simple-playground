@@ -1,3 +1,7 @@
+import domain.*;
+import view.InputView;
+import view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,20 +16,20 @@ public class Application {
         // 이름 입력
         String[] names = inputView.readCarNames();
 
-        // Car 객체 생성
+        // domain.Car 객체 생성
         List<Car> carList = new ArrayList<>();
         for (String name : names) {
             Car car = new Car(name);
             carList.add(car);
         }
 
-        // Cars 객체 생성
+        // domain.Cars 객체 생성
         Cars cars = new Cars(carList);
 
         // 경주 횟수 입력
         int raceCount = inputView.readRaceCount();
 
-        // RacingGame 생성
+        // domain.RacingGame 생성
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         RacingGame racingGame = new RacingGame(cars, numberGenerator);
 

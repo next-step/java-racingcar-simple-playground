@@ -1,3 +1,5 @@
+package domain;
+
 public class RacingGame {
     private final Cars cars;
     private final NumberGenerator numberGenerator;
