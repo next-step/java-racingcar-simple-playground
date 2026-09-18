@@ -1,3 +1,9 @@
+import domain.*;
+import domain.movement.CarMovement;
+import domain.movement.RandomMovement;
+import view.InputView;
+import view.OutputView;
+
 import java.util.List;
 
 public class Application {

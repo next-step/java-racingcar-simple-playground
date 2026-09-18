@@ -1,3 +1,5 @@
+package domain;
+
 public class CarName {
     private static final int MAX_LENGTH = 5;
     private final String value;

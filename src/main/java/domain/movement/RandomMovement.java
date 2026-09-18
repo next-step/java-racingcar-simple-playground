@@ -1,3 +1,5 @@
+package domain.movement;
+
 import java.util.Random;
 
 public class RandomMovement implements CarMovement {

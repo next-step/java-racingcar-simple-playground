@@ -32,14 +32,14 @@ n대의 자동차가 주어진 횟수만큼 이동하며 경주하는 게임.
 ## 패키지 구조
 ````
 src/main/java
-├── Car.java
-├── Cars.java
-├── Race.java
-├── CarMovement.java
-├── RandomMovement.java
+├── domain.Car.java
+├── domain.Cars.java
+├── domain.Race.java
+├── domain.movement.CarMovement.java
+├── domain.movement.RandomMovement.java
 ├── FixedMovement.java 
-├── InputView.java
-└── OutputView.java
+├── view.InputView.java
+└── view.OutputView.java
 
 src/test/java
 ├── CarTest.java

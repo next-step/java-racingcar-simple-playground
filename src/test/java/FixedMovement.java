@@ -1,3 +1,5 @@
+import domain.movement.CarMovement;
+
 public class FixedMovement implements CarMovement {
     private final int number;
 
