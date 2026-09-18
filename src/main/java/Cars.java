@@ -40,4 +40,8 @@ public class Cars {
             winners.add(car);
         }
     }
+
+    public Iterable<Car> iterateCars() {
+        return List.copyOf(cars);
+    }
 }
