@@ -30,11 +30,12 @@ public class Cars {
     /**
      * 우승자 구하기
      */
-    public List<Car> getWinner() {
+    public List<String> getWinner() {
         int max = getMax();
 
         return cars.stream()
                 .filter(car -> car.getDistance() == max)
+                .map(Car::getName)
                 .toList();
     }
 

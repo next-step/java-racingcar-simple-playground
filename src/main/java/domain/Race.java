@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import numberGenerator.NumberGenerator;
 
 public class Race {
@@ -24,16 +23,8 @@ public class Race {
         }
     }
 
-    public List<Car> getWinners() {
-        List<Car> winners = cars.getWinner();
-
-        String result = winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
-
-        System.out.println(result + "가 최종 우승했습니다.");
-
-        return winners;
+    public List<String> getWinners() {
+        return cars.getWinner();
     }
 
 
