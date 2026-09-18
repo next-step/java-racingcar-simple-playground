@@ -37,6 +37,21 @@
 - else 예약어를 사용하지 않는다.
 - 함수의 길이가 15 라인을 넘어가지 않도록 구현한다.
 
+## 🚀 패키지 구조
+```
+src/main/java
+├── Application.java
+├── domain
+│   ├── Car.java
+│   ├── Cars.java
+│   ├── RacingGame.java
+│   ├── NumberGenerator.java
+│   └── RandomNumberGenerator.java
+└── view
+    ├── InputView.java
+    └── OutputView.java
+```
+
 ## 🚀 객체 역할
 - `Car`: 자동차의 이름과 위치를 관리하고 전진 여부를 결정한다.
 - `Cars`: 여러 자동차를 관리하면서 자동차를 움직이게 하고, 최종 우승자를 구한다.
