@@ -15,4 +15,16 @@ public class InputViewTest {
         // then
         assertThat(result).containsExactly("car1", "car2", "car3");
     }
+
+    @Test
+    void 경주횟수를_입력받아_숫자로_변환한다() {
+        // given
+        InputView inputView = new InputView(new Scanner(" 5 "));
+
+        // when
+        int count = inputView.readRaceCount();
+
+        // then
+        assertThat(count).isEqualTo(5);
+    }
 }

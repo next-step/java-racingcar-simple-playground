@@ -20,4 +20,9 @@ public class InputView {
 
         return names;
     }
+
+    // 입력받은 경주 횟수를 숫자로 변환
+    public int readRaceCount() {
+        return Integer.parseInt(scanner.nextLine().trim());
+    }
 }
