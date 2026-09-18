@@ -44,4 +44,8 @@ public class Cars {
                 .filter(car ->car.isSamePosition(target))
                 .collect(Collectors.toList());
     }
+
+    public List<Car> getCars() {
+        return new ArrayList<>(cars);
+    }
 }
