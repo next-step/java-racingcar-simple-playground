@@ -34,11 +34,12 @@ public class GameController {
     }
 
     private void playRace() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
         CarRace carRace = new CarRace(cars, new RandomNumGenerator());
         for (int i = 0; i < roundCount; i++) {
             carRace.moveCars();
             printResult();
+            System.out.println();
         }
         printWinners(carRace.getWinners());
     }
