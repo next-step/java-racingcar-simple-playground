@@ -9,6 +9,10 @@ public class Application {
         List<Car> cars = readCars(scanner);
         int rounds = readRounds(scanner);
 
+        RacingGame game = new RacingGame(cars, new RandomNumberGenerator());
+        System.out.println("\n실행결과");
+        runRace(game, cars,rounds);
+        System.out.println(String.join(", ", game.getWinners()) + "가 최종 우승했습니다.");
     }
 
 
@@ -26,5 +30,16 @@ public class Application {
         System.out.println("시도할 회수는 몇회인가요?");
         return Integer.parseInt(scanner.nextLine());
     }
+
+    private static void runRace(RacingGame game, List<Car> cars,int rounds){
+        for (int round = 0; round < rounds; round++) {
+            game.race(1);
+            for (Car car : cars) {
+                System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+            }
+            System.out.println();
+        }
+    }
+
 
 }
