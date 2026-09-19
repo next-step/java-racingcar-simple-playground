@@ -4,6 +4,7 @@ import domain.RandomNumberGenerator;
 import view.InputView;
 import view.ResultView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,8 @@ public class Application {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Car> cars = InputView.readCars(scanner);
+        List<String> names = InputView.readCarNames(scanner);
+        List<Car> cars = createCars(names);
         int rounds = InputView.readValidRounds(scanner);
 
         RacingGame game = new RacingGame(cars, new RandomNumberGenerator());
@@ -25,5 +27,15 @@ public class Application {
             game.race(1);
             ResultView.printCars(cars);
         }
+    }
+
+    private static List<Car> createCars(List<String> names) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
+
+        return cars;
     }
 }

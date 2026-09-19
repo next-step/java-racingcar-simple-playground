@@ -1,24 +1,20 @@
 package view;
 
-import domain.Car;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
-    public static List<Car> readCars(Scanner scanner) {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return readCars(scanner.nextLine());
+    public static List<String> readCarNames(Scanner scanner) {
+        System.out.println(
+                "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+        );
+        return readCarNames(scanner.nextLine());
     }
 
-    public static List<Car> readCars(String input) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : input.split(",", -1)) {
-            cars.add(new Car(name));
-        }
-        return cars;
+    public static List<String> readCarNames(String input) {
+        return Arrays.asList(input.split(",", -1));
     }
 
     public static int readValidRounds(Scanner scanner) {
