@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RacingGame {
 
-    private static final  int START_POSITION = 0;
+    private static final int START_POSITION = 0;
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
