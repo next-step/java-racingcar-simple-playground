@@ -1,4 +1,4 @@
-import domain.NumberGenerator;
+package domain;
 
 class FixedNumberGenerator implements NumberGenerator {
     private final int number;
