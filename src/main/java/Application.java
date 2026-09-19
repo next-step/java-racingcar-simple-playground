@@ -18,15 +18,11 @@ public class Application {
 
         RacingGame game = new RacingGame(cars, new RandomNumberGenerator());
         ResultView.printStart();
-        runRace(game, cars, rounds);
+        game.race(
+                rounds,
+                () -> ResultView.printCars(cars)
+        );
         ResultView.printWinners(game.getWinners());
-    }
-
-    private static void runRace(RacingGame game, List<Car> cars, int rounds) {
-        for (int round = 0; round < rounds; round++) {
-            game.race(1);
-            ResultView.printCars(cars);
-        }
     }
 
     private static List<Car> createCars(List<String> names) {

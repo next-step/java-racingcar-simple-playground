@@ -58,4 +58,21 @@ public class RacingGame {
         }
         return maxPosition;
     }
+
+    public void race(int rounds, Runnable afterRound) {
+        validateRounds(rounds);
+
+        for (int round = 0; round < rounds; round++) {
+            raceOneRound();
+            afterRound.run();
+        }
+    }
+
+    private void validateRounds(int rounds) {
+        if (rounds < 0) {
+            throw new IllegalArgumentException(
+                    "횟수는 음수일 수 없습니다."
+            );
+        }
+    }
 }
