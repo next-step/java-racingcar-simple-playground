@@ -33,15 +33,20 @@ n대의 자동차가 주어진 횟수만큼 이동하며 경주하는 게임.
 ````
 src/main/java
 ├── domain.Car.java
-├── domain.Cars.java
 ├── domain.Race.java
+├── domain.Cars.java
+├── domain.CarName.java
+├── domain.Position.java
 ├── domain.movement.CarMovement.java
 ├── domain.movement.RandomMovement.java
-├── FixedMovement.java 
 ├── view.InputView.java
 └── view.OutputView.java
 
 src/test/java
+├── FixedMovement.java 
 ├── CarTest.java
+├── CarsTest.java
+├── CarName.java
+├── PositionTest.java
 └── RaceTest.java
 ````
