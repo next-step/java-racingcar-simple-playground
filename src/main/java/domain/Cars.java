@@ -31,7 +31,7 @@ public class Cars {
     public static Cars createCars(String[] carNameArray) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNameArray) {
-            cars.add(new Car(name.trim()));
+            cars.add(new Car(name.trim(), 0));
         }
         return new Cars(cars);
     }

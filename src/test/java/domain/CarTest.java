@@ -14,7 +14,7 @@ public class CarTest {
     @ParameterizedTest //얘는 이재 밑에를 반복해서 테스트 실행할꺼다. 라는 것을 선언? 알리는 것
     @ValueSource(ints = {4, 5, 6, 7, 8, 9}) //이 값들을 가지고 반복해서 실행한다.
     public void moveForwardWhenNumberIsFourOrMore(int number) {
-        Car car = new Car("Test");
+        Car car = new Car("Test", 0);
 
         car.moveIfPossible(number);
 
@@ -25,7 +25,7 @@ public class CarTest {
     @ParameterizedTest //얘는 이재 밑에를 반복해서 테스트 실행할꺼다. 라는 것을 선언? 알리는 것
     @ValueSource(ints = {0, 1, 2, 3}) //이 값들을 가지고 반복해서 실행한다.
     public void stayWhenNumberIsThreeOrLess(int number) {
-        Car car = new Car("Test");
+        Car car = new Car("Test", 0);
 
         car.moveIfPossible(number);
 
@@ -37,16 +37,16 @@ public class CarTest {
     @Test
     @DisplayName("이름이 null이거나 비어있으면 예외가 발생한다")
     void throwsException_whenNameIsNullOrBlank() {
-        assertThatThrownBy(() -> new Car(null))
+        assertThatThrownBy(() -> new Car(null, 0))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Car("  "))
+        assertThatThrownBy(() -> new Car("  ", 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("이름이 5자를 초과하면 예외가 발생한다")
     void throwsException_whenNameIsLongerThanFive() {
-        assertThatThrownBy(() -> new Car("123456"))
+        assertThatThrownBy(() -> new Car("123456", 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
