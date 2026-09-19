@@ -1,13 +1,13 @@
 import domain.movement.CarMovement;
 
 public class FixedMovement implements CarMovement {
-    private final int number;
-
-    public FixedMovement(int number) {
-        this.number = number;
+    private final int[] numbers;
+    private int index = 0;
+    public FixedMovement(int[] numbers) {
+        this.numbers = numbers;
     }
 
     public int generate() {
-        return this.number;
+        return numbers[index++];
     }
 }
