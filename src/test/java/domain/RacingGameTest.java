@@ -4,10 +4,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -15,134 +12,132 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @SuppressWarnings("NonAsciiCharacters")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RacingGameTest {
-    private static final int MOVABLE_NUM = 4;
 
     @Test
     void findsSingleWinner() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-        first.move(MOVABLE_NUM);
-        first.move(MOVABLE_NUM);
-        second.move(MOVABLE_NUM);
-        // 실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second), new FixedNumberGenerator(List.of(4)));
-        // 검증
+        Cars cars = new Cars(List.of("Green", "Blue"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4, 3))
+        );
+
+        game.race(1);
+
         assertThat(game.getWinners()).containsExactly("Green");
     }
 
     @Test
     void findsJointWinners() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-        Car third = new Car("Red");
-        first.move(MOVABLE_NUM);
-        second.move(MOVABLE_NUM);
-        // 실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second, third), new FixedNumberGenerator(List.of(4)));
-        // 검증
+        Cars cars = new Cars(List.of("Green", "Blue", "Red"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4, 4, 3))
+        );
+
+        game.race(1);
+
         assertThat(game.getWinners())
                 .containsExactlyInAnyOrder("Green", "Blue");
     }
 
     @Test
-    void allCarsNonMove() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-        // 실행
-        RacingGame game = new RacingGame(Arrays.asList(first, second), new FixedNumberGenerator(List.of(4)));
-        // 검증
+    void findsAllCarsAsWinnersWhenPositionsAreEqual() {
+        Cars cars = new Cars(List.of("Green", "Blue"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4))
+        );
+
         assertThat(game.getWinners())
                 .containsExactlyInAnyOrder("Green", "Blue");
     }
 
     @Test
-    void singleCarWin() {
-        // 준비
-        Car car = new Car("Green");
-        // 실행
-        RacingGame game = new RacingGame(List.of(car), new FixedNumberGenerator(List.of(4)));
-        // 검증
+    void findsSingleCarAsWinner() {
+        Cars cars = new Cars(List.of("Green"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4))
+        );
+
         assertThat(game.getWinners()).containsExactly("Green");
     }
 
     @Test
     void rejectsEmptyCars() {
-        // 준비
-        List<Car> cars = new ArrayList<>();
-        // 실행 및 검증
-        assertThatThrownBy(() -> new RacingGame(cars, new FixedNumberGenerator(List.of(4))))
+        assertThatThrownBy(() -> new Cars(List.of()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void rejectsNegativeRounds() {
-        // 준비
-        List<Car> cars = Arrays.asList(new Car("Green"));
-        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(List.of(4)));
-        // 실행 및 검증
+        Cars cars = new Cars(List.of("Green"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4))
+        );
+
         assertThatThrownBy(() -> game.race(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void allCarsMoveAllRound() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-        List<Car> cars = Arrays.asList(first, second);
-        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(List.of(4)));
-        // 실행
+    void allCarsMoveAllRounds() {
+        Cars cars = new Cars(List.of("Green", "Blue"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4, 4, 4, 4, 4, 4))
+        );
+
         game.race(3);
-        // 검증
-        assertThat(first.getPosition()).isEqualTo(3);
-        assertThat(second.getPosition()).isEqualTo(3);
+
+        assertThat(game.getCars())
+                .extracting(Car::getPosition)
+                .containsExactly(3, 3);
     }
 
     @Test
-    void allCarsStayAllRound() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-        List<Car> cars = Arrays.asList(first, second);
-        RacingGame game = new RacingGame(cars, new FixedNumberGenerator(List.of(3)));
-        // 실행
+    void allCarsStayAllRounds() {
+        Cars cars = new Cars(List.of("Green", "Blue"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(3, 3, 3, 3, 3, 3))
+        );
+
         game.race(3);
-        // 검증
-        assertThat(first.getPosition()).isEqualTo(0);
-        assertThat(second.getPosition()).isEqualTo(0);
+
+        assertThat(game.getCars())
+                .extracting(Car::getPosition)
+                .containsExactly(0, 0);
     }
 
     @Test
     void keepsPositionWhenRoundsAreZero() {
-        // 준비
-        Car car = new Car("neo");
-        car.move(4);
-        RacingGame game = new RacingGame(List.of(car), new FixedNumberGenerator(List.of(4)));
-        // 실행
+        Cars cars = new Cars(List.of("neo"));
+        RacingGame game = new RacingGame(
+                cars,
+                new FixedNumberGenerator(List.of(4))
+        );
+
         game.race(0);
-        // 검증
-        assertThat(car.getPosition()).isEqualTo(1);
+
+        assertThat(game.getCars())
+                .extracting(Car::getPosition)
+                .containsExactly(0);
     }
 
     @Test
     void 생성된_숫자에_따라_자동차가_이동한다() {
-        // 준비
-        Car first = new Car("Green");
-        Car second = new Car("Blue");
-
+        Cars cars = new Cars(List.of("Green", "Blue"));
         RacingGame game = new RacingGame(
-                Arrays.asList(first, second),
+                cars,
                 new FixedNumberGenerator(List.of(4, 3))
         );
 
-        // 실행
         game.race(1);
 
-        // 검증
-        assertThat(first.getPosition()).isEqualTo(1);
-        assertThat(second.getPosition()).isEqualTo(0);
+        assertThat(game.getCars())
+                .extracting(Car::getPosition)
+                .containsExactly(1, 0);
     }
 }
