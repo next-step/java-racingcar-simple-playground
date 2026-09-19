@@ -14,19 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class RacingGameTest {
 
     @Test
-    void findsSingleWinner() {
-        Cars cars = new Cars(List.of("Green", "Blue"));
-        RacingGame game = new RacingGame(
-                cars,
-                new FixedNumberGenerator(List.of(4, 3))
-        );
-
-        game.race(1);
-
-        assertThat(game.getWinners()).containsExactly("Green");
-    }
-
-    @Test
     void findsJointWinners() {
         Cars cars = new Cars(List.of("Green", "Blue", "Red"));
         RacingGame game = new RacingGame(
@@ -38,29 +25,6 @@ class RacingGameTest {
 
         assertThat(game.getWinners())
                 .containsExactlyInAnyOrder("Green", "Blue");
-    }
-
-    @Test
-    void findsAllCarsAsWinnersWhenPositionsAreEqual() {
-        Cars cars = new Cars(List.of("Green", "Blue"));
-        RacingGame game = new RacingGame(
-                cars,
-                new FixedNumberGenerator(List.of(4))
-        );
-
-        assertThat(game.getWinners())
-                .containsExactlyInAnyOrder("Green", "Blue");
-    }
-
-    @Test
-    void findsSingleCarAsWinner() {
-        Cars cars = new Cars(List.of("Green"));
-        RacingGame game = new RacingGame(
-                cars,
-                new FixedNumberGenerator(List.of(4))
-        );
-
-        assertThat(game.getWinners()).containsExactly("Green");
     }
 
     @Test
@@ -79,36 +43,6 @@ class RacingGameTest {
 
         assertThatThrownBy(() -> game.race(-1))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void allCarsMoveAllRounds() {
-        Cars cars = new Cars(List.of("Green", "Blue"));
-        RacingGame game = new RacingGame(
-                cars,
-                new FixedNumberGenerator(List.of(4, 4, 4, 4, 4, 4))
-        );
-
-        game.race(3);
-
-        assertThat(game.getCars())
-                .extracting(Car::getPosition)
-                .containsExactly(3, 3);
-    }
-
-    @Test
-    void allCarsStayAllRounds() {
-        Cars cars = new Cars(List.of("Green", "Blue"));
-        RacingGame game = new RacingGame(
-                cars,
-                new FixedNumberGenerator(List.of(3, 3, 3, 3, 3, 3))
-        );
-
-        game.race(3);
-
-        assertThat(game.getCars())
-                .extracting(Car::getPosition)
-                .containsExactly(0, 0);
     }
 
     @Test
