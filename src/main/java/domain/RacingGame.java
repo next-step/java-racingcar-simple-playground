@@ -1,4 +1,4 @@
-package racingcar;
+package domain;
 
 public class RacingGame {
     private final Cars cars;

@@ -1,4 +1,4 @@
-package racingcar;
+package domain;
 
 public class Car {
     private static final int FORWARD_CONDITION = 4;
