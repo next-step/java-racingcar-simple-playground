@@ -1,8 +1,8 @@
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class CarTest {
 
@@ -16,5 +16,17 @@ class CarTest {
         car = new Car("Car2");
         car.moveCar(fixedNumber);
         assertTrue(car.isSamePosition(1));
+    }
+
+    @Test
+    void getLargerPosition() {
+        Car car = new Car("Car1");
+        assertEquals(1, car.getLargerPosition(1));
+    }
+    
+    @Test
+    void isSamePosition() {
+        Car car = new Car("Car1");
+        assertTrue(car.isSamePosition(0));
     }
 }
