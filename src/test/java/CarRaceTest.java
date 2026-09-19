@@ -1,10 +1,25 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class CarRaceTest {
+
+    @Test
+    void moveCars() {
+        Car car1 = new Car("Car1");
+        Car car2 = new Car("Car2");
+        ArrayList<Car> cars = new ArrayList<>(List.of(car1, car2));
+        FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4));
+        CarRace carRace = new CarRace(cars, fixedNum);
+
+        carRace.moveCars();
+
+        assertTrue(car1.isSamePosition(1));
+        assertTrue(car2.isSamePosition(1));
+    }
 
     @Test
     void getWinners() {
