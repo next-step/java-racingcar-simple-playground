@@ -1,4 +1,4 @@
-package racingcar;
+package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +25,15 @@ public class Cars {
             int number = randomNumber.getRandomNumber();
             cars.get(i).moveIfPossible(number);
         }
+    }
+
+    //자동차 생성시키기(위치가 여기가 맞는것같음)
+    public static Cars createCars(String[] carNameArray) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : carNameArray) {
+            cars.add(new Car(name.trim(), 0));
+        }
+        return new Cars(cars);
     }
 
     public List<Car> findWinner() {
