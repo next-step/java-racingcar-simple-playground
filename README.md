@@ -13,13 +13,19 @@ Java로 구현한 자동차 경주 게임입니다.
 src
 ├── main
 │   └── java
-│       ├── Car.java
-│       ├── Cars.java
-│       ├── Race.java
-│       ├── CarRaceMain.java
-│       └── NumberGenerator
-│           ├── NumberGenerator.java
+│       └── controller
+│           └── RacingController.java
+│       └── domain
+│           ├── Car.java
+│           ├── Cars.java
+│           └── Race.java
+│       └── view
+│           ├── InputView.java
+│           └── OutputView.java
+│       └── numberGenerator
+│           ├── numberGenerator.java
 │           └── RandomNumberGenerator.java
+│       └── CarRaceMain.java
 │           
 └── test
     └── java
