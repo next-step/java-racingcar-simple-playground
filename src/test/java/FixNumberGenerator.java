@@ -1,4 +1,4 @@
-package numberGenerator;
+import numberGenerator.NumberGenerator;
 
 public class FixNumberGenerator implements NumberGenerator {
     private int[] number;
