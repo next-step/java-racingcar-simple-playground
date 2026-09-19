@@ -6,21 +6,15 @@ import numberGenerator.NumberGenerator;
 public class Race {
 
     private final Cars cars;
-    private final int COUNT;
+    private final NumberGenerator numberGenerator;
 
-    public Race(String carNames, int n) {
+    public Race(String carNames, NumberGenerator numberGenerator) {
         cars = new Cars(List.of(carNames.split(",")));
-        COUNT = n;
+        this.numberGenerator = numberGenerator;
     }
 
-    public void start(NumberGenerator numberGenerator) {
-        System.out.println();
-        System.out.println("실행 결과");
-
-        for (int i = 0; i < COUNT; i++) {
-            cars.moveAll(numberGenerator);
-            getResult();
-        }
+    public void start() {
+        cars.moveAll(numberGenerator);
     }
 
     public List<String> getWinners() {
@@ -30,7 +24,6 @@ public class Race {
 
     public void getResult() {
         cars.printAll();
-        System.out.println();
     }
 
 }
