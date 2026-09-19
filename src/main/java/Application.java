@@ -18,10 +18,11 @@ public class Application {
         Cars cars = new Cars(names, carMovement);
         Race race = new Race(cars);
 
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 0보다 커야 합니다.");
+        }
+
         for (int i = 0; i < tryCount; i++) {
-            if (tryCount <= 0) {
-                throw new IllegalArgumentException("시도 횟수는 0보다 커야 합니다.");
-            }
             race.oneRound();
             outputView.printRound(cars.getCars());
         }
