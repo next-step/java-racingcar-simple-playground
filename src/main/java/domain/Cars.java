@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +41,9 @@ public class Cars {
         if (car.getPosition() == maxPosition) {
             winners.add(car);
         }
+    }
+
+    public Iterable<Car> iterateCars() {
+        return List.copyOf(cars);
     }
 }
