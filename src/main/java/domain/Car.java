@@ -3,6 +3,7 @@ package domain;
 public class Car {
 
     private static final int MOVABLE_MIN = 4;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int position;
 
@@ -31,7 +32,7 @@ public class Car {
     }
 
     private static void validateName(String name) {
-        if (name.isBlank() || name.length() > 5) {
+        if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
         }
     }
