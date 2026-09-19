@@ -1,29 +1,81 @@
-import NumberGenerator.FixNumberGenerator;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.Car;
+import domain.Cars;
+import domain.Race;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarRaceTest {
-    Race race;
-
 
     @Test
-    void startRace() {
+    @DisplayName("자동차 이름이 5자를 초과하면 예외가 발생한다")
+    void carNameLengthTest() {
+        assertThatThrownBy(() -> new Car("123456"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
-        Cars cars= new Cars(List.of("A", "B", "C"));
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n"})
+    @DisplayName("자동차 이름이 null, 빈 문자열, 또는 공백이면 예외가 발생한다")
+    void blankCarNameTest(String name) {
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 빈 값일 수 없습니다");
+    }
 
-        race= new Race(cars);
+    @Test
+    @DisplayName("3 이하면 전진, 4 이상이면 움직인다.")
+    void moveTest() {
 
-        race.start(new FixNumberGenerator(new int[]{2,3,3}));
-        race.start(new FixNumberGenerator(new int[]{2,3,3}));
-        race.start(new FixNumberGenerator(new int[]{2,4,4}));
-        race.start(new FixNumberGenerator(new int[]{4,4,4}));
+        Cars cars = new Cars(List.of("A", "B"));
 
-        List<Car> winners = race.getWinners();
+        cars.moveAll(new FixNumberGenerator(new int[]{3, 4}));
+
+        List<String> winners = cars.getWinner();
+
+        assertThat(winners).hasSize(1);
+        assertThat(winners).isEqualTo(List.of("B"));
+    }
+
+    @Test
+    @DisplayName("단독 우승자 테스트")
+    void getSingleWinnerTest() {
+
+        int tryCount = 3;
+        int[] fixedNumbers = new int[]{1, 2, 3, 2, 3, 4, 3, 4, 5};
+        Race race = new Race("A,B,C", new FixNumberGenerator(fixedNumbers));
+
+        for (int i = 0; i < tryCount; i++) {
+            race.start();
+        }
+
+        List<String> winners = race.getWinners();
+
+        assertThat(winners).containsExactly("C");
+    }
+
+    @Test
+    @DisplayName("공동 우승자 테스트")
+    void getCoWinnerTest() {
+
+        int COUNT = 3;
+        int[] fixedNumbers = new int[]{2, 4, 5, 3, 5, 9, 1, 4, 4};
+        Race race = new Race("A,B,C", new FixNumberGenerator(fixedNumbers));
+
+        for (int i = 0; i < COUNT; i++) {
+            race.start();
+        }
+
+        List<String> winners = race.getWinners();
 
         assertThat(winners).hasSize(2);
-        assertThat(winners.get(0).getDistance()).isEqualTo(2);
+        assertThat(winners).contains("B", "C");
     }
 }
