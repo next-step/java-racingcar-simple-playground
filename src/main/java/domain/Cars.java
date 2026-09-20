@@ -16,16 +16,6 @@ public class Cars {
         }
     }
 
-    private int findMaxPosition() {
-        int maxPosition = 0;
-
-        for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-
-        return maxPosition;
-    }
-
     public List<Car> findWinners() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = findMaxPosition();
@@ -35,6 +25,16 @@ public class Cars {
         }
 
         return winners;
+    }
+
+    private int findMaxPosition() {
+        int maxPosition = 0;
+
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+
+        return maxPosition;
     }
 
     private void addWinner(Car car, int maxPosition, List<Car> winners) {
