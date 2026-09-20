@@ -53,7 +53,5 @@ public class Application {
             racingGame.race();
             outputView.printCars(cars);
         }
-
-        outputView.printCars(cars);
     }
 }
