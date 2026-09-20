@@ -2,13 +2,16 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cars {
 
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateNoDuplicateNames(cars); //중복이름 예외검증
         this.cars = new ArrayList<>(cars);
     }
 
@@ -58,5 +61,15 @@ public class Cars {
             maxPosition = Math.max(maxPosition, car.getCarPosition());
         }
         return maxPosition;
+    }
+
+    private void validateNoDuplicateNames(List<Car> cars) {
+        Set<String> duplicateNames = new HashSet<>(); //[학습] Set은 중복을 허용하지 않는 자료구조
+        for (Car car : cars) {
+            if (!duplicateNames.add(car.getCarName())) { //false면 중복이니까
+                throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+                //중복 검증을 하여, 동일한 이름의 자동차가 존재하면 예외를 발생시킵니다.
+            }
+        }
     }
 }
