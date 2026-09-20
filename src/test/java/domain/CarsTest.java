@@ -19,7 +19,7 @@ public class CarsTest {
 
         Cars cars = new Cars(List.of(a, b));
 
-        assertThat(cars.findWinner()).containsExactly(a);
+        assertThat(cars.findWinners()).containsExactly(a);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CarsTest {
 
         Cars cars = new Cars(List.of(a, b));
 
-        assertThat(cars.findWinner()).containsExactlyInAnyOrder(a, b);
+        assertThat(cars.findWinners()).containsExactlyInAnyOrder(a, b);
     }
 
 

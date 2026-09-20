@@ -23,7 +23,7 @@ public class Application {
         //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
         raceCars(carsList, tryCount);
         //최종 우승자 출력하기
-        printFinalWinners(carsList.findWinner());
+        printFinalWinners(carsList.findWinners());
     }
 
     //자동차 이름 입력받기
