@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -73,4 +74,13 @@ public class CarsTest {
         assertThat(cars.getCars().get(2).getCarName()).isEqualTo("brown");
     }
 
+    @Test
+    @DisplayName("같은 이름의 자동차가 있으면 예외가 발생")
+    void throwsException_whenDuplicateNamesExist() {
+        Car a = new Car("A", 0);
+        Car b = new Car("A", 0);
+
+        assertThatThrownBy(() -> new Cars(List.of(a, b)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
