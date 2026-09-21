@@ -74,4 +74,14 @@ class CarsTest {
 
         assertThat(result).extracting(Car::getName).containsExactly("가", "나다");
     }
+
+    @Test
+    @DisplayName("일치하는 위치의 자동차가 없으면 빈 리스트를 반환한다.")
+    void returnEmptyListWhenNoCarMatches() {
+        Cars cars = new Cars(List.of("가", "나다"), new FixedNumberGenerater(new int[]{9, 9}));
+        cars.moveAll();
+
+        List<Car> result = cars.filterByPosition(99); //도달 못함.
+        assertThat(result).isEmpty();
+    }
 }
