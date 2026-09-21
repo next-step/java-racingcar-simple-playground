@@ -1,6 +1,6 @@
 import domain.*;
-import domain.movement.CarMovement;
-import domain.movement.RandomMovement;
+import domain.movement.NumberGenerater;
+import domain.movement.RandomNumberGenerater;
 import view.InputView;
 import view.OutputView;
 
@@ -14,8 +14,8 @@ public class Application {
         List<String> names = inputView.getCarName();
         int tryCount = inputView.getTryCount();
 
-        CarMovement carMovement = new RandomMovement();
-        Cars cars = new Cars(names, carMovement);
+        NumberGenerater numberGenerater = new RandomNumberGenerater();
+        Cars cars = new Cars(names, numberGenerater);
         Race race = new Race(cars);
 
         if (tryCount <= 0) {

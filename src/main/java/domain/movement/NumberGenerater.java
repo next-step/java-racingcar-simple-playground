@@ -1,5 +1,5 @@
 package domain.movement;
 
-public interface CarMovement {
+public interface NumberGenerater {
     int generate();
 }

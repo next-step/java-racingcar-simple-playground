@@ -1,6 +1,6 @@
 package domain;
 
-import domain.movement.CarMovement;
+import domain.movement.NumberGenerater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
-    private CarMovement carMovement;
+    private NumberGenerater numberGenerater;
 
-    public Cars(List<String> names, CarMovement carMovement) {
+    public Cars(List<String> names, NumberGenerater numberGenerater) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException("자동차가 0대일 수 없습니다.");
         }
 
         this.cars = new ArrayList<>();
-        this.carMovement = carMovement;
+        this.numberGenerater = numberGenerater;
 
         for (String name : names) {
             cars.add(new Car(name));
@@ -30,7 +30,7 @@ public class Cars {
     }
 
     private void moveIfPossible(Car car) {
-        int number = carMovement.generate();
+        int number = numberGenerater.generate();
         if(Car.isMovable(number)) {
             car.move();
         }

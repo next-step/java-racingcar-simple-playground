@@ -37,13 +37,13 @@ src/main/java
 ├── domain.Cars.java
 ├── domain.CarName.java
 ├── domain.Position.java
-├── domain.movement.CarMovement.java
-├── domain.movement.RandomMovement.java
+├── domain.movement.NumberGenerater.java
+├── domain.movement.RandomNumberGenerater.java
 ├── view.InputView.java
 └── view.OutputView.java
 
 src/test/java
-├── FixedMovement.java 
+├── FixedNumberGenerater.java 
 ├── CarTest.java
 ├── CarsTest.java
 ├── CarName.java

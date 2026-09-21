@@ -2,7 +2,7 @@ package domain.movement;
 
 import java.util.Random;
 
-public class RandomMovement implements CarMovement {
+public class RandomNumberGenerater implements NumberGenerater {
     private static final int RANDOM_BOUND = 10;
     private Random random = new Random();
 

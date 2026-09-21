@@ -10,7 +10,7 @@ public class RaceTest {
     @Test
     @DisplayName("한 라운드 진행 시 자동차가 이동한다.")
     void oneRound() {
-        Cars cars = new Cars(List.of("가"), new FixedMovement(new int[]{4}));
+        Cars cars = new Cars(List.of("가"), new FixedNumberGenerater(new int[]{4}));
         Race race = new Race(cars);
 
         race.oneRound();
@@ -22,7 +22,7 @@ public class RaceTest {
     @DisplayName("우승자가 한 명일 때 반환한다.")
     void returnOneWinner() {
         Cars cars = new Cars(List.of("A", "B", "C", "D","E"),
-                new FixedMovement(new int[]{3, 2, 6, 2, 3}));
+                new FixedNumberGenerater(new int[]{3, 2, 6, 2, 3}));
         cars.moveAll();
 
         Race race = new Race(cars);
@@ -34,7 +34,7 @@ public class RaceTest {
     @DisplayName("우승자가 한 명 이상일 때 반환한다.")
     void returnWinners() {
         Cars cars = new Cars(List.of("A","B","C","D","E"),
-                new FixedMovement(new int[]{3, 5, 5, 2, 5}));
+                new FixedNumberGenerater(new int[]{3, 5, 5, 2, 5}));
         cars.moveAll();
 
         Race race = new Race(cars);

@@ -1,9 +1,9 @@
-import domain.movement.CarMovement;
+import domain.movement.NumberGenerater;
 
-public class FixedMovement implements CarMovement {
+public class FixedNumberGenerater implements NumberGenerater {
     private final int[] numbers;
     private int index = 0;
-    public FixedMovement(int[] numbers) {
+    public FixedNumberGenerater(int[] numbers) {
         this.numbers = numbers;
     }
 
