@@ -12,13 +12,12 @@ public class Application {
         OutputView outputView = new OutputView();
 
         List<String> names = inputView.getCarName();
-        int tryCount = inputView.getTryCount();
-
+        TryCount tryCount = new TryCount(inputView.getTryCount());
         NumberGenerater numberGenerater = new RandomNumberGenerater();
         Cars cars = new Cars(names, numberGenerater);
         Race race = new Race(cars);
 
-        for (int i = 0; i < tryCount; i++) {
+        for (int i = 0; i < tryCount.getValue(); i++) {
             race.oneRound();
             outputView.printRound(cars.getCars());
         }
