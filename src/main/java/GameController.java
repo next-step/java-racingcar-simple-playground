@@ -1,27 +1,20 @@
 import java.util.ArrayList;
 
 public class GameController {
-    private ArrayList<Car> cars;
     private int roundCount;
+    private Cars cars;
     private View view;
 
     public GameController(View view) {
-        cars = new ArrayList<>();
+        cars = new Cars(new ArrayList<Car>());
         this.view = view;
     }
 
     public void run() {
         String names = view.inputCarNames();
-        addCars(names);
+        cars.addCars(names);
         roundCount = view.inputRoundCount();
         playRace();
-    }
-
-    private void addCars(String value) {
-        String[] names = value.split(",");
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
     }
 
     private void playRace() {

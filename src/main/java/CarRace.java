@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class CarRace {
     private int maxPosition;
-    private ArrayList<Car> cars;
+    private Cars cars;
     private ArrayList<Car> winners;
     private NumberGenerator numberGenerator;
 
-    public CarRace(ArrayList<Car> cars, NumberGenerator numberGenerator) {
+    public CarRace(Cars cars, NumberGenerator numberGenerator) {
         validateCars(cars);
 
         maxPosition = 0;
@@ -15,14 +15,14 @@ public class CarRace {
         this.numberGenerator = numberGenerator;
     }
 
-    private void validateCars(ArrayList<Car> cars) {
+    private void validateCars(Cars cars) {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("자동차 입력 안 됨");
         }
     }
 
     public void moveCars() {
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             car.moveCar(numberGenerator);
         }
     }
@@ -34,13 +34,13 @@ public class CarRace {
     }
 
     private void findMaxPosition() {
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             maxPosition = car.getLargerPosition(maxPosition);
         }
     }
 
     private void findWinners() {
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             addWinners(car);
         }
     }

@@ -11,7 +11,7 @@ class CarRaceTest {
     void moveCars() {
         Car car1 = new Car("Car1");
         Car car2 = new Car("Car2");
-        ArrayList<Car> cars = new ArrayList<>(List.of(car1, car2));
+        Cars cars = new Cars(List.of(car1, car2));
         FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4));
         CarRace carRace = new CarRace(cars, fixedNum);
 
@@ -26,7 +26,7 @@ class CarRaceTest {
         Car winner1 = new Car("winner1");
         Car winner2 = new Car("winner2");
         Car loser = new Car("loser");
-        ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
+        Cars cars = new Cars(List.of(winner1, winner2, loser));
         FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4, 3));
         CarRace carRace = new CarRace(cars, fixedNum);
 
@@ -42,7 +42,7 @@ class CarRaceTest {
         Car winner1 = new Car("winner1");
         Car winner2 = new Car("winner2");
         Car loser = new Car("loser");
-        ArrayList<Car> cars = new ArrayList<>(List.of(winner1, winner2, loser));
+        Cars cars = new Cars(List.of(winner1, winner2, loser));
         ArrayList<Car> expected = new ArrayList<>(List.of(winner1, winner2));
         FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4, 3, 4, 4, 4));
         CarRace carRace = new CarRace(cars, fixedNum);
