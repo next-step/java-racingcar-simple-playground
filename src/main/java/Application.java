@@ -15,19 +15,20 @@ public class Application {
         List<String> names = InputView.readCarNames(scanner);
         int rounds = InputView.readValidRounds(scanner);
 
-        Cars cars = new Cars(names);
         RacingGame game = new RacingGame(
-                cars,
+                new Cars(names),
                 new RandomNumberGenerator()
         );
 
-        ResultView.printStart();
+        runGame(game, rounds);
+    }
 
+    private static void runGame(RacingGame game, int rounds) {
+        ResultView.printStart();
         game.race(
                 rounds,
                 () -> ResultView.printCars(game.getCars())
         );
-
         ResultView.printWinners(game.getWinners());
     }
 }
