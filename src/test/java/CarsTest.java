@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RaceTest {
+public class CarsTest {
     @Test
     @DisplayName("자동차 목록에 중복된 이름이 존재하면 예외가 발생한다")
     void duplicateCarNamesTest() {
