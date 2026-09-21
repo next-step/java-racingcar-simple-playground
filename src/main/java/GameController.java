@@ -1,29 +1,20 @@
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.StringJoiner;
 
 public class GameController {
     private ArrayList<Car> cars;
     private int roundCount;
+    private View view;
 
-    public GameController() {
+    public GameController(View view) {
         cars = new ArrayList<>();
+        this.view = view;
     }
 
     public void run() {
-        input();
+        String names = view.inputCarNames();
+        addCars(names);
+        roundCount = view.inputRoundCount();
         playRace();
-    }
-
-    private void input() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String value = scanner.nextLine();
-        addCars(value);
-
-        System.out.println("시도할 회수는 몇회인가요?");
-        roundCount = scanner.nextInt();
     }
 
     private void addCars(String value) {
@@ -34,27 +25,12 @@ public class GameController {
     }
 
     private void playRace() {
-        System.out.println("\n실행 결과");
+        view.printStartMessage();
         CarRace carRace = new CarRace(cars, new RandomNumGenerator());
         for (int i = 0; i < roundCount; i++) {
             carRace.moveCars();
-            printResult();
-            System.out.println();
+            view.printResult(cars);
         }
-        printWinners(carRace.getWinners());
-    }
-
-    private void printResult() {
-        for (Car car : cars) {
-            car.print();
-        }
-    }
-
-    private void printWinners(ArrayList<Car> winners) {
-        StringJoiner winnerNames = new StringJoiner(", ");
-        for (Car winner : winners) {
-            winnerNames.add(winner.getName());
-        }
-        System.out.println(winnerNames + "가 최종 우승했습니다.");
+        view.printWinners(carRace.getWinners());
     }
 }
