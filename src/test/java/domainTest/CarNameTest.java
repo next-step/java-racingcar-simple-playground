@@ -42,4 +42,13 @@ public class CarNameTest {
                 () -> new CarName(" "));
         assertEquals("이름은 비어있을 수 없습니다.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("이름이 NULL일 때 오류가 발생한다.")
+    void errorWhenNameNULL() {
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new CarName(null));
+        assertEquals("이름은 비어있을 수 없습니다.", exception.getMessage());
+    }
 }
