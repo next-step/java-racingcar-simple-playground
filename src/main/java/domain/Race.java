@@ -6,14 +6,12 @@ import numberGenerator.NumberGenerator;
 public class Race {
 
     private final Cars cars;
-    private final NumberGenerator numberGenerator;
 
-    public Race(String carNames, NumberGenerator numberGenerator) {
+    public Race(String carNames) {
         cars = new Cars(List.of(carNames.split(",")));
-        this.numberGenerator = numberGenerator;
     }
 
-    public void start() {
+    public void start(NumberGenerator numberGenerator) {
         cars.moveAll(numberGenerator);
     }
 

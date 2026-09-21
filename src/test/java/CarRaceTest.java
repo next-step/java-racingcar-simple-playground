@@ -12,11 +12,13 @@ public class CarRaceTest {
     void getSingleWinnerTest() {
 
         int tryCount = 3;
-        int[] fixedNumbers = new int[]{1, 2, 3, 2, 3, 4, 3, 4, 5};
-        Race race = new Race("A,B,C", new FixNumberGenerator(fixedNumbers));
+        Race race = new Race("A,B,C");
 
         for (int i = 0; i < tryCount; i++) {
-            race.start();
+            race.start(new FixNumberGenerator(new int[]{1, 2, 3}));
+            race.start(new FixNumberGenerator(new int[]{2, 3, 4}));
+            race.start(new FixNumberGenerator(new int[]{3, 4, 5}));
+
         }
 
         List<String> winners = race.getWinners();
@@ -29,11 +31,13 @@ public class CarRaceTest {
     void getCoWinnerTest() {
 
         int COUNT = 3;
-        int[] fixedNumbers = new int[]{2, 4, 5, 3, 5, 9, 1, 4, 4};
-        Race race = new Race("A,B,C", new FixNumberGenerator(fixedNumbers));
+        Race race = new Race("A,B,C");
 
         for (int i = 0; i < COUNT; i++) {
-            race.start();
+            race.start(new FixNumberGenerator(new int[]{2, 4, 5}));
+            race.start(new FixNumberGenerator(new int[]{3, 5, 9}));
+            race.start(new FixNumberGenerator(new int[]{1, 4, 4}));
+
         }
 
         List<String> winners = race.getWinners();
