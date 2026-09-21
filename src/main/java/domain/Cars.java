@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import numberGenerator.NumberGenerator;
+import view.OutputView;
 
 public class Cars {
     private static final int MIN_CAR_COUNT = 2;
@@ -23,9 +24,8 @@ public class Cars {
     }
 
     public void printAll() {
-        for (Car car : cars) {
-            System.out.println(car);
-        }
+        OutputView.printAllCar(cars);
+
     }
 
     /**
