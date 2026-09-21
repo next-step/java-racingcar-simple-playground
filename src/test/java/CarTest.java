@@ -2,8 +2,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import domain.Car;
-import domain.Cars;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,16 +27,20 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("3 이하면 전진, 4 이상이면 움직인다.")
+    @DisplayName("랜덤 값이 3 이하이면 정지한다 (위치 변화 없음)")
+    void stopTest() {
+        Car car = new Car("a");
+        car.move(3); // 3 이하일 때
+
+        assertThat(car.getDistance()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("랜덤 값이 4 이상이면 1칸 전진한다")
     void moveTest() {
+        Car car = new Car("a");
+        car.move(4);
 
-        Cars cars = new Cars(List.of("A", "B"));
-
-        cars.moveAll(new FixNumberGenerator(new int[]{3, 4}));
-
-        List<String> winners = cars.getWinner();
-
-        assertThat(winners).hasSize(1);
-        assertThat(winners).isEqualTo(List.of("B"));
+        assertThat(car.getDistance()).isEqualTo(1);
     }
 }
