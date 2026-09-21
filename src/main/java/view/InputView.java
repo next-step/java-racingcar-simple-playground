@@ -19,11 +19,6 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         int  tryCount = scanner.nextInt();
 
-        try {
-            return tryCount;
-        }
-        catch (Exception e) {
-            throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
-        }
+        return tryCount;
     }
 }
