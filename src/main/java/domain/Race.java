@@ -7,8 +7,8 @@ public class Race {
 
     private final Cars cars;
 
-    public Race(String carNames) {
-        cars = new Cars(List.of(carNames.split(",")));
+    public Race(List<String> names) {
+        cars = new Cars(names);
     }
 
     public void start(NumberGenerator numberGenerator) {

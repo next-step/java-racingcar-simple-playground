@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Race;
+import java.util.List;
 import numberGenerator.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -14,7 +15,7 @@ public class RacingController {
     }
 
     public void run() {
-        final String carNames = InputView.getCarNames();
+        final List<String> carNames = InputView.getCarNames();
         final int count = InputView.getTryCount();
 
         final Race race = new Race(carNames);

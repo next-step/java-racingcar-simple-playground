@@ -1,16 +1,17 @@
 package view;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     static Scanner sc = new Scanner(System.in);
     private static final int MIN_TRY_COUNT = 1;
 
-    public static String getCarNames() {
+    public static List<String> getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         final String carNames = sc.nextLine();
-        return carNames;
+        return List.of(carNames.split(","));
     }
 
     public static int getTryCount() {
