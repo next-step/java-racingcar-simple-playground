@@ -12,7 +12,7 @@ public class CarRaceTest {
     void getSingleWinnerTest() {
 
         int tryCount = 3;
-        Race race = new Race("A,B,C");
+        Race race = new Race(List.of("A", "B", "C"));
 
         for (int i = 0; i < tryCount; i++) {
             race.start(new FixNumberGenerator(new int[]{1, 2, 3}));
@@ -30,8 +30,9 @@ public class CarRaceTest {
     @DisplayName("공동 우승자 테스트")
     void getCoWinnerTest() {
 
+        Race race = new Race(List.of("A", "B", "C"));
+
         int COUNT = 3;
-        Race race = new Race("A,B,C");
 
         for (int i = 0; i < COUNT; i++) {
             race.start(new FixNumberGenerator(new int[]{2, 4, 5}));
