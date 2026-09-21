@@ -1,3 +1,5 @@
+package domainTest;
+
 import domain.movement.NumberGenerater;
 import domain.Car;
 import domain.Cars;

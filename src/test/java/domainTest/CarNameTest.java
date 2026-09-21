@@ -1,3 +1,5 @@
+package domainTest;
+
 import domain.Car;
 import domain.CarName;
 import org.junit.jupiter.api.DisplayName;

@@ -43,10 +43,10 @@ src/main/java
 └── view.OutputView.java
 
 src/test/java
-├── FixedNumberGenerater.java 
-├── CarTest.java
-├── CarsTest.java
+├── domainTest.FixedNumberGenerater.java 
+├── domainTest.CarTest.java
+├── domainTest.CarsTest.java
 ├── CarName.java
-├── PositionTest.java
-└── RaceTest.java
+├── domainTest.PositionTest.java
+└── domainTest.RaceTest.java
 ````

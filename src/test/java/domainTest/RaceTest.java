@@ -1,3 +1,5 @@
+package domainTest;
+
 import domain.Car;
 import domain.Cars;
 import domain.Race;

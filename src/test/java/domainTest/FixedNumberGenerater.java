@@ -1,3 +1,5 @@
+package domainTest;
+
 import domain.movement.NumberGenerater;
 
 public class FixedNumberGenerater implements NumberGenerater {
