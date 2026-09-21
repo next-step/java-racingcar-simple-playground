@@ -5,7 +5,7 @@ public class CarName {
     private final String value;
 
     public CarName(String value) {
-        if(value.isEmpty()){
+        if(value == null || value.isBlank()){
             throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
         }
         if(value.length() > MAX_LENGTH){
