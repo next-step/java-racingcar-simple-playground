@@ -23,7 +23,8 @@ public class RacingController {
         String[] names = inputView.readCarNames();
         Cars cars = Cars.from(names);
 
-        int raceCount = inputView.readRaceCount();
+        int input = inputView.readRaceCount();
+        RaceCount raceCount = new RaceCount(input);
 
         RacingGame racingGame = new RacingGame(cars, numberGenerator);
 
@@ -34,12 +35,12 @@ public class RacingController {
     }
 
     private void runRaceAndPrintResults(
-            int raceCount,
+            RaceCount raceCount,
             RacingGame racingGame,
             Cars cars
     ) {
         outputView.printResultHeader();
-        for (int i = 0; i < raceCount; i++) {
+        for (int i = 0; i < raceCount.getValue(); i++) {
             racingGame.race();
             List<CarDto> carDtos = createCarDtos(cars);
             outputView.printCars(carDtos);
