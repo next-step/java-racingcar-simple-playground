@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import racingcar.domain.Car;
+import racingcar.domain.CarRace;
+import racingcar.domain.NumberGenerator;
 
 import java.util.List;
 
