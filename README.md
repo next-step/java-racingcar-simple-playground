@@ -41,26 +41,41 @@
 ```
 src/main/java
 ├── Application.java
+├── controller
+    └── RacingController.java
 ├── domain
 │   ├── Car.java
 │   ├── Cars.java
+    ├── NumberGenerator.java
+    ├── RaceCount.java
 │   ├── RacingGame.java
-│   ├── NumberGenerator.java
 │   └── RandomNumberGenerator.java
+├── dto
+    └── CarDto.java
 └── view
     ├── InputView.java
     └── OutputView.java
 ```
 
 ## 🚀 객체 역할
+### 시작점
+- `Application`: 자동차 경주에 필요한 객체를 생성 및 연결하고, `controller`를 실행한다.
+
+### `controller`
+- `RacingGame`: 자동차 경주의 전체 흐름을 담당한다.
+
+### `domain`
 - `Car`: 자동차의 이름과 위치를 관리하고 전진 여부를 결정한다.
 - `Cars`: 여러 자동차를 관리하면서 자동차를 움직이게 하고, 최종 우승자를 구한다.
-- `RacingGame`: 한 라운드의 진행을 담당한다.
 - `NumberGenerator`: 이동 판단을 위한 값을 생성한다.
+- `RaceCount.java`: 경주 횟수 값을 소유하고 검증하는 로직을 관리한다.
+- `RacingGame.java`: 한 라운드의 진행을 담당한다.
 - `RandomNumberGenerator`: 이동 판단을 위한 값을 0~9 사이의 랜덤값으로 생성한다.
+
+### `view`
 - `InputView`: 사용자로부터 자동차 이름과 경주 횟수를 입력받고, 값을 가공한다.
-- `OutputView`: 경주 결과와 최종 우승자를 콘솔에 출력한다.
-- `Application`: 객체를 생성하고 전체 실행 흐름을 담당한다.
+- `OutputView`: 경주 결과와 최종 우승자, 혹은 오류 메시지를 콘솔에 출력한다.
+
 
 ## 🚀 테스트
 - 자동차 이동/정지 조건
@@ -68,6 +83,7 @@ src/main/java
 - 여러 자동차 이동
 - 단독 우승자 탐색
 - 공동 우승자 탐색
+- 자동차 이름들로 자동차 목록 생성
 - 한 라운드 진행
 - 자동차 이름 분리 및 공백 제거
 - 경주 횟수 입력값 변환
