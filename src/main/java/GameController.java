@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class GameController {
-    private int roundCount;
+    private RoundCount roundCount;
     private Cars cars;
     private View view;
 
@@ -13,14 +13,14 @@ public class GameController {
     public void run() {
         String names = view.inputCarNames();
         cars.addCars(names);
-        roundCount = view.inputRoundCount();
+        roundCount = new RoundCount(view.inputRoundCount());
         playRace();
     }
 
     private void playRace() {
         view.printStartMessage();
         CarRace carRace = new CarRace(cars, new RandomNumGenerator());
-        for (int i = 0; i < roundCount; i++) {
+        for (int i = 0; i < roundCount.getValue(); i++) {
             carRace.moveCars();
             view.printResult(cars);
         }
