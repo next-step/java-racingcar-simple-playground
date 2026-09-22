@@ -11,7 +11,7 @@ public class CarsTest {
     void duplicateCarNamesTest() {
         List<String> duplicatedNames = List.of("pobi", "crong", "pobi");
 
-        assertThatThrownBy(() -> new Cars(duplicatedNames))
+        assertThatThrownBy(() -> Cars.from(duplicatedNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 중복될 수 없습니다");
     }
@@ -21,7 +21,7 @@ public class CarsTest {
     void duplicateCarNamesWithSpaceTest() {
         List<String> duplicatedNames = List.of("pobi", " crong", "crong ");
 
-        assertThatThrownBy(() -> new Cars(duplicatedNames))
+        assertThatThrownBy(() -> Cars.from(duplicatedNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차 이름은 중복될 수 없습니다");
     }
@@ -31,7 +31,7 @@ public class CarsTest {
     void minimumCarCountTest() {
         List<String> singleCar = List.of("pobi");
 
-        assertThatThrownBy(() -> new Cars(singleCar))
+        assertThatThrownBy(() -> Cars.from(singleCar))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("최소 2대 이상");
     }

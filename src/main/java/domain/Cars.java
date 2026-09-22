@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import numberGenerator.NumberGenerator;
 import view.OutputView;
@@ -9,12 +8,17 @@ public class Cars {
     private static final int MIN_CAR_COUNT = 2;
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
+    private Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public static Cars from(List<String> carNames) {
         validateCarNames(carNames);
-        cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
+
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .toList();
+        return new Cars(cars);
     }
 
     public void moveAll(NumberGenerator numberGenerator) {
@@ -52,7 +56,7 @@ public class Cars {
                 .orElse(0);
     }
 
-    private void validateCarNames(List<String> carNames) {
+    private static void validateCarNames(List<String> carNames) {
         if (carNames == null || carNames.size() < MIN_CAR_COUNT) {
             throw new IllegalArgumentException("경주를 진행하려면 최소 2대 이상의 자동차가 필요합니다.");
         }

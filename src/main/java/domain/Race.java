@@ -8,7 +8,7 @@ public class Race {
     private final Cars cars;
 
     public Race(List<String> names) {
-        cars = new Cars(names);
+        this.cars = Cars.from(names);
     }
 
     public void start(NumberGenerator numberGenerator) {
