@@ -19,7 +19,7 @@ public class CarRace {
 
     }
 
-    private void playRound() {
+    public void playRound() {
         for (Car car : cars) {
             int number = numberGenerator.generate();
             car.move(number);
@@ -34,7 +34,7 @@ public class CarRace {
             }
         }
         return maxPosition;
-    }
+    }//인스턴스
 
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
