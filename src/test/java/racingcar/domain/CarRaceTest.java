@@ -1,12 +1,10 @@
-package racingcar;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import racingcar.domain.Car;
-import racingcar.domain.CarRace;
-import racingcar.domain.NumberGenerator;
+import racingcar.TestNumberGenerator;
 
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class CarRaceTest {
         Car car2 = new Car("규민");
         Car car3 = new Car("재홍");
         List<Car> cars = List.of(car1, car2, car3);
-        NumberGenerator numberGenerator = new TestNumberGenerator(List.of(5, 2, 1));
+        //NumberGenerator numberGenerator = new TestNumberGenerator(List.of(5, 2, 1));
         CarRace carRace = new CarRace(cars, ()->4);
 
         carRace.race(1);
