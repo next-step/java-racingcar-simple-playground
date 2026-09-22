@@ -6,8 +6,20 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
+    }
+
+    public static Cars from(String[] names) {
+        List<Car> carList = new ArrayList<>();
+        for (String name : names) {
+            Car car = new Car(name);
+            carList.add(car);
+        }
+
+        Cars cars = new Cars(carList);
+
+        return cars;
     }
 
     public void move(NumberGenerator numberGenerator) {
