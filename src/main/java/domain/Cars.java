@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 import numberGenerator.NumberGenerator;
-import view.OutputView;
 
 public class Cars {
     private static final int MIN_CAR_COUNT = 2;
@@ -27,10 +26,6 @@ public class Cars {
         }
     }
 
-    public void printAll() {
-        OutputView.printAllCar(cars);
-
-    }
 
     /**
      * 우승자 구하기
@@ -71,4 +66,7 @@ public class Cars {
         }
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
 }

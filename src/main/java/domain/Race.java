@@ -19,9 +19,9 @@ public class Race {
         return cars.getWinner();
     }
 
-
-    public void getResult() {
-        cars.printAll();
+    public List<Car> getCars() {
+        return cars.getCars();
     }
+
 
 }

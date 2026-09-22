@@ -30,7 +30,7 @@ public class RacingController {
 
         for (int i = 0; i < count; i++) {
             race.start(numberGenerator);
-            race.getResult();
+            OutputView.printAllCar(race.getCars());
             OutputView.printNewLine();
         }
     }
