@@ -12,7 +12,7 @@ public class CarRace {
         this.numberGenerator = numberGenerator;
     }
 
-    public void race(int roundCount) {
+    public void race(int roundCount) { // 이제 사용안함
         for (int i = 0; i < roundCount; i++) {
             playRound();
         }
@@ -26,16 +26,6 @@ public class CarRace {
         }
     }
 
-    private int findMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            if (maxPosition < car.getPosition()) {
-                maxPosition = car.getPosition();
-            }
-        }
-        return maxPosition;
-    }//인스턴스
-
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         List<Car> winners = new ArrayList<>();
@@ -46,4 +36,16 @@ public class CarRace {
         }
         return winners;
     }
+
+    private int findMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            if (maxPosition < car.getPosition()) {
+                maxPosition = car.getPosition();
+            }
+        }
+        return maxPosition;
+    }//인스턴스
+
+
 }
