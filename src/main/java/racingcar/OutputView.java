@@ -9,4 +9,11 @@ public class OutputView {
 
         }
     }
+    public void printWinner(List<Car> cars){
+        String winnerName="";
+        for(Car car: cars){
+            winnerName=winnerName+car.getName()+",";
+        }
+        System.out.println(winnerName + "가 최종 우승했습니다.");
+    }
 }
