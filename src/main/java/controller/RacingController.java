@@ -1,8 +1,12 @@
 package controller;
 
 import domain.*;
+import dto.CarDto;
 import view.InputView;
 import view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingController {
     private final InputView inputView;
@@ -25,7 +29,8 @@ public class RacingController {
 
         runRaceAndPrintResults(raceCount, racingGame, cars);
 
-        outputView.printWinners(cars.findWinners());
+        List<String> winnerNames = getWinnerNames(cars.findWinners());
+        outputView.printWinners(winnerNames);
     }
 
     private void runRaceAndPrintResults(
@@ -36,7 +41,31 @@ public class RacingController {
         outputView.printResultHeader();
         for (int i = 0; i < raceCount; i++) {
             racingGame.race();
-            outputView.printCars(cars);
+            List<CarDto> carDtos = createCarDtos(cars);
+            outputView.printCars(carDtos);
         }
+    }
+
+    private List<CarDto> createCarDtos(Cars cars) {
+        List<CarDto> carDtos = new ArrayList<>();
+
+        for (Car car : cars.iterateCars()) {
+            carDtos.add(new CarDto(
+                    car.getName(),
+                    car.getPosition()
+            ));
+        }
+
+        return carDtos;
+    }
+
+    private List<String> getWinnerNames(List<Car> winners) {
+        List<String> winnerNames = new ArrayList<>();
+
+        for (Car car : winners) {
+            winnerNames.add(car.getName());
+        }
+
+        return winnerNames;
     }
 }
