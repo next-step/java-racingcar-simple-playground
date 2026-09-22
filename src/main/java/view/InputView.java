@@ -27,6 +27,22 @@ public class InputView {
     // 입력받은 경주 횟수를 숫자로 변환
     public int readRaceCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(scanner.nextLine().trim());
+        String input = scanner.nextLine().trim();
+        validateNotBlank(input);
+        return toInt(input);
+    }
+
+    private void validateNotBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("경주 횟수를 입력해야 합니다.");
+        }
+    }
+
+    private int toInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("경주 횟수는 숫자로 입력해야 합니다.");
+        }
     }
 }
