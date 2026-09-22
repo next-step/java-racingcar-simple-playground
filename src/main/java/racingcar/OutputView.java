@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -10,10 +11,11 @@ public class OutputView {
         }
     }
     public void printWinner(List<Car> cars){
-        String winnerName="";
-        for(Car car: cars){
-            winnerName=winnerName+car.getName()+",";
+        List<String> names = new ArrayList<>();
+        for (Car car : cars) {
+            names.add(car.getName());
         }
+        String winnerName = String.join(", ", names);
         System.out.println(winnerName + "가 최종 우승했습니다.");
     }
 }
