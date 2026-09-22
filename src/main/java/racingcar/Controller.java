@@ -15,7 +15,7 @@ public class Controller {
     public void run() {
         String namesInput = inputView.readCarNames();
         int countInput = inputView.readTryCount();
-        List<Car> cars = createCars(namesInput);
+        List<Car> cars = CarsFactory.createCars(namesInput);
         CarRace carRace = new CarRace(cars, new RandomNumberGenerator());
         for (int i = 0; i < countInput; i++) {
             carRace.playRound();
@@ -25,17 +25,8 @@ public class Controller {
         List<Car> winners = carRace.findWinners();
         outputView.printWinner(winners);
 
-
     }
 
-    private List<Car> createCars(String namesInput) {
-        String[] names = namesInput.split(",");
-        List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-        return cars;
 
-    }
 
 }
