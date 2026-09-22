@@ -1,3 +1,5 @@
+package domain;
+
 public class CarPosition {
     private int position;
 

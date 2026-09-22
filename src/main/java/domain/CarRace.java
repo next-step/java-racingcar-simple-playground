@@ -1,3 +1,6 @@
+package domain;
+
+import generator.NumberGenerator;
 import java.util.ArrayList;
 
 public class CarRace {

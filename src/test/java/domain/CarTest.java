@@ -1,6 +1,9 @@
+package domain;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import generator.FixedNumGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

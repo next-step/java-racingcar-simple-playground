@@ -9,20 +9,20 @@
 
 ## 프로젝트 구조
 
-- `Car`
+- `domain.Car`
     - 자동차의 이름, 위치, 이동 담당
 
-- `CarRace`
+- `domain.CarRace`
     - 자동차 경주 진행, 우승자 판단
 
-- `NumberGenerator`
+- `generator.NumberGenerator`
     - 숫자 생성 인터페이스
 
-- `RandomNumGenerator`
+- `generator.RandomNumGenerator`
     - 랜덤 숫자 생성
 
 - `Application`
     - 메인 메서드 실행
 
-- `GameController`
+- `controller.GameController`
     - 게임의 전체적인 흐름 관리

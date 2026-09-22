@@ -1,3 +1,7 @@
+package domain;
+
+import generator.NumberGenerator;
+
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
 

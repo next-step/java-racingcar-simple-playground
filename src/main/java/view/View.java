@@ -1,3 +1,7 @@
+package view;
+
+import domain.Car;
+import domain.Cars;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringJoiner;
