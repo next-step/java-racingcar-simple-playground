@@ -20,6 +20,14 @@ public class RacingController {
     }
 
     public void run() {
+        try {
+            runGame();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+        }
+    }
+
+    private void runGame() {
         String[] names = inputView.readCarNames();
         Cars cars = Cars.from(names);
 
