@@ -1,18 +1,18 @@
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
 
-    private String name;
-    private int position;
+    private CarName name;
+    private CarPosition position;
 
-    public Car(String name) {
-        this.name = name;
-        position = 0;
+    public Car(String name, int position) {
+        this.name = new CarName(name);
+        this.position = new CarPosition(position);
     }
 
     public void moveCar(NumberGenerator randomNum) {
         int number = randomNum.generate();
         if (shouldMove(number)) {
-            position++;
+            position.move();
         }
     }
 
@@ -21,22 +21,18 @@ public class Car {
     }
 
     public int getLargerPosition(int maxPosition) {
-        return Math.max(position, maxPosition);
+        return position.getLargerPosition(maxPosition);
     }
 
     public boolean isSamePosition(int position) {
-        return this.position == position;
-    }
-
-    public void print() {
-        System.out.println(name + " : " + "-".repeat(position));
+        return this.position.isSamePosition(position);
     }
 
     public int getPosition() {
-        return position;
+        return position.getValue();
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 }
