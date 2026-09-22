@@ -23,8 +23,8 @@ class CarRaceTest {
 
     @Test
     void getWinners() {
-        Car winner1 = new Car("winner1", 0);
-        Car winner2 = new Car("winner2", 0);
+        Car winner1 = new Car("win1", 0);
+        Car winner2 = new Car("win2", 0);
         Car loser = new Car("loser", 0);
         Cars cars = new Cars(List.of(winner1, winner2, loser));
         FixedNumGenerator fixedNum = new FixedNumGenerator(List.of(4, 4, 3));

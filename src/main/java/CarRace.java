@@ -1,17 +1,12 @@
 import java.util.ArrayList;
 
 public class CarRace {
-    private int maxPosition;
     private Cars cars;
-    private ArrayList<Car> winners;
     private NumberGenerator numberGenerator;
 
     public CarRace(Cars cars, NumberGenerator numberGenerator) {
         validateCars(cars);
-
-        maxPosition = 0;
         this.cars = cars;
-        winners = new ArrayList<>();
         this.numberGenerator = numberGenerator;
     }
 
@@ -28,24 +23,25 @@ public class CarRace {
     }
 
     public ArrayList<Car> getWinners() {
-        findMaxPosition();
-        findWinners();
+        int maxPosition = findMaxPosition();
+        ArrayList<Car> winners = new ArrayList<>();
+        for (Car car : cars.getCars()) {
+            addWinners(car, maxPosition, winners);
+        }
         return winners;
     }
 
-    private void findMaxPosition() {
+    private int findMaxPosition() {
+        int maxPosition = 0;
+
         for (Car car : cars.getCars()) {
             maxPosition = car.getLargerPosition(maxPosition);
         }
+
+        return maxPosition;
     }
 
-    private void findWinners() {
-        for (Car car : cars.getCars()) {
-            addWinners(car);
-        }
-    }
-
-    private void addWinners(Car car) {
+    private void addWinners(Car car, int maxPosition, ArrayList<Car> winners) {
         if (car.isSamePosition(maxPosition)) {
             winners.add(car);
         }
