@@ -21,18 +21,17 @@ public class Application {
         int tryCount = readTryCount();
         System.out.println();
         //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
-        raceCars(carsList, tryCount);
+        RacingGame racingGame = new RacingGame(carsList, new DefaultRandomNumber());
+        raceCars(racingGame, carsList, tryCount);
         //최종 우승자 출력하기
-        printFinalWinners(carsList.findWinners());
+        printFinalWinners(racingGame.findWinners());
     }
 
     //자동차 이름 입력받기
     //view.Input로 옮김
 
     //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
-    private static void raceCars(Cars carsList, int tryCount) {
-        DefaultRandomNumber defaultRandomNumber = new DefaultRandomNumber();
-        RacingGame racingGame = new RacingGame(carsList, defaultRandomNumber);
+    private static void raceCars(RacingGame racingGame, Cars carsList, int tryCount) {
         for (int i = 0; i < tryCount; i++) {
             racingGame.carRaceOnce();
             //경주할때마다 값 출력하기
