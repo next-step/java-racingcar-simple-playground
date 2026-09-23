@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.List;
 
 public class Race {
@@ -8,10 +10,8 @@ public class Race {
         this.cars = cars;
     }
 
-    public void progress(int tryCount) {
-        for (int i = 0; i < tryCount; i++) {
-            cars.moveAll();
-        }
+    public void oneRound() {
+        cars.moveAll();
     }
 
     public List<Car> findWinners() {
