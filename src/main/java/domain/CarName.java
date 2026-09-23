@@ -11,6 +11,7 @@ public class CarName {
         if(value.length() > MAX_LENGTH){
             throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
         }
+        value = value.trim();
         this.value = value;
     }
 
