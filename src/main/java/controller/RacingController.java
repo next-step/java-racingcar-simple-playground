@@ -21,15 +21,15 @@ public class RacingController {
         int tryCount = readTryCount();
         System.out.println();
         //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
-        RacingGame racingGame = new RacingGame(carsList, new DefaultRandomNumber());
-        raceCars(racingGame, carsList, tryCount);
+        RacingGame racingGame = new RacingGame(carsList, new DefaultRandomNumber(), tryCount);
+        raceCars(racingGame, carsList);
         //최종 우승자 출력하기
         printFinalWinners(racingGame.findWinners());
     }
 
     //시도 횟수만큼 경주시키기 (단, 경주할떄마다 값 출력하기)
-    private void raceCars(RacingGame racingGame, Cars carsList, int tryCount) {
-        for (int i = 0; i < tryCount; i++) {
+    private void raceCars(RacingGame racingGame, Cars carsList) {
+        for (int i = 0; i < racingGame.getTryCount(); i++) {
             racingGame.carRaceOnce();
             //경주할때마다 값 출력하기
             printRound(carsList);
