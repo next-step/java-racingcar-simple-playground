@@ -51,4 +51,11 @@ public class CarNameTest {
                 () -> new CarName(null));
         assertEquals("이름은 비어있을 수 없습니다.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("이름의 앞뒤 공백을 제거한다.")
+    void eliminateBlank() {
+        CarName carName = new CarName("ABCD ");
+        assertEquals("ABCD", carName.getValue());
+    }
 }
