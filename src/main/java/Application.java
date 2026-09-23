@@ -12,7 +12,8 @@ public class Application {
         OutputView outputView = new OutputView();
 
         List<String> names = inputView.getCarName();
-        TryCount tryCount = new TryCount(inputView.getTryCount());
+        TryCount tryCount = inputView.getTryCount();
+
         NumberGenerater numberGenerater = new RandomNumberGenerater();
         Cars cars = new Cars(names, numberGenerater);
         Race race = new Race(cars);
