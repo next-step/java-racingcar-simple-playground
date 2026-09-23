@@ -8,10 +8,12 @@ public class CarName {
         if(value == null || value.isBlank()){
             throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
         }
+
+        value = value.trim();
+
         if(value.length() > MAX_LENGTH){
             throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
         }
-        value = value.trim();
         this.value = value;
     }
 
