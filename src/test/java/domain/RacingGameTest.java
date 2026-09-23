@@ -14,7 +14,7 @@ public class RacingGameTest {
         Car a = new Car("A", 7);
         Car b = new Car("B", 2);
         Cars cars = new Cars(List.of(a, b));
-        RacingGame racingGame = new RacingGame(cars, new FixedRandomNumber(0));
+        RacingGame racingGame = new RacingGame(cars, new FixedRandomNumber(0), 0);
 
         assertThat(racingGame.findWinners()).containsExactly(a);
     }
@@ -25,7 +25,7 @@ public class RacingGameTest {
         Car a = new Car("A", 3);
         Car b = new Car("B", 3);
         Cars cars = new Cars(List.of(a, b));
-        RacingGame racingGame = new RacingGame(cars, new FixedRandomNumber(0));
+        RacingGame racingGame = new RacingGame(cars, new FixedRandomNumber(0), 0);
 
         assertThat(racingGame.findWinners()).containsExactlyInAnyOrder(a, b);
     }
