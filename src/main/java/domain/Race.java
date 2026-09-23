@@ -1,5 +1,6 @@
 package domain;
 
+import dto.CarDto;
 import java.util.List;
 import numberGenerator.NumberGenerator;
 
@@ -19,8 +20,8 @@ public class Race {
         return cars.getWinner();
     }
 
-    public List<Car> getCars() {
-        return cars.getCars();
+    public List<CarDto> getCarDtos() {
+        return cars.getCarDtos();
     }
 
 

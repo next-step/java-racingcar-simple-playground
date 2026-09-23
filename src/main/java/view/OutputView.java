@@ -1,6 +1,6 @@
 package view;
 
-import domain.Car;
+import dto.CarDto;
 import java.util.List;
 
 public class OutputView {
@@ -18,8 +18,8 @@ public class OutputView {
         System.out.println(result + "가 최종 우승했습니다.");
     }
 
-    public static void printAllCar(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printAllCar(List<CarDto> cars) {
+        for (CarDto car : cars) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
         }
 

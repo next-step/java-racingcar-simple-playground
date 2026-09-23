@@ -1,5 +1,6 @@
 package domain;
 
+import dto.CarDto;
 import java.util.List;
 import numberGenerator.NumberGenerator;
 
@@ -66,7 +67,9 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<CarDto> getCarDtos() {
+        return cars.stream()
+                .map(car -> new CarDto(car.getName(), car.getDistance()))
+                .toList();
     }
 }
