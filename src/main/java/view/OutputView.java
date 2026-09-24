@@ -20,7 +20,7 @@ public class OutputView {
 
     public static void printAllCar(List<CarDto> cars) {
         for (CarDto car : cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
+            System.out.println(car.name() + " : " + "-".repeat(car.distance()));
         }
 
     }

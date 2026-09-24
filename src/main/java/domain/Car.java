@@ -1,10 +1,10 @@
 package domain;
 
 public class Car {
-    private final String name;
-    private int distance = 0;
     private static final int MOVE_THRESHOLD = 4;
     private static final int MAX_NAME_LENGTH = 5;
+    private final String name;
+    private int distance = 0;
 
     public Car(String name) {
         validateName(name);
