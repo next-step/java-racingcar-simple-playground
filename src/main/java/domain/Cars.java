@@ -48,4 +48,30 @@ public class Cars {
             }
         }
     }
+
+    //계산은 여기서
+    public int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getCarPosition());
+        }
+        return maxPosition;
+    }
+
+    // 특정 위치에 있는 자동차들을 반환
+    public List<Car> carsAt(int position) {   // "이 위치에 있는 차들 줘"
+        List<Car> result = new ArrayList<>();
+        for (Car car : cars) {
+            result.addAll(carAt(car, position));
+        }
+        return result;
+    }
+    //add로 하면 값을 car로 받아야하는데 이때 우승자가 없는경우 반환값을 정하기 어려워 addAll 사용
+
+    private List<Car> carAt(Car car, int position) {
+        if (car.samePosition(position)) {
+            return List.of(car);
+        }
+        return List.of();
+    }
 }
